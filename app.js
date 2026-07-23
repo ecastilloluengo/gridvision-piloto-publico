@@ -5,15 +5,27 @@ const mapa = L.map("mapa", {
             minZoom: 3
         });
 
-        L.tileLayer(
-            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-            {
-                maxZoom: 19,
-                attribution:
-                    '&copy; <a href="https://www.openstreetmap.org/copyright">' +
-                    "OpenStreetMap</a>"
-            }
-        ).addTo(mapa);
+        const mapaCalles = L.tileLayer(
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    {
+        maxZoom: 19,
+        attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">' +
+            " OpenStreetMap</a>"
+    }
+);
+const mapaSatelital = L.tileLayer(
+    "https://services.arcgisonline.com/ArcGIS/rest/services/" +
+        "World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    {
+        maxZoom: 19,
+        attribution:
+            "Tiles &copy; Esri - Sources: Esri, Maxar, " +
+            "Earthstar Geographics and the GIS User Community"
+    }
+);
+// Mapa visible al iniciar GridVision
+mapaCalles.addTo(mapa);
 
         L.control.scale({
             imperial: false,
@@ -33,7 +45,10 @@ const capas = {
         };
 
         L.control.layers(
-            null,
+            {
+        "Mapa convencional": mapaCalles,
+        "Vista satelital": mapaSatelital
+    },
             {
                 "Líneas eléctricas": capas.lineas,
                 "Subestaciones": capas.subestaciones,
