@@ -1,0 +1,333 @@
+﻿.panel-operacional {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    left: 18px;
+    z-index: 900;
+    overflow: hidden;
+    border: 1px solid rgb(148 163 184 / 45%);
+    border-radius: 14px;
+    background: rgb(255 255 255 / 96%);
+    box-shadow: 0 14px 36px rgb(15 23 42 / 24%);
+    backdrop-filter: blur(10px);
+}
+
+.panel-operacional-barra {
+    display: flex;
+    width: 100%;
+    min-height: 58px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 18px;
+    border: 0;
+    color: #f8fafc;
+    background: linear-gradient(135deg, #0f172a, #1e3a5f);
+    cursor: pointer;
+    text-align: left;
+}
+
+.panel-operacional-barra strong,
+.panel-operacional-barra small {
+    display: block;
+}
+
+.panel-operacional-barra strong {
+    font-size: 14px;
+    letter-spacing: 0.02em;
+}
+
+.panel-operacional-barra small {
+    margin-top: 3px;
+    color: #cbd5e1;
+    font-size: 11px;
+}
+
+.panel-operacional-icono {
+    font-size: 16px;
+    transition: transform 180ms ease;
+}
+
+.panel-operacional:not(.panel-operacional-colapsado)
+    .panel-operacional-icono {
+    transform: rotate(180deg);
+}
+
+.panel-operacional-contenido {
+    max-height: 280px;
+    overflow: auto;
+}
+
+.panel-operacional-pestanas {
+    display: flex;
+    gap: 4px;
+    padding: 10px 14px 0;
+    overflow-x: auto;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.pestana-operacional {
+    padding: 8px 12px;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    color: #64748b;
+    background: transparent;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.pestana-operacional.pestana-activa {
+    border-bottom-color: #0284c7;
+    color: #075985;
+}
+
+.pestana-operacional:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+}
+
+.panel-operacional-vacio {
+    display: grid;
+    min-height: 135px;
+    place-content: center;
+    padding: 24px;
+    color: #475569;
+    text-align: center;
+}
+
+.panel-operacional-vacio strong {
+    color: #0f172a;
+    font-size: 15px;
+}
+
+.panel-operacional-vacio p {
+    max-width: 560px;
+    margin: 7px 0 0;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+    .panel-operacional {
+        right: 8px;
+        bottom: 8px;
+        left: 8px;
+        border-radius: 11px;
+    }
+
+    .panel-operacional-barra {
+        min-height: 52px;
+        padding: 8px 12px;
+    }
+
+    .panel-operacional-barra small {
+        display: none;
+    }
+
+    .panel-operacional-contenido {
+        max-height: 220px;
+    }
+
+    .panel-operacional-vacio {
+        min-height: 110px;
+        padding: 18px;
+    }
+}
+/* Mantiene visible la leyenda de tensión sobre el panel operacional */
+.leyenda-tension {
+    bottom: 92px;
+}
+
+body:has(.panel-operacional:not(.panel-operacional-colapsado))
+    .leyenda-tension {
+    bottom: 322px;
+}
+
+@media (max-width: 700px) {
+    .leyenda-tension {
+        bottom: 76px;
+    }
+
+    body:has(.panel-operacional:not(.panel-operacional-colapsado))
+        .leyenda-tension {
+        bottom: 252px;
+    }
+}
+/* Mantiene visibles los paneles climáticos sobre el panel operacional */
+body:has(.panel-operacional:not(.panel-operacional-colapsado))
+    .panel-clima,
+body:has(.panel-operacional:not(.panel-operacional-colapsado))
+    .panel-clima-linea {
+    bottom: 322px;
+    max-height: calc(100% - 342px);
+}
+
+/* Panel operacional cerrado */
+body:has(.panel-operacional.panel-operacional-colapsado)
+    .panel-clima,
+body:has(.panel-operacional.panel-operacional-colapsado)
+    .panel-clima-linea {
+    bottom: 92px;
+    max-height: calc(100% - 112px);
+}
+
+@media (max-width: 700px) {
+    body:has(.panel-operacional:not(.panel-operacional-colapsado))
+        .panel-clima,
+    body:has(.panel-operacional:not(.panel-operacional-colapsado))
+        .panel-clima-linea {
+        bottom: 252px;
+        max-height: calc(100% - 272px);
+    }
+
+    body:has(.panel-operacional.panel-operacional-colapsado)
+        .panel-clima,
+    body:has(.panel-operacional.panel-operacional-colapsado)
+        .panel-clima-linea {
+        bottom: 76px;
+        max-height: calc(100% - 96px);
+    }
+}
+.panel-operacional-resumen {
+    padding: 14px;
+}
+
+.resumen-operacional-cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.resumen-operacional-etiqueta {
+    color: #64748b;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.resumen-operacional-cabecera h3 {
+    margin: 3px 0 0;
+    color: #0f172a;
+    font-size: 18px;
+}
+
+.operacional-riesgo {
+    padding: 7px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+}
+
+.operacional-riesgo.riesgo-normal {
+    color: #166534;
+    background: #dcfce7;
+}
+
+.operacional-riesgo.riesgo-precaucion {
+    color: #854d0e;
+    background: #fef9c3;
+}
+
+.operacional-riesgo.riesgo-alerta {
+    color: #9a3412;
+    background: #ffedd5;
+}
+
+.operacional-riesgo.riesgo-critico {
+    color: #991b1b;
+    background: #fee2e2;
+}
+
+.resumen-operacional-tarjetas {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.resumen-operacional-tarjetas article {
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: #f8fafc;
+}
+
+.resumen-operacional-tarjetas span,
+.resumen-operacional-tarjetas strong,
+.resumen-operacional-tarjetas small {
+    display: block;
+}
+
+.resumen-operacional-tarjetas span {
+    color: #64748b;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.resumen-operacional-tarjetas strong {
+    margin-top: 5px;
+    color: #0f172a;
+    font-size: 18px;
+}
+
+.resumen-operacional-tarjetas small {
+    margin-top: 3px;
+    color: #64748b;
+    font-size: 10px;
+}
+
+.resumen-operacional-alerta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-left: 4px solid #0284c7;
+    border-radius: 8px;
+    background: #f0f9ff;
+}
+
+.resumen-operacional-alerta span {
+    color: #0369a1;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.resumen-operacional-alerta strong {
+    color: #0f172a;
+    font-size: 12px;
+    text-align: right;
+}
+
+@media (max-width: 900px) {
+    .resumen-operacional-tarjetas {
+        grid-template-columns: repeat(2, minmax(130px, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .resumen-operacional-tarjetas {
+        grid-template-columns: repeat(2, minmax(110px, 1fr));
+    }
+
+    .resumen-operacional-alerta {
+        display: block;
+    }
+
+    .resumen-operacional-alerta strong {
+        margin-top: 4px;
+        text-align: left;
+    }
+}
+/* Respeta el atributo hidden de las secciones del panel */
+.panel-operacional-vacio[hidden],
+.panel-operacional-resumen[hidden] {
+    display: none !important;
+}

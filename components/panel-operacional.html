@@ -1,0 +1,115 @@
+﻿<aside
+    id="panel-operacional"
+    class="panel-operacional panel-operacional-colapsado"
+    aria-label="Centro de Análisis Operacional"
+>
+    <button
+        id="alternar-panel-operacional"
+        class="panel-operacional-barra"
+        type="button"
+        aria-expanded="false"
+        aria-controls="contenido-panel-operacional"
+    >
+        <span>
+            <strong>Centro de Análisis Operacional</strong>
+            <small>Pronóstico meteorológico por zona y activo</small>
+        </span>
+
+        <span
+            class="panel-operacional-icono"
+            aria-hidden="true"
+        >
+            ▲
+        </span>
+    </button>
+
+    <div
+        id="contenido-panel-operacional"
+        class="panel-operacional-contenido"
+        hidden
+    >
+        <nav class="panel-operacional-pestanas">
+            <button class="pestana-operacional pestana-activa" type="button">
+                Pronóstico
+            </button>
+            <button class="pestana-operacional" type="button" disabled>
+                Histórico
+            </button>
+            <button class="pestana-operacional" type="button" disabled>
+                Playback
+            </button>
+            <button class="pestana-operacional" type="button" disabled>
+                Riesgo
+            </button>
+            <button class="pestana-operacional" type="button" disabled>
+                Eventos
+            </button>
+        </nav>
+
+        <section
+            id="panel-operacional-vacio"
+            class="panel-operacional-vacio"
+        >
+            <strong>Selecciona un activo</strong>
+            <p>
+                GridVision mostrará aquí el resumen meteorológico
+                y operacional de las próximas 72 horas.
+            </p>
+        </section>
+
+        <section
+            id="panel-operacional-resumen"
+            class="panel-operacional-resumen"
+            hidden
+        >
+            <header class="resumen-operacional-cabecera">
+                <div>
+                    <span class="resumen-operacional-etiqueta">
+                        Activo seleccionado
+                    </span>
+                    <h3 id="operacional-activo">—</h3>
+                </div>
+
+                <div
+                    id="operacional-riesgo"
+                    class="operacional-riesgo riesgo-normal"
+                >
+                    NORMAL
+                </div>
+            </header>
+
+            <div class="resumen-operacional-tarjetas">
+                <article>
+                    <span>Ráfaga máxima</span>
+                    <strong id="operacional-rafaga">—</strong>
+                    <small id="operacional-hora-rafaga">—</small>
+                </article>
+
+                <article>
+                    <span>Lluvia 24 h</span>
+                    <strong id="operacional-lluvia-24h">—</strong>
+                    <small>Acumulada</small>
+                </article>
+
+                <article>
+                    <span>Lluvia 72 h</span>
+                    <strong id="operacional-lluvia-72h">—</strong>
+                    <small>Acumulada</small>
+                </article>
+
+                <article>
+                    <span>Temperatura 72 h</span>
+                    <strong id="operacional-temperatura">—</strong>
+                    <small>Mínima a máxima</small>
+                </article>
+            </div>
+
+            <div class="resumen-operacional-alerta">
+                <span>Evaluación operacional</span>
+                <strong id="operacional-motivo">
+                    Sin evaluación
+                </strong>
+            </div>
+        </section>
+    </div>
+</aside>

@@ -703,9 +703,24 @@ escribirAlertaExtendida(
 
             const datos = await respuesta.json();
 
-            escribirActual(datos);
-            escribirPronostico(datos);
-            mostrarEstado("contenido");
+escribirActual(datos);
+escribirPronostico(datos);
+window.dispatchEvent(
+    new CustomEvent(
+        "gridvision:pronostico-activo",
+        {
+            detail: {
+                nombre:
+                    propiedades.nombre
+                    || "Activo sin nombre",
+                latitud,
+                longitud,
+                datos
+            }
+        }
+    )
+);
+mostrarEstado("contenido");
         } catch (error) {
             if (error.name === "AbortError") {
                 return;
