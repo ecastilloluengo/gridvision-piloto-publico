@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Piloto gerencial de GridVision Chile para visualizar activos eléctricos y su exposición meteorológica."
+    >
+
+    <meta
+        http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.tile.openstreetmap.org; connect-src 'self' https://api.open-meteo.com https://*.tile.openstreetmap.org; base-uri 'self'; form-action 'none'"
+    >
+
+    <title>GridVision Chile · Piloto Gerencia</title>
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <link
+        rel="stylesheet"
+        href="vendor/leaflet/leaflet.css"
+    >
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="titulo">
+            <div class="logo">GV</div>
+
+            <div>
+                <h1>GridVision Chile</h1>
+                <div class="subtitulo">
+                    Visor geoespacial del sistema eléctrico
+                </div>
+            </div>
+        </div>
+
+        <div class="estado-aplicacion">
+            <span class="insignia-piloto">Piloto v0.1.0</span>
+
+            <button id="abrir-guia-piloto" type="button">
+                Guía del piloto
+            </button>
+
+            <button
+                id="alternar-filtros"
+                type="button"
+                aria-controls="panel-filtros"
+                aria-expanded="false"
+            >
+                Filtros
+            </button>
+
+            <div id="estado">Cargando información geográfica…</div>
+        </div>
+    </header>
+
+    <section
+        id="bienvenida-piloto"
+        class="fondo-bienvenida"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="titulo-bienvenida-piloto"
+        hidden
+    >
+        <div class="tarjeta-bienvenida">
+            <span class="etiqueta-bienvenida">Versión piloto gerencial · v0.1.0</span>
+
+            <h2 id="titulo-bienvenida-piloto">GridVision Chile</h2>
+
+            <p>
+                Visor geoespacial para consultar activos del sistema eléctrico,
+                revisar su pronóstico y analizar líneas por tramos frente a
+                viento y ráfagas.
+            </p>
+
+            <ol>
+                <li>Busca o filtra un activo del mapa.</li>
+                <li>Selecciona un punto para consultar su clima.</li>
+                <li>Selecciona una línea para identificar el tramo más expuesto.</li>
+            </ol>
+
+            <div class="aviso-operacional">
+                <strong>Uso de evaluación:</strong>
+                los umbrales y la ráfaga transversal son preliminares. Esta
+                versión apoya la conciencia situacional y no reemplaza
+                mediciones, protecciones ni decisiones operacionales formales.
+            </div>
+
+            <button id="cerrar-guia-piloto" class="boton-principal" type="button">
+                Ingresar al piloto
+            </button>
+        </div>
+    </section>
+
+    <main>
+        <div id="mapa"></div>
+
+        <section id="error-carga" class="error-carga" role="alert" hidden>
+            <strong>No fue posible iniciar GridVision.</strong>
+            <span>
+                Comprueba la conexión a internet y vuelve a cargar la página.
+            </span>
+            <button id="reintentar-carga" type="button">Reintentar</button>
+        </section>
+
+        <section class="panel-busqueda">
+            <label for="buscador-activos">
+                Buscar activos
+            </label>
+
+            <div class="entrada-busqueda">
+                <input
+                    id="buscador-activos"
+                    type="search"
+                    placeholder="Nombre, ID, categoría o tensión..."
+                    autocomplete="off"
+                >
+
+                <button
+                    id="limpiar-busqueda"
+                    type="button"
+                    aria-label="Limpiar búsqueda"
+                    title="Limpiar búsqueda"
+                >
+                    ×
+                </button>
+            </div>
+
+            <div
+                id="resultados-busqueda"
+                class="resultados-busqueda"
+                hidden
+            ></div>
+        </section>
+
+
+        <section id="panel-filtros" class="panel-filtros">
+            <div class="cabecera-filtros">
+                <h2>Filtros del mapa</h2>
+
+                <button
+                    id="restablecer-filtros"
+                    type="button"
+                >
+                    Restablecer
+                </button>
+            </div>
+
+            <label for="filtro-categoria">
+                Categoría
+            </label>
+
+            <select id="filtro-categoria">
+                <option value="">
+                    Todas las categorías
+                </option>
+            </select>
+
+            <label for="filtro-tecnologia">
+                Tecnología
+            </label>
+
+            <select id="filtro-tecnologia">
+                <option value="">
+                    Todas las tecnologías
+                </option>
+            </select>
+
+            <label for="filtro-tension">
+                Nivel de tensión
+            </label>
+
+            <select id="filtro-tension">
+                <option value="">
+                    Todos los niveles
+                </option>
+            </select>
+
+            <div class="resultado-filtros">
+                <span>Coincidencias</span>
+
+                <strong id="cantidad-filtrada">
+                    3.906
+                </strong>
+            </div>
+        </section>
+
+        <section class="resumen">
+            <h2>Inventario visible</h2>
+
+            <div class="indicador">
+                <span>Activos puntuales</span>
+                <span class="valor" id="cantidad-puntos">—</span>
+            </div>
+
+            <div class="indicador">
+                <span>Líneas</span>
+                <span class="valor" id="cantidad-lineas">—</span>
+            </div>
+
+            <div class="indicador">
+                <span>Total único</span>
+                <span class="valor" id="cantidad-total">—</span>
+            </div>
+        </section>
+
+
+        <section
+            id="panel-clima"
+            class="panel-clima"
+        >
+            <div class="cabecera-clima">
+                <div>
+                    <span class="etiqueta-clima">
+                        Pronóstico 72 horas
+                    </span>
+
+                    <h2>Clima del activo</h2>
+                </div>
+
+                <button
+                    id="cerrar-clima"
+                    type="button"
+                    aria-label="Cerrar panel climático"
+                    title="Cerrar panel"
+                >
+                    ×
+                </button>
+            </div>
+
+            <div id="clima-vacio" class="clima-vacio">
+                Selecciona una central, subestación
+                u otro activo puntual para consultar
+                su pronóstico.
+            </div>
+
+            <div
+                id="clima-cargando"
+                class="clima-mensaje"
+                hidden
+            >
+                Consultando pronóstico meteorológico…
+            </div>
+
+            <div
+                id="clima-error"
+                class="clima-error"
+                hidden
+            ></div>
+
+            <div id="clima-contenido" hidden>
+                <h3 id="clima-activo">Activo seleccionado</h3>
+
+                <p
+                    id="clima-coordenadas"
+                    class="clima-coordenadas"
+                ></p>
+                <div
+                    id="alerta-meteorologica"
+                    class="alerta-meteorologica alerta-pendiente"
+                >
+                    <div class="alerta-cabecera">
+                        <span>Estado meteorológico · próximas 24 h</span>
+                        <strong id="alerta-nivel">Sin evaluar</strong>
+                    </div>
+
+                    <p id="alerta-motivo">
+                        Selecciona un activo para evaluar las condiciones.
+                    </p>
+                </div>
+
+                <div
+    id="alerta-extendida"
+    class="alerta-meteorologica alerta-pendiente"
+>
+    <div class="alerta-cabecera">
+        <span>Vigilancia extendida · 24–72 h</span>
+        <strong id="alerta-extendida-nivel">
+            Sin evaluar
+        </strong>
+    </div>
+
+    <p id="alerta-extendida-motivo">
+        Sin evaluación extendida.
+    </p>
+</div>
+<div class="clima-actual">
+                    <article>
+                        <span>Temperatura</span>
+                        <strong id="clima-temperatura">—</strong>
+                    </article>
+
+                    <article>
+                        <span>Condición</span>
+                        <strong id="clima-condicion">—</strong>
+                    </article>
+
+                    <article>
+                        <span>Humedad</span>
+                        <strong id="clima-humedad">—</strong>
+                    </article>
+
+                    <article>
+                        <span>Precipitación</span>
+                        <strong id="clima-precipitacion">—</strong>
+                    </article>
+
+                    <article>
+                        <span>Viento</span>
+                        <strong id="clima-viento">—</strong>
+                    </article>
+
+                    <article>
+                        <span>Ráfaga</span>
+                        <strong id="clima-rafaga">—</strong>
+                    </article>
+
+                    <article>
+                        <span>Dirección</span>
+                        <strong id="clima-direccion">—</strong>
+                    </article>
+                </div>
+
+                <h4>Precipitación acumulada</h4>
+
+                <div class="acumulados-clima">
+                    <article>
+                        <span>24 horas</span>
+                        <strong id="lluvia-24h">—</strong>
+                    </article>
+
+                    <article>
+                        <span>48 horas</span>
+                        <strong id="lluvia-48h">—</strong>
+                    </article>
+
+                    <article>
+                        <span>72 horas</span>
+                        <strong id="lluvia-72h">—</strong>
+                    </article>
+                </div>
+
+                <div class="extremos-clima">
+                    <article>
+                        <span>Ráfaga máxima</span>
+                        <strong id="rafaga-maxima">—</strong>
+                        <small id="hora-rafaga-maxima"></small>
+                    </article>
+
+                    <article>
+                        <span>Mayor lluvia horaria</span>
+                        <strong id="lluvia-maxima">—</strong>
+                        <small id="hora-lluvia-maxima"></small>
+                    </article>
+
+                    <article>
+                        <span>Temperatura 72 h</span>
+                        <strong id="rango-temperatura">—</strong>
+                    </article>
+
+                    <article>
+                        <span>Probabilidad máxima</span>
+                        <strong id="probabilidad-maxima">—</strong>
+                        <small id="hora-probabilidad-maxima"></small>
+                    </article>
+                </div>
+
+                <p class="fuente-clima">
+                    Fuente:
+                    <a
+                        href="https://open-meteo.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Open-Meteo
+                    </a>
+                    · modelo automático Best Match
+                </p>
+            </div>
+        </section>
+
+        <section
+            id="panel-clima-linea"
+            class="panel-clima panel-clima-linea"
+            hidden
+        >
+            <div class="cabecera-clima">
+                <div>
+                    <span class="etiqueta-clima">
+                        Piloto · análisis por tramos
+                    </span>
+
+                    <h2>Clima de la línea</h2>
+                </div>
+
+                <button
+                    id="cerrar-clima-linea"
+                    type="button"
+                    aria-label="Cerrar análisis de la línea"
+                    title="Cerrar panel"
+                >
+                    ×
+                </button>
+            </div>
+
+            <div
+                id="linea-clima-cargando"
+                class="clima-mensaje"
+            >
+                Dividiendo la línea y consultando el pronóstico…
+            </div>
+
+            <div
+                id="linea-clima-error"
+                class="clima-error"
+                hidden
+            ></div>
+
+            <div id="linea-clima-contenido" hidden>
+                <h3 id="linea-clima-nombre">Línea seleccionada</h3>
+
+                <p
+                    id="linea-clima-resumen"
+                    class="clima-coordenadas"
+                ></p>
+
+                <div class="selector-horizonte">
+                    <label for="horizonte-linea">
+                        Horizonte de evaluación
+                    </label>
+
+                    <select id="horizonte-linea">
+                        <option value="24">Próximas 24 horas</option>
+                        <option value="48">Próximas 48 horas</option>
+                        <option value="72">Próximas 72 horas</option>
+                    </select>
+                </div>
+
+                <div
+                    id="estado-clima-linea"
+                    class="estado-clima-linea riesgo-pendiente"
+                >
+                    <div class="alerta-cabecera">
+                        <span>Estado de la línea</span>
+                        <strong id="nivel-clima-linea">
+                            Sin evaluar
+                        </strong>
+                    </div>
+
+                    <p id="motivo-clima-linea"></p>
+                </div>
+
+                <div class="resumen-clima-linea">
+                    <article>
+                        <span>Tramo más expuesto</span>
+                        <strong id="tramo-critico-linea">—</strong>
+                    </article>
+
+                    <article>
+                        <span>Ráfaga crítica</span>
+                        <strong id="rafaga-critica-linea">—</strong>
+                    </article>
+
+                    <article>
+                        <span>Ráfaga transversal estimada</span>
+                        <strong id="transversal-critica-linea">—</strong>
+                    </article>
+
+                    <article>
+                        <span>Hora crítica</span>
+                        <strong id="hora-critica-linea">—</strong>
+                    </article>
+                </div>
+
+                <div class="leyenda-riesgo-linea">
+                    <span><i class="riesgo-verde"></i>Normal</span>
+                    <span><i class="riesgo-amarillo"></i>Precaución</span>
+                    <span><i class="riesgo-naranjo"></i>Alto</span>
+                    <span><i class="riesgo-rojo"></i>Crítico</span>
+                </div>
+
+                <h4>Tramos con mayor exposición</h4>
+
+                <div
+                    id="ranking-tramos-linea"
+                    class="ranking-tramos-linea"
+                ></div>
+
+                <p class="nota-clima-linea">
+                    La ráfaga transversal es una estimación calculada
+                    usando la dirección del viento y la orientación del
+                    tramo. Los umbrales son preliminares y configurables.
+                </p>
+
+                <p class="fuente-clima">
+                    Fuente:
+                    <a
+                        href="https://open-meteo.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Open-Meteo
+                    </a>
+                    · modelo automático Best Match
+                </p>
+            </div>
+        </section>
+
+        <section class="leyenda-tension">
+            <strong>Tensión de líneas</strong>
+
+            <div class="leyenda-item">
+                <span class="trazo trazo-500"></span>
+                <span>500 kV</span>
+            </div>
+
+            <div class="leyenda-item">
+                <span class="trazo trazo-220"></span>
+                <span>220–345 kV</span>
+            </div>
+
+            <div class="leyenda-item">
+                <span class="trazo trazo-110"></span>
+                <span>110–154 kV</span>
+            </div>
+
+            <div class="leyenda-item">
+                <span class="trazo trazo-66"></span>
+                <span>66 kV</span>
+            </div>
+
+            <div class="leyenda-item">
+                <span class="trazo trazo-otras"></span>
+                <span>23–44 kV / otras</span>
+            </div>
+        </section>
+    </main>
+
+    <script
+        src="vendor/leaflet/leaflet.js"
+    ></script>
+
+    <script src="piloto.js"></script>
+    <script src="clima.js"></script>
+    <script src="clima-lineas.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

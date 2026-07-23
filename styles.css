@@ -1,0 +1,1160 @@
+:root {
+            --azul-oscuro: #0b1f33;
+            --azul: #1565c0;
+            --celeste: #29b6f6;
+            --verde: #00a878;
+            --amarillo: #f9a825;
+            --rojo: #d32f2f;
+            --gris-claro: #eef3f7;
+            --blanco: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            font-family:
+                Inter,
+                "Segoe UI",
+                Arial,
+                sans-serif;
+            background: var(--gris-claro);
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            min-height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 10px 20px;
+            color: var(--blanco);
+            background: var(--azul-oscuro);
+            box-shadow: 0 2px 8px rgb(0 0 0 / 25%);
+            z-index: 1000;
+        }
+
+        .titulo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            border-radius: 9px;
+            font-weight: 800;
+            color: var(--azul-oscuro);
+            background: var(--celeste);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 21px;
+            letter-spacing: 0.3px;
+        }
+
+        .subtitulo {
+            margin-top: 2px;
+            font-size: 12px;
+            color: #b9d1e8;
+        }
+
+        #estado {
+            padding: 7px 12px;
+            border: 1px solid rgb(255 255 255 / 18%);
+            border-radius: 999px;
+            font-size: 12px;
+            background: rgb(255 255 255 / 8%);
+        }
+
+        main {
+            position: relative;
+            flex: 1;
+            min-height: 0;
+        }
+
+        #mapa {
+            width: 100%;
+            height: 100%;
+        }
+
+        .resumen {
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            width: 235px;
+            padding: 15px;
+            border-radius: 12px;
+            background: rgb(255 255 255 / 94%);
+            box-shadow: 0 5px 20px rgb(0 0 0 / 20%);
+            z-index: 700;
+        }
+
+        .resumen h2 {
+            margin: 0 0 12px;
+            color: var(--azul-oscuro);
+            font-size: 15px;
+        }
+
+        .indicador {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 7px 0;
+            border-bottom: 1px solid #e3eaf0;
+            font-size: 13px;
+        }
+
+        .indicador:last-child {
+            border-bottom: 0;
+        }
+
+        .valor {
+            font-weight: 700;
+            color: var(--azul);
+        }
+
+        .leyenda-tension {
+            position: absolute;
+            right: 12px;
+            bottom: 25px;
+            min-width: 130px;
+            padding: 11px 13px;
+            border-radius: 9px;
+            background: rgb(255 255 255 / 94%);
+            box-shadow: 0 3px 14px rgb(0 0 0 / 18%);
+            z-index: 700;
+            font-size: 12px;
+        }
+
+        .leyenda-tension strong {
+            display: block;
+            margin-bottom: 7px;
+            color: var(--azul-oscuro);
+        }
+
+        .leyenda-item {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin: 5px 0;
+        }
+
+        .trazo {
+            width: 25px;
+            height: 4px;
+            border-radius: 3px;
+        }
+
+        .trazo-500 {
+            background: #8e24aa;
+        }
+
+        .trazo-220 {
+            background: #d32f2f;
+        }
+
+        .trazo-110 {
+            background: #f57c00;
+        }
+
+        .trazo-66 {
+            background: #1976d2;
+        }
+
+        .trazo-otras {
+            background: #607d8b;
+        }
+
+        .popup-gridvision {
+            min-width: 210px;
+        }
+
+        .popup-gridvision h3 {
+            margin: 0 0 8px;
+            color: var(--azul-oscuro);
+            font-size: 14px;
+        }
+
+        .popup-gridvision p {
+            margin: 4px 0;
+            font-size: 12px;
+        }
+
+        .leaflet-control-layers {
+            border: 0 !important;
+            border-radius: 10px !important;
+            box-shadow: 0 3px 14px rgb(0 0 0 / 18%) !important;
+        }
+
+        @media (max-width: 700px) {
+            header {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            #estado {
+                align-self: stretch;
+            }
+
+            .resumen {
+                width: 200px;
+            }
+
+            .leyenda-tension {
+                display: none;
+            }
+        }
+
+/* Buscador de activos */
+.panel-busqueda {
+    position: absolute;
+    top: 18px;
+    left: 270px;
+    width: min(390px, calc(100% - 560px));
+    min-width: 300px;
+    padding: 13px;
+    border-radius: 12px;
+    background: rgb(255 255 255 / 96%);
+    box-shadow: 0 5px 20px rgb(0 0 0 / 20%);
+    z-index: 750;
+}
+
+.panel-busqueda label {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--azul-oscuro);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.entrada-busqueda {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid #c7d4df;
+    border-radius: 8px;
+    background: var(--blanco);
+}
+
+.entrada-busqueda:focus-within {
+    border-color: var(--azul);
+    box-shadow: 0 0 0 3px rgb(21 101 192 / 14%);
+}
+
+#buscador-activos {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 11px;
+    border: 0;
+    outline: 0;
+    color: var(--azul-oscuro);
+    background: transparent;
+    font: inherit;
+    font-size: 13px;
+}
+
+#limpiar-busqueda {
+    width: 38px;
+    align-self: stretch;
+    border: 0;
+    color: #607d8b;
+    background: transparent;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+#limpiar-busqueda:hover {
+    color: var(--rojo);
+    background: #f4f7fa;
+}
+
+.resultados-busqueda {
+    max-height: 330px;
+    margin-top: 8px;
+    overflow-y: auto;
+    border: 1px solid #dce5ec;
+    border-radius: 8px;
+    background: var(--blanco);
+}
+
+.resultado-busqueda {
+    display: block;
+    width: 100%;
+    padding: 10px 11px;
+    border: 0;
+    border-bottom: 1px solid #edf1f4;
+    text-align: left;
+    color: var(--azul-oscuro);
+    background: var(--blanco);
+    cursor: pointer;
+}
+
+.resultado-busqueda:last-child {
+    border-bottom: 0;
+}
+
+.resultado-busqueda:hover,
+.resultado-busqueda:focus {
+    outline: 0;
+    background: #eaf3fb;
+}
+
+.resultado-nombre {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.resultado-detalle {
+    display: block;
+    margin-top: 3px;
+    color: #607d8b;
+    font-size: 11px;
+}
+
+.sin-resultados {
+    margin: 0;
+    padding: 12px;
+    color: #607d8b;
+    font-size: 12px;
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+    .panel-busqueda {
+        right: 12px;
+        left: 260px;
+        width: auto;
+        min-width: 0;
+    }
+}
+
+@media (max-width: 700px) {
+    .panel-busqueda {
+        top: 175px;
+        right: 10px;
+        left: 10px;
+        width: auto;
+    }
+}
+
+/* Filtros combinables */
+.panel-filtros {
+    position: absolute;
+    top: 290px;
+    left: 18px;
+    width: 235px;
+    padding: 14px;
+    border-radius: 12px;
+    background: rgb(255 255 255 / 96%);
+    box-shadow: 0 5px 20px rgb(0 0 0 / 20%);
+    z-index: 720;
+}
+
+.cabecera-filtros {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 11px;
+}
+
+.cabecera-filtros h2 {
+    margin: 0;
+    color: var(--azul-oscuro);
+    font-size: 14px;
+}
+
+#restablecer-filtros {
+    padding: 5px 7px;
+    border: 1px solid #c7d4df;
+    border-radius: 6px;
+    color: var(--azul);
+    background: var(--blanco);
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+#restablecer-filtros:hover {
+    color: var(--blanco);
+    border-color: var(--azul);
+    background: var(--azul);
+}
+
+.panel-filtros label {
+    display: block;
+    margin: 9px 0 4px;
+    color: #455a64;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.panel-filtros select {
+    width: 100%;
+    padding: 8px 9px;
+    border: 1px solid #c7d4df;
+    border-radius: 7px;
+    outline: 0;
+    color: var(--azul-oscuro);
+    background: var(--blanco);
+    font: inherit;
+    font-size: 12px;
+}
+
+.panel-filtros select:focus {
+    border-color: var(--azul);
+    box-shadow: 0 0 0 3px rgb(21 101 192 / 12%);
+}
+
+.panel-filtros select:disabled {
+    color: #90a4ae;
+    background: #edf1f4;
+    cursor: not-allowed;
+}
+
+.resultado-filtros {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 13px;
+    padding-top: 10px;
+    border-top: 1px solid #dce5ec;
+    color: #455a64;
+    font-size: 12px;
+}
+
+.resultado-filtros strong {
+    color: var(--azul);
+    font-size: 14px;
+}
+
+@media (max-width: 700px) {
+    .panel-filtros {
+        top: 285px;
+        right: 10px;
+        left: 10px;
+        width: auto;
+    }
+}
+
+/* Panel meteorológico */
+.panel-clima {
+    position: absolute;
+    top: 290px;
+    right: 18px;
+    width: 350px;
+    max-height: calc(100% - 315px);
+    overflow-y: auto;
+    padding: 15px;
+    border-radius: 12px;
+    background: rgb(255 255 255 / 97%);
+    box-shadow: 0 5px 20px rgb(0 0 0 / 22%);
+    z-index: 730;
+}
+
+.cabecera-clima {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.etiqueta-clima {
+    display: block;
+    margin-bottom: 2px;
+    color: var(--azul);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.cabecera-clima h2 {
+    margin: 0;
+    color: var(--azul-oscuro);
+    font-size: 16px;
+}
+
+#cerrar-clima,
+#cerrar-clima-linea {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 auto;
+    border: 0;
+    border-radius: 7px;
+    color: #607d8b;
+    background: #eef3f7;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+#cerrar-clima:hover,
+#cerrar-clima-linea:hover {
+    color: var(--blanco);
+    background: var(--rojo);
+}
+
+.clima-vacio,
+.clima-mensaje,
+.clima-error {
+    padding: 15px;
+    border-radius: 9px;
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+.clima-vacio {
+    color: #526979;
+    background: #edf5fb;
+}
+
+.clima-mensaje {
+    color: #1565c0;
+    background: #e3f2fd;
+}
+
+.clima-error {
+    color: #9b1c1c;
+    background: #ffebee;
+}
+
+#clima-activo {
+    margin: 0 0 3px;
+    color: var(--azul-oscuro);
+    font-size: 14px;
+}
+
+.clima-coordenadas {
+    margin: 0 0 12px;
+    color: #607d8b;
+    font-size: 10px;
+}
+
+.clima-actual {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+}
+
+.clima-actual article,
+.acumulados-clima article,
+.extremos-clima article {
+    padding: 9px;
+    border: 1px solid #dce6ed;
+    border-radius: 8px;
+    background: #f8fafc;
+}
+
+.clima-actual article {
+    min-width: 0;
+    padding: 8px 5px;
+    text-align: center;
+}
+
+.clima-actual span,
+.acumulados-clima span,
+.extremos-clima span {
+    display: block;
+    color: #607d8b;
+    font-size: 9px;
+}
+
+.clima-actual strong {
+    display: block;
+    margin-top: 5px;
+    color: var(--azul-oscuro);
+    font-size: 12px;
+}
+
+.panel-clima h4 {
+    margin: 15px 0 7px;
+    color: var(--azul-oscuro);
+    font-size: 12px;
+}
+
+.acumulados-clima {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 7px;
+}
+
+.acumulados-clima article {
+    text-align: center;
+    background: #eaf5ff;
+}
+
+.acumulados-clima strong {
+    display: block;
+    margin-top: 5px;
+    color: var(--azul);
+    font-size: 15px;
+}
+
+.extremos-clima {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+    margin-top: 9px;
+}
+
+.extremos-clima strong {
+    display: block;
+    margin-top: 5px;
+    color: var(--azul-oscuro);
+    font-size: 13px;
+}
+
+.extremos-clima small {
+    display: block;
+    margin-top: 3px;
+    color: #607d8b;
+    font-size: 9px;
+}
+
+.fuente-clima {
+    margin: 12px 0 0;
+    color: #78909c;
+    font-size: 9px;
+    text-align: right;
+}
+
+.fuente-clima a {
+    color: var(--azul);
+}
+
+@media (max-width: 1050px) {
+    .panel-clima {
+        top: auto;
+        right: 12px;
+        bottom: 12px;
+        width: 330px;
+        max-height: 60%;
+    }
+}
+
+@media (max-width: 700px) {
+    .panel-clima {
+        right: 10px;
+        bottom: 10px;
+        left: 10px;
+        width: auto;
+        max-height: 55%;
+    }
+}
+.alerta-meteorologica {
+    margin: 12px 0 16px;
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-left: 5px solid #64748b;
+    border-radius: 10px;
+    background: #f8fafc;
+}
+
+.alerta-cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.alerta-cabecera span {
+    color: #475569;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.alerta-cabecera strong {
+    font-size: 0.82rem;
+    text-transform: uppercase;
+}
+
+.alerta-meteorologica p {
+    margin: 7px 0 0;
+    color: #334155;
+    font-size: 0.8rem;
+    line-height: 1.35;
+}
+
+.alerta-pendiente {
+    border-left-color: #64748b;
+    background: #f8fafc;
+}
+
+.alerta-normal {
+    border-left-color: #16a34a;
+    background: #f0fdf4;
+}
+
+.alerta-precaucion {
+    border-left-color: #eab308;
+    background: #fefce8;
+}
+
+.alerta-alerta {
+    border-left-color: #dc2626;
+    background: #fef2f2;
+}
+
+/* Análisis meteorológico de líneas */
+.panel-clima-linea {
+    width: 390px;
+}
+
+#linea-clima-nombre {
+    margin: 0 0 3px;
+    color: var(--azul-oscuro);
+    font-size: 14px;
+}
+
+.selector-horizonte {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 10px 0 12px;
+}
+
+.selector-horizonte label {
+    color: #455a64;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.selector-horizonte select {
+    min-width: 165px;
+    padding: 7px 8px;
+    border: 1px solid #c7d4df;
+    border-radius: 7px;
+    color: var(--azul-oscuro);
+    background: var(--blanco);
+    font: inherit;
+    font-size: 11px;
+}
+
+.estado-clima-linea {
+    margin: 10px 0 12px;
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-left: 5px solid #64748b;
+    border-radius: 10px;
+    background: #f8fafc;
+}
+
+.estado-clima-linea p {
+    margin: 7px 0 0;
+    color: #334155;
+    font-size: 0.78rem;
+    line-height: 1.35;
+}
+
+.riesgo-pendiente {
+    border-left-color: #64748b;
+    background: #f8fafc;
+}
+
+.riesgo-normal {
+    border-left-color: #16a34a;
+    background: #f0fdf4;
+}
+
+.riesgo-precaucion {
+    border-left-color: #eab308;
+    background: #fefce8;
+}
+
+.riesgo-alto {
+    border-left-color: #f97316;
+    background: #fff7ed;
+}
+
+.riesgo-critico {
+    border-left-color: #dc2626;
+    background: #fef2f2;
+}
+
+.resumen-clima-linea {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+}
+
+.resumen-clima-linea article {
+    padding: 9px;
+    border: 1px solid #dce6ed;
+    border-radius: 8px;
+    background: #f8fafc;
+}
+
+.resumen-clima-linea span {
+    display: block;
+    color: #607d8b;
+    font-size: 9px;
+}
+
+.resumen-clima-linea strong {
+    display: block;
+    margin-top: 5px;
+    color: var(--azul-oscuro);
+    font-size: 12px;
+}
+
+.leyenda-riesgo-linea {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px 12px;
+    margin-top: 11px;
+    padding: 8px 9px;
+    border-radius: 8px;
+    color: #526979;
+    background: #f3f6f8;
+    font-size: 9px;
+}
+
+.leyenda-riesgo-linea span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.leyenda-riesgo-linea i {
+    width: 18px;
+    height: 5px;
+    border-radius: 999px;
+}
+
+.riesgo-verde {
+    background: #16a34a;
+}
+
+.riesgo-amarillo {
+    background: #eab308;
+}
+
+.riesgo-naranjo {
+    background: #f97316;
+}
+
+.riesgo-rojo {
+    background: #dc2626;
+}
+
+.ranking-tramos-linea {
+    display: grid;
+    gap: 7px;
+}
+
+.tramo-ranking {
+    display: grid;
+    grid-template-columns: 8px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 9px;
+    padding: 9px;
+    border: 1px solid #dce6ed;
+    border-radius: 8px;
+    background: #f8fafc;
+}
+
+.tramo-ranking-color {
+    width: 8px;
+    height: 100%;
+    min-height: 34px;
+    border-radius: 999px;
+}
+
+.tramo-ranking strong,
+.tramo-ranking small {
+    display: block;
+}
+
+.tramo-ranking strong {
+    color: var(--azul-oscuro);
+    font-size: 11px;
+}
+
+.tramo-ranking small {
+    margin-top: 3px;
+    color: #607d8b;
+    font-size: 9px;
+}
+
+.tramo-ranking-valores {
+    text-align: right;
+}
+
+.tramo-ranking-valores strong {
+    font-size: 12px;
+}
+
+.nota-clima-linea {
+    margin: 12px 0 0;
+    padding: 9px;
+    border-radius: 8px;
+    color: #607d8b;
+    background: #f3f6f8;
+    font-size: 9px;
+    line-height: 1.45;
+}
+
+@media (max-width: 1050px) {
+    .panel-clima-linea {
+        width: 370px;
+    }
+}
+
+@media (max-width: 700px) {
+    .panel-clima-linea {
+        width: auto;
+    }
+}
+
+/* Presentación y mensajes de la versión piloto */
+.estado-aplicacion {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.insignia-piloto {
+    padding: 7px 10px;
+    border: 1px solid rgb(41 182 246 / 55%);
+    border-radius: 999px;
+    color: #dff4ff;
+    background: rgb(41 182 246 / 16%);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.25px;
+    text-transform: uppercase;
+}
+
+#abrir-guia-piloto {
+    padding: 7px 10px;
+    border: 1px solid rgb(255 255 255 / 24%);
+    border-radius: 999px;
+    color: var(--blanco);
+    background: transparent;
+    cursor: pointer;
+    font: inherit;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+#alternar-filtros {
+    display: none;
+}
+
+#abrir-guia-piloto:hover,
+#abrir-guia-piloto:focus-visible {
+    border-color: var(--celeste);
+    outline: 0;
+    background: rgb(41 182 246 / 14%);
+}
+
+.fondo-bienvenida {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    background: rgb(4 20 36 / 72%);
+    backdrop-filter: blur(3px);
+    z-index: 3000;
+}
+
+.fondo-bienvenida[hidden] {
+    display: none;
+}
+
+.tarjeta-bienvenida {
+    width: min(560px, 100%);
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    padding: 26px;
+    border: 1px solid rgb(255 255 255 / 55%);
+    border-radius: 18px;
+    color: #243746;
+    background: rgb(255 255 255 / 98%);
+    box-shadow: 0 24px 70px rgb(0 0 0 / 35%);
+}
+
+.etiqueta-bienvenida {
+    color: var(--azul);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.55px;
+    text-transform: uppercase;
+}
+
+.tarjeta-bienvenida h2 {
+    margin: 8px 0 10px;
+    color: var(--azul-oscuro);
+    font-size: 28px;
+}
+
+.tarjeta-bienvenida p,
+.tarjeta-bienvenida li {
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.tarjeta-bienvenida ol {
+    margin: 16px 0;
+    padding-left: 22px;
+}
+
+.aviso-operacional {
+    margin: 18px 0;
+    padding: 13px 14px;
+    border-left: 5px solid var(--amarillo);
+    border-radius: 9px;
+    color: #5d4a05;
+    background: #fff9db;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.boton-principal,
+.error-carga button {
+    padding: 10px 16px;
+    border: 0;
+    border-radius: 9px;
+    color: var(--blanco);
+    background: var(--azul);
+    cursor: pointer;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.boton-principal:hover,
+.boton-principal:focus-visible,
+.error-carga button:hover,
+.error-carga button:focus-visible {
+    outline: 3px solid rgb(41 182 246 / 35%);
+    background: #0d4f9f;
+}
+
+.error-carga {
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    width: min(460px, calc(100% - 24px));
+    padding: 14px;
+    border: 1px solid #fecaca;
+    border-left: 5px solid var(--rojo);
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 8px 24px rgb(0 0 0 / 24%);
+    transform: translateX(-50%);
+    z-index: 1200;
+}
+
+.error-carga[hidden] {
+    display: none;
+}
+
+.error-carga strong,
+.error-carga span {
+    display: block;
+}
+
+.error-carga strong {
+    color: #991b1b;
+    font-size: 13px;
+}
+
+.error-carga span {
+    margin: 4px 0 10px;
+    color: #475569;
+    font-size: 12px;
+}
+
+.error-carga button {
+    padding: 7px 11px;
+    font-size: 11px;
+}
+
+@media (max-width: 700px) {
+    .estado-aplicacion {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .estado-aplicacion #estado {
+        flex: 1 1 100%;
+    }
+
+    #alternar-filtros {
+        display: inline-block;
+        padding: 7px 10px;
+        border: 1px solid rgb(255 255 255 / 24%);
+        border-radius: 999px;
+        color: var(--blanco);
+        background: transparent;
+        cursor: pointer;
+        font: inherit;
+        font-size: 11px;
+        font-weight: 700;
+    }
+
+    #alternar-filtros[aria-expanded="true"] {
+        border-color: var(--celeste);
+        background: rgb(41 182 246 / 18%);
+    }
+
+    .resumen {
+        display: none;
+    }
+
+    .panel-busqueda {
+        top: 10px;
+    }
+
+    .panel-filtros {
+        display: none;
+        top: 108px;
+        max-height: calc(100% - 120px);
+        overflow-y: auto;
+        z-index: 850;
+    }
+
+    .panel-filtros.panel-filtros-abierto {
+        display: block;
+    }
+
+    .panel-clima,
+    .panel-clima-linea {
+        top: 10px;
+        bottom: 10px;
+        max-height: calc(100% - 20px);
+        z-index: 1000;
+    }
+
+    .tarjeta-bienvenida {
+        padding: 20px;
+    }
+
+    .tarjeta-bienvenida h2 {
+        font-size: 24px;
+    }
+}
