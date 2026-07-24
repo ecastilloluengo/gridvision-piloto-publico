@@ -123,47 +123,140 @@ function evaluarRiesgoPanel(horario) {
         motivo: "No se identifican condiciones meteorológicas críticas."
     };
 }
-function riesgoPorHoraPanel(rafaga, viento, lluvia) {
+function riesgoPorHoraPanel(
+    rafaga,
+    viento,
+    lluvia,
+    transversal
+) {
     const valorRafaga = numeroPanel(rafaga) || 0;
     const valorViento = numeroPanel(viento) || 0;
     const valorLluvia = numeroPanel(lluvia) || 0;
+    const valorTransversal =
+    numeroPanel(transversal) || 0;
 
-    if (
-        valorRafaga >= 100
-        || valorViento >= 80
-        || valorLluvia >= 20
-    ) {
+    const condiciones = [
+    {
+        tipo: "rafaga",
+        icono: "💨",
+        descripcion: "Ráfaga",
+        valor: valorRafaga,
+        unidad: "km/h",
+        precaucion: 60,
+        alerta: 80,
+        critico: 100
+    },
+    {
+        tipo: "transversal",
+        icono: "↔️",
+        descripcion: "Ráfaga transversal",
+        valor: valorTransversal,
+        unidad: "km/h",
+        precaucion: 50,
+        alerta: 70,
+        critico: 90
+    },
+    {
+        tipo: "viento",
+        icono: "🌬️",
+        descripcion: "Viento sostenido",
+        valor: valorViento,
+        unidad: "km/h",
+        precaucion: 40,
+        alerta: 60,
+        critico: 80
+    },
+    {
+        tipo: "lluvia",
+        icono: "🌧️",
+        descripcion: "Lluvia horaria",
+        valor: valorLluvia,
+        unidad: "mm/h",
+        precaucion: 5,
+        alerta: 10,
+        critico: 20
+    }
+];
+
+    function nivelCondicion(condicion) {
+        if (condicion.valor >= condicion.critico) {
+            return {
+                prioridad: 3,
+                nivel: "critico",
+                etiqueta: "CRÍTICO"
+            };
+        }
+
+        if (condicion.valor >= condicion.alerta) {
+            return {
+                prioridad: 2,
+                nivel: "alerta",
+                etiqueta: "ALERTA"
+            };
+        }
+
+        if (condicion.valor >= condicion.precaucion) {
+            return {
+                prioridad: 1,
+                nivel: "precaucion",
+                etiqueta: "PRECAUCIÓN"
+            };
+        }
+
         return {
-            nivel: "critico",
-            etiqueta: "CRÍTICO"
+            prioridad: 0,
+            nivel: "normal",
+            etiqueta: "NORMAL"
         };
     }
 
-    if (
-        valorRafaga >= 80
-        || valorViento >= 60
-        || valorLluvia >= 10
-    ) {
-        return {
-            nivel: "alerta",
-            etiqueta: "ALERTA"
-        };
-    }
+    const evaluadas = condiciones.map((condicion) => ({
+        ...condicion,
+        ...nivelCondicion(condicion)
+    }));
 
-    if (
-        valorRafaga >= 60
-        || valorViento >= 40
-        || valorLluvia >= 5
-    ) {
+    const dominante = evaluadas.sort((a, b) => {
+        if (b.prioridad !== a.prioridad) {
+            return b.prioridad - a.prioridad;
+        }
+
+        const proporcionA =
+            a.precaucion > 0
+                ? a.valor / a.precaucion
+                : 0;
+
+        const proporcionB =
+            b.precaucion > 0
+                ? b.valor / b.precaucion
+                : 0;
+
+        return proporcionB - proporcionA;
+    })[0];
+
+    if (!dominante || dominante.prioridad === 0) {
         return {
-            nivel: "precaucion",
-            etiqueta: "PRECAUCIÓN"
+            nivel: "normal",
+            etiqueta: "NORMAL",
+            causa: {
+                tipo: "sin-riesgo",
+                icono: "",
+                descripcion: "Sin condición dominante",
+                valor: ""
+            }
         };
     }
 
     return {
-        nivel: "normal",
-        etiqueta: "NORMAL"
+        nivel: dominante.nivel,
+        etiqueta: dominante.etiqueta,
+        causa: {
+            tipo: dominante.tipo,
+            icono: dominante.icono,
+            descripcion: dominante.descripcion,
+            valor:
+                `${formatoPanel(dominante.valor, 1)} `
+                + dominante.unidad
+        }
     };
 }
 
@@ -690,18 +783,34 @@ function construirMeteogramaLinea(horario, detalle) {
             );
 
             const riesgo = riesgoPorHoraPanel(
-                horario.wind_gusts_10m?.[indice],
-                horario.wind_speed_10m?.[indice],
-                horario.precipitation?.[indice]
+    horario.wind_gusts_10m?.[indice],
+    horario.wind_speed_10m?.[indice],
+    horario.precipitation?.[indice],
+    transversal
             );
 
             const indicador = document.createElement("span");
 
-            indicador.className =
-                `meteograma-riesgo `
-                + `meteograma-riesgo-${riesgo.nivel}`;
+indicador.className =
+    `meteograma-riesgo `
+    + `meteograma-riesgo-${riesgo.nivel}`;
 
-            indicador.textContent = riesgo.etiqueta;
+const estado = document.createElement("strong");
+estado.textContent = riesgo.etiqueta;
+indicador.appendChild(estado);
+
+if (
+    riesgo.causa
+    && riesgo.causa.tipo !== "sin-riesgo"
+) {
+    const causa = document.createElement("small");
+
+causa.innerHTML =
+    `${riesgo.causa.icono} <strong>${riesgo.causa.descripcion}</strong><br>`
+    + `${riesgo.causa.valor}`;
+
+    indicador.appendChild(causa);
+}
 
             if (transversal !== null) {
                 indicador.title =
@@ -906,14 +1015,19 @@ function construirRankingLineaPanel(ranking) {
         detalle.motivo || "Sin evaluación";
 
     construirRankingLineaPanel(
-        detalle.ranking
-    );
+    detalle.ranking
+);
     construirMeteogramaLinea(
     horarioTramoCritico,
     detalle
 );
 }
 async function cargarPanelOperacional() {
+    window.GridVisionPanelUtilidades = {
+    formatoPanel,
+    horaPanel,
+    claseRiesgoLineaPanel
+};
     const contenedor = document.getElementById(
         "contenedor-panel-operacional"
     );

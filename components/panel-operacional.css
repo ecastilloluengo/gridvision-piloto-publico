@@ -564,10 +564,53 @@ body:has(.panel-operacional.panel-operacional-colapsado)
 
 .meteograma-riesgo {
     width: 100%;
-    padding: 5px 6px;
-    border-radius: 999px;
-    font-size: 9px;
+    min-height: 54px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 2px;
+    padding: 5px 4px;
+
+    border-radius: 14px;
+
+    box-sizing: border-box;
+    overflow: hidden;
+
+    text-align: center;
+    line-height: 1.05;
+}
+
+.meteograma-riesgo-estado {
+    display: block;
+
+    font-size: 10px;
     font-weight: 800;
+    line-height: 1;
+
+    white-space: nowrap;
+}
+
+.meteograma-riesgo-causa {
+    display: block;
+
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 1.05;
+
+    white-space: nowrap;
+}
+
+.meteograma-riesgo-valor {
+    display: block;
+
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1;
+
+    white-space: nowrap;
 }
 
 .meteograma-riesgo-normal {
@@ -602,6 +645,7 @@ body:has(.panel-operacional.panel-operacional-colapsado)
             repeat(8, minmax(88px, 1fr));
     }
 }
+
 /* Separación visual al comenzar un nuevo día */
 .meteograma-inicio-dia {
     border-left: 3px solid #0f172a !important;

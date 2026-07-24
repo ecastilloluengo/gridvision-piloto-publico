@@ -524,9 +524,18 @@
     }
 
     function dibujarTramos(resultados) {
+        console.log("Tramos recibidos:", resultados.length);
         capaAnalisis.clearLayers();
 
         resultados.forEach((resultado) => {
+            console.log(
+    resultado.tramo?.nombre || "Tramo sin nombre",
+    resultado.tramo?.coordenadas?.length || 0,
+    resultado.nivel?.nombre
+        || resultado.nivel?.etiqueta
+        || "Sin nivel",
+    resultado.nivel?.color || "Sin color"
+);
             const coordenadasLeaflet =
                 resultado.tramo.coordenadas.map(
                     ([longitud, latitud]) =>
@@ -542,6 +551,21 @@
                 lineCap: "round",
                 lineJoin: "round"
             });
+            // Marca el inicio de cada tramo meteorológico
+// Marca el inicio del tramo con una barra perpendicular
+const puntoInicio = coordenadasLeaflet[0];
+
+const marca = L.divIcon({
+    className: "gv-marca-tramo",
+    html: '<div class="gv-barra-tramo"></div>',
+    iconSize: [8, 12],
+    iconAnchor: [4, 6]
+});
+
+L.marker(puntoInicio, {
+    icon: marca,
+    interactive: false
+}).addTo(capaAnalisis);
 
             if (resultado.disponible) {
                 linea.bindPopup(crearPopupTramo(resultado));

@@ -1158,3 +1158,20 @@
         font-size: 24px;
     }
 }
+.gv-marca-tramo {
+    background: transparent;
+    border: none;
+}
+
+.gv-barra-tramo {
+    width: 2px;
+    height: 12px;
+
+    background: #ffffff;
+
+    border-radius: 2px;
+
+    border: 1px solid #0f172a;
+
+    margin: auto;
+}
