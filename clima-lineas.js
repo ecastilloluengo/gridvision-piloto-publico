@@ -524,18 +524,10 @@
     }
 
     function dibujarTramos(resultados) {
-        console.log("Tramos recibidos:", resultados.length);
-        capaAnalisis.clearLayers();
+                capaAnalisis.clearLayers();
 
         resultados.forEach((resultado) => {
-            console.log(
-    resultado.tramo?.nombre || "Tramo sin nombre",
-    resultado.tramo?.coordenadas?.length || 0,
-    resultado.nivel?.nombre
-        || resultado.nivel?.etiqueta
-        || "Sin nivel",
-    resultado.nivel?.color || "Sin color"
-);
+            
             const coordenadasLeaflet =
                 resultado.tramo.coordenadas.map(
                     ([longitud, latitud]) =>
