@@ -379,7 +379,7 @@ function claseRiesgoLineaPanel(nivel) {
     ) {
         return {
             clase: "alerta",
-            etiqueta: "ALERTA"
+            etiqueta: "ALTO"
         };
     }
 
@@ -790,12 +790,27 @@ function construirRankingLineaPanel(ranking) {
         });
 }
 
-function actualizarPanelOperacionalLinea(evento) {
+
+    function actualizarPanelOperacionalLinea(evento) {
     document.getElementById(
         "operacional-tipo-seleccion"
     ).textContent = "Línea seleccionada";
 
     const detalle = evento.detail || {};
+
+    document.getElementById(
+        "operacional-timeline-etiqueta"
+    ).textContent = "Ranking de exposición";
+
+    document.getElementById(
+        "operacional-timeline-titulo"
+    ).textContent =
+        "Tramos con mayor exposición prevista";
+
+    document.getElementById(
+        "operacional-timeline-detalle"
+    ).textContent =
+        `Máximo dentro de ${detalle.horizonte || 24} horas`;
 
     const pronosticoTramoCritico =
         detalle.pronosticoTramoCritico || {};
@@ -806,7 +821,6 @@ function actualizarPanelOperacionalLinea(evento) {
     const riesgo = claseRiesgoLineaPanel(
         detalle.nivel
     );
-
     document.getElementById(
         "panel-operacional-vacio"
     ).hidden = true;
