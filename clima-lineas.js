@@ -334,7 +334,7 @@
     "wind_direction_10m",
     "wind_gusts_10m"
 ].join(","),
-            forecast_hours: "72",
+            forecast_hours: "168",
             timezone: "auto",
             wind_speed_unit: "kmh"
         });

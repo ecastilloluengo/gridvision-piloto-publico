@@ -525,7 +525,59 @@ function construirMeteogramaLinea(horario, detalle) {
     tabla.style.gridTemplateColumns =
         `115px repeat(${indices.length}, minmax(90px, 1fr))`;
 
-    function agregarFila(etiqueta, valores, claseExtra = "") {
+    function agregarFila(
+    etiqueta,
+    valores,
+    claseExtra = "",
+    marcarDias = true
+) {
+    const celdaEtiqueta = document.createElement("div");
+
+    celdaEtiqueta.className =
+        "meteograma-celda meteograma-celda-etiqueta";
+
+    celdaEtiqueta.textContent = etiqueta;
+    tabla.appendChild(celdaEtiqueta);
+
+    valores.forEach((valor, posicion) => {
+        const celda = document.createElement("div");
+
+        celda.className =
+            `meteograma-celda ${claseExtra}`.trim();
+
+        if (
+            marcarDias
+            && posicion > 0
+        ) {
+            const indiceActual = indices[posicion];
+            const indiceAnterior = indices[posicion - 1];
+
+            const fechaActual =
+                tiempos[indiceActual]?.split("T")[0];
+
+            const fechaAnterior =
+                tiempos[indiceAnterior]?.split("T")[0];
+
+            if (
+                fechaActual
+                && fechaAnterior
+                && fechaActual !== fechaAnterior
+            ) {
+                celda.classList.add(
+                    "meteograma-inicio-dia"
+                );
+            }
+        }
+
+        if (valor instanceof Node) {
+            celda.appendChild(valor);
+        } else {
+            celda.innerHTML = valor;
+        }
+
+        tabla.appendChild(celda);
+    });
+}
         const celdaEtiqueta = document.createElement("div");
 
         celdaEtiqueta.className =
@@ -564,7 +616,8 @@ function construirMeteogramaLinea(horario, detalle) {
 
             return `<strong>${dia}-${mes}</strong>`;
         }),
-        "meteograma-celda-hora"
+        "meteograma-celda-hora",
+         true
     );
 
     agregarFila(
@@ -576,7 +629,8 @@ function construirMeteogramaLinea(horario, detalle) {
 
             return `<strong>${hora}</strong>`;
         }),
-        "meteograma-celda-hora"
+        "meteograma-celda-hora",
+         true
     );
 
     agregarFila(
@@ -586,7 +640,8 @@ function construirMeteogramaLinea(horario, detalle) {
                 horario.weather_code?.[indice]
             )
         ),
-        "meteograma-celda-condicion"
+        "meteograma-celda-condicion",
+    true
     );
 
     agregarFila(

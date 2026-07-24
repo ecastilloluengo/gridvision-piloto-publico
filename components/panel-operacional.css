@@ -479,8 +479,39 @@ body:has(.panel-operacional.panel-operacional-colapsado)
 }
 
 .meteograma-contenido {
-    overflow-x: auto;
-    padding: 0 0 8px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    padding: 0 0 14px;
+    scrollbar-gutter: stable;
+    overscroll-behavior-x: contain;
+}
+
+/* Barra horizontal más visible */
+.meteograma-contenido::-webkit-scrollbar {
+    height: 14px;
+}
+
+.meteograma-contenido::-webkit-scrollbar-track {
+    border-radius: 999px;
+    background: #e2e8f0;
+}
+
+.meteograma-contenido::-webkit-scrollbar-thumb {
+    border: 3px solid #e2e8f0;
+    border-radius: 999px;
+    background: #64748b;
+}
+
+.meteograma-contenido::-webkit-scrollbar-thumb:hover {
+    background: #334155;
+}
+
+/* Firefox */
+.meteograma-contenido {
+    scrollbar-width: auto;
+    scrollbar-color: #64748b #e2e8f0;
 }
 
 .meteograma-tabla {
@@ -570,4 +601,13 @@ body:has(.panel-operacional.panel-operacional-colapsado)
             105px
             repeat(8, minmax(88px, 1fr));
     }
+}
+/* Separación visual al comenzar un nuevo día */
+.meteograma-inicio-dia {
+    border-left: 3px solid #0f172a !important;
+}
+
+/* Refuerzo en filas de fecha y hora */
+.meteograma-celda-hora.meteograma-inicio-dia {
+    background: #e2e8f0;
 }
