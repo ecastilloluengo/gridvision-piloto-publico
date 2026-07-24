@@ -578,31 +578,7 @@ function construirMeteogramaLinea(horario, detalle) {
         tabla.appendChild(celda);
     });
 }
-        const celdaEtiqueta = document.createElement("div");
-
-        celdaEtiqueta.className =
-            "meteograma-celda meteograma-celda-etiqueta";
-
-        celdaEtiqueta.textContent = etiqueta;
-        tabla.appendChild(celdaEtiqueta);
-
-        valores.forEach((valor) => {
-            const celda = document.createElement("div");
-
-            celda.className =
-                `meteograma-celda ${claseExtra}`.trim();
-
-            if (valor instanceof Node) {
-                celda.appendChild(valor);
-            } else {
-                celda.innerHTML = valor;
-            }
-
-            tabla.appendChild(celda);
-        });
-    }
-
-    agregarFila(
+            agregarFila(
         "Fecha",
         indices.map((indice) => {
             const fechaIso = tiempos[indice];
