@@ -12,7 +12,9 @@
     >
         <span>
             <strong>Centro de Análisis Operacional</strong>
-            <small>Pronóstico meteorológico por zona y activo</small>
+            <small>
+                Pronóstico meteorológico por zona y activo
+            </small>
         </span>
 
         <span
@@ -29,19 +31,42 @@
         hidden
     >
         <nav class="panel-operacional-pestanas">
-            <button class="pestana-operacional pestana-activa" type="button">
+            <button
+                class="pestana-operacional pestana-activa"
+                type="button"
+            >
                 Pronóstico
             </button>
-            <button class="pestana-operacional" type="button" disabled>
+
+            <button
+                class="pestana-operacional"
+                type="button"
+                disabled
+            >
                 Histórico
             </button>
-            <button class="pestana-operacional" type="button" disabled>
+
+            <button
+                class="pestana-operacional"
+                type="button"
+                disabled
+            >
                 Playback
             </button>
-            <button class="pestana-operacional" type="button" disabled>
+
+            <button
+                class="pestana-operacional"
+                type="button"
+                disabled
+            >
                 Riesgo
             </button>
-            <button class="pestana-operacional" type="button" disabled>
+
+            <button
+                class="pestana-operacional"
+                type="button"
+                disabled
+            >
                 Eventos
             </button>
         </nav>
@@ -50,10 +75,11 @@
             id="panel-operacional-vacio"
             class="panel-operacional-vacio"
         >
-            <strong>Selecciona un activo</strong>
+            <strong>Selecciona un activo o una línea</strong>
+
             <p>
                 GridVision mostrará aquí el resumen meteorológico
-                y operacional de las próximas 72 horas.
+                y operacional del elemento seleccionado.
             </p>
         </section>
 
@@ -64,10 +90,16 @@
         >
             <header class="resumen-operacional-cabecera">
                 <div>
-                    <span class="resumen-operacional-etiqueta">
+                    <span
+                        id="operacional-tipo-seleccion"
+                        class="resumen-operacional-etiqueta"
+                    >
                         Activo seleccionado
                     </span>
-                    <h3 id="operacional-activo">—</h3>
+
+                    <h3 id="operacional-activo">
+                        —
+                    </h3>
                 </div>
 
                 <div
@@ -80,35 +112,169 @@
 
             <div class="resumen-operacional-tarjetas">
                 <article>
-                    <span>Ráfaga máxima</span>
-                    <strong id="operacional-rafaga">—</strong>
-                    <small id="operacional-hora-rafaga">—</small>
+                    <span id="operacional-etiqueta-1">
+                        Ráfaga máxima
+                    </span>
+
+                    <strong id="operacional-rafaga">
+                        —
+                    </strong>
+
+                    <small id="operacional-hora-rafaga">
+                        —
+                    </small>
                 </article>
 
                 <article>
-                    <span>Lluvia 24 h</span>
-                    <strong id="operacional-lluvia-24h">—</strong>
-                    <small>Acumulada</small>
+                    <span id="operacional-etiqueta-2">
+                        Lluvia 24 h
+                    </span>
+
+                    <strong id="operacional-lluvia-24h">
+                        —
+                    </strong>
+
+                    <small id="operacional-detalle-2">
+                        Acumulada
+                    </small>
                 </article>
 
                 <article>
-                    <span>Lluvia 72 h</span>
-                    <strong id="operacional-lluvia-72h">—</strong>
-                    <small>Acumulada</small>
+                    <span id="operacional-etiqueta-3">
+                        Lluvia 72 h
+                    </span>
+
+                    <strong id="operacional-lluvia-72h">
+                        —
+                    </strong>
+
+                    <small id="operacional-detalle-3">
+                        Acumulada
+                    </small>
                 </article>
 
                 <article>
-                    <span>Temperatura 72 h</span>
-                    <strong id="operacional-temperatura">—</strong>
-                    <small>Mínima a máxima</small>
+                    <span id="operacional-etiqueta-4">
+                        Temperatura 72 h
+                    </span>
+
+                    <strong id="operacional-temperatura">
+                        —
+                    </strong>
+
+                    <small id="operacional-detalle-4">
+                        Mínima a máxima
+                    </small>
                 </article>
             </div>
 
             <div class="resumen-operacional-alerta">
-                <span>Evaluación operacional</span>
+                <span>
+                    Evaluación operacional
+                </span>
+
                 <strong id="operacional-motivo">
                     Sin evaluación
                 </strong>
+            </div>
+
+            <section
+                id="meteograma-operacional"
+                class="meteograma-operacional"
+            >
+                <header class="meteograma-cabecera">
+                    <div>
+                        <span
+                            id="meteograma-etiqueta"
+                            class="resumen-operacional-etiqueta"
+                        >
+                            Evolución meteorológica
+                        </span>
+
+                        <strong id="meteograma-titulo">
+                            Selecciona un activo o una línea
+                        </strong>
+                    </div>
+
+                    <div class="meteograma-controles">
+                        <label>
+                            <span>Horizonte</span>
+
+                            <select id="meteograma-horizonte">
+                                <option value="24">
+                                    24 horas
+                                </option>
+
+                                <option value="72">
+                                    72 horas
+                                </option>
+
+                                <option value="168">
+                                    7 días
+                                </option>
+                            </select>
+                        </label>
+
+                        <label>
+                            <span>Resolución</span>
+
+                            <select id="meteograma-resolucion">
+                                <option value="1">
+                                    Cada 1 hora
+                                </option>
+
+                                <option
+                                    value="3"
+                                    selected
+                                >
+                                    Cada 3 horas
+                                </option>
+
+                                <option value="6">
+                                    Cada 6 horas
+                                </option>
+                            </select>
+                        </label>
+
+                        <small id="meteograma-detalle">
+                            Próximas 24 horas
+                        </small>
+                    </div>
+                </header>
+
+                <div
+                    id="meteograma-contenido"
+                    class="meteograma-contenido"
+                ></div>
+            </section>
+
+            <div
+                id="timeline-operacional"
+                class="timeline-operacional"
+            >
+                <div class="timeline-operacional-cabecera">
+                    <div>
+                        <span
+                            id="operacional-timeline-etiqueta"
+                            class="resumen-operacional-etiqueta"
+                        >
+                            Evolución horaria
+                        </span>
+
+                        <strong id="operacional-timeline-titulo">
+                            Próximas 24 horas
+                        </strong>
+                    </div>
+
+                    <small id="operacional-timeline-detalle">
+                        Intervalos cada 3 horas
+                    </small>
+                </div>
+
+                <div
+                    id="timeline-operacional-contenido"
+                    class="timeline-operacional-contenido"
+                ></div>
             </div>
         </section>
     </div>

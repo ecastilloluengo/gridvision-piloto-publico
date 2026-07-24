@@ -327,10 +327,13 @@
             latitude: latitudes.join(","),
             longitude: longitudes.join(","),
             hourly: [
-                "wind_speed_10m",
-                "wind_direction_10m",
-                "wind_gusts_10m"
-            ].join(","),
+    "temperature_2m",
+    "precipitation",
+    "weather_code",
+    "wind_speed_10m",
+    "wind_direction_10m",
+    "wind_gusts_10m"
+].join(","),
             forecast_hours: "72",
             timezone: "auto",
             wind_speed_unit: "kmh"
@@ -650,6 +653,12 @@
         const principal = ordenados.find(
             (resultado) => resultado.disponible
         );
+        const indiceTramoCritico =
+    analisisActivo.tramos.indexOf(principal.tramo);
+
+const pronosticoTramoCritico =
+    analisisActivo.pronosticos[indiceTramoCritico]
+    || null;
 
         if (!principal) {
             mostrarEstado(
@@ -662,6 +671,64 @@
         dibujarTramos(resultados);
         escribirEstadoLinea(principal, horizonte);
         escribirRanking(ordenados);
+        dibujarTramos(resultados);
+escribirEstadoLinea(principal, horizonte);
+escribirRanking(ordenados);
+
+window.dispatchEvent(
+    new CustomEvent(
+        "gridvision:pronostico-linea",
+        {
+            detail: {
+                pronosticoTramoCritico,
+
+                nombre:
+                    analisisActivo.feature?.properties?.nombre
+                    || "Línea sin nombre",
+
+                longitudTotalKm:
+                    analisisActivo.longitudTotalKm,
+
+                horizonte,
+
+                nivel:
+                    principal.nivel?.etiqueta || "NORMAL",
+
+                motivo:
+                    `${etiquetaTramo(principal.tramo)} presenta la mayor exposición prevista.`,
+
+                tramoCritico:
+                    etiquetaTramo(principal.tramo),
+                    rumboTramoCritico:
+    principal.tramo?.rumbo ?? null,
+                rafagaCritica:
+                    principal.rafaga,
+
+                transversalCritica:
+                    principal.transversal,
+
+                horaCritica:
+                    principal.hora,
+
+                ranking: ordenados
+    .filter((resultado) => resultado.disponible)
+    .slice(0, 8)
+    .map((resultado) => ({
+        tramo: etiquetaTramo(resultado.tramo),
+        rafaga: resultado.rafaga,
+        transversal: resultado.transversal,
+        hora: resultado.hora,
+        nivel:
+            resultado.nivel?.etiqueta
+            || resultado.nivel?.nombre
+            || "NORMAL"
+    }))
+            }
+        }
+    )
+);
+
+mostrarEstado("contenido");
         mostrarEstado("contenido");
     }
 
