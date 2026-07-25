@@ -2,6 +2,10 @@
     const bienvenida = document.getElementById("bienvenida-piloto");
     const abrir = document.getElementById("abrir-guia-piloto");
     const cerrar = document.getElementById("cerrar-guia-piloto");
+    const abrirAcerca =
+    document.getElementById(
+        "abrir-acerca-gridvision"
+    );
     const alternarFiltros = document.getElementById("alternar-filtros");
     const filtros = document.getElementById("panel-filtros");
 
@@ -17,6 +21,13 @@
 
     abrir.addEventListener("click", abrirGuia);
     cerrar.addEventListener("click", cerrarGuia);
+    abrirAcerca?.addEventListener(
+    "click",
+    () => {
+        window.GridVisionAcerca
+            ?.abrirPanelAcerca();
+    }
+);
 
     alternarFiltros.addEventListener("click", () => {
         const abierto = filtros.classList.toggle("panel-filtros-abierto");
