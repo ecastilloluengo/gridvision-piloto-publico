@@ -511,16 +511,68 @@
             ["Hora", formatearHora(resultado.hora)]
         ];
 
-        campos.forEach(([etiqueta, valor]) => {
-            const parrafo = document.createElement("p");
-            const fuerte = document.createElement("strong");
-            fuerte.textContent = `${etiqueta}: `;
-            parrafo.appendChild(fuerte);
-            parrafo.appendChild(document.createTextNode(valor));
-            contenedor.appendChild(parrafo);
-        });
+campos.forEach(([etiqueta, valor]) => {
+    const parrafo = document.createElement("p");
+    const fuerte = document.createElement("strong");
 
-        return contenedor;
+    fuerte.textContent = `${etiqueta}: `;
+
+    parrafo.appendChild(fuerte);
+    parrafo.appendChild(
+        document.createTextNode(valor)
+    );
+
+    contenedor.appendChild(parrafo);
+});
+
+const botonLocalizar =
+    document.createElement("button");
+
+botonLocalizar.type = "button";
+botonLocalizar.className =
+    "popup-boton-localizar-falla";
+botonLocalizar.textContent =
+    "⚡ Localizar falla";
+
+botonLocalizar.addEventListener(
+    "click",
+    async () => {
+        if (
+            !window.GridVisionLocalizadorFallas
+            || !analisisActivo
+        ) {
+            console.error(
+                "El localizador de fallas no está disponible."
+            );
+            return;
+        }
+
+await window.GridVisionLocalizadorFallas
+    .abrirPanelLocalizador({
+        nombreLinea:
+            analisisActivo.feature
+                ?.properties
+                ?.nombre
+            || "Línea sin nombre",
+
+        longitudTotalKm:
+            analisisActivo.longitudTotalKm,
+
+        feature:
+            analisisActivo.feature,
+
+        mapa
+    });
+
+        if (mapa?.closePopup) {
+            mapa.closePopup();
+        }
+    }
+);
+
+contenedor.appendChild(botonLocalizar);
+
+return contenedor;
     }
 
     function dibujarTramos(resultados) {

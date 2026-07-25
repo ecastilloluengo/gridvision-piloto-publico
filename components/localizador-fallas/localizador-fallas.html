@@ -1,0 +1,202 @@
+<section
+    id="panel-localizador-fallas"
+    class="panel-localizador-fallas"
+    hidden
+>
+    <header class="localizador-fallas-cabecera">
+        <div>
+            <span class="localizador-fallas-etiqueta">
+                GV-FLT-001
+            </span>
+
+            <h2>
+                Localizador geográfico de fallas
+            </h2>
+
+            <p>
+                Estimación de la ubicación de una falla
+                a partir de la distancia indicada por la protección.
+            </p>
+        </div>
+
+        <button
+            id="cerrar-localizador-fallas"
+            type="button"
+            aria-label="Cerrar localizador de fallas"
+        >
+            ×
+        </button>
+    </header>
+
+    <div class="localizador-fallas-contenido">
+        <div class="localizador-fallas-linea">
+            <span>Línea seleccionada</span>
+
+            <strong id="localizador-fallas-linea-nombre">
+                Sin línea seleccionada
+            </strong>
+
+            <small id="localizador-fallas-linea-longitud">
+                —
+            </small>
+        </div>
+
+        <div class="localizador-fallas-formulario">
+            <label>
+                Extremo de referencia
+
+                <select id="localizador-fallas-extremo">
+                    <option value="A">
+                        Extremo A
+                    </option>
+
+                    <option value="B">
+                        Extremo B
+                    </option>
+                </select>
+            </label>
+
+            <label>
+                Distancia indicada por la protección
+
+                <div class="localizador-fallas-entrada-unidad">
+                    <input
+                        id="localizador-fallas-distancia"
+                        type="number"
+                        min="0"
+                        step="0.1"
+                        placeholder="Ej.: 37,4"
+                    >
+
+                    <span>km</span>
+                </div>
+            </label>
+
+            <label>
+                Precisión declarada
+
+                <div class="localizador-fallas-entrada-unidad">
+                    <input
+                        id="localizador-fallas-precision"
+                        type="number"
+                        min="0"
+                        step="0.1"
+                        value="1"
+                    >
+
+                    <span>± km</span>
+                </div>
+            </label>
+            <button
+             id="localizar-falla"
+        type="button"
+    class="localizador-fallas-boton"
+>
+    ⚡ Localizar falla
+</button>
+
+<button
+    id="eliminar-falla"
+    type="button"
+    class="localizador-fallas-boton-secundario"
+    hidden
+>
+    🗑 Eliminar falla del mapa
+</button>
+        </div>
+
+        <div
+            id="localizador-fallas-mensaje"
+            class="localizador-fallas-mensaje"
+            hidden
+        ></div>
+
+        <article
+            id="localizador-fallas-resultado"
+            class="localizador-fallas-resultado"
+            hidden
+        >
+            <div class="localizador-fallas-titulo-resultado">
+                <span class="localizador-fallas-icono">
+                    ⚡
+                </span>
+
+                <div>
+                    <span>Ubicación estimada de falla</span>
+
+                    <strong id="resultado-falla-linea">
+                        —
+                    </strong>
+                </div>
+            </div>
+
+            <div class="localizador-fallas-esquema">
+                <strong id="resultado-extremo-a">
+                    Extremo A
+                </strong>
+
+                <div class="localizador-fallas-eje">
+                    <span
+                        id="resultado-marcador-falla"
+                        class="localizador-fallas-marcador"
+                    >
+                        ⚡
+                    </span>
+                </div>
+
+                <strong id="resultado-extremo-b">
+                    Extremo B
+                </strong>
+            </div>
+
+            <dl class="localizador-fallas-datos">
+                <div>
+    <dt id="resultado-etiqueta-distancia-a">
+        Distancia desde extremo A
+    </dt>
+
+    <dd id="resultado-distancia-a">
+        —
+    </dd>
+</div>
+
+<div>
+    <dt id="resultado-etiqueta-distancia-b">
+        Distancia desde extremo B
+    </dt>
+
+    <dd id="resultado-distancia-b">
+        —
+    </dd>
+</div>
+
+                <div>
+                    <dt>Longitud total GIS</dt>
+                    <dd id="resultado-longitud-total">—</dd>
+                </div>
+
+                <div>
+                    <dt>Coordenadas estimadas</dt>
+                    <dd id="resultado-coordenadas">—</dd>
+                </div>
+
+                <div>
+                    <dt>Sector cercano</dt>
+                    <dd id="resultado-sector-cercano">
+                        Pendiente de integración geográfica
+                    </dd>
+                </div>
+
+                <div>
+                    <dt>Precisión declarada</dt>
+                    <dd id="resultado-precision">—</dd>
+                </div>
+            </dl>
+
+            <p class="localizador-fallas-advertencia">
+                La ubicación corresponde a una estimación basada
+                en la distancia informada por la protección.
+            </p>
+        </article>
+    </div>
+</section>
