@@ -1,0 +1,491 @@
+.panel-administracion-accesos {
+    position: fixed;
+    top: 82px;
+    right: 24px;
+    z-index: 1400;
+
+    width: min(760px, calc(100vw - 32px));
+    max-height: calc(100vh - 112px);
+
+    overflow-y: auto;
+
+    color: #0f172a;
+    background: #f8fafc;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 18px;
+
+    box-shadow:
+        0 26px 64px rgba(15, 23, 42, 0.24);
+}
+
+.panel-administracion-accesos[hidden] {
+    display: none;
+}
+
+.admin-accesos-cabecera {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 18px;
+    padding: 22px 24px;
+
+    color: #ffffff;
+    background:
+        linear-gradient(
+            135deg,
+            #0f172a 0%,
+            #1e3a8a 60%,
+            #2563eb 100%
+        );
+
+    border-radius: 18px 18px 0 0;
+}
+
+.admin-accesos-cabecera h2 {
+    margin: 7px 0 8px;
+
+    font-size: 24px;
+    line-height: 1.2;
+}
+
+.admin-accesos-cabecera p {
+    max-width: 520px;
+    margin: 0;
+
+    color: #dbeafe;
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.admin-accesos-etiqueta {
+    display: inline-flex;
+
+    padding: 5px 9px;
+
+    color: #bfdbfe;
+    background: rgba(255, 255, 255, 0.13);
+
+    border-radius: 999px;
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+#cerrar-administracion-accesos {
+    flex: 0 0 auto;
+
+    width: 36px;
+    height: 36px;
+
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.12);
+
+    border: 0;
+    border-radius: 10px;
+
+    font-size: 22px;
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+#cerrar-administracion-accesos:hover {
+    background: rgba(255, 255, 255, 0.22);
+}
+
+.admin-accesos-contenido {
+    display: grid;
+
+    gap: 18px;
+    padding: 22px 24px 26px;
+}
+
+.admin-accesos-resumen {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 12px;
+}
+
+.admin-accesos-resumen > div {
+    display: grid;
+
+    gap: 4px;
+    padding: 15px 16px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 13px;
+}
+
+.admin-accesos-resumen span {
+    color: #64748b;
+
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.admin-accesos-resumen strong {
+    color: #0f172a;
+
+    font-size: 24px;
+    line-height: 1;
+}
+
+.admin-accesos-herramientas {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+
+    gap: 12px;
+}
+
+.admin-accesos-herramientas label,
+.admin-accesos-formulario label {
+    display: grid;
+
+    gap: 7px;
+
+    color: #334155;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.admin-accesos-herramientas input,
+.admin-accesos-formulario input,
+.admin-accesos-formulario select {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 10px 11px;
+
+    color: #0f172a;
+    background: #ffffff;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+
+    font: inherit;
+    font-size: 12px;
+}
+
+.admin-accesos-herramientas input:focus,
+.admin-accesos-formulario input:focus,
+.admin-accesos-formulario select:focus {
+    outline: 2px solid rgba(37, 99, 235, 0.18);
+    border-color: #2563eb;
+}
+
+.admin-accesos-boton-principal,
+.admin-accesos-boton-secundario {
+    padding: 10px 14px;
+
+    border-radius: 10px;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+.admin-accesos-boton-principal {
+    color: #ffffff;
+    background: #2563eb;
+
+    border: 1px solid #2563eb;
+}
+
+.admin-accesos-boton-principal:hover {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+}
+
+.admin-accesos-boton-secundario {
+    color: #334155;
+    background: #ffffff;
+
+    border: 1px solid #cbd5e1;
+}
+
+.admin-accesos-boton-secundario:hover {
+    background: #f1f5f9;
+}
+
+.admin-accesos-lista {
+    display: grid;
+
+    gap: 12px;
+}
+
+.admin-accesos-usuario {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+
+    gap: 16px;
+    padding: 16px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+
+    box-shadow:
+        0 8px 20px rgba(15, 23, 42, 0.06);
+}
+
+.admin-accesos-usuario-owner {
+    border-color: #f59e0b;
+
+    box-shadow:
+        0 10px 24px rgba(245, 158, 11, 0.14);
+}
+
+.admin-accesos-usuario-principal {
+    display: grid;
+
+    gap: 7px;
+}
+
+.admin-accesos-identidad {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 10px;
+}
+
+.admin-accesos-avatar {
+    display: grid;
+    place-items: center;
+
+    flex: 0 0 auto;
+
+    width: 38px;
+    height: 38px;
+
+    color: #1e3a8a;
+    background: #dbeafe;
+
+    border-radius: 50%;
+
+    font-size: 18px;
+}
+
+.admin-accesos-usuario-owner .admin-accesos-avatar {
+    color: #92400e;
+    background: #fef3c7;
+}
+
+.admin-accesos-identidad h3 {
+    margin: 0;
+
+    color: #0f172a;
+
+    font-size: 14px;
+    line-height: 1.25;
+}
+
+.admin-accesos-identidad p {
+    margin: 3px 0 0;
+
+    color: #64748b;
+
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.admin-accesos-insignias {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 7px;
+}
+
+.admin-accesos-insignia {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 5px 8px;
+
+    border-radius: 999px;
+
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.admin-accesos-insignia-rol {
+    color: #1e3a8a;
+    background: #dbeafe;
+}
+
+.admin-accesos-insignia-owner {
+    color: #92400e;
+    background: #fef3c7;
+}
+
+.admin-accesos-insignia-activo {
+    color: #166534;
+    background: #dcfce7;
+}
+
+.admin-accesos-insignia-inactivo {
+    color: #475569;
+    background: #e2e8f0;
+}
+
+.admin-accesos-insignia-caducado {
+    color: #991b1b;
+    background: #fee2e2;
+}
+
+.admin-accesos-vigencia {
+    color: #475569;
+
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.admin-accesos-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-content: flex-start;
+
+    gap: 7px;
+}
+
+.admin-accesos-accion {
+    padding: 7px 9px;
+
+    color: #334155;
+    background: #ffffff;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+.admin-accesos-accion:hover {
+    background: #f1f5f9;
+}
+
+.admin-accesos-accion-peligro {
+    color: #991b1b;
+    border-color: #fecaca;
+}
+
+.admin-accesos-accion-peligro:hover {
+    background: #fef2f2;
+}
+
+.admin-accesos-formulario {
+    display: grid;
+
+    gap: 16px;
+    padding: 18px;
+
+    background: #ffffff;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 14px;
+}
+
+.admin-accesos-formulario[hidden] {
+    display: none;
+}
+
+.admin-accesos-formulario-cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+}
+
+.admin-accesos-formulario-cabecera h3 {
+    margin: 0;
+
+    color: #0f172a;
+
+    font-size: 16px;
+}
+
+#cerrar-formulario-usuario {
+    width: 32px;
+    height: 32px;
+
+    color: #475569;
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 9px;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+.admin-accesos-formulario-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 13px;
+}
+
+.admin-accesos-formulario-acciones {
+    display: flex;
+    justify-content: flex-end;
+
+    gap: 10px;
+}
+
+.admin-accesos-advertencia {
+    margin: 0;
+    padding: 12px 14px;
+
+    color: #7c2d12;
+    background: #fff7ed;
+
+    border: 1px solid #fed7aa;
+    border-radius: 11px;
+
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+@media (max-width: 760px) {
+    .panel-administracion-accesos {
+        top: 12px;
+        right: 12px;
+        bottom: 12px;
+        left: 12px;
+
+        width: auto;
+        max-height: none;
+    }
+
+    .admin-accesos-resumen,
+    .admin-accesos-formulario-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-accesos-herramientas,
+    .admin-accesos-usuario {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-accesos-acciones {
+        justify-content: flex-start;
+    }
+}

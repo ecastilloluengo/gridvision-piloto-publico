@@ -1,0 +1,204 @@
+<section
+    id="panel-administracion-accesos"
+    class="panel-administracion-accesos"
+    hidden
+>
+    <header class="admin-accesos-cabecera">
+        <div>
+            <span class="admin-accesos-etiqueta">
+                GV-AUTH-001
+            </span>
+
+            <h2>
+                Administración de Accesos
+            </h2>
+
+            <p>
+                Gestión de usuarios, roles, vigencia y permisos
+                de acceso a GridVision.
+            </p>
+        </div>
+
+        <button
+            id="cerrar-administracion-accesos"
+            type="button"
+            aria-label="Cerrar administración de accesos"
+        >
+            ×
+        </button>
+    </header>
+
+    <div class="admin-accesos-contenido">
+
+        <div class="admin-accesos-resumen">
+            <div>
+                <span>Usuarios totales</span>
+                <strong id="resumen-usuarios-total">0</strong>
+            </div>
+
+            <div>
+                <span>Activos</span>
+                <strong id="resumen-usuarios-activos">0</strong>
+            </div>
+
+            <div>
+                <span>Caducados</span>
+                <strong id="resumen-usuarios-caducados">0</strong>
+            </div>
+        </div>
+
+        <div class="admin-accesos-herramientas">
+            <label>
+                Buscar usuario
+
+                <input
+                    id="buscar-usuario-acceso"
+                    type="search"
+                    placeholder="Nombre, correo, empresa o rol"
+                >
+            </label>
+
+            <button
+                id="agregar-usuario-acceso"
+                type="button"
+                class="admin-accesos-boton-principal"
+            >
+                + Agregar usuario
+            </button>
+        </div>
+
+        <div
+            id="lista-usuarios-acceso"
+            class="admin-accesos-lista"
+        ></div>
+
+        <section
+            id="formulario-usuario-acceso"
+            class="admin-accesos-formulario"
+            hidden
+        >
+            <div class="admin-accesos-formulario-cabecera">
+                <h3 id="titulo-formulario-usuario">
+                    Nuevo usuario
+                </h3>
+
+                <button
+                    id="cerrar-formulario-usuario"
+                    type="button"
+                    aria-label="Cerrar formulario"
+                >
+                    ×
+                </button>
+            </div>
+
+            <div class="admin-accesos-formulario-grid">
+                <label>
+                    Nombre completo
+
+                    <input
+                        id="usuario-nombre"
+                        type="text"
+                        required
+                    >
+                </label>
+
+                <label>
+                    Correo electrónico
+
+                    <input
+                        id="usuario-correo"
+                        type="email"
+                    >
+                </label>
+
+                <label>
+                    Empresa
+
+                    <input
+                        id="usuario-empresa"
+                        type="text"
+                    >
+                </label>
+
+                <label>
+                    Cargo
+
+                    <input
+                        id="usuario-cargo"
+                        type="text"
+                    >
+                </label>
+
+                <label>
+                    Rol
+
+                    <select id="usuario-rol">
+                        <option value="ADMIN">
+                            Administrador
+                        </option>
+
+                        <option value="SUPERVISOR">
+                            Supervisor
+                        </option>
+
+                        <option value="OPERADOR">
+                            Operador
+                        </option>
+
+                        <option value="INVITADO">
+                            Invitado
+                        </option>
+                    </select>
+                </label>
+
+                <label>
+                    Estado
+
+                    <select id="usuario-estado">
+                        <option value="ACTIVO">
+                            Activo
+                        </option>
+
+                        <option value="INACTIVO">
+                            Inactivo
+                        </option>
+                    </select>
+                </label>
+
+                <label>
+                    Fecha de expiración
+
+                    <input
+                        id="usuario-expiracion"
+                        type="date"
+                    >
+                </label>
+            </div>
+
+            <div class="admin-accesos-formulario-acciones">
+                <button
+                    id="cancelar-usuario-acceso"
+                    type="button"
+                    class="admin-accesos-boton-secundario"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    id="guardar-usuario-acceso"
+                    type="button"
+                    class="admin-accesos-boton-principal"
+                >
+                    Guardar usuario
+                </button>
+            </div>
+        </section>
+
+        <p class="admin-accesos-advertencia">
+            Esta primera versión administra usuarios y vigencias
+            localmente. La protección real del acceso público se
+            incorporará posteriormente mediante autenticación y backend.
+        </p>
+
+    </div>
+</section>

@@ -33,37 +33,198 @@ mapaCalles.addTo(mapa);
         }).addTo(mapa);
 
         const indiceBusqueda = [];
-
 const capas = {
-            lineas: L.layerGroup().addTo(mapa),
-            subestaciones: L.layerGroup().addTo(mapa),
-            centrales: L.layerGroup().addTo(mapa),
-            almacenamiento: L.layerGroup().addTo(mapa),
-            derivaciones: L.layerGroup().addTo(mapa),
-            otros: L.layerGroup().addTo(mapa),
-            postes: L.layerGroup()
-        };
+    lineas: L.layerGroup().addTo(mapa),
+    subestaciones: L.layerGroup().addTo(mapa),
+    centrales: L.layerGroup().addTo(mapa),
+    almacenamiento: L.layerGroup().addTo(mapa),
+    derivaciones: L.layerGroup().addTo(mapa),
+    otros: L.layerGroup().addTo(mapa),
+    postes: L.layerGroup().addTo(mapa)
+};
+const capasSeleccionables = [
+    capas.lineas,
+    capas.subestaciones,
+    capas.centrales,
+    capas.almacenamiento,
+    capas.derivaciones,
+    capas.otros,
+    capas.postes
+];
 
-        L.control.layers(
-            {
+const controlCapas = L.control.layers(
+    {
         "Mapa convencional": mapaCalles,
         "Vista satelital": mapaSatelital
     },
-            {
-                "Líneas eléctricas": capas.lineas,
-                "Subestaciones": capas.subestaciones,
-                "Centrales": capas.centrales,
-                "Almacenamiento": capas.almacenamiento,
-                "Conexiones en derivación": capas.derivaciones,
-                "Otros activos": capas.otros,
-                "Postes PEVP": capas.postes
-            },
-            {
-                collapsed: window.matchMedia("(max-width: 700px)").matches,
-                position: "topright"
-            }
-        ).addTo(mapa);
+    {
+        "Líneas eléctricas": capas.lineas,
+        "Subestaciones": capas.subestaciones,
+        "Centrales": capas.centrales,
+        "Almacenamiento": capas.almacenamiento,
+        "Conexiones en derivación": capas.derivaciones,
+        "Otros activos": capas.otros,
+        "Postes PEVP": capas.postes
+    },
+    {
+        collapsed:
+            window.matchMedia(
+                "(max-width: 700px)"
+            ).matches,
+        position: "topright"
+    }
+).addTo(mapa);
 
+const contenedorControl =
+    controlCapas.getContainer();
+
+let sincronizandoCapas = false;
+
+function obtenerContenedorOverlays() {
+    return contenedorControl.querySelector(
+        ".leaflet-control-layers-overlays"
+    );
+}
+
+function obtenerSelectorTodo() {
+    const contenedorOverlays =
+        obtenerContenedorOverlays();
+
+    if (!contenedorOverlays) {
+        return null;
+    }
+
+    let selectorTodo =
+        contenedorOverlays.querySelector(
+            'input[data-gridvision-seleccionar-todo="true"]'
+        );
+
+    if (selectorTodo) {
+        return selectorTodo;
+    }
+
+    const etiquetaSeleccionarTodo =
+        document.createElement("label");
+
+    etiquetaSeleccionarTodo.className =
+        "gridvision-seleccionar-todo";
+
+    const contenedorSeleccionarTodo =
+        document.createElement("span");
+
+    selectorTodo =
+        document.createElement("input");
+
+    selectorTodo.type = "checkbox";
+    selectorTodo.className =
+        "leaflet-control-layers-selector";
+
+    selectorTodo.setAttribute(
+        "data-gridvision-seleccionar-todo",
+        "true"
+    );
+
+    const textoSeleccionarTodo =
+        document.createElement("span");
+
+    textoSeleccionarTodo.textContent =
+        " Seleccionar todo";
+
+    contenedorSeleccionarTodo.appendChild(
+        selectorTodo
+    );
+
+    contenedorSeleccionarTodo.appendChild(
+        textoSeleccionarTodo
+    );
+
+    etiquetaSeleccionarTodo.appendChild(
+        contenedorSeleccionarTodo
+    );
+
+    contenedorOverlays.insertBefore(
+        etiquetaSeleccionarTodo,
+        contenedorOverlays.firstChild
+    );
+
+    selectorTodo.addEventListener(
+        "change",
+        () => {
+            sincronizandoCapas = true;
+
+            capasSeleccionables.forEach(
+                (capa) => {
+                    if (
+                        selectorTodo.checked
+                        && !mapa.hasLayer(capa)
+                    ) {
+                        mapa.addLayer(capa);
+                    }
+
+                    if (
+                        !selectorTodo.checked
+                        && mapa.hasLayer(capa)
+                    ) {
+                        mapa.removeLayer(capa);
+                    }
+                }
+            );
+
+            sincronizandoCapas = false;
+
+            window.setTimeout(
+                actualizarSeleccionarTodo,
+                0
+            );
+        }
+    );
+
+    return selectorTodo;
+}
+
+function actualizarSeleccionarTodo() {
+    const selectorTodo =
+        obtenerSelectorTodo();
+
+    if (!selectorTodo) {
+        return;
+    }
+
+    const cantidadActivas =
+        capasSeleccionables.filter(
+            (capa) => mapa.hasLayer(capa)
+        ).length;
+
+    selectorTodo.checked =
+        cantidadActivas
+        === capasSeleccionables.length;
+
+    selectorTodo.indeterminate =
+        cantidadActivas > 0
+        && cantidadActivas
+            < capasSeleccionables.length;
+}
+
+mapa.on(
+    "overlayadd overlayremove",
+    (evento) => {
+        if (
+            sincronizandoCapas
+            || !capasSeleccionables.includes(
+                evento.layer
+            )
+        ) {
+            return;
+        }
+
+        window.setTimeout(
+            actualizarSeleccionarTodo,
+            0
+        );
+    }
+);
+
+actualizarSeleccionarTodo();
         function colorLinea(tension) {
             const texto = String(tension || "");
 
