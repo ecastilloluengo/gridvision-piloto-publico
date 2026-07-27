@@ -45,11 +45,12 @@
         }
 
         .titulo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1 1 auto;
+    min-width: 0;
+}
         .logo {
             width: 38px;
             height: 38px;
@@ -931,52 +932,87 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 8px;
+    gap: 10px;
+    flex: 0 0 auto;
+    margin-left: auto;
 }
+.insignia-piloto,
+#abrir-guia-piloto,
+#abrir-acerca-gridvision,
+#abrir-administracion-accesos,
+#estado {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
-.insignia-piloto {
-    padding: 7px 10px;
-    border: 1px solid rgb(41 182 246 / 55%);
-    border-radius: 999px;
-    color: #dff4ff;
-    background: rgb(41 182 246 / 16%);
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.25px;
-    text-transform: uppercase;
-}
+    height: 40px;
+    padding: 0 18px;
 
-#abrir-guia-piloto {
-    padding: 7px 10px;
-    border: 1px solid rgb(255 255 255 / 24%);
+    border: 1px solid #4a6785;
     border-radius: 999px;
-    color: var(--blanco);
-    background: transparent;
-    cursor: pointer;
+
+    background: #10233d;
+    color: #ffffff;
+
     font: inherit;
-    font-size: 11px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
 }
 
-#alternar-filtros {
-    display: none;
+#abrir-guia-piloto,
+#abrir-acerca-gridvision,
+#abrir-administracion-accesos {
+    cursor: pointer;
 }
 
 #abrir-guia-piloto:hover,
-#abrir-guia-piloto:focus-visible {
-    border-color: var(--celeste);
-    outline: 0;
-    background: rgb(41 182 246 / 14%);
+#abrir-guia-piloto:focus-visible,
+#abrir-acerca-gridvision:hover,
+#abrir-acerca-gridvision:focus-visible,
+#abrir-administracion-accesos:hover,
+#abrir-administracion-accesos:focus-visible {
+    background: #1d4ed8;
+    border-color: #60a5fa;
+    outline: none;
 }
-
+#estado {
+    margin-left: 0;
+    position: relative;
+    padding-left: 34px;
+}
+#estado::before {
+    content: "";
+    position: absolute;
+    left: 16px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 0 3px rgb(34 197 94 / 15%);
+}
+#alternar-filtros {
+    display: none;
+}
 .fondo-bienvenida {
     position: fixed;
     inset: 0;
-    display: grid;
-    place-items: center;
-    padding: 20px;
-    background: rgb(4 20 36 / 72%);
-    backdrop-filter: blur(3px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px;
+
+    background: rgba(4, 20, 36, 0.72);
+    backdrop-filter: blur(4px);
+
     z-index: 3000;
 }
 
@@ -985,18 +1021,24 @@
 }
 
 .tarjeta-bienvenida {
-    width: min(560px, 100%);
-    max-height: calc(100vh - 40px);
+    width: min(560px, 92vw);
+    max-height: calc(100vh - 80px);
     overflow-y: auto;
-    padding: 26px;
-    border: 1px solid rgb(255 255 255 / 55%);
-    border-radius: 18px;
-    color: #243746;
-    background: rgb(255 255 255 / 98%);
-    box-shadow: 0 24px 70px rgb(0 0 0 / 35%);
-}
 
-.etiqueta-bienvenida {
+    padding: 28px;
+
+    border: 1px solid rgb(255 255 255 / 55%);
+    border-radius: 20px;
+
+    color: #243746;
+    background: #ffffff;
+
+    box-shadow:
+        0 18px 40px rgb(0 0 0 / 25%);
+
+    animation: aparecerModal 0.25s ease;
+}
+    .etiqueta-bienvenida {
     color: var(--azul);
     font-size: 11px;
     font-weight: 800;
@@ -1194,4 +1236,15 @@
 
 .popup-boton-localizar-falla:hover {
     background: #1d4ed8;
+}
+@keyframes aparecerModal {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
