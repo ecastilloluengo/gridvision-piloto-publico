@@ -1248,3 +1248,12 @@
         transform: translateY(0) scale(1);
     }
 }
+/* Evita líneas visibles entre mosaicos del mapa satelital */
+.mapa-satelital-tile,
+.mapa-etiquetas-tile,
+.leaflet-tile {
+    outline: 1px solid transparent;
+    border: 0;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}

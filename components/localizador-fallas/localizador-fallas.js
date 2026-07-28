@@ -502,7 +502,7 @@ function obtenerNombresExtremos(nombreLinea = "") {
         extremoB:
             partes[1]
                 ? `S/E ${partes[1]}`
-                : "Extremo final"
+                : "S/E Tres Puentes"
     };
 }
 async function abrirPanelLocalizador({

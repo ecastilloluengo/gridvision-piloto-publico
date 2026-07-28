@@ -14,16 +14,59 @@ const mapa = L.map("mapa", {
             " OpenStreetMap</a>"
     }
 );
-const mapaSatelital = L.tileLayer(
+// Panel especial para que las etiquetas queden sobre la imagen,
+// pero debajo de las líneas y activos eléctricos.
+mapa.createPane("etiquetasMapa");
+mapa.getPane("etiquetasMapa").style.zIndex = 350;
+mapa.getPane("etiquetasMapa").style.pointerEvents = "none";
+// Fotografía satelital.
+const mapaSatelitalImagen = L.tileLayer(
     "https://services.arcgisonline.com/ArcGIS/rest/services/" +
         "World_Imagery/MapServer/tile/{z}/{y}/{x}",
     {
+        maxNativeZoom: 17,
         maxZoom: 19,
+
+        // Carga mosaicos mientras se mueve el mapa.
+        updateWhenIdle: false,
+
+        // Conserva más mosaicos alrededor de la pantalla.
+        keepBuffer: 4,
+
+        // Reduce recargas durante el zoom animado.
+        updateWhenZooming: false,
+
+        className: "mapa-satelital-tile",
+
         attribution:
             "Tiles &copy; Esri - Sources: Esri, Maxar, " +
             "Earthstar Geographics and the GIS User Community"
     }
 );
+// Nombres de ciudades, localidades, límites y lugares.
+const etiquetasSatelitales = L.tileLayer(
+    "https://services.arcgisonline.com/ArcGIS/rest/services/" +
+        "Reference/World_Boundaries_and_Places/" +
+        "MapServer/tile/{z}/{y}/{x}",
+    {
+        pane: "etiquetasMapa",
+        maxNativeZoom: 18,
+        maxZoom: 19,
+
+        updateWhenIdle: false,
+        keepBuffer: 4,
+        updateWhenZooming: false,
+
+        className: "mapa-etiquetas-tile",
+
+        attribution: "Labels &copy; Esri"
+    }
+);
+// Ambas capas funcionarán como una sola opción del selector.
+const mapaSatelital = L.layerGroup([
+    mapaSatelitalImagen,
+    etiquetasSatelitales
+]);
 // Mapa visible al iniciar GridVision
 mapaCalles.addTo(mapa);
 
@@ -55,7 +98,7 @@ const capasSeleccionables = [
 const controlCapas = L.control.layers(
     {
         "Mapa convencional": mapaCalles,
-        "Vista satelital": mapaSatelital
+        "Satélite + etiquetas": mapaSatelital
     },
     {
         "Líneas eléctricas": capas.lineas,
