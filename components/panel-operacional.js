@@ -347,8 +347,7 @@ function construirTimelineOperacional(horario, unidades) {
     }
 }
 function actualizarPanelOperacional(evento) {
-    alert("ACTUALIZAR PANEL OPERACIONAL");
-    document.getElementById(
+        document.getElementById(
         "operacional-tipo-seleccion"
     ).textContent = "Activo seleccionado";
 
