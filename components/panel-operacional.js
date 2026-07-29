@@ -1,4 +1,4 @@
-﻿function numeroPanel(valor) {
+function numeroPanel(valor) {
     const numero = Number(valor);
     return Number.isFinite(numero) ? numero : null;
 }
@@ -447,7 +447,6 @@ document.getElementById(
 
     document.getElementById("operacional-motivo").textContent =
         riesgo.motivo;
-        console.log("Entró a actualizarPanelOperacional");
         construirTimelineOperacional(
     horario,
     unidades
@@ -554,16 +553,16 @@ function transversalPorHoraPanel(rafaga, direccion, rumbo) {
 let ultimoMeteograma = {
     tipo: null,
     horario: null,
-    detalle: null
+    detalle: null,
+    unidades: null
 };
-function construirMeteogramaActivo(horario, detalle = {}, unidades = {}) {
-    console.log("Meteograma activo:", {
-        horario,
-        detalle,
-        unidades
-    });
-}
-function construirMeteogramaLinea(horario, detalle) {
+
+function construirMeteograma(
+    tipo,
+    horario,
+    detalle = {},
+    unidades = {}
+) {
     const contenedor = document.getElementById(
         "meteograma-contenido"
     );
@@ -572,19 +571,23 @@ function construirMeteogramaLinea(horario, detalle) {
         return;
     }
 
+    const esLinea = tipo === "linea";
+
     ultimoMeteograma = {
-    tipo: "linea",
-    horario,
-    detalle
-};
+        tipo,
+        horario,
+        detalle,
+        unidades
+    };
 
     contenedor.innerHTML = "";
 
     const tiempos = horario.time || [];
 
     if (!tiempos.length) {
-        contenedor.textContent =
-            "No hay datos horarios disponibles para el tramo crítico.";
+        contenedor.textContent = esLinea
+            ? "No hay datos horarios disponibles para el tramo crítico."
+            : "No hay datos horarios disponibles para el activo.";
         return;
     }
 
@@ -607,21 +610,35 @@ function construirMeteogramaLinea(horario, detalle) {
         tiempos.length
     );
 
-    document.getElementById(
+    const etiqueta = document.getElementById(
         "meteograma-etiqueta"
-    ).textContent =
-        "Evolución meteorológica del tramo crítico";
+    );
 
-    document.getElementById(
+    const titulo = document.getElementById(
         "meteograma-titulo"
-    ).textContent =
-        detalle.tramoCritico || "Tramo crítico";
+    );
 
-    document.getElementById(
+    const descripcion = document.getElementById(
         "meteograma-detalle"
-    ).textContent =
-        `${horizonteDisponible} h · datos cada `
-        + `${resolucionHoras} h`;
+    );
+
+    if (etiqueta) {
+        etiqueta.textContent = esLinea
+            ? "Evolución meteorológica del tramo crítico"
+            : "Evolución meteorológica del activo";
+    }
+
+    if (titulo) {
+        titulo.textContent = esLinea
+            ? detalle.tramoCritico || "Tramo crítico"
+            : detalle.nombre || "Activo seleccionado";
+    }
+
+    if (descripcion) {
+        descripcion.textContent =
+            `${horizonteDisponible} h · datos cada `
+            + `${resolucionHoras} h`;
+    }
 
     const indices = [];
 
@@ -640,59 +657,57 @@ function construirMeteogramaLinea(horario, detalle) {
         `115px repeat(${indices.length}, minmax(90px, 1fr))`;
 
     function agregarFila(
-    etiqueta,
-    valores,
-    claseExtra = "",
-    marcarDias = true
-) {
-    const celdaEtiqueta = document.createElement("div");
+        etiquetaFila,
+        valores,
+        claseExtra = "",
+        marcarDias = true
+    ) {
+        const celdaEtiqueta = document.createElement("div");
 
-    celdaEtiqueta.className =
-        "meteograma-celda meteograma-celda-etiqueta";
+        celdaEtiqueta.className =
+            "meteograma-celda meteograma-celda-etiqueta";
 
-    celdaEtiqueta.textContent = etiqueta;
-    tabla.appendChild(celdaEtiqueta);
+        celdaEtiqueta.textContent = etiquetaFila;
+        tabla.appendChild(celdaEtiqueta);
 
-    valores.forEach((valor, posicion) => {
-        const celda = document.createElement("div");
+        valores.forEach((valor, posicion) => {
+            const celda = document.createElement("div");
 
-        celda.className =
-            `meteograma-celda ${claseExtra}`.trim();
+            celda.className =
+                `meteograma-celda ${claseExtra}`.trim();
 
-        if (
-            marcarDias
-            && posicion > 0
-        ) {
-            const indiceActual = indices[posicion];
-            const indiceAnterior = indices[posicion - 1];
+            if (marcarDias && posicion > 0) {
+                const indiceActual = indices[posicion];
+                const indiceAnterior = indices[posicion - 1];
 
-            const fechaActual =
-                tiempos[indiceActual]?.split("T")[0];
+                const fechaActual =
+                    tiempos[indiceActual]?.split("T")[0];
 
-            const fechaAnterior =
-                tiempos[indiceAnterior]?.split("T")[0];
+                const fechaAnterior =
+                    tiempos[indiceAnterior]?.split("T")[0];
 
-            if (
-                fechaActual
-                && fechaAnterior
-                && fechaActual !== fechaAnterior
-            ) {
-                celda.classList.add(
-                    "meteograma-inicio-dia"
-                );
+                if (
+                    fechaActual
+                    && fechaAnterior
+                    && fechaActual !== fechaAnterior
+                ) {
+                    celda.classList.add(
+                        "meteograma-inicio-dia"
+                    );
+                }
             }
-        }
 
-        if (valor instanceof Node) {
-            celda.appendChild(valor);
-        } else {
-            celda.innerHTML = valor;
-        }
+            if (valor instanceof Node) {
+                celda.appendChild(valor);
+            } else {
+                celda.innerHTML = valor;
+            }
 
-        tabla.appendChild(celda);
-    });
-}
-            agregarFila(
+            tabla.appendChild(celda);
+        });
+    }
+
+    agregarFila(
         "Fecha",
         indices.map((indice) => {
             const fechaIso = tiempos[indice];
@@ -706,8 +721,7 @@ function construirMeteogramaLinea(horario, detalle) {
 
             return `<strong>${dia}-${mes}</strong>`;
         }),
-        "meteograma-celda-hora",
-         true
+        "meteograma-celda-hora"
     );
 
     agregarFila(
@@ -719,8 +733,7 @@ function construirMeteogramaLinea(horario, detalle) {
 
             return `<strong>${hora}</strong>`;
         }),
-        "meteograma-celda-hora",
-         true
+        "meteograma-celda-hora"
     );
 
     agregarFila(
@@ -730,8 +743,7 @@ function construirMeteogramaLinea(horario, detalle) {
                 horario.weather_code?.[indice]
             )
         ),
-        "meteograma-celda-condicion",
-    true
+        "meteograma-celda-condicion"
     );
 
     agregarFila(
@@ -740,7 +752,7 @@ function construirMeteogramaLinea(horario, detalle) {
             `${formatoPanel(
                 horario.temperature_2m?.[indice],
                 0
-            )} °C`
+            )} ${unidades.temperature_2m || "°C"}`
         )
     );
 
@@ -750,7 +762,7 @@ function construirMeteogramaLinea(horario, detalle) {
             `${formatoPanel(
                 horario.precipitation?.[indice],
                 1
-            )} mm`
+            )} ${unidades.precipitation || "mm"}`
         )
     );
 
@@ -760,7 +772,7 @@ function construirMeteogramaLinea(horario, detalle) {
             `${formatoPanel(
                 horario.wind_speed_10m?.[indice],
                 0
-            )} km/h`
+            )} ${unidades.wind_speed_10m || "km/h"}`
         )
     );
 
@@ -770,85 +782,114 @@ function construirMeteogramaLinea(horario, detalle) {
             `${formatoPanel(
                 horario.wind_gusts_10m?.[indice],
                 0
-            )} km/h`
+            )} ${unidades.wind_gusts_10m || "km/h"}`
         )
     );
 
-    const rumbo =
-        detalle.rumboTramoCritico
-        ?? detalle.rumbo
-        ?? null;
+    const rumbo = esLinea
+        ? detalle.rumboTramoCritico
+            ?? detalle.rumbo
+            ?? null
+        : null;
 
-    agregarFila(
-        "Transversal",
-        indices.map((indice) => {
-            const transversal = transversalPorHoraPanel(
-                horario.wind_gusts_10m?.[indice],
-                horario.wind_direction_10m?.[indice],
-                rumbo
-            );
+    if (esLinea) {
+        agregarFila(
+            "Transversal",
+            indices.map((indice) => {
+                const transversal = transversalPorHoraPanel(
+                    horario.wind_gusts_10m?.[indice],
+                    horario.wind_direction_10m?.[indice],
+                    rumbo
+                );
 
-            return transversal === null
-                ? "—"
-                : `${formatoPanel(transversal, 0)} km/h`;
-        })
-    );
+                return transversal === null
+                    ? "—"
+                    : `${formatoPanel(transversal, 0)} km/h`;
+            })
+        );
+    }
 
     agregarFila(
         "Riesgo",
         indices.map((indice) => {
-            const transversal = transversalPorHoraPanel(
-                horario.wind_gusts_10m?.[indice],
-                horario.wind_direction_10m?.[indice],
-                rumbo
-            );
+            const transversal = esLinea
+                ? transversalPorHoraPanel(
+                    horario.wind_gusts_10m?.[indice],
+                    horario.wind_direction_10m?.[indice],
+                    rumbo
+                )
+                : null;
 
             const riesgo = riesgoPorHoraPanel(
-    horario.wind_gusts_10m?.[indice],
-    horario.wind_speed_10m?.[indice],
-    horario.precipitation?.[indice],
-    transversal
+                horario.wind_gusts_10m?.[indice],
+                horario.wind_speed_10m?.[indice],
+                horario.precipitation?.[indice],
+                transversal
             );
 
             const indicador = document.createElement("span");
 
-indicador.className =
-    `meteograma-riesgo `
-    + `meteograma-riesgo-${riesgo.nivel}`;
+            indicador.className =
+                "meteograma-riesgo "
+                + `meteograma-riesgo-${riesgo.nivel}`;
 
-const estado = document.createElement("strong");
-estado.textContent = riesgo.etiqueta;
-indicador.appendChild(estado);
+            const estado = document.createElement("strong");
+            estado.textContent = riesgo.etiqueta;
+            indicador.appendChild(estado);
 
-if (
-    riesgo.causa
-    && riesgo.causa.tipo !== "sin-riesgo"
-) {
-    const causa = document.createElement("small");
+            if (
+                riesgo.causa
+                && riesgo.causa.tipo !== "sin-riesgo"
+            ) {
+                const causa = document.createElement("small");
 
-causa.innerHTML =
-    `${riesgo.causa.icono} <strong>${riesgo.causa.descripcion}</strong><br>`
-    + `${riesgo.causa.valor}`;
+                causa.innerHTML =
+                    `${riesgo.causa.icono} `
+                    + `<strong>${riesgo.causa.descripcion}</strong><br>`
+                    + `${riesgo.causa.valor}`;
 
-    indicador.appendChild(causa);
-}
+                indicador.appendChild(causa);
+            }
 
             if (transversal !== null) {
                 indicador.title =
                     "Ráfaga transversal estimada: "
-                    + `${formatoPanel(
-                        transversal,
-                        0
-                    )} km/h`;
+                    + `${formatoPanel(transversal, 0)} km/h`;
             }
 
             return indicador;
         })
     );
 
-    
     contenedor.appendChild(tabla);
 }
+
+function construirMeteogramaActivo(
+    horario,
+    detalle = {},
+    unidades = {}
+) {
+    construirMeteograma(
+        "activo",
+        horario,
+        detalle,
+        unidades
+    );
+}
+
+function construirMeteogramaLinea(
+    horario,
+    detalle = {},
+    unidades = {}
+) {
+    construirMeteograma(
+        "linea",
+        horario,
+        detalle,
+        unidades
+    );
+}
+
 function construirRankingLineaPanel(ranking) {
     const contenedor = document.getElementById(
         "timeline-operacional-contenido"
@@ -1130,12 +1171,12 @@ function actualizarMeteogramaDesdeControles() {
         return;
     }
 
-    if (ultimoMeteograma.tipo === "linea") {
-        construirMeteogramaLinea(
-            ultimoMeteograma.horario,
-            ultimoMeteograma.detalle
-        );
-    }
+    construirMeteograma(
+        ultimoMeteograma.tipo,
+        ultimoMeteograma.horario,
+        ultimoMeteograma.detalle || {},
+        ultimoMeteograma.unidades || {}
+    );
 }
 
 selectorHorizonte?.addEventListener(
