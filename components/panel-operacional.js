@@ -347,6 +347,7 @@ function construirTimelineOperacional(horario, unidades) {
     }
 }
 function actualizarPanelOperacional(evento) {
+    alert("ACTUALIZAR PANEL OPERACIONAL");
     document.getElementById(
         "operacional-tipo-seleccion"
     ).textContent = "Activo seleccionado";
@@ -447,8 +448,18 @@ document.getElementById(
 
     document.getElementById("operacional-motivo").textContent =
         riesgo.motivo;
+        console.log("Entró a actualizarPanelOperacional");
         construirTimelineOperacional(
     horario,
+    unidades
+);
+construirMeteogramaActivo(
+    horario,
+    {
+        nombre: detalle.nombre,
+        latitud: detalle.latitud,
+        longitud: detalle.longitud
+    },
     unidades
 );
 }
@@ -541,8 +552,18 @@ function transversalPorHoraPanel(rafaga, direccion, rumbo) {
         valorRafaga * Math.sin(diferenciaRadianes)
     );
 }
-let ultimoMeteogramaLinea = null;
-
+let ultimoMeteograma = {
+    tipo: null,
+    horario: null,
+    detalle: null
+};
+function construirMeteogramaActivo(horario, detalle = {}, unidades = {}) {
+    console.log("Meteograma activo:", {
+        horario,
+        detalle,
+        unidades
+    });
+}
 function construirMeteogramaLinea(horario, detalle) {
     const contenedor = document.getElementById(
         "meteograma-contenido"
@@ -552,10 +573,11 @@ function construirMeteogramaLinea(horario, detalle) {
         return;
     }
 
-    ultimoMeteogramaLinea = {
-        horario,
-        detalle
-    };
+    ultimoMeteograma = {
+    tipo: "linea",
+    horario,
+    detalle
+};
 
     contenedor.innerHTML = "";
 
@@ -1101,14 +1123,20 @@ const selectorResolucion = document.getElementById(
 );
 
 function actualizarMeteogramaDesdeControles() {
-    if (!ultimoMeteogramaLinea) {
+    if (
+        !ultimoMeteograma
+        || !ultimoMeteograma.tipo
+        || !ultimoMeteograma.horario
+    ) {
         return;
     }
 
-    construirMeteogramaLinea(
-        ultimoMeteogramaLinea.horario,
-        ultimoMeteogramaLinea.detalle
-    );
+    if (ultimoMeteograma.tipo === "linea") {
+        construirMeteogramaLinea(
+            ultimoMeteograma.horario,
+            ultimoMeteograma.detalle
+        );
+    }
 }
 
 selectorHorizonte?.addEventListener(
