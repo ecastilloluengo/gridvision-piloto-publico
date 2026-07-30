@@ -539,6 +539,7 @@ function ocultarResultadosBusqueda() {
 }
 
 function enfocarResultado(registro) {
+    
     if (!mapa.hasLayer(registro.capa)) {
         registro.capa.addTo(mapa);
     }
@@ -572,6 +573,19 @@ function enfocarResultado(registro) {
 
     ocultarResultadosBusqueda();
 }
+window.abrirActivoMeteorologicoPorId = function (id) {
+
+    const registro = indiceBusqueda.find((item) => {
+        return item.feature.properties.id === id;
+    });
+
+    if (!registro) {
+        console.warn("No se encontró el activo:", id);
+        return;
+    }
+
+    enfocarResultado(registro);
+};
 
 function crearBotonResultado(registro) {
     const propiedades = registro.feature.properties;
