@@ -345,43 +345,195 @@ actualizarSeleccionarTodo();
             return capas.otros;
         }
 
-        function crearPopup(propiedades) {
-            const contenedor = document.createElement("div");
-            contenedor.className = "popup-gridvision";
+function crearPopup(propiedades, coordenadas = null) {
+    const contenedor = document.createElement("div");
+    contenedor.className = "popup-gridvision";
 
-            const titulo = document.createElement("h3");
-            titulo.textContent =
-                propiedades.nombre || "Activo sin nombre";
+    const titulo = document.createElement("h3");
+    titulo.textContent =
+        propiedades.nombre || "Activo sin nombre";
 
-            contenedor.appendChild(titulo);
+    contenedor.appendChild(titulo);
 
-            const campos = [
-                ["ID", propiedades.id],
-                ["Categoría", propiedades.categoria],
-                ["Subcategoría", propiedades.subcategoria]
+    const campos = [
+        ["ID", propiedades.id],
+        ["Categoría", propiedades.categoria],
+        ["Subcategoría", propiedades.subcategoria]
+    ];
+
+    for (const [etiqueta, valor] of campos) {
+        if (!valor) continue;
+
+        const parrafo = document.createElement("p");
+        const destacado = document.createElement("strong");
+
+        destacado.textContent = `${etiqueta}: `;
+        parrafo.appendChild(destacado);
+        parrafo.appendChild(
+            document.createTextNode(String(valor))
+        );
+
+        contenedor.appendChild(parrafo);
+    }
+
+    /*
+     * Los puntos GeoJSON usan:
+     * [longitud, latitud]
+     */
+    if (
+        Array.isArray(coordenadas) &&
+        coordenadas.length >= 2
+    ) {
+        const longitud = Number(coordenadas[0]);
+        const latitud = Number(coordenadas[1]);
+
+        if (
+            Number.isFinite(latitud) &&
+            Number.isFinite(longitud)
+        ) {
+            const punto = encodeURIComponent(
+                `${latitud},${longitud}`
+            );
+
+            const acciones = document.createElement("div");
+            acciones.className = "popup-acciones-mapa";
+
+            Object.assign(acciones.style, {
+                display: "grid",
+                gap: "7px",
+                marginTop: "12px"
+            });
+
+            const estiloAccion = {
+                display: "block",
+                width: "100%",
+                boxSizing: "border-box",
+                padding: "8px 10px",
+                border: "1px solid #cbd5e1",
+                borderRadius: "7px",
+                backgroundColor: "#ffffff",
+                color: "#1f2937",
+                fontFamily: "inherit",
+                fontWeight: "600",
+                textAlign: "center",
+                textDecoration: "none"
+            };
+
+            const enlacesGoogle = [
+                {
+                    texto: "📍 Abrir en Google Maps",
+                    url:
+                        "https://www.google.com/maps/search/" +
+                        `?api=1&query=${punto}`
+                },
+                {
+                    texto: "🚗 Cómo llegar",
+                    url:
+                        "https://www.google.com/maps/dir/" +
+                        `?api=1&destination=${punto}`
+                }
             ];
 
-            for (const [etiqueta, valor] of campos) {
-                if (!valor) continue;
+            for (const opcion of enlacesGoogle) {
+                const enlace = document.createElement("a");
 
-                const parrafo = document.createElement("p");
-                const destacado = document.createElement("strong");
+                enlace.href = opcion.url;
+                enlace.target = "_blank";
+                enlace.rel = "noopener noreferrer";
+                enlace.textContent = opcion.texto;
 
-                destacado.textContent = `${etiqueta}: `;
-                parrafo.appendChild(destacado);
-                parrafo.appendChild(
-                    document.createTextNode(String(valor))
+                Object.assign(
+                    enlace.style,
+                    estiloAccion
                 );
 
-                contenedor.appendChild(parrafo);
+                acciones.appendChild(enlace);
             }
 
-            return contenedor;
-        }
+            const botonStreetView =
+                document.createElement("button");
 
-        async function cargarPuntos() {
-            const respuesta = await fetch("data/processed/activos_puntuales_validados.geojson"
+            botonStreetView.type = "button";
+            botonStreetView.textContent =
+                "🛣️ Street View más cercano";
+
+            Object.assign(
+                botonStreetView.style,
+                estiloAccion,
+                {
+                    cursor: "pointer"
+                }
             );
+
+            const estadoStreetView =
+                document.createElement("small");
+
+            estadoStreetView.textContent =
+                "Busca cobertura en un radio máximo de 1 km.";
+
+            Object.assign(
+                estadoStreetView.style,
+                {
+                    display: "block",
+                    color: "#64748b",
+                    textAlign: "center"
+                }
+            );
+
+            botonStreetView.addEventListener(
+                "click",
+                () => {
+                    const servicio =
+                        window.GridVisionStreetView;
+
+                    if (!servicio?.abrirMasCercano) {
+                        estadoStreetView.textContent =
+                            "El servicio Street View no está disponible.";
+
+                        return;
+                    }
+
+                    servicio.abrirMasCercano({
+                        latitud,
+                        longitud,
+                        boton: botonStreetView,
+                        estado: estadoStreetView
+                    });
+                }
+            );
+
+            acciones.appendChild(botonStreetView);
+            acciones.appendChild(estadoStreetView);
+
+            const coordenadasTexto =
+                document.createElement("small");
+
+            coordenadasTexto.textContent =
+                `Coordenadas: ${latitud.toFixed(6)}, ` +
+                longitud.toFixed(6);
+
+            Object.assign(
+                coordenadasTexto.style,
+                {
+                    display: "block",
+                    marginTop: "4px",
+                    color: "#64748b",
+                    textAlign: "center"
+                }
+            );
+
+            acciones.appendChild(coordenadasTexto);
+            contenedor.appendChild(acciones);
+        }
+    }
+
+        return contenedor;
+}
+
+async function cargarPuntos() {
+    const respuesta = await fetch(
+        "data/processed/activos_puntuales_validados.geojson"
+    );
 
             if (!respuesta.ok) {
                 throw new Error("No fue posible cargar los activos");
@@ -399,8 +551,11 @@ actualizarSeleccionarTodo();
 
                 onEachFeature(feature, layer) {
                     layer.bindPopup(
-                        crearPopup(feature.properties)
-                    );
+    crearPopup(
+        feature.properties,
+        feature.geometry.coordinates
+    )
+);
 
                     layer.on("popupopen", () => {
                         window.GridVisionClimaLineas
