@@ -225,17 +225,17 @@
 /* Buscador de activos */
 .panel-busqueda {
     position: absolute;
-    top: 18px;
-    left: 270px;
-    width: min(390px, calc(100% - 560px));
-    min-width: 300px;
+    top: 110px;
+    left: 18px;
+    right: auto;
+    width: 340px;
+    min-width: 0;
     padding: 13px;
     border-radius: 12px;
     background: rgb(255 255 255 / 96%);
     box-shadow: 0 5px 20px rgb(0 0 0 / 20%);
     z-index: 750;
 }
-
 .panel-busqueda label {
     display: block;
     margin-bottom: 7px;
@@ -339,9 +339,10 @@
 
 @media (max-width: 900px) {
     .panel-busqueda {
-        right: 12px;
-        left: 260px;
-        width: auto;
+        top: 110px;
+        right: auto;
+        left: 18px;
+        width: 340px;
         min-width: 0;
     }
 }

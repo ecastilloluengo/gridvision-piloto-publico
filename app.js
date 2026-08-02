@@ -5,6 +5,8 @@ const mapa = L.map("mapa", {
             minZoom: 3
         });
 
+window.GridVisionMapa = mapa;
+
         const mapaCalles = L.tileLayer(
     "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
     {
