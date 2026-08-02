@@ -13,9 +13,44 @@
     >
 
     <meta
-        http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.tile.openstreetmap.org https://server.arcgisonline.com https://services.arcgisonline.com; connect-src 'self' https://api.open-meteo.com https://*.tile.openstreetmap.org https://server.arcgisonline.com https://services.arcgisonline.com; base-uri 'self'; form-action 'none'"
-    >
+    http-equiv="Content-Security-Policy"
+    content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' 'unsafe-eval'
+            https://*.googleapis.com
+            https://*.gstatic.com
+            https://*.google.com
+            https://*.ggpht.com
+            https://*.googleusercontent.com
+            blob:;
+        style-src 'self' 'unsafe-inline'
+            https://fonts.googleapis.com;
+        img-src 'self' data:
+            https://*.tile.openstreetmap.org
+            https://server.arcgisonline.com
+            https://services.arcgisonline.com
+            https://*.googleapis.com
+            https://*.gstatic.com
+            https://*.google.com
+            https://*.googleusercontent.com;
+        connect-src 'self'
+            https://api.open-meteo.com
+            https://*.tile.openstreetmap.org
+            https://server.arcgisonline.com
+            https://services.arcgisonline.com
+            https://*.googleapis.com
+            https://*.google.com
+            https://*.gstatic.com
+            data:
+            blob:;
+        frame-src https://*.google.com;
+        font-src 'self' https://fonts.gstatic.com;
+        worker-src blob:;
+        object-src 'none';
+        base-uri 'self';
+        form-action 'none';
+    "
+>
 
     <title>GridVision Chile · Piloto Gerencia</title>
 
@@ -608,6 +643,7 @@
 <script src="components/alertas/estado-alertas.js"></script>
 <script src="components/alertas/alertas.js"></script>
 <script src="components/panel-operacional.js"></script>
+<script src="components/google-streetview.js?v=9"></script>
 <script src="app.js"></script>
 </body>
 </html>
