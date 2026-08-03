@@ -1,12 +1,197 @@
 const mapa = L.map("mapa", {
-            preferCanvas: true,
-            center: [-33.45, -70.66],
-            zoom: 5,
-            minZoom: 3
-        });
+    preferCanvas: true,
+    center: [-33.45, -70.66],
+    zoom: 5,
+    minZoom: 3,
+    zoomControl: false
+});
 
 window.GridVisionMapa = mapa;
+// ======================================================
+// MI UBICACIÓN ACTUAL
+// ======================================================
 
+let marcadorUbicacion = null;
+let circuloPrecision = null;
+
+// Estado del seguimiento en tiempo real
+let seguimientoActivo = false;
+let primeraLecturaSeguimiento = true;
+
+const ControlUbicacion = L.Control.extend({
+    options: {
+        position: "topleft"
+    },
+
+    onAdd: function () {
+        const contenedor = L.DomUtil.create(
+            "div",
+            "leaflet-bar leaflet-control control-ubicacion"
+        );
+
+        const boton = L.DomUtil.create(
+            "a",
+            "control-ubicacion-boton",
+            contenedor
+        );
+
+        boton.href = "#";
+        boton.id = "boton-seguimiento-ubicacion";
+        boton.innerHTML = `
+    <svg
+        viewBox="0 0 24 24"
+        width="20"
+        height="20"
+        aria-hidden="true"
+    >
+        <circle
+            cx="12"
+            cy="12"
+            r="4"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+        ></circle>
+
+        <path
+            d="M12 2V5 M12 19V22 M2 12H5 M19 12H22"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+        ></path>
+    </svg>
+`;
+        boton.title = "Mostrar mi ubicación actual";
+        boton.setAttribute("aria-label", "Mostrar mi ubicación actual");
+
+        L.DomEvent.disableClickPropagation(contenedor);
+        L.DomEvent.disableScrollPropagation(contenedor);
+
+        L.DomEvent.on(boton, "click", function (evento) {
+    L.DomEvent.stop(evento);
+
+    if (!seguimientoActivo) {
+        // Iniciar seguimiento
+        seguimientoActivo = true;
+        primeraLecturaSeguimiento = true;
+
+        boton.classList.add("seguimiento-activo");
+        boton.title = "Detener seguimiento en tiempo real";
+        boton.setAttribute(
+            "aria-label",
+            "Detener seguimiento en tiempo real"
+        );
+
+        mapa.locate({
+            watch: true,
+            setView: true,
+            maxZoom: 17,
+            enableHighAccuracy: true,
+            timeout: 20000,
+            maximumAge: 0
+        });
+
+        console.log("Seguimiento de ubicación iniciado");
+    } else {
+        // Detener seguimiento
+        // Detener seguimiento
+seguimientoActivo = false;
+
+mapa.stopLocate();
+mapa.closePopup();
+
+// Eliminar el punto de ubicación
+if (marcadorUbicacion) {
+    mapa.removeLayer(marcadorUbicacion);
+    marcadorUbicacion = null;
+}
+
+// Eliminar el círculo de precisión
+if (circuloPrecision) {
+    mapa.removeLayer(circuloPrecision);
+    circuloPrecision = null;
+}
+
+boton.classList.remove("seguimiento-activo");
+boton.title = "Iniciar seguimiento en tiempo real";
+boton.setAttribute(
+    "aria-label",
+    "Iniciar seguimiento en tiempo real"
+);
+
+console.log("Seguimiento de ubicación detenido");
+        boton.title = "Iniciar seguimiento en tiempo real";
+        boton.setAttribute(
+            "aria-label",
+            "Iniciar seguimiento en tiempo real"
+        );
+
+        console.log("Seguimiento de ubicación detenido");
+    }
+});
+
+        return contenedor;
+    }
+});
+
+const controlUbicacion = new ControlUbicacion();
+
+mapa.addControl(controlUbicacion);
+
+L.control.zoom({
+    position: "topleft"
+}).addTo(mapa);
+
+mapa.on("locationfound", function (evento) {
+        if (!seguimientoActivo) {
+        return;
+    }
+    const posicion = evento.latlng;
+    const precision = Math.round(evento.accuracy);
+
+    if (marcadorUbicacion) {
+        mapa.removeLayer(marcadorUbicacion);
+    }
+
+    if (circuloPrecision) {
+        mapa.removeLayer(circuloPrecision);
+    }
+
+    marcadorUbicacion = L.circleMarker(posicion, {
+        radius: 8,
+        color: "#ffffff",
+        weight: 3,
+        fillColor: "#1976d2",
+        fillOpacity: 1
+    }).addTo(mapa);
+
+    marcadorUbicacion
+        .bindPopup(
+            `<strong>Mi ubicación actual</strong><br>
+             Latitud: ${posicion.lat.toFixed(6)}<br>
+             Longitud: ${posicion.lng.toFixed(6)}<br>
+             Precisión aproximada: ${precision} metros`
+        )
+        .openPopup();
+
+    circuloPrecision = L.circle(posicion, {
+        radius: evento.accuracy,
+        color: "#1976d2",
+        weight: 1,
+        fillColor: "#1976d2",
+        fillOpacity: 0.12
+    }).addTo(mapa);
+});
+
+mapa.on("locationerror", function (evento) {
+    console.error("Error de geolocalización:", evento.message);
+
+    alert(
+        "GridVision no pudo obtener tu ubicación. " +
+        "Revisa que el navegador tenga permiso para acceder a ella."
+    );
+});
         const mapaCalles = L.tileLayer(
     "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
     {

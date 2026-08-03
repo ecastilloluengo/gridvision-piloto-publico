@@ -225,8 +225,8 @@
 /* Buscador de activos */
 .panel-busqueda {
     position: absolute;
-    top: 110px;
-    left: 18px;
+    top: 118px;
+    left: 10px;
     right: auto;
     width: 340px;
     min-width: 0;
@@ -1257,4 +1257,95 @@
     border: 0;
     backface-visibility: hidden;
     transform: translateZ(0);
+}
+/* =====================================================
+   CONTROL DE UBICACIÓN GRIDVISION
+   ===================================================== */
+
+.control-ubicacion {
+    margin-top: 10px !important;
+    margin-left: 10px !important;
+    margin-bottom: 0 !important;
+
+    border: 0 !important;
+    border-radius: 8px !important;
+    overflow: hidden;
+
+    box-shadow: 0 2px 8px rgb(0 0 0 / 28%) !important;
+}
+
+.control-ubicacion + .leaflet-control-zoom {
+    margin-top: 7px !important;
+}
+
+.control-ubicacion-boton {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    width: 34px !important;
+    height: 34px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+
+    color: #0b1f33 !important;
+    background: #ffffff !important;
+    text-decoration: none !important;
+
+    border: 0 !important;
+    border-radius: 8px !important;
+
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.control-ubicacion-boton svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+}
+
+.control-ubicacion-boton:hover {
+    color: #1565c0 !important;
+    background: #eaf3fb !important;
+}
+
+.control-ubicacion-boton:active {
+    transform: scale(0.94);
+}
+
+.control-ubicacion-boton:focus-visible {
+    outline: 3px solid rgb(41 182 246 / 40%);
+    outline-offset: -3px;
+}
+/* Botón con seguimiento en tiempo real activo */
+.control-ubicacion-boton.seguimiento-activo {
+    color: #ffffff !important;
+    background: #1565c0 !important;
+    box-shadow:
+        inset 0 0 0 2px rgb(255 255 255 / 25%),
+        0 0 0 3px rgb(41 182 246 / 28%);
+}
+
+.control-ubicacion-boton.seguimiento-activo:hover {
+    color: #ffffff !important;
+    background: #0d4f9f !important;
+}
+
+.control-ubicacion-boton.seguimiento-activo svg {
+    animation: pulso-ubicacion 1.4s ease-in-out infinite;
+}
+
+@keyframes pulso-ubicacion {
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.15);
+        opacity: 0.72;
+    }
 }
