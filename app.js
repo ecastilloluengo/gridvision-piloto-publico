@@ -531,7 +531,155 @@ actualizarSeleccionarTodo();
 
             return capas.otros;
         }
+        const URL_PUBLICA_GRIDVISION =
+    "https://ecastilloluengo.github.io/gridvision-piloto-publico/";
 
+function construirEnlaceActivo(idActivo) {
+    const url = new URL(URL_PUBLICA_GRIDVISION);
+
+    if (idActivo) {
+        url.searchParams.set("activo", idActivo);
+    }
+
+    return url.toString();
+}
+
+function construirEnlaceGoogleMaps(
+    latitud,
+    longitud
+) {
+    const punto = encodeURIComponent(
+        `${latitud},${longitud}`
+    );
+
+    return (
+        "https://www.google.com/maps/search/" +
+        `?api=1&query=${punto}`
+    );
+}
+
+async function copiarTexto(texto) {
+    try {
+        await navigator.clipboard.writeText(texto);
+        return true;
+    } catch {
+        const auxiliar =
+            document.createElement("textarea");
+
+        auxiliar.value = texto;
+        auxiliar.style.position = "fixed";
+        auxiliar.style.opacity = "0";
+
+        document.body.appendChild(auxiliar);
+        auxiliar.select();
+
+        const correcto =
+            document.execCommand("copy");
+
+        auxiliar.remove();
+
+        return correcto;
+    }
+}
+
+async function compartirActivo(
+    propiedades,
+    latitud,
+    longitud,
+    boton
+) {
+    const nombre =
+        propiedades.nombre || "Activo GridVision";
+
+    const enlaceGoogleMaps =
+        construirEnlaceGoogleMaps(
+            latitud,
+            longitud
+        );
+
+    const enlaceGridVision =
+        construirEnlaceActivo(
+            propiedades.id
+        );
+
+    const mensaje = [
+        "GridVision Chile",
+        `Activo: ${nombre}`,
+        propiedades.id
+            ? `ID: ${propiedades.id}`
+            : null,
+        propiedades.categoria
+            ? `Categoría: ${propiedades.categoria}`
+            : null,
+        propiedades.subcategoria
+            ? `Subcategoría: ${propiedades.subcategoria}`
+            : null,
+        `Coordenadas: ${latitud.toFixed(6)}, ${longitud.toFixed(6)}`,
+        "",
+        "Ver ubicación en Google Maps:",
+        enlaceGoogleMaps,
+        "",
+        "Abrir activo en GridVision:",
+        enlaceGridVision
+    ]
+        .filter((linea) => linea !== null)
+        .join("\n");
+
+    try {
+        if (navigator.share) {
+            await navigator.share({
+                title: `GridVision · ${nombre}`,
+                text: mensaje
+            });
+
+            return;
+        }
+
+        const correcto =
+            await copiarTexto(mensaje);
+
+        if (!correcto) {
+            throw new Error(
+                "No fue posible copiar la información."
+            );
+        }
+
+        const tituloOriginal = boton.title;
+
+        boton.classList.add("enlace-copiado");
+        boton.title = "Información copiada";
+        boton.setAttribute(
+            "aria-label",
+            "Información copiada"
+        );
+
+        window.setTimeout(() => {
+            boton.classList.remove(
+                "enlace-copiado"
+            );
+
+            boton.title = tituloOriginal;
+            boton.setAttribute(
+                "aria-label",
+                "Compartir activo"
+            );
+        }, 1800);
+    } catch (error) {
+        if (error?.name === "AbortError") {
+            return;
+        }
+
+        console.error(
+            "No fue posible compartir el activo:",
+            error
+        );
+
+        alert(
+            "No fue posible compartir el activo. " +
+            "Inténtalo nuevamente."
+        );
+    }
+}
 function crearPopup(propiedades, coordenadas = null) {
     const contenedor = document.createElement("div");
     contenedor.className = "popup-gridvision";
@@ -636,80 +784,75 @@ function crearPopup(propiedades, coordenadas = null) {
 
                 acciones.appendChild(enlace);
             }
+            
+            const filaCoordenadas =
+    document.createElement("div");
 
-            const botonStreetView =
-                document.createElement("button");
+filaCoordenadas.className =
+    "popup-coordenadas-compartir";
 
-            botonStreetView.type = "button";
-            botonStreetView.textContent =
-                "🛣️ Street View más cercano";
+const coordenadasTexto =
+    document.createElement("small");
 
-            Object.assign(
-                botonStreetView.style,
-                estiloAccion,
-                {
-                    cursor: "pointer"
-                }
-            );
+coordenadasTexto.textContent =
+    `Coordenadas: ${latitud.toFixed(6)}, ` +
+    longitud.toFixed(6);
 
-            const estadoStreetView =
-                document.createElement("small");
+const botonCompartir =
+    document.createElement("button");
 
-            estadoStreetView.textContent =
-                "Busca cobertura en un radio máximo de 1 km.";
+botonCompartir.type = "button";
+botonCompartir.className =
+    "popup-boton-compartir-activo";
 
-            Object.assign(
-                estadoStreetView.style,
-                {
-                    display: "block",
-                    color: "#64748b",
-                    textAlign: "center"
-                }
-            );
+botonCompartir.title = "Compartir activo";
+botonCompartir.setAttribute(
+    "aria-label",
+    "Compartir activo"
+);
 
-            botonStreetView.addEventListener(
-                "click",
-                () => {
-                    const servicio =
-                        window.GridVisionStreetView;
+botonCompartir.innerHTML = `
+    <svg
+        viewBox="0 0 24 24"
+        width="16"
+        height="16"
+        aria-hidden="true"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.9"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+    >
+        <path d="M12 15V3"></path>
+        <path d="M7 8L12 3L17 8"></path>
+        <path d="M5 13V19H19V13"></path>
+    </svg>
+`;
 
-                    if (!servicio?.abrirMasCercano) {
-                        estadoStreetView.textContent =
-                            "El servicio Street View no está disponible.";
+botonCompartir.addEventListener(
+    "click",
+    async (evento) => {
+        evento.preventDefault();
+        evento.stopPropagation();
 
-                        return;
-                    }
+        await compartirActivo(
+            propiedades,
+            latitud,
+            longitud,
+            botonCompartir
+        );
+    }
+);
 
-                    servicio.abrirMasCercano({
-                        latitud,
-                        longitud,
-                        boton: botonStreetView,
-                        estado: estadoStreetView
-                    });
-                }
-            );
+filaCoordenadas.appendChild(
+    coordenadasTexto
+);
 
-            acciones.appendChild(botonStreetView);
-            acciones.appendChild(estadoStreetView);
+filaCoordenadas.appendChild(
+    botonCompartir
+);
 
-            const coordenadasTexto =
-                document.createElement("small");
-
-            coordenadasTexto.textContent =
-                `Coordenadas: ${latitud.toFixed(6)}, ` +
-                longitud.toFixed(6);
-
-            Object.assign(
-                coordenadasTexto.style,
-                {
-                    display: "block",
-                    marginTop: "4px",
-                    color: "#64748b",
-                    textAlign: "center"
-                }
-            );
-
-            acciones.appendChild(coordenadasTexto);
+acciones.appendChild(filaCoordenadas);
             contenedor.appendChild(acciones);
         }
     }
@@ -1314,5 +1457,42 @@ document.getElementById("reintentar-carga").addEventListener(
     "click",
     () => window.location.reload()
 );
+function abrirActivoCompartido() {
+    const parametros =
+        new URLSearchParams(
+            window.location.search
+        );
 
-iniciarGridVision().then(inicializarFiltros);
+    const idActivo =
+        parametros.get("activo");
+
+    if (!idActivo) {
+        return;
+    }
+
+    const registro = indiceBusqueda.find(
+        (item) =>
+            item.feature.properties.id
+            === idActivo
+    );
+
+    if (!registro) {
+        console.warn(
+            "No se encontró el activo compartido:",
+            idActivo
+        );
+
+        return;
+    }
+
+    enfocarResultado(registro);
+}
+
+iniciarGridVision().then(() => {
+    inicializarFiltros();
+
+    window.setTimeout(
+        abrirActivoCompartido,
+        350
+    );
+});

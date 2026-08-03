@@ -1349,3 +1349,67 @@
         opacity: 0.72;
     }
 }
+/* =====================================================
+   COORDENADAS Y BOTÓN COMPACTO PARA COMPARTIR ACTIVO
+   ===================================================== */
+
+.popup-coordenadas-compartir {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 4px;
+}
+
+.popup-coordenadas-compartir small {
+    color: #64748b;
+    text-align: center;
+    white-space: nowrap;
+}
+.popup-boton-compartir-activo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 26px;
+    height: 26px;
+    flex: 0 0 26px;
+
+    padding: 0;
+    border: 1px solid #bfdbfe;
+    border-radius: 50%;
+
+    color: #1565c0;
+    background: #eff6ff;
+
+    cursor: pointer;
+
+    transition:
+        color 0.15s ease,
+        background-color 0.15s ease,
+        border-color 0.15s ease,
+        transform 0.15s ease;
+}
+
+.popup-boton-compartir-activo:hover {
+    color: #ffffff;
+    border-color: #1565c0;
+    background: #1565c0;
+}
+
+.popup-boton-compartir-activo:active {
+    transform: scale(0.9);
+}
+
+.popup-boton-compartir-activo svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
+}
+
+.popup-boton-compartir-activo.enlace-copiado {
+    color: #ffffff;
+    border-color: #16a34a;
+    background: #16a34a;
+}
