@@ -225,7 +225,7 @@
 /* Buscador de activos */
 .panel-busqueda {
     position: absolute;
-    top: 118px;
+    top: 155px;
     left: 10px;
     right: auto;
     width: 340px;
@@ -359,7 +359,7 @@
 /* Filtros combinables */
 .panel-filtros {
     position: absolute;
-    top: 290px;
+    top: 330px;
     left: 18px;
     width: 235px;
     padding: 14px;

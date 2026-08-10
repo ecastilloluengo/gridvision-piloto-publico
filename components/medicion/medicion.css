@@ -1,0 +1,155 @@
+/* =========================================================
+   GRIDVISION CHILE
+   HERRAMIENTA DE MEDICIÓN
+   ========================================================= */
+
+.control-medicion {
+    margin-top: 8px !important;
+}
+
+.control-medicion-boton {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    width: 34px !important;
+    height: 34px !important;
+
+    font-size: 18px;
+    line-height: 34px !important;
+
+    background: #ffffff !important;
+    color: #263238 !important;
+
+    cursor: pointer;
+    user-select: none;
+}
+
+.control-medicion-boton:hover {
+    background: #f4f6f8 !important;
+}
+
+.control-medicion-boton.activo {
+    background: #1565c0 !important;
+    color: #ffffff !important;
+}
+
+
+/* Cursor mientras está activa la regla */
+
+#mapa.modo-medicion,
+#mapa.modo-medicion .leaflet-interactive {
+    cursor: crosshair !important;
+}
+
+
+/* =========================================================
+   PANEL DE RESULTADO
+   ========================================================= */
+
+.medicion-resultado {
+    position: absolute;
+
+    left: 50px;
+    top: 68px;
+    bottom: auto;
+
+    z-index: 1200;
+
+    min-width: 190px;
+    max-width: 260px;
+
+    padding: 10px 12px;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    border-radius: 8px;
+
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.18);
+
+    color: #263238;
+    font-size: 13px;
+}
+
+.medicion-resultado[hidden] {
+    display: none !important;
+}
+
+.medicion-resultado-cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 7px;
+    padding-bottom: 6px;
+
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.medicion-resultado-cabecera strong {
+    font-size: 13px;
+}
+
+#medicion-limpiar {
+    width: 24px;
+    height: 24px;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 4px;
+
+    background: transparent;
+
+    color: #455a64;
+
+    font-size: 20px;
+    line-height: 20px;
+
+    cursor: pointer;
+}
+
+#medicion-limpiar:hover {
+    background: #eceff1;
+}
+
+#medicion-texto {
+    line-height: 1.55;
+}
+
+#medicion-texto strong {
+    font-weight: 700;
+}
+
+#medicion-texto small {
+    color: #607d8b;
+}
+
+
+/* =========================================================
+   ETIQUETAS SOBRE LOS TRAMOS
+   ========================================================= */
+
+.medicion-etiqueta {
+    width: auto !important;
+    height: auto !important;
+
+    padding: 3px 6px;
+
+    background: rgba(255, 255, 255, 0.94);
+
+    border: 1px solid rgba(0, 0, 0, 0.28);
+    border-radius: 5px;
+
+    box-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.22);
+
+    color: #263238;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
