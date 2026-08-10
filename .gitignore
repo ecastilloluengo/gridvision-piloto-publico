@@ -1,2 +1,9 @@
 ﻿# Copias de respaldo locales
 *.bak-*
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
