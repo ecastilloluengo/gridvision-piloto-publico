@@ -1,0 +1,162 @@
+<section
+    id="panel-senapred"
+    class="panel-senapred"
+    hidden
+>
+    <header class="senapred-cabecera">
+        <div>
+            <span class="senapred-etiqueta">
+                SENAPRED
+            </span>
+
+            <h2>Alertas y monitoreos oficiales</h2>
+
+            <p>
+                Información relevante para las zonas
+                operacionales monitoreadas por GridVision.
+            </p>
+        </div>
+
+        <button
+            id="cerrar-senapred"
+            type="button"
+            aria-label="Cerrar panel SENAPRED"
+        >
+            ×
+        </button>
+    </header>
+
+    <div class="senapred-resumen">
+        <div>
+            <span>Alertas vigentes</span>
+            <strong id="senapred-total">
+                —
+            </strong>
+        </div>
+
+        <div>
+            <span>Última actualización</span>
+            <strong id="senapred-actualizacion">
+                —
+            </strong>
+        </div>
+    </div>
+
+    <div
+        id="senapred-estado"
+        class="senapred-estado"
+    >
+        Cargando información SENAPRED…
+    </div>
+
+    <div
+        id="senapred-lista"
+        class="senapred-lista"
+    ></div>
+<section
+    id="senapred-detalle"
+    class="senapred-detalle"
+    hidden
+>
+    <button
+        id="senapred-volver"
+        class="senapred-volver"
+        type="button"
+    >
+        ← Volver a las alertas
+    </button>
+
+    <div class="senapred-detalle-cabecera">
+        <span
+            id="senapred-detalle-nivel"
+            class="senapred-nivel"
+        >
+            —
+        </span>
+
+        <span
+            id="senapred-detalle-fecha"
+            class="senapred-fecha"
+        >
+            —
+        </span>
+    </div>
+
+    <h3 id="senapred-detalle-titulo">
+        —
+    </h3>
+
+    <p
+        id="senapred-detalle-territorio"
+        class="senapred-territorio"
+    >
+        —
+    </p>
+
+    <div class="senapred-detalle-metricas">
+
+        <article>
+            <span>🌧 Precipitación</span>
+            <strong id="senapred-detalle-precipitacion">
+                —
+            </strong>
+        </article>
+
+        <article>
+            <span>❄️ Nieve</span>
+            <strong id="senapred-detalle-nieve">
+                —
+            </strong>
+        </article>
+
+        <article>
+            <span>💨 Viento</span>
+            <strong id="senapred-detalle-viento">
+                —
+            </strong>
+        </article>
+
+        <article>
+            <span>🌡 Temperatura</span>
+            <strong id="senapred-detalle-temperatura">
+                —
+            </strong>
+        </article>
+
+        <article>
+            <span>🏔 Isoterma 0 °C</span>
+            <strong id="senapred-detalle-isoterma">
+                —
+            </strong>
+        </article>
+
+    </div>
+
+    <h4>Avisos y alertamientos relacionados</h4>
+
+    <div id="senapred-detalle-avisos">
+        —
+    </div>
+
+    <h4>Afectaciones informadas</h4>
+
+    <div id="senapred-detalle-afectaciones">
+        —
+    </div>
+
+    <details class="senapred-texto-completo">
+        <summary>
+            Ver información completa SENAPRED
+        </summary>
+
+        <div id="senapred-detalle-contenido"></div>
+    </details>
+
+</section>
+
+    <footer class="senapred-pie">
+        <strong>Fuente:</strong> SENAPRED
+        <br>
+        Información complementaria para apoyo operacional.
+    </footer>
+</section>

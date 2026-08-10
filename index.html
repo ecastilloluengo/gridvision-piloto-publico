@@ -82,6 +82,8 @@
     rel="stylesheet"
     href="components/alertas/alertas.css"
 >
+
+<link rel="stylesheet" href="components/senapred/senapred.css">
 </head>
 
 <body>
@@ -105,12 +107,24 @@
             <button id="abrir-guia-piloto" type="button">
                 Guía del piloto
             </button>
-            <button
+<button
     id="abrir-acerca-gridvision"
     type="button"
 >
     Acerca de GridVision
 </button>
+
+<button
+    id="abrir-senapred"
+    class="boton-senapred-header"
+    type="button"
+    aria-controls="panel-senapred"
+    title="Abrir alertas oficiales SENAPRED"
+>
+    🚨 SENAPRED
+    <span id="senapred-contador-header">(—)</span>
+</button>
+
 <!--
 <button
     id="abrir-administracion-accesos"
@@ -615,6 +629,7 @@
                 <span>23–44 kV / otras</span>
             </div>
         </section>
+        <div id="contenedor-alertas-senapred"></div>
         <div id="contenedor-panel-operacional"></div>
         <div id="contenedor-localizador-fallas"></div>
         <div id="contenedor-acerca-gridvision"></div>
@@ -643,6 +658,7 @@
 <script src="components/alertas/activos-meteorologicos.js"></script>
 <script src="components/alertas/estado-alertas.js"></script>
 <script src="components/alertas/alertas.js"></script>
+<script src="components/senapred/senapred.js"></script>
 <script src="components/panel-operacional.js"></script>
 <script src="components/google-streetview.js?v=9"></script>
 <script src="app.js"></script>
