@@ -226,7 +226,7 @@ const CODIGOS_TORMENTA = new Set([95, 96, 99]);
     "wind_direction_10m",
     "wind_gusts_10m"
 ].join(","),
-            forecast_hours: "72",
+            forecast_days: "7",
             timezone: "auto",
             wind_speed_unit: "kmh"
         });
@@ -667,6 +667,7 @@ escribirAlertaExtendida(
         if (!coordenadas) {
             return;
         }
+        window.seleccionarActivoMeteorologico = seleccionarActivo;
 
         const [longitud, latitud] = coordenadas;
         const propiedades = feature.properties || {};
@@ -736,20 +737,14 @@ mostrarEstado("contenido");
             mostrarEstado("error");
         }
     }
-
     function inicializar() {
-        elemento("cerrar-clima").addEventListener(
-            "click",
-            ocultar
-        );
+    elemento("cerrar-clima").addEventListener(
+        "click",
+        ocultar
+    );
 
-        if (window.matchMedia("(max-width: 700px)").matches) {
-            ocultar();
-        } else {
-            mostrarEstado("vacio");
-        }
-    }
-
+    ocultar();
+}
     function ocultar() {
         if (controladorActivo) {
             controladorActivo.abort();
@@ -765,3 +760,35 @@ mostrarEstado("contenido");
         ocultar
     };
 })();
+window.abrirActivoMeteorologicoPorId = function (activoId) {
+    const feature = window.featuresGridVision?.find((item) => {
+        const propiedades = item.properties || {};
+
+        return (
+            propiedades.id === activoId ||
+            propiedades.ID === activoId ||
+            item.id === activoId
+        );
+    });
+
+    if (!feature) {
+        console.warn(
+            "GridVision: no se encontró el activo:",
+            activoId
+        );
+        return;
+    }
+
+    if (
+        typeof window.seleccionarActivoMeteorologico
+        !== "function"
+    ) {
+        console.warn(
+            "GridVision: no está disponible "
+            + "seleccionarActivoMeteorologico()."
+        );
+        return;
+    }
+
+    window.seleccionarActivoMeteorologico(feature);
+};

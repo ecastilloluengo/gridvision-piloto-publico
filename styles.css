@@ -225,7 +225,7 @@
 /* Buscador de activos */
 .panel-busqueda {
     position: absolute;
-    top: 155px;
+    top: 165px;
     left: 10px;
     right: auto;
     width: 340px;
@@ -359,8 +359,8 @@
 /* Filtros combinables */
 .panel-filtros {
     position: absolute;
-    top: 330px;
-    left: 18px;
+    top: 270px;
+    left: 10px;
     width: 235px;
     padding: 14px;
     border-radius: 12px;
@@ -456,7 +456,11 @@
         width: auto;
     }
 }
-
+/* Ocultar paneles meteorológicos mientras no haya selección */
+.panel-clima[hidden],
+.panel-clima-linea[hidden] {
+    display: none !important;
+}
 /* Panel meteorológico */
 .panel-clima {
     position: absolute;
