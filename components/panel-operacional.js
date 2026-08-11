@@ -1,4 +1,4 @@
-function numeroPanel(valor) {
+﻿function numeroPanel(valor) {
     const numero = Number(valor);
     return Number.isFinite(numero) ? numero : null;
 }
@@ -556,7 +556,54 @@ let ultimoMeteograma = {
     detalle: null,
     unidades: null
 };
+function diaSemanaCortoPanel(fechaTexto) {
+    if (!fechaTexto) {
+        return "";
+    }
 
+    const [anio, mes, dia] =
+        fechaTexto.split("-").map(Number);
+
+    const fecha = new Date(
+        Date.UTC(anio, mes - 1, dia)
+    );
+
+    const dias = [
+        "dom",
+        "lun",
+        "mar",
+        "mié",
+        "jue",
+        "vie",
+        "sáb"
+    ];
+
+    return dias[fecha.getUTCDay()] || "";
+    }
+    function etiquetaDiaPanel(fechaTexto) {
+    if (!fechaTexto) {
+        return "—";
+    }
+
+    const [anio, mes, dia] =
+        fechaTexto.split("-").map(Number);
+
+    const fecha = new Date(
+        Date.UTC(anio, mes - 1, dia)
+    );
+
+    const dias = [
+        "Domingo",
+        "Lunes",
+        "Martes",
+        "Miércoles",
+        "Jueves",
+        "Viernes",
+        "Sábado"
+    ];
+
+    return `${dias[fecha.getUTCDay()]} ${dia}`;
+}
 function construirMeteograma(
     tipo,
     horario,
@@ -603,7 +650,7 @@ function construirMeteograma(
         Number(selectorHorizonte?.value) || 24;
 
     const resolucionHoras =
-        Number(selectorResolucion?.value) || 3;
+        Number(selectorResolucion?.value) || 1;
 
     const horizonteDisponible = Math.min(
         horizonteSolicitado,
@@ -653,8 +700,14 @@ function construirMeteograma(
     const tabla = document.createElement("div");
     tabla.className = "meteograma-tabla";
 
-    tabla.style.gridTemplateColumns =
-        `115px repeat(${indices.length}, minmax(90px, 1fr))`;
+    const anchoEtiqueta = 115;
+const anchoColumna = 90;
+
+tabla.style.gridTemplateColumns =
+    `${anchoEtiqueta}px repeat(${indices.length}, ${anchoColumna}px)`;
+
+tabla.style.width =
+    `${anchoEtiqueta + (indices.length * anchoColumna)}px`;
 
     function agregarFila(
         etiquetaFila,
@@ -706,24 +759,67 @@ function construirMeteograma(
             tabla.appendChild(celda);
         });
     }
+    function agregarFilaFechaAgrupada() {
+    const celdaEtiqueta = document.createElement("div");
 
-    agregarFila(
-        "Fecha",
-        indices.map((indice) => {
-            const fechaIso = tiempos[indice];
+    celdaEtiqueta.className =
+        "meteograma-celda meteograma-celda-etiqueta";
 
-            if (!fechaIso) {
-                return "—";
+    celdaEtiqueta.textContent = "Fecha";
+
+    tabla.appendChild(celdaEtiqueta);
+
+    let posicion = 0;
+
+    while (posicion < indices.length) {
+        const indiceInicial = indices[posicion];
+
+        const fechaActual =
+            tiempos[indiceInicial]?.split("T")[0];
+
+        let cantidad = 1;
+
+        while (
+            posicion + cantidad < indices.length
+        ) {
+            const indiceSiguiente =
+                indices[posicion + cantidad];
+
+            const fechaSiguiente =
+                tiempos[indiceSiguiente]?.split("T")[0];
+
+            if (fechaSiguiente !== fechaActual) {
+                break;
             }
 
-            const fecha = fechaIso.split("T")[0];
-            const [, mes, dia] = fecha.split("-");
+            cantidad++;
+        }
 
-            return `<strong>${dia}-${mes}</strong>`;
-        }),
-        "meteograma-celda-hora"
-    );
+        const celda = document.createElement("div");
 
+        celda.className =
+            "meteograma-celda meteograma-celda-fecha-dia";
+
+        celda.style.gridColumn =
+            `span ${cantidad}`;
+
+        celda.innerHTML =
+          celda.innerHTML =
+            `<strong>${etiquetaDiaPanel(fechaActual)}</strong>`;
+
+        if (posicion > 0) {
+            celda.classList.add(
+                "meteograma-inicio-dia"
+            );
+        }
+
+        tabla.appendChild(celda);
+
+        posicion += cantidad;
+    }
+}
+
+agregarFilaFechaAgrupada();
     agregarFila(
         "Hora",
         indices.map((indice) => {
@@ -1161,6 +1257,13 @@ const selectorHorizonte = document.getElementById(
 const selectorResolucion = document.getElementById(
     "meteograma-resolucion"
 );
+if (selectorHorizonte) {
+    selectorHorizonte.value = "24";
+}
+
+if (selectorResolucion) {
+    selectorResolucion.value = "1";
+}
 
 function actualizarMeteogramaDesdeControles() {
     if (

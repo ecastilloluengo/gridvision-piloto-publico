@@ -53,8 +53,10 @@
 }
 
 .panel-operacional-contenido {
-    max-height: 280px;
-    overflow: auto;
+    max-height: min(62vh, 620px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-gutter: stable;
 }
 
 .panel-operacional-pestanas {
@@ -513,15 +515,11 @@ body:has(.panel-operacional.panel-operacional-colapsado)
     scrollbar-width: auto;
     scrollbar-color: #64748b #e2e8f0;
 }
-
 .meteograma-tabla {
     display: grid;
-    min-width: 860px;
-    grid-template-columns:
-        115px
-        repeat(8, minmax(90px, 1fr));
+    width: max-content;
+    min-width: 100%;
 }
-
 .meteograma-celda {
     display: flex;
     min-height: 42px;
@@ -654,4 +652,22 @@ body:has(.panel-operacional.panel-operacional-colapsado)
 /* Refuerzo en filas de fecha y hora */
 .meteograma-celda-hora.meteograma-inicio-dia {
     background: #e2e8f0;
+}
+.meteograma-celda-fecha-dia {
+    min-height: 34px;
+    justify-content: flex-start;
+    padding-left: 12px;
+
+    color: #334155;
+    background: #eef2f7;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+.meteograma-celda-fecha-dia > strong {
+    position: sticky;
+    left: 127px;
+    z-index: 4;
+
+    white-space: nowrap;
 }
