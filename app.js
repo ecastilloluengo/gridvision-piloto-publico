@@ -34,6 +34,30 @@ function abrirUbicacionCompartidaDesdeURL() {
     ) {
         return;
     }
+    if (
+    tieneVencimiento
+    && (
+        !Number.isFinite(vencimiento)
+        || vencimiento <= 0
+    )
+) {
+    alert(
+        "El enlace de ubicación compartida no es válido."
+    );
+
+    return;
+}
+
+if (
+    tieneVencimiento
+    && Date.now() > vencimiento
+) {
+    alert(
+        "Esta ubicación compartida ha vencido."
+    );
+
+    return;
+}
 
     const zoom =
         Number.isFinite(zoomSolicitado)
@@ -626,7 +650,8 @@ function construirEnlaceActivo(idActivo) {
 function construirEnlaceUbicacion(
     latitud,
     longitud,
-    zoom = 17
+    zoom = 17,
+    duracionHoras = 24
 ) {
     const url = new URL(URL_PUBLICA_GRIDVISION);
 
@@ -645,9 +670,22 @@ function construirEnlaceUbicacion(
         String(zoom)
     );
 
+    const vencimiento =
+        Date.now()
+        + (
+            Number(duracionHoras)
+            * 60
+            * 60
+            * 1000
+        );
+
+    url.searchParams.set(
+        "exp",
+        String(vencimiento)
+    );
+
     return url.toString();
 }
-
 async function compartirUbicacionGridVision(
     latitud,
     longitud,
