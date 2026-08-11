@@ -8,6 +8,72 @@ const mapa = L.map("mapa", {
 
 window.GridVisionMapa = mapa;
 // ======================================================
+// UBICACIÓN COMPARTIDA POR ENLACE
+// ======================================================
+
+function abrirUbicacionCompartidaDesdeURL() {
+    const parametros =
+        new URLSearchParams(window.location.search);
+
+    const latitud =
+        Number(parametros.get("lat"));
+
+    const longitud =
+        Number(parametros.get("lng"));
+
+    const zoomSolicitado =
+        Number(parametros.get("zoom"));
+
+    if (
+        !Number.isFinite(latitud)
+        || !Number.isFinite(longitud)
+        || latitud < -90
+        || latitud > 90
+        || longitud < -180
+        || longitud > 180
+    ) {
+        return;
+    }
+
+    const zoom =
+        Number.isFinite(zoomSolicitado)
+            ? Math.min(
+                19,
+                Math.max(3, zoomSolicitado)
+            )
+            : 17;
+
+    const posicion = [
+        latitud,
+        longitud
+    ];
+
+    mapa.setView(
+        posicion,
+        zoom
+    );
+
+    const marcadorCompartido =
+        L.circleMarker(posicion, {
+            radius: 9,
+            color: "#ffffff",
+            weight: 3,
+            fillColor: "#ff6d00",
+            fillOpacity: 1
+        })
+        .addTo(mapa);
+
+    marcadorCompartido
+        .bindPopup(
+            `<strong>Ubicación compartida</strong><br>
+             Latitud: ${latitud.toFixed(6)}<br>
+             Longitud: ${longitud.toFixed(6)}`
+        )
+        .openPopup();
+}
+
+abrirUbicacionCompartidaDesdeURL();
+// ======================================================
 // MI UBICACIÓN ACTUAL
 // ======================================================
 
@@ -167,13 +233,27 @@ mapa.on("locationfound", function (evento) {
     }).addTo(mapa);
 
     marcadorUbicacion
-        .bindPopup(
-            `<strong>Mi ubicación actual</strong><br>
-             Latitud: ${posicion.lat.toFixed(6)}<br>
-             Longitud: ${posicion.lng.toFixed(6)}<br>
-             Precisión aproximada: ${precision} metros`
-        )
-        .openPopup();
+    .bindPopup(
+        `<strong>Mi ubicación actual</strong><br>
+         Latitud: ${posicion.lat.toFixed(6)}<br>
+         Longitud: ${posicion.lng.toFixed(6)}<br>
+         Precisión aproximada: ${precision} metros<br><br>
+
+         <button
+             type="button"
+             class="boton-compartir-ubicacion"
+             onclick="
+                 compartirUbicacionGridVision(
+                     ${posicion.lat.toFixed(6)},
+                     ${posicion.lng.toFixed(6)},
+                     ${evento.accuracy}
+                 )
+             "
+         >
+             📤 Compartir ubicación
+         </button>`
+    )
+    .openPopup();
 
     circuloPrecision = L.circle(posicion, {
         radius: evento.accuracy,
@@ -543,7 +623,90 @@ function construirEnlaceActivo(idActivo) {
 
     return url.toString();
 }
+function construirEnlaceUbicacion(
+    latitud,
+    longitud,
+    zoom = 17
+) {
+    const url = new URL(URL_PUBLICA_GRIDVISION);
 
+    url.searchParams.set(
+        "lat",
+        Number(latitud).toFixed(6)
+    );
+
+    url.searchParams.set(
+        "lng",
+        Number(longitud).toFixed(6)
+    );
+
+    url.searchParams.set(
+        "zoom",
+        String(zoom)
+    );
+
+    return url.toString();
+}
+
+async function compartirUbicacionGridVision(
+    latitud,
+    longitud,
+    precision
+) {
+    const enlace = construirEnlaceUbicacion(
+        latitud,
+        longitud,
+        mapa.getZoom()
+    );
+const lat = Number(latitud).toFixed(6);
+const lng = Number(longitud).toFixed(6);
+
+const enlaceGoogleMaps =
+    construirEnlaceGoogleMaps(lat, lng);
+
+const texto =
+    "GridVision Chile\n\n"
+    + "Mi ubicación actual\n"
+    + `Coordenadas: ${lat}, ${lng}\n`
+    + `Precisión aproximada: ${Math.round(precision)} m\n\n`
+    + "Ver ubicación en Google Maps:\n"
+    + `${enlaceGoogleMaps}\n\n`
+    + "Abrir ubicación en GridVision:";
+
+    try {
+        if (navigator.share) {
+            await navigator.share({
+                title: "Mi ubicación - GridVision Chile",
+                text: texto,
+                url: enlace
+            });
+
+            return;
+        }
+
+        await navigator.clipboard.writeText(
+            `${texto}\n${enlace}`
+        );
+
+        alert(
+            "Enlace de ubicación copiado al portapapeles."
+        );
+    } catch (error) {
+        if (error?.name === "AbortError") {
+            return;
+        }
+
+        console.error(
+            "No se pudo compartir la ubicación:",
+            error
+        );
+
+        window.prompt(
+            "Copia este enlace de ubicación:",
+            enlace
+        );
+    }
+}
 function construirEnlaceGoogleMaps(
     latitud,
     longitud
