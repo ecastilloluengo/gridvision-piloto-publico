@@ -15,6 +15,15 @@ function abrirUbicacionCompartidaDesdeURL() {
     const parametros =
         new URLSearchParams(window.location.search);
 
+    // Si el enlace no contiene ubicación compartida,
+    // GridVision continúa normalmente.
+    if (
+        !parametros.has("lat")
+        || !parametros.has("lng")
+    ) {
+        return;
+    }
+
     const latitud =
         Number(parametros.get("lat"));
 
@@ -23,6 +32,12 @@ function abrirUbicacionCompartidaDesdeURL() {
 
     const zoomSolicitado =
         Number(parametros.get("zoom"));
+
+    const tieneVencimiento =
+        parametros.has("exp");
+
+    const vencimiento =
+        Number(parametros.get("exp"));
 
     if (
         !Number.isFinite(latitud)
@@ -34,30 +49,31 @@ function abrirUbicacionCompartidaDesdeURL() {
     ) {
         return;
     }
+
     if (
-    tieneVencimiento
-    && (
-        !Number.isFinite(vencimiento)
-        || vencimiento <= 0
-    )
-) {
-    alert(
-        "El enlace de ubicación compartida no es válido."
-    );
+        tieneVencimiento
+        && (
+            !Number.isFinite(vencimiento)
+            || vencimiento <= 0
+        )
+    ) {
+        alert(
+            "El enlace de ubicación compartida no es válido."
+        );
 
-    return;
-}
+        return;
+    }
 
-if (
-    tieneVencimiento
-    && Date.now() > vencimiento
-) {
-    alert(
-        "Esta ubicación compartida ha vencido."
-    );
+    if (
+        tieneVencimiento
+        && Date.now() > vencimiento
+    ) {
+        alert(
+            "Esta ubicación compartida ha vencido."
+        );
 
-    return;
-}
+        return;
+    }
 
     const zoom =
         Number.isFinite(zoomSolicitado)
