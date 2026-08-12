@@ -18,7 +18,7 @@ from pathlib import Path
 CARPETA_PROYECTO = Path(__file__).resolve().parent
 ARCHIVO_ENV = CARPETA_PROYECTO / ".env"
 
-PUERTO = 8000
+PUERTO = int(os.environ.get("PORT", "8000"))
 
 google_session_token = None
 google_session_expiry = 0
@@ -35,7 +35,7 @@ GOOGLE_AUTH_DURATION = 8 * 60 * 60
 
 def cargar_env():
     if not ARCHIVO_ENV.exists():
-        raise RuntimeError("No se encontró el archivo .env")
+        return
 
     with open(ARCHIVO_ENV, "r", encoding="utf-8") as archivo:
         for linea in archivo:
@@ -363,9 +363,9 @@ if __name__ == "__main__":
     os.chdir(CARPETA_PROYECTO)
 
     servidor = ThreadingHTTPServer(
-        ("localhost", PUERTO),
-        GridVisionHandler
-    )
+    ("0.0.0.0", PUERTO),
+    GridVisionHandler
+)
 
     print("")
     print("============================================")
