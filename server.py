@@ -1,4 +1,4 @@
-import json
+﻿import json
 import os
 import time
 import secrets
@@ -12,7 +12,7 @@ from pathlib import Path
 
 
 # ============================================================
-# CONFIGURACIÓN
+# CONFIGURACIÃ“N
 # ============================================================
 
 CARPETA_PROYECTO = Path(__file__).resolve().parent
@@ -22,10 +22,10 @@ PUERTO = int(os.environ.get("PORT", "8000"))
 
 google_session_token = None
 google_session_expiry = 0
-# Sesiones autorizadas para utilizar Google Satélite
+# Sesiones autorizadas para utilizar Google SatÃ©lite
 google_auth_sessions = {}
 
-# Tiempo que permanecerá autorizado un usuario:
+# Tiempo que permanecerÃ¡ autorizado un usuario:
 # 8 horas
 GOOGLE_AUTH_DURATION = 8 * 60 * 60
 
@@ -61,7 +61,7 @@ GOOGLE_API_KEY = os.getenv("GOOGLE_MAP_TILES_API_KEY")
 
 if not GOOGLE_API_KEY:
     raise RuntimeError(
-        "No se encontró GOOGLE_MAP_TILES_API_KEY en .env"
+        "No se encontrÃ³ GOOGLE_MAP_TILES_API_KEY en .env"
     )
 GOOGLE_SATELLITE_PASSWORD = os.getenv(
     "GOOGLE_SATELLITE_PASSWORD"
@@ -69,11 +69,11 @@ GOOGLE_SATELLITE_PASSWORD = os.getenv(
 
 if not GOOGLE_SATELLITE_PASSWORD:
     raise RuntimeError(
-        "No se encontró GOOGLE_SATELLITE_PASSWORD en .env"
+        "No se encontrÃ³ GOOGLE_SATELLITE_PASSWORD en .env"
     )
 
 # ============================================================
-# SESIÓN GOOGLE MAP TILES
+# SESIÃ“N GOOGLE MAP TILES
 # ============================================================
 
 def obtener_google_session():
@@ -82,7 +82,7 @@ def obtener_google_session():
 
     ahora = int(time.time())
 
-    # Si la sesión todavía es válida, se reutiliza.
+    # Si la sesiÃ³n todavÃ­a es vÃ¡lida, se reutiliza.
     if (
         google_session_token
         and google_session_expiry > ahora + 300
@@ -122,7 +122,7 @@ def obtener_google_session():
     google_session_expiry = int(contenido["expiry"])
 
     print(
-        "Sesión Google Satélite creada correctamente."
+        "SesiÃ³n Google SatÃ©lite creada correctamente."
     )
 
     return google_session_token
@@ -145,6 +145,26 @@ def token_google_autorizado(token):
         return False
 
     return True
+ORIGENES_GOOGLE_PERMITIDOS = {
+    "https://" + "ecastilloluengo.github.io",
+    "http://" + "localhost:8000",
+    "http://" + "127.0.0.1:8000",
+    "https://" + "gridvision-piloto-publico.onrender.com",
+}
+
+
+def agregar_cors_google(handler):
+    origen = handler.headers.get("Origin")
+
+    if origen in ORIGENES_GOOGLE_PERMITIDOS:
+        handler.send_header(
+            "Access-Control-Allow-Origin",
+            origen
+        )
+        handler.send_header(
+            "Vary",
+            "Origin"
+        )
 class GridVisionHandler(SimpleHTTPRequestHandler):
 
     def do_OPTIONS(self):
@@ -152,7 +172,7 @@ class GridVisionHandler(SimpleHTTPRequestHandler):
 
         self.send_header(
             "Access-Control-Allow-Origin",
-            "https://ecastilloluengo.github.io"
+            "https://" + "ecastilloluengo.github.io"
         )
 
         self.send_header(
@@ -172,7 +192,7 @@ class GridVisionHandler(SimpleHTTPRequestHandler):
         ruta = urllib.parse.urlparse(self.path)
 
         # ----------------------------------------------------
-        # AUTORIZACIÓN GOOGLE SATÉLITE
+        # AUTORIZACIÃ“N GOOGLE SATÃ‰LITE
         # ----------------------------------------------------
 
         if ruta.path == "/google-auth":
@@ -204,7 +224,7 @@ class GridVisionHandler(SimpleHTTPRequestHandler):
                     self.wfile.write(
                         json.dumps({
                             "ok": False,
-                            "message": "Contraseña incorrecta"
+                            "message": "ContraseÃ±a incorrecta"
                         }).encode("utf-8")
                     )
 
@@ -225,11 +245,7 @@ class GridVisionHandler(SimpleHTTPRequestHandler):
                     "Content-Type",
                     "application/json"
                 )
-
-                self.send_header(
-                    "Access-Control-Allow-Origin",
-                    "https://ecastilloluengo.github.io"
-                )
+                agregar_cors_google(self)
 
                 self.send_header(
                     "Set-Cookie",
@@ -245,15 +261,15 @@ class GridVisionHandler(SimpleHTTPRequestHandler):
                 self.end_headers()
 
                 self.wfile.write(
-                    json.dumps({
-                        "ok": True
-                    }).encode("utf-8")
-                )
-
+    json.dumps({
+        "ok": True,
+        "token": token
+    }).encode("utf-8")
+)
             except Exception as error:
 
                 print(
-                    "Error autorización Google:",
+                    "Error autorizaciÃ³n Google:",
                     error
                 )
 
@@ -273,7 +289,7 @@ class GridVisionHandler(SimpleHTTPRequestHandler):
         ruta = urllib.parse.urlparse(self.path)
 
         # ----------------------------------------------------
-        # GOOGLE SATÉLITE
+        # GOOGLE SATÃ‰LITE
         # /google-tiles/z/x/y
         # ----------------------------------------------------
 
@@ -347,11 +363,7 @@ class GridVisionHandler(SimpleHTTPRequestHandler):
                     "Content-Type",
                     content_type
                 )
-                self.send_header(
-    "Access-Control-Allow-Origin",
-    "https://ecastilloluengo.github.io"
-)
-
+                agregar_cors_google(self)
                 if cache_control:
                     self.send_header(
                         "Cache-Control",
@@ -415,3 +427,5 @@ if __name__ == "__main__":
 
     finally:
         servidor.server_close()
+
+

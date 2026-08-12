@@ -446,16 +446,21 @@ const mapaSatelital = L.layerGroup([
 // -----------------------------------------------------
 // 5. GOOGLE SATÉLITE
 // -----------------------------------------------------
+const GOOGLE_BACKEND_BASE =
+    (
+        window.location.hostname === "localhost" ||
+        window.location.hostname === "127.0.0.1"
+    )
+        ? window.location.origin
+        : "https://" + "gridvision-piloto-publico.onrender.com";
 
 const mapaGoogleSatelite = L.tileLayer(
-    "https://gridvision-piloto-publico.onrender.com/google-tiles/{z}/{x}/{y}",
+    GOOGLE_BACKEND_BASE + "/google-tiles/{z}/{x}/{y}",
     {
         maxZoom: 22,
-
         updateWhenIdle: false,
         keepBuffer: 4,
         updateWhenZooming: false,
-
         attribution: "Google Maps"
     }
 );
@@ -474,7 +479,7 @@ async function autorizarGoogleSatelite() {
 
     try {
         const respuesta = await fetch(
-            "https://gridvision-piloto-publico.onrender.com/google-auth",
+    GOOGLE_BACKEND_BASE + "/google-auth",
             {
                 method: "POST",
                 headers: {
@@ -501,7 +506,8 @@ if (!datos.token) {
 googleSateliteToken = datos.token;
 
 mapaGoogleSatelite.setUrl(
-    "https://gridvision-piloto-publico.onrender.com/google-tiles/{z}/{x}/{y}" +
+    GOOGLE_BACKEND_BASE +
+    "/google-tiles/{z}/{x}/{y}" +
     "?token=" +
     encodeURIComponent(googleSateliteToken)
 );
