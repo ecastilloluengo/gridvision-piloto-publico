@@ -312,56 +312,121 @@ mapa.on("locationerror", function (evento) {
         "Revisa que el navegador tenga permiso para acceder a ella."
     );
 });
-        const mapaCalles = L.tileLayer(
+       // =====================================================
+// MAPAS BASE - GRIDVISION CHILE
+// =====================================================
+
+
+// -----------------------------------------------------
+// 1. OSM - MAPA CONVENCIONAL
+// -----------------------------------------------------
+const mapaCalles = L.tileLayer(
     "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
     {
         maxZoom: 19,
         attribution:
             '&copy; <a href="https://www.openstreetmap.org/copyright">' +
-            " OpenStreetMap</a>"
+            "OpenStreetMap</a> contributors"
     }
 );
-// Panel especial para que las etiquetas queden sobre la imagen,
-// pero debajo de las líneas y activos eléctricos.
-mapa.createPane("etiquetasMapa");
-mapa.getPane("etiquetasMapa").style.zIndex = 350;
-mapa.getPane("etiquetasMapa").style.pointerEvents = "none";
-// Fotografía satelital.
-const mapaSatelitalImagen = L.tileLayer(
-    "https://services.arcgisonline.com/ArcGIS/rest/services/" +
-        "World_Imagery/MapServer/tile/{z}/{y}/{x}",
+
+
+// -----------------------------------------------------
+// 2. MAPA CLARO - CARTO POSITRON
+// -----------------------------------------------------
+const mapaClaro = L.tileLayer(
+    "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
     {
-        maxNativeZoom: 17,
-        maxZoom: 19,
-
-        // Carga mosaicos mientras se mueve el mapa.
-        updateWhenIdle: false,
-
-        // Conserva más mosaicos alrededor de la pantalla.
-        keepBuffer: 4,
-
-        // Reduce recargas durante el zoom animado.
-        updateWhenZooming: false,
-
-        className: "mapa-satelital-tile",
+        subdomains: "abcd",
+        maxZoom: 20,
 
         attribution:
-            "Tiles &copy; Esri - Sources: Esri, Maxar, " +
-            "Earthstar Geographics and the GIS User Community"
+            '&copy; <a href="https://www.openstreetmap.org/copyright">' +
+            'OpenStreetMap</a> contributors ' +
+            '&copy; <a href="https://carto.com/">CARTO</a>'
     }
 );
-// Nombres de ciudades, localidades, límites y lugares.
+// -----------------------------------------------------
+// PANEL ESPECIAL PARA ETIQUETAS
+// -----------------------------------------------------
+// Permite que nombres de ciudades y lugares aparezcan
+// sobre la imagen satelital, pero debajo de nuestras
+// líneas y activos eléctricos.
+
+mapa.createPane("etiquetasMapa");
+
+mapa.getPane("etiquetasMapa").style.zIndex = 350;
+mapa.getPane("etiquetasMapa").style.pointerEvents = "none";
+
+
+// -----------------------------------------------------
+// FUNCIÓN PARA CREAR SATÉLITE ESRI
+// -----------------------------------------------------
+// Se crean capas independientes para evitar conflictos
+// al cambiar entre "Satélite HD" y
+// "Satélite HD + etiquetas".
+
+function crearMapaSatelitalEsri() {
+
+    return L.tileLayer(
+        "https://services.arcgisonline.com/ArcGIS/rest/services/" +
+        "World_Imagery/MapServer/tile/{z}/{y}/{x}",
+        {
+            maxZoom: 19,
+
+            // IMPORTANTE:
+            // No usamos maxNativeZoom: 17.
+            // Así Leaflet solicita los mosaicos reales
+            // de zoom 18 y 19 cuando estén disponibles.
+
+            updateWhenIdle: false,
+
+            keepBuffer: 4,
+
+            updateWhenZooming: false,
+
+            className: "mapa-satelital-tile",
+
+            attribution:
+                "Tiles &copy; Esri - Sources: Esri, Maxar, " +
+                "Earthstar Geographics and the GIS User Community"
+        }
+    );
+}
+
+
+// -----------------------------------------------------
+// 3. SATÉLITE HD SIN ETIQUETAS
+// -----------------------------------------------------
+
+const mapaSatelitalHD =
+    crearMapaSatelitalEsri();
+
+
+// -----------------------------------------------------
+// 4. SATÉLITE HD + ETIQUETAS
+// -----------------------------------------------------
+
+const mapaSatelitalImagen =
+    crearMapaSatelitalEsri();
+
+
+// Nombres de ciudades, localidades,
+// límites y lugares.
+
 const etiquetasSatelitales = L.tileLayer(
     "https://services.arcgisonline.com/ArcGIS/rest/services/" +
-        "Reference/World_Boundaries_and_Places/" +
-        "MapServer/tile/{z}/{y}/{x}",
+    "Reference/World_Boundaries_and_Places/" +
+    "MapServer/tile/{z}/{y}/{x}",
     {
         pane: "etiquetasMapa",
-        maxNativeZoom: 18,
+
         maxZoom: 19,
 
         updateWhenIdle: false,
+
         keepBuffer: 4,
+
         updateWhenZooming: false,
 
         className: "mapa-etiquetas-tile",
@@ -369,11 +434,86 @@ const etiquetasSatelitales = L.tileLayer(
         attribution: "Labels &copy; Esri"
     }
 );
-// Ambas capas funcionarán como una sola opción del selector.
+
+
+// Imagen + etiquetas funcionan
+// como un único mapa base.
+
 const mapaSatelital = L.layerGroup([
     mapaSatelitalImagen,
     etiquetasSatelitales
 ]);
+// -----------------------------------------------------
+// 5. GOOGLE SATÉLITE
+// -----------------------------------------------------
+
+const mapaGoogleSatelite = L.tileLayer(
+    "/google-tiles/{z}/{x}/{y}",
+    {
+        maxZoom: 22,
+
+        updateWhenIdle: false,
+        keepBuffer: 4,
+        updateWhenZooming: false,
+
+        attribution: "Google Maps"
+    }
+);
+let googleSateliteAutorizado = false;
+
+async function autorizarGoogleSatelite() {
+
+    const password = window.prompt(
+        "Google Satélite está protegido.\n\nIngresa la contraseña:"
+    );
+
+    if (password === null) {
+        return false;
+    }
+
+    try {
+        const respuesta = await fetch(
+            "/google-auth",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    password: password
+                })
+            }
+        );
+
+        if (!respuesta.ok) {
+            alert("Contraseña incorrecta.");
+            return false;
+        }
+
+        googleSateliteAutorizado = true;
+
+        return true;
+
+    } catch (error) {
+
+        console.error(
+            "Error autorizando Google Satélite:",
+            error
+        );
+
+        alert(
+            "No fue posible autorizar Google Satélite."
+        );
+
+        return false;
+    }
+}
+
+// -----------------------------------------------------
+// MAPA INICIAL DE GRIDVISION
+// -----------------------------------------------------
+
+mapaCalles.addTo(mapa);
 // Mapa visible al iniciar GridVision
 mapaCalles.addTo(mapa);
 
@@ -404,8 +544,11 @@ const capasSeleccionables = [
 
 const controlCapas = L.control.layers(
     {
-        "Mapa convencional": mapaCalles,
-        "Satélite + etiquetas": mapaSatelital
+        "OSM": mapaCalles,
+        "Mapa claro": mapaClaro,
+        "Satélite HD": mapaSatelitalHD,
+        "Satélite HD + etiquetas": mapaSatelital,
+        "🔒 Google Satélite": mapaGoogleSatelite
     },
     {
         "Líneas eléctricas": capas.lineas,
@@ -424,7 +567,56 @@ const controlCapas = L.control.layers(
         position: "topright"
     }
 ).addTo(mapa);
+// =====================================================
+// PROTECCIÓN DE GOOGLE SATÉLITE
+// =====================================================
 
+let mapaBaseAnterior = mapaCalles;
+let cambiandoGoogleSatelite = false;
+
+mapa.on("baselayerchange", async function (evento) {
+
+    if (cambiandoGoogleSatelite) {
+        return;
+    }
+
+    // Si el usuario selecciona Google Satélite
+    // y todavía no se ha autenticado.
+    if (
+        evento.layer === mapaGoogleSatelite &&
+        !googleSateliteAutorizado
+    ) {
+
+        // Evita que Google cargue mosaicos sin autorización.
+        mapa.removeLayer(mapaGoogleSatelite);
+
+        const autorizado =
+            await autorizarGoogleSatelite();
+
+        if (autorizado) {
+
+            cambiandoGoogleSatelite = true;
+
+            mapaGoogleSatelite.addTo(mapa);
+
+            cambiandoGoogleSatelite = false;
+
+            mapaBaseAnterior = mapaGoogleSatelite;
+
+        } else {
+
+            // Si cancela o la contraseña es incorrecta,
+            // vuelve al mapa que estaba usando.
+            if (mapaBaseAnterior) {
+                mapaBaseAnterior.addTo(mapa);
+            }
+        }
+
+        return;
+    }
+
+    mapaBaseAnterior = evento.layer;
+});
 const contenedorControl =
     controlCapas.getContainer();
 
