@@ -131,21 +131,9 @@ def obtener_google_session():
 # ============================================================
 # SERVIDOR GRIDVISION
 # ============================================================
-def usuario_google_autorizado(headers):
-    cookie_header = headers.get("Cookie")
-
-    if not cookie_header:
+def token_google_autorizado(token):
+    if not token:
         return False
-
-    cookies = SimpleCookie()
-    cookies.load(cookie_header)
-
-    cookie_auth = cookies.get("gv_google_auth")
-
-    if not cookie_auth:
-        return False
-
-    token = cookie_auth.value
 
     expiracion = google_auth_sessions.get(token)
 
@@ -158,6 +146,27 @@ def usuario_google_autorizado(headers):
 
     return True
 class GridVisionHandler(SimpleHTTPRequestHandler):
+
+    def do_OPTIONS(self):
+        self.send_response(204)
+
+        self.send_header(
+            "Access-Control-Allow-Origin",
+            "https://ecastilloluengo.github.io"
+        )
+
+        self.send_header(
+            "Access-Control-Allow-Methods",
+            "GET, POST, OPTIONS"
+        )
+
+        self.send_header(
+            "Access-Control-Allow-Headers",
+            "Content-Type"
+        )
+
+        self.end_headers()
+
     def do_POST(self):
 
         ruta = urllib.parse.urlparse(self.path)
@@ -218,6 +227,11 @@ class GridVisionHandler(SimpleHTTPRequestHandler):
                 )
 
                 self.send_header(
+                    "Access-Control-Allow-Origin",
+                    "https://ecastilloluengo.github.io"
+                )
+
+                self.send_header(
                     "Set-Cookie",
                     (
                         f"gv_google_auth={token}; "
@@ -265,7 +279,16 @@ class GridVisionHandler(SimpleHTTPRequestHandler):
 
         if ruta.path.startswith("/google-tiles/"):
 
-            if not usuario_google_autorizado(self.headers):
+            parametros = urllib.parse.parse_qs(
+                ruta.query
+            )
+
+            token = parametros.get(
+                "token",
+                [""]
+            )[0]
+
+            if not token_google_autorizado(token):
                 self.send_error(
                     401,
                     "Google Satelite requiere autorizacion"
@@ -324,6 +347,10 @@ class GridVisionHandler(SimpleHTTPRequestHandler):
                     "Content-Type",
                     content_type
                 )
+                self.send_header(
+    "Access-Control-Allow-Origin",
+    "https://ecastilloluengo.github.io"
+)
 
                 if cache_control:
                     self.send_header(
