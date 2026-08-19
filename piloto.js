@@ -19,6 +19,10 @@
 
     const filtros =
         document.getElementById("panel-filtros");
+        const minimizarPanelFiltros =
+    document.getElementById(
+        "minimizar-panel-filtros"
+    );
 
     function abrirGuia() {
         bienvenida.hidden = false;
@@ -70,7 +74,46 @@
             );
         }
     );
+minimizarPanelFiltros?.addEventListener(
+    "click",
+    () => {
 
+        const minimizado =
+            minimizarPanelFiltros.textContent.trim() === "−";
+
+        const elementos =
+            Array.from(filtros.children);
+
+        for (const elemento of elementos) {
+
+            if (
+                elemento.classList.contains(
+                    "cabecera-filtros"
+                )
+            ) {
+                continue;
+            }
+
+            elemento.style.display =
+                minimizado ? "none" : "";
+        }
+
+        minimizarPanelFiltros.textContent =
+            minimizado ? "+" : "−";
+
+        minimizarPanelFiltros.title =
+            minimizado
+                ? "Mostrar filtros"
+                : "Minimizar filtros";
+
+        minimizarPanelFiltros.setAttribute(
+            "aria-label",
+            minimizado
+                ? "Mostrar filtros"
+                : "Minimizar filtros"
+        );
+    }
+);
     bienvenida.addEventListener(
         "click",
         (evento) => {

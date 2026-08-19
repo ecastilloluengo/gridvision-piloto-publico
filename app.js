@@ -710,7 +710,54 @@ function obtenerSelectorTodo() {
         etiquetaSeleccionarTodo,
         contenedorOverlays.firstChild
     );
+    
+const botonMinimizarCapas =
+    document.createElement("button");
 
+botonMinimizarCapas.type = "button";
+botonMinimizarCapas.textContent = "−";
+botonMinimizarCapas.className =
+    "gridvision-minimizar-capas";
+botonMinimizarCapas.title =
+    "Minimizar capas";
+
+contenedorOverlays.insertBefore(
+    botonMinimizarCapas,
+    contenedorOverlays.firstChild
+);
+botonMinimizarCapas.addEventListener(
+    "click",
+    () => {
+
+        const minimizar =
+            botonMinimizarCapas.textContent.trim() === "−";
+
+        const elementos =
+            Array.from(
+                contenedorOverlays.children
+            );
+
+        for (const elemento of elementos) {
+
+            if (
+                elemento === botonMinimizarCapas
+            ) {
+                continue;
+            }
+
+            elemento.style.display =
+                minimizar ? "none" : "";
+        }
+
+        botonMinimizarCapas.textContent =
+            minimizar ? "+" : "−";
+
+        botonMinimizarCapas.title =
+            minimizar
+                ? "Mostrar capas"
+                : "Minimizar capas";
+    }
+);
     selectorTodo.addEventListener(
         "change",
         () => {
@@ -1291,151 +1338,240 @@ acciones.appendChild(filaCoordenadas);
         return contenedor;
 }
 
+async function cargarPfvNetBilling() {
+    const respuesta = await fetch(
+        "data/processed/pfv_netbilling.geojson"
+    );
+
+    if (!respuesta.ok) {
+        throw new Error(
+            "No fue posible cargar las PFV Net Billing"
+        );
+    }
+
+    const datos = await respuesta.json();
+
+    L.geoJSON(datos, {
+        pointToLayer(feature, latlng) {
+            return L.circleMarker(
+                latlng,
+                estiloPunto(feature.properties.categoria)
+            );
+        },
+
+        onEachFeature(feature, layer) {
+            layer.bindPopup(
+                crearPopup(
+                    feature.properties,
+                    feature.geometry.coordinates
+                )
+            );
+
+            layer.on("popupopen", () => {
+                window.GridVisionClimaLineas
+                    ?.ocultar();
+
+                window.GridVisionClima
+                    ?.seleccionarActivo(feature);
+            });
+
+            const capaDestino = capaParaCategoria(
+                feature.properties.categoria
+            );
+
+            capaDestino.addLayer(layer);
+
+            indiceBusqueda.push({
+                feature,
+                layer,
+                capa: capaDestino
+            });
+        }
+    });
+
+    return datos.features.length;
+}
+
+
 async function cargarPuntos() {
     const respuesta = await fetch(
         "data/processed/activos_puntuales_validados.geojson"
     );
 
-            if (!respuesta.ok) {
-                throw new Error("No fue posible cargar los activos");
-            }
+    if (!respuesta.ok) {
+        throw new Error(
+            "No fue posible cargar los activos"
+        );
+    }
 
-            const datos = await respuesta.json();
+    const datos = await respuesta.json();
 
-            L.geoJSON(datos, {
-                pointToLayer(feature, latlng) {
-                    return L.circleMarker(
-                        latlng,
-                        estiloPunto(feature.properties.categoria)
-                    );
-                },
+    L.geoJSON(datos, {
+        pointToLayer(feature, latlng) {
+            return L.circleMarker(
+                latlng,
+                estiloPunto(feature.properties.categoria)
+            );
+        },
 
-                onEachFeature(feature, layer) {
-                    layer.bindPopup(
-    crearPopup(
-        feature.properties,
-        feature.geometry.coordinates
-    )
-);
-
-                    layer.on("popupopen", () => {
-                        window.GridVisionClimaLineas
-                            ?.ocultar();
-
-                        window.GridVisionClima
-                            ?.seleccionarActivo(feature);
-                    });
-
-                    const capaDestino = capaParaCategoria(
-                        feature.properties.categoria
-                    );
-
-                    capaDestino.addLayer(layer);
-
-                    indiceBusqueda.push({
-                        feature,
-                        layer,
-                        capa: capaDestino
-                    });
-                }
-            });
-
-            return datos.features.length;
-        }
-
-        async function cargarLineas() {
-            const respuesta = await fetch(
-                "data/processed/lineas_validadas.geojson"
+        onEachFeature(feature, layer) {
+            layer.bindPopup(
+                crearPopup(
+                    feature.properties,
+                    feature.geometry.coordinates
+                )
             );
 
-            if (!respuesta.ok) {
-                throw new Error("No fue posible cargar las líneas");
-            }
+            layer.on("popupopen", () => {
+                window.GridVisionClimaLineas
+                    ?.ocultar();
 
-            const datos = await respuesta.json();
-
-            L.geoJSON(datos, {
-                style(feature) {
-                    const tension =
-                        feature.properties.subcategoria;
-
-                    return {
-                        color: colorLinea(tension),
-                        weight:
-                            String(tension).includes("500") ? 3.5 : 2,
-                        opacity: 0.78
-                    };
-                },
-
-                onEachFeature(feature, layer) {
-                    layer.bindPopup(
-                        crearPopup(feature.properties)
-                    );
-
-                    layer.on("popupopen", () => {
-                        window.GridVisionClima
-                            ?.ocultar();
-
-                        window.GridVisionClimaLineas
-                            ?.seleccionarLinea(feature);
-                    });
-
-                    capas.lineas.addLayer(layer);
-
-                    indiceBusqueda.push({
-                        feature,
-                        layer,
-                        capa: capas.lineas
-                    });
-                }
+                window.GridVisionClima
+                    ?.seleccionarActivo(feature);
             });
 
-            return datos.features.length;
+            const capaDestino = capaParaCategoria(
+                feature.properties.categoria
+            );
+
+            capaDestino.addLayer(layer);
+
+            indiceBusqueda.push({
+                feature,
+                layer,
+                capa: capaDestino
+            });
         }
+    });
 
-        async function iniciarGridVision() {
-            const estado = document.getElementById("estado");
+    return datos.features.length;
+}
 
-            try {
-                const [cantidadPuntos, cantidadLineas] =
-                    await Promise.all([
-                        cargarPuntos(),
-                        cargarLineas()
-                    ]);
 
-                document.getElementById(
-                    "cantidad-puntos"
-                ).textContent = cantidadPuntos.toLocaleString("es-CL");
+async function cargarLineas() {
+    const respuesta = await fetch(
+        "data/processed/lineas_validadas.geojson"
+    );
 
-                document.getElementById(
-                    "cantidad-lineas"
-                ).textContent = cantidadLineas.toLocaleString("es-CL");
+    if (!respuesta.ok) {
+        throw new Error(
+            "No fue posible cargar las líneas"
+        );
+    }
 
-                document.getElementById(
-                    "cantidad-total"
-                ).textContent = (
-                    cantidadPuntos + cantidadLineas
-                ).toLocaleString("es-CL");
+    const datos = await respuesta.json();
 
-                const limitesChile = [
-    [-56.5, -76.5],
-    [-17.0, -65.0]
-];
+    L.geoJSON(datos, {
+        style(feature) {
+            const tension =
+                feature.properties.subcategoria;
 
-mapa.fitBounds(limitesChile, {
-    padding: [25, 25]
-});
-                estado.textContent =
-                    "Datos cargados correctamente";
-            } catch (error) {
-                console.error(error);
+            return {
+                color: colorLinea(tension),
+                weight:
+                    String(tension).includes("500")
+                        ? 3.5
+                        : 2,
+                opacity: 0.78
+            };
+        },
 
-                estado.textContent =
-                    "Error al cargar los datos locales";
+        onEachFeature(feature, layer) {
+            layer.bindPopup(
+                crearPopup(feature.properties)
+            );
 
-                document.getElementById("error-carga").hidden = false;
+            layer.on("popupopen", () => {
+                window.GridVisionClima
+                    ?.ocultar();
+
+                window.GridVisionClimaLineas
+                    ?.seleccionarLinea(feature);
+            });
+
+            capas.lineas.addLayer(layer);
+
+            indiceBusqueda.push({
+                feature,
+                layer,
+                capa: capas.lineas
+            });
+        }
+    });
+
+    return datos.features.length;
+}
+
+
+async function iniciarGridVision() {
+    const estado = document.getElementById(
+        "estado"
+    );
+
+    try {
+        const [
+            cantidadPuntos,
+            cantidadPfvNetBilling,
+            cantidadLineas
+        ] = await Promise.all([
+            cargarPuntos(),
+            cargarPfvNetBilling(),
+            cargarLineas()
+        ]);
+
+        const cantidadPuntosTotal =
+            cantidadPuntos +
+            cantidadPfvNetBilling;
+
+        document.getElementById(
+            "cantidad-puntos"
+        ).textContent =
+            cantidadPuntosTotal.toLocaleString(
+                "es-CL"
+            );
+
+        document.getElementById(
+            "cantidad-lineas"
+        ).textContent =
+            cantidadLineas.toLocaleString(
+                "es-CL"
+            );
+
+        document.getElementById(
+            "cantidad-total"
+        ).textContent = (
+            cantidadPuntosTotal +
+            cantidadLineas
+        ).toLocaleString(
+            "es-CL"
+        );
+
+        const limitesChile = [
+            [-56.5, -76.5],
+            [-17.0, -65.0]
+        ];
+
+        mapa.fitBounds(
+            limitesChile,
+            {
+                padding: [25, 25]
             }
-        }
+        );
+
+        estado.textContent =
+            "Datos cargados correctamente";
+
+    } catch (error) {
+        console.error(error);
+
+        estado.textContent =
+            "Error al cargar los datos locales";
+
+        document.getElementById(
+            "error-carga"
+        ).hidden = false;
+    }
+}
 
         function normalizarBusqueda(texto) {
     return String(texto || "")

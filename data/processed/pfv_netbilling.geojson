@@ -1,0 +1,75 @@
+{
+  "type": "FeatureCollection",
+  "name": "centrales_netbilling",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.87088592155432,
+          -33.45372342021024
+        ]
+      },
+      "properties": {
+        "tipo": "Central Solar Netbilling",
+        "tecnologia": "Solar fotovoltaica",
+        "segmento": "Net Billing < 300 kW",
+        "icono": "solar",
+        "origen_kml": "PFV Lo Aguirre.kml",
+        "plataforma_monitoreo": "SolaXCloud",
+        "altitud_kml_m": 464.87026755362,
+        "id": "PFV-NB-001",
+        "nombre": "PFV Lo Aguirre",
+        "categoria": "Central",
+        "subcategoria": "PFV Net Billing"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.56348479313948,
+          -32.81483078662126
+        ]
+      },
+      "properties": {
+        "tipo": "Central Solar Netbilling",
+        "tecnologia": "Solar fotovoltaica",
+        "segmento": "Net Billing < 300 kW",
+        "icono": "solar",
+        "origen_kml": "VSE-AP.kml",
+        "plataforma_monitoreo": "FusionSolar",
+        "altitud_kml_m": 865.7718861991069,
+        "id": "PFV-NB-002",
+        "nombre": "PFV VSE (Techo)",
+        "categoria": "Central",
+        "subcategoria": "PFV Net Billing"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.55838691570177,
+          -32.81663299569207
+        ]
+      },
+      "properties": {
+        "tipo": "Central Solar Netbilling",
+        "tecnologia": "Solar fotovoltaica",
+        "segmento": "Net Billing < 300 kW",
+        "icono": "solar",
+        "origen_kml": "VSE-AP.kml",
+        "plataforma_monitoreo": "FusionSolar",
+        "altitud_kml_m": 874.7920702908059,
+        "id": "PFV-NB-003",
+        "nombre": "VSE Paidahuén",
+        "categoria": "Central",
+        "subcategoria": "PFV Net Billing"
+      }
+    }
+  ]
+}
