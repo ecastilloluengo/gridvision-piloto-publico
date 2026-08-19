@@ -1161,151 +1161,259 @@ async function compartirActivo(
 }
 async function cargarEstadoSolaxLoAguirre(contenedor) {
 
+    const INTERVALO_SOLAX_MS = 5 * 60 * 1000;
+
     const bloque = document.createElement("div");
 
     bloque.style.marginTop = "10px";
     bloque.style.paddingTop = "9px";
     bloque.style.borderTop = "1px solid #dce5ec";
 
-    const titulo = document.createElement("strong");
-    titulo.textContent = "Estado de inversores";
-
-    bloque.appendChild(titulo);
-
-    const cargando = document.createElement("p");
-    cargando.textContent = "Consultando SolaXCloud…";
-
-    bloque.appendChild(cargando);
     contenedor.appendChild(bloque);
 
-    try {
+    let actualizando = false;
 
-        const respuesta = await fetch(
-            GOOGLE_BACKEND_BASE +
-            "/api/solax/lo-aguirre"
-        );
+    async function actualizarEstadoSolax() {
 
-        if (!respuesta.ok) {
-            throw new Error(
-                "No fue posible consultar SolaX"
+        if (actualizando) {
+            return;
+        }
+
+        actualizando = true;
+
+        bloque.innerHTML = "";
+
+        const titulo = document.createElement("strong");
+        titulo.textContent = "Estado de inversores";
+        bloque.appendChild(titulo);
+
+        const cargando = document.createElement("p");
+        cargando.textContent = "Consultando SolaXCloud…";
+        cargando.style.margin = "6px 0";
+
+        bloque.appendChild(cargando);
+
+        try {
+
+            const respuesta = await fetch(
+                GOOGLE_BACKEND_BASE +
+                "/api/solax/lo-aguirre",
+                {
+                    cache: "no-store"
+                }
             );
-        }
 
-        const datos = await respuesta.json();
+            if (!respuesta.ok) {
+                throw new Error(
+                    "No fue posible consultar SolaX"
+                );
+            }
 
-        cargando.remove();
-        const potenciaTotalW =
-    datos.inversores.reduce(
-        (total, inversor) =>
-            total + Number(inversor.potencia_ac || 0),
-        0
-    );
+            const datos = await respuesta.json();
 
-const potenciaTotalKW =
-    potenciaTotalW / 1000;
+            cargando.remove();
 
-const generacionActual =
-    document.createElement("p");
 
-generacionActual.style.margin = "8px 0";
-generacionActual.style.fontWeight = "700";
+            // --------------------------------------------
+            // GENERACIÓN INSTANTÁNEA
+            // --------------------------------------------
 
-generacionActual.textContent =
-    `⚡ Generación instantánea: ` +
-    `${potenciaTotalKW.toLocaleString(
-        "es-CL",
-        {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        }
-    )} kW`;
+            const potenciaTotalW =
+                datos.inversores.reduce(
+                    (total, inversor) =>
+                        total +
+                        Number(
+                            inversor.potencia_ac || 0
+                        ),
+                    0
+                );
 
-bloque.appendChild(generacionActual);
+            const potenciaTotalKW =
+                potenciaTotalW / 1000;
 
-        for (const inversor of datos.inversores) {
-
-            const fila =
+            const generacionActual =
                 document.createElement("p");
 
-            fila.style.margin = "5px 0";
+            generacionActual.style.margin = "8px 0";
+            generacionActual.style.fontWeight = "700";
 
-            let simbolo = "🟡";
+            generacionActual.textContent =
+                `⚡ Generación instantánea: ` +
+                `${potenciaTotalKW.toLocaleString(
+                    "es-CL",
+                    {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    }
+                )} kW`;
 
-            if (inversor.nivel === "ok") {
-                simbolo = "🟢";
+            bloque.appendChild(generacionActual);
+
+
+            // --------------------------------------------
+            // INVERSORES
+            // --------------------------------------------
+
+            for (const inversor of datos.inversores) {
+
+                const fila =
+                    document.createElement("p");
+
+                fila.style.margin = "5px 0";
+
+                let simbolo = "🟡";
+
+                if (inversor.nivel === "ok") {
+                    simbolo = "🟢";
+                }
+
+                if (inversor.nivel === "falla") {
+                    simbolo = "🔴";
+                }
+
+                if (
+                    inversor.nivel ===
+                    "sin_datos"
+                ) {
+                    simbolo = "⚪";
+                }
+
+                fila.textContent =
+                    `${simbolo} ${inversor.nombre}: ` +
+                    inversor.estado;
+
+                bloque.appendChild(fila);
             }
 
-            if (inversor.nivel === "falla") {
-                simbolo = "🔴";
+
+            // --------------------------------------------
+            // ESTADO GENERAL
+            // --------------------------------------------
+
+            const general =
+                document.createElement("p");
+
+            general.style.marginTop = "8px";
+            general.style.fontWeight = "700";
+
+            let simboloGeneral = "🟡";
+
+            if (datos.nivel_general === "ok") {
+                simboloGeneral = "🟢";
             }
 
-            if (inversor.nivel === "sin_datos") {
-                simbolo = "⚪";
+            if (datos.nivel_general === "falla") {
+                simboloGeneral = "🔴";
             }
 
-            fila.textContent =
-                `${simbolo} ${inversor.nombre}: ` +
-                inversor.estado;
+            if (
+                datos.nivel_general ===
+                "sin_datos"
+            ) {
+                simboloGeneral = "⚪";
+            }
 
-            bloque.appendChild(fila);
-        }
+            general.textContent =
+                `${simboloGeneral} Estado general: ` +
+                datos.estado_general;
 
-        const general =
-            document.createElement("p");
+            bloque.appendChild(general);
 
-        general.style.marginTop = "8px";
-        general.style.fontWeight = "700";
 
-        let simboloGeneral = "🟡";
+            // --------------------------------------------
+            // ÚLTIMO DATO DE SOLAX
+            // --------------------------------------------
 
-        if (datos.nivel_general === "ok") {
-            simboloGeneral = "🟢";
-        }
+            const ultimoDato =
+                datos.inversores
+                    .map(
+                        inversor =>
+                            inversor.ultimo_dato
+                    )
+                    .filter(Boolean)
+                    .sort()
+                    .at(-1);
 
-        if (datos.nivel_general === "falla") {
-            simboloGeneral = "🔴";
-        }
+            if (ultimoDato) {
 
-        if (datos.nivel_general === "sin_datos") {
-            simboloGeneral = "⚪";
-        }
+                const hora =
+                    document.createElement("small");
 
-        general.textContent =
-            `${simboloGeneral} Estado general: ` +
-            datos.estado_general;
+                hora.style.display = "block";
 
-        bloque.appendChild(general);
+                hora.textContent =
+                    `Último dato SolaX: ${ultimoDato}`;
 
-        const ultimoDato =
-            datos.inversores
-                .map((inversor) =>
-                    inversor.ultimo_dato
-                )
-                .filter(Boolean)
-                .sort()
-                .at(-1);
+                bloque.appendChild(hora);
+            }
 
-        if (ultimoDato) {
 
-            const hora =
+            // --------------------------------------------
+            // HORA DE CONSULTA DE GRIDVISION
+            // --------------------------------------------
+
+            const horaConsulta =
                 document.createElement("small");
 
-            hora.textContent =
-                `Último dato SolaX: ${ultimoDato}`;
+            horaConsulta.style.display = "block";
+            horaConsulta.style.marginTop = "3px";
+            horaConsulta.style.opacity = "0.7";
 
-            bloque.appendChild(hora);
+            const ahora =
+                new Date().toLocaleTimeString(
+                    "es-CL",
+                    {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        second: "2-digit"
+                    }
+                );
+
+            horaConsulta.textContent =
+                `GridVision consultó: ${ahora} · ` +
+                `actualización cada 5 min`;
+
+            bloque.appendChild(horaConsulta);
+
+        } catch (error) {
+
+            console.error(
+                "Error consultando SolaX:",
+                error
+            );
+
+            cargando.textContent =
+                "⚪ Sin comunicación con SolaXCloud";
+
+        } finally {
+
+            actualizando = false;
         }
-
-    } catch (error) {
-
-        console.error(
-            "Error consultando SolaX:",
-            error
-        );
-
-        cargando.textContent =
-            "⚪ Sin comunicación con SolaXCloud";
     }
+
+
+    // Primera consulta inmediata
+    await actualizarEstadoSolax();
+
+
+    // Consultas posteriores cada 5 minutos
+    const intervaloSolax =
+        window.setInterval(() => {
+
+            // Si el popup fue cerrado,
+            // dejamos de consultar SolaX.
+            if (!contenedor.isConnected) {
+
+                window.clearInterval(
+                    intervaloSolax
+                );
+
+                return;
+            }
+
+            actualizarEstadoSolax();
+
+        }, INTERVALO_SOLAX_MS);
 }
 function crearPopup(propiedades, coordenadas = null) {
     const contenedor = document.createElement("div");
