@@ -1346,6 +1346,109 @@ if (potenciaRedKW < -0.01) {
 redActual.textContent = textoRed;
 
 bloque.appendChild(redActual);
+// --------------------------------------------
+// METEOROLOGÍA / IRRADIANCIA ESTIMADA
+// --------------------------------------------
+
+try {
+
+    const respuestaMeteo = await fetch(
+        "https://api.open-meteo.com/v1/forecast" +
+        "?latitude=-33.453723" +
+        "&longitude=-70.870886" +
+        "&current=shortwave_radiation,temperature_2m,cloud_cover" +
+        "&timezone=America%2FSantiago",
+        {
+            cache: "no-store"
+        }
+    );
+
+    if (respuestaMeteo.ok) {
+
+        const meteo =
+            await respuestaMeteo.json();
+
+        const actual =
+            meteo.current || {};
+
+        const irradiancia =
+            Number(actual.shortwave_radiation);
+
+        const temperatura =
+            Number(actual.temperature_2m);
+
+        const nubosidad =
+            Number(actual.cloud_cover);
+
+
+        const irradianciaActual =
+            document.createElement("p");
+
+        irradianciaActual.style.margin =
+            "8px 0 5px 0";
+
+        irradianciaActual.textContent =
+            `☀ Irradiancia GHI estimada: ` +
+            `${irradiancia.toLocaleString(
+                "es-CL",
+                {
+                    maximumFractionDigits: 0
+                }
+            )} W/m²`;
+
+        bloque.appendChild(
+            irradianciaActual
+        );
+
+
+        const temperaturaActual =
+            document.createElement("p");
+
+        temperaturaActual.style.margin =
+            "5px 0";
+
+        temperaturaActual.textContent =
+            `🌡 Temperatura exterior: ` +
+            `${temperatura.toLocaleString(
+                "es-CL",
+                {
+                    minimumFractionDigits: 1,
+                    maximumFractionDigits: 1
+                }
+            )} °C`;
+
+        bloque.appendChild(
+            temperaturaActual
+        );
+
+
+        const nubosidadActual =
+            document.createElement("p");
+
+        nubosidadActual.style.margin =
+            "5px 0";
+
+        nubosidadActual.textContent =
+            `☁ Nubosidad: ` +
+            `${nubosidad.toLocaleString(
+                "es-CL",
+                {
+                    maximumFractionDigits: 0
+                }
+            )} %`;
+
+        bloque.appendChild(
+            nubosidadActual
+        );
+    }
+
+} catch (errorMeteo) {
+
+    console.warn(
+        "No fue posible consultar Open-Meteo:",
+        errorMeteo
+    );
+}
 
             // --------------------------------------------
             // INVERSORES
