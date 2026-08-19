@@ -1230,6 +1230,37 @@ async function cargarEstadoSolaxLoAguirre(contenedor) {
 
             const potenciaTotalKW =
                 potenciaTotalW / 1000;
+                // --------------------------------------------
+// RED Y CONSUMO DE LA INSTALACIÓN
+// --------------------------------------------
+
+// El medidor de red aparece asociado a uno
+// de los inversores. Tomamos el valor con
+// mayor magnitud para evitar sumar ceros
+// de los demás equipos.
+const potenciaRedW =
+    datos.inversores.reduce(
+        (valorActual, inversor) => {
+
+            const valor =
+                Number(inversor.potencia_red || 0);
+
+            return Math.abs(valor) >
+                Math.abs(valorActual)
+                ? valor
+                : valorActual;
+
+        },
+        0
+    );
+
+const potenciaRedKW =
+    potenciaRedW / 1000;
+
+// Planta sin batería:
+// Consumo = FV - potencia de red con signo
+const consumoCasaKW =
+    potenciaTotalKW - potenciaRedKW;
 
             const generacionActual =
                 document.createElement("p");
@@ -1248,7 +1279,73 @@ async function cargarEstadoSolaxLoAguirre(contenedor) {
                 )} kW`;
 
             bloque.appendChild(generacionActual);
+// --------------------------------------------
+// CONSUMO CASA
+// --------------------------------------------
 
+const consumoActual =
+    document.createElement("p");
+
+consumoActual.style.margin = "5px 0";
+consumoActual.style.fontWeight = "700";
+
+consumoActual.textContent =
+    `🏠 Consumo instalación: ` +
+    `${consumoCasaKW.toLocaleString(
+        "es-CL",
+        {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }
+    )} kW`;
+
+bloque.appendChild(consumoActual);
+
+
+// --------------------------------------------
+// INTERCAMBIO CON LA RED
+// --------------------------------------------
+
+const redActual =
+    document.createElement("p");
+
+redActual.style.margin = "5px 0";
+redActual.style.fontWeight = "700";
+
+let textoRed;
+
+if (potenciaRedKW < -0.01) {
+
+    textoRed =
+        `🔌 Red: Importando ` +
+        `${Math.abs(potenciaRedKW).toLocaleString(
+            "es-CL",
+            {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }
+        )} kW`;
+
+} else if (potenciaRedKW > 0.01) {
+
+    textoRed =
+        `🔌 Red: Exportando ` +
+        `${potenciaRedKW.toLocaleString(
+            "es-CL",
+            {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }
+        )} kW`;
+
+} else {
+
+    textoRed = "🔌 Red: 0,00 kW";
+}
+
+redActual.textContent = textoRed;
+
+bloque.appendChild(redActual);
 
             // --------------------------------------------
             // INVERSORES
