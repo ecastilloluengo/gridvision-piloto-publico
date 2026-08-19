@@ -71,7 +71,92 @@ if not GOOGLE_SATELLITE_PASSWORD:
     raise RuntimeError(
         "No se encontrÃ³ GOOGLE_SATELLITE_PASSWORD en .env"
     )
+# ============================================================
+# SOLAX CLOUD - PFV ICV LO AGUIRRE
+# ============================================================
 
+SOLAX_TOKEN_ID = os.getenv("SOLAX_TOKEN_ID")
+
+SOLAX_API_URL = (
+    "https://global.solaxcloud.com"
+    "/api/v2/dataAccess/realtimeInfo/get"
+)
+
+SOLAX_LO_AGUIRRE = [
+    {
+        "nombre": "Inversor 60 kW",
+        "wifiSn": "SRY38GCFAC",
+        "potencia_nominal_kw": 60
+    },
+    {
+        "nombre": "Inversor 40 kW",
+        "wifiSn": "SRKM2RJAVU",
+        "potencia_nominal_kw": 40
+    },
+    {
+        "nombre": "Inversor 50 kW",
+        "wifiSn": "SRZ8FFF7QE",
+        "potencia_nominal_kw": 50
+    }
+]
+
+
+def estado_operacional_solax(codigo):
+
+    codigo = str(codigo or "")
+
+    estados = {
+        "100": ("ESPERA", "espera"),
+        "101": ("AUTOTEST", "espera"),
+        "102": ("OK", "ok"),
+        "103": ("FALLA RECUPERABLE", "falla"),
+        "104": ("FALLA PERMANENTE", "falla"),
+        "105": ("ACTUALIZANDO", "espera"),
+        "109": ("SLEEP", "espera"),
+        "110": ("STANDBY", "espera")
+    }
+
+    nombre, nivel = estados.get(
+        codigo,
+        ("ESTADO " + codigo, "espera")
+    )
+
+    return {
+        "codigo": codigo,
+        "estado": nombre,
+        "nivel": nivel
+    }
+
+
+def consultar_solax(wifi_sn):
+
+    if not SOLAX_TOKEN_ID:
+        raise RuntimeError(
+            "No se encontró SOLAX_TOKEN_ID"
+        )
+
+    cuerpo = json.dumps({
+        "wifiSn": wifi_sn
+    }).encode("utf-8")
+
+    solicitud = urllib.request.Request(
+        SOLAX_API_URL,
+        data=cuerpo,
+        method="POST",
+        headers={
+            "Content-Type": "application/json",
+            "tokenId": SOLAX_TOKEN_ID
+        }
+    )
+
+    with urllib.request.urlopen(
+        solicitud,
+        timeout=20
+    ) as respuesta:
+
+        return json.loads(
+            respuesta.read().decode("utf-8")
+        )
 # ============================================================
 # SESIÃ“N GOOGLE MAP TILES
 # ============================================================
@@ -90,9 +175,9 @@ def obtener_google_session():
         return google_session_token
 
     url = (
-        "https://tile.googleapis.com/v1/createSession"
-        f"?key={urllib.parse.quote(GOOGLE_API_KEY)}"
-    )
+    "https://tile.googleapis.com/v1/createSession"
+    f"?key={urllib.parse.quote(GOOGLE_API_KEY)}"
+)
 
     datos = json.dumps({
         "mapType": "satellite",
@@ -287,6 +372,149 @@ class GridVisionHandler(SimpleHTTPRequestHandler):
     def do_GET(self):
 
         ruta = urllib.parse.urlparse(self.path)
+                # ----------------------------------------------------
+        # SOLAX CLOUD - PFV ICV LO AGUIRRE
+        # ----------------------------------------------------
+
+        if ruta.path == "/api/solax/lo-aguirre":
+
+            inversores = []
+
+            for equipo in SOLAX_LO_AGUIRRE:
+
+                try:
+                    respuesta_solax = consultar_solax(
+                        equipo["wifiSn"]
+                    )
+
+                    if not respuesta_solax.get("success"):
+                        inversores.append({
+                            "nombre": equipo["nombre"],
+                            "wifiSn": equipo["wifiSn"],
+                            "potencia_nominal_kw":
+                                equipo["potencia_nominal_kw"],
+                            "estado": "SIN DATOS",
+                            "nivel": "sin_datos",
+                            "codigo": None,
+                            "mensaje":
+                                respuesta_solax.get(
+                                    "exception",
+                                    "Consulta SolaX rechazada"
+                                )
+                        })
+
+                        continue
+
+                    datos = (
+                        respuesta_solax.get("result")
+                        or {}
+                    )
+
+                    estado = estado_operacional_solax(
+                        datos.get("inverterStatus")
+                    )
+
+                    inversores.append({
+                        "nombre": equipo["nombre"],
+                        "wifiSn": equipo["wifiSn"],
+                        "potencia_nominal_kw":
+                            equipo["potencia_nominal_kw"],
+
+                        "estado": estado["estado"],
+                        "nivel": estado["nivel"],
+                        "codigo": estado["codigo"],
+
+                        "potencia_ac":
+                            datos.get("acpower"),
+
+                        "energia_hoy":
+                            datos.get("yieldtoday"),
+
+                        "energia_total":
+                            datos.get("yieldtotal"),
+
+                        "potencia_red":
+                            datos.get("feedinpower"),
+
+                        "ultimo_dato":
+                            datos.get("uploadTime")
+                    })
+
+                except Exception as error:
+
+                    print(
+                        "Error SolaX",
+                        equipo["wifiSn"],
+                        error
+                    )
+
+                    inversores.append({
+                        "nombre": equipo["nombre"],
+                        "wifiSn": equipo["wifiSn"],
+                        "potencia_nominal_kw":
+                            equipo["potencia_nominal_kw"],
+                        "estado": "SIN COMUNICACION",
+                        "nivel": "sin_datos",
+                        "codigo": None
+                    })
+
+
+            niveles = [
+                inversor["nivel"]
+                for inversor in inversores
+            ]
+
+            if "falla" in niveles:
+                estado_general = "FALLA"
+                nivel_general = "falla"
+
+            elif niveles and all(
+                nivel == "ok"
+                for nivel in niveles
+            ):
+                estado_general = "OK"
+                nivel_general = "ok"
+
+            elif "sin_datos" in niveles:
+                estado_general = "SIN DATOS"
+                nivel_general = "sin_datos"
+
+            else:
+                estado_general = "ESPERA"
+                nivel_general = "espera"
+
+
+            respuesta = {
+                "planta": "PFV ICV Lo Aguirre",
+                "tipo": "PFV Net Billing",
+                "potencia_nominal_kw": 150,
+
+                "estado_general": estado_general,
+                "nivel_general": nivel_general,
+
+                "inversores": inversores
+            }
+
+
+            self.send_response(200)
+
+            self.send_header(
+                "Content-Type",
+                "application/json; charset=utf-8"
+            )
+
+            agregar_cors_google(self)
+
+            self.end_headers()
+
+            self.wfile.write(
+                json.dumps(
+                    respuesta,
+                    ensure_ascii=False
+                ).encode("utf-8")
+            )
+
+            return
 
         # ----------------------------------------------------
         # GOOGLE SATÃ‰LITE

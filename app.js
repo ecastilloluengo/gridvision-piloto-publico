@@ -1159,6 +1159,154 @@ async function compartirActivo(
         );
     }
 }
+async function cargarEstadoSolaxLoAguirre(contenedor) {
+
+    const bloque = document.createElement("div");
+
+    bloque.style.marginTop = "10px";
+    bloque.style.paddingTop = "9px";
+    bloque.style.borderTop = "1px solid #dce5ec";
+
+    const titulo = document.createElement("strong");
+    titulo.textContent = "Estado de inversores";
+
+    bloque.appendChild(titulo);
+
+    const cargando = document.createElement("p");
+    cargando.textContent = "Consultando SolaXCloud…";
+
+    bloque.appendChild(cargando);
+    contenedor.appendChild(bloque);
+
+    try {
+
+        const respuesta = await fetch(
+            GOOGLE_BACKEND_BASE +
+            "/api/solax/lo-aguirre"
+        );
+
+        if (!respuesta.ok) {
+            throw new Error(
+                "No fue posible consultar SolaX"
+            );
+        }
+
+        const datos = await respuesta.json();
+
+        cargando.remove();
+        const potenciaTotalW =
+    datos.inversores.reduce(
+        (total, inversor) =>
+            total + Number(inversor.potencia_ac || 0),
+        0
+    );
+
+const potenciaTotalKW =
+    potenciaTotalW / 1000;
+
+const generacionActual =
+    document.createElement("p");
+
+generacionActual.style.margin = "8px 0";
+generacionActual.style.fontWeight = "700";
+
+generacionActual.textContent =
+    `⚡ Generación instantánea: ` +
+    `${potenciaTotalKW.toLocaleString(
+        "es-CL",
+        {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }
+    )} kW`;
+
+bloque.appendChild(generacionActual);
+
+        for (const inversor of datos.inversores) {
+
+            const fila =
+                document.createElement("p");
+
+            fila.style.margin = "5px 0";
+
+            let simbolo = "🟡";
+
+            if (inversor.nivel === "ok") {
+                simbolo = "🟢";
+            }
+
+            if (inversor.nivel === "falla") {
+                simbolo = "🔴";
+            }
+
+            if (inversor.nivel === "sin_datos") {
+                simbolo = "⚪";
+            }
+
+            fila.textContent =
+                `${simbolo} ${inversor.nombre}: ` +
+                inversor.estado;
+
+            bloque.appendChild(fila);
+        }
+
+        const general =
+            document.createElement("p");
+
+        general.style.marginTop = "8px";
+        general.style.fontWeight = "700";
+
+        let simboloGeneral = "🟡";
+
+        if (datos.nivel_general === "ok") {
+            simboloGeneral = "🟢";
+        }
+
+        if (datos.nivel_general === "falla") {
+            simboloGeneral = "🔴";
+        }
+
+        if (datos.nivel_general === "sin_datos") {
+            simboloGeneral = "⚪";
+        }
+
+        general.textContent =
+            `${simboloGeneral} Estado general: ` +
+            datos.estado_general;
+
+        bloque.appendChild(general);
+
+        const ultimoDato =
+            datos.inversores
+                .map((inversor) =>
+                    inversor.ultimo_dato
+                )
+                .filter(Boolean)
+                .sort()
+                .at(-1);
+
+        if (ultimoDato) {
+
+            const hora =
+                document.createElement("small");
+
+            hora.textContent =
+                `Último dato SolaX: ${ultimoDato}`;
+
+            bloque.appendChild(hora);
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Error consultando SolaX:",
+            error
+        );
+
+        cargando.textContent =
+            "⚪ Sin comunicación con SolaXCloud";
+    }
+}
 function crearPopup(propiedades, coordenadas = null) {
     const contenedor = document.createElement("div");
     contenedor.className = "popup-gridvision";
@@ -1189,7 +1337,9 @@ function crearPopup(propiedades, coordenadas = null) {
 
         contenedor.appendChild(parrafo);
     }
-
+if (propiedades.id === "PFV-NB-001") {
+    cargarEstadoSolaxLoAguirre(contenedor);
+}
     /*
      * Los puntos GeoJSON usan:
      * [longitud, latitud]
