@@ -1161,7 +1161,7 @@ async function compartirActivo(
 }
 async function cargarEstadoSolaxLoAguirre(contenedor) {
 
-    const INTERVALO_SOLAX_MS = 5 * 60 * 1000;
+    const INTERVALO_SOLAX_MS = 60 * 1000; // 1 minuto
 
     const bloque = document.createElement("div");
 
@@ -1359,19 +1359,19 @@ async function cargarEstadoSolaxLoAguirre(contenedor) {
             horaConsulta.style.marginTop = "3px";
             horaConsulta.style.opacity = "0.7";
 
-            const ahora =
-                new Date().toLocaleTimeString(
-                    "es-CL",
-                    {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                        second: "2-digit"
-                    }
-                );
-
+const ahora =
+    new Date().toLocaleTimeString(
+        "es-CL",
+        {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: false
+        }
+    );
             horaConsulta.textContent =
                 `GridVision consultó: ${ahora} · ` +
-                `actualización cada 5 min`;
+                `actualización cada 1 min`;
 
             bloque.appendChild(horaConsulta);
 
