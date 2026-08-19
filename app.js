@@ -372,7 +372,8 @@ function crearMapaSatelitalEsri() {
         "https://services.arcgisonline.com/ArcGIS/rest/services/" +
         "World_Imagery/MapServer/tile/{z}/{y}/{x}",
         {
-            maxZoom: 19,
+    maxNativeZoom: 17,
+    maxZoom: 19,
 
             // IMPORTANTE:
             // No usamos maxNativeZoom: 17.
