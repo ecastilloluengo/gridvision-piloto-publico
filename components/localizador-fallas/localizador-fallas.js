@@ -230,9 +230,249 @@ let panelLocalizadorCargado = false;
 let lineaSeleccionadaLocalizador = null;
 let mapaLocalizador = null;
 let marcadorFalla = null;
+let ultimoResultadoFalla = null;
 
 function elementoLocalizador(id) {
     return document.getElementById(id);
+}
+
+function obtenerIdActivoCompartirFalla() {
+    const feature = lineaSeleccionadaLocalizador?.feature;
+    const props = feature?.properties || {};
+
+    const candidatos = [
+        props.id,
+        props.ID,
+        props.id_gridvision,
+        props.idGridVision,
+        props.gv_id,
+        props.asset_id,
+        props.codigo,
+        feature?.id
+    ];
+
+    const id = candidatos.find((valor) =>
+        typeof valor === 'string'
+        && /^GV-\d+$/i.test(valor.trim())
+    );
+
+    return id ? id.trim().toUpperCase() : null;
+}
+
+function construirDatosCompartirFalla(resultado) {
+    if (!resultado?.coordenadas) {
+        return null;
+    }
+
+    const [longitudFalla, latitudFalla] = resultado.coordenadas;
+
+    // Igual al formato que ya usa GridVision al compartir un activo:
+    // latitud,longitud sin espacios para que WhatsApp mantenga el enlace limpio.
+    const coordenadasQuery =
+        `${latitudFalla.toFixed(14)},${longitudFalla.toFixed(14)}`;
+
+    const urlMapa =
+        `https://www.google.com/maps/search/?api=1&query=`
+        + encodeURIComponent(coordenadasQuery);
+
+    const idActivo = obtenerIdActivoCompartirFalla();
+    const urlActivo = idActivo
+        ? `https://ecastilloluengo.github.io/gridvision-piloto-publico/?activo=${encodeURIComponent(idActivo)}`
+        : null;
+
+    const lineas = [
+        'Ver ubicación en Google Maps:',
+        urlMapa
+    ];
+
+    if (urlActivo) {
+        lineas.push(
+            '',
+            'Abrir activo en GridVision:',
+            urlActivo
+        );
+    }
+
+    const texto = lineas.join('\n');
+
+    return {
+        titulo: 'Ubicación GridVision',
+        texto,
+        coordenadasTexto:
+            `${latitudFalla.toFixed(6)}, ${longitudFalla.toFixed(6)}`,
+        urlMapa,
+        urlActivo,
+        idActivo
+    };
+}
+
+async function copiarTexto(texto) {
+    if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(texto);
+        return;
+    }
+
+    const temporal = document.createElement('textarea');
+    temporal.value = texto;
+    temporal.style.position = 'fixed';
+    temporal.style.opacity = '0';
+    document.body.appendChild(temporal);
+    temporal.select();
+    document.execCommand('copy');
+    temporal.remove();
+}
+
+function mostrarMensajeLocalizador(texto, ocultarAutomaticamente = true) {
+    const mensaje = elementoLocalizador('localizador-fallas-mensaje');
+
+    if (!mensaje) {
+        return;
+    }
+
+    mensaje.textContent = texto;
+    mensaje.hidden = false;
+
+    if (ocultarAutomaticamente) {
+        window.setTimeout(() => {
+            if (mensaje.textContent === texto) {
+                mensaje.hidden = true;
+            }
+        }, 2200);
+    }
+}
+
+async function compartirUbicacionFalla() {
+    const datos = construirDatosCompartirFalla(ultimoResultadoFalla);
+
+    if (!datos) {
+        mostrarMensajeLocalizador(
+            'Primero localiza una falla para poder compartir su ubicación.',
+            false
+        );
+        return;
+    }
+
+    const boton = elementoLocalizador('compartir-falla');
+
+    try {
+        if (boton) {
+            boton.disabled = true;
+        }
+
+        if (navigator.share) {
+            await navigator.share({
+                title: datos.titulo,
+                text: datos.texto
+            });
+            return;
+        }
+
+        await copiarTexto(datos.texto);
+        mostrarMensajeLocalizador(
+            'Ubicación de la falla copiada al portapapeles.'
+        );
+    } catch (error) {
+        if (error?.name === 'AbortError') {
+            return;
+        }
+
+        try {
+            await copiarTexto(datos.texto);
+            mostrarMensajeLocalizador(
+                'No se pudo abrir Compartir; la ubicación quedó copiada.'
+            );
+        } catch {
+            mostrarMensajeLocalizador(
+                'No fue posible compartir ni copiar la ubicación.',
+                false
+            );
+        }
+    } finally {
+        if (boton) {
+            boton.disabled = false;
+        }
+    }
+}
+
+function asegurarBotonCompartirFalla() {
+    const coordenadasElemento = elementoLocalizador(
+        'resultado-coordenadas'
+    );
+
+    if (!coordenadasElemento) {
+        return;
+    }
+
+    if (coordenadasElemento.querySelector('#compartir-falla')) {
+        return;
+    }
+
+    const boton = document.createElement('button');
+    boton.id = 'compartir-falla';
+    boton.type = 'button';
+    boton.title = 'Compartir coordenadas de la falla';
+    boton.setAttribute(
+        'aria-label',
+        'Compartir coordenadas de la falla'
+    );
+
+    boton.style.display = 'inline-flex';
+    boton.style.alignItems = 'center';
+    boton.style.justifyContent = 'center';
+    boton.style.width = '30px';
+    boton.style.height = '30px';
+    boton.style.marginLeft = '8px';
+    boton.style.padding = '0';
+    boton.style.border = 'none';
+    boton.style.borderRadius = '50%';
+    boton.style.background = '#2563eb';
+    boton.style.color = '#ffffff';
+    boton.style.cursor = 'pointer';
+    boton.style.verticalAlign = 'middle';
+    boton.style.boxShadow = '0 1px 3px rgba(0,0,0,.22)';
+
+    boton.innerHTML = `
+        <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+        >
+            <path
+                d="M12 3v12"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+            />
+            <path
+                d="M7.5 7.5 12 3l4.5 4.5"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            />
+            <path
+                d="M5 12v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            />
+        </svg>
+    `;
+
+    boton.addEventListener('mouseenter', () => {
+        boton.style.background = '#1d4ed8';
+    });
+
+    boton.addEventListener('mouseleave', () => {
+        boton.style.background = '#2563eb';
+    });
+
+    boton.addEventListener('click', compartirUbicacionFalla);
+
+    coordenadasElemento.appendChild(boton);
 }
 
 async function cargarPanelLocalizador() {
@@ -265,6 +505,7 @@ async function cargarPanelLocalizador() {
 
     contenedor.innerHTML = await respuesta.text();
     panelLocalizadorCargado = true;
+    asegurarBotonCompartirFalla();
 
     elementoLocalizador(
         "cerrar-localizador-fallas"
@@ -438,6 +679,8 @@ function ejecutarLocalizacion() {
             Math.max(0, posicionPorcentaje)
         )}%`;
 
+    ultimoResultadoFalla = resultado;
+    asegurarBotonCompartirFalla();
     dibujarMarcadorFalla(resultado);
 }
 
@@ -532,6 +775,7 @@ async function abrirPanelLocalizador({
     };
 
     mapaLocalizador = mapa;
+    ultimoResultadoFalla = null;
 
     const panel = elementoLocalizador(
         "panel-localizador-fallas"
@@ -671,6 +915,16 @@ elementoLocalizador(
             </p>
 
             <p>
+                <a
+                    href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${latitudFalla.toFixed(6)}, ${longitudFalla.toFixed(6)}`)}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    📍 Abrir ubicación en Google Maps
+                </a>
+            </p>
+
+            <p>
                 <strong>Precisión declarada:</strong>
                 ± ${resultado.precisionKm.toFixed(1)} km
             </p>
@@ -699,6 +953,8 @@ function eliminarMarcadorFalla() {
         marcadorFalla = null;
     }
 
+    ultimoResultadoFalla = null;
+
     const botonEliminar = elementoLocalizador(
         "eliminar-falla"
     );
@@ -722,6 +978,8 @@ function eliminarMarcadorFalla() {
         localizarFalla,
         cargarPanelLocalizador,
         abrirPanelLocalizador,
-        cerrarPanelLocalizador
+        cerrarPanelLocalizador,
+        compartirUbicacionFalla,
+        construirDatosCompartirFalla
     };
 })();
