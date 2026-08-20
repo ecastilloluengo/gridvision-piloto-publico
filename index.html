@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
 
     <meta
         name="description"
-        content="Piloto gerencial de GridVision Chile para visualizar activos eléctricos y su exposición meteorológica."
+        content="Piloto gerencial de GridVision Chile para visualizar activos elÃ©ctricos y su exposiciÃ³n meteorolÃ³gica."
     >
 
     <meta
@@ -55,7 +55,7 @@
     "
 >
 
-    <title>GridVision Chile · Piloto Gerencia</title>
+    <title>GridVision Chile Â· Piloto Gerencia</title>
 
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
@@ -98,7 +98,7 @@
             <div>
                 <h1>GridVision Chile</h1>
                 <div class="subtitulo">
-                    Visor geoespacial del sistema eléctrico
+                    Visor geoespacial del sistema elÃ©ctrico
                 </div>
             </div>
         </div>
@@ -109,7 +109,7 @@
             <span class="insignia-piloto">Piloto v0.1.0</span>
 
             <button id="abrir-guia-piloto" type="button">
-                Guía del piloto
+                GuÃ­a del piloto
             </button>
 <button
     id="abrir-acerca-gridvision"
@@ -125,8 +125,8 @@
     aria-controls="panel-senapred"
     title="Abrir alertas oficiales SENAPRED"
 >
-    🚨 SENAPRED
-    <span id="senapred-contador-header">(—)</span>
+    ðŸš¨ SENAPRED
+    <span id="senapred-contador-header">(â€”)</span>
 </button>
 
 <!--
@@ -134,7 +134,7 @@
     id="abrir-administracion-accesos"
     type="button"
 >
-    Administración de Accesos
+    AdministraciÃ³n de Accesos
 </button>
 -->
 
@@ -147,7 +147,7 @@
                 Filtros
             </button>
 <div id="contenedor-centro-alertas"></div>
-            <div id="estado">Cargando información geográfica…</div>
+            <div id="estado">Cargando informaciÃ³n geogrÃ¡ficaâ€¦</div>
         </div>
     </header>
 
@@ -160,26 +160,26 @@
         hidden
     >
         <div class="tarjeta-bienvenida">
-            <span class="etiqueta-bienvenida">Versión piloto gerencial · v0.1.0</span>
+            <span class="etiqueta-bienvenida">VersiÃ³n piloto gerencial Â· v0.1.0</span>
 
             <h2 id="titulo-bienvenida-piloto">GridVision Chile</h2>
 
             <p>
-                Visor geoespacial para consultar activos del sistema eléctrico,
-                revisar su pronóstico y analizar líneas por tramos frente a
-                viento y ráfagas.
+                Visor geoespacial para consultar activos del sistema elÃ©ctrico,
+                revisar su pronÃ³stico y analizar lÃ­neas por tramos frente a
+                viento y rÃ¡fagas.
             </p>
 
             <ol>
                 <li>Busca o filtra un activo del mapa.</li>
                 <li>Selecciona un punto para consultar su clima.</li>
-                <li>Selecciona una línea para identificar el tramo más expuesto.</li>
+                <li>Selecciona una lÃ­nea para identificar el tramo mÃ¡s expuesto.</li>
             </ol>
 
             <div class="aviso-operacional">
-                <strong>Uso de evaluación:</strong>
-                los umbrales y la ráfaga transversal son preliminares. Esta
-                versión apoya la conciencia situacional y no reemplaza
+                <strong>Uso de evaluaciÃ³n:</strong>
+                los umbrales y la rÃ¡faga transversal son preliminares. Esta
+                versiÃ³n apoya la conciencia situacional y no reemplaza
                 mediciones, protecciones ni decisiones operacionales formales.
             </div>
 
@@ -195,7 +195,7 @@
         <section id="error-carga" class="error-carga" role="alert" hidden>
             <strong>No fue posible iniciar GridVision.</strong>
             <span>
-                Comprueba la conexión a internet y vuelve a cargar la página.
+                Comprueba la conexiÃ³n a internet y vuelve a cargar la pÃ¡gina.
             </span>
             <button id="reintentar-carga" type="button">Reintentar</button>
         </section>
@@ -209,17 +209,17 @@
                 <input
                     id="buscador-activos"
                     type="search"
-                    placeholder="Nombre, ID, categoría o tensión..."
+                    placeholder="Nombre, ID, categorÃ­a o tensiÃ³n..."
                     autocomplete="off"
                 >
 
                 <button
                     id="limpiar-busqueda"
                     type="button"
-                    aria-label="Limpiar búsqueda"
-                    title="Limpiar búsqueda"
+                    aria-label="Limpiar bÃºsqueda"
+                    title="Limpiar bÃºsqueda"
                 >
-                    ×
+                    Ã—
                 </button>
             </div>
 
@@ -251,7 +251,7 @@
             title="Minimizar filtros"
             aria-label="Minimizar filtros"
         >
-            −
+            âˆ’
         </button>
 
     </div>
@@ -259,27 +259,27 @@
 </div>
 
             <label for="filtro-categoria">
-                Categoría
+                CategorÃ­a
             </label>
 
             <select id="filtro-categoria">
                 <option value="">
-                    Todas las categorías
+                    Todas las categorÃ­as
                 </option>
             </select>
 
             <label for="filtro-tecnologia">
-                Tecnología
+                TecnologÃ­a
             </label>
 
             <select id="filtro-tecnologia">
                 <option value="">
-                    Todas las tecnologías
+                    Todas las tecnologÃ­as
                 </option>
             </select>
 
             <label for="filtro-tension">
-                Nivel de tensión
+                Nivel de tensiÃ³n
             </label>
 
             <select id="filtro-tension">
@@ -303,17 +303,17 @@
 
             <div class="indicador">
                 <span>Activos puntuales</span>
-                <span class="valor" id="cantidad-puntos">—</span>
+                <span class="valor" id="cantidad-puntos">â€”</span>
             </div>
 
             <div class="indicador">
-                <span>Líneas</span>
-                <span class="valor" id="cantidad-lineas">—</span>
+                <span>LÃ­neas</span>
+                <span class="valor" id="cantidad-lineas">â€”</span>
             </div>
 
             <div class="indicador">
-                <span>Total único</span>
-                <span class="valor" id="cantidad-total">—</span>
+                <span>Total Ãºnico</span>
+                <span class="valor" id="cantidad-total">â€”</span>
             </div>
         </section>
 
@@ -326,7 +326,7 @@
             <div class="cabecera-clima">
                 <div>
                     <span class="etiqueta-clima">
-                        Pronóstico 72 horas
+                        PronÃ³stico 72 horas
                     </span>
 
                     <h2>Clima del activo</h2>
@@ -335,17 +335,17 @@
                 <button
                     id="cerrar-clima"
                     type="button"
-                    aria-label="Cerrar panel climático"
+                    aria-label="Cerrar panel climÃ¡tico"
                     title="Cerrar panel"
                 >
-                    ×
+                    Ã—
                 </button>
             </div>
 
             <div id="clima-vacio" class="clima-vacio">
-                Selecciona una central, subestación
+                Selecciona una central, subestaciÃ³n
                 u otro activo puntual para consultar
-                su pronóstico.
+                su pronÃ³stico.
             </div>
 
             <div
@@ -353,7 +353,7 @@
                 class="clima-mensaje"
                 hidden
             >
-                Consultando pronóstico meteorológico…
+                Consultando pronÃ³stico meteorolÃ³gicoâ€¦
             </div>
 
             <div
@@ -374,7 +374,7 @@
                     class="alerta-meteorologica alerta-pendiente"
                 >
                     <div class="alerta-cabecera">
-                        <span>Estado meteorológico · próximas 24 h</span>
+                        <span>Estado meteorolÃ³gico Â· prÃ³ximas 24 h</span>
                         <strong id="alerta-nivel">Sin evaluar</strong>
                     </div>
 
@@ -388,93 +388,93 @@
     class="alerta-meteorologica alerta-pendiente"
 >
     <div class="alerta-cabecera">
-        <span>Vigilancia extendida · 24–72 h</span>
+        <span>Vigilancia extendida Â· 24â€“72 h</span>
         <strong id="alerta-extendida-nivel">
             Sin evaluar
         </strong>
     </div>
 
     <p id="alerta-extendida-motivo">
-        Sin evaluación extendida.
+        Sin evaluaciÃ³n extendida.
     </p>
 </div>
 <div class="clima-actual">
                     <article>
                         <span>Temperatura</span>
-                        <strong id="clima-temperatura">—</strong>
+                        <strong id="clima-temperatura">â€”</strong>
                     </article>
 
                     <article>
-                        <span>Condición</span>
-                        <strong id="clima-condicion">—</strong>
+                        <span>CondiciÃ³n</span>
+                        <strong id="clima-condicion">â€”</strong>
                     </article>
 
                     <article>
                         <span>Humedad</span>
-                        <strong id="clima-humedad">—</strong>
+                        <strong id="clima-humedad">â€”</strong>
                     </article>
 
                     <article>
-                        <span>Precipitación</span>
-                        <strong id="clima-precipitacion">—</strong>
+                        <span>PrecipitaciÃ³n</span>
+                        <strong id="clima-precipitacion">â€”</strong>
                     </article>
 
                     <article>
                         <span>Viento</span>
-                        <strong id="clima-viento">—</strong>
+                        <strong id="clima-viento">â€”</strong>
                     </article>
 
                     <article>
-                        <span>Ráfaga</span>
-                        <strong id="clima-rafaga">—</strong>
+                        <span>RÃ¡faga</span>
+                        <strong id="clima-rafaga">â€”</strong>
                     </article>
 
                     <article>
-                        <span>Dirección</span>
-                        <strong id="clima-direccion">—</strong>
+                        <span>DirecciÃ³n</span>
+                        <strong id="clima-direccion">â€”</strong>
                     </article>
                 </div>
 
-                <h4>Precipitación acumulada</h4>
+                <h4>PrecipitaciÃ³n acumulada</h4>
 
                 <div class="acumulados-clima">
                     <article>
                         <span>24 horas</span>
-                        <strong id="lluvia-24h">—</strong>
+                        <strong id="lluvia-24h">â€”</strong>
                     </article>
 
                     <article>
                         <span>48 horas</span>
-                        <strong id="lluvia-48h">—</strong>
+                        <strong id="lluvia-48h">â€”</strong>
                     </article>
 
                     <article>
                         <span>72 horas</span>
-                        <strong id="lluvia-72h">—</strong>
+                        <strong id="lluvia-72h">â€”</strong>
                     </article>
                 </div>
 
                 <div class="extremos-clima">
                     <article>
-                        <span>Ráfaga máxima</span>
-                        <strong id="rafaga-maxima">—</strong>
+                        <span>RÃ¡faga mÃ¡xima</span>
+                        <strong id="rafaga-maxima">â€”</strong>
                         <small id="hora-rafaga-maxima"></small>
                     </article>
 
                     <article>
                         <span>Mayor lluvia horaria</span>
-                        <strong id="lluvia-maxima">—</strong>
+                        <strong id="lluvia-maxima">â€”</strong>
                         <small id="hora-lluvia-maxima"></small>
                     </article>
 
                     <article>
                         <span>Temperatura 72 h</span>
-                        <strong id="rango-temperatura">—</strong>
+                        <strong id="rango-temperatura">â€”</strong>
                     </article>
 
                     <article>
-                        <span>Probabilidad máxima</span>
-                        <strong id="probabilidad-maxima">—</strong>
+                        <span>Probabilidad mÃ¡xima</span>
+                        <strong id="probabilidad-maxima">â€”</strong>
                         <small id="hora-probabilidad-maxima"></small>
                     </article>
                 </div>
@@ -488,7 +488,7 @@
                     >
                         Open-Meteo
                     </a>
-                    · modelo automático Best Match
+                    Â· modelo automÃ¡tico Best Match
                 </p>
             </div>
         </section>
@@ -501,19 +501,19 @@
             <div class="cabecera-clima">
                 <div>
                     <span class="etiqueta-clima">
-                        Piloto · análisis por tramos
+                        Piloto Â· anÃ¡lisis por tramos
                     </span>
 
-                    <h2>Clima de la línea</h2>
+                    <h2>Clima de la lÃ­nea</h2>
                 </div>
 
                 <button
                     id="cerrar-clima-linea"
                     type="button"
-                    aria-label="Cerrar análisis de la línea"
+                    aria-label="Cerrar anÃ¡lisis de la lÃ­nea"
                     title="Cerrar panel"
                 >
-                    ×
+                    Ã—
                 </button>
             </div>
 
@@ -521,7 +521,7 @@
                 id="linea-clima-cargando"
                 class="clima-mensaje"
             >
-                Dividiendo la línea y consultando el pronóstico…
+                Dividiendo la lÃ­nea y consultando el pronÃ³sticoâ€¦
             </div>
 
             <div
@@ -531,7 +531,7 @@
             ></div>
 
             <div id="linea-clima-contenido" hidden>
-                <h3 id="linea-clima-nombre">Línea seleccionada</h3>
+                <h3 id="linea-clima-nombre">LÃ­nea seleccionada</h3>
 
                 <p
                     id="linea-clima-resumen"
@@ -540,13 +540,13 @@
 
                 <div class="selector-horizonte">
                     <label for="horizonte-linea">
-                        Horizonte de evaluación
+                        Horizonte de evaluaciÃ³n
                     </label>
 
                     <select id="horizonte-linea">
-                        <option value="24">Próximas 24 horas</option>
-                        <option value="48">Próximas 48 horas</option>
-                        <option value="72">Próximas 72 horas</option>
+                        <option value="24">PrÃ³ximas 24 horas</option>
+                        <option value="48">PrÃ³ximas 48 horas</option>
+                        <option value="72">PrÃ³ximas 72 horas</option>
                     </select>
                 </div>
 
@@ -555,7 +555,7 @@
                     class="estado-clima-linea riesgo-pendiente"
                 >
                     <div class="alerta-cabecera">
-                        <span>Estado de la línea</span>
+                        <span>Estado de la lÃ­nea</span>
                         <strong id="nivel-clima-linea">
                             Sin evaluar
                         </strong>
@@ -566,34 +566,34 @@
 
                 <div class="resumen-clima-linea">
                     <article>
-                        <span>Tramo más expuesto</span>
-                        <strong id="tramo-critico-linea">—</strong>
+                        <span>Tramo mÃ¡s expuesto</span>
+                        <strong id="tramo-critico-linea">â€”</strong>
                     </article>
 
                     <article>
-                        <span>Ráfaga crítica</span>
-                        <strong id="rafaga-critica-linea">—</strong>
+                        <span>RÃ¡faga crÃ­tica</span>
+                        <strong id="rafaga-critica-linea">â€”</strong>
                     </article>
 
                     <article>
-                        <span>Ráfaga transversal estimada</span>
-                        <strong id="transversal-critica-linea">—</strong>
+                        <span>RÃ¡faga transversal estimada</span>
+                        <strong id="transversal-critica-linea">â€”</strong>
                     </article>
 
                     <article>
-                        <span>Hora crítica</span>
-                        <strong id="hora-critica-linea">—</strong>
+                        <span>Hora crÃ­tica</span>
+                        <strong id="hora-critica-linea">â€”</strong>
                     </article>
                 </div>
 
                 <div class="leyenda-riesgo-linea">
                     <span><i class="riesgo-verde"></i>Normal</span>
-                    <span><i class="riesgo-amarillo"></i>Precaución</span>
+                    <span><i class="riesgo-amarillo"></i>PrecauciÃ³n</span>
                     <span><i class="riesgo-naranjo"></i>Alto</span>
-                    <span><i class="riesgo-rojo"></i>Crítico</span>
+                    <span><i class="riesgo-rojo"></i>CrÃ­tico</span>
                 </div>
 
-                <h4>Tramos con mayor exposición</h4>
+                <h4>Tramos con mayor exposiciÃ³n</h4>
 
                 <div
                     id="ranking-tramos-linea"
@@ -601,8 +601,8 @@
                 ></div>
 
                 <p class="nota-clima-linea">
-                    La ráfaga transversal es una estimación calculada
-                    usando la dirección del viento y la orientación del
+                    La rÃ¡faga transversal es una estimaciÃ³n calculada
+                    usando la direcciÃ³n del viento y la orientaciÃ³n del
                     tramo. Los umbrales son preliminares y configurables.
                 </p>
 
@@ -615,13 +615,13 @@
                     >
                         Open-Meteo
                     </a>
-                    · modelo automático Best Match
+                    Â· modelo automÃ¡tico Best Match
                 </p>
             </div>
         </section>
 
         <section class="leyenda-tension">
-            <strong>Tensión de líneas</strong>
+            <strong>TensiÃ³n de lÃ­neas</strong>
 
             <div class="leyenda-item">
                 <span class="trazo trazo-500"></span>
@@ -630,12 +630,12 @@
 
             <div class="leyenda-item">
                 <span class="trazo trazo-220"></span>
-                <span>220–345 kV</span>
+                <span>220â€“345 kV</span>
             </div>
 
             <div class="leyenda-item">
                 <span class="trazo trazo-110"></span>
-                <span>110–154 kV</span>
+                <span>110â€“154 kV</span>
             </div>
 
             <div class="leyenda-item">
@@ -645,7 +645,7 @@
 
             <div class="leyenda-item">
                 <span class="trazo trazo-otras"></span>
-                <span>23–44 kV / otras</span>
+                <span>23â€“44 kV / otras</span>
             </div>
         </section>
         <div id="contenedor-alertas-senapred"></div>
@@ -668,7 +668,7 @@
 <script src="components/iro/clasificacion.js"></script>
 <script src="components/iro/calculadora.js"></script>
 <script src="components/iro/index.js"></script>
-<script src="components/localizador-fallas/localizador-fallas.js?v=3"></script>
+<script src="components/localizador-fallas/localizador-fallas.js?v=5"></script>
 <script src="components/acerca-gridvision/acerca-gridvision.js"></script>
 <script src="components/administracion-accesos/usuarios.js"></script>
 <script src="components/administracion-accesos/almacenamiento.js"></script>
