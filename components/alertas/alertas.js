@@ -14,7 +14,9 @@
         "NORMAL",
         "PRECAUCION",
         "ALERTA",
-        "CRITICO"
+        "CRITICO",
+        "PENDIENTE",
+        "SIN_DATOS"
     ];
 
     function obtenerEstados() {
@@ -24,11 +26,19 @@
     }
 
     function normalizarEstado(estado) {
-        const valor = String(estado || "NORMAL").toUpperCase();
+        const valor = String(estado || "PENDIENTE").toUpperCase();
 
         return estadosValidos.includes(valor)
             ? valor
-            : "NORMAL";
+            : "SIN_DATOS";
+    }
+
+    function esAlertaActiva(estado) {
+        return [
+            "PRECAUCION",
+            "ALERTA",
+            "CRITICO"
+        ].includes(normalizarEstado(estado));
     }
 
     function obtenerIconoEstado(estado) {
@@ -36,7 +46,9 @@
             NORMAL: "🟢",
             PRECAUCION: "🟡",
             ALERTA: "🟠",
-            CRITICO: "🔴"
+            CRITICO: "🔴",
+            PENDIENTE: "⏳",
+            SIN_DATOS: "⚪"
         };
 
         return iconos[normalizarEstado(estado)];
@@ -47,16 +59,24 @@
             NORMAL: "Normal",
             PRECAUCION: "Precaución",
             ALERTA: "Alerta",
-            CRITICO: "Crítico"
+            CRITICO: "Crítico",
+            PENDIENTE: "Evaluando",
+            SIN_DATOS: "Sin datos"
         };
 
         return textos[normalizarEstado(estado)];
     }
 
     function contarAlertasActivas() {
-        return obtenerEstados().filter((item) => {
-            return normalizarEstado(item.estado) !== "NORMAL";
-        }).length;
+        return obtenerEstados().filter((item) =>
+            esAlertaActiva(item.estado)
+        ).length;
+    }
+
+    function contarPorEstado(estado) {
+        return obtenerEstados().filter(
+            (item) => normalizarEstado(item.estado) === estado
+        ).length;
     }
 
     function ordenarEstados(estados) {
@@ -64,7 +84,9 @@
             CRITICO: 1,
             ALERTA: 2,
             PRECAUCION: 3,
-            NORMAL: 4
+            PENDIENTE: 4,
+            SIN_DATOS: 5,
+            NORMAL: 6
         };
 
         return [...estados].sort((a, b) => {
@@ -119,6 +141,17 @@
             <span>Alertas</span>
             <strong>(${cantidad})</strong>
         `;
+
+        boton.dataset.nivel = (() => {
+            const estados = obtenerEstados().map((item) =>
+                normalizarEstado(item.estado)
+            );
+
+            if (estados.includes("CRITICO")) return "critico";
+            if (estados.includes("ALERTA")) return "alerta";
+            if (estados.includes("PRECAUCION")) return "precaucion";
+            return "normal";
+        })();
     }
 
     function cerrarPanel() {
@@ -143,23 +176,13 @@
     function seleccionarActivo(item) {
         cerrarPanel();
 
-        console.log(
-            "GridVision: activo seleccionado desde alertas:",
-            item.id,
-            item.alias || item.nombre
-        );
-
-        /*
-         * En el siguiente paso conectaremos esta llamada con
-         * la función real del mapa que selecciona el activo por ID.
-         */
         if (typeof window.abrirActivoMeteorologicoPorId === "function") {
             window.abrirActivoMeteorologicoPorId(item.id);
             return;
         }
 
         console.warn(
-            "GridVision: aún no existe abrirActivoMeteorologicoPorId()."
+            "GridVision: no está disponible abrirActivoMeteorologicoPorId()."
         );
     }
 
@@ -167,40 +190,51 @@
         const estado = normalizarEstado(item.estado);
         const nombre = item.alias || item.nombre || item.id;
         const mensaje =
-            item.mensaje ||
-            (estado === "NORMAL"
-                ? "Sin alertas meteorológicas"
-                : obtenerTextoEstado(estado));
+            item.mensaje
+            || (
+                estado === "NORMAL"
+                    ? "Sin alertas meteorológicas"
+                    : obtenerTextoEstado(estado)
+            );
 
         const fila = document.createElement("button");
 
         fila.type = "button";
         fila.className =
-            `alerta-meteorologica alerta-${estado.toLowerCase()}`;
+            `alerta-centro alerta-${estado.toLowerCase()}`;
 
         fila.dataset.activoId = item.id;
 
-        fila.innerHTML = `
-            <span class="alerta-meteorologica-icono" aria-hidden="true">
-                ${obtenerIconoEstado(estado)}
-            </span>
+        const icono = document.createElement("span");
+        icono.className = "alerta-centro-icono";
+        icono.setAttribute("aria-hidden", "true");
+        icono.textContent = obtenerIconoEstado(estado);
 
-            <span class="alerta-meteorologica-contenido">
-                <strong>${nombre}</strong>
-                <small>${mensaje}</small>
-            </span>
+        const contenido = document.createElement("span");
+        contenido.className = "alerta-centro-contenido";
 
-            <span class="alerta-meteorologica-estado">
-                ${obtenerTextoEstado(estado)}
-            </span>
+        const titulo = document.createElement("strong");
+        titulo.textContent = nombre;
 
-            <span
-                class="alerta-meteorologica-flecha"
-                aria-hidden="true"
-            >
-                ›
-            </span>
-        `;
+        const detalle = document.createElement("small");
+        detalle.textContent = mensaje;
+
+        contenido.appendChild(titulo);
+        contenido.appendChild(detalle);
+
+        const estadoVisual = document.createElement("span");
+        estadoVisual.className = "alerta-centro-estado";
+        estadoVisual.textContent = obtenerTextoEstado(estado);
+
+        const flecha = document.createElement("span");
+        flecha.className = "alerta-centro-flecha";
+        flecha.setAttribute("aria-hidden", "true");
+        flecha.textContent = "›";
+
+        fila.appendChild(icono);
+        fila.appendChild(contenido);
+        fila.appendChild(estadoVisual);
+        fila.appendChild(flecha);
 
         fila.addEventListener("click", () => {
             seleccionarActivo(item);
@@ -209,50 +243,116 @@
         return fila;
     }
 
+    async function actualizarAhora(botonActualizar) {
+        const monitor = window.GridVisionAlertasMeteorologicas;
+
+        if (!monitor?.actualizarAhora) {
+            return;
+        }
+
+        botonActualizar.disabled = true;
+        botonActualizar.textContent = "…";
+
+        try {
+            await monitor.actualizarAhora();
+        } finally {
+            botonActualizar.disabled = false;
+            botonActualizar.textContent = "↻";
+
+            if (!panel.hidden) {
+                renderizarPanel();
+            }
+        }
+    }
+
     function renderizarPanel() {
         const estados = ordenarEstados(obtenerEstados());
         const activas = contarAlertasActivas();
+        const pendientes = contarPorEstado("PENDIENTE");
+        const sinDatos = contarPorEstado("SIN_DATOS");
+        const intervalo =
+            window.GridVisionAlertasMeteorologicas?.intervaloMinutos
+            || 15;
 
-        panel.innerHTML = `
-            <div class="panel-alertas-encabezado">
-                <div>
-                    <strong>Alertas meteorológicas</strong>
-                    <small>
-                        ${activas} activas · ${estados.length} monitoreados
-                    </small>
-                </div>
+        panel.innerHTML = "";
 
-                <button
-                    type="button"
-                    class="cerrar-panel-alertas"
-                    aria-label="Cerrar alertas"
-                >
-                    ×
-                </button>
-            </div>
+        const encabezado = document.createElement("div");
+        encabezado.className = "panel-alertas-encabezado";
 
-            <div class="panel-alertas-listado"></div>
-        `;
+        const bloqueTitulo = document.createElement("div");
 
-        const listado = panel.querySelector(".panel-alertas-listado");
-        const botonCerrar = panel.querySelector(".cerrar-panel-alertas");
+        const titulo = document.createElement("strong");
+        titulo.textContent = "Alertas meteorológicas";
+
+        const resumen = document.createElement("small");
+
+        const partes = [
+            `${activas} activas`,
+            `${estados.length} monitoreados`
+        ];
+
+        if (pendientes > 0) {
+            partes.push(`${pendientes} evaluando`);
+        }
+
+        if (sinDatos > 0) {
+            partes.push(`${sinDatos} sin datos`);
+        }
+
+        partes.push(`cada ${intervalo} min`);
+
+        resumen.textContent = partes.join(" · ");
+
+        bloqueTitulo.appendChild(titulo);
+        bloqueTitulo.appendChild(resumen);
+
+        const acciones = document.createElement("div");
+        acciones.className = "panel-alertas-acciones";
+
+        const botonActualizar = document.createElement("button");
+        botonActualizar.type = "button";
+        botonActualizar.className = "actualizar-panel-alertas";
+        botonActualizar.title = "Actualizar pronóstico ahora";
+        botonActualizar.setAttribute(
+            "aria-label",
+            "Actualizar pronóstico ahora"
+        );
+        botonActualizar.textContent = "↻";
+
+        const botonCerrar = document.createElement("button");
+        botonCerrar.type = "button";
+        botonCerrar.className = "cerrar-panel-alertas";
+        botonCerrar.setAttribute("aria-label", "Cerrar alertas");
+        botonCerrar.textContent = "×";
+
+        acciones.appendChild(botonActualizar);
+        acciones.appendChild(botonCerrar);
+
+        encabezado.appendChild(bloqueTitulo);
+        encabezado.appendChild(acciones);
+
+        const listado = document.createElement("div");
+        listado.className = "panel-alertas-listado";
+
+        panel.appendChild(encabezado);
+        panel.appendChild(listado);
 
         botonCerrar.addEventListener("click", cerrarPanel);
+        botonActualizar.addEventListener(
+            "click",
+            () => actualizarAhora(botonActualizar)
+        );
 
         if (estados.length === 0) {
             listado.innerHTML = `
                 <div class="panel-alertas-vacio">
                     <span aria-hidden="true">⚪</span>
-
                     <div>
                         <strong>No hay activos configurados</strong>
-                        <small>
-                            Revisa activos-meteorologicos.js
-                        </small>
+                        <small>Revisa activos-meteorologicos.js</small>
                     </div>
                 </div>
             `;
-
             return;
         }
 
