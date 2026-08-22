@@ -537,7 +537,7 @@ body:has(.panel-operacional.panel-operacional-colapsado)
     justify-content: flex-start;
     position: sticky;
     left: 0;
-    z-index: 2;
+    z-index: 5;
     color: #0f172a;
     background: #f8fafc;
     font-weight: 800;
