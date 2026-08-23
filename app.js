@@ -1160,7 +1160,49 @@ async function compartirActivo(
     }
 }
 async function cargarEstadoSolaxLoAguirre(contenedor) {
+    const UMBRAL_DATO_SOLAX_MS =
+        10 * 60 * 1000; // 10 minutos
 
+    const REINTENTO_SOLAX_MS =
+        15 * 1000; // 15 segundos
+
+    function obtenerEdadDatoSolaxMs(fechaSolax) {
+
+        if (
+            !fechaSolax ||
+            typeof fechaSolax !== "string"
+        ) {
+            return null;
+        }
+
+        const partes = fechaSolax
+            .trim()
+            .match(
+                /^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2}):(\d{2})$/
+            );
+
+        if (!partes) {
+            return null;
+        }
+
+        const fechaDato = new Date(
+            Number(partes[1]),
+            Number(partes[2]) - 1,
+            Number(partes[3]),
+            Number(partes[4]),
+            Number(partes[5]),
+            Number(partes[6])
+        );
+
+        const edadMs =
+            Date.now() - fechaDato.getTime();
+
+        if (!Number.isFinite(edadMs)) {
+            return null;
+        }
+
+        return edadMs;
+    }
     const INTERVALO_SOLAX_MS = 60 * 1000; // 1 minuto
 
     const bloque = document.createElement("div");
@@ -1172,6 +1214,7 @@ async function cargarEstadoSolaxLoAguirre(contenedor) {
     contenedor.appendChild(bloque);
 
     let actualizando = false;
+    let datoSolaxDesactualizado = false;
 
     async function actualizarEstadoSolax() {
 
@@ -1485,69 +1528,146 @@ try {
                 bloque.appendChild(fila);
             }
 
+// --------------------------------------------
+// ÚLTIMO DATO DE SOLAX
+// --------------------------------------------
 
-            // --------------------------------------------
-            // ESTADO GENERAL
-            // --------------------------------------------
+const ultimoDato =
+    datos.inversores
+        .map(
+            inversor =>
+                inversor.ultimo_dato
+        )
+        .filter(Boolean)
+        .sort()
+        .at(-1);
 
-            const general =
-                document.createElement("p");
+const edadDatoSolaxMs =
+    obtenerEdadDatoSolaxMs(ultimoDato);
 
-            general.style.marginTop = "8px";
-            general.style.fontWeight = "700";
-
-            let simboloGeneral = "🟡";
-
-            if (datos.nivel_general === "ok") {
-                simboloGeneral = "🟢";
-            }
-
-            if (datos.nivel_general === "falla") {
-                simboloGeneral = "🔴";
-            }
-
-            if (
-                datos.nivel_general ===
-                "sin_datos"
-            ) {
-                simboloGeneral = "⚪";
-            }
-
-            general.textContent =
-                `${simboloGeneral} Estado general: ` +
-                datos.estado_general;
-
-            bloque.appendChild(general);
+datoSolaxDesactualizado =
+    edadDatoSolaxMs !== null &&
+    edadDatoSolaxMs > UMBRAL_DATO_SOLAX_MS;
 
 
-            // --------------------------------------------
-            // ÚLTIMO DATO DE SOLAX
-            // --------------------------------------------
+// --------------------------------------------
+// ESTADO GENERAL
+// --------------------------------------------
 
-            const ultimoDato =
-                datos.inversores
-                    .map(
-                        inversor =>
-                            inversor.ultimo_dato
-                    )
-                    .filter(Boolean)
-                    .sort()
-                    .at(-1);
+const general =
+    document.createElement("p");
 
-            if (ultimoDato) {
+general.style.marginTop = "8px";
+general.style.fontWeight = "700";
 
-                const hora =
-                    document.createElement("small");
+let simboloGeneral = "🟡";
+let textoEstadoGeneral =
+    datos.estado_general;
 
-                hora.style.display = "block";
+if (datos.nivel_general === "ok") {
+    simboloGeneral = "🟢";
+}
 
-                hora.textContent =
-                    `Último dato SolaX: ${ultimoDato}`;
+if (datos.nivel_general === "falla") {
+    simboloGeneral = "🔴";
+}
 
-                bloque.appendChild(hora);
-            }
+if (
+    datos.nivel_general ===
+    "sin_datos"
+) {
+    simboloGeneral = "⚪";
+}
 
 
+// Si SolaX entrega información antigua,
+// GridVision no la presenta como estado actual.
+if (datoSolaxDesactualizado) {
+
+    simboloGeneral = "🟠";
+    textoEstadoGeneral =
+        "DATOS DESACTUALIZADOS";
+}
+
+general.textContent =
+    `${simboloGeneral} Estado general: ` +
+    textoEstadoGeneral;
+
+bloque.appendChild(general);
+
+
+// --------------------------------------------
+// FECHA DEL ÚLTIMO DATO
+// --------------------------------------------
+
+if (ultimoDato) {
+
+    const hora =
+        document.createElement("small");
+
+    hora.style.display = "block";
+
+    hora.textContent =
+        `Último dato SolaX: ${ultimoDato}`;
+
+    bloque.appendChild(hora);
+}
+
+
+// --------------------------------------------
+// AVISO DE DATO DESACTUALIZADO
+// --------------------------------------------
+
+if (
+    datoSolaxDesactualizado &&
+    edadDatoSolaxMs !== null
+) {
+
+    const minutos =
+        Math.floor(
+            edadDatoSolaxMs / 60000
+        );
+
+    let textoEdad;
+
+    if (minutos >= 60) {
+
+        const horas =
+            Math.floor(minutos / 60);
+
+        const minutosRestantes =
+            minutos % 60;
+
+        textoEdad =
+            `${horas} h ` +
+            `${minutosRestantes} min`;
+
+    } else {
+
+        textoEdad =
+            `${minutos} min`;
+    }
+
+    const avisoDato =
+        document.createElement("small");
+
+    avisoDato.style.display = "block";
+    avisoDato.style.marginTop = "5px";
+    avisoDato.style.padding = "6px 8px";
+    avisoDato.style.borderRadius = "6px";
+    avisoDato.style.background =
+        "#fff3cd";
+    avisoDato.style.color =
+        "#856404";
+    avisoDato.style.fontWeight =
+        "700";
+
+    avisoDato.textContent =
+        `⚠ SolaX no entrega un dato nuevo ` +
+        `desde hace ${textoEdad}.`;
+
+    bloque.appendChild(avisoDato);
+}
             // --------------------------------------------
             // HORA DE CONSULTA DE GRIDVISION
             // --------------------------------------------
@@ -1590,30 +1710,59 @@ const ahora =
             actualizando = false;
         }
     }
+// -----------------------------------------------------
+// ACTUALIZACIÓN AUTOMÁTICA SOLAX
+// -----------------------------------------------------
 
+let temporizadorSolax = null;
 
-    // Primera consulta inmediata
-    await actualizarEstadoSolax();
+function programarSiguienteConsultaSolax() {
 
+    if (!contenedor.isConnected) {
 
-    // Consultas posteriores cada 5 minutos
-    const intervaloSolax =
-        window.setInterval(() => {
+        if (temporizadorSolax) {
+            window.clearTimeout(
+                temporizadorSolax
+            );
+        }
 
-            // Si el popup fue cerrado,
-            // dejamos de consultar SolaX.
-            if (!contenedor.isConnected) {
+        return;
+    }
 
-                window.clearInterval(
-                    intervaloSolax
-                );
+    // Si el dato está desactualizado,
+    // reintentamos más rápido.
+    const espera =
+        datoSolaxDesactualizado
+            ? REINTENTO_SOLAX_MS
+            : INTERVALO_SOLAX_MS;
 
-                return;
-            }
+    temporizadorSolax =
+        window.setTimeout(
+            async () => {
 
-            actualizarEstadoSolax();
+                if (!contenedor.isConnected) {
+                    return;
+                }
 
-        }, INTERVALO_SOLAX_MS);
+                await actualizarEstadoSolax();
+
+                programarSiguienteConsultaSolax();
+
+            },
+            espera
+        );
+}
+// Primera consulta inmediata
+await actualizarEstadoSolax();
+
+// Luego programamos la siguiente:
+// 15 s si está desactualizado,
+// 1 min si está actualizado.
+programarSiguienteConsultaSolax();
+
+    
+
+        
 }
 function crearPopup(propiedades, coordenadas = null) {
     const contenedor = document.createElement("div");
