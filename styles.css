@@ -1480,3 +1480,35 @@
 .gridvision-minimizar-capas:hover {
     color: #0d47a1;
 }
+/* Botón Portal integrado a la cabecera de GridVision */
+
+.boton-header-gridvision {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    padding: 9px 16px;
+
+    border: 1px solid rgb(255 255 255 / 18%);
+    border-radius: 999px;
+
+    color: #ffffff;
+    background: rgb(255 255 255 / 6%);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.boton-header-gridvision:hover {
+    background: rgb(255 255 255 / 12%);
+    border-color: rgb(255 255 255 / 30%);
+}
