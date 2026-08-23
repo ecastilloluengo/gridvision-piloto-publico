@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1000">
+<defs>
+  <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#06111f"/>
+    <stop offset=".55" stop-color="#071a2a"/>
+    <stop offset="1" stop-color="#04101c"/>
+  </linearGradient>
+  <radialGradient id="r" cx=".78" cy=".34" r=".55">
+    <stop offset="0" stop-color="#0e4060" stop-opacity=".42"/>
+    <stop offset="1" stop-color="#071725" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+<rect width="1800" height="1000" fill="url(#g)"/>
+<rect width="1800" height="1000" fill="url(#r)"/>
+
+<!-- transmission towers -->
+<g stroke="#60778b" stroke-opacity=".28" fill="none" stroke-width="3">
+  <path d="M80 820 170 235 260 820M115 610h110M130 510h80M145 405h50M170 235v585"/>
+  <path d="M300 820 365 360 430 820M325 640h80M338 535h55M350 450h30M365 360v460"/>
+  <path d="M0 345 170 300 365 420 640 390" stroke-width="2"/>
+  <path d="M0 365 170 322 365 442 640 412" stroke-width="2"/>
+</g>
+
+<!-- control room wall -->
+<g transform="translate(1110 170)" opacity=".28">
+  <rect x="0" y="0" width="610" height="520" rx="18" fill="#0b2740" stroke="#4d6d84"/>
+  <g fill="#103954" stroke="#4ba3c9" stroke-opacity=".35">
+    <rect x="30" y="28" width="165" height="128" rx="6"/>
+    <rect x="215" y="28" width="165" height="128" rx="6"/>
+    <rect x="400" y="28" width="165" height="128" rx="6"/>
+    <rect x="30" y="178" width="165" height="128" rx="6"/>
+    <rect x="215" y="178" width="165" height="128" rx="6"/>
+    <rect x="400" y="178" width="165" height="128" rx="6"/>
+    <rect x="30" y="328" width="258" height="150" rx="6"/>
+    <rect x="308" y="328" width="258" height="150" rx="6"/>
+  </g>
+  <g stroke="#4bd2ff" stroke-width="3" fill="none" opacity=".55">
+    <polyline points="47,121 77,94 108,108 138,66 176,82"/>
+    <polyline points="232,128 262,103 286,115 329,72 361,90"/>
+    <polyline points="418,123 446,96 476,111 522,75 551,84"/>
+    <polyline points="47,273 81,245 113,262 145,220 178,235"/>
+    <polyline points="233,270 263,247 290,259 330,218 362,230"/>
+    <polyline points="420,276 449,246 478,258 519,224 549,234"/>
+  </g>
+</g>
+
+<!-- subtle constellation -->
+<g fill="#43d8ff" opacity=".18">
+  <circle cx="1460" cy="480" r="4"/><circle cx="1530" cy="420" r="4"/><circle cx="1590" cy="500" r="4"/>
+  <circle cx="1510" cy="560" r="4"/><circle cx="1630" cy="390" r="4"/><circle cx="1680" cy="530" r="4"/>
+</g>
+<g stroke="#43d8ff" stroke-opacity=".14" stroke-width="2">
+  <path d="M1460 480 1530 420 1590 500 1510 560 1460 480M1530 420 1630 390 1680 530 1590 500"/>
+</g>
+</svg>

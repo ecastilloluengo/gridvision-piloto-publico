@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Operacional Pecket Energy</title>
+  <link rel="stylesheet" href="portal.css">
+</head>
+
+<body>
+<div class="portal-shell">
+
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 64 64">
+          <path d="M31 35C17 34 10 24 10 11c13 0 23 5 27 15-1 4-3 7-6 9Z"/>
+          <path d="M34 35c14-1 21-11 21-24-13 0-23 5-27 15 1 4 3 7 6 9Z"/>
+          <path d="M32 34v18"/>
+        </svg>
+      </div>
+      <div class="brand-word">
+        <span class="brand-green">pecket</span><span>energy</span>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a class="nav-item active" href="portal.html">
+        <svg class="nav-icon"><use href="#i-home"></use></svg><span>Inicio</span>
+      </a>
+
+      <button class="nav-item" data-module="centro-control">
+        <svg class="nav-icon"><use href="#i-control"></use></svg><span>Centro de Control</span>
+      </button>
+
+      <button class="nav-item" data-module="monitoreo">
+        <svg class="nav-icon"><use href="#i-monitor"></use></svg><span>Monitoreo</span>
+      </button>
+
+      <button class="nav-item" data-module="novedades">
+        <svg class="nav-icon"><use href="#i-doc"></use></svg><span>Novedades</span>
+      </button>
+
+      <a class="nav-item" href="index.html">
+        <svg class="nav-icon"><use href="#i-map"></use></svg><span>GridVision</span>
+      </a>
+
+      <button class="nav-item" data-module="kpi">
+        <svg class="nav-icon"><use href="#i-chart"></use></svg><span>Indicadores y KPI</span>
+      </button>
+
+      <div class="nav-divider"></div>
+
+      <button class="nav-item" data-module="alertas">
+        <svg class="nav-icon"><use href="#i-bell"></use></svg><span>Alertas</span>
+        <span class="badge" id="badge-alertas">0</span>
+      </button>
+
+      <button class="nav-item" data-module="configuracion">
+        <svg class="nav-icon"><use href="#i-gear"></use></svg><span>Configuración</span>
+      </button>
+
+      <button class="nav-item" data-module="ayuda">
+        <svg class="nav-icon"><use href="#i-help"></use></svg><span>Ayuda</span>
+      </button>
+    </nav>
+
+    <div class="system-card">
+      <div class="system-title">
+        <span class="status-dot"></span>
+        <div>
+          <small>Todos los sistemas</small>
+          <strong>Operativos</strong>
+        </div>
+      </div>
+      <svg class="heartbeat" viewBox="0 0 120 35" aria-hidden="true">
+        <polyline points="0,21 25,21 34,15 43,26 55,5 66,29 75,17 86,21 120,21"/>
+      </svg>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        <span>Sistema Operativo</span>
+        <strong>Normal</strong>
+      </div>
+
+      <div class="topbar-right">
+        <div class="clock">
+          <svg><use href="#i-clock"></use></svg>
+          <span id="portal-time">--:--</span>
+        </div>
+        <span class="top-sep"></span>
+        <div class="clock">
+          <svg><use href="#i-calendar"></use></svg>
+          <span id="portal-date">-- --- ----</span>
+        </div>
+        <span class="top-sep"></span>
+        <button class="user-menu" type="button">
+          <svg><use href="#i-user"></use></svg>
+          <span>Usuario</span>
+          <span>⌄</span>
+        </button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <h1>Portal Operacional <span>Pecket Energy</span></h1>
+        <p>Accede a las herramientas y sistemas para operar, monitorear y gestionar el sistema eléctrico con eficiencia y seguridad.</p>
+        <div class="hero-accent"></div>
+      </div>
+
+      <div class="summary-strip">
+        <article class="summary-card">
+          <div class="summary-icon green"><svg><use href="#i-shield"></use></svg></div>
+          <div><small>Estado operacional</small><strong class="green-text">Normal</strong></div>
+        </article>
+        <article class="summary-card">
+          <div class="summary-icon cyan"><svg><use href="#i-bolt"></use></svg></div>
+          <div><small>Monitoreo</small><strong>En línea</strong></div>
+        </article>
+        <article class="summary-card">
+          <div class="summary-icon cyan"><svg><use href="#i-cloud"></use></svg></div>
+          <div><small>Meteorología</small><strong>Disponible</strong></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="primary-grid">
+      <button class="primary-card primary-green" data-module="centro-control">
+        <div class="card-deco grid-deco"></div>
+        <div class="primary-icon"><svg><use href="#i-control"></use></svg></div>
+        <div class="primary-copy">
+          <h2>Centro de Control</h2>
+          <div class="mini-line"></div>
+          <p>Gestión operativa, coordinación y eventos críticos.</p>
+          <span class="enter-link">→&nbsp; Acceder</span>
+        </div>
+      </button>
+
+      <button class="primary-card primary-cyan" data-module="monitoreo">
+        <div class="card-deco network-deco"></div>
+        <div class="primary-icon"><svg><use href="#i-monitor"></use></svg></div>
+        <div class="primary-copy">
+          <h2>Monitoreo</h2>
+          <div class="mini-line"></div>
+          <p>Variables en tiempo real, desempeño y alarmas.</p>
+          <span class="enter-link">→&nbsp; Acceder</span>
+        </div>
+      </button>
+    </section>
+
+    <div class="section-title">
+      <span></span><strong>Herramientas operacionales</strong><span></span>
+    </div>
+
+    <section class="tools-grid">
+
+    <button
+        class="tool-card tool-green"
+        data-module="novedades"
+    >
+        <div class="tool-icon">
+            <svg>
+                <use href="#i-doc"></use>
+            </svg>
+        </div>
+
+        <div class="tool-copy">
+            <h3>Novedades Operacionales</h3>
+            <div class="tool-line"></div>
+            <p>
+                Bitácora digital, seguimiento y reportes.
+            </p>
+        </div>
+
+        <span class="tool-arrow">→</span>
+    </button>
+
+
+    <a
+        class="tool-card tool-cyan"
+        href="index.html"
+    >
+        <div class="tool-icon">
+            <svg>
+                <use href="#i-map"></use>
+            </svg>
+        </div>
+
+        <div class="tool-copy">
+            <h3>GridVision</h3>
+            <div class="tool-line"></div>
+            <p>
+                Activos eléctricos, clima, SENAPRED,
+                monitoreo PFV y localización de fallas.
+            </p>
+        </div>
+
+        <span class="tool-arrow">→</span>
+    </a>
+
+
+    <button
+        class="tool-card tool-purple"
+        data-module="kpi"
+    >
+        <div class="tool-icon">
+            <svg>
+                <use href="#i-chart"></use>
+            </svg>
+        </div>
+
+        <div class="tool-copy">
+            <h3>Indicadores y KPI</h3>
+            <div class="tool-line"></div>
+            <p>
+                Resumen semanal, mensual y tendencias.
+            </p>
+        </div>
+
+        <span class="tool-arrow">→</span>
+    </button>
+
+</section>
+
+    <footer class="footer">
+      <span></span>
+      <p>
+    Operamos hoy,
+    <strong>para un mañana sostenible</strong>
+</p>
+      <span></span>
+    </footer>
+  </main>
+</div>
+
+<div id="module-modal" class="modal" hidden>
+  <div class="modal-card">
+    <button class="modal-close" id="modal-close" type="button">×</button>
+    <small>PORTAL OPERACIONAL</small>
+    <h2 id="modal-title">Módulo</h2>
+    <p id="modal-message">Este módulo está en desarrollo.</p>
+    <button class="modal-ok" id="modal-ok" type="button">Entendido</button>
+  </div>
+</div>
+
+<!-- Sprite SVG -->
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5v8a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="i-control" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M7 9h2l1-2 2 5 2-4 1 1h2"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M7 12l3-3 3 2 4-4M8 20h8M12 16v4"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v5h5M9 12h6M9 16h6"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/><circle cx="12" cy="10" r="2"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V9h4v11M10 20V4h4v16M16 20v-7h4v7"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0 1 12 0v5l2 3H4l2-3zM10 20h4"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1l2-1-2-4-2 1a7 7 0 0 0-2-1l-.3-2H9.4L9 6a7 7 0 0 0-2 1L5 6 3 10l2 1a7 7 0 0 0 0 2l-2 1 2 4 2-1a7 7 0 0 0 2 1l.4 2h5.2l.4-2a7 7 0 0 0 2-1l2 1 2-4-2-1a7 7 0 0 0 0-1z"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.4 2.4 0 1 1 3.8 2c-1 .7-1.6 1-1.6 2.2M12 17h.01"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 10h16"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 3 7 3v5c0 5-3.2 8.4-7 10-3.8-1.6-7-5-7-10V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="m13 2-7 11h5l-1 9 8-12h-5z"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M6 18h12a4 4 0 0 0 .5-8A6 6 0 0 0 7 8.5 4.5 4.5 0 0 0 6 18Z"/></symbol>
+</svg>
+
+<script src="portal.js"></script>
+</body>
+</html>

@@ -1,13 +1,4 @@
 (() => {
-    const bienvenida = document.getElementById("bienvenida-piloto");
-
-    const abrir = document.getElementById("abrir-guia-piloto");
-    const cerrar = document.getElementById("cerrar-guia-piloto");
-
-    const abrirAcerca =
-        document.getElementById(
-            "abrir-acerca-gridvision"
-        );
 
     const abrirAdministracion =
         document.getElementById(
@@ -24,35 +15,7 @@
         "minimizar-panel-filtros"
     );
 
-    function abrirGuia() {
-        bienvenida.hidden = false;
-        cerrar.focus();
-    }
-
-    function cerrarGuia() {
-        bienvenida.hidden = true;
-        abrir.focus();
-    }
-
-    abrir.addEventListener(
-        "click",
-        abrirGuia
-    );
-
-    cerrar.addEventListener(
-        "click",
-        cerrarGuia
-    );
-
-    abrirAcerca?.addEventListener(
-        "click",
-        () => {
-            window.GridVisionAcerca
-                ?.abrirPanelAcerca();
-        }
-    );
-
-    abrirAdministracion?.addEventListener(
+        abrirAdministracion?.addEventListener(
         "click",
         () => {
             window.GridVisionAdministracionAccesos

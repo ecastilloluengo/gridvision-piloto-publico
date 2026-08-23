@@ -106,18 +106,7 @@
         <div class="estado-aplicacion">
             <div id="contenedor-alertas meteorologicas-header"></div>
             <div id="contenedor-alertas-meteorologicas-mapa"></div>
-            <span class="insignia-piloto">Piloto v0.1.0</span>
-
-            <button id="abrir-guia-piloto" type="button">
-                Guía del piloto
-            </button>
-<button
-    id="abrir-acerca-gridvision"
-    type="button"
->
-    Acerca de GridVision
-</button>
-
+            
 <button
     id="abrir-senapred"
     class="boton-senapred-header"
@@ -150,44 +139,6 @@
             <div id="estado">Cargando información geográfica…</div>
         </div>
     </header>
-
-    <section
-        id="bienvenida-piloto"
-        class="fondo-bienvenida"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="titulo-bienvenida-piloto"
-        hidden
-    >
-        <div class="tarjeta-bienvenida">
-            <span class="etiqueta-bienvenida">Versión piloto gerencial · v0.1.0</span>
-
-            <h2 id="titulo-bienvenida-piloto">GridVision Chile</h2>
-
-            <p>
-                Visor geoespacial para consultar activos del sistema eléctrico,
-                revisar su pronóstico y analizar líneas por tramos frente a
-                viento y ráfagas.
-            </p>
-
-            <ol>
-                <li>Busca o filtra un activo del mapa.</li>
-                <li>Selecciona un punto para consultar su clima.</li>
-                <li>Selecciona una línea para identificar el tramo más expuesto.</li>
-            </ol>
-
-            <div class="aviso-operacional">
-                <strong>Uso de evaluación:</strong>
-                los umbrales y la ráfaga transversal son preliminares. Esta
-                versión apoya la conciencia situacional y no reemplaza
-                mediciones, protecciones ni decisiones operacionales formales.
-            </div>
-
-            <button id="cerrar-guia-piloto" class="boton-principal" type="button">
-                Ingresar al piloto
-            </button>
-        </div>
-    </section>
 
     <main>
         <div id="mapa"></div>
