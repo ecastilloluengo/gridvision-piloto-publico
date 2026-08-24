@@ -42,7 +42,7 @@ minimizarPanelFiltros?.addEventListener(
     () => {
 
         const minimizado =
-            minimizarPanelFiltros.textContent.trim() === "−";
+            minimizarPanelFiltros.textContent.trim() === "âˆ’";
 
         const elementos =
             Array.from(filtros.children);
@@ -62,7 +62,7 @@ minimizarPanelFiltros?.addEventListener(
         }
 
         minimizarPanelFiltros.textContent =
-            minimizado ? "+" : "−";
+            minimizado ? "+" : "âˆ’";
 
         minimizarPanelFiltros.title =
             minimizado
@@ -77,26 +77,4 @@ minimizarPanelFiltros?.addEventListener(
         );
     }
 );
-    bienvenida.addEventListener(
-        "click",
-        (evento) => {
-            if (evento.target === bienvenida) {
-                cerrarGuia();
-            }
-        }
-    );
-
-    document.addEventListener(
-        "keydown",
-        (evento) => {
-            if (
-                evento.key === "Escape"
-                && !bienvenida.hidden
-            ) {
-                cerrarGuia();
-            }
-        }
-    );
-
-    abrirGuia();
 })();

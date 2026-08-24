@@ -1796,6 +1796,280 @@ programarSiguienteConsultaSolax();
 
         
 }
+async function cargarEstadoSolarPendienteFusion(
+    contenedor,
+    latitud,
+    longitud
+) {
+    const INTERVALO_METEO_MS = 60 * 1000; // 1 minuto
+
+    const bloque = document.createElement("div");
+    bloque.style.marginTop = "10px";
+    bloque.style.paddingTop = "9px";
+    bloque.style.borderTop = "1px solid #dce5ec";
+
+    contenedor.appendChild(bloque);
+
+    let actualizando = false;
+    let temporizadorMeteo = null;
+
+    function agregarLinea(
+        texto,
+        {
+            margen = "5px 0",
+            negrita = false
+        } = {}
+    ) {
+        const linea = document.createElement("p");
+        linea.style.margin = margen;
+
+        if (negrita) {
+            linea.style.fontWeight = "700";
+        }
+
+        linea.textContent = texto;
+        bloque.appendChild(linea);
+
+        return linea;
+    }
+
+    async function actualizarEstadoSolar() {
+        if (actualizando) {
+            return;
+        }
+
+        actualizando = true;
+        bloque.innerHTML = "";
+
+        try {
+            const titulo = document.createElement("strong");
+            titulo.textContent = "Estado de inversores";
+            bloque.appendChild(titulo);
+
+            // --------------------------------------------
+            // DATOS FUSIONSOLAR PENDIENTES
+            // --------------------------------------------
+
+            agregarLinea(
+                "⚡ Generación instantánea: Pendiente FusionSolar",
+                {
+                    margen: "8px 0",
+                    negrita: true
+                }
+            );
+
+            agregarLinea(
+                "🏠 Consumo instalación: Pendiente FusionSolar",
+                {
+                    negrita: true
+                }
+            );
+
+            agregarLinea(
+                "🔌 Red: Pendiente FusionSolar",
+                {
+                    negrita: true
+                }
+            );
+
+            // --------------------------------------------
+            // METEOROLOGÍA / IRRADIANCIA
+            // --------------------------------------------
+
+            let meteoDisponible = false;
+
+            try {
+                const respuestaMeteo = await fetch(
+                    "https://api.open-meteo.com/v1/forecast" +
+                    `?latitude=${latitud}` +
+                    `&longitude=${longitud}` +
+                    "&current=shortwave_radiation,temperature_2m,cloud_cover" +
+                    "&timezone=America%2FSantiago",
+                    {
+                        cache: "no-store"
+                    }
+                );
+
+                if (!respuestaMeteo.ok) {
+                    throw new Error(
+                        "Open-Meteo no respondió correctamente"
+                    );
+                }
+
+                const meteo = await respuestaMeteo.json();
+                const actual = meteo.current || {};
+
+                const irradiancia =
+                    Number(actual.shortwave_radiation);
+
+                const temperatura =
+                    Number(actual.temperature_2m);
+
+                const nubosidad =
+                    Number(actual.cloud_cover);
+
+                if (Number.isFinite(irradiancia)) {
+                    agregarLinea(
+                        `☀ Irradiancia GHI estimada: ` +
+                        `${irradiancia.toLocaleString(
+                            "es-CL",
+                            {
+                                maximumFractionDigits: 0
+                            }
+                        )} W/m²`,
+                        {
+                            margen: "8px 0 5px 0"
+                        }
+                    );
+                } else {
+                    agregarLinea(
+                        "☀ Irradiancia GHI estimada: Sin dato",
+                        {
+                            margen: "8px 0 5px 0"
+                        }
+                    );
+                }
+
+                if (Number.isFinite(temperatura)) {
+                    agregarLinea(
+                        `🌡 Temperatura exterior: ` +
+                        `${temperatura.toLocaleString(
+                            "es-CL",
+                            {
+                                minimumFractionDigits: 1,
+                                maximumFractionDigits: 1
+                            }
+                        )} °C`
+                    );
+                } else {
+                    agregarLinea(
+                        "🌡 Temperatura exterior: Sin dato"
+                    );
+                }
+
+                if (Number.isFinite(nubosidad)) {
+                    agregarLinea(
+                        `☁ Nubosidad: ` +
+                        `${nubosidad.toLocaleString(
+                            "es-CL",
+                            {
+                                maximumFractionDigits: 0
+                            }
+                        )} %`
+                    );
+                } else {
+                    agregarLinea(
+                        "☁ Nubosidad: Sin dato"
+                    );
+                }
+
+                meteoDisponible = true;
+
+            } catch (errorMeteo) {
+                console.warn(
+                    "No fue posible consultar Open-Meteo:",
+                    errorMeteo
+                );
+
+                agregarLinea(
+                    "☀ Irradiancia GHI estimada: Sin dato",
+                    {
+                        margen: "8px 0 5px 0"
+                    }
+                );
+
+                agregarLinea(
+                    "🌡 Temperatura exterior: Sin dato"
+                );
+
+                agregarLinea(
+                    "☁ Nubosidad: Sin dato"
+                );
+            }
+
+            // --------------------------------------------
+            // ESTADO GENERAL
+            // --------------------------------------------
+
+            agregarLinea(
+                "⚪ Telemetría FusionSolar: Pendiente",
+                {
+                    margen: "8px 0 5px 0",
+                    negrita: true
+                }
+            );
+
+            agregarLinea(
+                meteoDisponible
+                    ? "🟢 Datos meteorológicos: OK"
+                    : "🟠 Datos meteorológicos: Sin comunicación",
+                {
+                    negrita: true
+                }
+            );
+
+            // --------------------------------------------
+            // ÚLTIMO DATO FUSIONSOLAR
+            // --------------------------------------------
+
+            const ultimoDato = document.createElement("small");
+            ultimoDato.style.display = "block";
+            ultimoDato.style.marginTop = "7px";
+            ultimoDato.textContent =
+                "Último dato FusionSolar: Sin conexión";
+
+            bloque.appendChild(ultimoDato);
+
+            // --------------------------------------------
+            // HORA CONSULTA GRIDVISION
+            // --------------------------------------------
+
+            const horaConsulta = document.createElement("small");
+            horaConsulta.style.display = "block";
+            horaConsulta.style.marginTop = "3px";
+            horaConsulta.style.opacity = "0.7";
+
+            const ahora = new Date().toLocaleTimeString(
+                "es-CL",
+                {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit",
+                    hour12: false
+                }
+            );
+
+            horaConsulta.textContent =
+                `GridVision consultó: ${ahora} · ` +
+                `actualización cada 1 min`;
+
+            bloque.appendChild(horaConsulta);
+
+        } finally {
+            actualizando = false;
+        }
+    }
+
+    // Primera carga inmediata.
+    // El contenido se construye aunque Leaflet todavía esté
+    // insertando el popup en el DOM.
+    actualizarEstadoSolar();
+
+    // Actualización automática mientras el popup permanezca abierto.
+    temporizadorMeteo = window.setInterval(
+        () => {
+            if (!contenedor.isConnected) {
+                window.clearInterval(temporizadorMeteo);
+                temporizadorMeteo = null;
+                return;
+            }
+
+            actualizarEstadoSolar();
+        },
+        INTERVALO_METEO_MS
+    );
+}
+
 function crearPopup(propiedades, coordenadas = null) {
     const contenedor = document.createElement("div");
     contenedor.className = "popup-gridvision";
@@ -1826,9 +2100,44 @@ function crearPopup(propiedades, coordenadas = null) {
 
         contenedor.appendChild(parrafo);
     }
-if (propiedades.id === "PFV-NB-001") {
-    cargarEstadoSolaxLoAguirre(contenedor);
-}
+
+    // =====================================================
+    // PFV NET BILLING
+    // =====================================================
+
+    if (propiedades.id === "PFV-NB-001") {
+        // Lo Aguirre: mantiene íntegra su lógica SolaXCloud.
+        cargarEstadoSolaxLoAguirre(contenedor);
+
+    } else if (
+        propiedades.id === "PFV-NB-002" ||
+        propiedades.id === "PFV-NB-003"
+    ) {
+        // VSE Techo / VSE Paidahuén:
+        // telemetría FusionSolar pendiente + meteorología.
+        if (
+            Array.isArray(coordenadas) &&
+            coordenadas.length >= 2
+        ) {
+            const longitudActivo =
+                Number(coordenadas[0]);
+
+            const latitudActivo =
+                Number(coordenadas[1]);
+
+            if (
+                Number.isFinite(latitudActivo) &&
+                Number.isFinite(longitudActivo)
+            ) {
+                cargarEstadoSolarPendienteFusion(
+                    contenedor,
+                    latitudActivo,
+                    longitudActivo
+                );
+            }
+        }
+    }
+
     /*
      * Los puntos GeoJSON usan:
      * [longitud, latitud]
@@ -1902,80 +2211,85 @@ if (propiedades.id === "PFV-NB-001") {
 
                 acciones.appendChild(enlace);
             }
-            
+
             const filaCoordenadas =
-    document.createElement("div");
+                document.createElement("div");
 
-filaCoordenadas.className =
-    "popup-coordenadas-compartir";
+            filaCoordenadas.className =
+                "popup-coordenadas-compartir";
 
-const coordenadasTexto =
-    document.createElement("small");
+            const coordenadasTexto =
+                document.createElement("small");
 
-coordenadasTexto.textContent =
-    `Coordenadas: ${latitud.toFixed(6)}, ` +
-    longitud.toFixed(6);
+            coordenadasTexto.textContent =
+                `Coordenadas: ${latitud.toFixed(6)}, ` +
+                longitud.toFixed(6);
 
-const botonCompartir =
-    document.createElement("button");
+            const botonCompartir =
+                document.createElement("button");
 
-botonCompartir.type = "button";
-botonCompartir.className =
-    "popup-boton-compartir-activo";
+            botonCompartir.type = "button";
+            botonCompartir.className =
+                "popup-boton-compartir-activo";
 
-botonCompartir.title = "Compartir activo";
-botonCompartir.setAttribute(
-    "aria-label",
-    "Compartir activo"
-);
+            botonCompartir.title = "Compartir activo";
+            botonCompartir.setAttribute(
+                "aria-label",
+                "Compartir activo"
+            );
 
-botonCompartir.innerHTML = `
-    <svg
-        viewBox="0 0 24 24"
-        width="16"
-        height="16"
-        aria-hidden="true"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.9"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-    >
-        <path d="M12 15V3"></path>
-        <path d="M7 8L12 3L17 8"></path>
-        <path d="M5 13V19H19V13"></path>
-    </svg>
-`;
+            botonCompartir.innerHTML = `
+                <svg
+                    viewBox="0 0 24 24"
+                    width="16"
+                    height="16"
+                    aria-hidden="true"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.9"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path d="M12 15V3"></path>
+                    <path d="M7 8L12 3L17 8"></path>
+                    <path d="M5 13V19H19V13"></path>
+                </svg>
+            `;
 
-botonCompartir.addEventListener(
-    "click",
-    async (evento) => {
-        evento.preventDefault();
-        evento.stopPropagation();
+            botonCompartir.addEventListener(
+                "click",
+                async (evento) => {
+                    evento.preventDefault();
+                    evento.stopPropagation();
 
-        await compartirActivo(
-            propiedades,
-            latitud,
-            longitud,
-            botonCompartir
-        );
-    }
-);
+                    await compartirActivo(
+                        propiedades,
+                        latitud,
+                        longitud,
+                        botonCompartir
+                    );
+                }
+            );
 
-filaCoordenadas.appendChild(
-    coordenadasTexto
-);
+            filaCoordenadas.appendChild(
+                coordenadasTexto
+            );
 
-filaCoordenadas.appendChild(
-    botonCompartir
-);
+            filaCoordenadas.appendChild(
+                botonCompartir
+            );
 
-acciones.appendChild(filaCoordenadas);
-            contenedor.appendChild(acciones);
+            acciones.appendChild(
+                filaCoordenadas
+            );
+
+            contenedor.appendChild(
+                acciones
+            );
         }
     }
 
-        return contenedor;
+    return contenedor;
 }
 
 async function cargarPfvNetBilling() {
@@ -2000,12 +2314,12 @@ async function cargarPfvNetBilling() {
         },
 
         onEachFeature(feature, layer) {
-            layer.bindPopup(
-                crearPopup(
-                    feature.properties,
-                    feature.geometry.coordinates
-                )
-            );
+            layer.bindPopup(() =>
+    crearPopup(
+        feature.properties,
+        feature.geometry.coordinates
+    )
+);
 
             layer.on("popupopen", () => {
                 window.GridVisionClimaLineas
