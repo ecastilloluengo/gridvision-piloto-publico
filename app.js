@@ -1257,22 +1257,41 @@ async function cargarEstadoSolaxLoAguirre(contenedor) {
             cargando.remove();
 
 
-            // --------------------------------------------
-            // GENERACIÓN INSTANTÁNEA
-            // --------------------------------------------
+   // --------------------------------------------
+// GENERACIÓN INSTANTÁNEA
+// SOLO INVERSORES CON DATOS VIGENTES
+// --------------------------------------------
 
-            const potenciaTotalW =
-                datos.inversores.reduce(
-                    (total, inversor) =>
-                        total +
-                        Number(
-                            inversor.potencia_ac || 0
-                        ),
-                    0
-                );
+function inversorTieneDatoVigente(inversor) {
 
-            const potenciaTotalKW =
-                potenciaTotalW / 1000;
+    const edadDato =
+        obtenerEdadDatoSolaxMs(
+            inversor.ultimo_dato
+        );
+
+    return (
+        edadDato !== null &&
+        edadDato <= UMBRAL_DATO_SOLAX_MS
+    );
+}
+
+const inversoresVigentes =
+    datos.inversores.filter(
+        inversorTieneDatoVigente
+    );
+
+const potenciaTotalW =
+    inversoresVigentes.reduce(
+        (total, inversor) =>
+            total +
+            Number(
+                inversor.potencia_ac || 0
+            ),
+        0
+    );
+
+const potenciaTotalKW =
+    potenciaTotalW / 1000;
                 // --------------------------------------------
 // RED Y CONSUMO DE LA INSTALACIÓN
 // --------------------------------------------
@@ -1282,7 +1301,7 @@ async function cargarEstadoSolaxLoAguirre(contenedor) {
 // mayor magnitud para evitar sumar ceros
 // de los demás equipos.
 const potenciaRedW =
-    datos.inversores.reduce(
+    inversoresVigentes.reduce(
         (valorActual, inversor) => {
 
             const valor =
@@ -1493,41 +1512,60 @@ try {
     );
 }
 
-            // --------------------------------------------
-            // INVERSORES
-            // --------------------------------------------
+// --------------------------------------------
+// INVERSORES
+// --------------------------------------------
 
-            for (const inversor of datos.inversores) {
+for (const inversor of datos.inversores) {
 
-                const fila =
-                    document.createElement("p");
+    const fila =
+        document.createElement("p");
 
-                fila.style.margin = "5px 0";
+    fila.style.margin = "5px 0";
 
-                let simbolo = "🟡";
+    const edadDato =
+        obtenerEdadDatoSolaxMs(
+            inversor.ultimo_dato
+        );
 
-                if (inversor.nivel === "ok") {
-                    simbolo = "🟢";
-                }
+    const datoVigente =
+        edadDato !== null &&
+        edadDato <= UMBRAL_DATO_SOLAX_MS;
 
-                if (inversor.nivel === "falla") {
-                    simbolo = "🔴";
-                }
+    let simbolo = "🟡";
+    let textoEstado =
+        inversor.estado;
 
-                if (
-                    inversor.nivel ===
-                    "sin_datos"
-                ) {
-                    simbolo = "⚪";
-                }
+    if (!datoVigente) {
 
-                fila.textContent =
-                    `${simbolo} ${inversor.nombre}: ` +
-                    inversor.estado;
+        simbolo = "🟠";
+        textoEstado =
+            "DATO DESACTUALIZADO";
 
-                bloque.appendChild(fila);
-            }
+    } else {
 
+        if (inversor.nivel === "ok") {
+            simbolo = "🟢";
+        }
+
+        if (inversor.nivel === "falla") {
+            simbolo = "🔴";
+        }
+
+        if (
+            inversor.nivel ===
+            "sin_datos"
+        ) {
+            simbolo = "⚪";
+        }
+    }
+
+    fila.textContent =
+        `${simbolo} ${inversor.nombre}: ` +
+        textoEstado;
+
+    bloque.appendChild(fila);
+}
 // --------------------------------------------
 // ÚLTIMO DATO DE SOLAX
 // --------------------------------------------
@@ -1718,19 +1756,12 @@ let temporizadorSolax = null;
 
 function programarSiguienteConsultaSolax() {
 
-    if (!contenedor.isConnected) {
-
-        if (temporizadorSolax) {
-            window.clearTimeout(
-                temporizadorSolax
-            );
-        }
-
-        return;
+    if (temporizadorSolax) {
+        window.clearTimeout(
+            temporizadorSolax
+        );
     }
 
-    // Si el dato está desactualizado,
-    // reintentamos más rápido.
     const espera =
         datoSolaxDesactualizado
             ? REINTENTO_SOLAX_MS
@@ -1741,6 +1772,7 @@ function programarSiguienteConsultaSolax() {
             async () => {
 
                 if (!contenedor.isConnected) {
+                    temporizadorSolax = null;
                     return;
                 }
 
