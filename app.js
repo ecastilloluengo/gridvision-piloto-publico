@@ -759,6 +759,9 @@ botonMinimizarCapas.addEventListener(
                 : "Minimizar capas";
     }
 );
+    // Iniciar panel de capas minimizado.
+    botonMinimizarCapas.click();
+
     selectorTodo.addEventListener(
         "change",
         () => {

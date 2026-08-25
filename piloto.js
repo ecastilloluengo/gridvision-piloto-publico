@@ -77,4 +77,8 @@ minimizarPanelFiltros?.addEventListener(
         );
     }
 );
+
+// Iniciar filtros minimizados.
+minimizarPanelFiltros?.click();
+
 })();
