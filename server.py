@@ -1,7 +1,8 @@
-﻿import json
+import json
 import os
 import time
 import secrets
+import threading
 
 from http.cookies import SimpleCookie
 import urllib.parse
@@ -309,75 +310,275 @@ def consultar_fusionsolar(ruta, datos):
         )
 
     return contenido
+# ============================================================
+# CACHE FUSIONSOLAR
+# ============================================================
+
+# Huawei será consultado como máximo aproximadamente
+# una vez cada 5 minutos.
+FUSIONSOLAR_CACHE_SECONDS = (
+    5 * 60 + 15
+)
+
+fusionsolar_cache = {}
+fusionsolar_cache_time = 0
+
+# Evita que Techo y Paidahuen disparen
+# consultas simultáneas a Huawei.
+fusionsolar_cache_lock = (
+    threading.Lock()
+)
+
+
+def actualizar_cache_fusionsolar():
+
+    global fusionsolar_cache
+    global fusionsolar_cache_time
+
+    # -----------------------------------------------------
+    # CONSULTA CONJUNTA DE LAS DOS PLANTAS
+    # -----------------------------------------------------
+
+    station_codes = ",".join(
+        planta["stationCode"]
+        for planta
+        in FUSIONSOLAR_PLANTAS.values()
+    )
+
+    respuesta_plantas = consultar_fusionsolar(
+        "/thirdData/getStationRealKpi",
+        {
+            "stationCodes":
+                station_codes
+        }
+    )
+
+    kpi_por_station = {}
+
+    for item in (
+        respuesta_plantas.get("data")
+        or []
+    ):
+
+        station_code = item.get(
+            "stationCode"
+        )
+
+        if station_code:
+            kpi_por_station[
+                station_code
+            ] = (
+                item.get("dataItemMap")
+                or {}
+            )
+
+
+    # -----------------------------------------------------
+    # CONSULTA CONJUNTA DE LOS 8 INVERSORES
+    # -----------------------------------------------------
+
+    todos_dev_ids = []
+
+    for planta in (
+        FUSIONSOLAR_PLANTAS.values()
+    ):
+
+        todos_dev_ids.extend(
+            planta["devIds"]
+        )
+
+    dev_ids = ",".join(
+        str(dev_id)
+        for dev_id
+        in todos_dev_ids
+    )
+
+    respuesta_inversores = (
+        consultar_fusionsolar(
+            "/thirdData/getDevRealKpi",
+            {
+                "devIds": dev_ids,
+                "devTypeId": 1
+            }
+        )
+    )
+
+    inversores_por_id = {}
+
+    for item in (
+        respuesta_inversores.get("data")
+        or []
+    ):
+
+        dev_id = item.get("devId")
+
+        if dev_id is not None:
+            inversores_por_id[
+                str(dev_id)
+            ] = item
+
+
+    # -----------------------------------------------------
+    # SEPARAR RESPUESTA POR PLANTA
+    # -----------------------------------------------------
+
+    cache_nueva = {}
+
+    for clave, planta in (
+        FUSIONSOLAR_PLANTAS.items()
+    ):
+
+        station_code = (
+            planta["stationCode"]
+        )
+
+        inversores = []
+
+        for dev_id in planta["devIds"]:
+
+            item = (
+                inversores_por_id.get(
+                    str(dev_id),
+                    {}
+                )
+            )
+
+            inversores.append({
+                "devId":
+                    dev_id,
+
+                "sn":
+                    item.get("sn"),
+
+                "datos":
+                    (
+                        item.get(
+                            "dataItemMap"
+                        )
+                        or {}
+                    )
+            })
+
+        cache_nueva[clave] = {
+            "nombre":
+                planta["nombre"],
+
+            "stationCode":
+                station_code,
+
+            "kpi_planta":
+                kpi_por_station.get(
+                    station_code,
+                    {}
+                ),
+
+            "inversores":
+                inversores
+        }
+
+
+    # Solo reemplazamos la caché cuando
+    # las consultas completas fueron exitosas.
+    fusionsolar_cache = cache_nueva
+    fusionsolar_cache_time = time.time()
+
+    print(
+        "Cache FusionSolar actualizada: "
+        "Techo + Paidahuen."
+    )
+
+
 def obtener_planta_fusionsolar(clave):
 
-    planta = FUSIONSOLAR_PLANTAS.get(clave)
+    global fusionsolar_cache
+    global fusionsolar_cache_time
 
-    if not planta:
+    if clave not in FUSIONSOLAR_PLANTAS:
         raise ValueError(
             "Planta FusionSolar no encontrada"
         )
 
-    station_code = planta["stationCode"]
+    ahora = time.time()
 
-    # -----------------------------------------
-    # KPI generales de la planta
-    # -----------------------------------------
-
-    respuesta_planta = consultar_fusionsolar(
-        "/thirdData/getStationRealKpi",
-        {
-            "stationCodes": station_code
-        }
+    edad_cache = (
+        ahora
+        - fusionsolar_cache_time
     )
 
-    kpi_planta = {}
+    # -----------------------------------------------------
+    # USAR CACHE VIGENTE
+    # -----------------------------------------------------
 
-    for item in respuesta_planta.get("data") or []:
+    if (
+        clave in fusionsolar_cache
+        and edad_cache
+            < FUSIONSOLAR_CACHE_SECONDS
+    ):
+        return fusionsolar_cache[
+            clave
+        ]
 
-        if item.get("stationCode") == station_code:
-            kpi_planta = (
-                item.get("dataItemMap")
-                or {}
+
+    # -----------------------------------------------------
+    # SOLO UN HILO PUEDE CONSULTAR HUAWEI
+    # -----------------------------------------------------
+
+    with fusionsolar_cache_lock:
+
+        # Otro hilo puede haber actualizado
+        # mientras esperábamos el bloqueo.
+        ahora = time.time()
+
+        edad_cache = (
+            ahora
+            - fusionsolar_cache_time
+        )
+
+        if (
+            clave in fusionsolar_cache
+            and edad_cache
+                < FUSIONSOLAR_CACHE_SECONDS
+        ):
+            return fusionsolar_cache[
+                clave
+            ]
+
+
+        try:
+
+            actualizar_cache_fusionsolar()
+
+        except Exception as error:
+
+            print(
+                "FusionSolar no pudo "
+                "renovar cache:",
+                error
             )
-            break
 
-    # -----------------------------------------
-    # KPI en tiempo real de los inversores
-    # -----------------------------------------
+            # Si Huawei rechaza temporalmente
+            # una consulta, conservamos el
+            # último dato disponible.
+            if clave in fusionsolar_cache:
 
-    dev_ids = ",".join(
-        str(dev_id)
-        for dev_id in planta["devIds"]
-    )
+                print(
+                    "FusionSolar usando "
+                    "cache anterior."
+                )
 
-    respuesta_inversores = consultar_fusionsolar(
-        "/thirdData/getDevRealKpi",
-        {
-            "devIds": dev_ids,
-            "devTypeId": 1
-        }
-    )
+                return fusionsolar_cache[
+                    clave
+                ]
 
-    inversores = []
+            # Si nunca hubo datos válidos,
+            # no podemos inventarlos.
+            raise
 
-    for item in respuesta_inversores.get("data") or []:
 
-        inversores.append({
-            "devId": item.get("devId"),
-            "sn": item.get("sn"),
-            "datos": (
-                item.get("dataItemMap")
-                or {}
-            )
-        })
+    return fusionsolar_cache[
+        clave
+    ]
 
-    return {
-        "nombre": planta["nombre"],
-        "stationCode": station_code,
-        "kpi_planta": kpi_planta,
-        "inversores": inversores
-    }
 # ============================================================
 # SESIÃ“N GOOGLE MAP TILES
 # ============================================================
