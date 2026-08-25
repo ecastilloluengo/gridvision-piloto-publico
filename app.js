@@ -1796,6 +1796,61 @@ programarSiguienteConsultaSolax();
 
         
 }
+function claveCacheFusionSolar(claveFusionSolar) {
+    return "gridvision:fusionsolar:ultimo:" + claveFusionSolar;
+}
+
+function guardarUltimoDatoFusionSolar(
+    claveFusionSolar,
+    datos
+) {
+    try {
+        localStorage.setItem(
+            claveCacheFusionSolar(claveFusionSolar),
+            JSON.stringify({
+                guardado_en: new Date().toISOString(),
+                datos: datos
+            })
+        );
+    } catch (error) {
+        console.warn(
+            "No fue posible guardar respaldo FusionSolar:",
+            error
+        );
+    }
+}
+
+function leerUltimoDatoFusionSolar(
+    claveFusionSolar
+) {
+    try {
+        const texto = localStorage.getItem(
+            claveCacheFusionSolar(claveFusionSolar)
+        );
+
+        if (!texto) {
+            return null;
+        }
+
+        const respaldo = JSON.parse(texto);
+
+        if (!respaldo || !respaldo.datos) {
+            return null;
+        }
+
+        return respaldo;
+
+    } catch (error) {
+
+        console.warn(
+            "No fue posible leer respaldo FusionSolar:",
+            error
+        );
+
+        return null;
+    }
+}
+
 async function cargarEstadoSolarPendienteFusion(
     contenedor,
     latitud,
@@ -1877,6 +1932,8 @@ async function cargarEstadoSolarPendienteFusion(
             // =============================================
 
             let datosFusion = null;
+            let datosFusionDesactualizados = false;
+            let fechaRespaldoFusion = null;
 
             try {
 
@@ -1897,12 +1954,34 @@ async function cargarEstadoSolarPendienteFusion(
                 datosFusion =
                     await respuestaFusion.json();
 
+                guardarUltimoDatoFusionSolar(
+                    claveFusionSolar,
+                    datosFusion
+                );
+
             } catch (errorFusion) {
 
                 console.warn(
                     "Error FusionSolar:",
                     errorFusion
                 );
+
+                const respaldoFusion =
+                    leerUltimoDatoFusionSolar(
+                        claveFusionSolar
+                    );
+
+                if (respaldoFusion) {
+
+                    datosFusion =
+                        respaldoFusion.datos;
+
+                    datosFusionDesactualizados =
+                        true;
+
+                    fechaRespaldoFusion =
+                        respaldoFusion.guardado_en;
+                }
             }
 
 
@@ -1915,7 +1994,128 @@ async function cargarEstadoSolarPendienteFusion(
             bloque.appendChild(titulo);
 
 
-            if (datosFusion) {
+            if (
+                datosFusionDesactualizados &&
+                datosFusion
+            ) {
+
+                const potencia =
+                    formatearNumero(
+                        datosFusion.potencia_instantanea_kw
+                    );
+
+                agregarLinea(
+                    potencia !== null
+                        ? `\u26A1 \u00DAltima generaci\u00F3n conocida: ${potencia} kW`
+                        : "\u26A1 \u00DAltima generaci\u00F3n conocida: Sin dato",
+                    {
+                        margen: "8px 0",
+                        negrita: true
+                    }
+                );
+
+                const energiaHoy =
+                    formatearNumero(
+                        datosFusion.energia_hoy_kwh
+                    );
+
+                const energiaMes =
+                    formatearNumero(
+                        datosFusion.energia_mes_kwh
+                    );
+
+                const energiaTotal =
+                    formatearNumero(
+                        datosFusion.energia_total_kwh
+                    );
+
+                agregarLinea(
+                    energiaHoy !== null
+                        ? `\uD83D\uDD0B Energ\u00EDa hoy - \u00FAltimo dato: ${energiaHoy} kWh`
+                        : "\uD83D\uDD0B Energ\u00EDa hoy: Sin dato"
+                );
+
+                agregarLinea(
+                    energiaMes !== null
+                        ? `\uD83D\uDCC5 Energ\u00EDa mes - \u00FAltimo dato: ${energiaMes} kWh`
+                        : "\uD83D\uDCC5 Energ\u00EDa mes: Sin dato"
+                );
+
+                agregarLinea(
+                    energiaTotal !== null
+                        ? `\u26A1 Energ\u00EDa acumulada - \u00FAltimo dato: ${energiaTotal} kWh`
+                        : "\u26A1 Energ\u00EDa acumulada: Sin dato"
+                );
+
+                const inversores =
+                    Array.isArray(
+                        datosFusion.inversores
+                    )
+                        ? datosFusion.inversores
+                        : [];
+
+                for (const inversor of inversores) {
+
+                    const potenciaInversor =
+                        formatearNumero(
+                            inversor.potencia_kw
+                        );
+
+                    const identificador =
+                        inversor.sn ||
+                        inversor.devId ||
+                        "Inversor";
+
+                    agregarLinea(
+                        `\uD83D\uDFE0 ${identificador}: ` +
+                        (
+                            potenciaInversor !== null
+                                ? `${potenciaInversor} kW`
+                                : "Sin dato"
+                        ) +
+                        " \u00B7 \u00DALTIMO DATO"
+                    );
+                }
+
+                let textoFecha =
+                    "fecha no disponible";
+
+                if (fechaRespaldoFusion) {
+
+                    const fecha =
+                        new Date(
+                            fechaRespaldoFusion
+                        );
+
+                    if (!Number.isNaN(fecha.getTime())) {
+
+                        textoFecha =
+                            fecha.toLocaleString(
+                                "es-CL",
+                                {
+                                    timeZone:
+                                        "America/Santiago",
+                                    dateStyle:
+                                        "short",
+                                    timeStyle:
+                                        "medium"
+                                }
+                            );
+                    }
+                }
+
+                agregarLinea(
+                    "\uD83D\uDFE0 FusionSolar: " +
+                    "DATOS DESACTUALIZADOS \u00B7 " +
+                    "\u00DAltima respuesta v\u00E1lida: " +
+                    textoFecha,
+                    {
+                        margen: "8px 0 5px 0",
+                        negrita: true
+                    }
+                );
+
+            } else if (datosFusion) {
 
                 // -----------------------------------------
                 // POTENCIA INSTANTÁNEA
