@@ -42,7 +42,7 @@ minimizarPanelFiltros?.addEventListener(
     () => {
 
         const minimizado =
-            minimizarPanelFiltros.textContent.trim() === "âˆ’";
+            minimizarPanelFiltros.textContent.trim() === "\u2212";
 
         const elementos =
             Array.from(filtros.children);
@@ -62,7 +62,7 @@ minimizarPanelFiltros?.addEventListener(
         }
 
         minimizarPanelFiltros.textContent =
-            minimizado ? "+" : "âˆ’";
+            minimizado ? "+" : "\u2212";
 
         minimizarPanelFiltros.title =
             minimizado
