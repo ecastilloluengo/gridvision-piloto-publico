@@ -1868,6 +1868,8 @@ async function cargarEstadoSolarPendienteFusion(
 
     let actualizando = false;
     let temporizadorFusionSolar = null;
+    let siguienteConsultaFusionSolarMs =
+        INTERVALO_FUSIONSOLAR_MS;
 
     function agregarLinea(
         texto,
@@ -1934,6 +1936,7 @@ async function cargarEstadoSolarPendienteFusion(
             let datosFusion = null;
             let datosFusionDesactualizados = false;
             let fechaRespaldoFusion = null;
+            let northboundExpirado = false;
 
             try {
 
@@ -1946,13 +1949,59 @@ async function cargarEstadoSolarPendienteFusion(
                 );
 
                 if (!respuestaFusion.ok) {
+
+                    let detalleError = null;
+
+                    try {
+                        detalleError =
+                            await respuestaFusion.json();
+                    } catch (_) {
+                        detalleError = null;
+                    }
+
+                    if (
+                        respuestaFusion.status === 503 &&
+                        detalleError &&
+                        detalleError.estado ===
+                            "NORTHBOUND_EXPIRADO"
+                    ) {
+                        const reintentoSegundos =
+                            Number(
+                                detalleError.reintento_segundos
+                            );
+
+                        if (
+                            Number.isFinite(reintentoSegundos) &&
+                            reintentoSegundos > 0
+                        ) {
+                            siguienteConsultaFusionSolarMs =
+                                Math.max(
+                                    INTERVALO_FUSIONSOLAR_MS,
+                                    reintentoSegundos * 1000
+                                );
+                        }
+
+                        const error = new Error(
+                            "FusionSolar Northbound expirado"
+                        );
+
+                        error.codigoFusionSolar = 20003;
+                        error.detalleFusionSolar =
+                            detalleError;
+
+                        throw error;
+                    }
+
                     throw new Error(
-                        "FusionSolar no respondió correctamente"
+                        "FusionSolar backend no disponible"
                     );
                 }
 
                 datosFusion =
                     await respuestaFusion.json();
+
+                siguienteConsultaFusionSolarMs =
+                    INTERVALO_FUSIONSOLAR_MS;
 
                 guardarUltimoDatoFusionSolar(
                     claveFusionSolar,
@@ -1965,6 +2014,10 @@ async function cargarEstadoSolarPendienteFusion(
                     "Error FusionSolar:",
                     errorFusion
                 );
+
+                northboundExpirado =
+                    errorFusion &&
+                    errorFusion.codigoFusionSolar === 20003;
 
                 const respaldoFusion =
                     leerUltimoDatoFusionSolar(
@@ -2106,8 +2159,17 @@ async function cargarEstadoSolarPendienteFusion(
 
                 agregarLinea(
                     "\uD83D\uDFE0 FusionSolar: " +
-                    "DATOS DESACTUALIZADOS \u00B7 " +
-                    "\u00DAltima respuesta v\u00E1lida: " +
+                    (
+                        northboundExpirado
+                            ? (
+                                "SERVICIO NORTHBOUND NO DISPONIBLE \u00B7 " +
+                                "MOSTRANDO \u00DALTIMO DATO V\u00C1LIDO \u00B7 "
+                            )
+                            : (
+                                "DATOS DESACTUALIZADOS \u00B7 " +
+                                "\u00DAltima respuesta v\u00E1lida: "
+                            )
+                    ) +
                     textoFecha,
                     {
                         margen: "8px 0 5px 0",
@@ -2320,7 +2382,15 @@ async function cargarEstadoSolarPendienteFusion(
                 );
 
                 agregarLinea(
-                    "🔴 FusionSolar: SIN COMUNICACIÓN",
+                    northboundExpirado
+                        ? (
+                            "\uD83D\uDFE0 FusionSolar: " +
+                            "SERVICIO NORTHBOUND NO DISPONIBLE"
+                        )
+                        : (
+                            "\uD83D\uDD34 FusionSolar: " +
+                            "SIN COMUNICACI\u00D3N"
+                        ),
                     {
                         negrita: true
                     }
@@ -2475,9 +2545,29 @@ async function cargarEstadoSolarPendienteFusion(
                     }
                 );
 
-            horaConsulta.textContent =
-                `GridVision consultó: ${ahora} · ` +
-                `actualización cada 1 min`;
+            if (
+                northboundExpirado &&
+                siguienteConsultaFusionSolarMs >
+                    INTERVALO_FUSIONSOLAR_MS
+            ) {
+                const minutosReintento = Math.max(
+                    1,
+                    Math.ceil(
+                        siguienteConsultaFusionSolarMs / 60000
+                    )
+                );
+
+                horaConsulta.textContent =
+                    `GridVision consult\u00f3: ${ahora} \u00b7 ` +
+                    `pr\u00f3ximo reintento aprox. en ` +
+                    `${minutosReintento} min`;
+
+            } else {
+
+                horaConsulta.textContent =
+                    `GridVision consult\u00f3: ${ahora} \u00b7 ` +
+                    `actualizaci\u00f3n cada 1 min`;
+            }
 
             bloque.appendChild(
                 horaConsulta
@@ -2490,31 +2580,35 @@ async function cargarEstadoSolarPendienteFusion(
     }
 
 
-    // Primera consulta inmediata
-    actualizarEstadoSolar();
+    async function programarSiguienteConsultaFusionSolar() {
 
+        if (temporizadorFusionSolar) {
+            window.clearTimeout(
+                temporizadorFusionSolar
+            );
+        }
 
-    // Actualización cada 1 minuto
-    temporizadorFusionSolar =
-        window.setInterval(
-            () => {
+        temporizadorFusionSolar =
+            window.setTimeout(
+                async () => {
 
-                if (!contenedor.isConnected) {
+                    if (!contenedor.isConnected) {
+                        temporizadorFusionSolar = null;
+                        return;
+                    }
 
-                    window.clearInterval(
-                        temporizadorFusionSolar
-                    );
+                    await actualizarEstadoSolar();
 
-                    temporizadorFusionSolar = null;
+                    programarSiguienteConsultaFusionSolar();
 
-                    return;
-                }
+                },
+                siguienteConsultaFusionSolarMs
+            );
+    }
 
-                actualizarEstadoSolar();
+    await actualizarEstadoSolar();
 
-            },
-            INTERVALO_FUSIONSOLAR_MS
-        );
+    programarSiguienteConsultaFusionSolar();
 }
 function crearPopup(propiedades, coordenadas = null) {
     const contenedor = document.createElement("div");

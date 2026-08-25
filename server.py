@@ -204,13 +204,38 @@ fusionsolar_token_expiry = 0
 # Reutilizamos la sesión para no hacer login cada minuto.
 FUSIONSOLAR_TOKEN_DURATION = 20 * 60
 
+# Si Huawei informa failCode 20003, evitamos
+# insistir con nuevos logins durante 30 minutos.
+FUSIONSOLAR_NORTHBOUND_COOLDOWN_SECONDS = 30 * 60
+fusionsolar_northbound_blocked_until = 0
+
+
+class FusionSolarNorthboundExpired(RuntimeError):
+    pass
+
 
 def obtener_fusionsolar_token():
 
     global fusionsolar_token
     global fusionsolar_token_expiry
+    global fusionsolar_northbound_blocked_until
 
     ahora = time.time()
+
+    if ahora < fusionsolar_northbound_blocked_until:
+        segundos_restantes = max(
+            1,
+            int(
+                fusionsolar_northbound_blocked_until
+                - ahora
+            )
+        )
+
+        raise FusionSolarNorthboundExpired(
+            "FusionSolar Northbound en cooldown "
+            + str(segundos_restantes)
+            + " s"
+        )
 
     if (
         fusionsolar_token
@@ -256,6 +281,23 @@ def obtener_fusionsolar_token():
 
     if not contenido.get("success"):
         print("LOGIN FUSIONSOLAR RECHAZADO:", contenido, flush=True)
+
+        if contenido.get("failCode") == 20003:
+
+            fusionsolar_northbound_blocked_until = (
+                time.time()
+                + FUSIONSOLAR_NORTHBOUND_COOLDOWN_SECONDS
+            )
+
+            print(
+                "FusionSolar Northbound bloqueado por 30 min "
+                "debido a failCode 20003.",
+                flush=True
+            )
+
+            raise FusionSolarNorthboundExpired(
+                "Huawei informa Northbound expirado"
+            )
         raise RuntimeError(
             "FusionSolar rechazó autenticación"
         )
@@ -944,6 +986,54 @@ class GridVisionHandler(SimpleHTTPRequestHandler):
                 self.send_header(
                     "Cache-Control",
                     "no-store, no-cache, must-revalidate"
+                )
+
+                self.end_headers()
+
+                self.wfile.write(
+                    json.dumps(
+                        respuesta,
+                        ensure_ascii=False
+                    ).encode("utf-8")
+                )
+
+            except FusionSolarNorthboundExpired as error:
+
+                reintento = max(
+                    1,
+                    int(
+                        fusionsolar_northbound_blocked_until
+                        - time.time()
+                    )
+                )
+
+                respuesta = {
+                    "ok": False,
+                    "servicio": "FusionSolar",
+                    "codigo": 20003,
+                    "estado": "NORTHBOUND_EXPIRADO",
+                    "mensaje":
+                        "Huawei informa acceso Northbound expirado",
+                    "reintento_segundos": reintento
+                }
+
+                self.send_response(503)
+
+                self.send_header(
+                    "Content-Type",
+                    "application/json; charset=utf-8"
+                )
+
+                agregar_cors_google(self)
+
+                self.send_header(
+                    "Cache-Control",
+                    "no-store, no-cache, must-revalidate"
+                )
+
+                self.send_header(
+                    "Retry-After",
+                    str(reintento)
                 )
 
                 self.end_headers()
