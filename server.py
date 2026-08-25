@@ -255,6 +255,7 @@ def obtener_fusionsolar_token():
         )
 
     if not contenido.get("success"):
+        print("LOGIN FUSIONSOLAR RECHAZADO:", contenido, flush=True)
         raise RuntimeError(
             "FusionSolar rechazó autenticación"
         )
