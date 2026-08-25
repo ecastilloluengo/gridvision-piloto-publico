@@ -157,6 +157,227 @@ def consultar_solax(wifi_sn):
         return json.loads(
             respuesta.read().decode("utf-8")
         )
+    # ============================================================
+# HUAWEI FUSIONSOLAR - VSE TECHO / VSE PAIDAHUEN
+# ============================================================
+
+FUSIONSOLAR_BASE_URL = (
+    "https://la5.fusionsolar.huawei.com"
+)
+
+FUSIONSOLAR_USERNAME = os.getenv(
+    "FUSIONSOLAR_USERNAME"
+)
+
+FUSIONSOLAR_PASSWORD = os.getenv(
+    "FUSIONSOLAR_PASSWORD"
+)
+
+FUSIONSOLAR_PLANTAS = {
+    "techo": {
+        "nombre": "VSE Techo",
+        "stationCode": "NE=36085058",
+        "devIds": [
+            1000000036085062,
+            1000000036085063,
+            1000000036085064,
+            1000000036085065
+        ]
+    },
+    "paidahuen": {
+        "nombre": "VSE Paidahuen",
+        "stationCode": "NE=38719718",
+        "devIds": [
+            1000000038719723,
+            1000000038719725,
+            1000000038719724,
+            1000000038719722
+        ]
+    }
+}
+
+
+fusionsolar_token = None
+fusionsolar_token_expiry = 0
+
+# Reutilizamos la sesión para no hacer login cada minuto.
+FUSIONSOLAR_TOKEN_DURATION = 20 * 60
+
+
+def obtener_fusionsolar_token():
+
+    global fusionsolar_token
+    global fusionsolar_token_expiry
+
+    ahora = time.time()
+
+    if (
+        fusionsolar_token
+        and fusionsolar_token_expiry > ahora + 30
+    ):
+        return fusionsolar_token
+
+    if (
+        not FUSIONSOLAR_USERNAME
+        or not FUSIONSOLAR_PASSWORD
+    ):
+        raise RuntimeError(
+            "Faltan credenciales FusionSolar"
+        )
+
+    cuerpo = json.dumps({
+        "userName": FUSIONSOLAR_USERNAME,
+        "systemCode": FUSIONSOLAR_PASSWORD
+    }).encode("utf-8")
+
+    solicitud = urllib.request.Request(
+        FUSIONSOLAR_BASE_URL + "/thirdData/login",
+        data=cuerpo,
+        method="POST",
+        headers={
+            "Content-Type": "application/json"
+        }
+    )
+
+    with urllib.request.urlopen(
+        solicitud,
+        timeout=20
+    ) as respuesta:
+
+        contenido = json.loads(
+            respuesta.read().decode("utf-8")
+        )
+
+        token = (
+            respuesta.headers.get("XSRF-TOKEN")
+            or respuesta.headers.get("xsrf-token")
+        )
+
+    if not contenido.get("success"):
+        raise RuntimeError(
+            "FusionSolar rechazó autenticación"
+        )
+
+    if not token:
+        raise RuntimeError(
+            "FusionSolar no entregó XSRF-TOKEN"
+        )
+
+    fusionsolar_token = token
+    fusionsolar_token_expiry = (
+        ahora + FUSIONSOLAR_TOKEN_DURATION
+    )
+
+    print(
+        "Sesión FusionSolar creada correctamente."
+    )
+
+    return fusionsolar_token
+
+
+def consultar_fusionsolar(ruta, datos):
+
+    token = obtener_fusionsolar_token()
+
+    cuerpo = json.dumps(
+        datos
+    ).encode("utf-8")
+
+    solicitud = urllib.request.Request(
+        FUSIONSOLAR_BASE_URL + ruta,
+        data=cuerpo,
+        method="POST",
+        headers={
+            "Content-Type": "application/json",
+            "XSRF-TOKEN": token
+        }
+    )
+
+    with urllib.request.urlopen(
+        solicitud,
+        timeout=20
+    ) as respuesta:
+
+        contenido = json.loads(
+            respuesta.read().decode("utf-8")
+        )
+
+    if not contenido.get("success"):
+        raise RuntimeError(
+            "Consulta FusionSolar rechazada: "
+            + str(contenido)
+        )
+
+    return contenido
+def obtener_planta_fusionsolar(clave):
+
+    planta = FUSIONSOLAR_PLANTAS.get(clave)
+
+    if not planta:
+        raise ValueError(
+            "Planta FusionSolar no encontrada"
+        )
+
+    station_code = planta["stationCode"]
+
+    # -----------------------------------------
+    # KPI generales de la planta
+    # -----------------------------------------
+
+    respuesta_planta = consultar_fusionsolar(
+        "/thirdData/getStationRealKpi",
+        {
+            "stationCodes": station_code
+        }
+    )
+
+    kpi_planta = {}
+
+    for item in respuesta_planta.get("data") or []:
+
+        if item.get("stationCode") == station_code:
+            kpi_planta = (
+                item.get("dataItemMap")
+                or {}
+            )
+            break
+
+    # -----------------------------------------
+    # KPI en tiempo real de los inversores
+    # -----------------------------------------
+
+    dev_ids = ",".join(
+        str(dev_id)
+        for dev_id in planta["devIds"]
+    )
+
+    respuesta_inversores = consultar_fusionsolar(
+        "/thirdData/getDevRealKpi",
+        {
+            "devIds": dev_ids,
+            "devTypeId": 1
+        }
+    )
+
+    inversores = []
+
+    for item in respuesta_inversores.get("data") or []:
+
+        inversores.append({
+            "devId": item.get("devId"),
+            "sn": item.get("sn"),
+            "datos": (
+                item.get("dataItemMap")
+                or {}
+            )
+        })
+
+    return {
+        "nombre": planta["nombre"],
+        "stationCode": station_code,
+        "kpi_planta": kpi_planta,
+        "inversores": inversores
+    }
 # ============================================================
 # SESIÃ“N GOOGLE MAP TILES
 # ============================================================
@@ -370,7 +591,181 @@ class GridVisionHandler(SimpleHTTPRequestHandler):
             "Ruta no encontrada"
         )
     def do_GET(self):
+        ruta = urllib.parse.urlparse(self.path)
+                # ----------------------------------------------------
+        # FUSIONSOLAR - VSE TECHO / VSE PAIDAHUEN
+        # ----------------------------------------------------
 
+        if ruta.path.startswith("/api/fusionsolar/"):
+
+            clave = ruta.path.replace(
+                "/api/fusionsolar/",
+                ""
+            ).strip("/")
+
+            if clave not in FUSIONSOLAR_PLANTAS:
+                self.send_error(
+                    404,
+                    "Planta FusionSolar no encontrada"
+                )
+                return
+
+            try:
+                datos = obtener_planta_fusionsolar(
+                    clave
+                )
+
+                kpi = datos.get(
+                    "kpi_planta",
+                    {}
+                )
+                inversores_resumen = []
+                potencias_validas = []
+
+                for inversor in datos.get(
+                    "inversores",
+                    []
+                ):
+
+                    valores = inversor.get(
+                        "datos",
+                        {}
+                    )
+
+                    potencia = valores.get(
+                        "active_power"
+                    )
+
+                    if isinstance(
+                        potencia,
+                        (int, float)
+                    ):
+                        potencias_validas.append(
+                            float(potencia)
+                        )
+
+                    inversores_resumen.append({
+                        "devId":
+                            inversor.get("devId"),
+
+                        "sn":
+                            inversor.get("sn"),
+
+                        "telemetria":
+                            potencia is not None,
+
+                        "potencia_kw":
+                            potencia,
+
+                        "estado_operacion":
+                            valores.get("run_state"),
+
+                        "temperatura_c":
+                            valores.get("temperature"),
+
+                        "energia_hoy_kwh":
+                            valores.get("day_cap"),
+
+                        "energia_total_kwh":
+                            valores.get("total_cap")
+                    })
+
+                if potencias_validas:
+                    potencia_total_kw = round(
+                        sum(potencias_validas),
+                        3
+                    )
+                else:
+                    potencia_total_kw = None
+
+                estado_codigo = kpi.get(
+                    "real_health_state"
+                )
+
+                estados = {
+                    1: "SIN COMUNICACION",
+                    2: "FALLA",
+                    3: "OK"
+                }
+
+                respuesta = {
+                    "nombre":
+                        datos["nombre"],
+
+                    "stationCode":
+                        datos["stationCode"],
+
+                    "estado_codigo":
+                        estado_codigo,
+
+                    "estado":
+                        estados.get(
+                            estado_codigo,
+                            "DESCONOCIDO"
+                        ),
+
+                    "potencia_instantanea_kw":
+                        potencia_total_kw,
+
+                    "energia_hoy_kwh":
+                        kpi.get("day_power"),
+
+                    "energia_mes_kwh":
+                        kpi.get("month_power"),
+
+                    "energia_total_kwh":
+                        kpi.get("total_power"),
+
+                    "energia_red_hoy_kwh":
+                        kpi.get(
+                            "day_on_grid_energy"
+                        ),
+
+                    "consumo_hoy_kwh":
+                        kpi.get(
+                            "day_use_energy"
+                        ),
+
+                    "inversores":
+                        inversores_resumen
+                }
+
+                self.send_response(200)
+
+                self.send_header(
+                    "Content-Type",
+                    "application/json; charset=utf-8"
+                )
+
+                agregar_cors_google(self)
+
+                self.send_header(
+                    "Cache-Control",
+                    "no-store, no-cache, must-revalidate"
+                )
+
+                self.end_headers()
+
+                self.wfile.write(
+                    json.dumps(
+                        respuesta,
+                        ensure_ascii=False
+                    ).encode("utf-8")
+                )
+
+            except Exception as error:
+
+                print(
+                    "Error FusionSolar:",
+                    error
+                )
+
+                self.send_error(
+                    502,
+                    "No fue posible consultar FusionSolar"
+                )
+
+            return
         ruta = urllib.parse.urlparse(self.path)
                 # ----------------------------------------------------
         # SOLAX CLOUD - PFV ICV LO AGUIRRE

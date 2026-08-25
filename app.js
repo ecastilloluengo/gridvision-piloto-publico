@@ -1799,9 +1799,10 @@ programarSiguienteConsultaSolax();
 async function cargarEstadoSolarPendienteFusion(
     contenedor,
     latitud,
-    longitud
+    longitud,
+    claveFusionSolar
 ) {
-    const INTERVALO_METEO_MS = 60 * 1000; // 1 minuto
+    const INTERVALO_FUSIONSOLAR_MS = 60 * 1000;
 
     const bloque = document.createElement("div");
     bloque.style.marginTop = "10px";
@@ -1811,7 +1812,7 @@ async function cargarEstadoSolarPendienteFusion(
     contenedor.appendChild(bloque);
 
     let actualizando = false;
-    let temporizadorMeteo = null;
+    let temporizadorFusionSolar = null;
 
     function agregarLinea(
         texto,
@@ -1833,7 +1834,35 @@ async function cargarEstadoSolarPendienteFusion(
         return linea;
     }
 
+   function formatearNumero(
+    valor,
+    decimales = 2
+) {
+    if (
+        valor === null ||
+        valor === undefined ||
+        valor === ""
+    ) {
+        return null;
+    }
+
+    const numero = Number(valor);
+
+        if (!Number.isFinite(numero)) {
+            return null;
+        }
+
+        return numero.toLocaleString(
+            "es-CL",
+            {
+                minimumFractionDigits: decimales,
+                maximumFractionDigits: decimales
+            }
+        );
+    }
+
     async function actualizarEstadoSolar() {
+
         if (actualizando) {
             return;
         }
@@ -1842,43 +1871,271 @@ async function cargarEstadoSolarPendienteFusion(
         bloque.innerHTML = "";
 
         try {
-            const titulo = document.createElement("strong");
-            titulo.textContent = "Estado de inversores";
+
+            // =============================================
+            // FUSIONSOLAR
+            // =============================================
+
+            let datosFusion = null;
+
+            try {
+
+                const respuestaFusion = await fetch(
+                    GOOGLE_BACKEND_BASE +
+                    `/api/fusionsolar/${claveFusionSolar}`,
+                    {
+                        cache: "no-store"
+                    }
+                );
+
+                if (!respuestaFusion.ok) {
+                    throw new Error(
+                        "FusionSolar no respondió correctamente"
+                    );
+                }
+
+                datosFusion =
+                    await respuestaFusion.json();
+
+            } catch (errorFusion) {
+
+                console.warn(
+                    "Error FusionSolar:",
+                    errorFusion
+                );
+            }
+
+
+            const titulo =
+                document.createElement("strong");
+
+            titulo.textContent =
+                "Estado de inversores";
+
             bloque.appendChild(titulo);
 
-            // --------------------------------------------
-            // DATOS FUSIONSOLAR PENDIENTES
-            // --------------------------------------------
 
-            agregarLinea(
-                "⚡ Generación instantánea: Pendiente FusionSolar",
-                {
-                    margen: "8px 0",
-                    negrita: true
+            if (datosFusion) {
+
+                // -----------------------------------------
+                // POTENCIA INSTANTÁNEA
+                // -----------------------------------------
+
+                const potencia =
+                    formatearNumero(
+                        datosFusion
+                            .potencia_instantanea_kw
+                    );
+
+                agregarLinea(
+                    potencia !== null
+                        ? `⚡ Generación instantánea: ${potencia} kW`
+                        : "⚡ Generación instantánea: Sin dato",
+                    {
+                        margen: "8px 0",
+                        negrita: true
+                    }
+                );
+
+                agregarLinea(
+                    "🏠 Consumo instalación: Sin medición",
+                    {
+                        negrita: true
+                    }
+                );
+
+                agregarLinea(
+                    "🔌 Red: Sin medición",
+                    {
+                        negrita: true
+                    }
+                );
+
+
+                // -----------------------------------------
+                // ENERGÍA
+                // -----------------------------------------
+
+                const energiaHoy =
+                    formatearNumero(
+                        datosFusion.energia_hoy_kwh
+                    );
+
+                const energiaMes =
+                    formatearNumero(
+                        datosFusion.energia_mes_kwh
+                    );
+
+                const energiaTotal =
+                    formatearNumero(
+                        datosFusion.energia_total_kwh
+                    );
+
+                agregarLinea(
+                    energiaHoy !== null
+                        ? `🔋 Energía hoy: ${energiaHoy} kWh`
+                        : "🔋 Energía hoy: Sin dato"
+                );
+
+                agregarLinea(
+                    energiaMes !== null
+                        ? `📅 Energía mes: ${energiaMes} kWh`
+                        : "📅 Energía mes: Sin dato"
+                );
+
+                agregarLinea(
+                    energiaTotal !== null
+                        ? `⚡ Energía acumulada: ${energiaTotal} kWh`
+                        : "⚡ Energía acumulada: Sin dato"
+                );
+
+
+                // -----------------------------------------
+                // INVERSORES
+                // -----------------------------------------
+
+                const inversores =
+                    Array.isArray(
+                        datosFusion.inversores
+                    )
+                        ? datosFusion.inversores
+                        : [];
+
+                for (const inversor of inversores) {
+
+                    const potenciaInversor =
+                        formatearNumero(
+                            inversor.potencia_kw
+                        );
+
+                    if (inversor.telemetria) {
+
+                        agregarLinea(
+                            `🟢 ${inversor.sn}: ` +
+                            (
+                                potenciaInversor !== null
+                                    ? `${potenciaInversor} kW`
+                                    : "Sin dato"
+                            )
+                        );
+
+                    } else {
+
+                        agregarLinea(
+                            `🟠 ${inversor.sn}: ` +
+                            "SIN TELEMETRÍA"
+                        );
+                    }
                 }
-            );
 
-            agregarLinea(
-                "🏠 Consumo instalación: Pendiente FusionSolar",
-                {
-                    negrita: true
+
+                // -----------------------------------------
+                // ESTADO GENERAL
+                // -----------------------------------------
+
+                const horaChile =
+                    Number(
+                        new Intl.DateTimeFormat(
+                            "es-CL",
+                            {
+                                timeZone:
+                                    "America/Santiago",
+                                hour: "2-digit",
+                                hourCycle: "h23"
+                            }
+                        ).format(new Date())
+                    );
+
+                const esVseTecho =
+                    claveFusionSolar === "techo";
+
+                const enVentanaPunta =
+                    esVseTecho &&
+                    horaChile >= 18 &&
+                    horaChile < 22;
+
+                let indicadorEstado = "⚪";
+                let textoEstado =
+                    datosFusion.estado;
+
+                if (datosFusion.estado === "OK") {
+
+                    indicadorEstado = "🟢";
+                    textoEstado = "OK";
+
+                } else if (
+                    datosFusion.estado === "FALLA"
+                ) {
+
+                    indicadorEstado = "🔴";
+                    textoEstado = "FALLA";
+
+                } else if (
+                    datosFusion.estado ===
+                    "SIN COMUNICACION"
+                ) {
+
+                    if (enVentanaPunta) {
+
+                        indicadorEstado = "🟠";
+
+                        textoEstado =
+                            "SIN COMUNICACIÓN · " +
+                            "VENTANA PUNTA / VERIFICAR";
+
+                    } else if (esVseTecho) {
+
+                        indicadorEstado = "🔴";
+
+                        textoEstado =
+                            "SIN COMUNICACIÓN · " +
+                            "FUERA DE VENTANA PUNTA / REVISAR";
+
+                    } else {
+
+                        indicadorEstado = "🟠";
+
+                        textoEstado =
+                            "SIN COMUNICACIÓN";
+                    }
                 }
-            );
 
-            agregarLinea(
-                "🔌 Red: Pendiente FusionSolar",
-                {
-                    negrita: true
-                }
-            );
+                agregarLinea(
+                    `${indicadorEstado} FusionSolar: ` +
+                    `${textoEstado}`,
+                    {
+                        margen: "8px 0 5px 0",
+                        negrita: true
+                    }
+                );
 
-            // --------------------------------------------
-            // METEOROLOGÍA / IRRADIANCIA
-            // --------------------------------------------
+            } else {
+
+                agregarLinea(
+                    "⚡ Generación instantánea: Sin dato",
+                    {
+                        margen: "8px 0",
+                        negrita: true
+                    }
+                );
+
+                agregarLinea(
+                    "🔴 FusionSolar: SIN COMUNICACIÓN",
+                    {
+                        negrita: true
+                    }
+                );
+            }
+
+
+            // =============================================
+            // METEOROLOGÍA
+            // =============================================
 
             let meteoDisponible = false;
 
             try {
+
                 const respuestaMeteo = await fetch(
                     "https://api.open-meteo.com/v1/forecast" +
                     `?latitude=${latitud}` +
@@ -1896,78 +2153,76 @@ async function cargarEstadoSolarPendienteFusion(
                     );
                 }
 
-                const meteo = await respuestaMeteo.json();
-                const actual = meteo.current || {};
+                const meteo =
+                    await respuestaMeteo.json();
+
+                const actual =
+                    meteo.current || {};
 
                 const irradiancia =
-                    Number(actual.shortwave_radiation);
+                    Number(
+                        actual.shortwave_radiation
+                    );
 
                 const temperatura =
-                    Number(actual.temperature_2m);
+                    Number(
+                        actual.temperature_2m
+                    );
 
                 const nubosidad =
-                    Number(actual.cloud_cover);
+                    Number(
+                        actual.cloud_cover
+                    );
 
-                if (Number.isFinite(irradiancia)) {
-                    agregarLinea(
-                        `☀ Irradiancia GHI estimada: ` +
-                        `${irradiancia.toLocaleString(
-                            "es-CL",
-                            {
-                                maximumFractionDigits: 0
-                            }
-                        )} W/m²`,
-                        {
-                            margen: "8px 0 5px 0"
-                        }
-                    );
-                } else {
-                    agregarLinea(
-                        "☀ Irradiancia GHI estimada: Sin dato",
-                        {
-                            margen: "8px 0 5px 0"
-                        }
-                    );
-                }
 
-                if (Number.isFinite(temperatura)) {
-                    agregarLinea(
-                        `🌡 Temperatura exterior: ` +
-                        `${temperatura.toLocaleString(
-                            "es-CL",
-                            {
-                                minimumFractionDigits: 1,
-                                maximumFractionDigits: 1
-                            }
-                        )} °C`
-                    );
-                } else {
-                    agregarLinea(
-                        "🌡 Temperatura exterior: Sin dato"
-                    );
-                }
+                agregarLinea(
+                    Number.isFinite(irradiancia)
+                        ? `☀ Irradiancia GHI estimada: ` +
+                          `${irradiancia.toLocaleString(
+                              "es-CL",
+                              {
+                                  maximumFractionDigits: 0
+                              }
+                          )} W/m²`
+                        : "☀ Irradiancia GHI estimada: Sin dato",
+                    {
+                        margen: "8px 0 5px 0"
+                    }
+                );
 
-                if (Number.isFinite(nubosidad)) {
-                    agregarLinea(
-                        `☁ Nubosidad: ` +
-                        `${nubosidad.toLocaleString(
-                            "es-CL",
-                            {
-                                maximumFractionDigits: 0
-                            }
-                        )} %`
-                    );
-                } else {
-                    agregarLinea(
-                        "☁ Nubosidad: Sin dato"
-                    );
-                }
+
+                agregarLinea(
+                    Number.isFinite(temperatura)
+                        ? `🌡 Temperatura exterior: ` +
+                          `${temperatura.toLocaleString(
+                              "es-CL",
+                              {
+                                  minimumFractionDigits: 1,
+                                  maximumFractionDigits: 1
+                              }
+                          )} °C`
+                        : "🌡 Temperatura exterior: Sin dato"
+                );
+
+
+                agregarLinea(
+                    Number.isFinite(nubosidad)
+                        ? `☁ Nubosidad: ` +
+                          `${nubosidad.toLocaleString(
+                              "es-CL",
+                              {
+                                  maximumFractionDigits: 0
+                              }
+                          )} %`
+                        : "☁ Nubosidad: Sin dato"
+                );
 
                 meteoDisponible = true;
 
             } catch (errorMeteo) {
+
                 console.warn(
-                    "No fue posible consultar Open-Meteo:",
+                    "Error Open-Meteo:",
                     errorMeteo
                 );
 
@@ -1987,17 +2242,6 @@ async function cargarEstadoSolarPendienteFusion(
                 );
             }
 
-            // --------------------------------------------
-            // ESTADO GENERAL
-            // --------------------------------------------
-
-            agregarLinea(
-                "⚪ Telemetría FusionSolar: Pendiente",
-                {
-                    margen: "8px 0 5px 0",
-                    negrita: true
-                }
-            );
 
             agregarLinea(
                 meteoDisponible
@@ -2008,68 +2252,70 @@ async function cargarEstadoSolarPendienteFusion(
                 }
             );
 
-            // --------------------------------------------
-            // ÚLTIMO DATO FUSIONSOLAR
-            // --------------------------------------------
 
-            const ultimoDato = document.createElement("small");
-            ultimoDato.style.display = "block";
-            ultimoDato.style.marginTop = "7px";
-            ultimoDato.textContent =
-                "Último dato FusionSolar: Sin conexión";
-
-            bloque.appendChild(ultimoDato);
-
-            // --------------------------------------------
+            // =============================================
             // HORA CONSULTA GRIDVISION
-            // --------------------------------------------
+            // =============================================
 
-            const horaConsulta = document.createElement("small");
+            const horaConsulta =
+                document.createElement("small");
+
             horaConsulta.style.display = "block";
-            horaConsulta.style.marginTop = "3px";
+            horaConsulta.style.marginTop = "7px";
             horaConsulta.style.opacity = "0.7";
 
-            const ahora = new Date().toLocaleTimeString(
-                "es-CL",
-                {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                    second: "2-digit",
-                    hour12: false
-                }
-            );
+            const ahora =
+                new Date().toLocaleTimeString(
+                    "es-CL",
+                    {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        second: "2-digit",
+                        hour12: false
+                    }
+                );
 
             horaConsulta.textContent =
                 `GridVision consultó: ${ahora} · ` +
                 `actualización cada 1 min`;
 
-            bloque.appendChild(horaConsulta);
+            bloque.appendChild(
+                horaConsulta
+            );
 
         } finally {
+
             actualizando = false;
         }
     }
 
-    // Primera carga inmediata.
-    // El contenido se construye aunque Leaflet todavía esté
-    // insertando el popup en el DOM.
+
+    // Primera consulta inmediata
     actualizarEstadoSolar();
 
-    // Actualización automática mientras el popup permanezca abierto.
-    temporizadorMeteo = window.setInterval(
-        () => {
-            if (!contenedor.isConnected) {
-                window.clearInterval(temporizadorMeteo);
-                temporizadorMeteo = null;
-                return;
-            }
 
-            actualizarEstadoSolar();
-        },
-        INTERVALO_METEO_MS
-    );
+    // Actualización cada 1 minuto
+    temporizadorFusionSolar =
+        window.setInterval(
+            () => {
+
+                if (!contenedor.isConnected) {
+
+                    window.clearInterval(
+                        temporizadorFusionSolar
+                    );
+
+                    temporizadorFusionSolar = null;
+
+                    return;
+                }
+
+                actualizarEstadoSolar();
+
+            },
+            INTERVALO_FUSIONSOLAR_MS
+        );
 }
-
 function crearPopup(propiedades, coordenadas = null) {
     const contenedor = document.createElement("div");
     contenedor.className = "popup-gridvision";
@@ -2129,10 +2375,16 @@ function crearPopup(propiedades, coordenadas = null) {
                 Number.isFinite(latitudActivo) &&
                 Number.isFinite(longitudActivo)
             ) {
+                const claveFusionSolar =
+                    propiedades.id === "PFV-NB-002"
+                        ? "techo"
+                        : "paidahuen";
+
                 cargarEstadoSolarPendienteFusion(
                     contenedor,
                     latitudActivo,
-                    longitudActivo
+                    longitudActivo,
+                    claveFusionSolar
                 );
             }
         }
