@@ -2291,7 +2291,18 @@ function asegurarAccesoFallasGuardadas() {
         boton.title = "Ver fallas guardadas";
         boton.addEventListener(
             "click",
-            abrirPanelFallasGuardadas
+            () => {
+                const panel =
+                    document.getElementById(
+                        "panel-fallas-guardadas-gridvision"
+                    );
+
+                if (!panel || panel.hidden) {
+                    abrirPanelFallasGuardadas();
+                } else {
+                    cerrarPanelFallasGuardadas();
+                }
+            }
         );
 
         const referencia =

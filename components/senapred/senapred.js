@@ -1132,7 +1132,20 @@ async function cargarComponente() {
         if (botonAbrirSenapred) {
             botonAbrirSenapred.addEventListener(
                 "click",
-                abrirPanel
+                () => {
+                    const panel =
+                        elemento("panel-senapred");
+
+                    if (!panel) {
+                        return;
+                    }
+
+                    if (panel.hidden) {
+                        abrirPanel();
+                    } else {
+                        cerrarPanel();
+                    }
+                }
             );
         }
 
