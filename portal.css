@@ -233,3 +233,249 @@ button,a{font:inherit}button{color:inherit}.portal-shell{min-height:100vh}
 .footer p {
     font-size: 13px;
 }
+
+/* MONITOREO PFV PORTAL */
+
+.solar-section-title {
+    margin-top: 18px;
+    margin-bottom: 12px;
+}
+
+.solar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.solar-card {
+    min-height: 130px;
+    padding: 16px 18px;
+    border-radius: 13px;
+
+    border:
+        1px solid rgba(155, 224, 0, 0.30);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(8, 28, 43, 0.94),
+            rgba(5, 18, 31, 0.96)
+        );
+
+    box-shadow:
+        0 10px 28px rgba(0, 0, 0, 0.18);
+
+    transition:
+        transform 0.18s ease,
+        border-color 0.18s ease;
+}
+
+.solar-card:hover {
+    transform: translateY(-2px);
+
+    border-color:
+        rgba(155, 224, 0, 0.58);
+}
+
+.solar-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+
+    padding-bottom: 11px;
+
+    border-bottom:
+        1px solid rgba(160, 180, 200, 0.16);
+}
+
+.solar-head small {
+    display: block;
+
+    margin-bottom: 3px;
+
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    color: #93a7b8;
+}
+
+.solar-head h3 {
+    margin: 0;
+
+    font-size: 15px;
+    font-weight: 650;
+
+    color: #f4f8fb;
+}
+
+.solar-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 24px;
+    padding: 4px 9px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(155, 224, 0, 0.10);
+
+    border:
+        1px solid rgba(155, 224, 0, 0.28);
+
+    color: #9be000;
+
+    font-size: 9px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.solar-values {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+
+    margin-top: 12px;
+}
+
+.solar-values div {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.solar-values span {
+    font-size: 9px;
+    color: #8fa3b4;
+}
+
+.solar-values strong {
+    font-size: 18px;
+    font-weight: 550;
+    color: #ffffff;
+}
+
+.solar-values div:first-child strong {
+    color: #9be000;
+}
+
+.solar-update {
+    margin-top: 10px;
+
+    font-size: 8px;
+    color: #778b9c;
+}
+
+.solar-status.estado-ok {
+    color: #9be000;
+
+    background:
+        rgba(155, 224, 0, 0.10);
+
+    border-color:
+        rgba(155, 224, 0, 0.36);
+}
+
+.solar-status.estado-espera {
+    color: #ffd24a;
+
+    background:
+        rgba(255, 210, 74, 0.08);
+
+    border-color:
+        rgba(255, 210, 74, 0.30);
+}
+
+.solar-status.estado-error {
+    color: #ff6b6b;
+
+    background:
+        rgba(255, 107, 107, 0.08);
+
+    border-color:
+        rgba(255, 107, 107, 0.30);
+}
+
+@media (max-width: 1000px) {
+    .solar-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* PORTAL - METEO Y ENLACES PFV */
+
+.solar-card {
+    cursor: pointer;
+}
+
+.solar-card:focus-visible {
+    outline: 2px solid #9be000;
+    outline-offset: 3px;
+}
+
+.solar-values-electricos {
+    grid-template-columns:
+        repeat(3, 1fr);
+}
+
+.solar-weather {
+    display: grid;
+    grid-template-columns:
+        repeat(3, 1fr);
+    gap: 8px;
+
+    margin-top: 12px;
+    padding-top: 11px;
+
+    border-top:
+        1px solid rgba(
+            160,
+            180,
+            200,
+            0.14
+        );
+}
+
+.solar-weather div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.solar-weather span {
+    font-size: 8px;
+    color: #8fa3b4;
+}
+
+.solar-weather strong {
+    font-size: 13px;
+    font-weight: 550;
+    color: #e8f2f8;
+}
+
+.solar-open-map {
+    margin-top: 9px;
+
+    text-align: right;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    color: #34d7ff;
+}
+
+.solar-card:hover .solar-open-map {
+    color: #9be000;
+}
+
+@media (max-width: 850px) {
+
+    .solar-values-electricos,
+    .solar-weather {
+        grid-template-columns: 1fr;
+    }
+}

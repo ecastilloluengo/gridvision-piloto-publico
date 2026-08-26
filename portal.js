@@ -147,9 +147,32 @@
     await Promise.all(Object.entries(zonas).map(([id, zona]) => cargarClima(id, zona)));
   }
 
+  const enlacesOffice365 = {
+    novedades:
+      "https://ingenieriacivilvicentesa.sharepoint.com/sites/OperacionesPecketEnergy/Lists/Novedades%20Operacionales/AllItems.aspx?FocusModeOff=1",
+
+    fatiga:
+      "https://ingenieriacivilvicentesa.sharepoint.com/sites/OperacionesPecketEnergy/Lists/Monitoreo%20Fatiga%20y%20Somnolencia/AllItems.aspx"
+  };
+
   function abrirModulo(name) {
-    const info = moduleInfo[name] || { title: "Módulo", message: "Este módulo se encuentra en desarrollo." };
+
+    if (enlacesOffice365[name]) {
+      window.open(
+        enlacesOffice365[name],
+        "_blank"
+      );
+
+      return;
+    }
+
+    const info = moduleInfo[name] || {
+      title: "M?dulo",
+      message: "Este m?dulo se encuentra en desarrollo."
+    };
+
     if (!modal) return;
+
     modalTitle.textContent = info.title;
     modalMessage.textContent = info.message;
     modal.hidden = false;
@@ -166,8 +189,858 @@
   modal?.addEventListener("click", (e) => { if (e.target === modal) cerrarModal(); });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") cerrarModal(); });
 
+
+  // =========================================================
+  // PORTAL - MONITOREO PFV EN LINEA
+  // =========================================================
+
+  const PORTAL_BACKEND_BASE =
+    (
+      window.location.hostname === "localhost"
+      || window.location.hostname === "127.0.0.1"
+    )
+      ? window.location.origin
+      : "https://gridvision-piloto-publico.onrender.com";
+
+
+  function numeroPortal(valor) {
+
+    const numero = Number(valor);
+
+    return Number.isFinite(numero)
+      ? numero
+      : null;
+  }
+
+
+  function formatearNumeroPortal(valor, decimales = 1) {
+
+    const numero = numeroPortal(valor);
+
+    if (numero === null) {
+      return "--";
+    }
+
+    return numero.toLocaleString(
+      "es-CL",
+      {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: decimales
+      }
+    );
+  }
+
+
+  function horaConsultaPortal() {
+
+    return new Intl.DateTimeFormat(
+      "es-CL",
+      {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false
+      }
+    ).format(new Date());
+  }
+
+
+  function actualizarEstadoSolar(
+    id,
+    texto,
+    tipo
+  ) {
+
+    const elementoEstado =
+      $(`#solar-status-${id}`);
+
+    if (!elementoEstado) {
+      return;
+    }
+
+    elementoEstado.textContent = texto;
+
+    elementoEstado.classList.remove(
+      "estado-ok",
+      "estado-espera",
+      "estado-error"
+    );
+
+    elementoEstado.classList.add(
+      tipo
+    );
+  }
+
+
+  function actualizarValoresSolar(
+    id,
+    potenciaKw,
+    energiaHoyKwh,
+    textoActualizacion
+  ) {
+
+    const potencia =
+      $(`#solar-power-${id}`);
+
+    const energia =
+      $(`#solar-energy-${id}`);
+
+    const actualizacion =
+      $(`#solar-update-${id}`);
+
+    if (potencia) {
+      potencia.textContent =
+        potenciaKw === null
+          ? "-- kW"
+          : `${formatearNumeroPortal(
+              potenciaKw,
+              1
+            )} kW`;
+    }
+
+    if (energia) {
+      energia.textContent =
+        energiaHoyKwh === null
+          ? "-- kWh"
+          : `${formatearNumeroPortal(
+              energiaHoyKwh,
+              1
+            )} kWh`;
+    }
+
+    if (actualizacion) {
+      actualizacion.textContent =
+        textoActualizacion;
+    }
+  }
+
+
+  function potenciaSolaxAKw(valor) {
+
+    const numero =
+      numeroPortal(valor);
+
+    if (numero === null) {
+      return null;
+    }
+
+    // SolaX normalmente entrega acpower en W.
+    // Si ya viniera en kW, evitamos dividirlo.
+    return Math.abs(numero) > 500
+      ? numero / 1000
+      : numero;
+  }
+
+
+  async function cargarSolarLoAguirre() {
+
+    const id = "lo-aguirre";
+
+    try {
+
+      const respuesta = await fetch(
+        `${PORTAL_BACKEND_BASE}/api/solax/lo-aguirre`,
+        {
+          cache: "no-store"
+        }
+      );
+
+      if (!respuesta.ok) {
+        throw new Error(
+          `HTTP ${respuesta.status}`
+        );
+      }
+
+      const datos =
+        await respuesta.json();
+
+      const inversores =
+        Array.isArray(datos.inversores)
+          ? datos.inversores
+          : [];
+
+      // Mismo criterio utilizado por GridVision:
+      // un dato SolaX con m?s de 10 minutos
+      // se considera desactualizado.
+      const UMBRAL_DATO_SOLAX_MS =
+        10 * 60 * 1000;
+
+      const ahoraSolax =
+        Date.now();
+
+      function datoSolaxVigente(
+        inversor
+      ) {
+
+        if (
+          !inversor
+          || !inversor.ultimo_dato
+        ) {
+          return false;
+        }
+
+        const textoFecha =
+          String(
+            inversor.ultimo_dato
+          ).replace(
+            " ",
+            "T"
+          );
+
+        const fechaDato =
+          new Date(textoFecha);
+
+        if (
+          Number.isNaN(
+            fechaDato.getTime()
+          )
+        ) {
+          return false;
+        }
+
+        const edad =
+          ahoraSolax
+          - fechaDato.getTime();
+
+        return (
+          edad >= -120000
+          && edad <= UMBRAL_DATO_SOLAX_MS
+        );
+      }
+
+      const inversoresDisponibles =
+        inversores.filter(
+          inversor =>
+            inversor
+            && inversor.nivel !== "sin_datos"
+            && datoSolaxVigente(inversor)
+        ).length;
+
+      actualizarInversoresSolar(
+        id,
+        inversoresDisponibles,
+        inversores.length
+      );
+
+      let potenciaTotalKw = 0;
+      let energiaHoyKwh = 0;
+
+      let tienePotencia = false;
+      let tieneEnergia = false;
+
+      const fechas = [];
+
+      for (const inversor of inversores) {
+
+        const potenciaKw =
+          potenciaSolaxAKw(
+            inversor.potencia_ac
+          );
+
+        // Solo sumar potencia instant?nea
+        // cuando la telemetr?a est? vigente.
+        if (
+          potenciaKw !== null
+          && datoSolaxVigente(inversor)
+        ) {
+          potenciaTotalKw += potenciaKw;
+          tienePotencia = true;
+        }
+
+        const energia =
+          numeroPortal(
+            inversor.energia_hoy
+          );
+
+        if (energia !== null) {
+          energiaHoyKwh += energia;
+          tieneEnergia = true;
+        }
+
+        if (inversor.ultimo_dato) {
+          fechas.push(
+            String(inversor.ultimo_dato)
+          );
+        }
+      }
+
+      const estado =
+        String(
+          datos.estado_general
+          || "DESCONOCIDO"
+        ).toUpperCase();
+
+      let clase = "estado-espera";
+
+      if (estado === "OK") {
+        clase = "estado-ok";
+      }
+
+      if (
+        estado === "FALLA"
+        || estado === "SIN DATOS"
+        || estado === "SIN COMUNICACION"
+      ) {
+        clase = "estado-error";
+      }
+
+      actualizarEstadoSolar(
+        id,
+        estado,
+        clase
+      );
+
+      const ultimaFuente =
+        fechas.length
+          ? fechas.sort().at(-1)
+          : null;
+
+      actualizarValoresSolar(
+        id,
+        tienePotencia
+          ? potenciaTotalKw
+          : null,
+        tieneEnergia
+          ? energiaHoyKwh
+          : null,
+        ultimaFuente
+          ? `Ultimo dato SolaX: ${ultimaFuente}`
+          : `Ultima consulta: ${horaConsultaPortal()}`
+      );
+
+    } catch (error) {
+
+      console.warn(
+        "Portal SolaX Lo Aguirre:",
+        error
+      );
+
+      actualizarEstadoSolar(
+        id,
+        "SIN DATOS",
+        "estado-error"
+      );
+
+      actualizarValoresSolar(
+        id,
+        null,
+        null,
+        `Consulta fallida: ${horaConsultaPortal()}`
+      );
+    }
+  }
+
+
+  async function cargarSolarFusion(
+    id,
+    planta
+  ) {
+
+    try {
+
+      const respuesta = await fetch(
+        `${PORTAL_BACKEND_BASE}/api/fusionsolar/${planta}`,
+        {
+          cache: "no-store"
+        }
+      );
+
+      if (!respuesta.ok) {
+
+        let detalle = null;
+
+        try {
+          detalle =
+            await respuesta.json();
+        } catch (_) {
+          detalle = null;
+        }
+
+        throw new Error(
+          detalle?.estado
+          || `HTTP ${respuesta.status}`
+        );
+      }
+
+      const datos =
+        await respuesta.json();
+
+      const inversoresFusion =
+        Array.isArray(datos.inversores)
+          ? datos.inversores
+          : [];
+
+      const inversoresDisponibles =
+        inversoresFusion.filter(
+          inversor =>
+            inversor
+            && inversor.telemetria === true
+        ).length;
+
+      actualizarInversoresSolar(
+        id,
+        inversoresDisponibles,
+        inversoresFusion.length
+      );
+
+      const potencia =
+        numeroPortal(
+          datos.potencia_instantanea_kw
+        );
+
+      const energia =
+        numeroPortal(
+          datos.energia_hoy_kwh
+        );
+
+      const estado =
+        String(
+          datos.estado
+          || "DESCONOCIDO"
+        ).toUpperCase();
+
+      let clase = "estado-espera";
+
+      if (estado === "OK") {
+        clase = "estado-ok";
+      }
+
+      if (
+        estado.includes("FALLA")
+        || estado.includes("COMUNICACION")
+        || estado === "DESCONOCIDO"
+      ) {
+        clase = "estado-error";
+      }
+
+      actualizarEstadoSolar(
+        id,
+        estado,
+        clase
+      );
+
+      actualizarValoresSolar(
+        id,
+        potencia,
+        energia,
+        `Ultima consulta: ${horaConsultaPortal()}`
+      );
+
+    } catch (error) {
+
+      console.warn(
+        `Portal FusionSolar ${planta}:`,
+        error
+      );
+
+      actualizarEstadoSolar(
+        id,
+        "SIN DATOS",
+        "estado-error"
+      );
+
+      actualizarValoresSolar(
+        id,
+        null,
+        null,
+        `FusionSolar no disponible ? ${horaConsultaPortal()}`
+      );
+    }
+  }
+
+
+
+  // =========================================================
+  // PORTAL - METEO Y ENLACES PFV
+  // =========================================================
+
+  const coordenadasPFVPortal = {};
+
+
+  function actualizarInversoresSolar(
+    id,
+    disponibles,
+    total
+  ) {
+
+    const elemento =
+      $(`#solar-inverters-${id}`);
+
+    if (!elemento) {
+      return;
+    }
+
+    if (
+      !Number.isFinite(disponibles)
+      || !Number.isFinite(total)
+      || total <= 0
+    ) {
+      elemento.textContent = "-- / --";
+      return;
+    }
+
+    elemento.textContent =
+      `${disponibles} / ${total}`;
+  }
+
+
+  async function resolverCoordenadasPFVPortal() {
+
+    if (
+      Object.keys(
+        coordenadasPFVPortal
+      ).length >= 3
+    ) {
+      return;
+    }
+
+    const respuesta = await fetch(
+      "data/processed/pfv_netbilling.geojson",
+      {
+        cache: "no-store"
+      }
+    );
+
+    if (!respuesta.ok) {
+      throw new Error(
+        `GeoJSON PFV HTTP ${respuesta.status}`
+      );
+    }
+
+    const geo =
+      await respuesta.json();
+
+    for (
+      const feature
+      of geo.features || []
+    ) {
+
+      const id =
+        feature?.properties?.id;
+
+      const coords =
+        feature?.geometry?.coordinates;
+
+      if (
+        !id
+        || !Array.isArray(coords)
+        || coords.length < 2
+      ) {
+        continue;
+      }
+
+      const lon =
+        Number(coords[0]);
+
+      const lat =
+        Number(coords[1]);
+
+      if (
+        !Number.isFinite(lat)
+        || !Number.isFinite(lon)
+      ) {
+        continue;
+      }
+
+      coordenadasPFVPortal[id] = {
+        lat,
+        lon
+      };
+    }
+  }
+
+
+  async function cargarMeteoPFV(
+    idVisual,
+    idActivo
+  ) {
+
+    try {
+
+      await resolverCoordenadasPFVPortal();
+
+      const coordenadas =
+        coordenadasPFVPortal[idActivo];
+
+      if (!coordenadas) {
+        throw new Error(
+          "Coordenadas PFV no disponibles"
+        );
+      }
+
+      const url =
+        new URL(
+          "https://api.open-meteo.com/v1/forecast"
+        );
+
+      url.searchParams.set(
+        "latitude",
+        coordenadas.lat
+      );
+
+      url.searchParams.set(
+        "longitude",
+        coordenadas.lon
+      );
+
+      url.searchParams.set(
+        "current",
+        "shortwave_radiation,temperature_2m,cloud_cover"
+      );
+
+      url.searchParams.set(
+        "timezone",
+        "America/Santiago"
+      );
+
+      const respuesta =
+        await fetch(
+          url,
+          {
+            cache: "no-store"
+          }
+        );
+
+      if (!respuesta.ok) {
+        throw new Error(
+          `Open-Meteo HTTP ${respuesta.status}`
+        );
+      }
+
+      const datos =
+        await respuesta.json();
+
+      const actual =
+        datos.current || {};
+
+      const irradiancia =
+        Number(
+          actual.shortwave_radiation
+        );
+
+      const temperatura =
+        Number(
+          actual.temperature_2m
+        );
+
+      const nubosidad =
+        Number(
+          actual.cloud_cover
+        );
+
+      const elementoIrradiancia =
+        $(`#solar-irradiance-${idVisual}`);
+
+      const elementoTemperatura =
+        $(`#solar-temperature-${idVisual}`);
+
+      const elementoNubes =
+        $(`#solar-clouds-${idVisual}`);
+
+      if (elementoIrradiancia) {
+
+        elementoIrradiancia.textContent =
+          Number.isFinite(irradiancia)
+            ? `${irradiancia.toLocaleString(
+                "es-CL",
+                {
+                  maximumFractionDigits: 0
+                }
+              )} W/m\u00B2`
+            : "-- W/m\u00B2";
+      }
+
+      if (elementoTemperatura) {
+
+        elementoTemperatura.textContent =
+          Number.isFinite(temperatura)
+            ? `${temperatura.toLocaleString(
+                "es-CL",
+                {
+                  minimumFractionDigits: 1,
+                  maximumFractionDigits: 1
+                }
+              )} \u00B0C`
+            : "-- \u00B0C";
+      }
+
+      if (elementoNubes) {
+
+        elementoNubes.textContent =
+          Number.isFinite(nubosidad)
+            ? `${nubosidad.toLocaleString(
+                "es-CL",
+                {
+                  maximumFractionDigits: 0
+                }
+              )} %`
+            : "-- %";
+      }
+
+    } catch (error) {
+
+      console.warn(
+        `Meteo PFV ${idActivo}:`,
+        error
+      );
+    }
+  }
+
+
+  async function actualizarMeteoPFV() {
+
+    await Promise.allSettled([
+
+      cargarMeteoPFV(
+        "lo-aguirre",
+        "PFV-NB-001"
+      ),
+
+      cargarMeteoPFV(
+        "techo",
+        "PFV-NB-002"
+      ),
+
+      cargarMeteoPFV(
+        "paidahuen",
+        "PFV-NB-003"
+      )
+
+    ]);
+  }
+
+
+  async function abrirPFVEnGridVision(
+    idActivo
+  ) {
+
+    try {
+
+      await resolverCoordenadasPFVPortal();
+
+      const coordenadas =
+        coordenadasPFVPortal[idActivo];
+
+      if (!coordenadas) {
+        return;
+      }
+
+      const destino =
+        new URL(
+          "index.html",
+          window.location.href
+        );
+
+      destino.searchParams.set(
+        "lat",
+        coordenadas.lat.toFixed(6)
+      );
+
+      destino.searchParams.set(
+        "lng",
+        coordenadas.lon.toFixed(6)
+      );
+
+      destino.searchParams.set(
+        "zoom",
+        "18"
+      );
+
+      window.location.href =
+        destino.toString();
+
+    } catch (error) {
+
+      console.warn(
+        "No fue posible abrir PFV en GridVision:",
+        error
+      );
+    }
+  }
+
+
+  function activarEnlacesPFV() {
+
+    document
+      .querySelectorAll(
+        ".solar-card[data-pfv-id]"
+      )
+      .forEach(
+        tarjeta => {
+
+          const abrir = () => {
+
+            const idActivo =
+              tarjeta.dataset.pfvId;
+
+            if (idActivo) {
+              abrirPFVEnGridVision(
+                idActivo
+              );
+            }
+          };
+
+          tarjeta.addEventListener(
+            "click",
+            abrir
+          );
+
+          tarjeta.addEventListener(
+            "keydown",
+            evento => {
+
+              if (
+                evento.key === "Enter"
+                || evento.key === " "
+              ) {
+
+                evento.preventDefault();
+
+                abrir();
+              }
+            }
+          );
+        }
+      );
+  }
+
+
+  async function actualizarMonitoreoSolar() {
+
+    await Promise.allSettled([
+      cargarSolarLoAguirre(),
+
+      cargarSolarFusion(
+        "techo",
+        "techo"
+      ),
+
+      cargarSolarFusion(
+        "paidahuen",
+        "paidahuen"
+      )
+    ]);
+  }
+
   actualizarRelojes();
   setInterval(actualizarRelojes, 1000);
   actualizarClima();
   setInterval(actualizarClima, 10 * 60 * 1000);
+
+  actualizarMonitoreoSolar();
+
+  actualizarMeteoPFV();
+
+  activarEnlacesPFV();
+
+  // Actualizaci?n autom?tica cada 5 minutos
+  setInterval(
+    actualizarMonitoreoSolar,
+    5 * 60 * 1000
+  );
+
+  setInterval(
+    actualizarMeteoPFV,
+    5 * 60 * 1000
+  );
 })();

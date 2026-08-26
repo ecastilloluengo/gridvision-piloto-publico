@@ -3054,12 +3054,25 @@ async function iniciarGridVision() {
             [-17.0, -65.0]
         ];
 
-        mapa.fitBounds(
-            limitesChile,
-            {
-                padding: [25, 25]
-            }
-        );
+        const parametrosInicio =
+            new URLSearchParams(
+                window.location.search
+            );
+
+        const tieneUbicacionEnURL =
+            parametrosInicio.has("lat")
+            && parametrosInicio.has("lng");
+
+        // Si GridVision se abri? desde una ubicaci?n
+        // espec?fica, respetamos ese zoom y posici?n.
+        if (!tieneUbicacionEnURL) {
+            mapa.fitBounds(
+                limitesChile,
+                {
+                    padding: [25, 25]
+                }
+            );
+        }
 
         estado.textContent =
             "Datos cargados correctamente";
