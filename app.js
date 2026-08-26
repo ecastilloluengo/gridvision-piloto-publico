@@ -536,9 +536,9 @@ return true;
 // MAPA INICIAL DE GRIDVISION
 // -----------------------------------------------------
 
-mapaCalles.addTo(mapa);
 // Mapa visible al iniciar GridVision
-mapaCalles.addTo(mapa);
+// Sat?lite HD + etiquetas
+mapaSatelital.addTo(mapa);
 
         L.control.scale({
             imperial: false,
