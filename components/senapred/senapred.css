@@ -680,3 +680,49 @@
 #senapred-contador-header {
     font-weight: 700;
 }
+
+/* =========================================================
+   ACCIONES CABECERA SENAPRED
+   ========================================================= */
+
+.senapred-acciones-cabecera {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 0 0 auto;
+}
+
+#actualizar-senapred {
+    width: 34px;
+    height: 34px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #e2e8f0;
+    cursor: pointer;
+    font-size: 25px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#actualizar-senapred:hover {
+    background: rgba(255, 255, 255, 0.10);
+    color: #ffffff;
+}
+
+#actualizar-senapred:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+
+#actualizar-senapred.senapred-actualizando {
+    animation: senapred-girar 0.8s linear infinite;
+}
+
+@keyframes senapred-girar {
+    to {
+        transform: rotate(360deg);
+    }
+}

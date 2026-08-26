@@ -1113,6 +1113,31 @@ async function cargarComponente() {
             cerrarPanel
         );
 
+        // Boton actualizar SENAPRED
+        const botonActualizarSenapred =
+            elemento("actualizar-senapred");
+
+        botonActualizarSenapred?.addEventListener(
+            "click",
+            async () => {
+                botonActualizarSenapred.disabled = true;
+
+                botonActualizarSenapred.classList.add(
+                    "senapred-actualizando"
+                );
+
+                try {
+                    await cargarDatos();
+                } finally {
+                    botonActualizarSenapred.disabled = false;
+
+                    botonActualizarSenapred.classList.remove(
+                        "senapred-actualizando"
+                    );
+                }
+            }
+        );
+
 
         // Botón volver desde detalle
         elemento(
