@@ -3163,6 +3163,20 @@ function obtenerCoordenadasFeature(feature) {
 }
 
 function obtenerNombresExtremos(nombreLinea = "") {
+
+    const nombreOriginal =
+        String(nombreLinea).trim().toUpperCase();
+
+    if (
+        nombreOriginal === "LTVP"
+        || nombreOriginal.includes("_LTVP")
+    ) {
+        return {
+            extremoA: "S/E VIENTOS PATAG\u00D3NICOS",
+            extremoB: "S/E TRES PUENTES"
+        };
+    }
+
     const nombreLimpio = String(nombreLinea)
         .replace(/^\d+_/, "")
         .replace(
@@ -3172,7 +3186,7 @@ function obtenerNombresExtremos(nombreLinea = "") {
         .trim();
 
     const partes = nombreLimpio
-        .split(/\s+-\s+/)
+        .split(/\s+(?:-|\u2013|\u2014)\s+/)
         .map((parte) => parte.trim())
         .filter(Boolean);
 
