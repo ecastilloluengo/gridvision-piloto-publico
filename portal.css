@@ -479,3 +479,137 @@ button,a{font:inherit}button{color:inherit}.portal-shell{min-height:100vh}
         grid-template-columns: 1fr;
     }
 }
+
+
+/* PORTAL - ACTUALIZACION MANUAL PFV */
+
+.solar-refresh {
+    margin-left: auto;
+
+    width: 27px;
+    height: 27px;
+
+    display: grid;
+    place-items: center;
+
+    flex: 0 0 auto;
+
+    padding: 0;
+
+    border-radius: 50%;
+
+    border:
+        1px solid rgba(
+            52,
+            215,
+            255,
+            0.38
+        );
+
+    background:
+        rgba(
+            52,
+            215,
+            255,
+            0.07
+        );
+
+    color: #34d7ff;
+
+    font-size: 18px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease;
+}
+
+.solar-refresh:hover {
+    color: #9be000;
+
+    border-color:
+        rgba(
+            155,
+            224,
+            0,
+            0.60
+        );
+
+    background:
+        rgba(
+            155,
+            224,
+            0,
+            0.09
+        );
+}
+
+.solar-refresh:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+
+.solar-refresh.actualizando {
+    animation:
+        solar-refresh-spin
+        0.75s linear infinite;
+}
+
+@keyframes solar-refresh-spin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   PORTAL - GRUPO ALERTAS LATERAL
+   ========================================================= */
+
+.nav-alertas-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.nav-alertas-titulo {
+    cursor: default;
+}
+
+.nav-subitem {
+    min-height: 38px;
+    padding-left: 20px;
+    font-size: 12px;
+}
+
+.nav-subitem svg {
+    width: 16px;
+    height: 16px;
+}
+
+.nav-alert-badge {
+    margin-left: auto;
+    min-width: 24px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: #9be000;
+    border: 1px solid rgba(155, 224, 0, 0.35);
+    background: rgba(155, 224, 0, 0.08);
+}
+
+.nav-external {
+    margin-left: auto;
+    color: #34d7ff;
+    font-size: 13px;
+}

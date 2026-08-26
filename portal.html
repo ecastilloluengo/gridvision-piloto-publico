@@ -21,9 +21,60 @@
       <button class="nav-item" type="button" data-module="kpi-electricos"><svg><use href="#i-chart"></use></svg><span>KPI Activos Eléctricos</span></button>
       <button class="nav-item" type="button" data-module="kpi-fatiga"><svg><use href="#i-brain"></use></svg><span>KPI Fatiga</span></button>
       <div class="nav-divider"></div>
-      <button class="nav-item" type="button" data-module="alertas"><svg><use href="#i-bell"></use></svg><span>Alertas</span><span class="badge">0</span></button>
-      <button class="nav-item" type="button" data-module="configuracion"><svg><use href="#i-gear"></use></svg><span>Configuración</span></button>
-      <button class="nav-item" type="button" data-module="ayuda"><svg><use href="#i-help"></use></svg><span>Ayuda</span></button>
+
+      <div class="nav-alertas-grupo">
+
+        <div class="nav-item nav-alertas-titulo">
+          <svg><use href="#i-bell"></use></svg>
+          <span>Alertas</span>
+          <span class="badge" id="badge-alertas-total">0</span>
+        </div>
+
+        <a
+          class="nav-item nav-subitem"
+          href="index.html"
+          title="Revisar alertas SENAPRED en GridVision"
+        >
+          <svg><use href="#i-bell"></use></svg>
+          <span>SENAPRED</span>
+          <span class="nav-alert-badge" id="badge-senapred">--</span>
+        </a>
+
+        <a
+          class="nav-item nav-subitem"
+          href="index.html"
+          title="Revisar alertas meteorol&oacute;gicas en GridVision"
+        >
+          <svg><use href="#i-map"></use></svg>
+          <span>Clima GridVision</span>
+          <span class="nav-alert-badge" id="badge-clima-gridvision">--</span>
+        </a>
+
+        <a
+          class="nav-item nav-subitem"
+          href="https://web.gruposaesa.cl/web/saesa/mapa-desconexiones"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Abrir mapa de desconexiones SAESA"
+        >
+          <svg><use href="#i-map"></use></svg>
+          <span>SAESA</span>
+          <span class="nav-external">&#8599;</span>
+        </a>
+
+        <a
+          class="nav-item nav-subitem"
+          href="https://www.cge.cl/servicios-en-linea/mapa-de-afectacion/"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Abrir mapa de afectaci&oacute;n CGE"
+        >
+          <svg><use href="#i-map"></use></svg>
+          <span>CGE</span>
+          <span class="nav-external">&#8599;</span>
+        </a>
+
+      </div>
     </nav>
 
     <div class="system-card">
@@ -142,6 +193,14 @@
             <h3>PFV ICV Lo Aguirre</h3>
           </div>
 
+          <button
+            class="solar-refresh"
+            type="button"
+            data-solar-refresh="lo-aguirre"
+            title="Actualizar PFV ICV Lo Aguirre"
+            aria-label="Actualizar PFV ICV Lo Aguirre"
+          >&#8635;</button>
+
           <span
             class="solar-status"
             id="solar-status-lo-aguirre"
@@ -208,7 +267,7 @@
         </div>
 
         <div class="solar-open-map">
-          Ver ubicaci?n en GridVision &rarr;
+          Ver ubicaci&oacute;n en GridVision &rarr;
         </div>
 
       </article>
@@ -226,6 +285,14 @@
             <small>FusionSolar</small>
             <h3>VSE Techo</h3>
           </div>
+
+          <button
+            class="solar-refresh"
+            type="button"
+            data-solar-refresh="techo"
+            title="Actualizar VSE Techo"
+            aria-label="Actualizar VSE Techo"
+          >&#8635;</button>
 
           <span
             class="solar-status"
@@ -293,7 +360,7 @@
         </div>
 
         <div class="solar-open-map">
-          Ver ubicaci?n en GridVision &rarr;
+          Ver ubicaci&oacute;n en GridVision &rarr;
         </div>
 
       </article>
@@ -311,6 +378,14 @@
             <small>FusionSolar</small>
             <h3>VSE Paidahuen</h3>
           </div>
+
+          <button
+            class="solar-refresh"
+            type="button"
+            data-solar-refresh="paidahuen"
+            title="Actualizar VSE Paidahuen"
+            aria-label="Actualizar VSE Paidahuen"
+          >&#8635;</button>
 
           <span
             class="solar-status"
@@ -378,14 +453,14 @@
         </div>
 
         <div class="solar-open-map">
-          Ver ubicaci?n en GridVision &rarr;
+          Ver ubicaci&oacute;n en GridVision &rarr;
         </div>
 
       </article>
 
     </section>
 
-    <footer class="footer"><span></span><p>Operamos hoy, <strong>para un mañana sostenible</strong></p><span></span></footer>
+    <footer class="footer"><span></span><p>Con nuestra energ?a impulsamos un futuro sostenible desde el origen</p><span></span></footer>
   </main>
 </div>
 

@@ -294,7 +294,7 @@
           ? "-- kW"
           : `${formatearNumeroPortal(
               potenciaKw,
-              1
+              2
             )} kW`;
     }
 
@@ -317,19 +317,16 @@
 
   function potenciaSolaxAKw(valor) {
 
-    const numero =
-      numeroPortal(valor);
+  const numero = Number(valor);
 
-    if (numero === null) {
-      return null;
-    }
-
-    // SolaX normalmente entrega acpower en W.
-    // Si ya viniera en kW, evitamos dividirlo.
-    return Math.abs(numero) > 500
-      ? numero / 1000
-      : numero;
+  if (!Number.isFinite(numero)) {
+    return null;
   }
+
+  // SolaX entrega acpower en W.
+  // GridVision y el Portal muestran potencia en kW.
+  return numero / 1000;
+}
 
 
   async function cargarSolarLoAguirre() {
@@ -1005,6 +1002,153 @@
   }
 
 
+
+  // =========================================================
+  // PORTAL - ACTUALIZACION MANUAL PFV
+  // =========================================================
+
+  const configuracionActualizacionPFV = {
+
+    "lo-aguirre": {
+      tipo: "solax",
+      activo: "PFV-NB-001"
+    },
+
+    "techo": {
+      tipo: "fusion",
+      planta: "techo",
+      activo: "PFV-NB-002"
+    },
+
+    "paidahuen": {
+      tipo: "fusion",
+      planta: "paidahuen",
+      activo: "PFV-NB-003"
+    }
+
+  };
+
+
+  async function actualizarTarjetaPFV(
+    idVisual
+  ) {
+
+    const configuracion =
+      configuracionActualizacionPFV[
+        idVisual
+      ];
+
+    if (!configuracion) {
+      return;
+    }
+
+    const boton =
+      document.querySelector(
+        `[data-solar-refresh="${idVisual}"]`
+      );
+
+    if (boton) {
+
+      boton.disabled = true;
+
+      boton.classList.add(
+        "actualizando"
+      );
+
+      boton.title =
+        "Actualizando datos...";
+    }
+
+
+    try {
+
+      const tareas = [
+        cargarMeteoPFV(
+          idVisual,
+          configuracion.activo
+        )
+      ];
+
+
+      if (
+        configuracion.tipo === "solax"
+      ) {
+
+        tareas.push(
+          cargarSolarLoAguirre()
+        );
+
+      } else {
+
+        tareas.push(
+          cargarSolarFusion(
+            idVisual,
+            configuracion.planta
+          )
+        );
+      }
+
+
+      await Promise.allSettled(
+        tareas
+      );
+
+    } finally {
+
+      if (boton) {
+
+        boton.disabled = false;
+
+        boton.classList.remove(
+          "actualizando"
+        );
+
+        boton.title =
+          "Actualizar datos";
+      }
+    }
+  }
+
+
+  function activarBotonesActualizarPFV() {
+
+    document
+      .querySelectorAll(
+        "[data-solar-refresh]"
+      )
+      .forEach(
+        boton => {
+
+          boton.addEventListener(
+            "click",
+            evento => {
+
+              // No abrir GridVision al pulsar
+              // solamente el boton actualizar.
+              evento.preventDefault();
+              evento.stopPropagation();
+
+              actualizarTarjetaPFV(
+                boton.dataset.solarRefresh
+              );
+            }
+          );
+
+
+          boton.addEventListener(
+            "keydown",
+            evento => {
+
+              // Evita que Enter o espacio
+              // activen tambien la tarjeta.
+              evento.stopPropagation();
+            }
+          );
+        }
+      );
+  }
+
+
   async function actualizarMonitoreoSolar() {
 
     await Promise.allSettled([
@@ -1031,14 +1175,60 @@
 
   actualizarMeteoPFV();
 
-  activarEnlacesPFV();
-
-  // Actualizaci?n autom?tica cada 5 minutos
-  setInterval(
-    actualizarMonitoreoSolar,
-    5 * 60 * 1000
+  // =====================================================
+  // REINTENTO INICIAL PFV
+  // =====================================================
+  // Algunas plataformas pueden no responder en la
+  // primera consulta al entrar al Portal.
+  // Se realiza un segundo intento autom?tico.
+  setTimeout(
+    () => {
+      actualizarMonitoreoSolar();
+    },
+    3000
   );
 
+  activarEnlacesPFV();
+
+  activarBotonesActualizarPFV();
+
+  // Si el navegador restaura el Portal al volver
+  // desde GridVision u otra pagina, consultar nuevamente.
+  window.addEventListener(
+    "pageshow",
+    evento => {
+
+      if (evento.persisted) {
+
+        actualizarMonitoreoSolar();
+
+        actualizarMeteoPFV();
+      }
+    }
+  );
+
+  // Si el Portal estaba abierto en otra pesta?a
+  // y vuelve a quedar visible, consultar nuevamente.
+  document.addEventListener(
+    "visibilitychange",
+    () => {
+
+      if (!document.hidden) {
+
+        actualizarMonitoreoSolar();
+
+        actualizarMeteoPFV();
+      }
+    }
+  );
+
+  // Actualizaci?n autom?tica del monitoreo PFV cada 1 minuto
+  setInterval(
+    actualizarMonitoreoSolar,
+    1 * 60 * 1000
+  );
+
+  // El clima no necesita consultarse cada minuto
   setInterval(
     actualizarMeteoPFV,
     5 * 60 * 1000

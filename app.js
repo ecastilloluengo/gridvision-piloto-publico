@@ -113,6 +113,80 @@ function abrirUbicacionCompartidaDesdeURL() {
 }
 
 abrirUbicacionCompartidaDesdeURL();
+
+// ======================================================
+// ABRIR SENAPRED DESDE PORTAL
+// ======================================================
+
+async function abrirSenapredDesdeURL() {
+
+    const parametros =
+        new URLSearchParams(
+            window.location.search
+        );
+
+    const idAlerta =
+        parametros.get("senapred");
+
+    if (!idAlerta) {
+        return;
+    }
+
+    let intentos = 0;
+
+    const intentarAbrir =
+        async () => {
+
+            intentos += 1;
+
+            const api =
+                window.GridVisionSenapred;
+
+            if (
+                api
+                && typeof api.abrirAlertaPorId
+                    === "function"
+            ) {
+
+                const abierta =
+                    await api.abrirAlertaPorId(
+                        idAlerta
+                    );
+
+                if (abierta) {
+
+                    console.log(
+                        "SENAPRED abierta desde Portal:",
+                        idAlerta
+                    );
+
+                    return;
+                }
+            }
+
+            if (intentos < 30) {
+
+                setTimeout(
+                    intentarAbrir,
+                    250
+                );
+            }
+
+            else {
+
+                console.warn(
+                    "No fue posible abrir la alerta SENAPRED:",
+                    idAlerta
+                );
+            }
+        };
+
+    intentarAbrir();
+}
+
+abrirSenapredDesdeURL();
+
+
 // ======================================================
 // MI UBICACIÓN ACTUAL
 // ======================================================

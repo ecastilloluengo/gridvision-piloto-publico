@@ -148,36 +148,226 @@ def estado_operacional_solax(codigo):
     }
 
 
+# ============================================================
+# CACHE SOLAX CLOUD
+# ============================================================
+
+# Una actualizaci?n completa de Lo Aguirre utiliza
+# exactamente 3 llamadas: una por inversor.
+# SolaX permite 3 llamadas cada 5 minutos.
+#
+# Usamos un peque?o margen adicional para no consultar
+# exactamente en el l?mite de la ventana.
+SOLAX_CACHE_SECONDS = 5 * 60 + 20
+
+solax_cache = {}
+
+solax_cache_lock = threading.Lock()
+
+solax_blocked_until = 0
+
+
 def consultar_solax(wifi_sn):
+
+    global solax_blocked_until
 
     if not SOLAX_TOKEN_ID:
         raise RuntimeError(
-            "No se encontró SOLAX_TOKEN_ID"
+            "No se encontr? SOLAX_TOKEN_ID"
         )
 
-    cuerpo = json.dumps({
-        "wifiSn": wifi_sn
-    }).encode("utf-8")
+    ahora = time.time()
 
-    solicitud = urllib.request.Request(
-        SOLAX_API_URL,
-        data=cuerpo,
-        method="POST",
-        headers={
-            "Content-Type": "application/json",
-            "tokenId": SOLAX_TOKEN_ID
-        }
+    cache = solax_cache.get(
+        wifi_sn
     )
 
-    with urllib.request.urlopen(
-        solicitud,
-        timeout=20
-    ) as respuesta:
+    # -----------------------------------------------------
+    # DATO VIGENTE EN CACHE
+    # -----------------------------------------------------
 
-        return json.loads(
-            respuesta.read().decode("utf-8")
+    if (
+        cache
+        and ahora - cache["time"]
+            < SOLAX_CACHE_SECONDS
+    ):
+        return cache["data"]
+
+
+    # -----------------------------------------------------
+    # EVITAR CONSULTAS SIMULTANEAS
+    # -----------------------------------------------------
+
+    with solax_cache_lock:
+
+        ahora = time.time()
+
+        cache = solax_cache.get(
+            wifi_sn
         )
-    # ============================================================
+
+        # Otro hilo puede haber actualizado
+        # mientras esper?bamos.
+        if (
+            cache
+            and ahora - cache["time"]
+                < SOLAX_CACHE_SECONDS
+        ):
+            return cache["data"]
+
+
+        # -------------------------------------------------
+        # COOLDOWN POR LIMITE DE API
+        # -------------------------------------------------
+
+        if ahora < solax_blocked_until:
+
+            if cache:
+
+                print(
+                    "SolaX usando ultimo dato valido "
+                    "durante cooldown:",
+                    wifi_sn,
+                    flush=True
+                )
+
+                return cache["data"]
+
+            return {
+                "success": False,
+                "exception":
+                    "SolaX temporalmente en cooldown "
+                    "por limite de consultas API"
+            }
+
+
+        # -------------------------------------------------
+        # CONSULTA REAL A SOLAX
+        # -------------------------------------------------
+
+        cuerpo = json.dumps({
+            "wifiSn": wifi_sn
+        }).encode("utf-8")
+
+        solicitud = urllib.request.Request(
+            SOLAX_API_URL,
+            data=cuerpo,
+            method="POST",
+            headers={
+                "Content-Type":
+                    "application/json",
+                "tokenId":
+                    SOLAX_TOKEN_ID
+            }
+        )
+
+
+        try:
+
+            with urllib.request.urlopen(
+                solicitud,
+                timeout=20
+            ) as respuesta:
+
+                datos_respuesta = json.loads(
+                    respuesta
+                    .read()
+                    .decode("utf-8")
+                )
+
+        except Exception as error:
+
+            # Si existe un ?ltimo dato v?lido,
+            # nunca lo destruimos por una falla
+            # temporal de comunicaci?n.
+            if cache:
+
+                print(
+                    "SolaX consulta fallida; "
+                    "usando cache anterior:",
+                    wifi_sn,
+                    error,
+                    flush=True
+                )
+
+                return cache["data"]
+
+            raise
+
+
+        # -------------------------------------------------
+        # RESPUESTA VALIDA
+        # -------------------------------------------------
+
+        if datos_respuesta.get(
+            "success"
+        ):
+
+            solax_cache[wifi_sn] = {
+                "data":
+                    datos_respuesta,
+
+                "time":
+                    time.time()
+            }
+
+            return datos_respuesta
+
+
+        # -------------------------------------------------
+        # DETECTAR LIMITE DE SOLAX
+        # -------------------------------------------------
+
+        mensaje = str(
+            datos_respuesta.get(
+                "exception"
+            )
+            or ""
+        )
+
+        mensaje_minuscula = mensaje.lower()
+
+        if (
+            "requests within 5 minutes"
+            in mensaje_minuscula
+            or
+            "call threshold"
+            in mensaje_minuscula
+        ):
+
+            solax_blocked_until = (
+                time.time()
+                + SOLAX_CACHE_SECONDS
+            )
+
+            print(
+                "SolaX alcanzo limite API. "
+                "Cooldown activado por "
+                f"{SOLAX_CACHE_SECONDS} segundos.",
+                flush=True
+            )
+
+
+        # -------------------------------------------------
+        # CONSERVAR ULTIMO DATO VALIDO
+        # -------------------------------------------------
+
+        if cache:
+
+            print(
+                "SolaX rechazo nueva consulta; "
+                "usando ultimo dato valido:",
+                wifi_sn,
+                flush=True
+            )
+
+            return cache["data"]
+
+
+        return datos_respuesta
+
+
+# ============================================================
 # HUAWEI FUSIONSOLAR - VSE TECHO / VSE PAIDAHUEN
 # ============================================================
 

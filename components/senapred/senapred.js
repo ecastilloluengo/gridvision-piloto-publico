@@ -1042,6 +1042,79 @@ if (contadorHeader) {
 
 
     // =====================================================
+    // ABRIR ALERTA SENAPRED POR ID
+    // =====================================================
+
+    async function abrirAlertaPorId(id) {
+
+        if (!id) {
+            return false;
+        }
+
+        try {
+
+            const respuesta =
+                await fetch(
+                    RUTA_DATOS,
+                    {
+                        cache: "no-store"
+                    }
+                );
+
+            if (!respuesta.ok) {
+                throw new Error(
+                    `HTTP ${respuesta.status}`
+                );
+            }
+
+            const datos =
+                await respuesta.json();
+
+            const alertas =
+                Array.isArray(datos.alertas)
+                    ? datos.alertas
+                    : [];
+
+            const alerta =
+                alertas.find(
+                    item =>
+                        String(item.id)
+                        === String(id)
+                );
+
+            if (!alerta) {
+
+                console.warn(
+                    "SENAPRED: alerta no encontrada:",
+                    id
+                );
+
+                return false;
+            }
+
+            abrirPanel();
+
+            abrirDetalle(
+                alerta
+            );
+
+            return true;
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Error abriendo alerta SENAPRED:",
+                error
+            );
+
+            return false;
+        }
+    }
+
+
+    // =====================================================
     // ABRIR / CERRAR PANEL
     // =====================================================
 
@@ -1237,7 +1310,8 @@ async function cargarComponente() {
 window.GridVisionSenapred = {
     abrirPanel,
     cerrarPanel,
-    cargarDatos
+    cargarDatos,
+    abrirAlertaPorId
 };
 
 
