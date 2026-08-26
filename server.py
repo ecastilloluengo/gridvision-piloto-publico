@@ -3,6 +3,10 @@ import os
 import time
 import secrets
 import threading
+import sys
+
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 from http.cookies import SimpleCookie
 import urllib.parse
@@ -18,6 +22,21 @@ from pathlib import Path
 
 CARPETA_PROYECTO = Path(__file__).resolve().parent
 ARCHIVO_ENV = CARPETA_PROYECTO / ".env"
+
+CARPETA_SCRIPTS = CARPETA_PROYECTO / "scripts"
+
+if str(CARPETA_SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(CARPETA_SCRIPTS))
+
+from senapred_alertas import (
+    obtener_alertas,
+    obtener_tipos_alerta,
+    alerta_es_relevante,
+)
+
+from senapred_normalizador import (
+    normalizar_alerta,
+)
 
 PUERTO = int(os.environ.get("PORT", "8000"))
 
@@ -626,6 +645,87 @@ def obtener_planta_fusionsolar(clave):
 # SESIÃ“N GOOGLE MAP TILES
 # ============================================================
 
+# ============================================================
+# SENAPRED - CONSULTA EN VIVO
+# ============================================================
+
+SENAPRED_CACHE_SECONDS = 60
+
+senapred_cache = None
+senapred_cache_time = 0
+senapred_cache_lock = threading.Lock()
+
+
+def consultar_senapred_en_vivo():
+
+    global senapred_cache
+    global senapred_cache_time
+
+    ahora = time.time()
+
+    if (
+        senapred_cache is not None
+        and ahora - senapred_cache_time < SENAPRED_CACHE_SECONDS
+    ):
+        return senapred_cache
+
+    with senapred_cache_lock:
+
+        ahora = time.time()
+
+        if (
+            senapred_cache is not None
+            and ahora - senapred_cache_time < SENAPRED_CACHE_SECONDS
+        ):
+            return senapred_cache
+
+        tipos = obtener_tipos_alerta()
+
+        alertas = obtener_alertas(
+            dias=60
+        )
+
+        relevantes = [
+            alerta
+            for alerta in alertas
+            if alerta_es_relevante(alerta)
+        ]
+
+        normalizadas = [
+            normalizar_alerta(
+                alerta,
+                tipos
+            )
+            for alerta in relevantes
+        ]
+
+        normalizadas.sort(
+            key=lambda item:
+                item.get("fechaHora") or "",
+            reverse=True
+        )
+
+        ahora_chile = datetime.now(
+            ZoneInfo("America/Santiago")
+        )
+
+        respuesta = {
+            "fuente": "SENAPRED",
+            "sistema": "GridVision Chile",
+            "generadoEn": ahora_chile.isoformat(),
+            "diasConsulta": 60,
+            "totalAlertasSenapred": len(alertas),
+            "totalAlertasRelevantes": len(normalizadas),
+            "alertas": normalizadas,
+            "consultaEnVivo": True
+        }
+
+        senapred_cache = respuesta
+        senapred_cache_time = time.time()
+
+        return respuesta
+
+
 def obtener_google_session():
     global google_session_token
     global google_session_expiry
@@ -839,6 +939,71 @@ class GridVisionHandler(SimpleHTTPRequestHandler):
                 # ----------------------------------------------------
         # FUSIONSOLAR - VSE TECHO / VSE PAIDAHUEN
         # ----------------------------------------------------
+
+        # SENAPRED - ACTUALIZACION EN VIVO
+        if ruta.path == "/api/senapred/actualizar":
+
+            try:
+                datos = consultar_senapred_en_vivo()
+
+                self.send_response(200)
+
+                self.send_header(
+                    "Content-Type",
+                    "application/json; charset=utf-8"
+                )
+
+                agregar_cors_google(self)
+
+                self.send_header(
+                    "Cache-Control",
+                    "no-store, no-cache, must-revalidate"
+                )
+
+                self.end_headers()
+
+                self.wfile.write(
+                    json.dumps(
+                        datos,
+                        ensure_ascii=False
+                    ).encode("utf-8")
+                )
+
+            except Exception as error:
+
+                print(
+                    "Error SENAPRED en vivo:",
+                    error,
+                    flush=True
+                )
+
+                self.send_response(502)
+
+                self.send_header(
+                    "Content-Type",
+                    "application/json; charset=utf-8"
+                )
+
+                agregar_cors_google(self)
+
+                self.send_header(
+                    "Cache-Control",
+                    "no-store"
+                )
+
+                self.end_headers()
+
+                self.wfile.write(
+                    json.dumps({
+                        "ok": False,
+                        "servicio": "SENAPRED",
+                        "mensaje":
+                            "No fue posible consultar SENAPRED"
+                    }).encode("utf-8")
+                )
+
+            return
+
 
         if ruta.path.startswith("/api/fusionsolar/"):
 

@@ -1127,8 +1127,51 @@ async function cargarComponente() {
                 );
 
                 try {
-                    await cargarDatos();
+                    const esLocal =
+                        window.location.hostname === "localhost"
+                        || window.location.hostname === "127.0.0.1";
+
+                    const baseApi = esLocal
+                        ? "http://localhost:8000"
+                        : "https://gridvision-piloto-publico.onrender.com";
+
+                    const respuesta =
+                        await fetch(
+                            `${baseApi}/api/senapred/actualizar`,
+                            {
+                                cache: "no-store"
+                            }
+                        );
+
+                    if (!respuesta.ok) {
+                        throw new Error(
+                            `HTTP ${respuesta.status}`
+                        );
+                    }
+
+                    const datos =
+                        await respuesta.json();
+
+                    mostrarDatos(datos);
+
+                } catch (error) {
+
+                    console.error(
+                        "Error actualizando SENAPRED en vivo:",
+                        error
+                    );
+
+                    const estado =
+                        elemento("senapred-estado");
+
+                    if (estado) {
+                        estado.hidden = false;
+                        estado.textContent =
+                            "No fue posible actualizar SENAPRED en vivo.";
+                    }
+
                 } finally {
+
                     botonActualizarSenapred.disabled = false;
 
                     botonActualizarSenapred.classList.remove(
