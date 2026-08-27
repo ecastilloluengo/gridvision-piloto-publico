@@ -24,16 +24,11 @@
 
       <div class="nav-alertas-grupo">
 
-        <div class="nav-item nav-alertas-titulo">
-          <svg><use href="#i-bell"></use></svg>
-          <span>Alertas</span>
-          <span class="badge" id="badge-alertas-total">0</span>
-        </div>
-
         <a
           class="nav-item nav-subitem"
+          id="nav-senapred"
           href="index.html"
-          title="Revisar alertas SENAPRED en GridVision"
+          title="Abrir alerta SENAPRED en GridVision"
         >
           <svg><use href="#i-bell"></use></svg>
           <span>SENAPRED</span>
@@ -42,8 +37,9 @@
 
         <a
           class="nav-item nav-subitem"
+          id="nav-clima-gridvision"
           href="index.html"
-          title="Revisar alertas meteorol&oacute;gicas en GridVision"
+          title="Abrir alerta meteorol&oacute;gica en GridVision"
         >
           <svg><use href="#i-map"></use></svg>
           <span>Clima GridVision</span>
@@ -460,7 +456,17 @@
 
     </section>
 
-    <footer class="footer"><span></span><p>Con nuestra energ?a impulsamos un futuro sostenible desde el origen</p><span></span></footer>
+    <footer class="footer footer-pecket">
+      <span></span>
+      <p>
+        Con nuestra
+        <strong class="footer-energia">energ&iacute;a</strong>
+        impulsamos un
+        <strong class="footer-sostenible">futuro sostenible</strong>
+        <em class="footer-origen">desde el origen</em>
+      </p>
+      <span></span>
+    </footer>
   </main>
 </div>
 
@@ -488,6 +494,8 @@
   <symbol id="i-rain" viewBox="0 0 24 24"><path d="M6 15h12a4 4 0 0 0 .5-8A6 6 0 0 0 7 5.5 4.5 4.5 0 0 0 6 15Z"/><path d="M8 18v3M12 18v3M16 18v3"/></symbol>
   <symbol id="i-wind" viewBox="0 0 24 24"><path d="M3 8h11c2.5 0 2.5-4 0-4M3 12h16c3 0 3 4 0 4h-2M3 16h9"/></symbol>
 </svg>
+<script src="components/alertas/activos-meteorologicos.js"></script>
 <script src="portal.js"></script>
+<script src="components/alertas/estado-alertas.js"></script>
 </body>
 </html>

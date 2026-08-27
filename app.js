@@ -3148,6 +3148,12 @@ async function iniciarGridVision() {
             );
         }
 
+        // Si GridVision fue abierto desde una
+        // alerta meteorologica del Portal,
+        // ahora que los activos ya estan cargados,
+        // enfocamos el activo y abrimos su popup.
+        abrirClimaDesdeURL();
+
         estado.textContent =
             "Datos cargados correctamente";
 
@@ -3218,16 +3224,64 @@ function enfocarResultado(registro) {
 window.abrirActivoMeteorologicoPorId = function (id) {
 
     const registro = indiceBusqueda.find((item) => {
-        return item.feature.properties.id === id;
+        return String(item.feature.properties.id)
+            === String(id);
     });
 
     if (!registro) {
-        console.warn("No se encontró el activo:", id);
-        return;
+        console.warn(
+            "No se encontr? el activo:",
+            id
+        );
+
+        return false;
     }
 
     enfocarResultado(registro);
+
+    return true;
 };
+
+
+// ======================================================
+// ABRIR ALERTA CLIMA DESDE PORTAL
+// ======================================================
+
+function abrirClimaDesdeURL() {
+
+    const parametros =
+        new URLSearchParams(
+            window.location.search
+        );
+
+    const idActivo =
+        parametros.get("clima");
+
+    if (!idActivo) {
+        return;
+    }
+
+    const abierto =
+        window.abrirActivoMeteorologicoPorId(
+            idActivo
+        );
+
+    if (abierto) {
+
+        console.log(
+            "Alerta Clima abierta desde Portal:",
+            idActivo
+        );
+    }
+
+    else {
+
+        console.warn(
+            "No fue posible abrir alerta Clima:",
+            idActivo
+        );
+    }
+}
 
 function crearBotonResultado(registro) {
     const propiedades = registro.feature.properties;

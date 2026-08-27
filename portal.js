@@ -1166,6 +1166,240 @@
     ]);
   }
 
+
+  // =========================================================
+  // PORTAL - CONTADORES ALERTAS REALES
+  // =========================================================
+
+  let alertaSenapredPrincipalPortal = null;
+  let alertaClimaPrincipalPortal = null;
+
+
+  function alertaSenapredVigente(alerta) {
+
+    return (
+      alerta
+      && (
+        alerta.estadoVigencia === "VIGENTE"
+        || alerta.estadoVigencia === "VIGENTE_ACTUALIZADA"
+      )
+      && alerta.isDeleted !== true
+    );
+  }
+
+
+  async function actualizarSenapredPortal() {
+
+    const badge =
+      document.getElementById(
+        "badge-senapred"
+      );
+
+    try {
+
+      const respuesta =
+        await fetch(
+          "data/alertas_senapred.json"
+          + "?t="
+          + Date.now(),
+          {
+            cache: "no-store"
+          }
+        );
+
+      if (!respuesta.ok) {
+        throw new Error(
+          `HTTP ${respuesta.status}`
+        );
+      }
+
+      const datos =
+        await respuesta.json();
+
+      const alertas =
+        Array.isArray(datos.alertas)
+          ? datos.alertas
+          : [];
+
+      const vigentes =
+        alertas
+          .filter(alertaSenapredVigente)
+          .sort(
+            (a, b) =>
+              new Date(b.fechaHora || 0)
+              - new Date(a.fechaHora || 0)
+          );
+
+      alertaSenapredPrincipalPortal =
+        vigentes[0] || null;
+
+      if (badge) {
+        badge.textContent =
+          String(vigentes.length);
+      }
+
+    }
+
+    catch (error) {
+
+      console.warn(
+        "Portal SENAPRED:",
+        error
+      );
+
+      if (badge) {
+        badge.textContent = "--";
+      }
+    }
+  }
+
+
+  function estadoClimaActivo(estado) {
+
+    return [
+      "PRECAUCION",
+      "ALERTA",
+      "CRITICO"
+    ].includes(
+      String(estado || "")
+        .toUpperCase()
+    );
+  }
+
+
+  function actualizarClimaPortal() {
+
+    const badge =
+      document.getElementById(
+        "badge-clima-gridvision"
+      );
+
+    const estados =
+      Array.isArray(window.estadoAlertas)
+        ? window.estadoAlertas
+        : [];
+
+    const prioridad = {
+      CRITICO: 3,
+      ALERTA: 2,
+      PRECAUCION: 1
+    };
+
+    const activas =
+      estados
+        .filter(
+          item =>
+            estadoClimaActivo(
+              item.estado
+            )
+        )
+        .sort(
+          (a, b) =>
+            (
+              prioridad[
+                String(b.estado)
+                  .toUpperCase()
+              ] || 0
+            )
+            -
+            (
+              prioridad[
+                String(a.estado)
+                  .toUpperCase()
+              ] || 0
+            )
+        );
+
+    alertaClimaPrincipalPortal =
+      activas[0] || null;
+
+    if (badge) {
+      badge.textContent =
+        String(activas.length);
+    }
+  }
+
+
+  // El monitor meteorologico de GridVision
+  // llama esta funcion cada vez que cambia
+  // el estado de una alerta.
+  window.actualizarCentroAlertas =
+    actualizarClimaPortal;
+
+
+  const enlaceSenapred =
+    document.getElementById(
+      "nav-senapred"
+    );
+
+  enlaceSenapred
+    ?.addEventListener(
+      "click",
+      evento => {
+
+        evento.preventDefault();
+
+        if (
+          alertaSenapredPrincipalPortal
+          ?.id
+        ) {
+
+          window.location.href =
+            "index.html?senapred="
+            + encodeURIComponent(
+                alertaSenapredPrincipalPortal.id
+              );
+
+          return;
+        }
+
+        window.location.href =
+          "index.html";
+      }
+    );
+
+
+  const enlaceClima =
+    document.getElementById(
+      "nav-clima-gridvision"
+    );
+
+  enlaceClima
+    ?.addEventListener(
+      "click",
+      evento => {
+
+        evento.preventDefault();
+
+        if (
+          alertaClimaPrincipalPortal
+          ?.id
+        ) {
+
+          window.location.href =
+            "index.html?clima="
+            + encodeURIComponent(
+                alertaClimaPrincipalPortal.id
+              );
+
+          return;
+        }
+
+        window.location.href =
+          "index.html";
+      }
+    );
+
+
+  actualizarSenapredPortal();
+  actualizarClimaPortal();
+
+  // SENAPRED se revisa cada minuto.
+  setInterval(
+    actualizarSenapredPortal,
+    60 * 1000
+  );
+
   actualizarRelojes();
   setInterval(actualizarRelojes, 1000);
   actualizarClima();
