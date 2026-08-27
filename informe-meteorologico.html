@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GridVision Chile - Informe Meteorologico Operacional</title>
+
+<style>
+
+:root{
+    --fondo:#071018;
+    --panel:#0e1923;
+    --panel2:#13212c;
+    --borde:rgba(255,255,255,.10);
+    --texto:#edf5f8;
+    --muted:#91a6b2;
+    --verde:#9be000;
+    --cyan:#34d7ff;
+    --amarillo:#f0d33c;
+    --naranjo:#ff932e;
+    --rojo:#ff4a4a;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    background:
+        radial-gradient(circle at top right,rgba(52,215,255,.08),transparent 30%),
+        radial-gradient(circle at top left,rgba(155,224,0,.05),transparent 25%),
+        var(--fondo);
+
+    color:var(--texto);
+
+    font-family:
+        Segoe UI,
+        Arial,
+        sans-serif;
+}
+
+.contenedor{
+    width:min(1500px,96%);
+    margin:24px auto;
+}
+
+.cabecera{
+    margin-bottom:20px;
+}
+
+.marca{
+    color:var(--cyan);
+    font-weight:800;
+    font-size:12px;
+    letter-spacing:1.3px;
+    text-transform:uppercase;
+}
+
+h1{
+    margin:4px 0;
+    font-size:28px;
+}
+
+.subtitulo{
+    color:var(--muted);
+    font-size:14px;
+}
+
+.panel{
+    background:rgba(14,25,35,.96);
+    border:1px solid var(--borde);
+    border-radius:14px;
+    padding:18px;
+    margin-bottom:16px;
+}
+
+.panel h2{
+    margin:0 0 14px;
+    font-size:17px;
+}
+
+.grid-activos{
+    display:grid;
+    grid-template-columns:
+        repeat(auto-fit,minmax(250px,1fr));
+    gap:10px;
+}
+
+.item-activo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    padding:12px;
+
+    background:var(--panel2);
+    border:1px solid var(--borde);
+    border-radius:10px;
+}
+
+.item-activo input{
+    transform:scale(1.2);
+}
+
+.tipo{
+    margin-left:auto;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:.5px;
+    padding:4px 7px;
+    border-radius:8px;
+}
+
+.tipo-activo{
+    color:var(--cyan);
+    border:1px solid rgba(52,215,255,.35);
+}
+
+.tipo-linea{
+    color:var(--verde);
+    border:1px solid rgba(155,224,0,.35);
+}
+
+.horizontes{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.horizonte{
+    border:1px solid rgba(52,215,255,.25);
+    background:#102330;
+    color:#dff8ff;
+
+    padding:10px 14px;
+    border-radius:9px;
+
+    cursor:pointer;
+    font-weight:700;
+}
+
+.horizonte.seleccionado{
+    background:rgba(155,224,0,.12);
+    border-color:var(--verde);
+    color:var(--verde);
+}
+
+.boton-generar{
+    width:100%;
+
+    border:1px solid rgba(155,224,0,.6);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(155,224,0,.17),
+            rgba(52,215,255,.12)
+        );
+
+    color:white;
+
+    padding:15px;
+
+    border-radius:11px;
+
+    font-size:15px;
+    font-weight:800;
+
+    cursor:pointer;
+}
+
+.boton-generar:hover{
+    border-color:var(--verde);
+}
+
+.resumen-grid{
+    display:grid;
+    grid-template-columns:
+        repeat(auto-fit,minmax(160px,1fr));
+    gap:10px;
+}
+
+.resumen-card{
+    background:var(--panel2);
+    border:1px solid var(--borde);
+    border-radius:10px;
+    padding:12px;
+}
+
+.resumen-card small{
+    display:block;
+    color:var(--muted);
+    margin-bottom:6px;
+}
+
+.resumen-card strong{
+    font-size:21px;
+}
+
+.seccion-informe{
+    display:none;
+}
+
+.bloque-vacio{
+    color:var(--muted);
+    font-size:13px;
+    padding:18px;
+    text-align:center;
+    border:1px dashed rgba(255,255,255,.15);
+    border-radius:10px;
+}
+
+.footer{
+    text-align:center;
+    color:var(--muted);
+    font-size:12px;
+    padding:20px;
+}
+
+.footer .energia{
+    color:var(--cyan);
+}
+
+.footer .sostenible{
+    color:var(--verde);
+    font-weight:800;
+}
+
+@media(max-width:700px){
+
+    h1{
+        font-size:22px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <header class="cabecera">
+
+        <div class="marca">
+            GridVision Chile
+        </div>
+
+        <h1>
+            Informe Meteorologico Operacional
+        </h1>
+
+        <div class="subtitulo">
+            Analisis meteorologico por activos,
+            lineas y tramos
+        </div>
+
+    </header>
+
+
+    <section class="panel">
+
+        <h2>
+            1. Seleccionar activos y lineas
+        </h2>
+
+        <div class="grid-activos">
+
+
+            <label class="item-activo">
+
+                <input
+                    type="checkbox"
+                    value="GV-02505"
+                    checked
+                >
+
+                <span>
+                    Central Capullo
+                </span>
+
+                <span class="tipo tipo-activo">
+                    ACTIVO
+                </span>
+
+            </label>
+
+
+            <label class="item-activo">
+
+                <input
+                    type="checkbox"
+                    value="GV-02559"
+                    checked
+                >
+
+                <span>
+                    Central Pulelfu
+                </span>
+
+                <span class="tipo tipo-activo">
+                    ACTIVO
+                </span>
+
+            </label>
+
+
+            <label class="item-activo">
+
+                <input
+                    type="checkbox"
+                    value="GV-00743"
+                    checked
+                >
+
+                <span>
+                    Linea Capullo - Pulelfu 66 kV
+                </span>
+
+                <span class="tipo tipo-linea">
+                    LINEA
+                </span>
+
+            </label>
+
+
+            <label class="item-activo">
+
+                <input
+                    type="checkbox"
+                    value="GV-00563"
+                    checked
+                >
+
+                <span>
+                    Linea Aihuapi - Antillanca 110 kV
+                </span>
+
+                <span class="tipo tipo-linea">
+                    LINEA
+                </span>
+
+            </label>
+
+
+            <label class="item-activo">
+
+                <input
+                    type="checkbox"
+                    value="GV-00133"
+                    checked
+                >
+
+                <span>
+                    Linea Antillanca - Rahue 220 kV
+                </span>
+
+                <span class="tipo tipo-linea">
+                    LINEA
+                </span>
+
+            </label>
+
+
+        </div>
+
+    </section>
+
+
+    <section class="panel">
+
+        <h2>
+            2. Horizonte del informe
+        </h2>
+
+        <div class="horizontes">
+
+            <button
+                class="horizonte"
+                data-horas="24"
+            >
+                24 horas
+            </button>
+
+            <button
+                class="horizonte"
+                data-horas="48"
+            >
+                48 horas
+            </button>
+
+            <button
+                class="horizonte seleccionado"
+                data-horas="72"
+            >
+                72 horas
+            </button>
+
+            <button
+                class="horizonte"
+                data-horas="96"
+            >
+                4 dias
+            </button>
+
+            <button
+                class="horizonte"
+                data-horas="120"
+            >
+                5 dias
+            </button>
+
+            <button
+                class="horizonte"
+                data-horas="144"
+            >
+                6 dias
+            </button>
+
+            <button
+                class="horizonte"
+                data-horas="168"
+            >
+                7 dias
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <section class="panel">
+
+        <button
+            id="generar-informe"
+            class="boton-generar"
+        >
+            GENERAR INFORME METEOROLOGICO
+        </button>
+
+    </section>
+
+
+    <section
+        id="informe"
+        class="seccion-informe"
+    >
+
+
+        <section class="panel">
+
+            <h2>
+                Resumen general
+            </h2>
+
+            <div class="resumen-grid">
+
+                <div class="resumen-card">
+
+                    <small>
+                        Horizonte
+                    </small>
+
+                    <strong id="resumen-horizonte">
+                        72 h
+                    </strong>
+
+                </div>
+
+
+                <div class="resumen-card">
+
+                    <small>
+                        Activos seleccionados
+                    </small>
+
+                    <strong id="resumen-activos">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="resumen-card">
+
+                    <small>
+                        Lineas seleccionadas
+                    </small>
+
+                    <strong id="resumen-lineas">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="resumen-card">
+
+                    <small>
+                        Estado general
+                    </small>
+
+                    <strong>
+                        Pendiente
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="panel">
+
+            <h2>
+                Evolucion meteorologica de activos
+            </h2>
+
+            
+<div
+    id="contenido-activos"
+    class="contenido-activos"
+>
+    <div class="bloque-vacio">
+        Selecciona los activos y genera el informe.
+    </div>
+</div>
+
+
+        </section>
+
+
+        <section class="panel">
+
+            <h2>
+                Lineas y ranking de exposicion
+            </h2>
+
+            
+<div
+    id="contenido-lineas"
+    class="contenido-lineas"
+>
+    <div class="bloque-vacio">
+        Selecciona las lineas y genera el informe.
+    </div>
+</div>
+
+
+        </section>
+
+
+    </section>
+
+
+    <footer class="footer">
+
+        Con nuestra
+        <span class="energia">
+            energia
+        </span>
+        impulsamos un
+        <span class="sostenible">
+            futuro sostenible
+        </span>
+        desde el origen
+
+    </footer>
+
+</div>
+
+
+<script>
+
+(() => {
+
+    let horizonteHoras = 72;
+
+
+    document
+        .querySelectorAll(".horizonte")
+        .forEach((boton) => {
+
+            boton.addEventListener(
+                "click",
+                () => {
+
+                    document
+                        .querySelectorAll(".horizonte")
+                        .forEach(
+                            b =>
+                                b.classList.remove(
+                                    "seleccionado"
+                                )
+                        );
+
+                    boton.classList.add(
+                        "seleccionado"
+                    );
+
+                    horizonteHoras =
+                        Number(
+                            boton.dataset.horas
+                        );
+                }
+            );
+
+        });
+
+
+    document
+        .getElementById("generar-informe")
+        .addEventListener(
+            "click",
+            () => {
+
+                const seleccionados =
+                    [
+                        ...document.querySelectorAll(
+                            '.item-activo input:checked'
+                        )
+                    ];
+
+
+                const activos =
+                    seleccionados.filter(
+                        input =>
+                            input
+                                .closest(".item-activo")
+                                .querySelector(".tipo")
+                                .classList
+                                .contains("tipo-activo")
+                    );
+
+
+                const lineas =
+                    seleccionados.filter(
+                        input =>
+                            input
+                                .closest(".item-activo")
+                                .querySelector(".tipo")
+                                .classList
+                                .contains("tipo-linea")
+                    );
+
+
+                document
+                    .getElementById(
+                        "resumen-horizonte"
+                    )
+                    .textContent =
+                        horizonteHoras + " h";
+
+
+                document
+                    .getElementById(
+                        "resumen-activos"
+                    )
+                    .textContent =
+                        activos.length;
+
+
+                document
+                    .getElementById(
+                        "resumen-lineas"
+                    )
+                    .textContent =
+                        lineas.length;
+
+
+                document
+                    .getElementById(
+                        "informe"
+                    )
+                    .style.display =
+                        "block";
+
+
+                document
+                    .getElementById(
+                        "informe"
+                    )
+                    .scrollIntoView({
+                        behavior:"smooth"
+                    });
+
+            }
+        );
+
+})();
+
+</script>
+
+
+<script src="informe-meteorologico-activos.js"></script>
+
+
+<script src="informe-meteorologico-lineas.js"></script>
+
+
+<script src="informe-meteorologico-compartir.js"></script>
+
+
+<script src="informe-meteorologico-exportar-v2.js"></script>
+
+</body>
+</html>
