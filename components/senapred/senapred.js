@@ -1004,6 +1004,46 @@ if (contadorHeader) {
         const estado =
             elemento("senapred-estado");
 
+        const esLocal =
+            window.location.hostname === "localhost"
+            || window.location.hostname === "127.0.0.1";
+
+        const baseApi = esLocal
+            ? "http://localhost:8000"
+            : "https://gridvision-piloto-publico.onrender.com";
+
+        // Primero intentamos SENAPRED en vivo.
+        try {
+            const respuesta =
+                await fetch(
+                    `${baseApi}/api/senapred/actualizar`,
+                    {
+                        cache: "no-store"
+                    }
+                );
+
+            if (!respuesta.ok) {
+                throw new Error(
+                    `HTTP ${respuesta.status}`
+                );
+            }
+
+            const datos =
+                await respuesta.json();
+
+            mostrarDatos(datos);
+            return;
+        }
+
+        catch (errorVivo) {
+            console.warn(
+                "SENAPRED en vivo no disponible; usando respaldo:",
+                errorVivo
+            );
+        }
+
+        // Si Render o SENAPRED falla,
+        // usamos el JSON publicado como respaldo.
         try {
             const respuesta =
                 await fetch(
@@ -1035,7 +1075,7 @@ if (contadorHeader) {
                 estado.hidden = false;
 
                 estado.textContent =
-                    "No fue posible cargar la información SENAPRED.";
+                    "No fue posible cargar la informaci?n SENAPRED.";
             }
         }
     }

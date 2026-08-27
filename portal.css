@@ -365,8 +365,9 @@ button,a{font:inherit}button{color:inherit}.portal-shell{min-height:100vh}
 .solar-update {
     margin-top: 10px;
 
-    font-size: 8px;
-    color: #778b9c;
+    font-size: 10px;
+    font-weight: 500;
+    color: #9aafbd;
 }
 
 .solar-status.estado-ok {

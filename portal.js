@@ -501,8 +501,8 @@
           ? energiaHoyKwh
           : null,
         ultimaFuente
-          ? `Ultimo dato SolaX: ${ultimaFuente}`
-          : `Ultima consulta: ${horaConsultaPortal()}`
+          ? `\u00DAltimo dato SolaX: ${ultimaFuente}`
+          : `\u00DAltima consulta: ${horaConsultaPortal()}`
       );
 
     } catch (error) {
@@ -620,7 +620,7 @@
         id,
         potencia,
         energia,
-        `Ultima consulta: ${horaConsultaPortal()}`
+        `\u00DAltima consulta: ${horaConsultaPortal()}`
       );
 
     } catch (error) {
@@ -640,7 +640,7 @@
         id,
         null,
         null,
-        `FusionSolar no disponible ? ${horaConsultaPortal()}`
+        `FusionSolar no disponible ${horaConsultaPortal()}`
       );
     }
   }
