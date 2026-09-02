@@ -245,6 +245,66 @@
   }
 
 
+  function textoFrescuraFusionSolar(datos) {
+
+    const edadSegundos =
+      numeroPortal(
+        datos?.edad_dato_segundos
+      );
+
+    const actualizadoEn =
+      datos?.actualizado_en
+        ? new Date(datos.actualizado_en)
+        : null;
+
+    if (
+      edadSegundos === null
+      || !actualizadoEn
+      || Number.isNaN(
+        actualizadoEn.getTime()
+      )
+    ) {
+      return `FusionSolar \u00B7 consulta ${horaConsultaPortal()}`;
+    }
+
+    let indicador = "\uD83D\uDFE2";
+
+    if (edadSegundos > 12 * 60) {
+      indicador = "\uD83D\uDD34";
+    } else if (edadSegundos > 7 * 60) {
+      indicador = "\uD83D\uDFE1";
+    }
+
+    const horaActualizacion =
+      new Intl.DateTimeFormat(
+        "es-CL",
+        {
+          timeZone: "America/Santiago",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false
+        }
+      ).format(actualizadoEn);
+
+    const minutos =
+      Math.floor(
+        edadSegundos / 60
+      );
+
+    let antiguedad;
+
+    if (minutos < 1) {
+      antiguedad = "hace menos de 1 min";
+    } else if (minutos === 1) {
+      antiguedad = "hace 1 min";
+    } else {
+      antiguedad = `hace ${minutos} min`;
+    }
+
+    return `${indicador} FusionSolar \u00B7 actualizado ${horaActualizacion} \u00B7 ${antiguedad}`;
+  }
+
+
   function actualizarEstadoSolar(
     id,
     texto,
@@ -620,7 +680,9 @@
         id,
         potencia,
         energia,
-        `\u00DAltima consulta: ${horaConsultaPortal()}`
+        textoFrescuraFusionSolar(
+          datos
+        )
       );
 
     } catch (error) {
