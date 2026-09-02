@@ -1214,6 +1214,35 @@ class GridVisionHandler(SimpleHTTPRequestHandler):
                     clave
                 )
 
+                # -------------------------------------------------
+                # FRESCURA REAL DEL DATO FUSIONSOLAR
+                # -------------------------------------------------
+
+                ahora_fusionsolar = time.time()
+
+                edad_dato_segundos = max(
+                    0,
+                    int(
+                        ahora_fusionsolar
+                        - fusionsolar_cache_time
+                    )
+                )
+
+                actualizado_en = datetime.fromtimestamp(
+                    fusionsolar_cache_time,
+                    ZoneInfo("America/Santiago")
+                ).isoformat(
+                    timespec="seconds"
+                )
+
+                proxima_actualizacion_segundos = max(
+                    0,
+                    int(
+                        FUSIONSOLAR_CACHE_SECONDS
+                        - edad_dato_segundos
+                    )
+                )
+
                 kpi = datos.get(
                     "kpi_planta",
                     {}
@@ -1293,6 +1322,21 @@ class GridVisionHandler(SimpleHTTPRequestHandler):
 
                     "stationCode":
                         datos["stationCode"],
+
+                    "fuente":
+                        "FusionSolar",
+
+                    "actualizado_en":
+                        actualizado_en,
+
+                    "edad_dato_segundos":
+                        edad_dato_segundos,
+
+                    "proxima_actualizacion_segundos":
+                        proxima_actualizacion_segundos,
+
+                    "intervalo_actualizacion_segundos":
+                        FUSIONSOLAR_CACHE_SECONDS,
 
                     "estado_codigo":
                         estado_codigo,
