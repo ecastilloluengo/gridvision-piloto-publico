@@ -90,44 +90,6 @@
                     insignia:
                         "senapred-nivel--roja"
                 };
-function textoEstadoVigencia(estado) {
-    switch (estado) {
-        case "VIGENTE":
-            return "Vigente";
-
-        case "VIGENTE_ACTUALIZADA":
-            return "Vigente · actualizada";
-
-        case "CANCELADA":
-            return "Cancelada";
-
-        case "HISTORICA":
-            return "Histórica";
-
-        default:
-            return "Por verificar";
-    }
-}
-
-
-function claseEstadoVigencia(estado) {
-    switch (estado) {
-        case "VIGENTE":
-            return "senapred-vigencia--vigente";
-
-        case "VIGENTE_ACTUALIZADA":
-            return "senapred-vigencia--actualizada";
-
-        case "CANCELADA":
-            return "senapred-vigencia--cancelada";
-
-        case "HISTORICA":
-            return "senapred-vigencia--historica";
-
-        default:
-            return "senapred-vigencia--verificar";
-    }
-}
 
             case "AMARILLA":
                 return {
