@@ -310,6 +310,18 @@ button,a{font:inherit}button{color:inherit}.portal-shell{min-height:100vh}
     color: #f4f8fb;
 }
 
+.solar-nominal {
+    margin-top: 4px;
+    font-size: 9px;
+    color: #8fa3b4;
+}
+
+.solar-nominal strong {
+    font-size: 10px;
+    font-weight: 700;
+    color: #d7e7ef;
+}
+
 .solar-status {
     display: inline-flex;
     align-items: center;
