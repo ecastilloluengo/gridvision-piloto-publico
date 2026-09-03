@@ -405,21 +405,30 @@ const mapaCalles = L.tileLayer(
 );
 
 
+/// -----------------------------------------------------
+// 2. MAPA CLARO - ESRI LIGHT GRAY
 // -----------------------------------------------------
-// 2. MAPA CLARO - CARTO POSITRON
-// -----------------------------------------------------
-const mapaClaro = L.tileLayer(
-    "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+const mapaClaroBase = L.tileLayer(
+    "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}",
     {
-        subdomains: "abcd",
+        maxNativeZoom: 16,
         maxZoom: 20,
-
-        attribution:
-            '&copy; <a href="https://www.openstreetmap.org/copyright">' +
-            'OpenStreetMap</a> contributors ' +
-            '&copy; <a href="https://carto.com/">CARTO</a>'
+        attribution: "Tiles &copy; Esri"
     }
 );
+
+const mapaClaroEtiquetas = L.tileLayer(
+    "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}",
+    {
+        maxNativeZoom: 16,
+        maxZoom: 20
+    }
+);
+
+const mapaClaro = L.layerGroup([
+    mapaClaroBase,
+    mapaClaroEtiquetas
+]);
 // -----------------------------------------------------
 // PANEL ESPECIAL PARA ETIQUETAS
 // -----------------------------------------------------
