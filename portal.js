@@ -38,8 +38,8 @@
       timeZone: "America/Santiago"
     },
     punta: {
-      lat: -53.1638,
-      lon: -70.9171,
+      lat: -52.941944,
+      lon: -70.828537,
       timeZone: "America/Punta_Arenas"
     }
   };
@@ -112,11 +112,31 @@
     return "Disponible";
   }
 
+  function formatearViento(valorKmh, usarMsPrimero = false) {
+    if (!Number.isFinite(valorKmh)) {
+      return usarMsPrimero
+        ? "-- m/s · -- km/h"
+        : "-- km/h";
+    }
+
+    const kmh = `${valorKmh.toLocaleString("es-CL", { maximumFractionDigits: 1 })} km/h`;
+
+    if (!usarMsPrimero) {
+      return kmh;
+    }
+
+    const valorMs = valorKmh / 3.6;
+    const ms = `${valorMs.toLocaleString("es-CL", { maximumFractionDigits: 1 })} m/s`;
+
+    return `${ms} · ${kmh}`;
+  }
+
   async function cargarClima(id, zona) {
     const url = new URL("https://api.open-meteo.com/v1/forecast");
     url.searchParams.set("latitude", zona.lat);
     url.searchParams.set("longitude", zona.lon);
-    url.searchParams.set("current", "temperature_2m,weather_code,wind_speed_10m");
+    url.searchParams.set("current", "temperature_2m,weather_code,wind_speed_10m,wind_gusts_10m");
+    url.searchParams.set("wind_speed_unit", "kmh");
     url.searchParams.set("timezone", zona.timeZone);
     url.searchParams.set("forecast_days", "1");
 
@@ -127,14 +147,18 @@
       const actual = data.current || {};
       const temp = Number(actual.temperature_2m);
       const wind = Number(actual.wind_speed_10m);
+      const gust = Number(actual.wind_gusts_10m);
       const code = Number(actual.weather_code);
 
       const tempEl = $(`#temp-${id}`);
       const condEl = $(`#condition-${id}`);
       const windEl = $(`#wind-${id}`);
+      const gustEl = $(`#gust-${id}`);
       if (tempEl) tempEl.textContent = Number.isFinite(temp) ? `${temp.toLocaleString("es-CL", {maximumFractionDigits:1})}°C` : "--°C";
       if (condEl) condEl.textContent = descripcionWmo(code);
-      if (windEl) windEl.textContent = Number.isFinite(wind) ? `${wind.toLocaleString("es-CL", {maximumFractionDigits:1})} km/h` : "-- km/h";
+      const usarMsPrimero = id === "punta";
+      if (windEl) windEl.textContent = formatearViento(wind, usarMsPrimero);
+      if (gustEl) gustEl.textContent = formatearViento(gust, usarMsPrimero);
     } catch (error) {
       console.warn(`Clima ${id}:`, error);
       const condEl = $(`#condition-${id}`);

@@ -104,7 +104,7 @@ button,a{font:inherit}button{color:inherit}.portal-shell{min-height:100vh}
 }
 
 .weather-card {
-    min-height: 112px;
+    min-height: 128px;
     padding: 10px 11px 9px;
 }
 
@@ -134,9 +134,23 @@ button,a{font:inherit}button{color:inherit}.portal-shell{min-height:100vh}
 }
 
 .weather-foot {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3px;
     margin-top: 7px;
     padding-top: 6px;
     font-size: 8px;
+}
+
+.weather-foot > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.weather-foot strong {
+    white-space: nowrap;
 }
 
 /* Dos módulos principales */
