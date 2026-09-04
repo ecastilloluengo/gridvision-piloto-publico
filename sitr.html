@@ -1,0 +1,1732 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Seguimiento SITR - Pecket Energy</title>
+
+  <style>
+    :root {
+      --bg:#030d17;
+      --panel:#071a2a;
+      --line:rgba(157,178,201,.24);
+      --text:#f7fbff;
+      --muted:#aab8c6;
+      --green:#9be000;
+      --cyan:#34d7ff;
+      --yellow:#facc15;
+      --red:#ef4444;
+    }
+
+    * {
+      box-sizing:border-box;
+    }
+
+    body {
+      margin:0;
+      min-height:100vh;
+      font-family:"Segoe UI",Arial,sans-serif;
+      background:linear-gradient(135deg,#020811,#061a2b 64%,#04101c);
+      color:var(--text);
+    }
+
+    button,
+    select,
+    textarea {
+      font:inherit;
+    }
+
+    .sitr-shell {
+      width:min(1320px,calc(100% - 30px));
+      margin:0 auto;
+      padding:26px 0 40px;
+    }
+
+    .sitr-top {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      margin-bottom:22px;
+    }
+
+    .sitr-title small {
+      color:var(--green);
+      font-weight:700;
+      letter-spacing:.08em;
+    }
+
+    .sitr-title h1 {
+      margin:5px 0 0;
+      font-size:32px;
+    }
+
+    .acciones-top {
+      display:flex;
+      gap:10px;
+    }
+
+    .boton {
+      min-height:42px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:0 15px;
+      border-radius:9px;
+      text-decoration:none;
+      cursor:pointer;
+    }
+
+    .registrar {
+      border:1px solid rgba(155,224,0,.65);
+      background:rgba(155,224,0,.12);
+      color:var(--green);
+      font-weight:700;
+    }
+
+    .volver {
+      border:1px solid rgba(52,215,255,.4);
+      background:rgba(52,215,255,.06);
+      color:var(--cyan);
+    }
+
+    .resumen {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin-bottom:18px;
+    }
+
+    .card,
+    .panel {
+      border:1px solid var(--line);
+      background:linear-gradient(
+        145deg,
+        rgba(11,29,48,.95),
+        rgba(6,19,33,.96)
+      );
+      border-radius:14px;
+    }
+
+    .card {
+      padding:17px;
+    }
+
+    .card span {
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    .card strong {
+      display:block;
+      margin-top:7px;
+      font-size:21px;
+    }
+
+    .ok { color:var(--green); }
+    .pendiente { color:var(--yellow); }
+    .alarma { color:#f87171; }
+
+    .panel {
+      padding:18px;
+      margin-bottom:18px;
+    }
+
+    .panel h2 {
+      margin:0 0 8px;
+      font-size:18px;
+    }
+
+    .panel-descripcion {
+      margin:0 0 15px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    .visor {
+      width:100%;
+      height:720px;
+      display:block;
+      border:1px solid rgba(52,215,255,.25);
+      border-radius:10px;
+      background:#fff;
+    }
+
+    .visor-footer {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-top:11px;
+      color:var(--muted);
+      font-size:11px;
+    }
+
+    .visor-footer a {
+      color:var(--cyan);
+      text-decoration:none;
+    }
+
+    .semanal {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .chequeo {
+      padding:14px;
+      border:1px solid var(--line);
+      border-radius:10px;
+      background:rgba(255,255,255,.025);
+    }
+
+    .chequeo span {
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    .chequeo strong {
+      display:block;
+      margin-top:6px;
+    }
+
+    .chequeo small {
+      display:block;
+      margin-top:5px;
+      color:var(--muted);
+    }
+
+    .ultima {
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    .ultima strong {
+      color:var(--text);
+    }
+
+    .modal {
+      position:fixed;
+      inset:0;
+      z-index:1000;
+      display:grid;
+      place-items:center;
+      padding:20px;
+      background:rgba(0,7,14,.80);
+      backdrop-filter:blur(7px);
+    }
+
+    .modal[hidden] {
+      display:none;
+    }
+
+    .modal-card {
+      width:min(540px,95vw);
+      padding:23px;
+      border:1px solid rgba(155,224,0,.45);
+      border-radius:15px;
+      background:#071827;
+    }
+
+    .modal-head {
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      margin-bottom:18px;
+    }
+
+    .modal-head h2 {
+      margin:0;
+    }
+
+    .cerrar {
+      border:0;
+      background:transparent;
+      color:#aab8c6;
+      font-size:27px;
+      cursor:pointer;
+    }
+
+    .campo {
+      margin-bottom:15px;
+    }
+
+    .campo label {
+      display:block;
+      margin-bottom:6px;
+      color:#cbd6e0;
+      font-size:12px;
+      font-weight:600;
+    }
+
+    .campo select,
+    .campo textarea {
+      width:100%;
+      padding:10px;
+      color:#fff;
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:#0b2235;
+    }
+
+    .campo textarea {
+      min-height:90px;
+      resize:vertical;
+    }
+
+    .guardar {
+      width:100%;
+      min-height:44px;
+      border:1px solid var(--green);
+      border-radius:8px;
+      background:var(--green);
+      color:#07111b;
+      font-weight:800;
+      cursor:pointer;
+    }
+
+    @media(max-width:760px) {
+      .sitr-top {
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .acciones-top {
+        width:100%;
+        flex-direction:column;
+      }
+
+      .boton {
+        width:100%;
+      }
+
+      .resumen,
+      .semanal {
+        grid-template-columns:1fr;
+      }
+
+      .visor {
+        height:620px;
+      }
+    }
+    .sitr-live-panel {
+  margin: 22px 0;
+  padding: 20px;
+  border: 1px solid #dfe5ec;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.sitr-live-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.sitr-live-head h2 {
+  margin: 0 0 4px;
+}
+
+.sitr-live-head p {
+  margin: 0;
+  color: #667085;
+}
+
+.sitr-live-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.sitr-asset-card {
+  padding: 20px;
+  border: 1px solid #e1e7ee;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.sitr-asset-name {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.sitr-value {
+  margin-top: 10px;
+  font-size: 34px;
+  font-weight: 800;
+}
+
+.sitr-status {
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.sitr-cen-name {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #667085;
+}
+
+.sitr-update-line {
+  margin-top: 16px;
+  font-size: 13px;
+  color: #667085;
+}
+
+.sitr-ok {
+  color: #15803d;
+}
+
+.sitr-warning {
+  color: #b45309;
+}
+
+.sitr-error {
+  color: #b42318;
+}
+
+@media (max-width: 700px) {
+  .sitr-live-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sitr-live-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+sitr-live-head h2,
+.sitr-asset-name,
+.sitr-value {
+  color: #0f172a !important;
+}
+
+.sitr-live-head p,
+.sitr-cen-name,
+.sitr-update-line {
+  color: #667085 !important;
+}
+
+.sitr-value {
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
+.sitr-history {
+  margin-top: 22px;
+}
+
+.sitr-history-title {
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.sitr-history-scroll {
+  overflow-x: auto;
+  border: 1px solid #e1e7ee;
+  border-radius: 10px;
+}
+
+.sitr-history-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.sitr-history-table th,
+.sitr-history-table td {
+  padding: 11px 14px;
+  border-bottom: 1px solid #e7ebf0;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.sitr-history-table th {
+  background: #f1f5f9;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.sitr-history-table td:first-child,
+.sitr-history-table th:first-child {
+  text-align: left;
+}
+
+.sitr-history-table tr:last-child td {
+  border-bottom: none;
+}
+
+.sitr-history-current td {
+  font-weight: 800;
+  background: #f0fdf4;
+}
+
+.sitr-history-value {
+  font-weight: 700;
+}
+.sitr-variables-panel {
+  margin-top: 22px;
+  padding: 18px;
+  border: 1px solid #e1e7ee;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.sitr-variables-title {
+  margin-bottom: 14px;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.sitr-variables-resumen {
+  margin-bottom: 14px;
+}
+
+.sitr-vars-ok {
+  padding: 14px;
+  border: 1px solid #bbf7d0;
+  border-radius: 10px;
+  background: #f0fdf4;
+  color: #166534;
+  font-weight: 700;
+}
+
+.sitr-vars-error {
+  padding: 14px;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  background: #fef2f2;
+  color: #991b1b;
+  font-weight: 700;
+}
+
+.sitr-incidencias-table-wrap {
+  overflow-x: auto;
+}
+
+.sitr-incidencias-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  font-size: 13px;
+}
+
+.sitr-incidencias-table th,
+.sitr-incidencias-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.sitr-incidencias-table th {
+  background: #f8fafc;
+  font-weight: 700;
+}
+
+.sitr-incidencia-row {
+  background: #fff1f2;
+}
+
+.sitr-calidad-error {
+  color: #b42318;
+  font-weight: 800;
+}
+.sitr-official-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid #294052;
+  font-size: 13px;
+  color: #a9bfd1;
+}
+
+.sitr-official-link a {
+  color: #38bdf8;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.sitr-official-link a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+  .sitr-official-link {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+  </style>
+</head>
+
+<body>
+
+<main class="sitr-shell">
+
+  <header class="sitr-top">
+
+    <div class="sitr-title">
+      <small>PORTAL OPERACIONAL PECKET ENERGY</small>
+      <h1>📡 Seguimiento SITR</h1>
+    </div>
+
+    <div class="acciones-top">
+
+      <button
+        class="boton registrar"
+        id="btn-registrar"
+        type="button"
+      >
+        ✓ Registrar revisión
+      </button>
+
+      <a
+        class="boton volver"
+        href="portal.html"
+      >
+        ← Volver al Portal
+      </a>
+
+    </div>
+
+  </header>
+
+
+  <section class="resumen">
+
+    <article class="card">
+      <span>Estado de revisión</span>
+      <strong id="estado-general" class="pendiente">
+        Pendiente
+      </strong>
+    </article>
+
+    <article class="card">
+      <span>Cumplimiento semanal</span>
+      <strong id="cumplimiento">
+        0 / 2
+      </strong>
+    </article>
+
+    <article class="card">
+      <span>Resultado última revisión</span>
+      <strong id="resultado-ultima">
+        --
+      </strong>
+    </article>
+
+  </section>
+
+
+  <section class="panel">
+
+<section class="sitr-live-panel">
+  <div class="sitr-live-head">
+    <div>
+      <h2>Disponibilidad SITR</h2>
+      <p>
+        Datos en línea obtenidos desde el Coordinador Eléctrico Nacional.
+      </p>
+    </div>
+
+    <button
+      type="button"
+      id="btn-actualizar-sitr"
+      class="btn-secondary"
+    >
+      ↻ Actualizar
+    </button>
+  </div>
+
+  <div class="sitr-live-grid">
+
+    <article class="sitr-asset-card">
+      <div class="sitr-asset-name">
+        Central Capullo
+      </div>
+
+      <div
+        class="sitr-value"
+        id="sitr-capullo"
+      >
+        -- %
+      </div>
+
+      <div
+        class="sitr-status"
+        id="sitr-capullo-status"
+      >
+        Consultando...
+      </div>
+
+      <div class="sitr-cen-name">
+        CEN: CAPULLO
+      </div>
+    </article>
+
+
+    <article class="sitr-asset-card">
+      <div class="sitr-asset-name">
+        Central Pulelfu
+      </div>
+
+      <div
+        class="sitr-value"
+        id="sitr-pulelfu"
+      >
+        -- %
+      </div>
+
+      <div
+        class="sitr-status"
+        id="sitr-pulelfu-status"
+      >
+        Consultando...
+      </div>
+
+      <div class="sitr-cen-name">
+        CEN: LA LEONERA
+      </div>
+    </article>
+
+  </div>
+<div class="sitr-history">
+  <div class="sitr-history-title">
+    Evolución de disponibilidad SITR
+  </div>
+
+  <div class="sitr-history-scroll">
+    <table class="sitr-history-table">
+      <thead>
+        <tr>
+          <th>Periodo</th>
+          <th>Central Capullo</th>
+          <th>Central Pulelfu</th>
+        </tr>
+      </thead>
+
+      <tbody id="sitr-historial-body">
+        <tr>
+          <td colspan="3">Cargando historial...</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<section class="sitr-variables-panel">
+
+  <div class="sitr-variables-title">
+    Estado de variables SITR
+  </div>
+
+  <div
+    id="sitr-variables-resumen"
+    class="sitr-variables-resumen"
+  >
+    Consultando variables...
+  </div>
+
+  <div
+    id="sitr-incidencias"
+    class="sitr-incidencias"
+  ></div>
+
+</section>
+  <div class="sitr-update-line">
+    Actualización CEN:
+    <strong id="sitr-actualizado-cen">
+      --
+    </strong>
+  </div>
+</section>
+   <div class="sitr-official-link">
+
+  <span>
+    Fuente oficial:
+    Coordinador Eléctrico Nacional
+  </span>
+
+  <a
+    href="https://www.coordinador.cl/operacion/graficos/disponibilidad-online-de-sitr/"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Abrir herramienta oficial del CEN ↗
+  </a>
+
+</div>
+
+  </section>
+
+
+  <section class="panel">
+
+    <h2>Chequeos evidenciados de la semana</h2>
+
+    <div class="semanal">
+
+      <div class="chequeo">
+        <span>Lunes</span>
+        <strong id="estado-lunes" class="pendiente">
+          ⏳ Pendiente
+        </strong>
+        <small id="fecha-lunes"></small>
+      </div>
+
+      <div class="chequeo">
+        <span>Jueves</span>
+        <strong id="estado-jueves" class="pendiente">
+          ⏳ Pendiente
+        </strong>
+        <small id="fecha-jueves"></small>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="panel">
+
+    <h2>Última revisión registrada</h2>
+
+    <div class="ultima" id="ultima-revision">
+      <strong>Aún no existen revisiones registradas.</strong>
+    </div>
+
+  </section>
+
+</main>
+
+
+<div class="modal" id="modal" hidden>
+
+  <div class="modal-card">
+
+    <div class="modal-head">
+
+      <h2>Registrar revisión SITR</h2>
+
+      <button
+        class="cerrar"
+        id="cerrar"
+        type="button"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <form id="form-revision">
+
+      <div class="campo">
+
+        <label for="jornada">
+          Chequeo correspondiente
+        </label>
+
+        <select id="jornada" required>
+          <option value="">Seleccionar</option>
+          <option value="lunes">Lunes</option>
+          <option value="jueves">Jueves</option>
+        </select>
+
+      </div>
+
+      <div class="campo">
+
+        <label for="resultado">
+          Resultado observado en el visor del Coordinador
+        </label>
+
+        <select id="resultado" required>
+          <option value="">Seleccionar</option>
+          <option value="sin-novedades">
+            Sin novedades
+          </option>
+          <option value="incidencias">
+            Se detectaron incidencias
+          </option>
+        </select>
+
+      </div>
+
+      <div class="campo">
+
+        <label for="observacion">
+          Observación
+        </label>
+
+        <textarea
+          id="observacion"
+          placeholder="Ejemplo: sin novedades. Si detectó incidencias, indique brevemente la instalación o señal observada."
+        ></textarea>
+
+      </div>
+
+      <button
+        class="guardar"
+        type="submit"
+      >
+        Guardar revisión
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<script>
+
+const CLAVE =
+  "pecket_sitr_revisiones_v2";
+
+
+function leer() {
+  try {
+    return JSON.parse(
+      localStorage.getItem(CLAVE) || "[]"
+    );
+  } catch {
+    return [];
+  }
+}
+
+
+function guardar(lista) {
+  localStorage.setItem(
+    CLAVE,
+    JSON.stringify(lista)
+  );
+}
+
+
+function inicioSemana(fecha = new Date()) {
+
+  const d = new Date(fecha);
+  const dia = d.getDay();
+
+  const diferencia =
+    dia === 0 ? -6 : 1 - dia;
+
+  d.setDate(
+    d.getDate() + diferencia
+  );
+
+  d.setHours(0,0,0,0);
+
+  return d;
+}
+
+
+function claveSemana(fecha = new Date()) {
+
+  const d = inicioSemana(fecha);
+
+  return [
+    d.getFullYear(),
+    String(d.getMonth() + 1).padStart(2,"0"),
+    String(d.getDate()).padStart(2,"0")
+  ].join("-");
+}
+
+
+function fechaHora(valor) {
+
+  return new Intl.DateTimeFormat(
+    "es-CL",
+    {
+      day:"2-digit",
+      month:"2-digit",
+      year:"numeric",
+      hour:"2-digit",
+      minute:"2-digit",
+      hour12:false
+    }
+  ).format(new Date(valor));
+}
+
+
+function renderizar() {
+
+  const revisiones = leer();
+
+  const semana =
+    claveSemana();
+
+  const actuales =
+    revisiones.filter(
+      r => r.semana === semana
+    );
+
+  const lunes =
+    actuales.find(
+      r => r.jornada === "lunes"
+    );
+
+  const jueves =
+    actuales.find(
+      r => r.jornada === "jueves"
+    );
+
+  const realizados =
+    [lunes,jueves]
+      .filter(Boolean)
+      .length;
+
+  document.getElementById(
+    "cumplimiento"
+  ).textContent =
+    `${realizados} / 2`;
+
+
+  function mostrarChequeo(
+    revision,
+    estadoId,
+    fechaId
+  ) {
+
+    const estado =
+      document.getElementById(estadoId);
+
+    const fecha =
+      document.getElementById(fechaId);
+
+    if (!revision) {
+      estado.textContent = "⏳ Pendiente";
+      estado.className = "pendiente";
+      fecha.textContent = "";
+      return;
+    }
+
+    if (
+      revision.resultado ===
+      "incidencias"
+    ) {
+      estado.textContent =
+        "🔴 Realizado · Con incidencias";
+      estado.className = "alarma";
+    } else {
+      estado.textContent =
+        "✓ Realizado · Sin novedades";
+      estado.className = "ok";
+    }
+
+    fecha.textContent =
+      fechaHora(revision.fecha);
+  }
+
+
+  mostrarChequeo(
+    lunes,
+    "estado-lunes",
+    "fecha-lunes"
+  );
+
+  mostrarChequeo(
+    jueves,
+    "estado-jueves",
+    "fecha-jueves"
+  );
+
+
+  const ultima =
+    [...revisiones]
+      .sort(
+        (a,b) =>
+          new Date(b.fecha)
+          - new Date(a.fecha)
+      )[0];
+
+
+  const estadoGeneral =
+    document.getElementById(
+      "estado-general"
+    );
+
+  const resultadoUltima =
+    document.getElementById(
+      "resultado-ultima"
+    );
+
+  const bloqueUltima =
+    document.getElementById(
+      "ultima-revision"
+    );
+
+
+  if (!ultima) {
+
+    estadoGeneral.textContent =
+      "Pendiente";
+
+    estadoGeneral.className =
+      "pendiente";
+
+    resultadoUltima.textContent =
+      "--";
+
+    bloqueUltima.innerHTML =
+      "<strong>Aún no existen revisiones registradas.</strong>";
+
+    return;
+  }
+
+
+  if (
+    ultima.resultado ===
+    "incidencias"
+  ) {
+
+    estadoGeneral.textContent =
+      "Incidencia observada";
+
+    estadoGeneral.className =
+      "alarma";
+
+    resultadoUltima.textContent =
+      "Con incidencias";
+
+    resultadoUltima.className =
+      "alarma";
+
+  } else {
+
+    estadoGeneral.textContent =
+      "Revisión realizada";
+
+    estadoGeneral.className =
+      "ok";
+
+    resultadoUltima.textContent =
+      "Sin novedades";
+
+    resultadoUltima.className =
+      "ok";
+  }
+
+
+  bloqueUltima.textContent = "";
+
+  const titulo =
+    document.createElement("strong");
+
+  titulo.textContent =
+    `${fechaHora(ultima.fecha)} · ${
+      ultima.jornada === "lunes"
+        ? "Chequeo lunes"
+        : "Chequeo jueves"
+    }`;
+
+  bloqueUltima.appendChild(titulo);
+
+  bloqueUltima.appendChild(
+    document.createElement("br")
+  );
+
+  bloqueUltima.append(
+    ultima.resultado ===
+      "incidencias"
+      ? "Resultado: Se detectaron incidencias."
+      : "Resultado: Sin novedades."
+  );
+
+  if (ultima.observacion) {
+
+    bloqueUltima.appendChild(
+      document.createElement("br")
+    );
+
+    bloqueUltima.append(
+      `Observación: ${ultima.observacion}`
+    );
+  }
+}
+
+
+const modal =
+  document.getElementById("modal");
+
+const formulario =
+  document.getElementById(
+    "form-revision"
+  );
+
+
+document.getElementById(
+  "btn-registrar"
+).addEventListener(
+  "click",
+  () => {
+
+    formulario.reset();
+
+    const dia =
+      new Date().getDay();
+
+    document.getElementById(
+      "jornada"
+    ).value =
+      dia >= 4 || dia === 0
+        ? "jueves"
+        : "lunes";
+
+    modal.hidden = false;
+  }
+);
+
+
+document.getElementById(
+  "cerrar"
+).addEventListener(
+  "click",
+  () => {
+    modal.hidden = true;
+  }
+);
+
+
+modal.addEventListener(
+  "click",
+  event => {
+    if (event.target === modal) {
+      modal.hidden = true;
+    }
+  }
+);
+
+
+formulario.addEventListener(
+  "submit",
+  event => {
+
+    event.preventDefault();
+
+    const jornada =
+      document.getElementById(
+        "jornada"
+      ).value;
+
+    const resultado =
+      document.getElementById(
+        "resultado"
+      ).value;
+
+    const observacion =
+      document.getElementById(
+        "observacion"
+      ).value.trim();
+
+
+    if (
+      resultado === "incidencias"
+      && !observacion
+    ) {
+      alert(
+        "Si se detectaron incidencias, indique brevemente lo observado."
+      );
+      return;
+    }
+
+
+    const revisiones =
+      leer();
+
+    const semana =
+      claveSemana();
+
+
+    const existente =
+      revisiones.findIndex(
+        r =>
+          r.semana === semana
+          &&
+          r.jornada === jornada
+      );
+
+
+    const revision = {
+      fecha:
+        new Date().toISOString(),
+
+      semana,
+
+      jornada,
+
+      resultado,
+
+      observacion,
+
+      fuente:
+        "Coordinador Eléctrico Nacional - Disponibilidad OnLine de SITR"
+    };
+
+
+    if (existente >= 0) {
+
+      const confirmar =
+        confirm(
+          `Ya existe un chequeo registrado para el ${jornada}. ¿Desea reemplazarlo?`
+        );
+
+      if (!confirmar) {
+        return;
+      }
+
+      revisiones[
+        existente
+      ] = revision;
+
+    } else {
+
+      revisiones.push(revision);
+    }
+
+
+    guardar(revisiones);
+
+    modal.hidden = true;
+
+    renderizar();
+  }
+);
+
+
+renderizar();
+const SITR_API_URL =
+  location.hostname === "localhost" ||
+  location.hostname === "127.0.0.1"
+    ? "/api/sitr"
+    : "https://gridvision-piloto-publico.onrender.com/api/sitr";
+
+
+function clasificarSitr(valor) {
+
+  if (!Number.isFinite(valor)) {
+    return {
+      texto: "Sin datos",
+      clase: "sitr-error"
+    };
+  }
+
+  if (valor >= 99) {
+    return {
+      texto: "Operativo",
+      clase: "sitr-ok"
+    };
+  }
+
+  if (valor >= 95) {
+    return {
+      texto: "Revisar disponibilidad",
+      clase: "sitr-warning"
+    };
+  }
+
+  return {
+    texto: "Disponibilidad baja",
+    clase: "sitr-error"
+  };
+}
+
+
+function mostrarInstalacionSitr(instalacion) {
+
+  const valorEl = document.getElementById(
+    `sitr-${instalacion.id}`
+  );
+
+  const estadoEl = document.getElementById(
+    `sitr-${instalacion.id}-status`
+  );
+
+  if (!valorEl || !estadoEl) {
+    return;
+  }
+
+  const valor = Number(
+    instalacion.disponibilidad
+  );
+
+  valorEl.textContent =
+    Number.isFinite(valor)
+      ? `${valor.toLocaleString(
+          "es-CL",
+          {
+            minimumFractionDigits: 1,
+            maximumFractionDigits: 1
+          }
+        )} %`
+      : "-- %";
+
+  const estado = clasificarSitr(valor);
+
+  estadoEl.textContent = estado.texto;
+
+  estadoEl.classList.remove(
+    "sitr-ok",
+    "sitr-warning",
+    "sitr-error"
+  );
+
+  estadoEl.classList.add(
+    estado.clase
+  );
+}
+function renderHistorialSitr(instalaciones) {
+
+  const cuerpo = document.getElementById(
+    "sitr-historial-body"
+  );
+
+  if (!cuerpo) {
+    return;
+  }
+
+  const capullo = instalaciones.find(
+    item => item.id === "capullo"
+  );
+
+  const pulelfu = instalaciones.find(
+    item => item.id === "pulelfu"
+  );
+
+  if (!capullo || !pulelfu) {
+    cuerpo.innerHTML =
+      '<tr><td colspan="3">Sin información histórica disponible</td></tr>';
+    return;
+  }
+
+  const historialCapullo =
+    capullo.historial || [];
+
+  const historialPulelfu =
+    pulelfu.historial || [];
+
+  const filas = historialCapullo.map(
+    (item, indice) => {
+
+      const pul =
+        historialPulelfu[indice] || {};
+
+      const esActual =
+        indice === historialCapullo.length - 1;
+
+      const periodo =
+        esActual
+          ? "Actual"
+          : item.periodo;
+
+      const valorCapullo =
+        item.disponibilidad_texto || "-";
+
+      const valorPulelfu =
+        pul.disponibilidad_texto || "-";
+
+      return `
+        <tr class="${
+          esActual
+            ? "sitr-history-current"
+            : ""
+        }">
+          <td>${periodo}</td>
+
+          <td class="sitr-history-value">
+            ${valorCapullo}
+          </td>
+
+          <td class="sitr-history-value">
+            ${valorPulelfu}
+          </td>
+        </tr>
+      `;
+    }
+  );
+
+  cuerpo.innerHTML = filas.join("");
+}
+function escaparHtml(valor) {
+  return String(valor ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+
+function renderVariablesSitr(instalaciones) {
+
+  const resumenEl =
+    document.getElementById(
+      "sitr-variables-resumen"
+    );
+
+  const incidenciasEl =
+    document.getElementById(
+      "sitr-incidencias"
+    );
+
+  if (!resumenEl || !incidenciasEl) {
+    return;
+  }
+
+
+  const total = instalaciones.reduce(
+    (suma, item) =>
+      suma + Number(
+        item.variables_total || 0
+      ),
+    0
+  );
+
+  const validas = instalaciones.reduce(
+    (suma, item) =>
+      suma + Number(
+        item.variables_validas || 0
+      ),
+    0
+  );
+
+  const incidentes = instalaciones.reduce(
+    (suma, item) =>
+      suma + Number(
+        item.variables_incidentes || 0
+      ),
+    0
+  );
+
+
+  if (incidentes === 0) {
+
+    resumenEl.innerHTML = `
+      <div class="sitr-vars-ok">
+        ✓ ${validas} de ${total}
+        variables SITR válidas.
+        Sin incidencias detectadas.
+      </div>
+    `;
+
+    incidenciasEl.innerHTML = "";
+
+    return;
+  }
+
+
+  resumenEl.innerHTML = `
+    <div class="sitr-vars-error">
+      ⚠ ${incidentes}
+      variable${
+        incidentes === 1 ? "" : "s"
+      }
+      con incidencia de ${total}
+      variables monitoreadas.
+    </div>
+  `;
+
+
+  const filas = [];
+
+  for (const instalacion of instalaciones) {
+
+    for (
+      const incidencia
+      of instalacion.incidencias || []
+    ) {
+
+      filas.push(`
+        <tr class="sitr-incidencia-row">
+
+          <td>
+            ${escaparHtml(
+              instalacion.nombre
+            )}
+          </td>
+
+          <td>
+            ${escaparHtml(
+              incidencia.ssee
+            )}
+          </td>
+
+          <td>
+            ${escaparHtml(
+              incidencia.variable
+            )}
+          </td>
+
+          <td>
+            ${escaparHtml(
+              incidencia.tipo
+            )}
+          </td>
+
+          <td>
+            ${escaparHtml(
+              incidencia.valor
+            )}
+          </td>
+
+          <td class="sitr-calidad-error">
+            🔴 ${escaparHtml(
+              incidencia.calidad
+            )}
+          </td>
+
+          <td>
+            ${escaparHtml(
+              incidencia.tag_iccp
+            )}
+          </td>
+
+        </tr>
+      `);
+    }
+  }
+
+
+  incidenciasEl.innerHTML = `
+    <div class="sitr-incidencias-table-wrap">
+
+      <table class="sitr-incidencias-table">
+
+        <thead>
+          <tr>
+            <th>Central</th>
+            <th>SSEE</th>
+            <th>Variable</th>
+            <th>Tipo</th>
+            <th>Valor</th>
+            <th>Calidad</th>
+            <th>TAG ICCP</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          ${filas.join("")}
+        </tbody>
+
+      </table>
+
+    </div>
+  `;
+}
+async function cargarSitr() {
+
+  const boton = document.getElementById(
+    "btn-actualizar-sitr"
+  );
+
+  if (boton) {
+    boton.disabled = true;
+    boton.textContent = "Actualizando...";
+  }
+
+  try {
+
+    const respuesta = await fetch(
+      SITR_API_URL,
+      {
+        cache: "no-store"
+      }
+    );
+
+    if (!respuesta.ok) {
+      throw new Error(
+        `HTTP ${respuesta.status}`
+      );
+    }
+
+    const datos = await respuesta.json();
+
+    for (
+      const instalacion
+      of datos.instalaciones || []
+    ) {
+      mostrarInstalacionSitr(
+        instalacion
+      );
+    }
+    renderHistorialSitr(
+  datos.instalaciones || []
+);
+renderVariablesSitr(
+  datos.instalaciones || []
+);
+
+    const actualizado =
+      document.getElementById(
+        "sitr-actualizado-cen"
+      );
+
+    if (actualizado) {
+      actualizado.textContent =
+        datos.actualizado_cen || "--";
+    }
+
+  } catch (error) {
+
+    console.error(
+      "Error cargando SITR:",
+      error
+    );
+
+    for (
+      const id
+      of ["capullo", "pulelfu"]
+    ) {
+
+      const estado =
+        document.getElementById(
+          `sitr-${id}-status`
+        );
+
+      if (estado) {
+        estado.textContent =
+          "No fue posible consultar CEN";
+
+        estado.className =
+          "sitr-status sitr-error";
+      }
+    }
+
+  } finally {
+
+    if (boton) {
+      boton.disabled = false;
+      boton.textContent = "↻ Actualizar";
+    }
+  }
+}
+
+
+document
+  .getElementById("btn-actualizar-sitr")
+  ?.addEventListener(
+    "click",
+    cargarSitr
+  );
+
+
+cargarSitr();
+</script>
+
+</body>
+</html>

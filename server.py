@@ -37,6 +37,7 @@ from senapred_alertas import (
 from senapred_normalizador import (
     normalizar_alerta,
 )
+from sitr_qlik import consultar_sitr
 
 PUERTO = int(os.environ.get("PORT", "8000"))
 
@@ -834,6 +835,63 @@ def obtener_planta_fusionsolar(clave):
 # ============================================================
 # SESIÃ“N GOOGLE MAP TILES
 # ============================================================
+# ============================================================
+# SITR - COORDINADOR ELECTRICO NACIONAL
+# ============================================================
+
+SITR_CACHE_SECONDS = 5 * 60
+
+sitr_cache = None
+sitr_cache_time = 0
+sitr_cache_lock = threading.Lock()
+
+
+def obtener_sitr():
+
+    global sitr_cache
+    global sitr_cache_time
+
+    ahora = time.time()
+
+    if (
+        sitr_cache is not None
+        and ahora - sitr_cache_time < SITR_CACHE_SECONDS
+    ):
+        return sitr_cache
+
+    with sitr_cache_lock:
+
+        ahora = time.time()
+
+        if (
+            sitr_cache is not None
+            and ahora - sitr_cache_time < SITR_CACHE_SECONDS
+        ):
+            return sitr_cache
+
+        try:
+
+            datos = consultar_sitr()
+
+            sitr_cache = datos
+            sitr_cache_time = time.time()
+
+            return datos
+
+        except Exception as error:
+
+            print(
+                "SITR no pudo renovar cache:",
+                error,
+                flush=True
+            )
+
+            # Ante una falla temporal del CEN,
+            # conservar el ultimo dato valido.
+            if sitr_cache is not None:
+                return sitr_cache
+
+            raise
 
 # ============================================================
 # SENAPRED - CONSULTA EN VIVO
@@ -1129,7 +1187,73 @@ class GridVisionHandler(SimpleHTTPRequestHandler):
                 # ----------------------------------------------------
         # FUSIONSOLAR - VSE TECHO / VSE PAIDAHUEN
         # ----------------------------------------------------
+        # ----------------------------------------------------
+        # SITR - COORDINADOR ELECTRICO NACIONAL
+        # ----------------------------------------------------
 
+        if ruta.path == "/api/sitr":
+
+            try:
+
+                datos = obtener_sitr()
+
+                self.send_response(200)
+
+                self.send_header(
+                    "Content-Type",
+                    "application/json; charset=utf-8"
+                )
+
+                agregar_cors_google(self)
+
+                self.send_header(
+                    "Cache-Control",
+                    "no-store"
+                )
+
+                self.end_headers()
+
+                self.wfile.write(
+                    json.dumps(
+                        datos,
+                        ensure_ascii=False
+                    ).encode("utf-8")
+                )
+
+            except Exception as error:
+
+                print(
+                    "Error API SITR:",
+                    error,
+                    flush=True
+                )
+
+                self.send_response(502)
+
+                self.send_header(
+                    "Content-Type",
+                    "application/json; charset=utf-8"
+                )
+
+                agregar_cors_google(self)
+
+                self.send_header(
+                    "Cache-Control",
+                    "no-store"
+                )
+
+                self.end_headers()
+
+                self.wfile.write(
+                    json.dumps({
+                        "ok": False,
+                        "servicio": "SITR",
+                        "mensaje":
+                            "No fue posible consultar el SITR del Coordinador"
+                    }).encode("utf-8")
+                )
+
+            return
         # SENAPRED - ACTUALIZACION EN VIVO
         if ruta.path == "/api/senapred/actualizar":
 
