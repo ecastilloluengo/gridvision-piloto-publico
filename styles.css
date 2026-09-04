@@ -1512,3 +1512,85 @@
     background: rgb(255 255 255 / 12%);
     border-color: rgb(255 255 255 / 30%);
 }
+/* =========================================================
+   GRIDVISION - AJUSTES MOVILES V1
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    /* Cabecera algo mas compacta */
+    header {
+        padding: 10px 12px;
+        gap: 8px;
+    }
+
+    .estado-aplicacion {
+        gap: 7px;
+    }
+
+    /* Buscador con margen para controles Leaflet */
+    .panel-busqueda {
+        top: 10px;
+        left: 48px;
+        right: 10px;
+        width: auto;
+        padding: 11px;
+    }
+
+    /* Inputs tactiles */
+    #buscador-activos,
+    .panel-filtros select {
+        min-height: 42px;
+        font-size: 14px;
+    }
+
+    /* Filtros */
+    .panel-filtros {
+        left: 10px;
+        right: 10px;
+        width: auto;
+        max-width: none;
+    }
+
+    /* Paneles climaticos ocupan el ancho util */
+    .panel-clima,
+    .panel-clima-linea {
+        left: 10px;
+        right: 10px;
+        width: auto;
+        max-width: none;
+    }
+
+    /* Popup Leaflet nunca mas ancho que el telefono */
+    .leaflet-popup-content-wrapper {
+        max-width: calc(100vw - 30px);
+    }
+
+    .leaflet-popup-content {
+        max-width: calc(100vw - 55px);
+        margin: 12px;
+    }
+
+    /* Selector de capas mas contenido */
+    .leaflet-control-layers-expanded {
+        max-width: calc(100vw - 70px);
+        max-height: 55vh;
+        overflow-y: auto;
+    }
+
+    /* Attribution mas discreta */
+    .leaflet-control-attribution {
+        max-width: 90vw;
+        font-size: 8px;
+        line-height: 1.15;
+    }
+}
+/* Oculta controles del mapa cuando el centro de alertas esta abierto */
+@media (max-width: 700px) {
+
+    body:has(.panel-centro-alertas:not([hidden]))
+    .leaflet-control-container {
+        visibility: hidden;
+    }
+
+}

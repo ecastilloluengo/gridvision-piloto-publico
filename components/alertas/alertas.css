@@ -351,3 +351,67 @@
         width: min(390px, calc(100vw - 20px));
     }
 }
+/* =========================================================
+   GRIDVISION - CENTRO DE ALERTAS EN MOVIL
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .panel-centro-alertas {
+        position: fixed;
+
+        top: 10px;
+        right: 10px;
+        bottom: 10px;
+        left: 10px;
+
+        width: auto;
+        max-width: none;
+        height: auto;
+        max-height: none;
+
+        margin: 0;
+
+        overflow-y: auto;
+        overscroll-behavior: contain;
+
+        border-radius: 14px;
+
+        z-index: 2000;
+    }
+
+    .panel-alertas-encabezado {
+        position: sticky;
+        top: 0;
+        z-index: 3;
+    }
+
+    .panel-alertas-listado {
+        width: 100%;
+        padding: 8px;
+    }
+
+    .alerta-centro {
+        width: 100%;
+
+        grid-template-columns:
+            24px minmax(0, 1fr) auto;
+
+        gap: 8px;
+    }
+
+    .alerta-centro-flecha {
+        display: none;
+    }
+
+    .alerta-centro-contenido strong,
+    .alerta-centro-contenido small {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+    }
+
+    .alerta-centro-estado {
+        white-space: nowrap;
+    }
+}
