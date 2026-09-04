@@ -1554,3 +1554,35 @@
     5 * 60 * 1000
   );
 })();
+/* =========================================================
+   PORTAL - MENU MOVIL
+   ========================================================= */
+
+const botonMenuMovil =
+    document.getElementById("mobile-menu-toggle");
+
+const navegacionPortal =
+    document.getElementById("portal-nav");
+
+if (botonMenuMovil && navegacionPortal) {
+
+    botonMenuMovil.addEventListener("click", () => {
+
+        const abierto =
+            navegacionPortal.classList.toggle("menu-abierto");
+
+        botonMenuMovil.setAttribute(
+            "aria-expanded",
+            String(abierto)
+        );
+
+        const icono =
+            botonMenuMovil.querySelector(".mobile-menu-icon");
+
+        if (icono) {
+            icono.textContent = abierto ? "×" : "☰";
+        }
+
+    });
+
+}
