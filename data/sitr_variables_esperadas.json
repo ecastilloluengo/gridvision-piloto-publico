@@ -1,0 +1,461 @@
+{
+  "fuente": "Coordinador Eléctrico Nacional",
+  "capturado_en": "2026-09-04T20:42:23-04:00",
+  "total_variables": 45,
+  "por_coordinado": {
+    "CAPULLO": 15,
+    "LA LEONERA": 30
+  },
+  "variables": [
+    {
+      "clave": "CAPULLO|512888211",
+      "irn": "512888211",
+      "coordinado": "CAPULLO",
+      "ssee": "CAPULLO",
+      "tipo": "A",
+      "variable": "CAPULLO   TR01   ATQ",
+      "enlace_iccp_rtu": "CAPULLO_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "CAPULLO|512889211",
+      "irn": "512889211",
+      "coordinado": "CAPULLO",
+      "ssee": "CAPULLO",
+      "tipo": "A",
+      "variable": "CAPULLO   TR01   ATP",
+      "enlace_iccp_rtu": "CAPULLO_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "CAPULLO|512909211",
+      "irn": "512909211",
+      "coordinado": "CAPULLO",
+      "ssee": "CAPULLO",
+      "tipo": "A",
+      "variable": "CAPULLO   13.  GEN1   F",
+      "enlace_iccp_rtu": "CAPULLO_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "CAPULLO|512911211",
+      "irn": "512911211",
+      "coordinado": "CAPULLO",
+      "ssee": "CAPULLO",
+      "tipo": "A",
+      "variable": "CAPULLO   13.  GEN1   P",
+      "enlace_iccp_rtu": "CAPULLO_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "CAPULLO|512912211",
+      "irn": "512912211",
+      "coordinado": "CAPULLO",
+      "ssee": "CAPULLO",
+      "tipo": "A",
+      "variable": "CAPULLO   13.  GEN1   Q",
+      "enlace_iccp_rtu": "CAPULLO_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "CAPULLO|512913211",
+      "irn": "512913211",
+      "coordinado": "CAPULLO",
+      "ssee": "CAPULLO",
+      "tipo": "A",
+      "variable": "CAPULLO   13.  GEN1   V",
+      "enlace_iccp_rtu": "CAPULLO_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "CAPULLO|512920211",
+      "irn": "512920211",
+      "coordinado": "CAPULLO",
+      "ssee": "CAPULLO",
+      "tipo": "A",
+      "variable": "CAPULLO   TR01   ATV",
+      "enlace_iccp_rtu": "CAPULLO_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "CAPULLO|512922211",
+      "irn": "512922211",
+      "coordinado": "CAPULLO",
+      "ssee": "CAPULLO",
+      "tipo": "A",
+      "variable": "CAPULLO   TR01   ATF",
+      "enlace_iccp_rtu": "CAPULLO_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "CAPULLO|513184211",
+      "irn": "513184211",
+      "coordinado": "CAPULLO",
+      "ssee": "CAPULLO",
+      "tipo": "D",
+      "variable": "CAPULLO   66   BG     INT",
+      "enlace_iccp_rtu": "CAPULLO_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "CAPULLO|621673221",
+      "irn": "621673221",
+      "coordinado": "CAPULLO",
+      "ssee": "PULELFU",
+      "tipo": "D",
+      "variable": "PULELFU   66   B2     DESC2",
+      "enlace_iccp_rtu": "CAPULLO_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "CAPULLO|986331221",
+      "irn": "986331221",
+      "coordinado": "CAPULLO",
+      "ssee": "PULELFU",
+      "tipo": "D",
+      "variable": "PULELFU   66   B2     INT",
+      "enlace_iccp_rtu": "CAPULLO_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "CAPULLO|986333221",
+      "irn": "986333221",
+      "coordinado": "CAPULLO",
+      "ssee": "PULELFU",
+      "tipo": "D",
+      "variable": "PULELFU   66   B2     DESC1",
+      "enlace_iccp_rtu": "CAPULLO_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "CAPULLO|986346221",
+      "irn": "986346221",
+      "coordinado": "CAPULLO",
+      "ssee": "PULELFU",
+      "tipo": "A",
+      "variable": "PULELFU   66   BP     V",
+      "enlace_iccp_rtu": "CAPULLO_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "CAPULLO|986350221",
+      "irn": "986350221",
+      "coordinado": "CAPULLO",
+      "ssee": "PULELFU",
+      "tipo": "A",
+      "variable": "PULELFU   66   B2     P",
+      "enlace_iccp_rtu": "CAPULLO_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "CAPULLO|986351221",
+      "irn": "986351221",
+      "coordinado": "CAPULLO",
+      "ssee": "PULELFU",
+      "tipo": "A",
+      "variable": "PULELFU   66   B2     Q",
+      "enlace_iccp_rtu": "CAPULLO_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|621695221",
+      "irn": "621695221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "D",
+      "variable": "PULELFU   66   B1     INT",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|621704221",
+      "irn": "621704221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "D",
+      "variable": "PULELFU   FALLA-RTU",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|621705221",
+      "irn": "621705221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "D",
+      "variable": "PULELFU   LOCAL-REMOTO",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|621706221",
+      "irn": "621706221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "A",
+      "variable": "PULELFU   TEMP",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|621781221",
+      "irn": "621781221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "D",
+      "variable": "PULELFU   6.6  DT     DESC1",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|621800221",
+      "irn": "621800221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "A",
+      "variable": "PULELFU   TR1    ATP",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|621801221",
+      "irn": "621801221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "A",
+      "variable": "PULELFU   TR1    ATQ",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|768762221",
+      "irn": "768762221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "A",
+      "variable": "PULELFU   6.6  BP     V",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|768764221",
+      "irn": "768764221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "A",
+      "variable": "PULELFU   6.6  GEN1   Q",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|768769221",
+      "irn": "768769221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "A",
+      "variable": "PULELFU   6.6  GEN1   F",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|768770221",
+      "irn": "768770221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "A",
+      "variable": "PULELFU   6.6  GEN1   P",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|768771221",
+      "irn": "768771221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "A",
+      "variable": "PULELFU   6.6  GEN1   V",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|768772221",
+      "irn": "768772221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "D",
+      "variable": "PULELFU   6.6  GEN1   UNIDAD LISTA SINCR",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|768773221",
+      "irn": "768773221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "D",
+      "variable": "PULELFU   6.6  GEN1   U-EN SERVICIO",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|768774221",
+      "irn": "768774221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "D",
+      "variable": "PULELFU   6.6  GEN1   U-FUERA SERVICIO",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|768787221",
+      "irn": "768787221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "D",
+      "variable": "PULELFU   6.6  DSA    DESC1",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|768803221",
+      "irn": "768803221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "A",
+      "variable": "PULELFU   6.6  GEN2   P",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|768807221",
+      "irn": "768807221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "A",
+      "variable": "PULELFU   6.6  GEN2   F",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|768808221",
+      "irn": "768808221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "A",
+      "variable": "PULELFU   6.6  GEN2   Q",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|768809221",
+      "irn": "768809221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "A",
+      "variable": "PULELFU   6.6  GEN2   V",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|768810221",
+      "irn": "768810221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "D",
+      "variable": "PULELFU   6.6  GEN2   UNIDAD LISTA SINCR",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|768811221",
+      "irn": "768811221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "D",
+      "variable": "PULELFU   6.6  GEN2   U-EN SERVICIO",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|768812221",
+      "irn": "768812221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "D",
+      "variable": "PULELFU   6.6  GEN2   U-FUERA SERVICIO",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|768826221",
+      "irn": "768826221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "D",
+      "variable": "PULELFU   6.6  G1     INT",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|768829221",
+      "irn": "768829221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "D",
+      "variable": "PULELFU   6.6  G2     INT",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|768848221",
+      "irn": "768848221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "A",
+      "variable": "PULELFU   TR1         TAP",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|768850221",
+      "irn": "768850221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "A",
+      "variable": "PULELFU   TR1    BTP",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|768852221",
+      "irn": "768852221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "A",
+      "variable": "PULELFU   TR1    BTQ",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|768861221",
+      "irn": "768861221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "A",
+      "variable": "PULELFU   TR1    ATV",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    },
+    {
+      "clave": "LA LEONERA|951164221",
+      "irn": "951164221",
+      "coordinado": "LA LEONERA",
+      "ssee": "PULELFU",
+      "tipo": "D",
+      "variable": "PULELFU   66   B1     DESC1",
+      "enlace_iccp_rtu": "PULELFU_DNPI",
+      "tag_iccp": ""
+    }
+  ]
+}

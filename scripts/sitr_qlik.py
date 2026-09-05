@@ -1,6 +1,7 @@
 import json
 import urllib.parse
 from datetime import datetime
+from pathlib import Path
 from zoneinfo import ZoneInfo
 
 import requests
@@ -12,6 +13,7 @@ HOST = "qap-prd.coordinador.cl"
 APP_ID = "e0efd7e8-d166-4fda-8d73-f5286e0486e4"
 
 OBJETO_RESUMEN = "ktDnS"
+OBJETO_DETALLE = "CmmUfRB"
 
 MASHUP_URL = (
     "https://qap-prd.coordinador.cl"
@@ -20,8 +22,45 @@ MASHUP_URL = (
     "mashup_Dashboard_Scada_Disponibilidad.html"
 )
 
+ARCHIVO_VARIABLES_ESPERADAS = (
+    Path(__file__).resolve().parent.parent
+    / "data"
+    / "sitr_variables_esperadas.json"
+)
 
-def _rpc(ws, identificador, handle, metodo, params):
+
+def cargar_variables_esperadas():
+
+    if not ARCHIVO_VARIABLES_ESPERADAS.exists():
+        raise RuntimeError(
+            "No existe data/sitr_variables_esperadas.json"
+        )
+
+    datos = json.loads(
+        ARCHIVO_VARIABLES_ESPERADAS.read_text(
+            encoding="utf-8"
+        )
+    )
+
+    variables = datos.get(
+        "variables",
+        []
+    )
+
+    return {
+        item["clave"]: item
+        for item in variables
+        if item.get("clave")
+    }
+
+
+def _rpc(
+    ws,
+    identificador,
+    handle,
+    metodo,
+    params
+):
 
     ws.send(
         json.dumps({
@@ -61,9 +100,9 @@ def consultar_sitr():
         "User-Agent": "Mozilla/5.0"
     })
 
-    # --------------------------------------------------
+    # ==================================================
     # SESION PUBLICA QLIK
-    # --------------------------------------------------
+    # ==================================================
 
     respuesta = sesion.get(
         MASHUP_URL,
@@ -72,13 +111,15 @@ def consultar_sitr():
 
     respuesta.raise_for_status()
 
-    # --------------------------------------------------
+    # ==================================================
     # TOKEN CSRF
-    # --------------------------------------------------
+    # ==================================================
 
     respuesta_csrf = sesion.get(
-        "https://qap-prd.coordinador.cl"
-        "/ext/qps/csrftoken",
+        (
+            "https://qap-prd.coordinador.cl"
+            "/ext/qps/csrftoken"
+        ),
         headers={
             "Accept": "*/*",
             "Referer": MASHUP_URL,
@@ -88,7 +129,8 @@ def consultar_sitr():
 
     if respuesta_csrf.status_code != 204:
         raise RuntimeError(
-            f"Qlik CSRF HTTP {respuesta_csrf.status_code}"
+            f"Qlik CSRF HTTP "
+            f"{respuesta_csrf.status_code}"
         )
 
     csrf = respuesta_csrf.headers.get(
@@ -100,9 +142,9 @@ def consultar_sitr():
             "Qlik no entrego token CSRF"
         )
 
-    # --------------------------------------------------
+    # ==================================================
     # COOKIE QLIK
-    # --------------------------------------------------
+    # ==================================================
 
     cookie = "; ".join(
         f"{item.name}={item.value}"
@@ -114,13 +156,16 @@ def consultar_sitr():
             "Qlik no entrego cookie de sesion"
         )
 
-    # --------------------------------------------------
+    # ==================================================
     # WEBSOCKET QIX
-    # --------------------------------------------------
+    # ==================================================
 
     parametros = urllib.parse.urlencode({
-        "reloadUri": MASHUP_URL,
-        "qlik-csrf-token": csrf,
+        "reloadUri":
+            MASHUP_URL,
+
+        "qlik-csrf-token":
+            csrf,
     })
 
     url_ws = (
@@ -138,7 +183,9 @@ def consultar_sitr():
 
     try:
 
-        # Abrir aplicación
+        # ==================================================
+        # ABRIR APP
+        # ==================================================
 
         resultado = _rpc(
             ws,
@@ -146,7 +193,8 @@ def consultar_sitr():
             -1,
             "OpenDoc",
             {
-                "qDocName": APP_ID
+                "qDocName":
+                    APP_ID
             }
         )
 
@@ -154,7 +202,9 @@ def consultar_sitr():
             "qReturn"
         ]["qHandle"]
 
-        # Obtener tabla resumen
+        # ==================================================
+        # RESUMEN DE DISPONIBILIDAD
+        # ==================================================
 
         resultado = _rpc(
             ws,
@@ -162,15 +212,14 @@ def consultar_sitr():
             handle_app,
             "GetObject",
             {
-                "qId": OBJETO_RESUMEN
+                "qId":
+                    OBJETO_RESUMEN
             }
         )
 
         handle_objeto = resultado[
             "qReturn"
         ]["qHandle"]
-
-        # Layout
 
         resultado = _rpc(
             ws,
@@ -184,8 +233,13 @@ def consultar_sitr():
             "qLayout"
         ]["qHyperCube"]
 
-        ancho = cube["qSize"]["qcx"]
-        alto = cube["qSize"]["qcy"]
+        ancho = cube[
+            "qSize"
+        ]["qcx"]
+
+        alto = cube[
+            "qSize"
+        ]["qcy"]
 
         medidas = [
             medida.get(
@@ -205,15 +259,15 @@ def consultar_sitr():
             else None
         )
 
-        # Obtener filas
-
         resultado = _rpc(
             ws,
             4,
             handle_objeto,
             "GetHyperCubeData",
             {
-                "qPath": "/qHyperCubeDef",
+                "qPath":
+                    "/qHyperCubeDef",
+
                 "qPages": [
                     {
                         "qTop": 0,
@@ -231,24 +285,34 @@ def consultar_sitr():
 
         filas = [
             [
-                celda.get("qText", "")
+                celda.get(
+                    "qText",
+                    ""
+                )
                 for celda in fila
             ]
             for fila in matriz
         ]
 
-        # --------------------------------------------------
+        # ==================================================
         # ACTIVOS PECKET
-        # --------------------------------------------------
+        # ==================================================
 
         mapa = {
             "CAPULLO": {
-                "id": "capullo",
-                "nombre": "Central Capullo",
+                "id":
+                    "capullo",
+
+                "nombre":
+                    "Central Capullo",
             },
+
             "LA LEONERA": {
-                "id": "pulelfu",
-                "nombre": "Central Pulelfu",
+                "id":
+                    "pulelfu",
+
+                "nombre":
+                    "Central Pulelfu",
             }
         }
 
@@ -273,13 +337,16 @@ def consultar_sitr():
             disponibilidad = None
 
             try:
+
                 disponibilidad = float(
                     texto
                     .replace("%", "")
                     .replace(",", ".")
                 )
+
             except Exception:
                 pass
+
             historial = []
 
             for periodo, valor_texto in zip(
@@ -290,26 +357,37 @@ def consultar_sitr():
                 valor = None
 
                 try:
+
                     valor = float(
                         valor_texto
                         .replace("%", "")
                         .replace(",", ".")
                     )
+
                 except Exception:
                     pass
 
                 historial.append({
-                    "periodo": periodo,
-                    "disponibilidad": valor,
-                    "disponibilidad_texto": valor_texto,
+                    "periodo":
+                        periodo,
+
+                    "disponibilidad":
+                        valor,
+
+                    "disponibilidad_texto":
+                        valor_texto,
                 })
-            
+
             instalaciones.append({
                 "id":
-                    mapa[coordinado]["id"],
+                    mapa[
+                        coordinado
+                    ]["id"],
 
                 "nombre":
-                    mapa[coordinado]["nombre"],
+                    mapa[
+                        coordinado
+                    ]["nombre"],
 
                 "nombre_cen":
                     coordinado,
@@ -320,12 +398,13 @@ def consultar_sitr():
                 "disponibilidad_texto":
                     texto,
 
-                     "historial":
+                "historial":
                     historial,
             })
-        # --------------------------------------------------
+
+        # ==================================================
         # DETALLE DE VARIABLES SITR
-        # --------------------------------------------------
+        # ==================================================
 
         resultado = _rpc(
             ws,
@@ -333,7 +412,8 @@ def consultar_sitr():
             handle_app,
             "GetField",
             {
-                "qFieldName": "COORDINADO"
+                "qFieldName":
+                    "COORDINADO"
             }
         )
 
@@ -348,11 +428,21 @@ def consultar_sitr():
             "SelectValues",
             {
                 "qFieldValues": [
-                    {"qText": "CAPULLO"},
-                    {"qText": "LA LEONERA"},
+                    {
+                        "qText":
+                            "CAPULLO"
+                    },
+                    {
+                        "qText":
+                            "LA LEONERA"
+                    },
                 ],
-                "qToggleMode": False,
-                "qSoftLock": True,
+
+                "qToggleMode":
+                    False,
+
+                "qSoftLock":
+                    True,
             }
         )
 
@@ -362,7 +452,8 @@ def consultar_sitr():
             handle_app,
             "GetObject",
             {
-                "qId": "CmmUfRB"
+                "qId":
+                    OBJETO_DETALLE
             }
         )
 
@@ -382,13 +473,17 @@ def consultar_sitr():
             "qLayout"
         ]["qHyperCube"]
 
-        ancho_detalle = cube_detalle[
-            "qSize"
-        ]["qcx"]
+        ancho_detalle = (
+            cube_detalle[
+                "qSize"
+            ]["qcx"]
+        )
 
-        alto_detalle = cube_detalle[
-            "qSize"
-        ]["qcy"]
+        alto_detalle = (
+            cube_detalle[
+                "qSize"
+            ]["qcy"]
+        )
 
         resultado = _rpc(
             ws,
@@ -396,16 +491,22 @@ def consultar_sitr():
             handle_detalle,
             "GetHyperCubeData",
             {
-                "qPath": "/qHyperCubeDef",
+                "qPath":
+                    "/qHyperCubeDef",
+
                 "qPages": [
                     {
                         "qTop": 0,
                         "qLeft": 0,
-                        "qWidth": ancho_detalle,
-                        "qHeight": min(
-                            alto_detalle,
-                            1000
-                        ),
+
+                        "qWidth":
+                            ancho_detalle,
+
+                        "qHeight":
+                            min(
+                                alto_detalle,
+                                1000
+                            ),
                     }
                 ],
             }
@@ -417,24 +518,95 @@ def consultar_sitr():
 
         filas_detalle = [
             [
-                celda.get("qText", "")
+                celda.get(
+                    "qText",
+                    ""
+                )
                 for celda in fila
             ]
             for fila in matriz_detalle
         ]
 
+        # ==================================================
+        # LINEA BASE DE VARIABLES ESPERADAS
+        # ==================================================
+
+        variables_esperadas = (
+            cargar_variables_esperadas()
+        )
+
+        esperadas_por_coordinado = {}
+
+        for variable in (
+            variables_esperadas.values()
+        ):
+
+            coordinado = (
+                variable.get(
+                    "coordinado",
+                    ""
+                )
+                .strip()
+                .upper()
+            )
+
+            esperadas_por_coordinado.setdefault(
+                coordinado,
+                []
+            ).append(
+                variable
+            )
+
+        # ==================================================
+        # RESUMEN POR CENTRAL
+        # ==================================================
+
         detalle_por_coordinado = {}
 
         for instalacion in instalaciones:
 
+            coordinado = (
+                instalacion[
+                    "nombre_cen"
+                ]
+                .strip()
+                .upper()
+            )
+
+            esperadas = (
+                esperadas_por_coordinado.get(
+                    coordinado,
+                    []
+                )
+            )
+
             detalle_por_coordinado[
-                instalacion["nombre_cen"]
+                coordinado
             ] = {
-                "variables_total": 0,
-                "variables_validas": 0,
-                "variables_incidentes": 0,
-                "incidencias": [],
+                "variables_total":
+                    len(esperadas),
+
+                "variables_recibidas":
+                    0,
+
+                "variables_validas":
+                    0,
+
+                "variables_faltantes":
+                    0,
+
+                "variables_incidentes":
+                    0,
+
+                "incidencias":
+                    [],
             }
+
+        claves_recibidas = set()
+
+        # ==================================================
+        # VARIABLES QUE SI LLEGARON
+        # ==================================================
 
         for fila in filas_detalle:
 
@@ -447,15 +619,36 @@ def consultar_sitr():
                 .upper()
             )
 
-            if coordinado not in detalle_por_coordinado:
+            if coordinado not in (
+                detalle_por_coordinado
+            ):
                 continue
 
-            resumen = detalle_por_coordinado[
-                coordinado
-            ]
+            clave = (
+                f"{coordinado}|"
+                f"{fila[0].strip()}"
+            )
+
+            # Si aparece una señal nueva
+            # que no pertenece a la línea base,
+            # no altera el cumplimiento esperado.
+            if clave not in (
+                variables_esperadas
+            ):
+                continue
+
+            claves_recibidas.add(
+                clave
+            )
+
+            resumen = (
+                detalle_por_coordinado[
+                    coordinado
+                ]
+            )
 
             resumen[
-                "variables_total"
+                "variables_recibidas"
             ] += 1
 
             calidad = (
@@ -481,29 +674,157 @@ def consultar_sitr():
                 resumen[
                     "incidencias"
                 ].append({
-                    "irn": fila[0],
-                    "coordinado": fila[1],
-                    "ssee": fila[2],
-                    "valor": fila[3],
-                    "tipo": fila[4],
-                    "variable": fila[5],
-                    "calidad": fila[6],
-                    "enlace_iccp_rtu": fila[7],
-                    "tag_iccp": fila[8],
+                    "estado":
+                        "mala_calidad",
+
+                    "irn":
+                        fila[0],
+
+                    "coordinado":
+                        fila[1],
+
+                    "ssee":
+                        fila[2],
+
+                    "valor":
+                        fila[3],
+
+                    "tipo":
+                        fila[4],
+
+                    "variable":
+                        fila[5],
+
+                    "calidad":
+                        fila[6],
+
+                    "enlace_iccp_rtu":
+                        fila[7],
+
+                    "tag_iccp":
+                        fila[8],
                 })
+
+        # ==================================================
+        # VARIABLES ESPERADAS QUE NO LLEGARON
+        # ==================================================
+
+        for clave, esperada in (
+            variables_esperadas.items()
+        ):
+
+            if clave in claves_recibidas:
+                continue
+
+            coordinado = (
+                esperada.get(
+                    "coordinado",
+                    ""
+                )
+                .strip()
+                .upper()
+            )
+
+            if coordinado not in (
+                detalle_por_coordinado
+            ):
+                continue
+
+            resumen = (
+                detalle_por_coordinado[
+                    coordinado
+                ]
+            )
+
+            resumen[
+                "variables_faltantes"
+            ] += 1
+
+            resumen[
+                "variables_incidentes"
+            ] += 1
+
+            resumen[
+                "incidencias"
+            ].append({
+                "estado":
+                    "no_reporta",
+
+                "irn":
+                    esperada.get(
+                        "irn",
+                        ""
+                    ),
+
+                "coordinado":
+                    esperada.get(
+                        "coordinado",
+                        ""
+                    ),
+
+                "ssee":
+                    esperada.get(
+                        "ssee",
+                        ""
+                    ),
+
+                "valor":
+                    "--",
+
+                "tipo":
+                    esperada.get(
+                        "tipo",
+                        ""
+                    ),
+
+                "variable":
+                    esperada.get(
+                        "variable",
+                        ""
+                    ),
+
+                "calidad":
+                    "NO REPORTA",
+
+                "enlace_iccp_rtu":
+                    esperada.get(
+                        "enlace_iccp_rtu",
+                        ""
+                    ),
+
+                "tag_iccp":
+                    esperada.get(
+                        "tag_iccp",
+                        ""
+                    ),
+            })
+
+        # ==================================================
+        # AGREGAR DETALLE A CADA CENTRAL
+        # ==================================================
 
         for instalacion in instalaciones:
 
-            detalle = detalle_por_coordinado.get(
-                instalacion["nombre_cen"],
-                {}
+            detalle = (
+                detalle_por_coordinado.get(
+                    instalacion[
+                        "nombre_cen"
+                    ],
+                    {}
+                )
             )
 
             instalacion.update(
                 detalle
             )
+
+        # ==================================================
+        # RESPUESTA FINAL
+        # ==================================================
+
         return {
-            "ok": True,
+            "ok":
+                True,
 
             "fuente":
                 "Coordinador Eléctrico Nacional",
@@ -516,7 +837,9 @@ def consultar_sitr():
 
             "consultado_en":
                 datetime.now(
-                    ZoneInfo("America/Santiago")
+                    ZoneInfo(
+                        "America/Santiago"
+                    )
                 ).isoformat(
                     timespec="seconds"
                 ),
