@@ -28,6 +28,11 @@ ARCHIVO_ESTADO = CARPETA_MONITOR / "estado.json"
 
 HORAS_REPORTE = (9, 17)
 
+# Criterio operativo GridVision.
+# No corresponde a un umbral oficial del CEN.
+FRESCURA_ADVERTENCIA_MIN = 30
+FRESCURA_CRITICA_MIN = 60
+
 
 def ahora_chile():
     return datetime.now(TZ)
@@ -82,7 +87,7 @@ def guardar_json(ruta, datos):
 
 def estado_inicial():
     return {
-        "version": 2,
+        "version": 3,
         "inicializado_en": None,
         "ultima_ejecucion": None,
         "ultima_consulta_cen": None,
@@ -90,6 +95,7 @@ def estado_inicial():
         "ultimo_reporte_09": None,
         "ultimo_reporte_17": None,
         "incidencias_activas": {},
+        "fuente_cen_alerta_activa": None,
         "eventos": [],
         "eventos_ultima_ejecucion": [],
         "ultimo_snapshot": None,
@@ -106,6 +112,11 @@ def cargar_estado():
 
     if isinstance(datos, dict):
         base.update(datos)
+
+    # La versión corresponde al código actual,
+    # aunque el estado persistente venga de una
+    # ejecución anterior.
+    base["version"] = 3
 
     if not isinstance(
         base.get("incidencias_activas"),
@@ -185,6 +196,122 @@ def incidencia_actual(instalacion, incidencia, fecha):
     }
 
 
+
+def parsear_actualizado_cen(valor):
+    if not valor:
+        return None
+
+    texto = str(valor).strip()
+
+    formatos = (
+        "%d-%m-%Y %H:%M",
+        "%d/%m/%Y %H:%M",
+    )
+
+    for formato in formatos:
+        try:
+            return datetime.strptime(
+                texto,
+                formato
+            ).replace(
+                tzinfo=TZ
+            )
+        except ValueError:
+            continue
+
+    return None
+
+
+def texto_edad_minutos(minutos):
+    if minutos is None:
+        return "desconocida"
+
+    minutos = max(
+        0,
+        int(round(minutos))
+    )
+
+    if minutos < 60:
+        return f"{minutos} min"
+
+    horas, resto = divmod(
+        minutos,
+        60
+    )
+
+    if resto == 0:
+        return f"{horas} h"
+
+    return f"{horas} h {resto} min"
+
+
+def calcular_frescura_cen(
+    actualizado_cen,
+    fecha
+):
+    fecha_cen = parsear_actualizado_cen(
+        actualizado_cen
+    )
+
+    if fecha_cen is None:
+        return {
+            "estado": "DESCONOCIDA",
+            "nivel": "critico",
+            "actualizado_cen": actualizado_cen,
+            "edad_minutos": None,
+            "edad_texto": "desconocida",
+            "criterio": (
+                "GridVision: fresco <=30 min; "
+                "retrasado 31-60 min; "
+                "desactualizado >60 min"
+            ),
+        }
+
+    edad_minutos = max(
+        0.0,
+        (
+            fecha - fecha_cen
+        ).total_seconds()
+        / 60
+    )
+
+    if (
+        edad_minutos
+        <= FRESCURA_ADVERTENCIA_MIN
+    ):
+        estado = "FRESCO"
+        nivel = "ok"
+
+    elif (
+        edad_minutos
+        <= FRESCURA_CRITICA_MIN
+    ):
+        estado = "RETRASADO"
+        nivel = "advertencia"
+
+    else:
+        estado = "DESACTUALIZADO"
+        nivel = "critico"
+
+    return {
+        "estado": estado,
+        "nivel": nivel,
+        "actualizado_cen": actualizado_cen,
+        "edad_minutos": round(
+            edad_minutos,
+            1
+        ),
+        "edad_texto": texto_edad_minutos(
+            edad_minutos
+        ),
+        "criterio": (
+            "GridVision: fresco <=30 min; "
+            "retrasado 31-60 min; "
+            "desactualizado >60 min"
+        ),
+    }
+
+
 def construir_snapshot(datos, fecha):
     instalaciones = []
 
@@ -246,25 +373,48 @@ def construir_snapshot(datos, fecha):
             "variables_incidentes"
         ]
 
+    actualizado_cen = datos.get(
+        "actualizado_cen"
+    )
+
+    frescura_cen = calcular_frescura_cen(
+        actualizado_cen,
+        fecha
+    )
+
+    estado_senales = (
+        "OK"
+        if (
+            total > 0
+            and faltantes == 0
+            and incidentes == 0
+        )
+        else "INCIDENCIA"
+    )
+
+    if estado_senales != "OK":
+        estado_general = "INCIDENCIA_SITR"
+    elif frescura_cen["estado"] == "RETRASADO":
+        estado_general = "ADVERTENCIA_FUENTE"
+    elif frescura_cen["estado"] in (
+        "DESACTUALIZADO",
+        "DESCONOCIDA",
+    ):
+        estado_general = "ALERTA_FUENTE"
+    else:
+        estado_general = "OK"
+
     return {
         "fecha": iso(fecha),
-        "actualizado_cen": datos.get(
-            "actualizado_cen"
-        ),
+        "actualizado_cen": actualizado_cen,
+        "frescura_cen": frescura_cen,
         "total": total,
         "recibidas": recibidas,
         "validas": validas,
         "faltantes": faltantes,
         "incidentes": incidentes,
-        "estado": (
-            "OK"
-            if (
-                total > 0
-                and faltantes == 0
-                and incidentes == 0
-            )
-            else "INCIDENCIA"
-        ),
+        "estado_senales": estado_senales,
+        "estado": estado_general,
         "instalaciones": instalaciones,
     }
 
@@ -420,6 +570,165 @@ def procesar_incidencias(
     ] = actuales
 
 
+
+def procesar_frescura_fuente(
+    estado,
+    frescura,
+    fecha
+):
+    anterior = estado.get(
+        "fuente_cen_alerta_activa"
+    )
+
+    es_critica = (
+        frescura.get("estado")
+        in (
+            "DESACTUALIZADO",
+            "DESCONOCIDA",
+        )
+    )
+
+    if es_critica:
+        actual = {
+            "clave": "FUENTE_CEN",
+            "central": None,
+            "coordinado": "CEN",
+            "irn": None,
+            "ssee": None,
+            "variable": "Frescura fuente CEN",
+            "estado": frescura.get("estado"),
+            "calidad": None,
+            "tag_iccp": None,
+            "ultima_vez": iso(fecha),
+            "actualizado_cen":
+                frescura.get(
+                    "actualizado_cen"
+                ),
+            "edad_minutos":
+                frescura.get(
+                    "edad_minutos"
+                ),
+            "edad_texto":
+                frescura.get(
+                    "edad_texto"
+                ),
+        }
+
+        if anterior is None:
+            actual["inicio"] = iso(fecha)
+
+            registrar_evento(
+                estado,
+                "FUENTE_DESACTUALIZADA",
+                fecha,
+                actual,
+                {
+                    "actualizado_cen":
+                        actual[
+                            "actualizado_cen"
+                        ],
+                    "edad_minutos":
+                        actual[
+                            "edad_minutos"
+                        ],
+                    "edad_texto":
+                        actual[
+                            "edad_texto"
+                        ],
+                }
+            )
+
+        else:
+            actual["inicio"] = (
+                anterior.get("inicio")
+                or iso(fecha)
+            )
+
+            if (
+                anterior.get("estado")
+                != actual.get("estado")
+            ):
+                registrar_evento(
+                    estado,
+                    "FUENTE_CAMBIO_ESTADO",
+                    fecha,
+                    actual,
+                    {
+                        "estado_anterior":
+                            anterior.get(
+                                "estado"
+                            ),
+                        "actualizado_cen":
+                            actual[
+                                "actualizado_cen"
+                            ],
+                        "edad_minutos":
+                            actual[
+                                "edad_minutos"
+                            ],
+                    }
+                )
+
+        estado[
+            "fuente_cen_alerta_activa"
+        ] = actual
+
+        return
+
+    if anterior is None:
+        return
+
+    inicio = parsear_iso(
+        anterior.get("inicio")
+    )
+
+    duracion_min = None
+
+    if inicio:
+        duracion_min = max(
+            0,
+            round(
+                (
+                    fecha - inicio
+                ).total_seconds()
+                / 60,
+                1
+            )
+        )
+
+    normalizada = dict(anterior)
+    normalizada["estado"] = "NORMALIZADA"
+    normalizada["ultima_vez"] = iso(fecha)
+
+    registrar_evento(
+        estado,
+        "FUENTE_NORMALIZADA",
+        fecha,
+        normalizada,
+        {
+            "fin": iso(fecha),
+            "duracion_minutos":
+                duracion_min,
+            "actualizado_cen":
+                frescura.get(
+                    "actualizado_cen"
+                ),
+            "edad_minutos":
+                frescura.get(
+                    "edad_minutos"
+                ),
+            "edad_texto":
+                frescura.get(
+                    "edad_texto"
+                ),
+        }
+    )
+
+    estado[
+        "fuente_cen_alerta_activa"
+    ] = None
+
+
 def slot_evidencia(fecha):
     hora = fecha.hour - (
         fecha.hour % 2
@@ -479,6 +788,14 @@ def registrar_evidencia(
         "slot": slot,
         "registrado_en": iso(fecha),
         "estado": snapshot["estado"],
+        "estado_senales":
+            snapshot.get(
+                "estado_senales"
+            ),
+        "frescura_cen":
+            snapshot.get(
+                "frescura_cen"
+            ),
         "total": snapshot["total"],
         "recibidas": snapshot["recibidas"],
         "validas": snapshot["validas"],
@@ -670,11 +987,12 @@ def construir_texto_reporte(
 
     actual = reporte["estado_actual"]
 
-    icono = (
-        "🟢"
-        if actual["estado"] == "OK"
-        else "🔴"
-    )
+    if actual["estado"] == "OK":
+        icono = "🟢"
+    elif actual["estado"] == "ADVERTENCIA_FUENTE":
+        icono = "🟡"
+    else:
+        icono = "🔴"
 
     lineas.append(
         f"{icono} Estado actual: "
@@ -694,6 +1012,34 @@ def construir_texto_reporte(
         f"Incidencias activas: "
         f"{actual['incidentes']}"
     )
+
+    frescura = actual.get(
+        "frescura_cen",
+        {}
+    )
+
+    icono_fuente = {
+        "FRESCO": "🟢",
+        "RETRASADO": "🟡",
+        "DESACTUALIZADO": "🔴",
+        "DESCONOCIDA": "🔴",
+    }.get(
+        frescura.get("estado"),
+        "⚪"
+    )
+
+    lineas.append(
+        "Frescura CEN: "
+        f"{icono_fuente} "
+        f"{frescura.get('estado') or 'SIN DATO'} · "
+        f"{frescura.get('edad_texto') or 'desconocida'}"
+    )
+
+    lineas.append(
+        "Última actualización CEN: "
+        f"{actual.get('actualizado_cen') or '--'}"
+    )
+
     lineas.append("")
 
     for central in actual["instalaciones"]:
@@ -728,12 +1074,22 @@ def construir_texto_reporte(
                 else "🔴"
             )
 
+            frescura_ev = (
+                evidencia.get(
+                    "frescura_cen"
+                )
+                or {}
+            )
+
             lineas.append(
                 f"{hora} {marca} "
                 f"{evidencia['validas']}/"
                 f"{evidencia['total']} válidas · "
                 f"{evidencia['faltantes']} faltantes · "
-                f"{evidencia['incidentes']} incidencias"
+                f"{evidencia['incidentes']} incidencias · "
+                "CEN "
+                f"{frescura_ev.get('estado') or '--'} "
+                f"({frescura_ev.get('edad_texto') or '--'})"
             )
 
     lineas.append("")
@@ -980,6 +1336,12 @@ def ejecutar(
         fecha
     )
 
+    procesar_frescura_fuente(
+        estado,
+        snapshot["frescura_cen"],
+        fecha
+    )
+
     estado["ultima_ejecucion"] = iso(fecha)
     estado[
         "ultima_consulta_cen"
@@ -1053,6 +1415,14 @@ def ejecutar(
     print(
         "Incidencias:",
         snapshot["incidentes"]
+    )
+    print(
+        "Frescura CEN:",
+        snapshot["frescura_cen"]["estado"],
+        "-",
+        snapshot["frescura_cen"]["edad_texto"],
+        "- última actualización",
+        snapshot.get("actualizado_cen")
     )
 
     if evidencia:

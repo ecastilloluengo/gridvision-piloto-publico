@@ -714,16 +714,21 @@
       <article class="monitor-card">
 
         <span class="monitor-label">
-          Reportes programados
+          Frescura fuente CEN
         </span>
 
-        <strong class="monitor-value">
-          09:00 · 17:00
+        <strong
+          class="monitor-value estado-warning"
+          id="frescura-cen"
+        >
+          Consultando...
         </strong>
 
-        <small class="monitor-sub">
-          Hora Chile · automatización backend
-          en próxima etapa
+        <small
+          class="monitor-sub"
+          id="frescura-cen-detalle"
+        >
+          Esperando fecha de actualización.
         </small>
 
       </article>
@@ -733,14 +738,18 @@
 
     <div class="config-note">
 
-      Evidencia operacional prevista:
-      <strong>cada 2 horas</strong>.
+      Monitoreo automático:
+      <strong>cada 15 minutos</strong> ·
+      evidencia:
+      <strong>cada 2 horas</strong> ·
+      reportes:
+      <strong>09:00 y 17:00 hrs</strong>.
 
-      El monitoreo automático 24/7,
-      alertas inmediatas y envío de correos
-      se implementarán en el backend para
-      que funcionen incluso cuando este
-      Portal esté cerrado.
+      Frescura CEN — criterio operativo GridVision:
+      <strong>fresco ≤ 30 min</strong>,
+      <strong>retrasado 31–60 min</strong> y
+      <strong>desactualizado &gt; 60 min</strong>.
+      Este criterio no corresponde a un umbral oficial del CEN.
 
     </div>
 
@@ -996,6 +1005,12 @@ const SITR_API_URL =
 const INTERVALO_CONSULTA_MS =
   15 * 60 * 1000;
 
+const FRESCURA_ADVERTENCIA_MIN =
+  30;
+
+const FRESCURA_CRITICA_MIN =
+  60;
+
 
 let ultimoDatos = null;
 
@@ -1068,6 +1083,279 @@ function formatoFechaHora(fecha) {
       hour12:false
     }
   ).format(fecha);
+}
+
+
+
+function ahoraChilePseudoUtc(
+  fecha = new Date()
+) {
+
+  const partes =
+    new Intl.DateTimeFormat(
+      "en-CA",
+      {
+        timeZone:"America/Santiago",
+        year:"numeric",
+        month:"2-digit",
+        day:"2-digit",
+        hour:"2-digit",
+        minute:"2-digit",
+        second:"2-digit",
+        hourCycle:"h23"
+      }
+    ).formatToParts(fecha);
+
+
+  const mapa = {};
+
+  for (
+    const parte
+    of partes
+  ) {
+
+    if (
+      parte.type !== "literal"
+    ) {
+
+      mapa[
+        parte.type
+      ] = Number(
+        parte.value
+      );
+    }
+  }
+
+
+  return Date.UTC(
+    mapa.year,
+    mapa.month - 1,
+    mapa.day,
+    mapa.hour,
+    mapa.minute,
+    mapa.second
+  );
+}
+
+
+function calcularFrescuraCen(
+  datos
+) {
+
+  const texto =
+    String(
+      datos?.actualizado_cen
+      || ""
+    ).trim();
+
+
+  const coincidencia =
+    texto.match(
+      /^(\d{2})-(\d{2})-(\d{4})\s+(\d{2}):(\d{2})$/
+    );
+
+
+  if (!coincidencia) {
+
+    return {
+      estado:"DESCONOCIDA",
+      nivel:"error",
+      edadMinutos:null,
+      edadTexto:"desconocida",
+      actualizado:texto || "--"
+    };
+  }
+
+
+  const [
+    ,
+    dia,
+    mes,
+    anio,
+    hora,
+    minuto
+  ] = coincidencia;
+
+
+  const fechaCenPseudo =
+    Date.UTC(
+      Number(anio),
+      Number(mes) - 1,
+      Number(dia),
+      Number(hora),
+      Number(minuto),
+      0
+    );
+
+
+  const ahoraPseudo =
+    ahoraChilePseudoUtc();
+
+
+  const edadMinutos =
+    Math.max(
+      0,
+      (
+        ahoraPseudo
+        -
+        fechaCenPseudo
+      )
+      /
+      60000
+    );
+
+
+  let estado;
+  let nivel;
+
+
+  if (
+    edadMinutos
+    <= FRESCURA_ADVERTENCIA_MIN
+  ) {
+
+    estado =
+      "FRESCO";
+
+    nivel =
+      "ok";
+
+  } else if (
+    edadMinutos
+    <= FRESCURA_CRITICA_MIN
+  ) {
+
+    estado =
+      "RETRASADO";
+
+    nivel =
+      "warning";
+
+  } else {
+
+    estado =
+      "DESACTUALIZADO";
+
+    nivel =
+      "error";
+  }
+
+
+  const minutosRedondeados =
+    Math.round(
+      edadMinutos
+    );
+
+
+  let edadTexto;
+
+
+  if (
+    minutosRedondeados < 60
+  ) {
+
+    edadTexto =
+      `${minutosRedondeados} min`;
+
+  } else {
+
+    const horas =
+      Math.floor(
+        minutosRedondeados / 60
+      );
+
+    const minutos =
+      minutosRedondeados % 60;
+
+
+    edadTexto =
+      minutos === 0
+
+        ? `${horas} h`
+
+        : `${horas} h ${minutos} min`;
+  }
+
+
+  return {
+    estado,
+    nivel,
+    edadMinutos,
+    edadTexto,
+    actualizado:texto
+  };
+}
+
+
+function renderFrescuraCen(
+  datos
+) {
+
+  const valor =
+    document.getElementById(
+      "frescura-cen"
+    );
+
+  const detalle =
+    document.getElementById(
+      "frescura-cen-detalle"
+    );
+
+
+  if (
+    !valor
+    ||
+    !detalle
+  ) {
+
+    return;
+  }
+
+
+  const frescura =
+    calcularFrescuraCen(
+      datos
+    );
+
+
+  if (
+    frescura.nivel === "ok"
+  ) {
+
+    valor.textContent =
+      "🟢 Fresco";
+
+    valor.className =
+      "monitor-value estado-ok";
+
+  } else if (
+    frescura.nivel === "warning"
+  ) {
+
+    valor.textContent =
+      "🟡 Retrasado";
+
+    valor.className =
+      "monitor-value estado-warning";
+
+  } else {
+
+    valor.textContent =
+      frescura.estado === "DESCONOCIDA"
+
+        ? "🔴 Sin fecha"
+
+        : "🔴 Desactualizado";
+
+    valor.className =
+      "monitor-value estado-error";
+  }
+
+
+  detalle.textContent =
+    `Antigüedad: ${frescura.edadTexto} · `
+    +
+    `CEN: ${frescura.actualizado}`;
 }
 
 
@@ -1756,6 +2044,11 @@ async function cargarSitr() {
     );
 
 
+    renderFrescuraCen(
+      datos
+    );
+
+
     const actualizado =
       document.getElementById(
         "actualizado-cen"
@@ -1822,6 +2115,34 @@ async function cargarSitr() {
 
     detalle.textContent =
       "No fue posible consultar el CEN.";
+
+
+    const frescuraValor =
+      document.getElementById(
+        "frescura-cen"
+      );
+
+    const frescuraDetalle =
+      document.getElementById(
+        "frescura-cen-detalle"
+      );
+
+
+    if (frescuraValor) {
+
+      frescuraValor.textContent =
+        "🔴 Sin conexión";
+
+      frescuraValor.className =
+        "monitor-value estado-error";
+    }
+
+
+    if (frescuraDetalle) {
+
+      frescuraDetalle.textContent =
+        "No fue posible evaluar la frescura.";
+    }
 
 
     for (
@@ -2005,6 +2326,37 @@ function construirTextoCompartir() {
     `Variables faltantes: ${faltantes}`
   );
 
+
+  const frescura =
+    calcularFrescuraCen(
+      ultimoDatos
+    );
+
+
+  const iconoFrescura =
+    frescura.nivel === "ok"
+      ? "🟢"
+      : (
+          frescura.nivel === "warning"
+            ? "🟡"
+            : "🔴"
+        );
+
+
+  lineas.push(
+    `${iconoFrescura} Frescura CEN: `
+    +
+    `${frescura.estado} · `
+    +
+    `${frescura.edadTexto}`
+  );
+
+  lineas.push(
+    `Actualización CEN: ${
+      frescura.actualizado
+    }`
+  );
+
   lineas.push("");
 
 
@@ -2110,13 +2462,6 @@ function construirTextoCompartir() {
 
 
   lineas.push("");
-
-  lineas.push(
-    `Actualización CEN: ${
-      ultimoDatos.actualizado_cen
-      || "--"
-    }`
-  );
 
   lineas.push(
     "Fuente: Coordinador Eléctrico Nacional"
