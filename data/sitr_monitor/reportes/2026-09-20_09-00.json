@@ -1,0 +1,396 @@
+{
+  "tipo": "REPORTE_SITR",
+  "hora_programada": "09:00",
+  "emitido_en": "2026-09-20T12:43:05-03:00",
+  "periodo_desde": "2026-09-19T17:00:00-03:00",
+  "periodo_hasta": "2026-09-20T09:00:00-03:00",
+  "estado_corte": {
+    "slot": "2026-09-20_08",
+    "registrado_en": "2026-09-20T08:51:53-03:00",
+    "estado": "OK",
+    "estado_senales": "OK",
+    "frescura_cen": {
+      "estado": "FRESCO",
+      "nivel": "ok",
+      "actualizado_cen": "20-09-2026 08:45",
+      "edad_minutos": 6.9,
+      "edad_texto": "7 min",
+      "criterio": "GridVision: actualizado <=30 min; con retraso 31-60 min; desactualizado >60 min"
+    },
+    "total": 45,
+    "recibidas": 45,
+    "validas": 45,
+    "faltantes": 0,
+    "incidentes": 0,
+    "actualizado_cen": "20-09-2026 08:45",
+    "instalaciones": [
+      {
+        "id": "capullo",
+        "nombre": "Central Capullo",
+        "nombre_cen": "CAPULLO",
+        "disponibilidad": 100.0,
+        "disponibilidad_texto": "100.0%",
+        "variables_total": 15,
+        "variables_recibidas": 15,
+        "variables_validas": 15,
+        "variables_faltantes": 0,
+        "variables_incidentes": 0
+      },
+      {
+        "id": "pulelfu",
+        "nombre": "Central Pulelfu",
+        "nombre_cen": "LA LEONERA",
+        "disponibilidad": 100.0,
+        "disponibilidad_texto": "100.0%",
+        "variables_total": 30,
+        "variables_recibidas": 30,
+        "variables_validas": 30,
+        "variables_faltantes": 0,
+        "variables_incidentes": 0
+      }
+    ]
+  },
+  "estado_emision": {
+    "fecha": "2026-09-20T12:43:05-03:00",
+    "actualizado_cen": "20-09-2026 12:35",
+    "frescura_cen": {
+      "estado": "FRESCO",
+      "nivel": "ok",
+      "actualizado_cen": "20-09-2026 12:35",
+      "edad_minutos": 8.1,
+      "edad_texto": "8 min",
+      "criterio": "GridVision: actualizado <=30 min; con retraso 31-60 min; desactualizado >60 min"
+    },
+    "total": 45,
+    "recibidas": 45,
+    "validas": 45,
+    "faltantes": 0,
+    "incidentes": 0,
+    "estado_senales": "OK",
+    "estado": "OK",
+    "instalaciones": [
+      {
+        "id": "capullo",
+        "nombre": "Central Capullo",
+        "nombre_cen": "CAPULLO",
+        "disponibilidad": 100.0,
+        "disponibilidad_texto": "100.0%",
+        "variables_total": 15,
+        "variables_recibidas": 15,
+        "variables_validas": 15,
+        "variables_faltantes": 0,
+        "variables_incidentes": 0
+      },
+      {
+        "id": "pulelfu",
+        "nombre": "Central Pulelfu",
+        "nombre_cen": "LA LEONERA",
+        "disponibilidad": 100.0,
+        "disponibilidad_texto": "100.0%",
+        "variables_total": 30,
+        "variables_recibidas": 30,
+        "variables_validas": 30,
+        "variables_faltantes": 0,
+        "variables_incidentes": 0
+      }
+    ]
+  },
+  "estado_actual": {
+    "fecha": "2026-09-20T12:43:05-03:00",
+    "actualizado_cen": "20-09-2026 12:35",
+    "frescura_cen": {
+      "estado": "FRESCO",
+      "nivel": "ok",
+      "actualizado_cen": "20-09-2026 12:35",
+      "edad_minutos": 8.1,
+      "edad_texto": "8 min",
+      "criterio": "GridVision: actualizado <=30 min; con retraso 31-60 min; desactualizado >60 min"
+    },
+    "total": 45,
+    "recibidas": 45,
+    "validas": 45,
+    "faltantes": 0,
+    "incidentes": 0,
+    "estado_senales": "OK",
+    "estado": "OK",
+    "instalaciones": [
+      {
+        "id": "capullo",
+        "nombre": "Central Capullo",
+        "nombre_cen": "CAPULLO",
+        "disponibilidad": 100.0,
+        "disponibilidad_texto": "100.0%",
+        "variables_total": 15,
+        "variables_recibidas": 15,
+        "variables_validas": 15,
+        "variables_faltantes": 0,
+        "variables_incidentes": 0
+      },
+      {
+        "id": "pulelfu",
+        "nombre": "Central Pulelfu",
+        "nombre_cen": "LA LEONERA",
+        "disponibilidad": 100.0,
+        "disponibilidad_texto": "100.0%",
+        "variables_total": 30,
+        "variables_recibidas": 30,
+        "variables_validas": 30,
+        "variables_faltantes": 0,
+        "variables_incidentes": 0
+      }
+    ]
+  },
+  "evidencias": [
+    {
+      "slot": "2026-09-19_18",
+      "registrado_en": "2026-09-19T18:20:57-03:00",
+      "estado": "OK",
+      "estado_senales": "OK",
+      "frescura_cen": {
+        "estado": "FRESCO",
+        "nivel": "ok",
+        "actualizado_cen": "19-09-2026 18:15",
+        "edad_minutos": 6.0,
+        "edad_texto": "6 min",
+        "criterio": "GridVision: actualizado <=30 min; con retraso 31-60 min; desactualizado >60 min"
+      },
+      "total": 45,
+      "recibidas": 45,
+      "validas": 45,
+      "faltantes": 0,
+      "incidentes": 0,
+      "actualizado_cen": "19-09-2026 18:15",
+      "instalaciones": [
+        {
+          "id": "capullo",
+          "nombre": "Central Capullo",
+          "nombre_cen": "CAPULLO",
+          "disponibilidad": 100.0,
+          "disponibilidad_texto": "100.0%",
+          "variables_total": 15,
+          "variables_recibidas": 15,
+          "variables_validas": 15,
+          "variables_faltantes": 0,
+          "variables_incidentes": 0
+        },
+        {
+          "id": "pulelfu",
+          "nombre": "Central Pulelfu",
+          "nombre_cen": "LA LEONERA",
+          "disponibilidad": 100.0,
+          "disponibilidad_texto": "100.0%",
+          "variables_total": 30,
+          "variables_recibidas": 30,
+          "variables_validas": 30,
+          "variables_faltantes": 0,
+          "variables_incidentes": 0
+        }
+      ]
+    },
+    {
+      "slot": "2026-09-19_20",
+      "registrado_en": "2026-09-19T20:23:25-03:00",
+      "estado": "OK",
+      "estado_senales": "OK",
+      "frescura_cen": {
+        "estado": "FRESCO",
+        "nivel": "ok",
+        "actualizado_cen": "19-09-2026 20:15",
+        "edad_minutos": 8.4,
+        "edad_texto": "8 min",
+        "criterio": "GridVision: actualizado <=30 min; con retraso 31-60 min; desactualizado >60 min"
+      },
+      "total": 45,
+      "recibidas": 45,
+      "validas": 45,
+      "faltantes": 0,
+      "incidentes": 0,
+      "actualizado_cen": "19-09-2026 20:15",
+      "instalaciones": [
+        {
+          "id": "capullo",
+          "nombre": "Central Capullo",
+          "nombre_cen": "CAPULLO",
+          "disponibilidad": 100.0,
+          "disponibilidad_texto": "100.0%",
+          "variables_total": 15,
+          "variables_recibidas": 15,
+          "variables_validas": 15,
+          "variables_faltantes": 0,
+          "variables_incidentes": 0
+        },
+        {
+          "id": "pulelfu",
+          "nombre": "Central Pulelfu",
+          "nombre_cen": "LA LEONERA",
+          "disponibilidad": 100.0,
+          "disponibilidad_texto": "100.0%",
+          "variables_total": 30,
+          "variables_recibidas": 30,
+          "variables_validas": 30,
+          "variables_faltantes": 0,
+          "variables_incidentes": 0
+        }
+      ]
+    },
+    {
+      "slot": "2026-09-19_22",
+      "registrado_en": "2026-09-19T22:27:34-03:00",
+      "estado": "OK",
+      "estado_senales": "OK",
+      "frescura_cen": {
+        "estado": "FRESCO",
+        "nivel": "ok",
+        "actualizado_cen": "19-09-2026 22:21",
+        "edad_minutos": 6.6,
+        "edad_texto": "7 min",
+        "criterio": "GridVision: actualizado <=30 min; con retraso 31-60 min; desactualizado >60 min"
+      },
+      "total": 45,
+      "recibidas": 45,
+      "validas": 45,
+      "faltantes": 0,
+      "incidentes": 0,
+      "actualizado_cen": "19-09-2026 22:21",
+      "instalaciones": [
+        {
+          "id": "capullo",
+          "nombre": "Central Capullo",
+          "nombre_cen": "CAPULLO",
+          "disponibilidad": 100.0,
+          "disponibilidad_texto": "100.0%",
+          "variables_total": 15,
+          "variables_recibidas": 15,
+          "variables_validas": 15,
+          "variables_faltantes": 0,
+          "variables_incidentes": 0
+        },
+        {
+          "id": "pulelfu",
+          "nombre": "Central Pulelfu",
+          "nombre_cen": "LA LEONERA",
+          "disponibilidad": 100.0,
+          "disponibilidad_texto": "100.0%",
+          "variables_total": 30,
+          "variables_recibidas": 30,
+          "variables_validas": 30,
+          "variables_faltantes": 0,
+          "variables_incidentes": 0
+        }
+      ]
+    },
+    {
+      "slot": "2026-09-20_02",
+      "registrado_en": "2026-09-20T03:46:44-03:00",
+      "estado": "OK",
+      "estado_senales": "OK",
+      "frescura_cen": {
+        "estado": "FRESCO",
+        "nivel": "ok",
+        "actualizado_cen": "20-09-2026 03:41",
+        "edad_minutos": 5.7,
+        "edad_texto": "6 min",
+        "criterio": "GridVision: actualizado <=30 min; con retraso 31-60 min; desactualizado >60 min"
+      },
+      "total": 45,
+      "recibidas": 45,
+      "validas": 45,
+      "faltantes": 0,
+      "incidentes": 0,
+      "actualizado_cen": "20-09-2026 03:41",
+      "instalaciones": [
+        {
+          "id": "capullo",
+          "nombre": "Central Capullo",
+          "nombre_cen": "CAPULLO",
+          "disponibilidad": 100.0,
+          "disponibilidad_texto": "100.0%",
+          "variables_total": 15,
+          "variables_recibidas": 15,
+          "variables_validas": 15,
+          "variables_faltantes": 0,
+          "variables_incidentes": 0
+        },
+        {
+          "id": "pulelfu",
+          "nombre": "Central Pulelfu",
+          "nombre_cen": "LA LEONERA",
+          "disponibilidad": 100.0,
+          "disponibilidad_texto": "100.0%",
+          "variables_total": 30,
+          "variables_recibidas": 30,
+          "variables_validas": 30,
+          "variables_faltantes": 0,
+          "variables_incidentes": 0
+        }
+      ]
+    },
+    {
+      "slot": "2026-09-20_08",
+      "registrado_en": "2026-09-20T08:51:53-03:00",
+      "estado": "OK",
+      "estado_senales": "OK",
+      "frescura_cen": {
+        "estado": "FRESCO",
+        "nivel": "ok",
+        "actualizado_cen": "20-09-2026 08:45",
+        "edad_minutos": 6.9,
+        "edad_texto": "7 min",
+        "criterio": "GridVision: actualizado <=30 min; con retraso 31-60 min; desactualizado >60 min"
+      },
+      "total": 45,
+      "recibidas": 45,
+      "validas": 45,
+      "faltantes": 0,
+      "incidentes": 0,
+      "actualizado_cen": "20-09-2026 08:45",
+      "instalaciones": [
+        {
+          "id": "capullo",
+          "nombre": "Central Capullo",
+          "nombre_cen": "CAPULLO",
+          "disponibilidad": 100.0,
+          "disponibilidad_texto": "100.0%",
+          "variables_total": 15,
+          "variables_recibidas": 15,
+          "variables_validas": 15,
+          "variables_faltantes": 0,
+          "variables_incidentes": 0
+        },
+        {
+          "id": "pulelfu",
+          "nombre": "Central Pulelfu",
+          "nombre_cen": "LA LEONERA",
+          "disponibilidad": 100.0,
+          "disponibilidad_texto": "100.0%",
+          "variables_total": 30,
+          "variables_recibidas": 30,
+          "variables_validas": 30,
+          "variables_faltantes": 0,
+          "variables_incidentes": 0
+        }
+      ]
+    }
+  ],
+  "eventos": [
+    {
+      "tipo": "FUENTE_NORMALIZADA",
+      "fecha": "2026-09-19T18:20:57-03:00",
+      "clave": "FUENTE_CEN",
+      "central": null,
+      "coordinado": "CEN",
+      "irn": null,
+      "ssee": null,
+      "variable": "Estado de actualización fuente CEN",
+      "estado": "NORMALIZADA",
+      "calidad": null,
+      "tag_iccp": null,
+      "fin": "2026-09-19T18:20:57-03:00",
+      "duracion_minutos": 1376.4,
+      "actualizado_cen": "19-09-2026 18:15",
+      "edad_minutos": 6.0,
+      "edad_texto": "6 min"
+    }
+  ],
+  "prueba": false
+}
