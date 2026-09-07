@@ -1,0 +1,23 @@
+{
+  "mes": "2026-10",
+  "corte": "2026-10-31T15:49:55-03:00",
+  "metodologia": "GridVision referencial. Última observación retenida máximo 20 minutos; no oficial CEN.",
+  "centrales": {
+    "capullo": {
+      "disponibilidad_estimada_pct": 0.0,
+      "cobertura_temporal_pct": 0.01,
+      "horas_observadas": 0.08,
+      "horas_sin_fuente": 0.0,
+      "horas_senal_invalidas": 1.14,
+      "variables": 15
+    },
+    "pulelfu": {
+      "disponibilidad_estimada_pct": 0.0,
+      "cobertura_temporal_pct": 0.01,
+      "horas_observadas": 0.08,
+      "horas_sin_fuente": 0.0,
+      "horas_senal_invalidas": 2.27,
+      "variables": 30
+    }
+  }
+}
