@@ -1,0 +1,35 @@
+📡 REPORTE SITR
+17-09-2026 | Corte 17:00
+
+🟢 ESTADO GENERAL: NORMAL
+
+Período: 09:00 → 17:00
+
+CENTRAL CAPULLO
+15/15 variables válidas
+Disponibilidad SITR: 100 %
+
+CENTRAL PULELFU
+30/30 variables válidas
+Disponibilidad SITR: 100 %
+
+RESUMEN
+45/45 variables válidas
+0 variables faltantes
+0 incidencias
+
+FUENTE CEN
+🟢 Actualizada
+Última actualización: 17-09-2026 19:01
+Antigüedad: 4 min
+
+ÚLTIMA EVIDENCIA PREVIA AL CORTE
+16:02 · 45/45 válidas · CEN fresco (8 min)
+
+EVENTOS DEL PERÍODO
+✓ Sin eventos SITR en el período.
+
+EVIDENCIAS
+2 controles automáticos registrados en el período.
+
+Fuente: Coordinador Eléctrico Nacional
