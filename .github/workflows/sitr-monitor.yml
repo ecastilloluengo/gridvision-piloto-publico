@@ -1,0 +1,115 @@
+name: GridVision - Monitor SITR
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    # GitHub Actions usa UTC para el cron.
+    # Como el ciclo es cada 15 minutos, no depende
+    # del cambio horario de Chile.
+    - cron: "3,18,33,48 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: "gridvision-sitr-monitor"
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar GridVision
+        uses: actions/checkout@v6
+
+      - name: Configurar Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Preparar almacenamiento persistente SITR
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          STATE_DIR="$RUNNER_TEMP/gridvision-sitr-state"
+          REPO_URL="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+
+          rm -rf "$STATE_DIR"
+          git clone "$REPO_URL" "$STATE_DIR"
+
+          cd "$STATE_DIR"
+
+          git config user.name "gridvision-sitr-bot"
+          git config user.email "actions@users.noreply.github.com"
+
+          if git ls-remote --exit-code --heads origin sitr-monitor-state >/dev/null 2>&1; then
+            git checkout -B sitr-monitor-state origin/sitr-monitor-state
+          else
+            git checkout --orphan sitr-monitor-state
+            git rm -rf . >/dev/null 2>&1 || true
+
+            mkdir -p data/sitr_monitor
+
+            cat > README.md <<'EOF'
+          # GridVision - Estado persistente SITR
+
+          Esta rama es administrada automáticamente por GitHub Actions.
+
+          Contiene:
+          - estado del monitor SITR;
+          - evidencias automáticas;
+          - reportes 09:00 y 17:00.
+
+          No editar manualmente.
+          EOF
+
+            git add README.md
+            git commit -m "Inicializa almacenamiento monitor SITR"
+            git push origin HEAD:sitr-monitor-state
+          fi
+
+          echo "SITR_STATE_REPO=$STATE_DIR" >> "$GITHUB_ENV"
+          echo "SITR_MONITOR_DATA_DIR=$STATE_DIR/data/sitr_monitor" >> "$GITHUB_ENV"
+
+      - name: Ejecutar monitor SITR
+        run: |
+          python scripts/sitr_monitor.py
+
+      - name: Persistir estado y evidencias
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          cd "$SITR_STATE_REPO"
+
+          git add data/sitr_monitor
+
+          if git diff --cached --quiet; then
+            echo "Sin cambios persistentes."
+            exit 0
+          fi
+
+          # La rama es un almacén de estado, no una bitácora Git.
+          # Conservamos un solo commit para evitar miles de commits al año.
+          if git rev-parse HEAD >/dev/null 2>&1; then
+            git commit --amend \
+              -m "Estado persistente monitor SITR"
+          else
+            git commit \
+              -m "Estado persistente monitor SITR"
+          fi
+
+          git push \
+            --force-with-lease \
+            origin HEAD:sitr-monitor-state
