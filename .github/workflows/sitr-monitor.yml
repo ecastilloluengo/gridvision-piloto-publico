@@ -2,6 +2,12 @@ name: GridVision - Monitor SITR
 
 on:
   workflow_dispatch:
+    inputs:
+      correo_prueba:
+        description: "Enviar correo de prueba"
+        required: false
+        default: false
+        type: boolean
 
   schedule:
     # GitHub Actions usa UTC para el cron.
@@ -62,14 +68,15 @@ jobs:
             mkdir -p data/sitr_monitor
 
             cat > README.md <<'EOF'
-          # GridVision - Estado persistente SITR
+          # Estado persistente SITR
 
           Esta rama es administrada automáticamente por GitHub Actions.
 
           Contiene:
           - estado del monitor SITR;
           - evidencias automáticas;
-          - reportes 09:00 y 17:00.
+          - reportes 09:00 y 17:00;
+          - cola transitoria de correos si un envío falla.
 
           No editar manualmente.
           EOF
@@ -83,8 +90,17 @@ jobs:
           echo "SITR_MONITOR_DATA_DIR=$STATE_DIR/data/sitr_monitor" >> "$GITHUB_ENV"
 
       - name: Ejecutar monitor SITR
+        env:
+          ALERTAS_OPERACIONALES_HTTP_URL: ${{ secrets.ALERTAS_OPERACIONALES_HTTP_URL }}
+        shell: bash
         run: |
-          python scripts/sitr_monitor.py
+          set -euo pipefail
+
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ inputs.correo_prueba }}" == "true" ]]; then
+            python scripts/sitr_monitor.py --correo-prueba
+          else
+            python scripts/sitr_monitor.py
+          fi
 
       - name: Persistir estado y evidencias
         shell: bash

@@ -1,6 +1,7 @@
 import argparse
 import json
 import os
+import requests
 from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -87,7 +88,7 @@ def guardar_json(ruta, datos):
 
 def estado_inicial():
     return {
-        "version": 3,
+        "version": 4,
         "inicializado_en": None,
         "ultima_ejecucion": None,
         "ultima_consulta_cen": None,
@@ -98,6 +99,7 @@ def estado_inicial():
         "fuente_cen_alerta_activa": None,
         "eventos": [],
         "eventos_ultima_ejecucion": [],
+        "cola_correo": [],
         "ultimo_snapshot": None,
     }
 
@@ -116,7 +118,7 @@ def cargar_estado():
     # La versión corresponde al código actual,
     # aunque el estado persistente venga de una
     # ejecución anterior.
-    base["version"] = 3
+    base["version"] = 4
 
     if not isinstance(
         base.get("incidencias_activas"),
@@ -129,6 +131,12 @@ def cargar_estado():
         list
     ):
         base["eventos"] = []
+
+    if not isinstance(
+        base.get("cola_correo"),
+        list
+    ):
+        base["cola_correo"] = []
 
     return base
 
@@ -1305,6 +1313,543 @@ def reportes_pendientes(
     return pendientes
 
 
+
+def _env_bool(nombre, por_defecto=False):
+    valor = os.environ.get(nombre)
+
+    if valor is None:
+        return por_defecto
+
+    return str(valor).strip().lower() in (
+        "1",
+        "true",
+        "yes",
+        "si",
+        "sí",
+        "on",
+    )
+
+
+def configuracion_correo():
+    url = os.environ.get(
+        "ALERTAS_OPERACIONALES_HTTP_URL",
+        ""
+    ).strip()
+
+    return {
+        "url": url,
+    }
+
+
+def correo_configurado():
+    config = configuracion_correo()
+
+    return bool(
+        config["url"]
+        and config["url"].startswith(
+            "https://"
+        )
+    )
+
+
+def enviar_correo(
+    asunto,
+    cuerpo
+):
+    config = configuracion_correo()
+
+    if not correo_configurado():
+        raise RuntimeError(
+            "Power Automate no configurado. "
+            "Falta ALERTAS_OPERACIONALES_HTTP_URL."
+        )
+
+    asunto_limpio = str(
+        asunto
+        or "Notificación Operacional SITR"
+    )
+
+    asunto_upper = asunto_limpio.upper()
+
+    es_reporte = (
+        "REPORTE" in asunto_upper
+    )
+
+    es_normalizacion = (
+        "NORMALIZADA" in asunto_upper
+        or "NORMALIZADO" in asunto_upper
+        or "🟢" in asunto_limpio
+    )
+
+    if es_reporte:
+        tipo = "REPORTE"
+        nivel = "INFORMATIVO"
+    else:
+        tipo = "SITR"
+        nivel = (
+            "NORMALIZADA"
+            if es_normalizacion
+            else "ALERTA"
+        )
+
+    payload = {
+        "tipo": tipo,
+        "nivel": nivel,
+        "asunto": asunto_limpio,
+        "mensaje": str(
+            cuerpo
+            or ""
+        ),
+        "instalacion": "Seguimiento SITR",
+        "fecha": ahora_chile().strftime(
+            "%Y-%m-%d %H:%M:%S"
+        ),
+        # El destinatario se fija dentro de Power Automate.
+        # No se permite que GitHub decida el correo destino.
+        "destinatarios": "",
+    }
+
+    respuesta = requests.post(
+        config["url"],
+        json=payload,
+        timeout=30,
+    )
+
+    if not (
+        200
+        <= respuesta.status_code
+        < 300
+    ):
+        detalle = (
+            respuesta.text[:1000]
+            if respuesta.text
+            else "sin detalle"
+        )
+
+        raise RuntimeError(
+            "Power Automate HTTP "
+            f"{respuesta.status_code}: "
+            f"{detalle}"
+        )
+
+
+
+def asunto_evento(evento):
+    tipo = evento.get(
+        "tipo",
+        "EVENTO"
+    )
+
+    es_normalizacion = tipo in (
+        "NORMALIZADA",
+        "FUENTE_NORMALIZADA",
+    )
+
+    icono = (
+        "🟢"
+        if es_normalizacion
+        else "🔴"
+    )
+
+    if tipo.startswith("FUENTE_"):
+        objeto = "Fuente CEN"
+    else:
+        objeto = (
+            evento.get("central")
+            or evento.get("coordinado")
+            or "SITR"
+        )
+
+    return (
+        f"[SITR] {icono} "
+        f"{tipo} - {objeto}"
+    )
+
+
+def cuerpo_evento(
+    evento,
+    snapshot
+):
+    lineas = [
+        "📡 ALERTA OPERACIONAL SITR",
+        "",
+        f"Fecha: {evento.get('fecha') or '--'}",
+        f"Evento: {evento.get('tipo') or '--'}",
+        f"Estado: {evento.get('estado') or '--'}",
+    ]
+
+    if evento.get("central"):
+        lineas.append(
+            "Central: "
+            f"{evento.get('central')}"
+        )
+
+    if evento.get("coordinado"):
+        lineas.append(
+            "Coordinado CEN: "
+            f"{evento.get('coordinado')}"
+        )
+
+    if evento.get("ssee"):
+        lineas.append(
+            "S/E: "
+            f"{evento.get('ssee')}"
+        )
+
+    if evento.get("variable"):
+        lineas.append(
+            "Variable: "
+            f"{evento.get('variable')}"
+        )
+
+    if evento.get("calidad"):
+        lineas.append(
+            "Calidad: "
+            f"{evento.get('calidad')}"
+        )
+
+    if evento.get("tag_iccp"):
+        lineas.append(
+            "TAG ICCP: "
+            f"{evento.get('tag_iccp')}"
+        )
+
+    if (
+        evento.get("duracion_minutos")
+        is not None
+    ):
+        lineas.append(
+            "Duración: "
+            f"{evento.get('duracion_minutos')} min"
+        )
+
+    frescura = (
+        snapshot.get(
+            "frescura_cen"
+        )
+        or {}
+    )
+
+    lineas.extend([
+        "",
+        "Estado de la revisión:",
+        (
+            f"Variables: "
+            f"{snapshot.get('validas', 0)}/"
+            f"{snapshot.get('total', 0)} válidas"
+        ),
+        (
+            f"Faltantes: "
+            f"{snapshot.get('faltantes', 0)}"
+        ),
+        (
+            f"Incidencias activas: "
+            f"{snapshot.get('incidentes', 0)}"
+        ),
+        (
+            "Frescura CEN: "
+            f"{frescura.get('estado') or '--'} · "
+            f"{frescura.get('edad_texto') or '--'}"
+        ),
+        (
+            "Última actualización CEN: "
+            f"{snapshot.get('actualizado_cen') or '--'}"
+        ),
+        "",
+    ])
+
+    tipo = evento.get(
+        "tipo",
+        ""
+    )
+
+    if tipo in (
+        "NORMALIZADA",
+        "FUENTE_NORMALIZADA",
+    ):
+        lineas.append(
+            "Acción: condición normalizada. "
+            "Mantener seguimiento operacional."
+        )
+    elif tipo.startswith("FUENTE_"):
+        lineas.append(
+            "Acción: verificar la actualización "
+            "del tablero del Coordinador. "
+            "La calidad de las señales y la frescura "
+            "de la fuente se evalúan por separado."
+        )
+    else:
+        lineas.append(
+            "Acción: revisar disponibilidad SITR. "
+            "Si corresponde, generar SS de alta prioridad "
+            "según el procedimiento interno vigente."
+        )
+
+    lineas.extend([
+        "",
+        "Fuente: Coordinador Eléctrico Nacional",
+        "Sistema: Alertas Operacionales",
+    ])
+
+    return "\n".join(
+        lineas
+    )
+
+
+def encolar_correo(
+    estado,
+    identificador,
+    tipo,
+    asunto,
+    cuerpo,
+    fecha
+):
+    cola = estado.setdefault(
+        "cola_correo",
+        []
+    )
+
+    ids_existentes = {
+        item.get("id")
+        for item in cola
+    }
+
+    if identificador in ids_existentes:
+        return False
+
+    cola.append({
+        "id": identificador,
+        "tipo": tipo,
+        "creado_en": iso(fecha),
+        "asunto": asunto,
+        "cuerpo": cuerpo,
+        "intentos": 0,
+        "ultimo_error": None,
+    })
+
+    # Seguridad frente a crecimiento accidental.
+    estado["cola_correo"] = cola[-100:]
+
+    return True
+
+
+def encolar_eventos_correo(
+    estado,
+    snapshot,
+    fecha
+):
+    if not correo_configurado():
+        return 0
+
+    cantidad = 0
+
+    for evento in estado.get(
+        "eventos_ultima_ejecucion",
+        []
+    ):
+        identificador = (
+            "evento|"
+            f"{evento.get('fecha')}|"
+            f"{evento.get('tipo')}|"
+            f"{evento.get('clave')}"
+        )
+
+        agregado = encolar_correo(
+            estado,
+            identificador,
+            "EVENTO",
+            asunto_evento(evento),
+            cuerpo_evento(
+                evento,
+                snapshot
+            ),
+            fecha
+        )
+
+        if agregado:
+            cantidad += 1
+
+    return cantidad
+
+
+def encolar_reportes_correo(
+    estado,
+    reportes,
+    fecha
+):
+    if not correo_configurado():
+        return 0
+
+    cantidad = 0
+
+    for item in reportes:
+        reporte = item.get(
+            "reporte",
+            {}
+        )
+
+        if reporte.get("prueba"):
+            continue
+
+        hora = reporte.get(
+            "hora_programada",
+            "--:--"
+        )
+
+        estado_actual = (
+            reporte.get(
+                "estado_actual",
+                {}
+            ).get(
+                "estado",
+                "--"
+            )
+        )
+
+        identificador = (
+            "reporte|"
+            f"{reporte.get('periodo_hasta')}|"
+            f"{hora}"
+        )
+
+        asunto = (
+            "[SITR] "
+            f"Reporte {hora} - "
+            f"{fecha:%d-%m-%Y} - "
+            f"{estado_actual}"
+        )
+
+        cuerpo = construir_texto_reporte(
+            reporte
+        )
+
+        agregado = encolar_correo(
+            estado,
+            identificador,
+            "REPORTE",
+            asunto,
+            cuerpo,
+            fecha
+        )
+
+        if agregado:
+            cantidad += 1
+
+    return cantidad
+
+
+def procesar_cola_correo(
+    estado
+):
+    cola = list(
+        estado.get(
+            "cola_correo",
+            []
+        )
+    )
+
+    if not cola:
+        return {
+            "enviados": 0,
+            "fallidos": 0,
+        }
+
+    if not correo_configurado():
+        return {
+            "enviados": 0,
+            "fallidos": 0,
+        }
+
+    pendientes = []
+    enviados = 0
+    fallidos = 0
+
+    for item in cola:
+        try:
+            enviar_correo(
+                item["asunto"],
+                item["cuerpo"]
+            )
+
+            enviados += 1
+
+            print(
+                "Correo enviado:",
+                item.get("tipo"),
+                item.get("id")
+            )
+
+        except Exception as exc:
+            fallidos += 1
+
+            item["intentos"] = (
+                int(
+                    item.get(
+                        "intentos",
+                        0
+                    )
+                )
+                + 1
+            )
+
+            item["ultimo_error"] = (
+                f"{type(exc).__name__}: "
+                f"{exc}"
+            )
+
+            pendientes.append(
+                item
+            )
+
+            print(
+                "ERROR enviando correo:",
+                item["ultimo_error"]
+            )
+
+    estado["cola_correo"] = (
+        pendientes
+    )
+
+    return {
+        "enviados": enviados,
+        "fallidos": fallidos,
+    }
+
+
+def enviar_correo_prueba():
+    if not correo_configurado():
+        raise RuntimeError(
+            "No se puede enviar correo de prueba: "
+            "Power Automate no está configurado."
+        )
+
+    fecha = ahora_chile()
+
+    asunto = (
+        "Prueba de correo SITR"
+    )
+
+    cuerpo = "\n".join([
+        "📡 ALERTAS OPERACIONALES - SITR",
+        "",
+        "Prueba de envío de correo exitosa.",
+        f"Fecha Chile: {iso(fecha)}",
+        "",
+        "Si recibiste este mensaje, "
+        "la conexión GitHub Actions → Power Automate → Outlook "
+        "está operativa.",
+    ])
+
+    enviar_correo(
+        asunto,
+        cuerpo
+    )
+
+    print(
+        "Correo de prueba enviado."
+    )
+
+
 def ejecutar(
     forzar_evidencia=False,
     reporte_prueba=None
@@ -1394,6 +1939,37 @@ def ejecutar(
             )
         )
 
+    nuevos_eventos_correo = (
+        encolar_eventos_correo(
+            estado,
+            snapshot,
+            fecha
+        )
+    )
+
+    nuevos_reportes_correo = (
+        encolar_reportes_correo(
+            estado,
+            reportes,
+            fecha
+        )
+    )
+
+    # Guardamos la cola antes de intentar enviar.
+    # Si Power Automate falla, quedará pendiente para la
+    # siguiente ejecución del monitor.
+    guardar_json(
+        ARCHIVO_ESTADO,
+        estado
+    )
+
+    resultado_correo = (
+        procesar_cola_correo(
+            estado
+        )
+    )
+
+    # Persistimos los correos enviados o pendientes.
     guardar_json(
         ARCHIVO_ESTADO,
         estado
@@ -1465,6 +2041,35 @@ def ejecutar(
             item["txt"]
         )
 
+    if correo_configurado():
+        print(
+            "Correo SITR: configurado"
+        )
+        print(
+            "Correos nuevos encolados:",
+            nuevos_eventos_correo
+            + nuevos_reportes_correo
+        )
+        print(
+            "Correos enviados:",
+            resultado_correo[
+                "enviados"
+            ]
+        )
+        print(
+            "Correos pendientes:",
+            len(
+                estado.get(
+                    "cola_correo",
+                    []
+                )
+            )
+        )
+    else:
+        print(
+            "Correo SITR: no configurado"
+        )
+
 
 def main():
     parser = argparse.ArgumentParser(
@@ -1493,7 +2098,20 @@ def main():
         )
     )
 
+    parser.add_argument(
+        "--correo-prueba",
+        action="store_true",
+        help=(
+            "Envía un correo de prueba usando "
+            "Power Automate."
+        )
+    )
+
     args = parser.parse_args()
+
+    if args.correo_prueba:
+        enviar_correo_prueba()
+        return
 
     ejecutar(
         forzar_evidencia=args.forzar_evidencia,
