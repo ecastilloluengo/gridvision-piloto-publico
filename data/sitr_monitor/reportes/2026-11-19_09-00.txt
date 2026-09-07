@@ -1,0 +1,109 @@
+📡 REPORTE SITR
+19-11-2026 | Corte 09:00
+
+🟢 ESTADO GENERAL: NORMAL
+
+Período: 17:00 → 09:00
+
+CENTRAL CAPULLO
+15/15 variables válidas
+Disponibilidad SITR: 100 %
+
+CENTRAL PULELFU
+30/30 variables válidas
+Disponibilidad SITR: 100 %
+
+RESUMEN
+45/45 variables válidas
+0 variables faltantes
+0 incidencias
+
+FUENTE CEN
+🟢 Actualizada
+Última actualización: 19-11-2026 10:05
+Antigüedad: 7 min
+
+ÚLTIMA EVIDENCIA PREVIA AL CORTE
+01:04 · 45/45 válidas · CEN fresco (4 min)
+
+EVENTOS DEL PERÍODO
+🟢 20:01 — CAPULLO
+Variable: PULELFU   66   B2     Q
+Condición: Normalizada
+Duración: 97 h 50 min
+
+🟢 20:01 — CAPULLO
+Variable: PULELFU   66   B2     P
+Condición: Normalizada
+Duración: 97 h 50 min
+
+🟢 20:01 — CAPULLO
+Variable: PULELFU   66   BP     V
+Condición: Normalizada
+Duración: 97 h 50 min
+
+🟢 20:01 — CAPULLO
+Variable: PULELFU   66   B2     DESC1
+Condición: Normalizada
+Duración: 97 h 50 min
+
+🟢 20:01 — CAPULLO
+Variable: PULELFU   66   B2     INT
+Condición: Normalizada
+Duración: 97 h 50 min
+
+🟢 20:01 — CAPULLO
+Variable: PULELFU   66   B2     DESC2
+Condición: Normalizada
+Duración: 97 h 50 min
+
+🟢 20:01 — CAPULLO
+Variable: CAPULLO   66   BG     INT
+Condición: Normalizada
+Duración: 97 h 50 min
+
+🟢 20:01 — CAPULLO
+Variable: CAPULLO   TR01   ATF
+Condición: Normalizada
+Duración: 97 h 50 min
+
+🟢 20:01 — CAPULLO
+Variable: CAPULLO   TR01   ATV
+Condición: Normalizada
+Duración: 97 h 50 min
+
+🟢 20:01 — CAPULLO
+Variable: CAPULLO   13.  GEN1   V
+Condición: Normalizada
+Duración: 97 h 50 min
+
+🟢 20:01 — CAPULLO
+Variable: CAPULLO   13.  GEN1   Q
+Condición: Normalizada
+Duración: 97 h 50 min
+
+🟢 20:01 — CAPULLO
+Variable: CAPULLO   13.  GEN1   P
+Condición: Normalizada
+Duración: 97 h 50 min
+
+🟢 20:01 — CAPULLO
+Variable: CAPULLO   13.  GEN1   F
+Condición: Normalizada
+Duración: 97 h 50 min
+
+🟢 20:01 — CAPULLO
+Variable: CAPULLO   TR01   ATP
+Condición: Normalizada
+Duración: 97 h 50 min
+
+🟢 20:01 — CAPULLO
+Variable: CAPULLO   TR01   ATQ
+Condición: Normalizada
+Duración: 97 h 50 min
+
+
+EVIDENCIAS
+2 controles automáticos registrados en el período.
+
+Fuente: Coordinador Eléctrico Nacional

@@ -1,0 +1,94 @@
+📡 REPORTE SITR
+15-11-2026 | Corte 09:00
+
+🔴 ESTADO GENERAL: INCIDENCIA SITR
+
+Período: 17:00 → 09:00
+
+CENTRAL CAPULLO
+0/15 variables válidas
+Disponibilidad SITR: 0,0 %
+
+CENTRAL PULELFU
+30/30 variables válidas
+Disponibilidad SITR: 100 %
+
+RESUMEN
+30/45 variables válidas
+0 variables faltantes
+15 incidencias
+
+FUENTE CEN
+🟢 Actualizada
+Última actualización: 15-11-2026 12:15
+Antigüedad: 14 min
+
+ÚLTIMA EVIDENCIA PREVIA AL CORTE
+04:52 · 30/45 válidas · CEN fresco (8 min)
+
+EVENTOS DEL PERÍODO
+🔴 18:11 — CAPULLO
+Variable: PULELFU   66   B2     Q
+Condición: Inválido
+
+🔴 18:11 — CAPULLO
+Variable: PULELFU   66   B2     P
+Condición: Inválido
+
+🔴 18:11 — CAPULLO
+Variable: PULELFU   66   BP     V
+Condición: Inválido
+
+🔴 18:11 — CAPULLO
+Variable: PULELFU   66   B2     DESC1
+Condición: Inválido
+
+🔴 18:11 — CAPULLO
+Variable: PULELFU   66   B2     INT
+Condición: Inválido
+
+🔴 18:11 — CAPULLO
+Variable: PULELFU   66   B2     DESC2
+Condición: Inválido
+
+🔴 18:11 — CAPULLO
+Variable: CAPULLO   66   BG     INT
+Condición: Inválido
+
+🔴 18:11 — CAPULLO
+Variable: CAPULLO   TR01   ATF
+Condición: Inválido
+
+🔴 18:11 — CAPULLO
+Variable: CAPULLO   TR01   ATV
+Condición: Inválido
+
+🔴 18:11 — CAPULLO
+Variable: CAPULLO   13.  GEN1   V
+Condición: Inválido
+
+🔴 18:11 — CAPULLO
+Variable: CAPULLO   13.  GEN1   Q
+Condición: Inválido
+
+🔴 18:11 — CAPULLO
+Variable: CAPULLO   13.  GEN1   P
+Condición: Inválido
+
+🔴 18:11 — CAPULLO
+Variable: CAPULLO   13.  GEN1   F
+Condición: Inválido
+
+🔴 18:11 — CAPULLO
+Variable: CAPULLO   TR01   ATP
+Condición: Inválido
+
+🔴 18:11 — CAPULLO
+Variable: CAPULLO   TR01   ATQ
+Condición: Inválido
+
+
+EVIDENCIAS
+3 controles automáticos registrados en el período.
+
+Fuente: Coordinador Eléctrico Nacional

@@ -1,0 +1,35 @@
+📡 REPORTE SITR
+16-11-2026 | Corte 17:00
+
+🔴 ESTADO GENERAL: INCIDENCIA SITR
+
+Período: 09:00 → 17:00
+
+CENTRAL CAPULLO
+0/15 variables válidas
+Disponibilidad SITR: 0,0 %
+
+CENTRAL PULELFU
+30/30 variables válidas
+Disponibilidad SITR: 100 %
+
+RESUMEN
+30/45 variables válidas
+0 variables faltantes
+15 incidencias
+
+FUENTE CEN
+🟢 Actualizada
+Última actualización: 16-11-2026 21:15
+Antigüedad: 9 min
+
+ÚLTIMA EVIDENCIA PREVIA AL CORTE
+13:29 · 30/45 válidas · CEN fresco (8 min)
+
+EVENTOS DEL PERÍODO
+✓ Sin eventos SITR en el período.
+
+EVIDENCIAS
+1 controles automáticos registrados en el período.
+
+Fuente: Coordinador Eléctrico Nacional

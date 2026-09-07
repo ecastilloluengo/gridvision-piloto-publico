@@ -1,0 +1,135 @@
+{
+  "fecha": "2026-09-07",
+  "zona_horaria": "America/Santiago",
+  "revisiones": [
+    {
+      "slot": "2026-09-07_18",
+      "registrado_en": "2026-09-07T18:49:45-03:00",
+      "estado": "OK",
+      "total": 45,
+      "recibidas": 45,
+      "validas": 45,
+      "faltantes": 0,
+      "incidentes": 0,
+      "actualizado_cen": "07-09-2026 08:25",
+      "instalaciones": [
+        {
+          "id": "capullo",
+          "nombre": "Central Capullo",
+          "nombre_cen": "CAPULLO",
+          "disponibilidad": 100.0,
+          "disponibilidad_texto": "100.0%",
+          "variables_total": 15,
+          "variables_recibidas": 15,
+          "variables_validas": 15,
+          "variables_faltantes": 0,
+          "variables_incidentes": 0
+        },
+        {
+          "id": "pulelfu",
+          "nombre": "Central Pulelfu",
+          "nombre_cen": "LA LEONERA",
+          "disponibilidad": 100.0,
+          "disponibilidad_texto": "100.0%",
+          "variables_total": 30,
+          "variables_recibidas": 30,
+          "variables_validas": 30,
+          "variables_faltantes": 0,
+          "variables_incidentes": 0
+        }
+      ]
+    },
+    {
+      "slot": "2026-09-07_20",
+      "registrado_en": "2026-09-07T20:47:12-03:00",
+      "estado": "ALERTA_FUENTE",
+      "estado_senales": "OK",
+      "frescura_cen": {
+        "estado": "DESACTUALIZADO",
+        "nivel": "critico",
+        "actualizado_cen": "07-09-2026 08:25",
+        "edad_minutos": 742.2,
+        "edad_texto": "12 h 22 min",
+        "criterio": "GridVision: fresco <=30 min; retrasado 31-60 min; desactualizado >60 min"
+      },
+      "total": 45,
+      "recibidas": 45,
+      "validas": 45,
+      "faltantes": 0,
+      "incidentes": 0,
+      "actualizado_cen": "07-09-2026 08:25",
+      "instalaciones": [
+        {
+          "id": "capullo",
+          "nombre": "Central Capullo",
+          "nombre_cen": "CAPULLO",
+          "disponibilidad": 100.0,
+          "disponibilidad_texto": "100.0%",
+          "variables_total": 15,
+          "variables_recibidas": 15,
+          "variables_validas": 15,
+          "variables_faltantes": 0,
+          "variables_incidentes": 0
+        },
+        {
+          "id": "pulelfu",
+          "nombre": "Central Pulelfu",
+          "nombre_cen": "LA LEONERA",
+          "disponibilidad": 100.0,
+          "disponibilidad_texto": "100.0%",
+          "variables_total": 30,
+          "variables_recibidas": 30,
+          "variables_validas": 30,
+          "variables_faltantes": 0,
+          "variables_incidentes": 0
+        }
+      ]
+    },
+    {
+      "slot": "2026-09-07_22",
+      "registrado_en": "2026-09-07T22:28:11-03:00",
+      "estado": "ALERTA_FUENTE",
+      "estado_senales": "OK",
+      "frescura_cen": {
+        "estado": "DESACTUALIZADO",
+        "nivel": "critico",
+        "actualizado_cen": "07-09-2026 08:25",
+        "edad_minutos": 843.2,
+        "edad_texto": "14 h 3 min",
+        "criterio": "GridVision: fresco <=30 min; retrasado 31-60 min; desactualizado >60 min"
+      },
+      "total": 45,
+      "recibidas": 45,
+      "validas": 45,
+      "faltantes": 0,
+      "incidentes": 0,
+      "actualizado_cen": "07-09-2026 08:25",
+      "instalaciones": [
+        {
+          "id": "capullo",
+          "nombre": "Central Capullo",
+          "nombre_cen": "CAPULLO",
+          "disponibilidad": 100.0,
+          "disponibilidad_texto": "100.0%",
+          "variables_total": 15,
+          "variables_recibidas": 15,
+          "variables_validas": 15,
+          "variables_faltantes": 0,
+          "variables_incidentes": 0
+        },
+        {
+          "id": "pulelfu",
+          "nombre": "Central Pulelfu",
+          "nombre_cen": "LA LEONERA",
+          "disponibilidad": 100.0,
+          "disponibilidad_texto": "100.0%",
+          "variables_total": 30,
+          "variables_recibidas": 30,
+          "variables_validas": 30,
+          "variables_faltantes": 0,
+          "variables_incidentes": 0
+        }
+      ]
+    }
+  ]
+}
