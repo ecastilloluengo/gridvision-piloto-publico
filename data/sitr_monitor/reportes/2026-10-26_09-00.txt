@@ -1,0 +1,439 @@
+📡 REPORTE SITR
+26-10-2026 | Corte 09:00
+
+🟢 ESTADO GENERAL: NORMAL
+
+Período: 17:00 → 09:00
+
+CENTRAL CAPULLO
+15/15 variables válidas
+Disponibilidad SITR: 100 %
+
+CENTRAL PULELFU
+30/30 variables válidas
+Disponibilidad SITR: 100 %
+
+RESUMEN
+45/45 variables válidas
+0 variables faltantes
+0 incidencias
+
+FUENTE CEN
+🟢 Actualizada
+Última actualización: 26-10-2026 14:25
+Antigüedad: 8 min
+
+ÚLTIMA EVIDENCIA PREVIA AL CORTE
+08:25 · 45/45 válidas · CEN fresco (10 min)
+
+EVENTOS DEL PERÍODO
+🔴 00:41 — CAPULLO
+Variable: PULELFU   66   B2     Q
+Condición: -
+
+🔴 00:41 — CAPULLO
+Variable: PULELFU   66   B2     P
+Condición: -
+
+🔴 00:41 — CAPULLO
+Variable: PULELFU   66   BP     V
+Condición: -
+
+🔴 00:41 — CAPULLO
+Variable: PULELFU   66   B2     DESC1
+Condición: -
+
+🔴 00:41 — CAPULLO
+Variable: PULELFU   66   B2     INT
+Condición: -
+
+🔴 00:41 — CAPULLO
+Variable: PULELFU   66   B2     DESC2
+Condición: -
+
+🔴 00:41 — CAPULLO
+Variable: CAPULLO   66   BG     INT
+Condición: -
+
+🔴 00:41 — CAPULLO
+Variable: CAPULLO   TR01   ATF
+Condición: -
+
+🔴 00:41 — CAPULLO
+Variable: CAPULLO   TR01   ATV
+Condición: -
+
+🔴 00:41 — CAPULLO
+Variable: CAPULLO   13.  GEN1   V
+Condición: -
+
+🔴 00:41 — CAPULLO
+Variable: CAPULLO   13.  GEN1   Q
+Condición: -
+
+🔴 00:41 — CAPULLO
+Variable: CAPULLO   13.  GEN1   P
+Condición: -
+
+🔴 00:41 — CAPULLO
+Variable: CAPULLO   13.  GEN1   F
+Condición: -
+
+🔴 00:41 — CAPULLO
+Variable: CAPULLO   TR01   ATP
+Condición: -
+
+🔴 00:41 — CAPULLO
+Variable: CAPULLO   TR01   ATQ
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   66   B1     DESC1
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   TR1    ATV
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   TR1    BTQ
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   TR1    BTP
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   TR1         TAP
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   6.6  G2     INT
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   6.6  G1     INT
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   6.6  GEN2   U-FUERA SERVICIO
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   6.6  GEN2   U-EN SERVICIO
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   6.6  GEN2   UNIDAD LISTA SINCR
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   6.6  GEN2   V
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   6.6  GEN2   Q
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   6.6  GEN2   F
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   6.6  GEN2   P
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   6.6  DSA    DESC1
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   6.6  GEN1   U-FUERA SERVICIO
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   6.6  GEN1   U-EN SERVICIO
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   6.6  GEN1   UNIDAD LISTA SINCR
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   6.6  GEN1   V
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   6.6  GEN1   P
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   6.6  GEN1   F
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   6.6  GEN1   Q
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   6.6  BP     V
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   TR1    ATQ
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   TR1    ATP
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   6.6  DT     DESC1
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   TEMP
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   LOCAL-REMOTO
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   FALLA-RTU
+Condición: -
+
+🔴 00:41 — PULELFU
+Variable: PULELFU   66   B1     INT
+Condición: -
+
+🟢 08:25 — CAPULLO
+Variable: PULELFU   66   B2     Q
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — CAPULLO
+Variable: PULELFU   66   B2     P
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — CAPULLO
+Variable: PULELFU   66   BP     V
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — CAPULLO
+Variable: PULELFU   66   B2     DESC1
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — CAPULLO
+Variable: PULELFU   66   B2     INT
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — CAPULLO
+Variable: PULELFU   66   B2     DESC2
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — CAPULLO
+Variable: CAPULLO   66   BG     INT
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — CAPULLO
+Variable: CAPULLO   TR01   ATF
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — CAPULLO
+Variable: CAPULLO   TR01   ATV
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — CAPULLO
+Variable: CAPULLO   13.  GEN1   V
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — CAPULLO
+Variable: CAPULLO   13.  GEN1   Q
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — CAPULLO
+Variable: CAPULLO   13.  GEN1   P
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — CAPULLO
+Variable: CAPULLO   13.  GEN1   F
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — CAPULLO
+Variable: CAPULLO   TR01   ATP
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — CAPULLO
+Variable: CAPULLO   TR01   ATQ
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   66   B1     DESC1
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   TR1    ATV
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   TR1    BTQ
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   TR1    BTP
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   TR1         TAP
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   6.6  G2     INT
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   6.6  G1     INT
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   6.6  GEN2   U-FUERA SERVICIO
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   6.6  GEN2   U-EN SERVICIO
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   6.6  GEN2   UNIDAD LISTA SINCR
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   6.6  GEN2   V
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   6.6  GEN2   Q
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   6.6  GEN2   F
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   6.6  GEN2   P
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   6.6  DSA    DESC1
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   6.6  GEN1   U-FUERA SERVICIO
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   6.6  GEN1   U-EN SERVICIO
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   6.6  GEN1   UNIDAD LISTA SINCR
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   6.6  GEN1   V
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   6.6  GEN1   P
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   6.6  GEN1   F
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   6.6  GEN1   Q
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   6.6  BP     V
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   TR1    ATQ
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   TR1    ATP
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   6.6  DT     DESC1
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   TEMP
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   LOCAL-REMOTO
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   FALLA-RTU
+Condición: Normalizada
+Duración: 7 h 43 min
+
+🟢 08:25 — PULELFU
+Variable: PULELFU   66   B1     INT
+Condición: Normalizada
+Duración: 7 h 43 min
+
+
+EVIDENCIAS
+5 controles automáticos registrados en el período.
+
+Fuente: Coordinador Eléctrico Nacional
