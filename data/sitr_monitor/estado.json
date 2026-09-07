@@ -1,0 +1,94 @@
+{
+  "version": 4,
+  "inicializado_en": "2026-09-07T18:49:45-03:00",
+  "ultima_ejecucion": "2026-09-12T15:39:27-03:00",
+  "ultima_consulta_cen": "12-09-2026 15:35",
+  "ultimo_slot_evidencia": "2026-09-12_14",
+  "ultimo_reporte_09": "2026-09-12_09",
+  "ultimo_reporte_17": "2026-09-11_17",
+  "incidencias_activas": {},
+  "fuente_cen_alerta_activa": null,
+  "eventos": [
+    {
+      "tipo": "FUENTE_DESACTUALIZADA",
+      "fecha": "2026-09-07T19:08:03-03:00",
+      "clave": "FUENTE_CEN",
+      "central": null,
+      "coordinado": "CEN",
+      "irn": null,
+      "ssee": null,
+      "variable": "Frescura fuente CEN",
+      "estado": "DESACTUALIZADO",
+      "calidad": null,
+      "tag_iccp": null,
+      "actualizado_cen": "07-09-2026 08:25",
+      "edad_minutos": 643.1,
+      "edad_texto": "10 h 43 min"
+    },
+    {
+      "tipo": "FUENTE_NORMALIZADA",
+      "fecha": "2026-09-08T12:20:39-03:00",
+      "clave": "FUENTE_CEN",
+      "central": null,
+      "coordinado": "CEN",
+      "irn": null,
+      "ssee": null,
+      "variable": "Frescura fuente CEN",
+      "estado": "NORMALIZADA",
+      "calidad": null,
+      "tag_iccp": null,
+      "fin": "2026-09-08T12:20:39-03:00",
+      "duracion_minutos": 1032.6,
+      "actualizado_cen": "08-09-2026 12:15",
+      "edad_minutos": 5.7,
+      "edad_texto": "6 min"
+    }
+  ],
+  "eventos_ultima_ejecucion": [],
+  "cola_correo": [],
+  "ultimo_snapshot": {
+    "fecha": "2026-09-12T15:39:27-03:00",
+    "actualizado_cen": "12-09-2026 15:35",
+    "frescura_cen": {
+      "estado": "FRESCO",
+      "nivel": "ok",
+      "actualizado_cen": "12-09-2026 15:35",
+      "edad_minutos": 4.5,
+      "edad_texto": "4 min",
+      "criterio": "GridVision: actualizado <=30 min; con retraso 31-60 min; desactualizado >60 min"
+    },
+    "total": 45,
+    "recibidas": 45,
+    "validas": 45,
+    "faltantes": 0,
+    "incidentes": 0,
+    "estado_senales": "OK",
+    "estado": "OK",
+    "instalaciones": [
+      {
+        "id": "capullo",
+        "nombre": "Central Capullo",
+        "nombre_cen": "CAPULLO",
+        "disponibilidad": 100.0,
+        "disponibilidad_texto": "100.0%",
+        "variables_total": 15,
+        "variables_recibidas": 15,
+        "variables_validas": 15,
+        "variables_faltantes": 0,
+        "variables_incidentes": 0
+      },
+      {
+        "id": "pulelfu",
+        "nombre": "Central Pulelfu",
+        "nombre_cen": "LA LEONERA",
+        "disponibilidad": 100.0,
+        "disponibilidad_texto": "100.0%",
+        "variables_total": 30,
+        "variables_recibidas": 30,
+        "variables_validas": 30,
+        "variables_faltantes": 0,
+        "variables_incidentes": 0
+      }
+    ]
+  }
+}

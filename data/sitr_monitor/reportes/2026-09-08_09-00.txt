@@ -1,0 +1,25 @@
+📡 REPORTE SITR - PECKET ENERGY
+Emisión: 2026-09-08T12:20:39-03:00
+Período: 2026-09-07T17:00:00-03:00 → 2026-09-08T09:00:00-03:00
+
+🟢 Estado actual: 45/45 válidas
+Recibidas: 45/45
+Faltantes: 0
+Incidencias activas: 0
+Frescura CEN: 🟢 FRESCO · 6 min
+Última actualización CEN: 08-09-2026 12:15
+
+Central Capullo: 100 %
+Central Pulelfu: 100 %
+
+Evidencias en el período: 5
+18:49 🟢 45/45 válidas · 0 faltantes · 0 incidencias · CEN -- (--)
+20:47 🔴 45/45 válidas · 0 faltantes · 0 incidencias · CEN DESACTUALIZADO (12 h 22 min)
+22:28 🔴 45/45 válidas · 0 faltantes · 0 incidencias · CEN DESACTUALIZADO (14 h 3 min)
+03:23 🔴 45/45 válidas · 0 faltantes · 0 incidencias · CEN DESACTUALIZADO (18 h 59 min)
+08:38 🔴 45/45 válidas · 0 faltantes · 0 incidencias · CEN DESACTUALIZADO (24 h 14 min)
+
+⚠ Eventos del período:
+07-09 19:08 · FUENTE_DESACTUALIZADA · - · Frescura fuente CEN · DESACTUALIZADO
+
+Fuente: Coordinador Eléctrico Nacional

@@ -1,0 +1,36 @@
+📡 REPORTE SITR - PECKET ENERGY
+Corte programado: 17:00
+Período evaluado: 2026-09-08T09:00:00-03:00 → 2026-09-08T17:00:00-03:00
+Emisión: 2026-09-08T17:27:34-03:00
+
+RESUMEN EJECUTIVO
+Corte 17:00: 🟢 OK
+Al momento de emisión (2026-09-08T17:27:34-03:00): 🟢 OK
+
+1. ESTADO AL CORTE
+🟢 Resultado: OK
+Referencia: 2026-09-08T15:54:17-03:00
+Variables: 45/45 válidas · 45/45 recibidas · 0 faltantes · 0 incidencias
+Frescura CEN: 🟢 FRESCO · 9 min
+Última actualización CEN: 08-09-2026 15:45
+Central Capullo: 100 %
+Central Pulelfu: 100 %
+
+2. ESTADO AL MOMENTO DE EMISIÓN
+🟢 Resultado: OK
+Referencia: 2026-09-08T17:27:34-03:00
+Variables: 45/45 válidas · 45/45 recibidas · 0 faltantes · 0 incidencias
+Frescura CEN: 🟢 FRESCO · 7 min
+Última actualización CEN: 08-09-2026 17:21
+Central Capullo: 100 %
+Central Pulelfu: 100 %
+
+3. EVIDENCIAS DEL PERÍODO (2)
+08-09 12:20 · 🟢 OK · 45/45 válidas · 0 faltantes · 0 incidencias · CEN FRESCO (6 min)
+08-09 15:54 · 🟢 OK · 45/45 válidas · 0 faltantes · 0 incidencias · CEN FRESCO (9 min)
+
+4. EVENTOS DEL PERÍODO
+08-09 12:20 · FUENTE_NORMALIZADA · - · Frescura fuente CEN · NORMALIZADA · duración 1032.6 min
+
+Fuente: Coordinador Eléctrico Nacional
+Sistema: Alertas Operacionales
