@@ -1063,127 +1063,188 @@ def agregar_bloque_estado(lineas, titulo, snapshot):
 
 
 def construir_texto_reporte(reporte):
-    lineas = []
-
     corte = reporte.get("estado_corte")
     emision = (
         reporte.get("estado_emision")
         or reporte.get("estado_actual")
+        or corte
     )
 
-    icono_corte, texto_corte = estado_reporte_texto(corte)
-    icono_emision, texto_emision = estado_reporte_texto(emision)
     hora = reporte.get("hora_programada", "--:--")
+    inicio = parsear_iso(reporte.get("periodo_desde"))
+    fin = parsear_iso(reporte.get("periodo_hasta"))
 
-    lineas.append("📡 REPORTE SITR - PECKET ENERGY")
-    lineas.append(f"Corte programado: {hora}")
-    lineas.append(
-        "Período evaluado: "
-        f"{reporte['periodo_desde']} → {reporte['periodo_hasta']}"
+    fecha_txt = (
+        fin.astimezone(TZ).strftime("%d-%m-%Y")
+        if fin
+        else _fecha_operacional(reporte.get("emitido_en"))
     )
-    lineas.append(f"Emisión: {reporte['emitido_en']}")
+    desde = (
+        inicio.astimezone(TZ).strftime("%H:%M")
+        if inicio
+        else "--"
+    )
+    hasta = (
+        fin.astimezone(TZ).strftime("%H:%M")
+        if fin
+        else hora
+    )
 
-    lineas.append("")
-    lineas.append("RESUMEN EJECUTIVO")
-    lineas.append(
-        f"Corte {hora}: {icono_corte} {texto_corte}"
+    icono, estado_general = _estado_general_simple(
+        emision
     )
+
+    lineas = [
+        "📡 REPORTE SITR",
+        f"{fecha_txt} | Corte {hora}",
+        "",
+        f"{icono} ESTADO GENERAL: {estado_general}",
+        "",
+        f"Período: {desde} → {hasta}",
+        "",
+    ]
+
+    instalaciones = (
+        emision.get("instalaciones", [])
+        if emision
+        else []
+    )
+
+    for central in instalaciones:
+        nombre = _nombre_central_corto(
+            central.get("nombre")
+        ).upper()
+
+        total = int(
+            central.get("variables_total") or 0
+        )
+        validas = int(
+            central.get("variables_validas") or 0
+        )
+
+        lineas.extend([
+            f"CENTRAL {nombre}",
+            f"{validas}/{total} variables válidas",
+            (
+                "Disponibilidad SITR: "
+                f"{porcentaje_texto(central.get('disponibilidad'))}"
+            ),
+            "",
+        ])
 
     if emision:
-        fecha_emision = (
-            emision.get("fecha")
-            or reporte.get("emitido_en")
-            or "--"
+        total = int(emision.get("total") or 0)
+        validas = int(emision.get("validas") or 0)
+        faltantes = int(emision.get("faltantes") or 0)
+        incidentes = int(emision.get("incidentes") or 0)
+
+        lineas.extend([
+            "RESUMEN",
+            f"{validas}/{total} variables válidas",
+            f"{faltantes} variables faltantes",
+            f"{incidentes} incidencias",
+            "",
+        ])
+
+        frescura = emision.get("frescura_cen") or {}
+        estado_fuente = frescura.get("estado") or "SIN DATO"
+
+        icono_fuente = {
+            "FRESCO": "🟢",
+            "RETRASADO": "🟡",
+            "DESACTUALIZADO": "🔴",
+            "DESCONOCIDA": "🔴",
+        }.get(estado_fuente, "⚪")
+
+        etiqueta_fuente = {
+            "FRESCO": "Actualizada",
+            "RETRASADO": "Retrasada",
+            "DESACTUALIZADO": "Desactualizada",
+            "DESCONOCIDA": "Sin fecha válida",
+        }.get(estado_fuente, estado_fuente)
+
+        lineas.extend([
+            "FUENTE CEN",
+            f"{icono_fuente} {etiqueta_fuente}",
+            (
+                "Última actualización: "
+                f"{emision.get('actualizado_cen') or '--'}"
+            ),
+            (
+                "Antigüedad: "
+                f"{frescura.get('edad_texto') or '--'}"
+            ),
+            "",
+        ])
+
+    if corte:
+        referencia = (
+            corte.get("registrado_en")
+            or corte.get("fecha")
         )
-        lineas.append(
-            f"Al momento de emisión ({fecha_emision}): "
-            f"{icono_emision} {texto_emision}"
-        )
+        frescura_corte = corte.get("frescura_cen") or {}
 
-    lineas.append("")
-    agregar_bloque_estado(
-        lineas,
-        "1. ESTADO AL CORTE",
-        corte,
-    )
-
-    lineas.append("")
-    agregar_bloque_estado(
-        lineas,
-        "2. ESTADO AL MOMENTO DE EMISIÓN",
-        emision,
-    )
-
-    lineas.append("")
-    lineas.append(
-        f"3. EVIDENCIAS DEL PERÍODO ({len(reporte['evidencias'])})"
-    )
-
-    if reporte["evidencias"]:
-        for evidencia in reporte["evidencias"]:
-            fecha_evidencia = parsear_iso(
-                evidencia["registrado_en"]
-            )
-            hora_ev = (
-                fecha_evidencia.strftime("%d-%m %H:%M")
-                if fecha_evidencia
-                else "--"
-            )
-            icono_ev, estado_ev = estado_reporte_texto(
-                evidencia
-            )
-            frescura_ev = evidencia.get("frescura_cen") or {}
-
-            lineas.append(
-                f"{hora_ev} · "
-                f"{icono_ev} {estado_ev} · "
-                f"{evidencia['validas']}/{evidencia['total']} válidas · "
-                f"{evidencia['faltantes']} faltantes · "
-                f"{evidencia['incidentes']} incidencias · "
-                f"CEN {frescura_ev.get('estado') or '--'} "
-                f"({frescura_ev.get('edad_texto') or '--'})"
-            )
+        lineas.extend([
+            "ÚLTIMA EVIDENCIA PREVIA AL CORTE",
+            (
+                f"{_hora_operacional(referencia)} · "
+                f"{corte.get('validas', 0)}/"
+                f"{corte.get('total', 0)} válidas · "
+                f"CEN "
+                f"{str(frescura_corte.get('estado') or '--').lower()} "
+                f"({frescura_corte.get('edad_texto') or '--'})"
+            ),
+            "",
+        ])
     else:
-        lineas.append(
-            "Sin evidencias registradas en el período."
-        )
+        lineas.extend([
+            "ÚLTIMA EVIDENCIA PREVIA AL CORTE",
+            "⚪ Sin evidencia registrada antes del corte.",
+            "",
+        ])
 
-    lineas.append("")
-    lineas.append("4. EVENTOS DEL PERÍODO")
+    eventos = reporte.get("eventos", [])
 
-    eventos = reporte["eventos"]
+    lineas.append("EVENTOS DEL PERÍODO")
 
     if eventos:
         for evento in eventos:
-            fecha_evento = parsear_iso(evento["fecha"])
-            hora_ev = (
-                fecha_evento.strftime("%d-%m %H:%M")
-                if fecha_evento
-                else "--"
+            tipo = str(evento.get("tipo") or "")
+            normalizada = tipo in (
+                "NORMALIZADA",
+                "FUENTE_NORMALIZADA",
             )
+            icono_evento = "🟢" if normalizada else "🔴"
+
             detalle = (
-                f"{hora_ev} · "
-                f"{evento['tipo']} · "
-                f"{evento.get('central') or '-'} · "
-                f"{evento.get('variable') or '-'} · "
-                f"{evento.get('estado') or '-'}"
+                f"{icono_evento} "
+                f"{_hora_operacional(evento.get('fecha'))} — "
+                f"{_evento_humano(evento)}"
             )
 
-            if evento.get("duracion_minutos") is not None:
-                detalle += (
-                    f" · duración "
-                    f"{evento['duracion_minutos']} min"
-                )
+            duracion = _duracion_humana(
+                evento.get("duracion_minutos")
+            )
+            if duracion:
+                detalle += f" · duración {duracion}"
 
             lineas.append(detalle)
     else:
         lineas.append("✓ Sin eventos SITR en el período.")
 
-    lineas.append("")
-    lineas.append("Fuente: Coordinador Eléctrico Nacional")
-    lineas.append("Sistema: Alertas Operacionales")
+    lineas.extend([
+        "",
+        "EVIDENCIAS",
+        (
+            f"{len(reporte.get('evidencias', []))} controles automáticos "
+            "registrados en el período."
+        ),
+        "",
+        "Fuente: Coordinador Eléctrico Nacional",
+    ])
 
     return "\n".join(lineas)
+
 
 def generar_reporte(
     estado,
@@ -1443,132 +1504,227 @@ def enviar_correo(asunto, cuerpo):
             f"{detalle}"
         )
 
-def asunto_evento(evento):
-    tipo = evento.get(
-        "tipo",
-        "EVENTO"
-    )
 
-    es_normalizacion = tipo in (
+# FORMATO_CORREO_SITR_SIMPLE_V2
+
+def _hora_operacional(valor):
+    fecha = parsear_iso(valor)
+    if not fecha:
+        return "--"
+    return fecha.astimezone(TZ).strftime("%H:%M")
+
+
+def _fecha_operacional(valor):
+    fecha = parsear_iso(valor)
+    if not fecha:
+        return "--"
+    return fecha.astimezone(TZ).strftime("%d-%m-%Y")
+
+
+def _duracion_humana(minutos):
+    if minutos is None:
+        return None
+    try:
+        total = max(0, int(round(float(minutos))))
+    except Exception:
+        return None
+
+    horas, resto = divmod(total, 60)
+
+    if horas and resto:
+        return f"{horas} h {resto} min"
+    if horas:
+        return f"{horas} h"
+    return f"{resto} min"
+
+
+def _nombre_central_corto(valor):
+    valor = str(valor or "").strip()
+
+    equivalencias = {
+        "Central Capullo": "Capullo",
+        "Central Pulelfu": "Pulelfu",
+        "CAPULLO": "Capullo",
+        "LA LEONERA": "Pulelfu",
+    }
+
+    return equivalencias.get(valor, valor or "SITR")
+
+
+def _evento_humano(evento):
+    tipo = str(evento.get("tipo") or "")
+    estado = str(evento.get("estado") or "")
+
+    if tipo == "FUENTE_DESACTUALIZADA":
+        return "Fuente CEN desactualizada"
+    if tipo == "FUENTE_NORMALIZADA":
+        return "Fuente CEN normalizada"
+    if tipo == "FUENTE_CAMBIO_ESTADO":
+        return "Cambio de estado de la fuente CEN"
+    if tipo == "NORMALIZADA":
+        return "Señal SITR normalizada"
+    if tipo == "DETECTADA":
+        if estado == "no_reporta":
+            return "Variable SITR no reporta"
+        if estado == "mala_calidad":
+            return "Variable SITR con mala calidad"
+        return "Incidencia SITR detectada"
+    if tipo == "CAMBIO_ESTADO":
+        if estado == "no_reporta":
+            return "Variable SITR dejó de reportar"
+        if estado == "mala_calidad":
+            return "Variable SITR con mala calidad"
+        return "Cambio de estado SITR"
+
+    return tipo.replace("_", " ").capitalize() or "Evento SITR"
+
+
+def _estado_general_simple(snapshot):
+    icono, etiqueta = estado_reporte_texto(snapshot)
+
+    equivalencias = {
+        "OK": "NORMAL",
+        "CEN RETRASADO": "FUENTE CEN RETRASADA",
+        "CEN DESACTUALIZADO": "FUENTE CEN DESACTUALIZADA",
+        "INCIDENCIA SITR": "INCIDENCIA SITR",
+        "SIN EVIDENCIA AL CORTE": "SIN EVIDENCIA",
+    }
+
+    return icono, equivalencias.get(etiqueta, etiqueta)
+
+
+def asunto_evento(evento):
+    tipo = str(evento.get("tipo") or "")
+    normalizada = tipo in (
         "NORMALIZADA",
         "FUENTE_NORMALIZADA",
     )
 
-    icono = (
-        "🟢"
-        if es_normalizacion
-        else "🔴"
-    )
-
     if tipo.startswith("FUENTE_"):
-        objeto = "Fuente CEN"
-    else:
-        objeto = (
-            evento.get("central")
-            or evento.get("coordinado")
-            or "SITR"
-        )
+        if normalizada:
+            return "SITR | 🟢 Fuente CEN normalizada"
+        return "SITR | 🔴 Alerta fuente CEN"
 
-    return (
-        f"[SITR] {icono} "
-        f"{tipo} - {objeto}"
+    central = _nombre_central_corto(
+        evento.get("central")
+        or evento.get("coordinado")
     )
+
+    if normalizada:
+        return f"SITR | 🟢 Normalizado | {central}"
+
+    return f"SITR | 🔴 Alerta | {central}"
 
 
 def cuerpo_evento(evento, snapshot):
+    tipo = str(evento.get("tipo") or "")
+    normalizada = tipo in (
+        "NORMALIZADA",
+        "FUENTE_NORMALIZADA",
+    )
+    es_fuente = tipo.startswith("FUENTE_")
+
+    icono = "🟢" if normalizada else "🔴"
+
+    if es_fuente:
+        titulo = (
+            "FUENTE CEN NORMALIZADA"
+            if normalizada
+            else "ALERTA FUENTE CEN"
+        )
+    else:
+        titulo = (
+            "SITR NORMALIZADO"
+            if normalizada
+            else "ALERTA SITR"
+        )
+
     lineas = [
-        "📡 ALERTA OPERACIONAL SITR",
+        f"{icono} {titulo}",
         "",
-        "1. EVENTO",
-        f"Fecha: {evento.get('fecha') or '--'}",
-        f"Tipo: {evento.get('tipo') or '--'}",
-        f"Estado: {evento.get('estado') or '--'}",
     ]
 
-    if evento.get("duracion_minutos") is not None:
-        lineas.append(
-            f"Duración: {evento.get('duracion_minutos')} min"
+    if not es_fuente:
+        central = _nombre_central_corto(
+            evento.get("central")
+            or evento.get("coordinado")
         )
+        lineas.append(f"Central: {central}")
 
-    if evento.get("central"):
-        lineas.append(
-            f"Central: {evento.get('central')}"
-        )
-    if evento.get("coordinado"):
-        lineas.append(
-            f"Coordinado CEN: {evento.get('coordinado')}"
-        )
-    if evento.get("ssee"):
-        lineas.append(
-            f"S/E: {evento.get('ssee')}"
-        )
+    lineas.append(
+        f"Condición: {_evento_humano(evento)}"
+    )
+
     if evento.get("variable"):
         lineas.append(
             f"Variable: {evento.get('variable')}"
         )
-    if evento.get("calidad"):
-        lineas.append(
-            f"Calidad: {evento.get('calidad')}"
-        )
-    if evento.get("tag_iccp"):
-        lineas.append(
-            f"TAG ICCP: {evento.get('tag_iccp')}"
-        )
+
+    etiqueta_hora = (
+        "Normalizada"
+        if normalizada
+        else "Detectada"
+    )
+    lineas.append(
+        f"{etiqueta_hora}: {_hora_operacional(evento.get('fecha'))}"
+    )
+
+    duracion = _duracion_humana(
+        evento.get("duracion_minutos")
+    )
+    if duracion:
+        lineas.append(f"Duración: {duracion}")
 
     frescura = snapshot.get("frescura_cen") or {}
 
     lineas.extend([
         "",
-        "2. ESTADO ACTUAL DE LA REVISIÓN",
+        "ESTADO",
         (
-            f"Variables: {snapshot.get('validas', 0)}/"
-            f"{snapshot.get('total', 0)} válidas"
+            f"{snapshot.get('validas', 0)}/"
+            f"{snapshot.get('total', 0)} variables válidas"
         ),
-        f"Faltantes: {snapshot.get('faltantes', 0)}",
-        (
-            f"Incidencias activas: "
-            f"{snapshot.get('incidentes', 0)}"
-        ),
-        (
-            "Frescura CEN: "
-            f"{frescura.get('estado') or '--'} · "
-            f"{frescura.get('edad_texto') or '--'}"
-        ),
-        (
-            "Última actualización CEN: "
-            f"{snapshot.get('actualizado_cen') or '--'}"
-        ),
-        "",
-        "3. ACCIÓN",
+        f"{snapshot.get('faltantes', 0)} variables faltantes",
     ])
 
-    tipo = evento.get("tipo", "")
+    if es_fuente:
+        lineas.extend([
+            (
+                "Última actualización CEN: "
+                f"{snapshot.get('actualizado_cen') or '--'}"
+            ),
+            (
+                "Antigüedad: "
+                f"{frescura.get('edad_texto') or '--'}"
+            ),
+        ])
 
-    if tipo in ("NORMALIZADA", "FUENTE_NORMALIZADA"):
+    lineas.extend([
+        "",
+        "ACCIÓN",
+    ])
+
+    if normalizada:
         lineas.append(
-            "Condición normalizada. "
-            "Mantener seguimiento operacional."
+            "Condición normalizada. Mantener seguimiento operacional."
         )
-    elif tipo.startswith("FUENTE_"):
+    elif es_fuente:
         lineas.append(
-            "Verificar la actualización del tablero del "
-            "Coordinador. La calidad de las señales y la "
-            "frescura de la fuente se evalúan por separado."
+            "Verificar actualización del tablero del Coordinador."
         )
     else:
         lineas.append(
-            "Revisar disponibilidad SITR. Si corresponde, "
-            "generar SS de alta prioridad según el "
-            "procedimiento interno vigente."
+            "Revisar disponibilidad SITR y gestionar SS de alta prioridad "
+            "si corresponde según procedimiento interno."
         )
 
     lineas.extend([
         "",
         "Fuente: Coordinador Eléctrico Nacional",
-        "Sistema: Alertas Operacionales",
     ])
 
     return "\n".join(lineas)
+
 
 def encolar_correo(
     estado,
@@ -1662,24 +1818,15 @@ def encolar_reportes_correo(estado, reportes, fecha):
             "hora_programada",
             "--:--"
         )
-        estado_corte = reporte.get(
-            "estado_corte"
+
+        emision = (
+            reporte.get("estado_emision")
+            or reporte.get("estado_actual")
+            or reporte.get("estado_corte")
         )
 
-        icono, estado_corte_texto = (
-            estado_reporte_texto(
-                estado_corte
-            )
-        )
-
-        fecha_corte = parsear_iso(
-            reporte.get("periodo_hasta")
-        )
-
-        fecha_asunto = (
-            fecha_corte.strftime("%d-%m-%Y")
-            if fecha_corte
-            else fecha.strftime("%d-%m-%Y")
+        icono, estado_simple = _estado_general_simple(
+            emision
         )
 
         identificador = (
@@ -1689,10 +1836,8 @@ def encolar_reportes_correo(estado, reportes, fecha):
         )
 
         asunto = (
-            "[SITR] "
-            f"Reporte {hora} - "
-            f"{fecha_asunto} - "
-            f"{icono} {estado_corte_texto}"
+            f"SITR | Reporte {hora} | "
+            f"{icono} {estado_simple.title()}"
         )
 
         cuerpo = construir_texto_reporte(
@@ -1712,6 +1857,7 @@ def encolar_reportes_correo(estado, reportes, fecha):
             cantidad += 1
 
     return cantidad
+
 
 def procesar_cola_correo(
     estado
