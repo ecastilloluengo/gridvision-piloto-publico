@@ -1,4 +1,5 @@
 import argparse
+import html
 import json
 import os
 import requests
@@ -974,67 +975,74 @@ def porcentaje_texto(valor):
     )
 
 
-def construir_texto_reporte(
-    reporte
-):
-    lineas = []
+def estado_reporte_texto(snapshot):
+    if not snapshot:
+        return "⚪", "SIN EVIDENCIA AL CORTE"
+
+    faltantes = int(snapshot.get("faltantes") or 0)
+    incidentes = int(snapshot.get("incidentes") or 0)
+
+    if (
+        snapshot.get("estado_senales") == "INCIDENCIA"
+        or faltantes > 0
+        or incidentes > 0
+    ):
+        return "🔴", "INCIDENCIA SITR"
+
+    frescura = snapshot.get("frescura_cen") or {}
+    estado_fuente = frescura.get("estado")
+
+    if estado_fuente == "FRESCO":
+        return "🟢", "OK"
+    if estado_fuente == "RETRASADO":
+        return "🟡", "CEN RETRASADO"
+    if estado_fuente == "DESACTUALIZADO":
+        return "🔴", "CEN DESACTUALIZADO"
+
+    return "🔴", "FRESCURA CEN DESCONOCIDA"
+
+
+def agregar_bloque_estado(lineas, titulo, snapshot):
+    lineas.append(titulo)
+
+    if not snapshot:
+        lineas.append(
+            "⚪ Sin evidencia operacional disponible para este corte."
+        )
+        return
+
+    icono, etiqueta = estado_reporte_texto(snapshot)
+    lineas.append(f"{icono} Resultado: {etiqueta}")
+
+    referencia = (
+        snapshot.get("registrado_en")
+        or snapshot.get("fecha")
+        or "--"
+    )
+    lineas.append(f"Referencia: {referencia}")
+
+    total = int(snapshot.get("total") or 0)
+    recibidas = int(snapshot.get("recibidas") or 0)
+    validas = int(snapshot.get("validas") or 0)
+    faltantes = int(snapshot.get("faltantes") or 0)
+    incidentes = int(snapshot.get("incidentes") or 0)
 
     lineas.append(
-        "📡 REPORTE SITR - PECKET ENERGY"
-    )
-    lineas.append(
-        f"Emisión: {reporte['emitido_en']}"
-    )
-    lineas.append(
-        "Período: "
-        f"{reporte['periodo_desde']} "
-        "→ "
-        f"{reporte['periodo_hasta']}"
-    )
-    lineas.append("")
-
-    actual = reporte["estado_actual"]
-
-    if actual["estado"] == "OK":
-        icono = "🟢"
-    elif actual["estado"] == "ADVERTENCIA_FUENTE":
-        icono = "🟡"
-    else:
-        icono = "🔴"
-
-    lineas.append(
-        f"{icono} Estado actual: "
-        f"{actual['validas']}/"
-        f"{actual['total']} válidas"
-    )
-    lineas.append(
-        f"Recibidas: "
-        f"{actual['recibidas']}/"
-        f"{actual['total']}"
-    )
-    lineas.append(
-        f"Faltantes: "
-        f"{actual['faltantes']}"
-    )
-    lineas.append(
-        f"Incidencias activas: "
-        f"{actual['incidentes']}"
+        "Variables: "
+        f"{validas}/{total} válidas · "
+        f"{recibidas}/{total} recibidas · "
+        f"{faltantes} faltantes · "
+        f"{incidentes} incidencias"
     )
 
-    frescura = actual.get(
-        "frescura_cen",
-        {}
-    )
+    frescura = snapshot.get("frescura_cen") or {}
 
     icono_fuente = {
         "FRESCO": "🟢",
         "RETRASADO": "🟡",
         "DESACTUALIZADO": "🔴",
         "DESCONOCIDA": "🔴",
-    }.get(
-        frescura.get("estado"),
-        "⚪"
-    )
+    }.get(frescura.get("estado"), "⚪")
 
     lineas.append(
         "Frescura CEN: "
@@ -1042,26 +1050,73 @@ def construir_texto_reporte(
         f"{frescura.get('estado') or 'SIN DATO'} · "
         f"{frescura.get('edad_texto') or 'desconocida'}"
     )
-
     lineas.append(
         "Última actualización CEN: "
-        f"{actual.get('actualizado_cen') or '--'}"
+        f"{snapshot.get('actualizado_cen') or '--'}"
+    )
+
+    for central in snapshot.get("instalaciones", []):
+        valor = porcentaje_texto(central.get("disponibilidad"))
+        lineas.append(
+            f"{central.get('nombre') or 'Central'}: {valor}"
+        )
+
+
+def construir_texto_reporte(reporte):
+    lineas = []
+
+    corte = reporte.get("estado_corte")
+    emision = (
+        reporte.get("estado_emision")
+        or reporte.get("estado_actual")
+    )
+
+    icono_corte, texto_corte = estado_reporte_texto(corte)
+    icono_emision, texto_emision = estado_reporte_texto(emision)
+    hora = reporte.get("hora_programada", "--:--")
+
+    lineas.append("📡 REPORTE SITR - PECKET ENERGY")
+    lineas.append(f"Corte programado: {hora}")
+    lineas.append(
+        "Período evaluado: "
+        f"{reporte['periodo_desde']} → {reporte['periodo_hasta']}"
+    )
+    lineas.append(f"Emisión: {reporte['emitido_en']}")
+
+    lineas.append("")
+    lineas.append("RESUMEN EJECUTIVO")
+    lineas.append(
+        f"Corte {hora}: {icono_corte} {texto_corte}"
+    )
+
+    if emision:
+        fecha_emision = (
+            emision.get("fecha")
+            or reporte.get("emitido_en")
+            or "--"
+        )
+        lineas.append(
+            f"Al momento de emisión ({fecha_emision}): "
+            f"{icono_emision} {texto_emision}"
+        )
+
+    lineas.append("")
+    agregar_bloque_estado(
+        lineas,
+        "1. ESTADO AL CORTE",
+        corte,
     )
 
     lineas.append("")
-
-    for central in actual["instalaciones"]:
-        valor = porcentaje_texto(
-            central.get("disponibilidad")
-        )
-        lineas.append(
-            f"{central['nombre']}: {valor}"
-        )
+    agregar_bloque_estado(
+        lineas,
+        "2. ESTADO AL MOMENTO DE EMISIÓN",
+        emision,
+    )
 
     lineas.append("")
     lineas.append(
-        "Evidencias en el período: "
-        f"{len(reporte['evidencias'])}"
+        f"3. EVIDENCIAS DEL PERÍODO ({len(reporte['evidencias'])})"
     )
 
     if reporte["evidencias"]:
@@ -1069,84 +1124,64 @@ def construir_texto_reporte(
             fecha_evidencia = parsear_iso(
                 evidencia["registrado_en"]
             )
-
-            hora = (
-                fecha_evidencia.strftime("%H:%M")
+            hora_ev = (
+                fecha_evidencia.strftime("%d-%m %H:%M")
                 if fecha_evidencia
-                else "--:--"
+                else "--"
             )
-
-            marca = (
-                "🟢"
-                if evidencia["estado"] == "OK"
-                else "🔴"
+            icono_ev, estado_ev = estado_reporte_texto(
+                evidencia
             )
-
-            frescura_ev = (
-                evidencia.get(
-                    "frescura_cen"
-                )
-                or {}
-            )
+            frescura_ev = evidencia.get("frescura_cen") or {}
 
             lineas.append(
-                f"{hora} {marca} "
-                f"{evidencia['validas']}/"
-                f"{evidencia['total']} válidas · "
+                f"{hora_ev} · "
+                f"{icono_ev} {estado_ev} · "
+                f"{evidencia['validas']}/{evidencia['total']} válidas · "
                 f"{evidencia['faltantes']} faltantes · "
                 f"{evidencia['incidentes']} incidencias · "
-                "CEN "
-                f"{frescura_ev.get('estado') or '--'} "
+                f"CEN {frescura_ev.get('estado') or '--'} "
                 f"({frescura_ev.get('edad_texto') or '--'})"
             )
+    else:
+        lineas.append(
+            "Sin evidencias registradas en el período."
+        )
 
     lineas.append("")
+    lineas.append("4. EVENTOS DEL PERÍODO")
 
     eventos = reporte["eventos"]
 
     if eventos:
-        lineas.append(
-            "⚠ Eventos del período:"
-        )
-
         for evento in eventos:
-            fecha_evento = parsear_iso(
-                evento["fecha"]
-            )
-
-            hora = (
+            fecha_evento = parsear_iso(evento["fecha"])
+            hora_ev = (
                 fecha_evento.strftime("%d-%m %H:%M")
                 if fecha_evento
                 else "--"
             )
-
             detalle = (
-                f"{hora} · "
+                f"{hora_ev} · "
                 f"{evento['tipo']} · "
                 f"{evento.get('central') or '-'} · "
                 f"{evento.get('variable') or '-'} · "
                 f"{evento.get('estado') or '-'}"
             )
 
-            if (
-                evento.get("duracion_minutos")
-                is not None
-            ):
+            if evento.get("duracion_minutos") is not None:
                 detalle += (
-                    " · duración "
+                    f" · duración "
                     f"{evento['duracion_minutos']} min"
                 )
 
             lineas.append(detalle)
     else:
-        lineas.append(
-            "✓ Sin eventos SITR en el período."
-        )
+        lineas.append("✓ Sin eventos SITR en el período.")
 
     lineas.append("")
-    lineas.append(
-        "Fuente: Coordinador Eléctrico Nacional"
-    )
+    lineas.append("Fuente: Coordinador Eléctrico Nacional")
+    lineas.append("Sistema: Alertas Operacionales")
 
     return "\n".join(lineas)
 
@@ -1157,77 +1192,44 @@ def generar_reporte(
     hora_reporte,
     prueba=False
 ):
-    inicio, fin = ventana_reporte(
-        fecha,
-        hora_reporte
-    )
+    inicio, fin = ventana_reporte(fecha, hora_reporte)
 
-    evidencias = (
-        obtener_revisiones_en_ventana(
-            inicio,
-            fin
-        )
-    )
+    evidencias = obtener_revisiones_en_ventana(inicio, fin)
+    eventos = eventos_en_ventana(estado, inicio, fin)
 
-    eventos = eventos_en_ventana(
-        estado,
-        inicio,
-        fin
-    )
+    # El estado del reporte representa el corte programado,
+    # no el momento tardío en que finalmente se emite.
+    estado_corte = evidencias[-1] if evidencias else None
 
     reporte = {
-        "tipo":
-            "REPORTE_SITR",
-        "hora_programada":
-            f"{hora_reporte:02d}:00",
-        "emitido_en":
-            iso(fecha),
-        "periodo_desde":
-            iso(inicio),
-        "periodo_hasta":
-            iso(fin),
-        "estado_actual":
-            snapshot,
-        "evidencias":
-            evidencias,
-        "eventos":
-            eventos,
-        "prueba":
-            prueba,
+        "tipo": "REPORTE_SITR",
+        "hora_programada": f"{hora_reporte:02d}:00",
+        "emitido_en": iso(fecha),
+        "periodo_desde": iso(inicio),
+        "periodo_hasta": iso(fin),
+        "estado_corte": estado_corte,
+        "estado_emision": snapshot,
+        # Compatibilidad con lecturas/reportes anteriores.
+        "estado_actual": snapshot,
+        "evidencias": evidencias,
+        "eventos": eventos,
+        "prueba": prueba,
     }
 
-    sufijo = (
-        "_PRUEBA"
-        if prueba
-        else ""
-    )
-
+    sufijo = "_PRUEBA" if prueba else ""
     nombre = (
         f"{fecha:%Y-%m-%d}_"
         f"{hora_reporte:02d}-00"
         f"{sufijo}"
     )
 
-    ruta_json = (
-        CARPETA_REPORTES
-        / f"{nombre}.json"
-    )
+    ruta_json = CARPETA_REPORTES / f"{nombre}.json"
+    ruta_txt = CARPETA_REPORTES / f"{nombre}.txt"
 
-    ruta_txt = (
-        CARPETA_REPORTES
-        / f"{nombre}.txt"
-    )
-
-    guardar_json(
-        ruta_json,
-        reporte
-    )
-
+    guardar_json(ruta_json, reporte)
     ruta_txt.write_text(
-        construir_texto_reporte(
-            reporte
-        ),
-        encoding="utf-8"
+        construir_texto_reporte(reporte),
+        encoding="utf-8",
     )
 
     return {
@@ -1235,8 +1237,6 @@ def generar_reporte(
         "txt": str(ruta_txt),
         "reporte": reporte,
     }
-
-
 
 def inicializar_marcas_reporte(
     estado,
@@ -1352,10 +1352,7 @@ def correo_configurado():
     )
 
 
-def enviar_correo(
-    asunto,
-    cuerpo
-):
+def enviar_correo(asunto, cuerpo):
     config = configuracion_correo()
 
     if not correo_configurado():
@@ -1365,15 +1362,11 @@ def enviar_correo(
         )
 
     asunto_limpio = str(
-        asunto
-        or "Notificación Operacional SITR"
+        asunto or "Notificación Operacional SITR"
     )
-
     asunto_upper = asunto_limpio.upper()
 
-    es_reporte = (
-        "REPORTE" in asunto_upper
-    )
+    es_reporte = "REPORTE" in asunto_upper
 
     es_normalizacion = (
         "NORMALIZADA" in asunto_upper
@@ -1383,7 +1376,21 @@ def enviar_correo(
 
     if es_reporte:
         tipo = "REPORTE"
-        nivel = "INFORMATIVO"
+
+        if any(
+            marca in asunto_upper
+            for marca in (
+                "DESACTUALIZADO",
+                "INCIDENCIA",
+                "SIN EVIDENCIA",
+                "DESCONOCIDA",
+            )
+        ):
+            nivel = "ALERTA"
+        elif "RETRASADO" in asunto_upper:
+            nivel = "ADVERTENCIA"
+        else:
+            nivel = "INFORMATIVO"
     else:
         tipo = "SITR"
         nivel = (
@@ -1392,20 +1399,28 @@ def enviar_correo(
             else "ALERTA"
         )
 
+    texto = (
+        str(cuerpo or "")
+        .replace("\r\n", "\n")
+        .replace("\r", "\n")
+    )
+
+    # Power Automate envía el cuerpo como HTML.
+    # Se conservan los saltos de línea para Outlook.
+    mensaje_html = html.escape(
+        texto,
+        quote=False,
+    ).replace("\n", "<br>")
+
     payload = {
         "tipo": tipo,
         "nivel": nivel,
         "asunto": asunto_limpio,
-        "mensaje": str(
-            cuerpo
-            or ""
-        ),
+        "mensaje": mensaje_html,
         "instalacion": "Seguimiento SITR",
         "fecha": ahora_chile().strftime(
             "%Y-%m-%d %H:%M:%S"
         ),
-        # El destinatario se fija dentro de Power Automate.
-        # No se permite que GitHub decida el correo destino.
         "destinatarios": "",
     }
 
@@ -1415,11 +1430,7 @@ def enviar_correo(
         timeout=30,
     )
 
-    if not (
-        200
-        <= respuesta.status_code
-        < 300
-    ):
+    if not (200 <= respuesta.status_code < 300):
         detalle = (
             respuesta.text[:1000]
             if respuesta.text
@@ -1431,8 +1442,6 @@ def enviar_correo(
             f"{respuesta.status_code}: "
             f"{detalle}"
         )
-
-
 
 def asunto_evento(evento):
     tipo = evento.get(
@@ -1466,82 +1475,56 @@ def asunto_evento(evento):
     )
 
 
-def cuerpo_evento(
-    evento,
-    snapshot
-):
+def cuerpo_evento(evento, snapshot):
     lineas = [
         "📡 ALERTA OPERACIONAL SITR",
         "",
+        "1. EVENTO",
         f"Fecha: {evento.get('fecha') or '--'}",
-        f"Evento: {evento.get('tipo') or '--'}",
+        f"Tipo: {evento.get('tipo') or '--'}",
         f"Estado: {evento.get('estado') or '--'}",
     ]
 
+    if evento.get("duracion_minutos") is not None:
+        lineas.append(
+            f"Duración: {evento.get('duracion_minutos')} min"
+        )
+
     if evento.get("central"):
         lineas.append(
-            "Central: "
-            f"{evento.get('central')}"
+            f"Central: {evento.get('central')}"
         )
-
     if evento.get("coordinado"):
         lineas.append(
-            "Coordinado CEN: "
-            f"{evento.get('coordinado')}"
+            f"Coordinado CEN: {evento.get('coordinado')}"
         )
-
     if evento.get("ssee"):
         lineas.append(
-            "S/E: "
-            f"{evento.get('ssee')}"
+            f"S/E: {evento.get('ssee')}"
         )
-
     if evento.get("variable"):
         lineas.append(
-            "Variable: "
-            f"{evento.get('variable')}"
+            f"Variable: {evento.get('variable')}"
         )
-
     if evento.get("calidad"):
         lineas.append(
-            "Calidad: "
-            f"{evento.get('calidad')}"
+            f"Calidad: {evento.get('calidad')}"
         )
-
     if evento.get("tag_iccp"):
         lineas.append(
-            "TAG ICCP: "
-            f"{evento.get('tag_iccp')}"
+            f"TAG ICCP: {evento.get('tag_iccp')}"
         )
 
-    if (
-        evento.get("duracion_minutos")
-        is not None
-    ):
-        lineas.append(
-            "Duración: "
-            f"{evento.get('duracion_minutos')} min"
-        )
-
-    frescura = (
-        snapshot.get(
-            "frescura_cen"
-        )
-        or {}
-    )
+    frescura = snapshot.get("frescura_cen") or {}
 
     lineas.extend([
         "",
-        "Estado de la revisión:",
+        "2. ESTADO ACTUAL DE LA REVISIÓN",
         (
-            f"Variables: "
-            f"{snapshot.get('validas', 0)}/"
+            f"Variables: {snapshot.get('validas', 0)}/"
             f"{snapshot.get('total', 0)} válidas"
         ),
-        (
-            f"Faltantes: "
-            f"{snapshot.get('faltantes', 0)}"
-        ),
+        f"Faltantes: {snapshot.get('faltantes', 0)}",
         (
             f"Incidencias activas: "
             f"{snapshot.get('incidentes', 0)}"
@@ -1556,33 +1539,27 @@ def cuerpo_evento(
             f"{snapshot.get('actualizado_cen') or '--'}"
         ),
         "",
+        "3. ACCIÓN",
     ])
 
-    tipo = evento.get(
-        "tipo",
-        ""
-    )
+    tipo = evento.get("tipo", "")
 
-    if tipo in (
-        "NORMALIZADA",
-        "FUENTE_NORMALIZADA",
-    ):
+    if tipo in ("NORMALIZADA", "FUENTE_NORMALIZADA"):
         lineas.append(
-            "Acción: condición normalizada. "
+            "Condición normalizada. "
             "Mantener seguimiento operacional."
         )
     elif tipo.startswith("FUENTE_"):
         lineas.append(
-            "Acción: verificar la actualización "
-            "del tablero del Coordinador. "
-            "La calidad de las señales y la frescura "
-            "de la fuente se evalúan por separado."
+            "Verificar la actualización del tablero del "
+            "Coordinador. La calidad de las señales y la "
+            "frescura de la fuente se evalúan por separado."
         )
     else:
         lineas.append(
-            "Acción: revisar disponibilidad SITR. "
-            "Si corresponde, generar SS de alta prioridad "
-            "según el procedimiento interno vigente."
+            "Revisar disponibilidad SITR. Si corresponde, "
+            "generar SS de alta prioridad según el "
+            "procedimiento interno vigente."
         )
 
     lineas.extend([
@@ -1591,10 +1568,7 @@ def cuerpo_evento(
         "Sistema: Alertas Operacionales",
     ])
 
-    return "\n".join(
-        lineas
-    )
-
+    return "\n".join(lineas)
 
 def encolar_correo(
     estado,
@@ -1672,21 +1646,14 @@ def encolar_eventos_correo(
     return cantidad
 
 
-def encolar_reportes_correo(
-    estado,
-    reportes,
-    fecha
-):
+def encolar_reportes_correo(estado, reportes, fecha):
     if not correo_configurado():
         return 0
 
     cantidad = 0
 
     for item in reportes:
-        reporte = item.get(
-            "reporte",
-            {}
-        )
+        reporte = item.get("reporte", {})
 
         if reporte.get("prueba"):
             continue
@@ -1695,15 +1662,24 @@ def encolar_reportes_correo(
             "hora_programada",
             "--:--"
         )
+        estado_corte = reporte.get(
+            "estado_corte"
+        )
 
-        estado_actual = (
-            reporte.get(
-                "estado_actual",
-                {}
-            ).get(
-                "estado",
-                "--"
+        icono, estado_corte_texto = (
+            estado_reporte_texto(
+                estado_corte
             )
+        )
+
+        fecha_corte = parsear_iso(
+            reporte.get("periodo_hasta")
+        )
+
+        fecha_asunto = (
+            fecha_corte.strftime("%d-%m-%Y")
+            if fecha_corte
+            else fecha.strftime("%d-%m-%Y")
         )
 
         identificador = (
@@ -1715,8 +1691,8 @@ def encolar_reportes_correo(
         asunto = (
             "[SITR] "
             f"Reporte {hora} - "
-            f"{fecha:%d-%m-%Y} - "
-            f"{estado_actual}"
+            f"{fecha_asunto} - "
+            f"{icono} {estado_corte_texto}"
         )
 
         cuerpo = construir_texto_reporte(
@@ -1729,14 +1705,13 @@ def encolar_reportes_correo(
             "REPORTE",
             asunto,
             cuerpo,
-            fecha
+            fecha,
         )
 
         if agregado:
             cantidad += 1
 
     return cantidad
-
 
 def procesar_cola_correo(
     estado
