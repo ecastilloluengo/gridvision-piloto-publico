@@ -1118,3 +1118,19 @@ button,a{font:inherit}button{color:inherit}.portal-shell{min-height:100vh}
         width: 100%;
     }
 }
+
+/* MENSAJE CORPORATIVO PECKET */
+.footer-pecket .footer-inicio,
+.footer-pecket .footer-energia {
+    color: #ffffff;
+}
+
+.footer-pecket .footer-verde,
+.footer-pecket .footer-sostenible,
+.footer-pecket .footer-origen {
+    color: #73AB42;
+}
+
+.footer-pecket .footer-origen {
+    font-style: normal;
+}
