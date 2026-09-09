@@ -1104,3 +1104,17 @@ button,a{font:inherit}button{color:inherit}.portal-shell{min-height:100vh}
         margin: 5px 0;
     }
 }
+/* MENU PORTAL - visible solo en movil */
+.mobile-menu-toggle {
+    display: none;
+}
+
+@media (max-width: 850px) {
+    .mobile-menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        width: 100%;
+    }
+}
