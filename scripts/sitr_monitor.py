@@ -3,6 +3,7 @@ import html
 import json
 import os
 import requests
+import time
 from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -2021,7 +2022,62 @@ def enviar_correo_prueba():
     print(
         "Correo de prueba enviado."
     )
+def consultar_sitr_con_reintentos(
+    max_intentos=3,
+    espera_segundos=10
+):
+    """
+    Consulta SITR con reintentos automáticos.
 
+    Si Qlik/CEN presenta un timeout o error transitorio,
+    vuelve a intentar antes de abortar la ejecución.
+    """
+
+    ultimo_error = None
+
+    for intento in range(1, max_intentos + 1):
+
+        try:
+            print(
+                f"Consulta SITR - intento "
+                f"{intento}/{max_intentos}"
+            )
+
+            datos = consultar_sitr()
+
+            if intento > 1:
+                print(
+                    "Consulta SITR recuperada "
+                    "correctamente."
+                )
+
+            return datos
+
+        except Exception as error:
+            ultimo_error = error
+
+            print(
+                f"Error consulta SITR "
+                f"intento {intento}/{max_intentos}: "
+                f"{type(error).__name__}: {error}"
+            )
+
+            if intento < max_intentos:
+                print(
+                    f"Reintentando en "
+                    f"{espera_segundos} segundos..."
+                )
+
+                time.sleep(
+                    espera_segundos
+                )
+
+    print(
+        "ERROR: consulta SITR falló "
+        f"después de {max_intentos} intentos."
+    )
+
+    raise ultimo_error
 
 def ejecutar(
     forzar_evidencia=False,
@@ -2036,7 +2092,7 @@ def ejecutar(
         iso(fecha)
     )
 
-    datos = consultar_sitr()
+    datos = consultar_sitr_con_reintentos()
 
     estado = cargar_estado()
     estado[
