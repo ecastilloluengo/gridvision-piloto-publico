@@ -1134,3 +1134,17 @@ button,a{font:inherit}button{color:inherit}.portal-shell{min-height:100vh}
 .footer-pecket .footer-origen {
     font-style: normal;
 }
+
+/* CORRECCION FOOTER CORPORATIVO PECKET */
+.footer-pecket p .footer-inicio,
+.footer-pecket p .footer-verde {
+    display: inline;
+    width: auto;
+    height: auto;
+    background: none;
+    opacity: 1;
+}
+
+.footer-pecket p .footer-verde {
+    margin-left: 0.25em;
+}
