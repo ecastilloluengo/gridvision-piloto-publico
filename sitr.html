@@ -714,7 +714,7 @@
       <article class="monitor-card">
 
         <span class="monitor-label">
-          Frescura fuente CEN
+          Estado de actualización CEN
         </span>
 
         <strong
@@ -745,9 +745,9 @@
       reportes:
       <strong>09:00 y 17:00 hrs</strong>.
 
-      Frescura CEN — criterio operativo GridVision:
-      <strong>fresco ≤ 30 min</strong>,
-      <strong>retrasado 31–60 min</strong> y
+      Estado de actualización CEN — criterio operativo GridVision:
+      <strong>actualizado ≤ 30 min</strong>,
+      <strong>con retraso 31–60 min</strong> y
       <strong>desactualizado &gt; 60 min</strong>.
       Este criterio no corresponde a un umbral oficial del CEN.
 
@@ -1323,7 +1323,7 @@ function renderFrescuraCen(
   ) {
 
     valor.textContent =
-      "🟢 Fresco";
+      "🟢 Actualizado";
 
     valor.className =
       "monitor-value estado-ok";
@@ -1333,7 +1333,7 @@ function renderFrescuraCen(
   ) {
 
     valor.textContent =
-      "🟡 Retrasado";
+      "🟡 Con retraso";
 
     valor.className =
       "monitor-value estado-warning";
@@ -1343,7 +1343,7 @@ function renderFrescuraCen(
     valor.textContent =
       frescura.estado === "DESCONOCIDA"
 
-        ? "🔴 Sin fecha"
+        ? "🔴 Sin referencia"
 
         : "🔴 Desactualizado";
 
@@ -2343,10 +2343,18 @@ function construirTextoCompartir() {
         );
 
 
+  const estadoActualizacionTexto = {
+    FRESCO: "ACTUALIZADO",
+    RETRASADO: "CON RETRASO",
+    DESACTUALIZADO: "DESACTUALIZADO",
+    DESCONOCIDA: "SIN REFERENCIA"
+  }[frescura.estado] || frescura.estado;
+
+
   lineas.push(
-    `${iconoFrescura} Frescura CEN: `
+    `${iconoFrescura} Estado de actualización CEN: `
     +
-    `${frescura.estado} · `
+    `${estadoActualizacionTexto} · `
     +
     `${frescura.edadTexto}`
   );

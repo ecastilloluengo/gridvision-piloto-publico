@@ -271,8 +271,8 @@ def calcular_frescura_cen(
             "edad_minutos": None,
             "edad_texto": "desconocida",
             "criterio": (
-                "GridVision: fresco <=30 min; "
-                "retrasado 31-60 min; "
+                "GridVision: actualizado <=30 min; "
+                "con retraso 31-60 min; "
                 "desactualizado >60 min"
             ),
         }
@@ -315,8 +315,8 @@ def calcular_frescura_cen(
             edad_minutos
         ),
         "criterio": (
-            "GridVision: fresco <=30 min; "
-            "retrasado 31-60 min; "
+            "GridVision: actualizado <=30 min; "
+            "con retraso 31-60 min; "
             "desactualizado >60 min"
         ),
     }
@@ -605,7 +605,7 @@ def procesar_frescura_fuente(
             "coordinado": "CEN",
             "irn": None,
             "ssee": None,
-            "variable": "Frescura fuente CEN",
+            "variable": "Estado de actualización fuente CEN",
             "estado": frescura.get("estado"),
             "calidad": None,
             "tag_iccp": None,
@@ -996,11 +996,11 @@ def estado_reporte_texto(snapshot):
     if estado_fuente == "FRESCO":
         return "🟢", "OK"
     if estado_fuente == "RETRASADO":
-        return "🟡", "CEN RETRASADO"
+        return "🟡", "CEN CON RETRASO"
     if estado_fuente == "DESACTUALIZADO":
         return "🔴", "CEN DESACTUALIZADO"
 
-    return "🔴", "FRESCURA CEN DESCONOCIDA"
+    return "🔴", "ACTUALIZACIÓN CEN SIN REFERENCIA"
 
 
 def agregar_bloque_estado(lineas, titulo, snapshot):
@@ -1045,10 +1045,20 @@ def agregar_bloque_estado(lineas, titulo, snapshot):
         "DESCONOCIDA": "🔴",
     }.get(frescura.get("estado"), "⚪")
 
+    estado_fuente_visible = {
+        "FRESCO": "ACTUALIZADO",
+        "RETRASADO": "CON RETRASO",
+        "DESACTUALIZADO": "DESACTUALIZADO",
+        "DESCONOCIDA": "SIN REFERENCIA",
+    }.get(
+        frescura.get("estado"),
+        frescura.get("estado") or "SIN DATO"
+    )
+
     lineas.append(
-        "Frescura CEN: "
+        "Estado de actualización CEN: "
         f"{icono_fuente} "
-        f"{frescura.get('estado') or 'SIN DATO'} · "
+        f"{estado_fuente_visible} · "
         f"{frescura.get('edad_texto') or 'desconocida'}"
     )
     lineas.append(
@@ -1159,9 +1169,9 @@ def construir_texto_reporte(reporte):
 
         etiqueta_fuente = {
             "FRESCO": "Actualizada",
-            "RETRASADO": "Retrasada",
+            "RETRASADO": "Con retraso",
             "DESACTUALIZADO": "Desactualizada",
-            "DESCONOCIDA": "Sin fecha válida",
+            "DESCONOCIDA": "Sin referencia",
         }.get(estado_fuente, estado_fuente)
 
         lineas.extend([
@@ -1498,10 +1508,11 @@ def enviar_correo(asunto, cuerpo):
                 "INCIDENCIA",
                 "SIN EVIDENCIA",
                 "DESCONOCIDA",
+                "SIN REFERENCIA",
             )
         ):
             nivel = "ALERTA"
-        elif "RETRASADO" in asunto_upper:
+        elif ("CON RETRASO" in asunto_upper or "RETRASADO" in asunto_upper):
             nivel = "ADVERTENCIA"
         else:
             nivel = "INFORMATIVO"
@@ -2222,7 +2233,7 @@ def ejecutar(
         snapshot["incidentes"]
     )
     print(
-        "Frescura CEN:",
+        "Estado de actualización CEN:",
         snapshot["frescura_cen"]["estado"],
         "-",
         snapshot["frescura_cen"]["edad_texto"],
