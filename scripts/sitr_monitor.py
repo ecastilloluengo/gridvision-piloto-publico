@@ -1203,6 +1203,7 @@ def construir_texto_reporte(reporte):
             "",
         ])
 
+    # EVENTOS_SITR_DETALLADOS_V1
     eventos = reporte.get("eventos", [])
 
     lineas.append("EVENTOS DEL PERÍODO")
@@ -1214,21 +1215,72 @@ def construir_texto_reporte(reporte):
                 "NORMALIZADA",
                 "FUENTE_NORMALIZADA",
             )
+            es_fuente = tipo.startswith("FUENTE_")
             icono_evento = "🟢" if normalizada else "🔴"
-
-            detalle = (
-                f"{icono_evento} "
-                f"{_hora_operacional(evento.get('fecha'))} — "
-                f"{_evento_humano(evento)}"
+            hora_evento = _hora_operacional(
+                evento.get("fecha")
             )
+
+            if es_fuente:
+                linea = (
+                    f"{icono_evento} {hora_evento} — "
+                    f"{_evento_humano(evento)}"
+                )
+
+                duracion = _duracion_humana(
+                    evento.get("duracion_minutos")
+                )
+                if duracion:
+                    linea += f" · duración {duracion}"
+
+                lineas.append(linea)
+                continue
+
+            central = _nombre_central_corto(
+                evento.get("central")
+                or evento.get("coordinado")
+            )
+            variable = (
+                evento.get("variable")
+                or evento.get("irn")
+                or "Variable no identificada"
+            )
+
+            lineas.append(
+                f"{icono_evento} {hora_evento} — "
+                f"{central.upper()}"
+            )
+            lineas.append(
+                f"Variable: {variable}"
+            )
+
+            if normalizada:
+                lineas.append("Condición: Normalizada")
+            else:
+                estado = str(
+                    evento.get("estado") or ""
+                ).strip().upper()
+
+                if estado == "NO REPORTA":
+                    condicion = "No reporta"
+                elif estado:
+                    condicion = estado.title()
+                else:
+                    condicion = _evento_humano(evento)
+
+                lineas.append(
+                    f"Condición: {condicion}"
+                )
 
             duracion = _duracion_humana(
                 evento.get("duracion_minutos")
             )
             if duracion:
-                detalle += f" · duración {duracion}"
+                lineas.append(
+                    f"Duración: {duracion}"
+                )
 
-            lineas.append(detalle)
+            lineas.append("")
     else:
         lineas.append("✓ Sin eventos SITR en el período.")
 
