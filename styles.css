@@ -225,8 +225,8 @@
 /* Buscador de activos */
 .panel-busqueda {
     position: absolute;
-    top: 165px;
-    left: 10px;
+    top: 10px;
+    left: 55px;
     right: auto;
     width: 340px;
     min-width: 0;
@@ -359,10 +359,10 @@
 /* Filtros combinables */
 .panel-filtros {
     position: absolute;
-    top: 270px;
-    left: 10px;
-    width: 235px;
-    padding: 14px;
+    top: 105px;
+    left: 55px;
+    width: 340px;
+    padding: 13px;
     border-radius: 12px;
     background: rgb(255 255 255 / 96%);
     box-shadow: 0 5px 20px rgb(0 0 0 / 20%);
@@ -407,7 +407,7 @@
 }
 
 .panel-filtros.panel-filtros-minimizado {
-    width: 235px;
+    width: 340px;
 }
     color: var(--blanco);
     border-color: var(--azul);
