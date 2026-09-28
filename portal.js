@@ -111,61 +111,224 @@
     if ([95,96,99].includes(c)) return "Tormenta";
     return "Disponible";
   }
-
-  function formatearViento(valorKmh, usarMsPrimero = false) {
-    if (!Number.isFinite(valorKmh)) {
-      return usarMsPrimero
-        ? "-- m/s · -- km/h"
-        : "-- km/h";
-    }
-
-    const kmh = `${valorKmh.toLocaleString("es-CL", { maximumFractionDigits: 1 })} km/h`;
-
-    if (!usarMsPrimero) {
-      return kmh;
-    }
-
-    const valorMs = valorKmh / 3.6;
-    const ms = `${valorMs.toLocaleString("es-CL", { maximumFractionDigits: 1 })} m/s`;
-
-    return `${ms} · ${kmh}`;
+function formatearViento(valorKmh, usarMsPrimero = false) {
+  if (!Number.isFinite(valorKmh)) {
+    return usarMsPrimero
+      ? "-- m/s · -- km/h"
+      : "-- km/h";
   }
 
-  async function cargarClima(id, zona) {
-    const url = new URL("https://api.open-meteo.com/v1/forecast");
-    url.searchParams.set("latitude", zona.lat);
-    url.searchParams.set("longitude", zona.lon);
-    url.searchParams.set("current", "temperature_2m,weather_code,wind_speed_10m,wind_gusts_10m");
-    url.searchParams.set("wind_speed_unit", "kmh");
-    url.searchParams.set("timezone", zona.timeZone);
-    url.searchParams.set("forecast_days", "1");
+  const kmh = `${valorKmh.toLocaleString("es-CL", {
+    maximumFractionDigits: 1
+  })} km/h`;
 
-    try {
-      const r = await fetch(url, { cache: "no-store" });
-      if (!r.ok) throw new Error(`HTTP ${r.status}`);
-      const data = await r.json();
-      const actual = data.current || {};
-      const temp = Number(actual.temperature_2m);
-      const wind = Number(actual.wind_speed_10m);
-      const gust = Number(actual.wind_gusts_10m);
-      const code = Number(actual.weather_code);
-
-      const tempEl = $(`#temp-${id}`);
-      const condEl = $(`#condition-${id}`);
-      const windEl = $(`#wind-${id}`);
-      const gustEl = $(`#gust-${id}`);
-      if (tempEl) tempEl.textContent = Number.isFinite(temp) ? `${temp.toLocaleString("es-CL", {maximumFractionDigits:1})}°C` : "--°C";
-      if (condEl) condEl.textContent = descripcionWmo(code);
-      const usarMsPrimero = id === "punta";
-      if (windEl) windEl.textContent = formatearViento(wind, usarMsPrimero);
-      if (gustEl) gustEl.textContent = formatearViento(gust, usarMsPrimero);
-    } catch (error) {
-      console.warn(`Clima ${id}:`, error);
-      const condEl = $(`#condition-${id}`);
-      if (condEl) condEl.textContent = "Sin datos";
-    }
+  if (!usarMsPrimero) {
+    return kmh;
   }
 
+  const valorMs = valorKmh / 3.6;
+
+  const ms = `${valorMs.toLocaleString("es-CL", {
+    maximumFractionDigits: 1
+  })} m/s`;
+
+  return `${ms} · ${kmh}`;
+}
+
+
+function formatearUV(valor) {
+  if (!Number.isFinite(valor)) {
+    return "--";
+  }
+
+  let nivel = "";
+
+  if (valor < 3) {
+    nivel = "Bajo";
+  } else if (valor < 6) {
+    nivel = "Moderado";
+  } else if (valor < 8) {
+    nivel = "Alto";
+  } else if (valor < 11) {
+    nivel = "Muy alto";
+  } else {
+    nivel = "Extremo";
+  }
+
+  const numero = valor.toLocaleString(
+    "es-CL",
+    {
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 1
+    }
+  );
+
+  return `${numero} · ${nivel}`;
+}
+
+
+async function cargarClima(id, zona) {
+  const url =
+    new URL(
+      "https://api.open-meteo.com/v1/forecast"
+    );
+
+  url.searchParams.set(
+    "latitude",
+    zona.lat
+  );
+
+  url.searchParams.set(
+    "longitude",
+    zona.lon
+  );
+
+  url.searchParams.set(
+    "current",
+    "temperature_2m,weather_code,wind_speed_10m,wind_gusts_10m"
+  );
+
+  url.searchParams.set(
+    "daily",
+    "uv_index_max"
+  );
+
+  url.searchParams.set(
+    "wind_speed_unit",
+    "kmh"
+  );
+
+  url.searchParams.set(
+    "timezone",
+    zona.timeZone
+  );
+
+  url.searchParams.set(
+    "forecast_days",
+    "1"
+  );
+
+  try {
+    const r =
+      await fetch(
+        url,
+        {
+          cache: "no-store"
+        }
+      );
+
+    if (!r.ok) {
+      throw new Error(
+        `HTTP ${r.status}`
+      );
+    }
+
+    const data =
+      await r.json();
+
+    const actual =
+      data.current || {};
+
+    const temp =
+      Number(
+        actual.temperature_2m
+      );
+
+    const wind =
+      Number(
+        actual.wind_speed_10m
+      );
+
+    const gust =
+      Number(
+        actual.wind_gusts_10m
+      );
+
+    const code =
+      Number(
+        actual.weather_code
+      );
+
+    const uvRaw =
+      data.daily?.uv_index_max?.[0];
+
+    const uvMax =
+      uvRaw === null ||
+      uvRaw === undefined
+        ? NaN
+        : Number(uvRaw);
+
+    const tempEl =
+      $(`#temp-${id}`);
+
+    const condEl =
+      $(`#condition-${id}`);
+
+    const windEl =
+      $(`#wind-${id}`);
+
+    const gustEl =
+      $(`#gust-${id}`);
+
+    const uvEl =
+      $(`#uv-${id}`);
+
+    if (tempEl) {
+      tempEl.textContent =
+        Number.isFinite(temp)
+          ? `${temp.toLocaleString(
+              "es-CL",
+              {
+                maximumFractionDigits: 1
+              }
+            )}°C`
+          : "--°C";
+    }
+
+    if (condEl) {
+      condEl.textContent =
+        descripcionWmo(code);
+    }
+
+    const usarMsPrimero =
+      id === "punta";
+
+    if (windEl) {
+      windEl.textContent =
+        formatearViento(
+          wind,
+          usarMsPrimero
+        );
+    }
+
+    if (gustEl) {
+      gustEl.textContent =
+        formatearViento(
+          gust,
+          usarMsPrimero
+        );
+    }
+
+    if (uvEl) {
+      uvEl.textContent =
+        formatearUV(uvMax);
+    }
+
+  } catch (error) {
+    console.warn(
+      `Clima ${id}:`,
+      error
+    );
+
+    const condEl =
+      $(`#condition-${id}`);
+
+    if (condEl) {
+      condEl.textContent =
+        "Sin datos";
+    }
+  }
+}
   async function actualizarClima() {
     await resolverCoordenadasCapulloPulelfu();
     await Promise.all(Object.entries(zonas).map(([id, zona]) => cargarClima(id, zona)));

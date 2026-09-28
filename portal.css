@@ -1148,3 +1148,26 @@ button,a{font:inherit}button{color:inherit}.portal-shell{min-height:100vh}
 .footer-pecket p .footer-verde {
     margin-left: 0.25em;
 }
+
+/* =========================================================
+   PORTAL - UV MAXIMO TARJETAS CLIMA
+   Cambio aislado: no modifica el layout general
+   ========================================================= */
+
+.weather-foot {
+    gap: 8px;
+}
+
+.weather-foot > div {
+    min-width: 0;
+}
+
+.weather-foot .weather-uv {
+    flex: 0 0 auto;
+    text-align: right;
+}
+
+.weather-foot .weather-uv strong {
+    white-space: nowrap;
+    font-size: 10px;
+}
