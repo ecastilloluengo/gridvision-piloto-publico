@@ -1171,3 +1171,9 @@ button,a{font:inherit}button{color:inherit}.portal-shell{min-height:100vh}
     white-space: nowrap;
     font-size: 10px;
 }
+/* Mejorar solo etiquetas Viento, Ráfagas y UV máx */
+.weather-foot > div span {
+    font-size: 10px;
+    font-weight: 500;
+    opacity: 0.9;
+}
