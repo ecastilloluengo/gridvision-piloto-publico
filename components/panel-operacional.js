@@ -689,12 +689,27 @@ function construirMeteograma(
 
     const indices = [];
 
-    for (
-        let indice = 0;
-        indice < horizonteDisponible;
-        indice += resolucionHoras
-    ) {
-        indices.push(indice);
+    if (resolucionHoras === 1) {
+        for (
+            let indice = 0;
+            indice < horizonteDisponible;
+            indice++
+        ) {
+            indices.push(indice);
+        }
+    } else {
+        const ultimoIndice = Math.min(
+            horizonteSolicitado,
+            tiempos.length - 1
+        );
+
+        for (
+            let indice = resolucionHoras;
+            indice <= ultimoIndice;
+            indice += resolucionHoras
+        ) {
+            indices.push(indice);
+        }
     }
 
     const tabla = document.createElement("div");
@@ -852,11 +867,51 @@ agregarFilaFechaAgrupada();
         )
     );
 
+    function lluviaAcumuladaIntervalo(indiceFinal) {
+        const valores = horario.precipitation || [];
+
+        if (resolucionHoras === 1) {
+            return numeroPanel(valores[indiceFinal]);
+        }
+
+        const indiceInicial =
+            indiceFinal - resolucionHoras + 1;
+
+        if (indiceInicial < 0) {
+            return null;
+        }
+
+        let total = 0;
+        let datosValidos = 0;
+
+        for (
+            let indice = indiceInicial;
+            indice <= indiceFinal;
+            indice++
+        ) {
+            const valor = numeroPanel(valores[indice]);
+
+            if (valor !== null) {
+                total += valor;
+                datosValidos++;
+            }
+        }
+
+        return datosValidos === resolucionHoras
+            ? total
+            : null;
+    }
+
+    const etiquetaLluvia =
+        resolucionHoras === 1
+            ? "Lluvia"
+            : `Lluvia acum. ${resolucionHoras} h`;
+
     agregarFila(
-        "Lluvia",
+        etiquetaLluvia,
         indices.map((indice) =>
             `${formatoPanel(
-                horario.precipitation?.[indice],
+                lluviaAcumuladaIntervalo(indice),
                 1
             )} ${unidades.precipitation || "mm"}`
         )
