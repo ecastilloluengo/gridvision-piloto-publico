@@ -314,32 +314,22 @@
   .gv-fire-exposure-table{
     min-width:700px;
   }
-
-} 
 /* =========================================================
-   GRIDVISION FIRE � LAYOUT OPERACIONAL V2
-   Corrige perdida de espacio del mapa al agregar
-   el cruce viento�infraestructura.
+   GRIDVISION FIRE · LAYOUT OPERACIONAL V3
+   Más espacio para listado de incendios
    ========================================================= */
 
 .fire-main{
   min-width:0;
   min-height:0;
   display:grid;
-
-  /* KPI / MAPA / INCENDIOS / EXPOSICION */
   grid-template-rows:
     auto
-    minmax(400px,1fr)
-    165px
+    minmax(330px,1fr)
+    minmax(190px,1fr)
     165px;
-
   gap:8px;
 }
-
-/* -------------------------
-   MAPA
-   ------------------------- */
 
 .map-shell{
   min-height:0;
@@ -347,13 +337,9 @@
   overflow:hidden;
 }
 
-/* -------------------------
-   TABLA DE INCENDIOS
-   ------------------------- */
-
 .incidents-panel{
-  min-height:0;
-  height:165px;
+  min-height:190px;
+  height:auto;
   display:flex;
   flex-direction:column;
   overflow:hidden;
@@ -365,10 +351,6 @@
   max-height:none;
   overflow:auto;
 }
-
-/* -------------------------
-   TABLA VIENTO / ACTIVOS
-   ------------------------- */
 
 #gv-fire-exposure-main{
   min-height:0;
@@ -385,10 +367,6 @@
   overflow:auto;
 }
 
-/* -------------------------
-   TITULOS MAS COMPACTOS
-   ------------------------- */
-
 .gv-fire-exposure-main-header{
   flex:0 0 auto;
   padding:7px 10px;
@@ -402,10 +380,6 @@
   padding:5px 7px;
 }
 
-/* -------------------------
-   KPI COMPACTOS
-   ------------------------- */
-
 .kpi-row article{
   min-height:0;
   padding:7px 10px;
@@ -414,10 +388,6 @@
 .kpi-row strong{
   font-size:18px;
 }
-
-/* -------------------------
-   PANTALLAS DE MENOR ALTURA
-   ------------------------- */
 
 @media
   (min-width:901px)
@@ -434,25 +404,20 @@
   .fire-main{
     grid-template-rows:
       auto
-      minmax(350px,1fr)
-      145px
+      minmax(300px,1fr)
+      minmax(170px,1fr)
       145px;
-
     gap:7px;
   }
 
   .incidents-panel{
-    height:145px;
+    min-height:170px;
   }
 
   #gv-fire-exposure-main{
     height:145px;
   }
 }
-
-/* -------------------------
-   PANTALLAS MUY BAJAS
-   ------------------------- */
 
 @media
   (min-width:901px)
@@ -461,17 +426,85 @@
   .fire-main{
     grid-template-rows:
       auto
-      minmax(300px,1fr)
-      125px
+      minmax(260px,1fr)
+      minmax(150px,1fr)
       125px;
   }
 
   .incidents-panel{
-    height:125px;
+    min-height:150px;
   }
 
   #gv-fire-exposure-main{
     height:125px;
   }
+/* =========================================================
+   GRIDVISION FIRE · ACTIVOS CERCANOS CLICKEABLES
+   Mantiene el diseño original y agrega interacción
+   ========================================================= */
+
+.nearby-link{
+  width:100%;
+  display:grid;
+  grid-template-columns:18px 1fr auto;
+  gap:7px;
+  align-items:center;
+
+  padding:7px;
+
+  border:1px solid #253f56;
+  border-radius:7px;
+
+  background:#0b1c2b;
+  color:#fff;
+
+  font-family:inherit;
+  font-size:9px;
+  text-align:left;
+
+  cursor:pointer;
+  appearance:none;
+  -webkit-appearance:none;
 }
 
+.nearby-link:hover{
+  background:#10273a;
+  border-color:#32c7f4;
+}
+
+.nearby-link:focus-visible{
+  outline:2px solid #32c7f4;
+  outline-offset:1px;
+}
+
+.nearby-link > span{
+  display:block;
+  font-size:12px;
+}
+
+.nearby-link > div{
+  display:block;
+  padding:0;
+  margin:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  font-size:9px;
+}
+
+.nearby-link strong{
+  display:block;
+  color:#fff;
+}
+
+.nearby-link small{
+  display:block;
+  color:#7e94a5;
+  margin-top:2px;
+}
+
+.nearby-link b{
+  color:#fff;
+  white-space:nowrap;
+  font-size:9px;
+}
