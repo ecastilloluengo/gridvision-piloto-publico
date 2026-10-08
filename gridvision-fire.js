@@ -856,10 +856,10 @@ async function selectFire(fire, fly=true) {
   renderDetail(fire);
   await loadWeather(fire);
 }
-
 function renderDetail(fire) {
   const panel = $("detail-panel");
   const near = fire.nearby || [];
+
   panel.innerHTML = `
     <div class="detail-head">
       <div class="photo"></div>
@@ -867,35 +867,127 @@ function renderDetail(fire) {
         <div class="detail-head-label">🔥 INCENDIO FORESTAL</div>
         <h2>${escapeHtml(fire.nombre)}</h2>
         <span class="status ${statusClass(fire.estado)}">${escapeHtml(fire.estado)}</span>
+
         <div class="detail-grid">
-          <div><span>Superficie</span><strong>${Number(fire.superficie_ha).toLocaleString("es-CL")} ha</strong></div>
-          <div><span>Región</span><strong>${escapeHtml(fire.region)}</strong></div>
-          <div><span>Comuna</span><strong>${escapeHtml(fire.comuna)}</strong></div>
-          <div><span>Consulta Power BI</span><strong>${
- window.GV_POWERBI_TIMESTAMP
-  ? new Date(window.GV_POWERBI_TIMESTAMP).toLocaleString("es-CL", {
-      timeZone: "America/Santiago",
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false
-    })
-  : "—"         
-}</strong></div>
+          <div>
+            <span>Superficie</span>
+            <strong>${Number(fire.superficie_ha).toLocaleString("es-CL")} ha</strong>
+          </div>
+
+          <div>
+            <span>Región</span>
+            <strong>${escapeHtml(fire.region)}</strong>
+          </div>
+
+          <div>
+            <span>Comuna</span>
+            <strong>${escapeHtml(fire.comuna)}</strong>
+          </div>
+
+          <div>
+            <span>Consulta Power BI</span>
+            <strong>${
+              window.GV_POWERBI_TIMESTAMP
+                ? new Date(window.GV_POWERBI_TIMESTAMP).toLocaleString("es-CL", {
+                    timeZone: "America/Santiago",
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: false
+                  })
+                : "—"
+            }</strong>
+          </div>
         </div>
       </div>
     </div>
+
     <section class="detail-section">
       <h3>Infraestructura cercana</h3>
-      <div class="nearby">${near.map(a=>`<div><span>⚡</span><div><strong>${escapeHtml(a.nombre)}</strong><small>${escapeHtml(a.categoria)}</small></div><b>${a.distance.toFixed(1)} km</b></div>`).join("")}</div>
+
+      <div class="nearby">
+        ${near.map((a, i) => `
+          <div
+  class="nearby-link"
+  data-near-index="${i}"
+  title="Ver este activo en el mapa"
+>
+            <span>⚡</span>
+
+            <div>
+              <strong>${escapeHtml(a.nombre)}</strong>
+              <small>${escapeHtml(a.categoria)}</small>
+            </div>
+
+            <b>${a.distance.toFixed(1)} km</b>
+          </div>
+        `).join("")}
+      </div>
     </section>
+
     <section class="detail-section">
       <h3>Condición meteorológica · Open-Meteo</h3>
-      <div id="fire-weather" class="weather-box">Consultando meteorología…</div>
+      <div id="fire-weather" class="weather-box">
+        Consultando meteorología…
+      </div>
     </section>
-    <p class="source-note">El nivel de proximidad se calcula por distancia. El indicador de sotavento es geométrico y orientativo: compara la dirección del viento con el rumbo entre el incendio y el activo; no es un pronóstico oficial de propagación.</p>`;
+
+    <p class="source-note">
+      El nivel de proximidad se calcula por distancia. El indicador de sotavento
+      es geométrico y orientativo: compara la dirección del viento con el rumbo
+      entre el incendio y el activo; no es un pronóstico oficial de propagación.
+    </p>
+  `;
+
+  /*
+   * Al hacer clic en una infraestructura cercana:
+   * 1. Busca el activo correspondiente.
+   * 2. Lleva el mapa hasta ese activo.
+   * 3. Hace zoom.
+   * 4. Abre su información.
+   */
+  panel.querySelectorAll(".nearby-link").forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+      const index = Number(button.dataset.nearIndex);
+      const asset = near[index];
+
+      if (!asset) return;
+
+      map.flyTo(
+        [asset.lat, asset.lon],
+        Math.max(map.getZoom(), 12),
+        { duration: 0.8 }
+      );
+
+      let foundMarker = null;
+
+      layers.assets.eachLayer((layer) => {
+
+        const position = layer.getLatLng?.();
+
+        if (
+          position &&
+          Math.abs(position.lat - asset.lat) < 0.00001 &&
+          Math.abs(position.lng - asset.lon) < 0.00001
+        ) {
+          foundMarker = layer;
+        }
+      });
+
+      if (foundMarker) {
+
+        setTimeout(() => {
+          foundMarker.openPopup();
+        }, 850);
+
+      }
+    });
+
+  });
 }
 
 async function loadWeather(fire) {
