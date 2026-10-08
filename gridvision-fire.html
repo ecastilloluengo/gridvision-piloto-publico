@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GridVision Fire · visualizador operacional de incendios y proximidad a infraestructura eléctrica.">
+  <title>GridVision Fire · Pecket Energy</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="gridvision-fire.css">
+</head>
+<body>
+  <header class="fire-header">
+    <div class="brand">
+      <div class="brand-logo">GV</div>
+      <div>
+        <h1>GridVision Fire</h1>
+        <p>Monitoreo de incendios forestales y proximidad a infraestructura eléctrica</p>
+      </div>
+    </div>
+
+    <nav class="top-nav" aria-label="Navegación GridVision">
+      <a href="portal.html">🏠 Portal</a>
+      <a href="index.html">🌦️ GridVision Clima</a>
+      <span class="active">🔥 GridVision Fire</span>
+    </nav>
+
+    <div class="live-state">
+      <span class="dot"></span>
+      <span>Prototipo operacional</span>
+      <button id="btn-refresh" type="button" title="Actualizar datos">↻</button>
+    </div>
+  </header>
+
+  <main class="fire-layout">
+    <aside class="fire-sidebar">
+      <section class="sidebar-section">
+        <label for="fire-search">Buscar incendio o activo</label>
+        <input id="fire-search" type="search" placeholder="Nombre, comuna o activo…" autocomplete="off">
+      </section>
+
+      <section class="sidebar-section">
+        <h2>Filtros</h2>
+        <label for="filter-status">Estado incendio</label>
+        <select id="filter-status">
+          <option value="">Todos</option>
+          <option value="En combate">En combate</option>
+          <option value="Observación">Observación</option>
+          <option value="Controlado">Controlado</option>
+          <option value="Extinguido">Extinguido</option>
+        </select>
+
+        <label for="filter-region">Región</label>
+        <select id="filter-region"><option value="">Todas</option></select>
+
+        <label for="filter-risk">Nivel operacional</label>
+        <select id="filter-risk">
+          <option value="">Todos</option>
+          <option value="Crítico">Crítico</option>
+          <option value="Atención">Atención</option>
+          <option value="Vigilancia">Vigilancia</option>
+          <option value="Sin proximidad">Sin proximidad</option>
+        </select>
+      </section>
+
+      <section class="sidebar-section">
+        <h2>Capas</h2>
+        <label class="check"><input id="layer-fires" type="checkbox" checked> <span>🔥 Incendios</span></label>
+        <label class="check"><input id="layer-assets" type="checkbox" checked> <span>📍 Activos puntuales</span></label>
+        <label class="check"><input id="layer-lines" type="checkbox" checked> <span>⚡ Líneas eléctricas</span></label>
+        <label class="check"><input id="layer-radius" type="checkbox" checked> <span>◯ Radios de proximidad</span></label>
+      </section>
+
+      <section class="sidebar-section measure-tools">
+        <h2>Herramientas de medición</h2>
+        <div class="measure-buttons">
+          <button id="measure-distance" type="button">📏 Regla</button>
+          <button id="measure-radius" type="button">⭕ Radio</button>
+          <button id="measure-clear" type="button" class="secondary">✕ Limpiar</button>
+        </div>
+        <div id="measure-status" class="measure-status">Seleccione Regla para medir una distancia o Radio para medir una circunferencia.</div>
+      </section>
+
+      <section class="sidebar-section proximity">
+        <h2>Semáforo de proximidad</h2>
+        <div><i class="risk-dot critical"></i><span>&lt; 2 km</span><strong>Crítico</strong></div>
+        <div><i class="risk-dot attention"></i><span>2–5 km</span><strong>Atención</strong></div>
+        <div><i class="risk-dot watch"></i><span>5–10 km</span><strong>Vigilancia</strong></div>
+        <div><i class="risk-dot none"></i><span>&gt; 10 km</span><strong>Sin proximidad</strong></div>
+      </section>
+
+      <section class="sidebar-note">
+        <strong>Fuente de incendios</strong>
+        <p>La interfaz queda preparada para conectar el flujo oficial de CONAF. Esta primera prueba utiliza datos de demostración para validar la visualización y el cruce espacial.</p>
+        <a href="https://www.conaf.cl/incendios/situacion-actual-y-pronostico-de-incendios/" target="_blank" rel="noopener noreferrer">Abrir fuente CONAF ↗</a>
+      </section>
+    </aside>
+
+    <section class="fire-main">
+      <div class="kpi-row">
+        <article><span>🔥</span><strong id="kpi-total">0</strong><small>Incendios visibles</small></article>
+        <article class="red"><span>🔴</span><strong id="kpi-critical">0</strong><small>En zona crítica</small></article>
+        <article class="orange"><span>🟠</span><strong id="kpi-attention">0</strong><small>En atención</small></article>
+        <article class="yellow"><span>🟡</span><strong id="kpi-watch">0</strong><small>En vigilancia</small></article>
+      </div>
+
+      <div class="map-shell">
+        <div id="fire-map"></div>
+        <div class="map-search-status" id="map-status">Cargando visualizador…</div>
+        <div class="map-source">Base: Esri World Imagery · Infraestructura: GridVision</div>
+      </div>
+
+      <section class="incidents-panel">
+        <div class="panel-title">
+          <div>
+            <span>🔥 CRUCE OPERACIONAL</span>
+            <h2>Incendios próximos a infraestructura eléctrica</h2>
+          </div>
+          <span id="table-count" class="count-pill">0 eventos</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Incendio</th><th>Estado</th><th>Superficie</th><th>Activo cercano</th><th>Tipo</th><th>Distancia</th><th>Nivel</th><th></th>
+              </tr>
+            </thead>
+            <tbody id="fire-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+
+    <aside class="fire-detail" id="detail-panel">
+      <div class="detail-empty">
+        <div class="detail-icon">🔥</div>
+        <h2>Seleccione un incendio</h2>
+        <p>El panel mostrará estado, superficie, infraestructura cercana y condiciones meteorológicas de Open-Meteo.</p>
+      </div>
+    </aside>
+  </main>
+
+  <script src="vendor/leaflet/leaflet.js"></script>
+  <script src="gridvision-fire.js"></script>
+</body>
+</html>
