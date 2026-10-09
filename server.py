@@ -149,36 +149,6 @@ def estado_operacional_solax(codigo):
     }
 
 
-SOLAX_DATO_VIGENTE_SECONDS = 10 * 60
-
-
-def edad_dato_solax_segundos(fecha_texto):
-
-    if not fecha_texto:
-        return None
-
-    try:
-        fecha = datetime.strptime(
-            str(fecha_texto),
-            "%Y-%m-%d %H:%M:%S"
-        )
-
-        zona = ZoneInfo("America/Santiago")
-
-        fecha = fecha.replace(
-            tzinfo=zona
-        )
-
-        ahora = datetime.now(zona)
-
-        return (
-            ahora - fecha
-        ).total_seconds()
-
-    except Exception:
-        return None
-
-
 # ============================================================
 # CACHE SOLAX CLOUD
 # ============================================================
@@ -1701,101 +1671,27 @@ class GridVisionHandler(SimpleHTTPRequestHandler):
                     })
 
 
-            # -------------------------------------------------
-            # FRESCURA Y ESTADO REAL DE LOS INVERSORES
-            # -------------------------------------------------
-
-            for inversor in inversores:
-
-                edad_segundos = (
-                    edad_dato_solax_segundos(
-                        inversor.get("ultimo_dato")
-                    )
-                )
-
-                dato_vigente = (
-                    edad_segundos is not None
-                    and edad_segundos >= -120
-                    and edad_segundos
-                        <= SOLAX_DATO_VIGENTE_SECONDS
-                )
-
-                inversor["dato_vigente"] = (
-                    dato_vigente
-                )
-
-                inversor["edad_dato_segundos"] = (
-                    round(edad_segundos)
-                    if edad_segundos is not None
-                    else None
-                )
-
-
-            inversores_vigentes = [
-                inversor
+            niveles = [
+                inversor["nivel"]
                 for inversor in inversores
-                if inversor.get("dato_vigente")
             ]
 
-            inversores_operativos = [
-                inversor
-                for inversor in inversores_vigentes
-                if inversor.get("nivel") == "ok"
-            ]
-
-            inversores_falla = [
-                inversor
-                for inversor in inversores_vigentes
-                if inversor.get("nivel") == "falla"
-            ]
-
-            inversores_sin_datos = [
-                inversor
-                for inversor in inversores
-                if inversor.get("nivel") == "sin_datos"
-            ]
-
-            todos_vigentes = (
-                len(inversores) > 0
-                and
-                len(inversores_vigentes)
-                    == len(inversores)
-            )
-
-
-            # Una falla solo se declara si el dato
-            # que la informa esta vigente.
-            if inversores_falla:
-
+            if "falla" in niveles:
                 estado_general = "FALLA"
                 nivel_general = "falla"
 
-            elif not todos_vigentes:
-
-                if inversores_sin_datos:
-
-                    estado_general = "SIN DATOS"
-                    nivel_general = "sin_datos"
-
-                else:
-
-                    estado_general = (
-                        "DATOS DESACTUALIZADOS"
-                    )
-                    nivel_general = (
-                        "desactualizado"
-                    )
-
-            elif all(
-                inversor.get("nivel") == "ok"
-                for inversor in inversores_vigentes
+            elif niveles and all(
+                nivel == "ok"
+                for nivel in niveles
             ):
-
                 estado_general = "OK"
                 nivel_general = "ok"
 
-            else:
+            elif "sin_datos" in niveles:
+                estado_general = "SIN DATOS"
+                nivel_general = "sin_datos"
 
+            else:
                 estado_general = "ESPERA"
                 nivel_general = "espera"
 
@@ -1813,66 +1709,52 @@ class GridVisionHandler(SimpleHTTPRequestHandler):
                 except (TypeError, ValueError):
                     return 0.0
 
-            if todos_vigentes:
-
-                potencia_fv_w = sum(
-                    numero_solax(
-                        inversor.get(
-                            "potencia_ac"
-                        )
-                    )
-                    for inversor
-                    in inversores
+            potencia_fv_w = sum(
+                numero_solax(
+                    inversor.get("potencia_ac")
                 )
+                for inversor in inversores
+            )
 
-                valores_red_w = [
-                    numero_solax(
-                        inversor.get(
-                            "potencia_red"
-                        )
-                    )
-                    for inversor
-                    in inversores
-                ]
-
-                potencia_red_w = max(
-                    valores_red_w,
-                    key=abs,
-                    default=0.0
+            valores_red_w = [
+                numero_solax(
+                    inversor.get("potencia_red")
                 )
+                for inversor in inversores
+            ]
 
-                potencia_fv_kw = round(
-                    potencia_fv_w / 1000,
-                    3
-                )
+            potencia_red_w = max(
+                valores_red_w,
+                key=abs,
+                default=0.0
+            )
 
-                potencia_red_kw = round(
-                    potencia_red_w / 1000,
-                    3
-                )
+            potencia_fv_kw = round(
+                potencia_fv_w / 1000,
+                3
+            )
 
-                consumo_instalacion_kw = round(
-                    potencia_fv_kw
-                    - potencia_red_kw,
-                    3
-                )
+            potencia_red_kw = round(
+                potencia_red_w / 1000,
+                3
+            )
 
-                if potencia_red_kw > 0.01:
-                    sentido_red = "inyeccion"
+            # Convenci?n SolaX observada:
+            # positivo = inyecci?n a red
+            # negativo = importaci?n desde red.
+            # Planta sin bater?a:
+            # consumo = FV - intercambio con red.
+            consumo_instalacion_kw = round(
+                potencia_fv_kw - potencia_red_kw,
+                3
+            )
 
-                elif potencia_red_kw < -0.01:
-                    sentido_red = "importacion"
-
-                else:
-                    sentido_red = "cero"
-
+            if potencia_red_kw > 0.01:
+                sentido_red = "inyeccion"
+            elif potencia_red_kw < -0.01:
+                sentido_red = "importacion"
             else:
-
-                potencia_fv_kw = None
-                potencia_red_kw = None
-                consumo_instalacion_kw = None
-                sentido_red = "sin_dato"
-
+                sentido_red = "cero"
 
             respuesta = {
                 "planta": "PFV ICV Lo Aguirre",
@@ -1892,12 +1774,6 @@ class GridVisionHandler(SimpleHTTPRequestHandler):
 
                 "estado_general": estado_general,
                 "nivel_general": nivel_general,
-
-                "datos_vigentes": todos_vigentes,
-                "inversores_operativos":
-                    len(inversores_operativos),
-                "inversores_total":
-                    len(inversores),
 
                 "inversores": inversores
             }

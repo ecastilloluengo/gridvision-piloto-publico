@@ -603,59 +603,93 @@ async function cargarClima(id, zona) {
           ? datos.inversores
           : [];
 
-      const datosVigentes =
-        datos.datos_vigentes === true;
+      // Mismo criterio utilizado por GridVision:
+      // un dato SolaX con m?s de 10 minutos
+      // se considera desactualizado.
+      const UMBRAL_DATO_SOLAX_MS =
+        10 * 60 * 1000;
 
-      const totalBackend =
-        Number(datos.inversores_total);
+      const ahoraSolax =
+        Date.now();
 
-      const totalInversores =
-        Number.isFinite(totalBackend)
-        && totalBackend > 0
-          ? totalBackend
-          : inversores.length;
+      function datoSolaxVigente(
+        inversor
+      ) {
 
-      const operativosBackend =
-        Number(datos.inversores_operativos);
+        if (
+          !inversor
+          || !inversor.ultimo_dato
+        ) {
+          return false;
+        }
 
-      const operativos =
-        datosVigentes
-        && Number.isFinite(operativosBackend)
-          ? operativosBackend
-          : null;
+        const textoFecha =
+          String(
+            inversor.ultimo_dato
+          ).replace(
+            " ",
+            "T"
+          );
+
+        const fechaDato =
+          new Date(textoFecha);
+
+        if (
+          Number.isNaN(
+            fechaDato.getTime()
+          )
+        ) {
+          return false;
+        }
+
+        const edad =
+          ahoraSolax
+          - fechaDato.getTime();
+
+        return (
+          edad >= -120000
+          && edad <= UMBRAL_DATO_SOLAX_MS
+        );
+      }
+
+      const inversoresDisponibles =
+        inversores.filter(
+          inversor =>
+            inversor
+            && inversor.nivel !== "sin_datos"
+            && datoSolaxVigente(inversor)
+        ).length;
 
       actualizarInversoresSolar(
         id,
-        operativos,
-        totalInversores
+        inversoresDisponibles,
+        inversores.length
       );
 
-
-      // -----------------------------------------
-      // POTENCIA INSTANTANEA
-      // -----------------------------------------
-
-      const potenciaBackend =
-        numeroPortal(
-          datos.potencia_fv_kw
-        );
-
-      const potenciaMostrar =
-        datosVigentes
-          ? potenciaBackend
-          : null;
-
-
-      // -----------------------------------------
-      // ENERGIA DEL DIA
-      // -----------------------------------------
-
+      let potenciaTotalKw = 0;
       let energiaHoyKwh = 0;
+
+      let tienePotencia = false;
       let tieneEnergia = false;
 
       const fechas = [];
 
       for (const inversor of inversores) {
+
+        const potenciaKw =
+          potenciaSolaxAKw(
+            inversor.potencia_ac
+          );
+
+        // Solo sumar potencia instant?nea
+        // cuando la telemetr?a est? vigente.
+        if (
+          potenciaKw !== null
+          && datoSolaxVigente(inversor)
+        ) {
+          potenciaTotalKw += potenciaKw;
+          tienePotencia = true;
+        }
 
         const energia =
           numeroPortal(
@@ -674,38 +708,16 @@ async function cargarClima(id, zona) {
         }
       }
 
-
-      // -----------------------------------------
-      // ESTADO OPERACIONAL
-      // -----------------------------------------
-
-      let estado =
+      const estado =
         String(
           datos.estado_general
           || "DESCONOCIDO"
         ).toUpperCase();
 
-      // Defensa adicional:
-      // un dato viejo nunca debe aparecer
-      // como una falla actual.
-      if (
-        !datosVigentes
-        && (
-          estado === "OK"
-          || estado === "ESPERA"
-          || estado === "DESCONOCIDO"
-        )
-      ) {
-        estado =
-          "DATOS DESACTUALIZADOS";
-      }
-
-      let clase =
-        "estado-espera";
+      let clase = "estado-espera";
 
       if (estado === "OK") {
-        clase =
-          "estado-ok";
+        clase = "estado-ok";
       }
 
       if (
@@ -713,8 +725,7 @@ async function cargarClima(id, zona) {
         || estado === "SIN DATOS"
         || estado === "SIN COMUNICACION"
       ) {
-        clase =
-          "estado-error";
+        clase = "estado-error";
       }
 
       actualizarEstadoSolar(
@@ -723,39 +734,22 @@ async function cargarClima(id, zona) {
         clase
       );
 
-
-      // -----------------------------------------
-      // ULTIMO DATO
-      // -----------------------------------------
-
       const ultimaFuente =
         fechas.length
           ? fechas.sort().at(-1)
           : null;
 
-      let textoActualizacion;
-
-      if (ultimaFuente) {
-
-        textoActualizacion =
-          datosVigentes
-            ? `\u00DAltimo dato SolaX: ${ultimaFuente}`
-            : `Dato SolaX desactualizado: ${ultimaFuente}`;
-
-      } else {
-
-        textoActualizacion =
-          `\u00DAltima consulta: ${horaConsultaPortal()}`;
-      }
-
-
       actualizarValoresSolar(
         id,
-        potenciaMostrar,
+        tienePotencia
+          ? potenciaTotalKw
+          : null,
         tieneEnergia
           ? energiaHoyKwh
           : null,
-        textoActualizacion
+        ultimaFuente
+          ? `\u00DAltimo dato SolaX: ${ultimaFuente}`
+          : `\u00DAltima consulta: ${horaConsultaPortal()}`
       );
 
     } catch (error) {
@@ -769,12 +763,6 @@ async function cargarClima(id, zona) {
         id,
         "SIN DATOS",
         "estado-error"
-      );
-
-      actualizarInversoresSolar(
-        id,
-        null,
-        3
       );
 
       actualizarValoresSolar(
@@ -929,16 +917,11 @@ async function cargarClima(id, zona) {
     }
 
     if (
-      !Number.isFinite(total)
+      !Number.isFinite(disponibles)
+      || !Number.isFinite(total)
       || total <= 0
     ) {
       elemento.textContent = "-- / --";
-      return;
-    }
-
-    if (!Number.isFinite(disponibles)) {
-      elemento.textContent =
-        `-- / ${total}`;
       return;
     }
 
