@@ -1,4 +1,4 @@
-:root{
+﻿:root{
   --bg:#06121e;--panel:#0b1b2a;--panel2:#10243a;--line:#25425d;--text:#eef6fb;--muted:#9db0c1;
   --cyan:#32c7f4;--green:#9be000;--red:#ff3b45;--orange:#ff8a00;--yellow:#ffd21a;
 }
@@ -542,3 +542,312 @@
   white-space:nowrap;
   font-size:9px;
 }
+/* =========================================================
+   GRIDVISION FIRE — FASE 1
+   Mejor legibilidad de infraestructura cercana
+   ========================================================= */
+
+.nearby div {
+  grid-template-columns: 22px minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: start;
+  padding: 9px;
+  font-size: 10px;
+  line-height: 1.3;
+}
+
+.nearby strong {
+  display: block;
+  color: #ffffff;
+  font-size: 11px;
+  line-height: 1.25;
+}
+
+.nearby small {
+  display: block;
+  margin-top: 3px;
+  color: #8fa7b8;
+  font-size: 9px;
+  line-height: 1.25;
+}
+
+.nearby-link {
+  cursor: pointer;
+}
+
+.nearby-link:hover {
+  border-color: #62d9ff;
+  background: #10283b;
+}
+
+
+
+/* =========================================================
+   ROSA DE LOS VIENTOS Y LEYENDA - ESTILO GRIDVISION
+   ========================================================= */
+
+.gv-fire-compass,
+.gv-fire-line-legend {
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+/* ---------- ROSA ---------- */
+
+.gv-fire-compass {
+  width: 86px;
+  height: 86px;
+  margin: 8px;
+  padding: 6px;
+  background: rgba(255,255,255,.94);
+  color: #17212b;
+  border: 1px solid rgba(0,0,0,.18);
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.28);
+}
+
+.gv-compass-title {
+  display: none;
+}
+
+.gv-compass {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto;
+}
+
+.gv-compass::before,
+.gv-compass::after {
+  content: "";
+  position: absolute;
+  background: rgba(23,33,43,.25);
+}
+
+.gv-compass::before {
+  width: 1px;
+  height: 58px;
+  left: 35px;
+  top: 7px;
+}
+
+.gv-compass::after {
+  height: 1px;
+  width: 58px;
+  left: 7px;
+  top: 35px;
+}
+
+.gv-compass-n,
+.gv-compass-e,
+.gv-compass-s,
+.gv-compass-o {
+  position: absolute;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.gv-compass-n {
+  top: 0;
+  left: 32px;
+}
+
+.gv-compass-e {
+  right: 0;
+  top: 32px;
+}
+
+.gv-compass-s {
+  bottom: 0;
+  left: 32px;
+}
+
+.gv-compass-o {
+  left: 0;
+  top: 32px;
+}
+
+.gv-compass-arrow {
+  position: absolute;
+  left: 28px;
+  top: 11px;
+  font-size: 21px;
+  line-height: 21px;
+}
+
+.gv-compass-center {
+  position: absolute;
+  left: 31px;
+  top: 29px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* ---------- LEYENDA ---------- */
+
+.gv-fire-line-legend {
+  min-width: 180px;
+  margin: 8px;
+  padding: 11px 13px;
+  background: rgba(255,255,255,.96);
+  color: #17212b;
+  border: 1px solid rgba(0,0,0,.16);
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.28);
+}
+
+.gv-legend-title {
+  margin-bottom: 8px;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 800;
+  color: #17212b;
+}
+
+.gv-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 20px;
+  font-size: 12px;
+  line-height: 18px;
+  color: #26323d;
+}
+
+.gv-legend-line {
+  display: inline-block;
+  width: 30px;
+  height: 4px;
+  flex: 0 0 30px;
+  border-radius: 3px;
+}
+
+/* ---------- AJUSTE LEAFLET ---------- */
+
+.leaflet-top.leaflet-right .gv-fire-compass {
+  margin-top: 8px;
+}
+
+.leaflet-bottom.leaflet-right .gv-fire-line-legend {
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+
+/* =========================================================
+   FIX DEFINITIVO - CONTROLES CARTOGRAFICOS FIRE
+   ========================================================= */
+
+.leaflet-control.gv-fire-compass {
+  width: 92px !important;
+  height: 92px !important;
+  margin: 10px !important;
+  padding: 6px !important;
+  box-sizing: border-box !important;
+  background: rgba(255,255,255,0.96) !important;
+  color: #17212b !important;
+  border: 1px solid rgba(0,0,0,0.18) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.28) !important;
+}
+
+.leaflet-control.gv-fire-line-legend {
+  min-width: 190px !important;
+  margin: 10px !important;
+  padding: 12px 14px !important;
+  box-sizing: border-box !important;
+  background: rgba(255,255,255,0.97) !important;
+  color: #17212b !important;
+  border: 1px solid rgba(0,0,0,0.18) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.28) !important;
+}
+
+.leaflet-control.gv-fire-line-legend .gv-legend-title {
+  display: block !important;
+  margin: 0 0 8px 0 !important;
+  color: #17212b !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  line-height: 17px !important;
+}
+
+.leaflet-control.gv-fire-line-legend .gv-legend-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 9px !important;
+  min-height: 21px !important;
+  color: #26323d !important;
+  font-size: 12px !important;
+  line-height: 18px !important;
+}
+
+.leaflet-control.gv-fire-line-legend .gv-legend-line {
+  display: inline-block !important;
+  width: 30px !important;
+  height: 4px !important;
+  flex: 0 0 30px !important;
+  border-radius: 3px !important;
+}
+
+.leaflet-control.gv-fire-compass .gv-compass {
+  display: block !important;
+  position: relative !important;
+  width: 72px !important;
+  height: 72px !important;
+  margin: 0 auto !important;
+}
+
+.leaflet-control.gv-fire-compass .gv-compass-n,
+.leaflet-control.gv-fire-compass .gv-compass-e,
+.leaflet-control.gv-fire-compass .gv-compass-s,
+.leaflet-control.gv-fire-compass .gv-compass-o {
+  position: absolute !important;
+  display: block !important;
+  color: #17212b !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  line-height: 12px !important;
+}
+
+.leaflet-control.gv-fire-compass .gv-compass-n {
+  top: 0 !important;
+  left: 32px !important;
+}
+
+.leaflet-control.gv-fire-compass .gv-compass-e {
+  top: 31px !important;
+  right: 0 !important;
+}
+
+.leaflet-control.gv-fire-compass .gv-compass-s {
+  bottom: 0 !important;
+  left: 32px !important;
+}
+
+.leaflet-control.gv-fire-compass .gv-compass-o {
+  top: 31px !important;
+  left: 0 !important;
+}
+
+.leaflet-control.gv-fire-compass .gv-compass-arrow {
+  position: absolute !important;
+  left: 28px !important;
+  top: 11px !important;
+  color: #d32f2f !important;
+  font-size: 21px !important;
+  line-height: 21px !important;
+}
+
+.leaflet-control.gv-fire-compass .gv-compass-center {
+  position: absolute !important;
+  left: 31px !important;
+  top: 29px !important;
+  color: #17212b !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+}
+
+
+

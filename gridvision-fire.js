@@ -1,4 +1,4 @@
-const MAP_CENTER = [-40.8, -72.4];
+﻿const MAP_CENTER = [-40.8, -72.4];
 const MAP_ZOOM = 7;
 const ASSETS_URL = "data/processed/activos_puntuales_validados.geojson";
 const LINES_URL = "data/processed/lineas_validadas.geojson";
@@ -21,10 +21,154 @@ const map = L.map("fire-map", {
 window.GridVisionFireMap = map;
 L.control.zoom({ position: "topleft" }).addTo(map);
 L.control.scale({ imperial: false, position: "bottomleft" }).addTo(map);
+/* =========================================================
+   CONTROLES CARTOGRAFICOS - GRIDVISION FIRE
+   ========================================================= */
+
+
+
+
+const fireLineLegend = L.control({ position: "bottomright" });
+
+fireLineLegend.onAdd = function () {
+  const div = L.DomUtil.create(
+    "div",
+    "gv-fire-line-legend leaflet-control"
+  );
+
+  div.style.cssText = `
+    min-width:190px;
+    margin:8px;
+    padding:11px 13px;
+    box-sizing:border-box;
+    background:rgba(255,255,255,0.97);
+    color:#17212b;
+    border:1px solid rgba(0,0,0,0.16);
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.28);
+    font-family:inherit;
+  `;
+
+  div.innerHTML = `
+    <div style="
+      margin:0 0 8px 0;
+      color:#17212b;
+      font-size:13px;
+      font-weight:800;
+      line-height:17px;
+    ">
+      Tensión de líneas
+    </div>
+
+    <div style="
+      display:flex;
+      align-items:center;
+      gap:9px;
+      min-height:21px;
+      color:#26323d;
+      font-size:12px;
+    ">
+      <span style="
+        display:inline-block;
+        width:30px;
+        height:4px;
+        background:#8e24aa;
+        border-radius:3px;
+      "></span>
+      <span>500 kV</span>
+    </div>
+
+    <div style="
+      display:flex;
+      align-items:center;
+      gap:9px;
+      min-height:21px;
+      color:#26323d;
+      font-size:12px;
+    ">
+      <span style="
+        display:inline-block;
+        width:30px;
+        height:4px;
+        background:#d32f2f;
+        border-radius:3px;
+      "></span>
+      <span>220–345 kV</span>
+    </div>
+
+    <div style="
+      display:flex;
+      align-items:center;
+      gap:9px;
+      min-height:21px;
+      color:#26323d;
+      font-size:12px;
+    ">
+      <span style="
+        display:inline-block;
+        width:30px;
+        height:4px;
+        background:#f57c00;
+        border-radius:3px;
+      "></span>
+      <span>110–154 kV</span>
+    </div>
+
+    <div style="
+      display:flex;
+      align-items:center;
+      gap:9px;
+      min-height:21px;
+      color:#26323d;
+      font-size:12px;
+    ">
+      <span style="
+        display:inline-block;
+        width:30px;
+        height:4px;
+        background:#1976d2;
+        border-radius:3px;
+      "></span>
+      <span>66–69 kV</span>
+    </div>
+
+    <div style="
+      display:flex;
+      align-items:center;
+      gap:9px;
+      min-height:21px;
+      color:#26323d;
+      font-size:12px;
+    ">
+      <span style="
+        display:inline-block;
+        width:30px;
+        height:4px;
+        background:#607d8b;
+        border-radius:3px;
+      "></span>
+      <span>Otras tensiones</span>
+    </div>
+  `;
+
+  L.DomEvent.disableClickPropagation(div);
+
+  return div;
+};
+
+fireLineLegend.addTo(map);
 
 const satellite = L.tileLayer(
   "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
   { maxZoom: 19, attribution: "Tiles © Esri - Sources: Esri, Maxar, Earthstar Geographics and the GIS User Community" }
+).addTo(map);
+const mapLabels = L.tileLayer(
+  "https://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}",
+  {
+    maxZoom: 19,
+    opacity: 1,
+    attribution: "Labels © Esri"
+  }
 ).addTo(map);
 
 const layers = {
@@ -245,11 +389,39 @@ function loadAssets() {
   });
 }
 
+function lineVoltageClass(feature) {
+  const p = lineProperties(feature);
+  const text = String(p.nombre || "").toUpperCase();
+
+  const match = text.match(/(\d+(?:[.,]\d+)?)\s*KV\b/);
+  const kv = match ? Number(match[1].replace(",", ".")) : NaN;
+
+  if (kv === 500) return "trazo-500";
+  if (kv === 220 || kv === 345) return "trazo-220";
+  if (kv === 110 || kv === 154) return "trazo-110";
+  if (kv === 66 || kv === 69) return "trazo-66";
+
+  return "trazo-otras";
+}
+
+function lineStyle(feature) {
+  const clase = lineVoltageClass(feature);
+
+  const estilos = {
+    "trazo-500":   { color: "#8e24aa", weight: 3.2, opacity: 0.90 },
+    "trazo-220":   { color: "#d32f2f", weight: 2.8, opacity: 0.90 },
+    "trazo-110":   { color: "#f57c00", weight: 2.4, opacity: 0.88 },
+    "trazo-66":    { color: "#1976d2", weight: 2.1, opacity: 0.86 },
+    "trazo-otras": { color: "#607d8b", weight: 1.7, opacity: 0.78 }
+  };
+
+  return estilos[clase];
+}
 function loadLines() {
   return fetch(LINES_URL).then(r => r.json()).then(data => {
     linesGeo = data;
     L.geoJSON(data, {
-      style: { color: "#2388ff", weight: 1.8, opacity: .82 },
+      style: lineStyle,
       onEachFeature: (feature, layer) => {
         layer.bindTooltip(lineProperties(feature).nombre, { sticky: true });
         layer.on("click", (event) => {
@@ -1190,7 +1362,7 @@ const dmcCount =
 const dmcStatus =
   dmcCount === 0 ? "🟢" :
   dmcCount === 1 ? "🟡" :
-  dmcCount === 2 ? "🟠" :
+  dmcCount === 2 ? "� " :
   "🔴";
 
 const dmcLabel =
@@ -1215,7 +1387,7 @@ const dmcLabel =
     : dmcCount === 2
     ? {
         cls: "dmc-high",
-        icon: "🟠",
+        icon: "� ",
         label: "Condición meteorológica alta"
       }
     : {
@@ -2725,3 +2897,10 @@ const distanceKm =
   }
 
 })();
+
+
+
+
+
+
+
