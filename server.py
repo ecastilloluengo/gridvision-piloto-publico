@@ -359,6 +359,8 @@ def consultar_solax(wifi_sn):
                 "SolaX rechazo nueva consulta; "
                 "usando ultimo dato valido:",
                 wifi_sn,
+                "| exception:",
+                mensaje,
                 flush=True
             )
 
