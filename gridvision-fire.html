@@ -45,7 +45,7 @@
         <select id="filter-status">
           <option value="">Todos</option>
           <option value="En combate">En combate</option>
-          <option value="Observación">Observación</option>
+          <option value="Bajo observacion">Bajo observación</option>
           <option value="Controlado">Controlado</option>
           <option value="Extinguido">Extinguido</option>
         </select>
@@ -98,11 +98,30 @@
 
     <section class="fire-main">
       <div class="kpi-row">
-        <article><span>🔥</span><strong id="kpi-total">0</strong><small>Incendios visibles</small></article>
-        <article class="red"><span>🔴</span><strong id="kpi-critical">0</strong><small>En zona crítica</small></article>
-        <article class="orange"><span>🟠</span><strong id="kpi-attention">0</strong><small>En atención</small></article>
-        <article class="yellow"><span>🟡</span><strong id="kpi-watch">0</strong><small>En vigilancia</small></article>
-      </div>
+  <article>
+  <span>🔥</span>
+  <strong id="kpi-total">0</strong>
+  <small>Incendios CONAF vigentes</small>
+</article>
+
+<article class="red">
+  <span>🔴</span>
+  <strong id="kpi-critical">0</strong>
+  <small>En combate</small>
+</article>
+
+<article class="orange">
+  <span>🟠</span>
+  <strong id="kpi-attention">0</strong>
+  <small>Bajo observación</small>
+</article>
+
+<article class="yellow">
+  <span>🟢</span>
+  <strong id="kpi-watch">0</strong>
+  <small>Controlados</small>
+</article>
+</div>
 
       <div class="map-shell">
         <div id="fire-map"></div>

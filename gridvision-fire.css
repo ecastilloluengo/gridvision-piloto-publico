@@ -16,7 +16,41 @@
 @media(max-width:900px){html,body{overflow:auto}.fire-header{height:auto;min-height:76px;flex-wrap:wrap}.fire-layout{height:auto;min-height:calc(100vh - 76px);grid-template-columns:1fr;padding:8px}.fire-sidebar,.fire-detail{max-height:none}.fire-main{min-height:760px}.fire-detail{min-height:340px}.top-nav{order:3;width:100%;overflow:auto;justify-content:flex-start}.live-state{margin-left:auto}}
 
 
-.wind-arrow-label{padding:4px 7px;border:1px solid #62d9ff;background:#061a27ee;color:#e9fbff;border-radius:6px;font-size:8px;font-weight:900;white-space:nowrap;box-shadow:0 3px 12px #0007}.wind-direction-card{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:8px}.wind-direction-card div{padding:6px;border-radius:6px;background:#10273a}.wind-direction-card span{display:block;color:#7892a6;font-size:7px}.wind-direction-card strong{display:block;margin-top:3px;font-size:10px}.exposure-card{margin-top:7px;padding:8px;border-radius:7px;border:1px solid #31506a;background:#0d2133}.exposure-card span{display:block;color:#8ea5b6;font-size:7px;text-transform:uppercase;letter-spacing:.05em}.exposure-card strong{display:block;margin-top:3px;font-size:12px}.exposure-card small{display:block;margin-top:3px;color:#a9bac6;font-size:8px;line-height:1.4}.exposure-card.downwind{border-color:#e28b32;background:#281b0f}.exposure-card.downwind strong{color:#ffb45c}.exposure-card.upwind{border-color:#3a6681;background:#102536}.exposure-card.upwind strong{color:#8edbff}.exposure-card.crosswind{border-color:#75662a;background:#26210f}.exposure-card.crosswind strong{color:#ffe27a}.exposure-card.weak{border-color:#546575;background:#14202b}.exposure-card.weak strong{color:#c2d0d9}.exposure-card.neutral{border-color:#546575}.wind-arrow-line{stroke:#62d9ff}
+.wind-arrow-label{padding:4px 7px;border:1px solid #62d9ff;background:#061a27ee;color:#e9fbff;border-radius:6px;font-size:8px;font-weight:900;white-space:nowrap;box-shadow:0 3px 12px #0007}.wind-direction-card{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:8px}.wind-direction-card div{padding:6px;border-radius:6px;background:#10273a}.wind-direction-card span{display:block;color:#7892a6;font-size:7px}.wind-direction-card strong{display:block;margin-top:3px;font-size:10px}.exposure-card{margin-top:7px;padding:8px;border-radius:7px;border:1px solid #31506a;background:#0d2133}.exposure-card span{display:block;color:#8ea5b6;font-size:7px;text-transform:uppercase;letter-spacing:.05em}.exposure-card strong{display:block;margin-top:3px;font-size:12px}.exposure-card small{display:block;margin-top:3px;color:#a9bac6;font-size:8px;line-height:1.4}.exposure-card.downwind{border-color:#e28b32;background:#281b0f}.exposure-card.downwind strong{color:#ffb45c}.exposure-card.upwind{border-color:#3a6681;background:#102536}.exposure-card.upwind strong{color:#8edbff}.exposure-card.crosswind{border-color:#75662a;background:#26210f}.exposure-card.crosswind strong{color:#ffe27a}.exposure-card.weak{border-color:#546575;background:#14202b}.exposure-card.weak strong{color:#c2d0d9}.exposure-card.neutral{border-color:#546575}.exposure-card.dmc-normal{
+  border-color:#3acb8a;
+  background:#0d2924;
+}
+
+.exposure-card.dmc-normal strong{
+  color:#62e4bd;
+}
+
+.exposure-card.dmc-attention{
+  border-color:#ffd21a;
+  background:#29260f;
+}
+
+.exposure-card.dmc-attention strong{
+  color:#ffe27a;
+}
+
+.exposure-card.dmc-high{
+  border-color:#ff8a00;
+  background:#2b1d0f;
+}
+
+.exposure-card.dmc-high strong{
+  color:#ffb45c;
+}
+
+.exposure-card.dmc-critical{
+  border-color:#ff3b45;
+  background:#2a1117;
+}
+
+.exposure-card.dmc-critical strong{
+  color:#ff7078;
+}.wind-arrow-line{stroke:#62d9ff}
 
 .wind-sotavento-label{
   padding:4px 7px;

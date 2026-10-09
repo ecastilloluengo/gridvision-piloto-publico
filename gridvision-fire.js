@@ -665,144 +665,221 @@ function drawWindArrow(fire, windFromDeg, windSpeed) {
 
   const group = L.layerGroup();
 
-  // -----------------------------------------------------
-  // ZONA DE SOTAVENTO
+    // -----------------------------------------------------
+  // REPRESENTACIÓN DEL VIENTO
   // -----------------------------------------------------
 
-  const sectorPoints = [
-    [lat1, lon1]
-  ];
 
-  for (
-    let angle = -halfAngle;
-    angle <= halfAngle;
-    angle += 4
-  ) {
-    const p = pointAt(
-      to + angle,
-      sectorRadiusKm
+
+   if (speed < 5) {
+
+  // Viento débil:
+  // no se representa gráficamente sobre el mapa.
+  // La condición queda informada en el panel meteorológico.
+
+  return;
+
+} else {
+
+    // ---------------------------------------------------
+    // ZONA DE SOTAVENTO
+    // ---------------------------------------------------
+
+    const sectorPoints = [
+      [lat1, lon1]
+    ];
+
+    for (
+      let angle = -halfAngle;
+      angle <= halfAngle;
+      angle += 4
+    ) {
+      const p = pointAt(
+        to + angle,
+        sectorRadiusKm
+      );
+
+      sectorPoints.push(p);
+    }
+
+    sectorPoints.push([lat1, lon1]);
+
+    L.polygon(
+      sectorPoints,
+      {
+        color: '#ff9f43',
+        weight: 1.5,
+        opacity: 0.85,
+        fillColor: '#ff9f43',
+        fillOpacity: speed < 15 ? 0.06 : 0.09,
+        dashArray: '7 5'
+      }
+    ).addTo(group);
+
+    
+    // ---------------------------------------------------
+    // FLECHA DE VIENTO
+    // ---------------------------------------------------
+
+    L.polyline(
+      [[lat1, lon1], [lat2, lon2]],
+      {
+        color: '#62d9ff',
+        weight: 4,
+        opacity: 0.95
+      }
+    ).addTo(group);
+
+    L.polyline(
+      [
+        [latH1, lonH1],
+        [lat2, lon2],
+        [latH2, lonH2]
+      ],
+      {
+        color: '#62d9ff',
+        weight: 4,
+        opacity: 0.95
+      }
+    ).addTo(group);
+
+    // ---------------------------------------------------
+    // ETIQUETA DE VIENTO + SOTAVENTO
+    // ---------------------------------------------------
+
+    const labelPoint = pointAt(
+      to -22,
+      sectorRadiusKm * 0.72
     );
 
-    sectorPoints.push(p);
+    L.marker(
+      labelPoint,
+      {
+        icon: L.divIcon({
+          className: '',
+          html:
+            '<div class="wind-arrow-label">' +
+            'VIENTO → ' +
+            bearingLabel(to) +
+            ' · ' +
+            speed.toFixed(0) +
+            ' km/h · SOTAVENTO' +
+            '</div>',
+          iconSize: [220, 24],
+          iconAnchor: [110, 12]
+        })
+      }
+    ).addTo(group);
+
   }
-
-  sectorPoints.push([lat1, lon1]);
-
-  L.polygon(
-    sectorPoints,
-    {
-      color: '#ff9f43',
-      weight: 1.5,
-      opacity: 0.85,
-      fillColor: '#ff9f43',
-      fillOpacity: speed < 5 ? 0.035 : speed < 15 ? 0.06 : 0.09,
-      dashArray: '7 5'
-    }
-  ).addTo(group);
-
-  // Línea central de sotavento
-  const sotaventoEnd = pointAt(
-    to,
-    sectorRadiusKm
-  );
-
-  L.polyline(
-    [[lat1, lon1], sotaventoEnd],
-    {
-      color: '#ff9f43',
-      weight: 2,
-      opacity: 0.8,
-      dashArray: '6 6'
-    }
-  ).addTo(group);
-
-  // -----------------------------------------------------
-  // FLECHA
-  // -----------------------------------------------------
-
-  L.polyline(
-    [[lat1, lon1], [lat2, lon2]],
-    {
-      color: '#62d9ff',
-      weight: 4,
-      opacity: 0.95
-    }
-  ).addTo(group);
-
-  L.polyline(
-    [
-      [latH1, lonH1],
-      [lat2, lon2],
-      [latH2, lonH2]
-    ],
-    {
-      color: '#62d9ff',
-      weight: 4,
-      opacity: 0.95
-    }
-  ).addTo(group);
-
-  // Etiqueta de viento
-  L.marker(
-    [lat2, lon2],
-    {
-      icon: L.divIcon({
-        className: '',
-        html:
-          '<div class="wind-arrow-label">' +
-          'VIENTO → ' +
-          bearingLabel(to) +
-          ' · ' +
-          speed.toFixed(0) +
-          ' km/h</div>',
-        iconSize: [155, 22],
-        iconAnchor: [77, -2]
-      })
-    }
-  ).addTo(group);
-
-  // Etiqueta de sotavento
-  const labelPoint = pointAt(
-    to,
-    sectorRadiusKm * 0.68
-  );
-
-  L.marker(
-    labelPoint,
-    {
-      icon: L.divIcon({
-        className: '',
-        html:
-          '<div class="wind-sotavento-label">' +
-          'SOTAVENTO · ' +
-          bearingLabel(to) +
-          '</div>',
-        iconSize: [150, 22],
-        iconAnchor: [75, 11]
-      })
-    }
-  ).addTo(group);
 
   group.addTo(layers.radius);
 
   windLayer = group;
 }
 function renderFires(list) {
+
   layers.fires.clearLayers();
   layers.radius.clearLayers();
   windLayer = null;
 
   list.forEach(fire => {
-    const marker = L.marker([fire.lat,fire.lon], { icon: iconFire(fire.risk), title: fire.nombre });
-    marker.bindPopup(`<strong>${escapeHtml(fire.nombre)}</strong><br>${escapeHtml(fire.estado)}<br>${fire.superficie_ha.toLocaleString("es-CL")} ha<br>${fire.distanceKm.toFixed(1)} km a ${escapeHtml(fire.nearest?.nombre || "infraestructura")}`);
-    marker.on("click", () => selectFire(fire, true));
+
+    // -----------------------------------------------------
+    // INCENDIO
+    // -----------------------------------------------------
+
+    const marker = L.marker(
+      [fire.lat, fire.lon],
+      {
+        icon: iconFire(fire.risk),
+        title: fire.nombre,
+        zIndexOffset: 10000
+      }
+    );
+
+    marker.bindPopup(
+      `<strong>${escapeHtml(fire.nombre)}</strong><br>` +
+      `${escapeHtml(fire.estado)}<br>` +
+      `${fire.superficie_ha.toLocaleString("es-CL")} ha<br>` +
+      `${fire.distanceKm.toFixed(1)} km a ` +
+      `${escapeHtml(
+        fire.nearest?.nombre ||
+        "infraestructura"
+      )}`
+    );
+
+    marker.on(
+      "click",
+      () => selectFire(fire, true)
+    );
+
     layers.fires.addLayer(marker);
 
-    if (fire.distanceKm <= 10 && fire.nearest) {
-      const color = fire.risk === "Crítico" ? "#ff3b45" : fire.risk === "Atención" ? "#ff8a00" : "#ffd21a";
-      L.circle([fire.lat,fire.lon], { radius: 1000, color, weight:1, fillColor:color, fillOpacity:.07, dashArray:"5 5" }).addTo(layers.radius);
-      L.polyline([[fire.lat,fire.lon],[fire.nearest.lat,fire.nearest.lon]], { color, weight:2, dashArray:"6 6", opacity:.9 }).addTo(layers.radius);
+
+    // -----------------------------------------------------
+    // RADIO DE PROXIMIDAD
+    // -----------------------------------------------------
+    // Solo contorno.
+    // SIN relleno para no tapar el incendio ni el mapa.
+    // -----------------------------------------------------
+
+    if (
+      fire.distanceKm <= 10 &&
+      fire.nearest
+    ) {
+
+      const color =
+        fire.risk === "Crítico"
+          ? "#ff3b45"
+          : fire.risk === "Atención"
+            ? "#ff8a00"
+            : "#ffd21a";
+
+      L.circle(
+        [fire.lat, fire.lon],
+        {
+          radius: 1000,
+
+          color: color,
+
+          weight: 1.5,
+
+          opacity: 0.65,
+
+          fill: false,
+
+          dashArray: "6 6"
+        }
+      ).addTo(
+        layers.radius
+      );
+
+
+      // ---------------------------------------------------
+      // LÍNEA INCENDIO → INFRAESTRUCTURA
+      // ---------------------------------------------------
+
+      L.polyline(
+        [
+          [fire.lat, fire.lon],
+          [
+            fire.nearest.lat,
+            fire.nearest.lon
+          ]
+        ],
+        {
+          color: color,
+          weight: 1.5,
+          dashArray: "6 6",
+          opacity: 0.65
+        }
+      ).addTo(
+        layers.radius
+      );
+
     }
+
   });
 }
 
@@ -830,11 +907,66 @@ function statusClass(status) {
   return status === "En combate" ? "combate" : status === "Observación" ? "observacion" : status === "Controlado" ? "controlado" : "extinguido";
 }
 
-function renderKpis(list) {
-  $("kpi-total").textContent = list.length;
-  $("kpi-critical").textContent = list.filter(f=>f.risk === "Crítico").length;
-  $("kpi-attention").textContent = list.filter(f=>f.risk === "Atención").length;
-  $("kpi-watch").textContent = list.filter(f=>f.risk === "Vigilancia").length;
+function renderKpis() {
+
+  // =========================================================
+  // KPI GENERALES CONAF
+  // Estos indicadores SIEMPRE se calculan sobre todos los
+  // incendios cargados, independientemente de los filtros.
+  // =========================================================
+
+  const fuenteKpi = fires;
+
+  const enCombate =
+    fuenteKpi.filter(
+      f =>
+        String(f.estado || "")
+          .trim()
+          .toLowerCase() === "en combate"
+    ).length;
+
+  const enObservacion =
+    fuenteKpi.filter(
+      f => {
+        const estado =
+          String(f.estado || "")
+            .trim()
+            .toLowerCase();
+
+        return (
+          estado === "bajo observación" ||
+          estado === "bajo observacion" ||
+          estado === "observación" ||
+          estado === "observacion"
+        );
+      }
+    ).length;
+
+  const controlados =
+    fuenteKpi.filter(
+      f =>
+        String(f.estado || "")
+          .trim()
+          .toLowerCase() === "controlado"
+    ).length;
+
+  // Vigentes = incendios que todavía no están extinguidos.
+  const vigentes =
+    enCombate +
+    enObservacion +
+    controlados;
+
+  $("kpi-total").textContent =
+    vigentes;
+
+  $("kpi-critical").textContent =
+    enCombate;
+
+  $("kpi-attention").textContent =
+    enObservacion;
+
+  $("kpi-watch").textContent =
+    controlados;
 }
 
 function applyFilters() {
@@ -847,6 +979,43 @@ function applyFilters() {
     return (!q || text.includes(q)) && (!status || f.estado === status) && (!region || f.region === region) && (!risk || f.risk === risk);
   });
   renderFires(currentFiltered); renderTable(currentFiltered); renderKpis(currentFiltered);
+    // ---------------------------------------------------------
+  // SINCRONIZAR PANEL DERECHO CON EL FILTRO ACTUAL
+  // ---------------------------------------------------------
+
+  if (currentFiltered.length) {
+
+    const selectedStillVisible =
+      selectedFire &&
+      currentFiltered.some(
+        fire => fire === selectedFire
+      );
+
+    if (!selectedStillVisible) {
+      selectFire(
+        currentFiltered[0],
+        false
+      );
+    }
+
+  } else {
+
+    selectedFire = null;
+    selectedFireWeather = null;
+
+    clearWindLayer();
+
+    $("detail-panel").innerHTML = `
+      <div class="detail-empty">
+        <div class="detail-icon">🔥</div>
+        <h2>Sin incendios en el filtro</h2>
+        <p>
+          No hay incendios que coincidan con los
+          filtros seleccionados.
+        </p>
+      </div>
+    `;
+  }
   $("map-status").textContent = `${currentFiltered.length} incendios · actualización ${new Date().toLocaleTimeString("es-CL",{hour:"2-digit",minute:"2-digit"})}`;
 }
 
@@ -1004,13 +1173,88 @@ async function loadWeather(fire) {
     let idx = times.findIndex(t => Date.parse(t) >= now); if (idx < 0) idx = 0;
     const sum = h => precipitation.slice(idx, idx+h).filter(Number.isFinite).reduce((a,b)=>a+b,0);
     const windFrom = Number(c.wind_direction_10m);
-    const windSpeed = Number(c.wind_speed_10m);
-    const windTo = windToBearing(windFrom);
+const windSpeed = Number(c.wind_speed_10m);
+
+const temperature = Number(c.temperature_2m);
+const humidity = Number(c.relative_humidity_2m);
+const gust = Number(c.wind_gusts_10m);
+
+const dmcTemp = Number.isFinite(temperature) && temperature > 30;
+const dmcHumidity = Number.isFinite(humidity) && humidity < 30;
+const dmcWind = Number.isFinite(windSpeed) && windSpeed > 30;
+
+const dmcCount =
+  [dmcTemp, dmcHumidity, dmcWind]
+    .filter(Boolean)
+    .length;
+const dmcStatus =
+  dmcCount === 0 ? "🟢" :
+  dmcCount === 1 ? "🟡" :
+  dmcCount === 2 ? "🟠" :
+  "🔴";
+
+const dmcLabel =
+  dmcCount === 0 ? "Condición meteorológica normal" :
+  dmcCount === 1 ? "Condición meteorológica desfavorable" :
+  dmcCount === 2 ? "Condición meteorológica alta" :
+  "Condición meteorológica crítica";
+
+    const dmcState =
+  dmcCount === 0
+    ? {
+        cls: "dmc-normal",
+        icon: "🟢",
+        label: "Condición meteorológica normal"
+      }
+    : dmcCount === 1
+    ? {
+        cls: "dmc-attention",
+        icon: "🟡",
+        label: "Atención meteorológica"
+      }
+    : dmcCount === 2
+    ? {
+        cls: "dmc-high",
+        icon: "🟠",
+        label: "Condición meteorológica alta"
+      }
+    : {
+        cls: "dmc-critical",
+        icon: "🔴",
+        label: "Condición meteorológica crítica"
+      };
+
+const dmcSummary = `
+  <div class="exposure-card ${dmcState.cls}">
+
+    <span>Referencia meteorológica DMC</span>
+
+    <strong>
+      ${dmcState.icon} ${dmcState.label}
+    </strong>
+
+    <small>
+      ${dmcCount}/3 condiciones superadas
+      <br>
+      T° &gt; 30 °C:
+      ${dmcTemp ? "Sí" : "No"}
+      ·
+      HR &lt; 30 %:
+      ${dmcHumidity ? "Sí" : "No"}
+      ·
+      Viento &gt; 30 km/h:
+      ${dmcWind ? "Sí" : "No"}
+    </small>
+
+  </div>
+`;
+
+const windTo = windToBearing(windFrom);
     drawWindArrow(fire, windFrom, windSpeed);
     const closest = fire.nearest;
     const exposure = closest ? windExposure(closest, fire, windFrom, windSpeed) : { label: 'Sin evaluación', cls: 'neutral', detail: 'No hay infraestructura cercana.' };
     const arrowText = Number.isFinite(windTo) ? `${bearingLabel(windFrom)} → ${bearingLabel(windTo)}` : '—';
-    box.innerHTML = `<div class="weather-main"><strong>${Number(c.temperature_2m).toLocaleString("es-CL")} °C</strong><span>🌬️ ${arrowText} · ${Number.isFinite(windSpeed) ? windSpeed.toFixed(0) : "—"} km/h</span></div><div class="wind-direction-card"><div><span>Viento desde</span><strong>${bearingLabel(windFrom)}</strong></div><div><span>Viento hacia</span><strong>${bearingLabel(windTo)}</strong></div><div><span>Ráfaga</span><strong>${Number(c.wind_gusts_10m).toFixed(0)} km/h</strong></div></div><div class="exposure-card ${exposure.cls}"><span>Relación con activo más cercano</span><strong>${escapeHtml(exposure.label)}</strong><small>${escapeHtml(exposure.detail)}</small></div><div class="weather-grid"><div><span>Humedad</span><strong>${Number(c.relative_humidity_2m).toFixed(0)} %</strong></div><div><span>Precipitación</span><strong>${Number(c.precipitation).toFixed(1)} mm</strong></div><div><span>Próx. 3 h</span><strong>${sum(3).toFixed(1)} mm</strong></div><div><span>Próx. 6 h</span><strong>${sum(6).toFixed(1)} mm</strong></div><div><span>Dirección</span><strong>${bearingLabel(windFrom)} → ${bearingLabel(windTo)}</strong></div><div><span>Coordenadas</span><strong>${fire.lat.toFixed(3)}, ${fire.lon.toFixed(3)}</strong></div></div>`;
+    box.innerHTML = `<div class="weather-main"><strong>${Number(c.temperature_2m).toLocaleString("es-CL")} °C</strong><span>🌬️ ${arrowText} · ${Number.isFinite(windSpeed) ? windSpeed.toFixed(0) : "—"} km/h</span></div><div class="wind-direction-card"><div><span>Viento desde</span><strong>${bearingLabel(windFrom)}</strong></div><div><span>Viento hacia</span><strong>${bearingLabel(windTo)}</strong></div><div><span>Ráfaga</span><strong>${Number(c.wind_gusts_10m).toFixed(0)} km/h</strong></div></div><div class="exposure-card ${exposure.cls}"><span>Relación con activo más cercano</span><strong>${escapeHtml(exposure.label)}</strong><small>${escapeHtml(exposure.detail)}</small></div><div class="weather-grid"><div><span>Humedad</span><strong>${Number(c.relative_humidity_2m).toFixed(0)} %</strong></div><div><span>Precipitación</span><strong>${Number(c.precipitation).toFixed(1)} mm</strong></div><div><span>Próx. 3 h</span><strong>${sum(3).toFixed(1)} mm</strong></div><div><span>Próx. 6 h</span><strong>${sum(6).toFixed(1)} mm</strong></div><div><span>Dirección</span><strong>${bearingLabel(windFrom)} → ${bearingLabel(windTo)}</strong></div><div><span>Coordenadas</span><strong>${fire.lat.toFixed(3)}, ${fire.lon.toFixed(3)}</strong></div></div>${dmcSummary}`;
   } catch (e) {
     selectedFireWeather = null;
     clearWindLayer();
@@ -1146,7 +1390,21 @@ async function bootstrap() {
     fires = fires.map(enrichFire);
     initRegions();
     applyFilters();
-    if (currentFiltered[0]) selectFire(currentFiltered[0], false);
+    const firstVigente =
+  currentFiltered.find(
+    fire =>
+      String(fire.estado || "").trim() !== "Extinguido"
+  );
+
+const fireInicial =
+  firstVigente || currentFiltered[0];
+
+if (fireInicial) {
+  selectFire(
+    fireInicial,
+    false
+  );
+}
     $("map-status").textContent=`${fires.length} incendios · datos Power BI`;
   } catch (e) {
     console.error(e); $("map-status").textContent="Error cargando datos";
@@ -1164,7 +1422,7 @@ bootstrap();
   const GV_FIRE_ASSET_URL =
     "data/processed/activos_puntuales_validados.geojson";
 
-  const GV_FIRE_MAX_KM = 10;
+  const GV_FIRE_MAX_KM = 50;
 
   let gvFireAssetsCache = null;
   let gvFireLastKey = "";
@@ -1247,86 +1505,97 @@ bootstrap();
   // EVALUACION DE EXPOSICION
   // ---------------------------------------------------------
 
-  function gvFireExposure(
-    fire,
-    asset,
-    windFromDeg,
-    windSpeed
+function gvFireExposure(
+  fire,
+  asset,
+  windFromDeg,
+  windSpeed,
+  nearestPoint = null
+) {
+  const speed = Number(windSpeed);
+
+  if (
+    !Number.isFinite(windFromDeg) ||
+    !Number.isFinite(speed)
   ) {
-    const speed = Number(windSpeed);
-
-    if (
-      !Number.isFinite(windFromDeg) ||
-      !Number.isFinite(speed)
-    ) {
-      return {
-        label: "Sin evaluación",
-        cls: "neutral",
-        bearing: null,
-        detail: "No hay datos de viento."
-      };
-    }
-
-    if (speed < 5) {
-      return {
-        label: "Viento débil",
-        cls: "weak",
-        bearing: gvFireBearing(
-          fire.lat,
-          fire.lon,
-          asset.lat,
-          asset.lon
-        ),
-        detail:
-          "Indicador no concluyente con viento menor a 5 km/h."
-      };
-    }
-
-    const windTo =
-      (windFromDeg + 180) % 360;
-
-    const bearing =
-      gvFireBearing(
-        fire.lat,
-        fire.lon,
-        asset.lat,
-        asset.lon
-      );
-
-    const delta =
-      gvFireAngleDifference(
-        bearing,
-        windTo
-      );
-
-    if (delta <= 45) {
-      return {
-        label: "A sotavento",
-        cls: "downwind",
-        bearing,
-        detail:
-          `Activo ${gvFireDirection(bearing)} del incendio; viento hacia ${gvFireDirection(windTo)}.`
-      };
-    }
-
-    if (delta >= 135) {
-      return {
-        label: "A barlovento",
-        cls: "upwind",
-        bearing,
-        detail:
-          `Activo ${gvFireDirection(bearing)} del incendio; viento hacia ${gvFireDirection(windTo)}.`
-      };
-    }
-
     return {
-      label: "Lateral al viento",
-      cls: "crosswind",
+      label: "Sin evaluación",
+      cls: "neutral",
+      bearing: null,
+      detail: "No hay datos de viento."
+    };
+  }
+
+  // Para líneas usamos el punto real más cercano
+  // al incendio. Para activos puntuales usamos
+  // sus propias coordenadas.
+  const targetLat =
+    nearestPoint &&
+    Number.isFinite(nearestPoint.lat)
+      ? nearestPoint.lat
+      : asset.lat;
+
+  const targetLon =
+    nearestPoint &&
+    Number.isFinite(nearestPoint.lon)
+      ? nearestPoint.lon
+      : asset.lon;
+
+  const bearing =
+    gvFireBearing(
+      fire.lat,
+      fire.lon,
+      targetLat,
+      targetLon
+    );
+
+  if (speed < 5) {
+    return {
+      label: "Viento débil",
+      cls: "weak",
+      bearing,
+      detail:
+        "Indicador no concluyente con viento menor a 5 km/h."
+    };
+  }
+
+  const windTo =
+    (windFromDeg + 180) % 360;
+
+  const delta =
+    gvFireAngleDifference(
+      bearing,
+      windTo
+    );
+
+  if (delta <= 45) {
+    return {
+      label: "A sotavento",
+      cls: "downwind",
       bearing,
       detail:
         `Activo ${gvFireDirection(bearing)} del incendio; viento hacia ${gvFireDirection(windTo)}.`
     };
   }
+
+  if (delta >= 135) {
+    return {
+      label: "A barlovento",
+      cls: "upwind",
+      bearing,
+      detail:
+        `Activo ${gvFireDirection(bearing)} del incendio; viento hacia ${gvFireDirection(windTo)}.`
+    };
+  }
+
+  return {
+    label: "Lateral al viento",
+    cls: "crosswind",
+    bearing,
+    detail:
+      `Activo ${gvFireDirection(bearing)} del incendio; viento hacia ${gvFireDirection(windTo)}.`
+  };
+}
 
   function gvFireProximity(distanceKm) {
     if (distanceKm < 2) {
@@ -1348,85 +1617,435 @@ bootstrap();
       cls: "watch"
     };
   }
+// =========================================================
+// DISTANCIA INCENDIO → INFRAESTRUCTURA ELÉCTRICA
+// Para puntos: distancia directa.
+// Para líneas: distancia al tramo más cercano.
+// =========================================================
 
+function gvFirePointToSegmentNearest(lat, lon, a, b) {
+
+  const latRad =
+    Number(lat) * Math.PI / 180;
+
+  const cosLat =
+    Math.cos(latRad);
+
+  const px =
+    Number(lon) * cosLat;
+
+  const py =
+    Number(lat);
+
+  const x1 =
+    Number(a[0]) * cosLat;
+
+  const y1 =
+    Number(a[1]);
+
+  const x2 =
+    Number(b[0]) * cosLat;
+
+  const y2 =
+    Number(b[1]);
+
+  if (
+    !Number.isFinite(px) ||
+    !Number.isFinite(py) ||
+    !Number.isFinite(x1) ||
+    !Number.isFinite(y1) ||
+    !Number.isFinite(x2) ||
+    !Number.isFinite(y2)
+  ) {
+    return null;
+  }
+
+  const dx = x2 - x1;
+  const dy = y2 - y1;
+
+  const length2 =
+    dx * dx + dy * dy;
+
+  let t = 0;
+
+  if (length2 > 0) {
+
+    t =
+      (
+        (px - x1) * dx +
+        (py - y1) * dy
+      ) / length2;
+
+    t =
+      Math.max(
+        0,
+        Math.min(1, t)
+      );
+  }
+
+  const nearestX =
+    x1 + t * dx;
+
+  const nearestY =
+    y1 + t * dy;
+
+  const nearestLon =
+    nearestX / cosLat;
+
+  const nearestLat =
+    nearestY;
+
+  const distanceKm =
+    gvFireHaversine(
+      lat,
+      lon,
+      nearestLat,
+      nearestLon
+    );
+
+  return {
+    lat: nearestLat,
+    lon: nearestLon,
+    distanceKm
+  };
+}
+
+
+function gvFireNearestPointOnGeometry(
+  lat,
+  lon,
+  geometry
+) {
+
+  if (!geometry) {
+    return null;
+  }
+
+  let best = null;
+
+  function inspectLine(coords) {
+
+    if (
+      !Array.isArray(coords) ||
+      coords.length === 0
+    ) {
+      return;
+    }
+
+    if (coords.length === 1) {
+
+      const p = coords[0];
+
+      const distanceKm =
+        gvFireHaversine(
+          lat,
+          lon,
+          Number(p[1]),
+          Number(p[0])
+        );
+
+      if (
+        !best ||
+        distanceKm < best.distanceKm
+      ) {
+        best = {
+          lat: Number(p[1]),
+          lon: Number(p[0]),
+          distanceKm
+        };
+      }
+
+      return;
+    }
+
+    for (
+      let i = 1;
+      i < coords.length;
+      i += 1
+    ) {
+
+      const candidate =
+        gvFirePointToSegmentNearest(
+          lat,
+          lon,
+          coords[i - 1],
+          coords[i]
+        );
+
+      if (
+        candidate &&
+        (
+          !best ||
+          candidate.distanceKm < best.distanceKm
+        )
+      ) {
+        best = candidate;
+      }
+    }
+  }
+
+  if (
+    geometry.type ===
+    "LineString"
+  ) {
+
+    inspectLine(
+      geometry.coordinates
+    );
+
+  } else if (
+    geometry.type ===
+    "MultiLineString"
+  ) {
+
+    geometry.coordinates.forEach(
+      line => inspectLine(line)
+    );
+  }
+
+  return best;
+}
+
+
+function gvFireDistanceToAsset(
+  lat,
+  lon,
+  asset
+) {
+
+  // -------------------------------------------------------
+  // LÍNEA ELÉCTRICA
+  // -------------------------------------------------------
+
+  if (
+    asset.kind === "line" &&
+    asset.geometry
+  ) {
+
+    return gvFireNearestPointOnGeometry(
+      lat,
+      lon,
+      asset.geometry
+    );
+  }
+
+  // -------------------------------------------------------
+  // ACTIVO PUNTUAL
+  // -------------------------------------------------------
+
+  const distanceKm =
+    gvFireHaversine(
+      lat,
+      lon,
+      asset.lat,
+      asset.lon
+    );
+
+  return {
+    lat: Number(asset.lat),
+    lon: Number(asset.lon),
+    distanceKm
+  };
+}
   // ---------------------------------------------------------
   // CARGA DE ACTIVOS GRIDVISION
   // ---------------------------------------------------------
 
   async function gvFireLoadAssets() {
 
-    if (gvFireAssetsCache) {
-      return gvFireAssetsCache;
-    }
+  if (gvFireAssetsCache) {
+    return gvFireAssetsCache;
+  }
 
-    const response =
+  // =========================================================
+  // 1. ACTIVOS PUNTUALES
+  // =========================================================
+
+  const assetResponse =
+    await fetch(
+      GV_FIRE_ASSET_URL,
+      { cache: "no-store" }
+    );
+
+  if (!assetResponse.ok) {
+    throw new Error(
+      "No fue posible cargar los activos GridVision."
+    );
+  }
+
+  const assetGeojson =
+    await assetResponse.json();
+
+  const pointAssets =
+    (assetGeojson.features || [])
+      .filter(feature =>
+        feature.geometry &&
+        feature.geometry.type === "Point" &&
+        Array.isArray(feature.geometry.coordinates)
+      )
+      .map(feature => {
+
+        const [
+          lon,
+          lat
+        ] = feature.geometry.coordinates;
+
+        const p =
+          feature.properties || {};
+
+        return {
+          id:
+            p.id ||
+            p.ID ||
+            feature.id ||
+            "",
+
+          nombre:
+            p.nombre ||
+            p.NOMBRE ||
+            p.name ||
+            p.Name ||
+            p.nombre_activo ||
+            p.activo ||
+            feature.id ||
+            "Activo GridVision",
+
+          categoria:
+            p.categoria ||
+            p.Categoria ||
+            p.tipo ||
+            p.type ||
+            "Activo",
+
+          lat: Number(lat),
+          lon: Number(lon),
+
+          kind: "point"
+        };
+
+      })
+      .filter(asset =>
+        Number.isFinite(asset.lat) &&
+        Number.isFinite(asset.lon)
+      );
+
+  // =========================================================
+  // 2. LÍNEAS ELÉCTRICAS
+  // =========================================================
+
+  let lineGeojson =
+    linesGeo;
+
+  if (!lineGeojson) {
+
+    const lineResponse =
       await fetch(
-        GV_FIRE_ASSET_URL,
+        LINES_URL,
         { cache: "no-store" }
       );
 
-    if (!response.ok) {
+    if (!lineResponse.ok) {
       throw new Error(
-        "No fue posible cargar los activos GridVision."
+        "No fue posible cargar las líneas eléctricas."
       );
     }
 
-    const geojson =
-      await response.json();
-
-    gvFireAssetsCache =
-      (geojson.features || [])
-        .filter(feature =>
-          feature.geometry &&
-          feature.geometry.type === "Point" &&
-          Array.isArray(feature.geometry.coordinates)
-        )
-        .map(feature => {
-
-          const [
-            lon,
-            lat
-          ] = feature.geometry.coordinates;
-
-          const p =
-            feature.properties || {};
-
-          return {
-            id:
-              p.id ||
-              p.ID ||
-              feature.id ||
-              "",
-
-            nombre:
-              p.nombre ||
-              p.NOMBRE ||
-              p.name ||
-              p.Name ||
-              p.nombre_activo ||
-              p.activo ||
-              feature.id ||
-              "Activo GridVision",
-
-            categoria:
-              p.categoria ||
-              p.Categoria ||
-              p.tipo ||
-              p.type ||
-              "Activo",
-
-            lat: Number(lat),
-            lon: Number(lon)
-          };
-
-        })
-        .filter(asset =>
-          Number.isFinite(asset.lat) &&
-          Number.isFinite(asset.lon)
-        );
-
-    return gvFireAssetsCache;
+    lineGeojson =
+      await lineResponse.json();
   }
+
+  const lineAssets =
+    (lineGeojson?.features || [])
+      .filter(feature =>
+        feature.geometry &&
+        (
+          feature.geometry.type === "LineString" ||
+          feature.geometry.type === "MultiLineString"
+        )
+      )
+      .map(feature => {
+
+        const p =
+          lineProperties(feature);
+
+        const midpoint =
+          midpointOfGeometry(
+            feature.geometry
+          );
+
+        if (!midpoint) {
+          return null;
+        }
+
+        return {
+
+          id:
+            p.id ||
+            feature.id ||
+            "",
+
+          nombre:
+            p.nombre ||
+            "Línea eléctrica",
+
+          categoria:
+            "Línea eléctrica",
+
+          tension:
+            p.tension,
+
+          origen:
+            p.origen,
+
+          destino:
+            p.destino,
+
+          circuito:
+            p.circuito,
+
+          estado:
+            p.estado,
+
+          lat:
+            midpoint[0],
+
+          lon:
+            midpoint[1],
+
+          geometry:
+            feature.geometry,
+
+          kind:
+            "line",
+
+          props:
+            p.props || {}
+
+        };
+
+      })
+      .filter(Boolean);
+
+  // =========================================================
+  // 3. UNA SOLA LISTA DE INFRAESTRUCTURA ELÉCTRICA
+  // =========================================================
+
+  gvFireAssetsCache = [
+    ...pointAssets,
+    ...lineAssets
+  ];
+
+  console.log(
+    "GridVision Fire: infraestructura cargada:",
+    {
+      activosPuntuales: pointAssets.length,
+      lineas: lineAssets.length,
+      total: gvFireAssetsCache.length
+    }
+  );
+
+  return gvFireAssetsCache;
+}
 
   // ---------------------------------------------------------
   // CREAR CONTENEDORES
@@ -1928,21 +2547,26 @@ bootstrap();
         assets
           .map(asset => {
 
-            const distanceKm =
-              gvFireHaversine(
-                lat,
-                lon,
-                asset.lat,
-                asset.lon
-              );
+           const nearestPoint =
+  gvFireDistanceToAsset(
+    lat,
+    lon,
+    asset
+  );
+
+const distanceKm =
+  nearestPoint
+    ? nearestPoint.distanceKm
+    : Infinity;
 
             const exposure =
-              gvFireExposure(
-                fire,
-                asset,
-                windFromDeg,
-                windSpeed
-              );
+  gvFireExposure(
+    fire,
+    asset,
+    windFromDeg,
+    windSpeed,
+    nearestPoint
+  );
 
             return {
               asset,
