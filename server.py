@@ -1696,10 +1696,81 @@ class GridVisionHandler(SimpleHTTPRequestHandler):
                 nivel_general = "espera"
 
 
+            # -------------------------------------------------
+            # BALANCE DE POTENCIA A NIVEL DE PLANTA
+            # -------------------------------------------------
+            # SolaX entrega feedinpower dentro de la respuesta
+            # de uno de los inversores, pero corresponde al
+            # medidor/punto de conexi?n de toda la planta.
+
+            def numero_solax(valor):
+                try:
+                    return float(valor or 0)
+                except (TypeError, ValueError):
+                    return 0.0
+
+            potencia_fv_w = sum(
+                numero_solax(
+                    inversor.get("potencia_ac")
+                )
+                for inversor in inversores
+            )
+
+            valores_red_w = [
+                numero_solax(
+                    inversor.get("potencia_red")
+                )
+                for inversor in inversores
+            ]
+
+            potencia_red_w = max(
+                valores_red_w,
+                key=abs,
+                default=0.0
+            )
+
+            potencia_fv_kw = round(
+                potencia_fv_w / 1000,
+                3
+            )
+
+            potencia_red_kw = round(
+                potencia_red_w / 1000,
+                3
+            )
+
+            # Convenci?n SolaX observada:
+            # positivo = inyecci?n a red
+            # negativo = importaci?n desde red.
+            # Planta sin bater?a:
+            # consumo = FV - intercambio con red.
+            consumo_instalacion_kw = round(
+                potencia_fv_kw - potencia_red_kw,
+                3
+            )
+
+            if potencia_red_kw > 0.01:
+                sentido_red = "inyeccion"
+            elif potencia_red_kw < -0.01:
+                sentido_red = "importacion"
+            else:
+                sentido_red = "cero"
+
             respuesta = {
                 "planta": "PFV ICV Lo Aguirre",
                 "tipo": "PFV Net Billing",
+
+                # Compatibilidad con clientes actuales.
                 "potencia_nominal_kw": 150,
+
+                "potencia_dc_instalada_kwp": 168.78,
+                "potencia_ac_inversores_kw": 150,
+
+                "potencia_fv_kw": potencia_fv_kw,
+                "potencia_red_kw": potencia_red_kw,
+                "consumo_instalacion_kw":
+                    consumo_instalacion_kw,
+                "sentido_red": sentido_red,
 
                 "estado_general": estado_general,
                 "nivel_general": nivel_general,

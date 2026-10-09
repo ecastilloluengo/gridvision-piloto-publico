@@ -1249,9 +1249,6 @@ async function cargarEstadoSolaxLoAguirre(contenedor) {
     const UMBRAL_DATO_SOLAX_MS =
         10 * 60 * 1000; // 10 minutos
 
-    const REINTENTO_SOLAX_MS =
-        15 * 1000; // 15 segundos
-
     function obtenerEdadDatoSolaxMs(fechaSolax) {
 
         if (
@@ -1386,50 +1383,52 @@ const potenciaTotalKW =
 // de los inversores. Tomamos el valor con
 // mayor magnitud para evitar sumar ceros
 // de los demás equipos.
-const potenciaRedW =
-    inversoresVigentes.reduce(
-        (valorActual, inversor) => {
+const balanceVigente =
+    Array.isArray(datos.inversores) &&
+    datos.inversores.length > 0 &&
+    inversoresVigentes.length === datos.inversores.length;
 
-            const valor =
-                Number(inversor.potencia_red || 0);
+const potenciaRedApi =
+    Number(datos.potencia_red_kw);
 
-            return Math.abs(valor) >
-                Math.abs(valorActual)
-                ? valor
-                : valorActual;
-
-        },
-        0
-    );
+const consumoInstalacionApi =
+    Number(datos.consumo_instalacion_kw);
 
 const potenciaRedKW =
-    potenciaRedW / 1000;
+    balanceVigente &&
+    Number.isFinite(potenciaRedApi)
+        ? potenciaRedApi
+        : 0;
 
-// Planta sin batería:
-// Consumo = FV - potencia de red con signo
 const consumoCasaKW =
-    potenciaTotalKW - potenciaRedKW;
+    balanceVigente &&
+    Number.isFinite(consumoInstalacionApi)
+        ? consumoInstalacionApi
+        : 0;
 
-            const generacionActual =
-                document.createElement("p");
 
-            generacionActual.style.margin = "8px 0";
-            generacionActual.style.fontWeight = "700";
+// GENERACION FV
 
-            generacionActual.textContent =
-                `⚡ Generación instantánea: ` +
-                `${potenciaTotalKW.toLocaleString(
-                    "es-CL",
-                    {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    }
-                )} kW`;
+const generacionActual =
+    document.createElement("p");
 
-            bloque.appendChild(generacionActual);
-// --------------------------------------------
-// CONSUMO CASA
-// --------------------------------------------
+generacionActual.style.margin = "8px 0";
+generacionActual.style.fontWeight = "700";
+
+generacionActual.textContent =
+    `\u26A1 Generaci\u00F3n FV: ` +
+    `${potenciaTotalKW.toLocaleString(
+        "es-CL",
+        {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }
+    )} kW`;
+
+bloque.appendChild(generacionActual);
+
+
+// CONSUMO INSTALACION
 
 const consumoActual =
     document.createElement("p");
@@ -1438,7 +1437,7 @@ consumoActual.style.margin = "5px 0";
 consumoActual.style.fontWeight = "700";
 
 consumoActual.textContent =
-    `🏠 Consumo instalación: ` +
+    `\uD83C\uDFE0 Consumo instalaci\u00F3n: ` +
     `${consumoCasaKW.toLocaleString(
         "es-CL",
         {
@@ -1450,9 +1449,7 @@ consumoActual.textContent =
 bloque.appendChild(consumoActual);
 
 
-// --------------------------------------------
-// INTERCAMBIO CON LA RED
-// --------------------------------------------
+// INTERCAMBIO CON RED
 
 const redActual =
     document.createElement("p");
@@ -1462,10 +1459,18 @@ redActual.style.fontWeight = "700";
 
 let textoRed;
 
-if (potenciaRedKW < -0.01) {
+if (!balanceVigente) {
 
     textoRed =
-        `🔌 Red: Importando ` +
+        "\uD83D\uDD0C Intercambio con red: dato desactualizado";
+
+} else if (
+    datos.sentido_red === "importacion" ||
+    potenciaRedKW < -0.01
+) {
+
+    textoRed =
+        `\uD83D\uDD0C Importaci\u00F3n desde red: ` +
         `${Math.abs(potenciaRedKW).toLocaleString(
             "es-CL",
             {
@@ -1474,11 +1479,14 @@ if (potenciaRedKW < -0.01) {
             }
         )} kW`;
 
-} else if (potenciaRedKW > 0.01) {
+} else if (
+    datos.sentido_red === "inyeccion" ||
+    potenciaRedKW > 0.01
+) {
 
     textoRed =
-        `🔌 Red: Exportando ` +
-        `${potenciaRedKW.toLocaleString(
+        `\uD83D\uDD0C Inyecci\u00F3n a red: ` +
+        `${Math.abs(potenciaRedKW).toLocaleString(
             "es-CL",
             {
                 minimumFractionDigits: 2,
@@ -1488,12 +1496,53 @@ if (potenciaRedKW < -0.01) {
 
 } else {
 
-    textoRed = "🔌 Red: 0,00 kW";
+    textoRed =
+        "\uD83D\uDD0C Intercambio con red: 0,00 kW";
 }
 
 redActual.textContent = textoRed;
 
 bloque.appendChild(redActual);
+
+
+// CAPACIDAD INSTALADA
+
+const potenciaDc =
+    Number(datos.potencia_dc_instalada_kwp);
+
+const potenciaAc =
+    Number(datos.potencia_ac_inversores_kw);
+
+if (
+    Number.isFinite(potenciaDc) &&
+    Number.isFinite(potenciaAc)
+) {
+
+    const capacidadPlanta =
+        document.createElement("small");
+
+    capacidadPlanta.style.display = "block";
+    capacidadPlanta.style.margin = "7px 0 4px 0";
+
+    capacidadPlanta.textContent =
+        `Capacidad: ` +
+        `${potenciaDc.toLocaleString(
+            "es-CL",
+            {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }
+        )} kWp DC \u00B7 ` +
+        `${potenciaAc.toLocaleString(
+            "es-CL",
+            {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }
+        )} kW AC`;
+
+    bloque.appendChild(capacidadPlanta);
+}
 // --------------------------------------------
 // METEOROLOGÍA / IRRADIANCIA ESTIMADA
 // --------------------------------------------
@@ -1849,9 +1898,7 @@ function programarSiguienteConsultaSolax() {
     }
 
     const espera =
-        datoSolaxDesactualizado
-            ? REINTENTO_SOLAX_MS
-            : INTERVALO_SOLAX_MS;
+        INTERVALO_SOLAX_MS;
 
     temporizadorSolax =
         window.setTimeout(
@@ -1873,9 +1920,9 @@ function programarSiguienteConsultaSolax() {
 // Primera consulta inmediata
 await actualizarEstadoSolax();
 
-// Luego programamos la siguiente:
-// 15 s si está desactualizado,
-// 1 min si está actualizado.
+// Luego consultamos el backend cada 1 minuto.
+// El backend administra la consulta real a SolaX
+// mediante su cache.
 programarSiguienteConsultaSolax();
 
     
