@@ -1347,6 +1347,13 @@ async function cargarEstadoSolaxLoAguirre(contenedor) {
 
 function inversorTieneDatoVigente(inversor) {
 
+    if (
+        inversor &&
+        typeof inversor.dato_vigente === "boolean"
+    ) {
+        return inversor.dato_vigente;
+    }
+
     const edadDato =
         obtenerEdadDatoSolaxMs(
             inversor.ultimo_dato
@@ -1354,6 +1361,7 @@ function inversorTieneDatoVigente(inversor) {
 
     return (
         edadDato !== null &&
+        edadDato >= -120000 &&
         edadDato <= UMBRAL_DATO_SOLAX_MS
     );
 }
@@ -1363,7 +1371,23 @@ const inversoresVigentes =
         inversorTieneDatoVigente
     );
 
-const potenciaTotalW =
+const backendInformaFrescura =
+    typeof datos.datos_vigentes === "boolean";
+
+const datosVigentes =
+    backendInformaFrescura
+        ? datos.datos_vigentes === true
+        : (
+            Array.isArray(datos.inversores) &&
+            datos.inversores.length > 0 &&
+            inversoresVigentes.length ===
+                datos.inversores.length
+        );
+
+const potenciaTotalApi =
+    Number(datos.potencia_fv_kw);
+
+const potenciaCalculadaW =
     inversoresVigentes.reduce(
         (total, inversor) =>
             total +
@@ -1373,8 +1397,19 @@ const potenciaTotalW =
         0
     );
 
+const potenciaCalculadaKW =
+    potenciaCalculadaW / 1000;
+
 const potenciaTotalKW =
-    potenciaTotalW / 1000;
+    datosVigentes
+        ? (
+            Number.isFinite(
+                potenciaTotalApi
+            )
+                ? potenciaTotalApi
+                : potenciaCalculadaKW
+        )
+        : 0;
                 // --------------------------------------------
 // RED Y CONSUMO DE LA INSTALACIÓN
 // --------------------------------------------
@@ -1384,9 +1419,7 @@ const potenciaTotalKW =
 // mayor magnitud para evitar sumar ceros
 // de los demás equipos.
 const balanceVigente =
-    Array.isArray(datos.inversores) &&
-    datos.inversores.length > 0 &&
-    inversoresVigentes.length === datos.inversores.length;
+    datosVigentes;
 
 const potenciaRedApi =
     Number(datos.potencia_red_kw);
@@ -1416,14 +1449,18 @@ generacionActual.style.margin = "8px 0";
 generacionActual.style.fontWeight = "700";
 
 generacionActual.textContent =
-    `\u26A1 Generaci\u00F3n FV: ` +
-    `${potenciaTotalKW.toLocaleString(
-        "es-CL",
-        {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        }
-    )} kW`;
+    datosVigentes
+        ? (
+            `\u26A1 Generaci\u00F3n FV: ` +
+            `${potenciaTotalKW.toLocaleString(
+                "es-CL",
+                {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }
+            )} kW`
+        )
+        : "\u26A1 Generaci\u00F3n FV: dato desactualizado";
 
 bloque.appendChild(generacionActual);
 
@@ -1437,14 +1474,18 @@ consumoActual.style.margin = "5px 0";
 consumoActual.style.fontWeight = "700";
 
 consumoActual.textContent =
-    `\uD83C\uDFE0 Consumo instalaci\u00F3n: ` +
-    `${consumoCasaKW.toLocaleString(
-        "es-CL",
-        {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        }
-    )} kW`;
+    balanceVigente
+        ? (
+            `\uD83C\uDFE0 Consumo instalaci\u00F3n: ` +
+            `${consumoCasaKW.toLocaleString(
+                "es-CL",
+                {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }
+            )} kW`
+        )
+        : "\uD83C\uDFE0 Consumo instalaci\u00F3n: dato desactualizado";
 
 bloque.appendChild(consumoActual);
 
@@ -1546,6 +1587,46 @@ if (
 // --------------------------------------------
 // METEOROLOGÍA / IRRADIANCIA ESTIMADA
 // --------------------------------------------
+
+// --------------------------------------------
+// Resumen operativo SolaX
+// --------------------------------------------
+
+const totalInversoresBackend =
+    Number(datos.inversores_total);
+
+const totalInversores =
+    Number.isFinite(totalInversoresBackend)
+        ? totalInversoresBackend
+        : datos.inversores.length;
+
+const operativosBackend =
+    Number(datos.inversores_operativos);
+
+const resumenOperativos =
+    document.createElement("p");
+
+resumenOperativos.style.margin = "6px 0";
+resumenOperativos.style.fontWeight = "700";
+
+if (
+    datosVigentes &&
+    Number.isFinite(operativosBackend)
+) {
+
+    resumenOperativos.textContent =
+        `Operativos: ${operativosBackend} / ${totalInversores}`;
+
+} else {
+
+    resumenOperativos.textContent =
+        `Operativos: -- / ${totalInversores}`;
+}
+
+bloque.appendChild(
+    resumenOperativos
+);
+
 
 try {
 
@@ -1705,22 +1786,32 @@ for (const inversor of datos.inversores) {
 // ÚLTIMO DATO DE SOLAX
 // --------------------------------------------
 
-const ultimoDato =
+const fechasSolax =
     datos.inversores
         .map(
             inversor =>
                 inversor.ultimo_dato
         )
         .filter(Boolean)
-        .sort()
-        .at(-1);
+        .sort();
+
+const ultimoDato =
+    fechasSolax.length
+        ? fechasSolax.at(-1)
+        : null;
+
+const datoMasAntiguo =
+    fechasSolax.length
+        ? fechasSolax[0]
+        : null;
 
 const edadDatoSolaxMs =
-    obtenerEdadDatoSolaxMs(ultimoDato);
+    obtenerEdadDatoSolaxMs(
+        datoMasAntiguo
+    );
 
 datoSolaxDesactualizado =
-    edadDatoSolaxMs !== null &&
-    edadDatoSolaxMs > UMBRAL_DATO_SOLAX_MS;
+    !datosVigentes;
 
 
 // --------------------------------------------
@@ -1755,9 +1846,16 @@ if (
 
 // Si SolaX entrega información antigua,
 // GridVision no la presenta como estado actual.
-if (datoSolaxDesactualizado) {
+if (
+    datoSolaxDesactualizado &&
+    (
+        textoEstadoGeneral === "OK" ||
+        textoEstadoGeneral === "ESPERA" ||
+        textoEstadoGeneral === "DESCONOCIDO"
+    )
+) {
 
-    simboloGeneral = "🟠";
+    simboloGeneral = "\uD83D\uDFE0";
     textoEstadoGeneral =
         "DATOS DESACTUALIZADOS";
 }
