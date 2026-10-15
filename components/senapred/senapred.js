@@ -461,10 +461,18 @@ function obtenerAvisos(alerta) {
                 .replace(/\s+/g, " ")
                 .trim();
 
-        if (
-            !nombre
-            || /alertamiento/i.test(nombre)
-        ) {
+        if (!nombre) {
+            continue;
+        }
+
+        // Solo aceptar filas que realmente correspondan
+        // a avisos o alertamientos oficiales.
+        // Evita interpretar tablas meteorológicas
+        // como si fueran Inicio / Fin de un aviso.
+        const esAlertamientoOficial =
+            /^(aviso|alerta|advertencia)\b/i.test(nombre);
+
+        if (!esAlertamientoOficial) {
             continue;
         }
 
