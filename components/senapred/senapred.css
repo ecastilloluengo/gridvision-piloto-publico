@@ -849,3 +849,57 @@
         font-weight: 600;
     }
 }
+
+/* =========================================================
+   CORRECCIÓN SCROLL MÓVIL SENAPRED
+   Evita cortes del contenido en Android / Chrome
+   ========================================================= */
+
+.panel-senapred {
+    display: flex;
+    flex-direction: column;
+}
+
+.senapred-cabecera,
+.senapred-resumen,
+.senapred-estado,
+.senapred-pie {
+    flex: 0 0 auto;
+}
+
+.senapred-lista,
+.senapred-detalle {
+    flex: 1 1 auto;
+    min-height: 0;
+
+    max-height: none;
+
+    overflow-y: auto;
+
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+}
+
+@media (max-width: 700px) {
+
+    .panel-senapred {
+        top: 70px;
+        right: 10px;
+        bottom: max(
+            10px,
+            env(safe-area-inset-bottom)
+        );
+        left: 10px;
+
+        width: auto;
+
+        height: auto;
+        max-height: none;
+    }
+
+    .senapred-lista,
+    .senapred-detalle {
+        max-height: none;
+        min-height: 0;
+    }
+}
