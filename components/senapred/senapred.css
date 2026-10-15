@@ -726,3 +726,84 @@
         transform: rotate(360deg);
     }
 }
+
+/* =========================================================
+   TABLAS METEOROLÓGICAS SENAPRED
+   ========================================================= */
+
+.senapred-meteo-tablas {
+    margin-top: 8px;
+}
+
+.senapred-meteo-nota {
+    margin: 0 0 8px;
+    font-size: 11px;
+    line-height: 1.4;
+    color: #64748b;
+}
+
+.senapred-meteo-scroll {
+    width: 100%;
+    margin-bottom: 12px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    -webkit-overflow-scrolling: touch;
+}
+
+.senapred-meteo-tabla {
+    width: 100%;
+    min-width: 520px;
+
+    border-collapse: collapse;
+
+    font-size: 11px;
+
+    color: #334155;
+}
+
+.senapred-meteo-tabla th,
+.senapred-meteo-tabla td {
+    padding: 8px 10px;
+
+    border-bottom: 1px solid #e2e8f0;
+
+    text-align: center;
+    vertical-align: middle;
+
+    white-space: nowrap;
+}
+
+.senapred-meteo-tabla th {
+    background: #f1f5f9;
+    font-weight: 700;
+    color: #334155;
+}
+
+.senapred-meteo-tabla th:first-child,
+.senapred-meteo-tabla td:first-child {
+    text-align: left;
+    font-weight: 600;
+}
+
+.senapred-meteo-tabla tr:last-child td {
+    border-bottom: 0;
+}
+
+@media (max-width: 700px) {
+
+    .senapred-meteo-tabla {
+        min-width: 500px;
+    }
+
+    .senapred-meteo-tabla th,
+    .senapred-meteo-tabla td {
+        padding: 7px 8px;
+    }
+}

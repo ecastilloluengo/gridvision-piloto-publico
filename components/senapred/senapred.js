@@ -433,6 +433,189 @@ function obtenerEnlaceReal(href) {
 }
 
 
+function textoCeldaMeteorologica(nodo) {
+    return String(
+        nodo?.textContent || ""
+    )
+        .replace(/\s+/g, " ")
+        .trim();
+}
+
+
+function esSectorMeteorologico(texto) {
+    return /^(litoral|cordillera de la costa|valle|precordillera|cordillera|chilo[eé]|litoral interior|cordillera austral|patagonia subandina|isoterma\s*(?:cero|0))/i
+        .test(texto);
+}
+
+
+function obtenerTablasMeteorologicas(alerta) {
+    const documento =
+        obtenerDocumentoContenido(
+            alerta.contenido
+        );
+
+    return [
+        ...documento.querySelectorAll("table")
+    ].filter(
+        tabla =>
+            [
+                ...tabla.querySelectorAll("tr")
+            ].some(
+                fila => {
+                    const primeraCelda =
+                        fila.querySelector(
+                            "th, td"
+                        );
+
+                    if (!primeraCelda) {
+                        return false;
+                    }
+
+                    return esSectorMeteorologico(
+                        textoCeldaMeteorologica(
+                            primeraCelda
+                        )
+                    );
+                }
+            )
+    );
+}
+
+
+function prepararTablaMeteorologica(tablaOriginal) {
+    const tabla =
+        tablaOriginal.cloneNode(true);
+
+    tabla.className =
+        "senapred-meteo-tabla";
+
+    tabla.removeAttribute("style");
+
+    tabla
+        .querySelectorAll("*")
+        .forEach(
+            nodo => {
+                nodo.removeAttribute("style");
+
+                for (
+                    const atributo
+                    of [...nodo.attributes]
+                ) {
+                    if (
+                        atributo.name
+                            .toLowerCase()
+                            .startsWith("on")
+                    ) {
+                        nodo.removeAttribute(
+                            atributo.name
+                        );
+                    }
+                }
+            }
+        );
+
+    return tabla;
+}
+
+
+function mostrarTablasMeteorologicas(alerta) {
+    const contenedor =
+        elemento(
+            "senapred-detalle-meteo"
+        );
+
+    const titulo =
+        elemento(
+            "senapred-detalle-meteo-titulo"
+        );
+
+    if (
+        !contenedor
+        || !titulo
+    ) {
+        return;
+    }
+
+    const tablas =
+        obtenerTablasMeteorologicas(
+            alerta
+        );
+
+    contenedor.innerHTML = "";
+
+    if (!tablas.length) {
+        titulo.hidden = true;
+        contenedor.hidden = true;
+        return;
+    }
+
+    titulo.hidden = false;
+    contenedor.hidden = false;
+
+    const nota =
+        document.createElement("p");
+
+    nota.className =
+        "senapred-meteo-nota";
+
+    nota.textContent =
+        "Precipitación: mm · Isoterma 0 °C: m s.n.m.";
+
+    contenedor.appendChild(nota);
+
+    const precipitacion =
+        elemento(
+            "senapred-detalle-precipitacion"
+        );
+
+    if (
+        precipitacion
+        && precipitacion.textContent.trim() === "—"
+    ) {
+        precipitacion.textContent =
+            "Ver tabla ↓";
+    }
+
+    const existeIsoterma =
+        tablas.some(
+            tabla =>
+                /isoterma/i.test(
+                    tabla.textContent || ""
+                )
+        );
+
+    const isoterma =
+        elemento(
+            "senapred-detalle-isoterma"
+        );
+
+    if (
+        existeIsoterma
+        && isoterma
+        && isoterma.textContent.trim() === "—"
+    ) {
+        isoterma.textContent =
+            "Ver tabla ↓";
+    }
+
+    for (const tabla of tablas) {
+
+        const scroll =
+            document.createElement("div");
+
+        scroll.className =
+            "senapred-meteo-scroll";
+
+        scroll.appendChild(
+            prepararTablaMeteorologica(
+                tabla
+            )
+        );
+
+        contenedor.appendChild(scroll);
+    }
+}
+
 function obtenerAvisos(alerta) {
     const documento =
         obtenerDocumentoContenido(
@@ -853,6 +1036,7 @@ function abrirDetalle(alerta) {
         metricas.isoterma;
 
 
+    mostrarTablasMeteorologicas(alerta);
     mostrarAvisos(alerta);
     mostrarAfectaciones(alerta);
     mostrarContenidoCompleto(alerta);
