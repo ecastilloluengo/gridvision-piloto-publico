@@ -849,3 +849,16 @@
         font-weight: 600;
     }
 }
+
+/* =========================================================
+   SEGURIDAD VISIBILIDAD SENAPRED
+   hidden siempre debe ocultar el componente
+   ========================================================= */
+
+.panel-senapred[hidden],
+.senapred-detalle[hidden],
+.senapred-resumen[hidden],
+.senapred-estado[hidden],
+.senapred-lista[hidden] {
+    display: none !important;
+}
