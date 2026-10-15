@@ -482,6 +482,47 @@ function obtenerTablasMeteorologicas(alerta) {
 }
 
 
+function abreviarFechaMeteorologica(texto) {
+    const meses = {
+        enero: "ene",
+        febrero: "feb",
+        marzo: "mar",
+        abril: "abr",
+        mayo: "may",
+        junio: "jun",
+        julio: "jul",
+        agosto: "ago",
+        septiembre: "sep",
+        octubre: "oct",
+        noviembre: "nov",
+        diciembre: "dic"
+    };
+
+    const coincidencia =
+        String(texto || "")
+            .trim()
+            .match(
+                /^(\d{1,2})\s+de\s+([a-záéíóúñ]+)$/i
+            );
+
+    if (!coincidencia) {
+        return texto;
+    }
+
+    const dia =
+        coincidencia[1];
+
+    const mes =
+        coincidencia[2]
+            .toLowerCase();
+
+    if (!meses[mes]) {
+        return texto;
+    }
+
+    return `${dia}-${meses[mes]}`;
+}
+
 function prepararTablaMeteorologica(tablaOriginal) {
     const tabla =
         tablaOriginal.cloneNode(true);
@@ -490,6 +531,30 @@ function prepararTablaMeteorologica(tablaOriginal) {
         "senapred-meteo-tabla";
 
     tabla.removeAttribute("style");
+
+    tabla
+        .querySelectorAll("th, td")
+        .forEach(
+            celda => {
+                const textoOriginal =
+                    textoCeldaMeteorologica(
+                        celda
+                    );
+
+                const textoAbreviado =
+                    abreviarFechaMeteorologica(
+                        textoOriginal
+                    );
+
+                if (
+                    textoAbreviado
+                    !== textoOriginal
+                ) {
+                    celda.textContent =
+                        textoAbreviado;
+                }
+            }
+        );
 
     tabla
         .querySelectorAll("*")

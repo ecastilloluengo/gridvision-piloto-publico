@@ -807,3 +807,45 @@
         padding: 7px 8px;
     }
 }
+
+/* =========================================================
+   OPTIMIZACIÓN MÓVIL TABLA METEOROLÓGICA
+   ========================================================= */
+
+.senapred-meteo-tabla th:first-child,
+.senapred-meteo-tabla td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+
+    background: #ffffff;
+}
+
+.senapred-meteo-tabla th:first-child {
+    z-index: 3;
+    background: #f1f5f9;
+}
+
+@media (max-width: 700px) {
+
+    .senapred-meteo-tabla {
+        min-width: 430px;
+        font-size: 10.5px;
+    }
+
+    .senapred-meteo-tabla th,
+    .senapred-meteo-tabla td {
+        padding: 6px 7px;
+    }
+
+    .senapred-meteo-tabla th:first-child,
+    .senapred-meteo-tabla td:first-child {
+        min-width: 135px;
+        max-width: 150px;
+    }
+
+    .senapred-meteo-nota::after {
+        content: " · Desliza ↔";
+        font-weight: 600;
+    }
+}
