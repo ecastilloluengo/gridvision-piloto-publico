@@ -673,6 +673,8 @@ const controlCapas = L.control.layers(
         position: "topright"
     }
 ).addTo(mapa);
+window.GridVisionSTLL.instalar(mapa, controlCapas, indiceBusqueda);
+
 // =====================================================
 // PROTECCIÓN DE GOOGLE SATÉLITE
 // =====================================================
@@ -3093,6 +3095,10 @@ async function cargarLineas() {
     }
 
     const datos = await respuesta.json();
+
+    if (!window.GridVisionSTLL.corregirLineas(datos)) {
+        alert("El trazado base cambió. La separación STLL en E22 requiere revisión.");
+    }
 
     L.geoJSON(datos, {
         style(feature) {
