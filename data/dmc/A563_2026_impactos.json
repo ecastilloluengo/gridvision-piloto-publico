@@ -1,0 +1,41 @@
+{
+  "codigo": "A563/2026",
+  "criterio": "intersección geográfica",
+  "advertencia": "Área del aviso: exposición potencial, no impacto confirmado.",
+  "totales": {
+    "activos": 1,
+    "lineas": 2,
+    "netbilling": 0
+  },
+  "elementos": {
+    "activos": [
+      {
+        "id": "GV-02087",
+        "nombre": "2213_S/E TRES QUEBRADAS",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      }
+    ],
+    "lineas": [
+      {
+        "id": "GV-00293",
+        "nombre": "1511_PUNTA COLORADA - TRES QUEBRADAS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00294",
+        "nombre": "1512_TRES QUEBRADAS - LAMA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      }
+    ],
+    "netbilling": []
+  }
+}

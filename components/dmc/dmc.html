@@ -1,0 +1,103 @@
+<section id="panel-dmc" class="panel-dmc" hidden aria-label="Vigilancia meteorológica DMC">
+  <header class="dmc-cabecera">
+    <div>
+      <span class="dmc-etiqueta">DIRECCIÓN METEOROLÓGICA DE CHILE</span>
+      <h2>Vigilancia nacional DMC</h2>
+      <p>Filtra los documentos y consulta sus zonas.</p>
+    </div>
+    <button id="cerrar-dmc" type="button" title="Cerrar panel DMC" aria-label="Cerrar panel DMC">×</button>
+  </header>
+  <div class="dmc-contenido dmc-contenido-v10">
+    <div id="dmc-resumen-corto-v10" class="dmc-estado-corto-v10" role="status">Cargando documentos…</div>
+    <div class="dmc-opciones dmc-opciones-v10">
+      <label><input type="checkbox" id="dmc-capa"> <strong>Mostrar en el mapa</strong></label>
+      <button id="dmc-enfocar" type="button">Ver zonas</button>
+    </div>
+    <section class="dmc-filtros-v9" aria-label="Control de capas meteorológicas">
+      <h3>Filtrar por nivel DMC</h3>
+      <div class="dmc-severidades-v9" id="dmc-severidades-v9">
+        <label class="dmc-nivel-v9 dmc-nivel--aviso"><input type="checkbox" data-dmc-nivel="aviso" checked><span>Avisos</span><b id="dmc-n-avisos">0</b></label>
+        <label class="dmc-nivel-v9 dmc-nivel--alerta"><input type="checkbox" data-dmc-nivel="alerta" checked><span>Alertas</span><b id="dmc-n-alertas">0</b></label>
+        <label class="dmc-nivel-v9 dmc-nivel--alarma"><input type="checkbox" data-dmc-nivel="alarma" checked><span>Alarmas</span><b id="dmc-n-alarmas">0</b></label>
+      </div>
+      <details id="dmc-documentos-v9">
+        <summary>Documentos: <span id="dmc-documentos-visibles-v9">0</span> seleccionados de <span id="dmc-documentos-disponibles-v10">0</span> disponibles</summary>
+        <div class="dmc-busqueda-v13">
+          <label for="dmc-buscar-lista-v13">Buscar documento o zona</label>
+          <input type="search" id="dmc-buscar-lista-v13" placeholder="Código, región, zona, fenómeno…" autocomplete="off" aria-label="Buscar en lista DMC por código, región, zona o fenómeno">
+          <label for="dmc-region-lista-v13">Región</label>
+          <select id="dmc-region-lista-v13" aria-label="Filtrar lista DMC por región"><option value="">Todas las regiones</option></select>
+          <small>Estos filtros muestran coincidencias en la lista, sin cambiar los polígonos seleccionados.</small>
+          <output id="dmc-coincidencias-v13" aria-live="polite">—</output>
+        </div>
+        <div class="dmc-acciones-v9">
+          <button type="button" id="dmc-todos-v9" title="Activar todos los documentos de los niveles DMC visibles">Mostrar categoría</button>
+          <button type="button" id="dmc-ninguno-v9" title="Desactivar todos los documentos de los niveles DMC visibles">Ocultar categoría</button>
+        </div>
+        <div id="dmc-documentos-lista-v9" class="dmc-documentos-lista-v9"></div>
+      </details>
+      <p class="dmc-ayuda-clic-v10">Haz clic sobre una zona para consultar la ficha. Si hay superposición, elige el documento. También puedes abrirla con «Ver ficha».</p>
+    </section>
+    <details class="dmc-desplegable-v10" id="dmc-vista-opciones-v10">
+      <summary>Opciones de visualización</summary>
+      <section class="dmc-simbologia" aria-label="Leyenda de severidad DMC">
+        <div class="dmc-leyenda-severidad">
+          <div><span class="dmc-muestra dmc-muestra--aviso" aria-hidden="true"></span><span>Aviso</span></div>
+          <div><span class="dmc-muestra dmc-muestra--alerta" aria-hidden="true"></span><span>Alerta</span></div>
+          <div><span class="dmc-muestra dmc-muestra--alarma" aria-hidden="true"></span><span>Alarma</span></div>
+        </div>
+        <label class="dmc-achurado-opcion" for="dmc-achurado"><input id="dmc-achurado" type="checkbox" checked>Achurado tipo DMC</label>
+        <label class="dmc-achurado-opcion" for="dmc-divisiones"><input id="dmc-divisiones" type="checkbox">Mostrar divisiones meteorológicas</label>
+        <label class="dmc-achurado-opcion" for="dmc-ver-historicos"><input id="dmc-ver-historicos" type="checkbox">Incluir documentos fuera del período informado</label>
+        <small>La clasificación DMC no equivale al nivel SENAPRED. Las áreas son pronósticos, no detecciones de descargas.</small>
+      </section>
+    </details>
+    <details class="dmc-desplegable-v10" id="dmc-impactos-detalle-v10">
+      <summary>Exposición de centrales y líneas</summary>
+      <section class="dmc-impactos" aria-label="Activos en áreas DMC">
+        <h3>Instalaciones en las zonas seleccionadas</h3>
+        <div class="dmc-filtros-impactos">
+          <label for="dmc-tipo-impacto">Mostrar</label>
+          <select id="dmc-tipo-impacto">
+            <option value="lineas">Líneas de transmisión</option>
+            <option value="activos">Activos puntuales</option>
+            <option value="todos">Todos</option>
+          </select>
+          <input id="dmc-buscar-impactos" type="search" placeholder="Buscar instalación, línea, zona o ID" aria-label="Buscar instalaciones dentro del aviso">
+        </div>
+        <div id="dmc-impactos-contenido">Cargando intersecciones…</div>
+      </section>
+    </details>
+    <details class="dmc-desplegable-v10" id="dmc-comparacion-detalle-v10">
+      <summary>Comparación con SENAPRED</summary>
+      <section class="dmc-comparacion" aria-label="Comparación DMC y SENAPRED">
+        <div id="dmc-comparacion" role="status">Esperando información SENAPRED…</div>
+      </section>
+    </details>
+    <details class="dmc-desplegable-v10" id="dmc-fuente-detalle-v10">
+      <summary>Fuente, fecha de actualización y documentos</summary>
+      <div id="dmc-modo" class="dmc-nota" role="status">Cargando datos…</div>
+      <div id="dmc-nacional-resumen" class="dmc-nota" role="status">Preparando resumen nacional…</div>
+      <div id="dmc-lista" class="dmc-lista"></div>
+      <p class="dmc-nota">El área de un aviso NO equivale a una falla eléctrica, rayo confirmado ni activación automática del PEC.</p>
+      <p class="dmc-fuentes"><a href="https://archivos.meteochile.gob.cl/portaldmc/AAA/aaa_mapa.php" target="_blank" rel="noopener noreferrer">Mapa oficial DMC</a> · <a href="https://www.senapred.cl/" target="_blank" rel="noopener noreferrer">SENAPRED</a></p>
+    </details>
+  </div>
+</section>
+
+<div id="dmc-ficha-v9" class="dmc-ficha-fondo-v9" hidden>
+  <div class="dmc-ficha-v9" role="dialog" aria-modal="true" aria-labelledby="dmc-ficha-titulo-v9" tabindex="-1">
+    <header class="dmc-ficha-cabecera-v9">
+      <div>
+        <small>DIRECCIÓN METEOROLÓGICA DE CHILE · Documento reproducido en GridVision</small>
+        <h2 id="dmc-ficha-titulo-v9">Detalle meteorológico</h2>
+      </div>
+      <button id="dmc-ficha-cerrar-v9" type="button" aria-label="Cerrar ficha DMC">×</button>
+    </header>
+    <div id="dmc-ficha-contenido-v9" class="dmc-ficha-cuerpo-v9" tabindex="0"></div>
+    <footer class="dmc-ficha-pie-v9">
+      <span>Fuente DMC · copia local. Confirmar vigencia oficial.</span>
+      <button id="dmc-ficha-cerrar-pie-v9" type="button">Cerrar</button>
+    </footer>
+  </div>
+</div>

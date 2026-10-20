@@ -1,0 +1,175 @@
+/* GridVision: módulo DMC independiente (piloto con carga manual del GeoJSON). */
+.boton-header-gridvision#abrir-dmc { white-space: nowrap; }
+.panel-dmc[hidden] { display: none !important; }
+.panel-dmc { position: fixed; top: 76px; right: 14px; bottom: 14px;
+ z-index: 1200; width: min(440px, calc(100vw - 28px)); overflow: auto;
+ background: #101e2b; color: #edf4ff; border: 1px solid #3b536c; border-radius: 14px;
+ box-shadow: 0 16px 45px #0009; font: 14px/1.5 system-ui, sans-serif; }
+.panel-dmc * { box-sizing: border-box; }
+.dmc-cabecera { position: sticky; top: 0; z-index: 2; display: flex; align-items: start;
+ justify-content: space-between; gap: 12px; padding: 18px; background: #193247; border-bottom: 1px solid #3d566b; }
+.dmc-cabecera h2 { font-size: 18px; margin: 5px 0; line-height: 1.2; color: #fff; }
+.dmc-cabecera p { margin: 0; color: #c9d6e4; font-size: 12px; }
+.dmc-etiqueta { color: #ffdb75; font-size: 11px; font-weight: 700; letter-spacing: .04em; }
+#cerrar-dmc { cursor: pointer; background: transparent; border: 1px solid #688298; color: white;
+ border-radius: 8px; min-width: 32px; min-height: 32px; font-size: 23px; }
+.dmc-contenido { padding: 16px; display: grid; gap: 15px; }
+.dmc-contenido h3 { margin: 0 0 8px; color: #fff; font-size: 15px; }
+.dmc-contenido p { margin: 5px 0; }
+.dmc-nota { padding: 11px; background: #1d3446; color: #d2dfea; border-left: 3px solid #e0b442; border-radius: 7px; font-size: 12px; }
+.dmc-opciones { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; align-items: center; }
+.dmc-opciones label { display: inline-flex; gap: 6px; align-items: center; }
+.dmc-opciones button { padding: 8px 10px; background: #245b80; color: white;
+ border: 1px solid #5281a1; border-radius: 7px; cursor: pointer; }
+.dmc-tarjeta, .dmc-comparacion, .dmc-impactos { background: #183046; padding: 12px;
+ border: 1px solid #355169; border-radius: 10px; }
+.dmc-tarjeta strong { color: #ffdb75; }
+.dmc-tarjeta small { display: block; color: #c9d6e4; margin-top: 4px; }
+.dmc-estados { margin-top: 8px; font-weight: 600; }
+.dmc-coincide { color: #a3e4bd; }
+.dmc-diferencia { color: #ffdc83; }
+.dmc-pendiente { color: #d1d7df; }
+.dmc-impactos-contenido, #dmc-impactos-contenido { overflow-wrap: anywhere; }
+.dmc-impactos summary { cursor: pointer; }
+.dmc-impactos ul { padding-left: 20px; max-height: 230px; overflow: auto; }
+.dmc-impactos li { padding: 3px 0; }
+.dmc-fuentes a { color: #9bd8ff; }
+@media(max-width:700px) { .panel-dmc { top: 68px; right: 6px; bottom: 6px;
+ width: calc(100vw - 12px); } }
+
+.dmc-filtros-impactos {display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:8px}
+.dmc-filtros-impactos label {font-size:12px;color:#d3dfeb}
+.dmc-filtros-impactos select,.dmc-filtros-impactos input {
+ background:#0e2638;border:1px solid #53738b;border-radius:6px;color:white;padding:7px;
+ max-width:100%;}
+.dmc-filtros-impactos input {flex:1 1 180px;min-width:0;}
+.dmc-impactos a {color:#a6ddff;text-decoration:underline}
+
+
+/* Visualización DMC v2: paleta operacional + leyendas accesibles. */
+.dmc-simbologia { padding: 12px; background: #183046; border: 1px solid #355169; border-radius: 10px; }
+.dmc-leyenda-severidad { display: flex; flex-wrap: wrap; gap: 11px; margin: 8px 0 12px; }
+.dmc-leyenda-severidad > div { display: inline-flex; align-items: center; gap: 6px; font-weight: 650; font-size: 12px; }
+.dmc-muestra { width: 19px; height: 13px; display: inline-block; border: 2px solid transparent; border-radius: 3px; flex-shrink: 0; }
+.dmc-muestra--aviso { background: rgb(253 224 71 / 25%); border-color: #e4b700; }
+.dmc-muestra--alerta { background: rgb(251 146 60 / 28%); border-color: #f97316; }
+.dmc-muestra--alarma { background: rgb(248 113 113 / 33%); border-color: #dc2626; }
+.dmc-achurado-opcion { display: flex; align-items: center; gap: 8px; margin: 10px 0 9px; font-weight: 550; cursor: pointer; }
+.dmc-achurado-opcion input { accent-color: #f9c846; width: 16px; height: 16px; }
+.dmc-simbologia small { display: block; color: #bfd0de; font-size: 11px; line-height: 1.55; }
+.dmc-leyenda-mapa { background: #122c3fea; color: #edf7ff; border: 1px solid #496a83; border-radius: 9px;
+ padding: 10px 12px; font: 12px/1.45 system-ui,sans-serif; box-shadow: 0 3px 14px #0007; min-width: 176px; }
+.dmc-leyenda-mapa[hidden] { display: none !important; }
+.dmc-leyenda-mapa > strong { font-size: 12px; display: block; margin-bottom: 7px; color: #fff; }
+.dmc-leyenda-mapa > div { display: flex; gap: 8px; align-items: center; margin: 4px 0; }
+.dmc-leyenda-mapa > small { display: block; padding-top: 5px; font-size: 10px; color: #c1d4e4; }
+.dmc-tooltip { background: #102537; border: 1px solid #53738d; color: #f5fbff; font: 12px system-ui, sans-serif; box-shadow: 0 2px 9px #0009; }
+.dmc-tooltip::before { border-top-color: #53738d !important; }
+@media(max-width:700px) { .dmc-leyenda-mapa { min-width: 142px; padding: 8px; font-size: 11px; } }
+
+/* V3: muestras equivalentes al patrón SVG, semitransparente. */
+.dmc-muestra--aviso { background: repeating-linear-gradient(135deg, #e4b700a8 0 1px, transparent 1px 9px), #fde04730; }
+.dmc-muestra--alerta { background: repeating-linear-gradient(135deg, #f9731688 0 1px, transparent 1px 9px), #fb923c30; }
+.dmc-muestra--alarma { background: repeating-linear-gradient(135deg, #dc262688 0 1px, transparent 1px 9px), #f8717139; }
+
+/* v4: patrón más legible sobre satélite; límites internos opcionales. */
+.dmc-achurado-opcion + .dmc-achurado-opcion { margin-top:4px; }
+
+/* v5: muestra amarilla levemente reforzada; la geometria DMC no cambia. */
+
+/* DMC v9 · Controles nacionales y ficha documental con scroll */
+.dmc-filtros-v9 { background:#183046; border:1px solid #355169; border-radius:10px; padding:12px; }
+.dmc-ayuda-v9 { font-size:11px; color:#c7d5e3; margin:4px 0 12px !important; }
+.dmc-severidades-v9 { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; margin-bottom:10px; }
+.dmc-nivel-v9 { display:flex;align-items:center;gap:5px; background:#0e2638; padding:7px 6px; border:1px solid #526579; border-left:4px solid; border-radius:6px; cursor:pointer; font-size:12px; white-space:nowrap; }
+.dmc-nivel-v9 input { margin:0; }
+.dmc-nivel-v9 b {margin-left:auto; font-size:11px;}
+.dmc-nivel--aviso {border-left-color:#e4b700;}
+.dmc-nivel--alerta {border-left-color:#f97316;}
+.dmc-nivel--alarma {border-left-color:#dc2626;}
+.dmc-acciones-v9 {display:flex; gap:8px; margin:10px 0;}
+.dmc-acciones-v9 button,.dmc-doc-v9 button {background:#244b68; color:#f4fbff; border:1px solid #597b95;border-radius:6px; padding:5px 7px;cursor:pointer; font-size:11px;}
+.dmc-acciones-v9 button:hover,.dmc-doc-v9 button:hover {background:#346f95;}
+#dmc-documentos-v9 summary {cursor:pointer; font-size:12px; font-weight:700;}
+.dmc-documentos-lista-v9 {max-height:245px;overflow:auto;display:grid;gap:5px;padding-right:3px;}
+.dmc-doc-v9 {display:grid; grid-template-columns:auto minmax(0,1fr);gap:7px;align-items:start;background:#10293b;border:1px solid #36516a;border-left:4px solid var(--dmc-c,#e4b700);padding:8px;border-radius:7px;}
+.dmc-doc-v9 input {margin-top:4px;}
+.dmc-doc-v9 strong {font-size:12px; color:#fff;}
+.dmc-doc-v9 small {display:block;font-size:11px;color:#c9d6e4;line-height:1.35;}
+.dmc-doc-v9 .dmc-doc-botones-v9 {display:flex;gap:5px;margin-top:5px;flex-wrap:wrap;}
+.dmc-doc-v9[data-disabled="true"] {opacity:.58;}
+.dmc-ficha-fondo-v9[hidden] {display:none!important;}
+.dmc-ficha-fondo-v9 {position:fixed;inset:0;z-index:25000;background:#000b;display:flex;align-items:center;justify-content:center;padding:20px;}
+.dmc-ficha-v9 {width:min(760px,100%);max-height:min(90vh,1000px);display:flex;flex-direction:column;background:#fffef0;color:#1c2531;border-radius:12px;box-shadow:0 14px 60px #000b;overflow:hidden;font:15px/1.5 system-ui,sans-serif;}
+.dmc-ficha-cabecera-v9 {display:flex;justify-content:space-between;align-items:start;gap:8px;padding:15px 20px;border-bottom:1px solid #e0dabe;background:#fff6b4;}
+.dmc-ficha-cabecera-v9 h2 {font-size:20px;margin:4px 0 0;color:#2a2834;line-height:1.3;}
+.dmc-ficha-cabecera-v9 small {font-size:11px;letter-spacing:.03em;color:#5a5d35;font-weight:700;display:block;line-height:1.35;}
+#dmc-ficha-cerrar-v9 {cursor:pointer;background:#d30c4d;color:white;border:0;border-radius:6px;font-size:24px;min-width:38px;min-height:38px;}
+.dmc-ficha-cuerpo-v9 {overflow-y:auto;overscroll-behavior:contain;padding:24px 26px;flex:1;min-height:0;}
+.dmc-ficha-cuerpo-v9 h3 {color:#191b26;margin:8px 0 10px;font-size:22px;}
+.dmc-ficha-cuerpo-v9 .dmc-ficha-tipo-v9 {background:#ffe96a;padding:8px 12px;border-radius:7px;text-align:center;font-weight:800;font-size:24px;margin-bottom:12px;}
+.dmc-ficha-fondo-v9[data-nivel="alerta"] .dmc-ficha-tipo-v9 {background:#fd9a45;}
+.dmc-ficha-fondo-v9[data-nivel="alarma"] .dmc-ficha-tipo-v9 {background:#fd7777;}
+.dmc-ficha-cuerpo-v9 .dmc-ficha-metadatos-v9 {display:grid; gap:8px;margin:12px 0 18px;}
+.dmc-ficha-zonas-v9 {white-space:pre-line;}
+.dmc-ficha-tabla-scroll-v9 {overflow:auto;max-width:100%;border:1px solid #bad0e7;margin:12px 0;}
+.dmc-ficha-tabla-v9 {border-collapse:collapse;width:max-content;min-width:100%;font-size:13px;}
+.dmc-ficha-tabla-v9 th,.dmc-ficha-tabla-v9 td {border:1px solid #b6c0c9;padding:7px 9px;text-align:center;white-space:normal;}
+.dmc-ficha-tabla-v9 th {background:#9bcefc;color:#112437;font-weight:700;}
+.dmc-ficha-tabla-v9 td {background:white;}
+.dmc-ficha-tabla-v9 td:first-child {background:#d4e8ff;}
+.dmc-ficha-pie-v9 {border-top:1px solid #ddd5a8;background:#f8f6e7;padding:10px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12px;}
+.dmc-ficha-pie-v9 button {border:0;background:#dd0d52;color:#fff;font-weight:700;border-radius:7px;padding:9px 15px;cursor:pointer;}
+.dmc-ficha-elegir-v9 {display:grid;gap:8px;}
+.dmc-ficha-elegir-v9 button {text-align:left;background:#edf5fc;color:#0e273d;border:1px solid #adc5d5;border-left:6px solid var(--dmc-c,#e4b700);padding:12px;border-radius:8px;cursor:pointer;}
+@media(max-width:700px) {.dmc-ficha-fondo-v9 {padding:6px;}.dmc-ficha-v9 {max-height:97vh;}.dmc-ficha-cuerpo-v9 {padding:16px;}.dmc-ficha-cuerpo-v9 h3 {font-size:18px;}.dmc-severidades-v9 {gap:3px;}.dmc-nivel-v9 {font-size:10px;}}
+
+/* V10: panel compacto, filtros sincronizados y detalles secundarios plegables. */
+.panel-dmc { width:min(410px, calc(100vw - 28px)); }
+.dmc-cabecera { padding:11px 13px; }
+.dmc-cabecera h2 { font-size:16px; margin:2px 0; }
+.dmc-cabecera p { font-size:11px; }
+.dmc-etiqueta { font-size:9px; }
+.dmc-contenido-v10 { padding:10px; gap:9px; }
+.dmc-estado-corto-v10 { background:#1d3446; border-left:3px solid #e4b700; border-radius:6px; padding:7px 9px; color:#d8e9f4; font-size:11px; }
+.dmc-opciones-v10 { padding:3px 0; }
+.dmc-opciones-v10 label { font-size:12px; }
+.dmc-opciones-v10 button { padding:5px 9px; font-size:11px; }
+.dmc-contenido-v10 .dmc-filtros-v9 { padding:10px; }
+.dmc-contenido-v10 h3 { font-size:13px; margin-bottom:8px; }
+.dmc-ayuda-clic-v10 { font-size:11px; line-height:1.4; color:#bbd0df; margin:9px 0 0 !important; }
+.dmc-desplegable-v10 { border:1px solid #355169; background:#183046; border-radius:8px; padding:0; }
+.dmc-desplegable-v10 > summary { display:list-item; padding:10px 12px; cursor:pointer; font-size:12px; font-weight:700; color:#f0f7fd; }
+.dmc-desplegable-v10[open] > summary { border-bottom:1px solid #355169; margin-bottom:8px; }
+.dmc-desplegable-v10 > :not(summary) { margin:8px 10px 10px; }
+.dmc-desplegable-v10 .dmc-simbologia { border:0; padding:4px 8px 10px; }
+.dmc-desplegable-v10 .dmc-comparacion,.dmc-desplegable-v10 .dmc-impactos { border:0; padding:8px; }
+.dmc-lista-vacia-v10 {color:#c8d6e5;font-size:11px;padding:9px 4px;}
+.dmc-documentos-lista-v9 { max-height:230px; }
+.dmc-nivel-v9:has(input:disabled) {opacity:.5;cursor:not-allowed;}
+@media(max-width:700px) {.panel-dmc { width:calc(100vw - 12px); }.dmc-ficha-cuerpo-v9 { padding:12px; }}
+
+/* v12: contraste y botón Volver al listado de documentos. */
+.dmc-ficha-cabecera-v9 small { color:#475569 !important; opacity:1 !important; }
+#dmc-ficha-cerrar-v9 { font-weight:800; }
+
+/* v13: identidad territorial y búsqueda de documentos en panel compacto. */
+.dmc-busqueda-v13 { display:grid; gap:5px; margin:10px 0; }
+.dmc-busqueda-v13 label { font-size:11px; font-weight:700; color:#d5e6f4; }
+.dmc-busqueda-v13 input,.dmc-busqueda-v13 select {
+  width:100%; min-width:0; background:#0e2638; color:#edf7ff;
+  border:1px solid #5b7e96; border-radius:6px; padding:7px 9px;
+  font:12px system-ui,sans-serif;
+}
+.dmc-busqueda-v13 input:focus-visible,.dmc-busqueda-v13 select:focus-visible {outline:2px solid #8dcefa;outline-offset:1px;}
+.dmc-busqueda-v13 small { font-size:10px; color:#aec8d9; line-height:1.35; }
+#dmc-coincidencias-v13 { font-size:11px; font-weight:700; color:#d9eaff; }
+.dmc-doc-v13 { gap:8px; }
+.dmc-doc-info-v13 {display:grid;gap:3px;min-width:0;}
+.dmc-doc-v13 .dmc-doc-fenomeno-v13 { font-weight:650; font-size:12px;color:#e6f2ff;line-height:1.25; }
+.dmc-doc-v13 .dmc-doc-region-v13 { display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; overflow:hidden; color:#8dd6ff; font-weight:650; font-size:11px; line-height:1.35; overflow-wrap:anywhere; }
+.dmc-doc-v13 .dmc-doc-zonas-v13 {display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;font-size:11px;color:#d6e1eb;line-height:1.35;overflow-wrap:anywhere;}
+.dmc-doc-v13 .dmc-doc-fecha-v13 {font-size:10px;color:#bbcfdb;}
+.dmc-doc-v13 .dmc-doc-botones-v9 {margin-top:3px;}
+.dmc-doc-v13[data-disabled="true"] { opacity:.65; }
+.dmc-doc-v13 strong { color:#fff; }

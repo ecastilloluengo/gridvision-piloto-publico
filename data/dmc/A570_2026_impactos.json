@@ -1,0 +1,1393 @@
+{
+  "codigo": "A570/2026",
+  "criterio": "intersección geográfica",
+  "advertencia": "Área del aviso: exposición potencial, no impacto confirmado.",
+  "totales": {
+    "activos": 96,
+    "lineas": 76,
+    "netbilling": 0
+  },
+  "elementos": {
+    "activos": [
+      {
+        "id": "GV-00013",
+        "nombre": "10_CA S/E ANGAMOS CT1",
+        "categoria": "Almacenamiento de energía",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-03319",
+        "nombre": "122_TER HUASCO",
+        "categoria": "Central",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-03430",
+        "nombre": "133_TER TALTAL",
+        "categoria": "Central",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01676",
+        "nombre": "1652_S/E TOTORALILLO (CAP CMP)",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-02437",
+        "nombre": "1658_PE CABO LEONES II",
+        "categoria": "Central",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-01701",
+        "nombre": "1699_S/E PLANTA DESALADORA Y BOMBEO N°1",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-01718",
+        "nombre": "1725_S/E CENTRAL CHAÑARES",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-01752",
+        "nombre": "1768_S/E NUEVA PELLETS",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-01773",
+        "nombre": "1792_S/E CENTRAL PARQUE EOLICO SAN JUAN",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-01792",
+        "nombre": "1812_S/E ALTO HOSPICIO",
+        "categoria": "Subestación",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-01796",
+        "nombre": "1816_S/E ANGAMOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01797",
+        "nombre": "1817_S/E ANTOFAGASTA",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01800",
+        "nombre": "1820_S/E ATACAMA",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01805",
+        "nombre": "1825_S/E CENTRAL ATACAMA",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01808",
+        "nombre": "1828_S/E CENTRAL DIESEL ENAEX",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01810",
+        "nombre": "1833_S/E CENTRAL MEJILLONES",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01814",
+        "nombre": "1838_S/E CENTRAL TARAPACA",
+        "categoria": "Subestación",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-01815",
+        "nombre": "1839_S/E CENTRAL TOCOPILLA",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01816",
+        "nombre": "1840_S/E CENTRO",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01818",
+        "nombre": "1842_S/E CERRO DRAGON",
+        "categoria": "Subestación",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-01820",
+        "nombre": "1844_S/E CHACAYA",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01825",
+        "nombre": "1849_S/E COCHRANE",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01835",
+        "nombre": "1859_S/E CONDORES",
+        "categoria": "Subestación",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-01836",
+        "nombre": "1860_S/E DESALANT",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01847",
+        "nombre": "1871_S/E ESMERALDA",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01849",
+        "nombre": "1873_S/E ESTACION DE BOMBEO SIERRA GORDA N°1",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01850",
+        "nombre": "1874_S/E ESTACION DE BOMBEO SIERRA GORDA N°2",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01853",
+        "nombre": "1877_S/E GNL MEJILLONES",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01858",
+        "nombre": "1882_S/E IQUIQUE",
+        "categoria": "Subestación",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-01861",
+        "nombre": "1886_S/E KAPATUR",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01862",
+        "nombre": "1887_S/E KELAR",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01865",
+        "nombre": "1890_S/E LA PORTADA",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01877",
+        "nombre": "1902_S/E MEJILLONES",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01879",
+        "nombre": "1904_S/E MOLYCOP",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01881",
+        "nombre": "1906_S/E MUELLE",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01883",
+        "nombre": "1908_S/E NORGENER",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01890",
+        "nombre": "1915_S/E PACIFICO",
+        "categoria": "Subestación",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-01891",
+        "nombre": "1916_S/E PALAFITOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-01910",
+        "nombre": "1937_S/E SUR",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-02268",
+        "nombre": "1950_TAP OFF DESALANT",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01921",
+        "nombre": "1952_S/E TAP OFF E.B. ALGORTA N°1",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01931",
+        "nombre": "1967_TAP OFF LICANCABUR",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-03042",
+        "nombre": "1975_PMGD PFV SANTA ELIZABETH",
+        "categoria": "Central",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-02278",
+        "nombre": "1981_TAP OFF URIBE",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01938",
+        "nombre": "1984_S/E TARAPACA",
+        "categoria": "Subestación",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-01939",
+        "nombre": "1985_S/E TOCOPILLA",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-02455",
+        "nombre": "1995_PE ATACAMA",
+        "categoria": "Central",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-01954",
+        "nombre": "2010_S/E TEN GIS",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01955",
+        "nombre": "2011_S/E LOS CHANGOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01973",
+        "nombre": "2034_TAP OFF CENTRAL CAVANCHA",
+        "categoria": "Subestación",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-01982",
+        "nombre": "2055_S/E CENTRAL PARQUE EOLICO CABO LEONES I",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-01989",
+        "nombre": "2063_S/E PARANAL",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01990",
+        "nombre": "2064_S/E IEM",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01991",
+        "nombre": "2069_S/E GIS COCHRANE BESS",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-03128",
+        "nombre": "2088_PMGD PFV TALLADO",
+        "categoria": "Central",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-02012",
+        "nombre": "2096_S/E SARCO",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-02063",
+        "nombre": "2174_S/E CAITAN",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-02064",
+        "nombre": "2178_S/E DESALINIZADORA Y BOMBEO 1 (SGO)",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-03199",
+        "nombre": "2214_PMGD PFV PARQUE FAROL SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-03203",
+        "nombre": "2219_PMGD PFV CE CALDERA",
+        "categoria": "Central",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-02101",
+        "nombre": "2228_S/E CABO LEONES II",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-02112",
+        "nombre": "2243_S/E PUERTO PATACHE",
+        "categoria": "Subestación",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-02114",
+        "nombre": "2245_S/E PATILLOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-02131",
+        "nombre": "2266_S/E CENTRAL ANDINA",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-02132",
+        "nombre": "2267_S/E CENTRAL HORNITOS (TER)",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-02148",
+        "nombre": "2288_S/E GUARDIAMARINA",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-02213",
+        "nombre": "2378_S/E IBERATACAMA",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-01129",
+        "nombre": "249_S/E CENTRAL TALTAL (ENEL GENERACION)",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-02419",
+        "nombre": "365_PE SAN JUAN",
+        "categoria": "Central",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-03278",
+        "nombre": "376_TER ANDINA",
+        "categoria": "Central",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-03279",
+        "nombre": "377_TER ANGAMOS",
+        "categoria": "Central",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-03345",
+        "nombre": "378_TER TARAPACA",
+        "categoria": "Central",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-03280",
+        "nombre": "379_TER COCHRANE",
+        "categoria": "Central",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-03444",
+        "nombre": "386_TER MEJILLONES",
+        "categoria": "Central",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-03281",
+        "nombre": "387_TER TOCOPILLA",
+        "categoria": "Central",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-03347",
+        "nombre": "389_PMGD TER ZOFRI",
+        "categoria": "Central",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-03348",
+        "nombre": "390_PMGD TER ESTANDARTES",
+        "categoria": "Central",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-03445",
+        "nombre": "393_TER ATACAMA",
+        "categoria": "Central",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-03282",
+        "nombre": "395_TER HORNITOS",
+        "categoria": "Central",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-03283",
+        "nombre": "397_TER PLANTA DE ACIDO SULFURICO MEJILLONES",
+        "categoria": "Central",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-03446",
+        "nombre": "404_TER KELAR",
+        "categoria": "Central",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-03352",
+        "nombre": "405_TER LA PORTADA",
+        "categoria": "Central",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-02600",
+        "nombre": "468_PMGD HP CAVANCHA",
+        "categoria": "Central",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-02601",
+        "nombre": "471_PMGD HP ALTO HOSPICIO",
+        "categoria": "Central",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-02602",
+        "nombre": "472_PMGD HP EL TORO Nº2",
+        "categoria": "Central",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-02603",
+        "nombre": "473_PMGD HP SANTA ROSA",
+        "categoria": "Central",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-02425",
+        "nombre": "478_PE CABO LEONES",
+        "categoria": "Central",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-03284",
+        "nombre": "488_TER IEM",
+        "categoria": "Central",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-02427",
+        "nombre": "516_PE SARCO",
+        "categoria": "Central",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-01358",
+        "nombre": "582_S/E PAPOSO",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01378",
+        "nombre": "617_S/E CALDERA",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-02436",
+        "nombre": "636_PE CABO LEONES III",
+        "categoria": "Central",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-01515",
+        "nombre": "836_S/E TALTAL (ELECDA)",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01554",
+        "nombre": "882_S/E PELLETS",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-00012",
+        "nombre": "9_CA S/E COCHRANE D12",
+        "categoria": "Almacenamiento de energía",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-02322",
+        "nombre": "TAP_242_TAP ALTO HOSPICIO",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "01b_litoral"
+        ]
+      }
+    ],
+    "lineas": [
+      {
+        "id": "GV-00617",
+        "nombre": "1004_ANTOFAGASTA - ALTO NORTE 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00620",
+        "nombre": "1007_CAPRICORNIO - ANTOFAGASTA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00623",
+        "nombre": "1013_CHACAYA - GNL MEJILLONES 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00624",
+        "nombre": "1014_CHACAYA - MEJILLONES 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00625",
+        "nombre": "1015_CHACAYA - MUELLE 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00626",
+        "nombre": "1016_CONDORES - CERRO DRAGON 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-00627",
+        "nombre": "1017_CONDORES - PACIFICO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-00628",
+        "nombre": "1018_CONDORES - PALAFITOS 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-00629",
+        "nombre": "1019_ESMERALDA - CENTRO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00630",
+        "nombre": "1021_ESMERALDA - SUR 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00631",
+        "nombre": "1022_ESMERALDA - URIBE 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00632",
+        "nombre": "1023_EST. DE BOMBEO SG N°1 - EST. DE BOMBEO SG N°2 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00633",
+        "nombre": "1025_MEJILLONES - EL LINCE 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00634",
+        "nombre": "1026_MEJILLONES - ENAEX 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00635",
+        "nombre": "1027_MUELLE - GUAYAQUES 110 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00637",
+        "nombre": "1029_TAP OFF ALTO HOSPICIO - ALTO HOSPICIO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-00639",
+        "nombre": "1031_TAP DESALANT - DESALANT 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00165",
+        "nombre": "1042_ANGAMOS - ESTACION DE BOMBEO SIERRA GORDA N°1 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00166",
+        "nombre": "1043_ANGAMOS - KAPATUR 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00167",
+        "nombre": "1047_ATACAMA - ESMERALDA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00168",
+        "nombre": "1048_ATACAMA - MIRAJE 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00169",
+        "nombre": "1049_ATACAMA - O'HIGGINS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00171",
+        "nombre": "1053_CHACAYA - CRUCERO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00172",
+        "nombre": "1054_CHACAYA - EL COBRE 220 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00173",
+        "nombre": "1055_CHACAYA - MANTOS BLANCOS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00174",
+        "nombre": "1056_CHACAYA - MEJILLONES 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00175",
+        "nombre": "1057_CHACAYA - MOLYCOP 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00177",
+        "nombre": "1059_COCHRANE - ENCUENTRO 220 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00197",
+        "nombre": "1091_KAPATUR - LABERINTO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00198",
+        "nombre": "1092_KAPATUR - O'HIGGINS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00199",
+        "nombre": "1093_KELAR - KAPATUR 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00206",
+        "nombre": "1102_MEJILLONES - O'HIGGINS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00208",
+        "nombre": "1104_NORGENER - CRUCERO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00212",
+        "nombre": "1109_O'HIGGINS - COLOSO 220KV L1",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00213",
+        "nombre": "1109_O'HIGGINS - COLOSO 220KV L2",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00906",
+        "nombre": "1139_IQUIQUE - POZO ALMONTE 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-00907",
+        "nombre": "1139_IQUIQUE - POZO ALMONTE 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-00224",
+        "nombre": "1164_TEN – CHANGOS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00226",
+        "nombre": "1231_ATACAMA - O'HIGGINS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00230",
+        "nombre": "1279_MAITENCILLO - CENTRAL PARQUE EOLICO CABO LEONES I 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-00930",
+        "nombre": "1297_PARANAL - ARMAZONES 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00238",
+        "nombre": "1298_CHANGOS - KAPATUR 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00239",
+        "nombre": "1299_IEM - TEN 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00252",
+        "nombre": "1335_MAITENCILLO - SARCO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-00651",
+        "nombre": "1373_CENTRAL TOCOPILLA - A 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00652",
+        "nombre": "1374_CENTRAL TOCOPILLA - CENTRAL DIESEL TAMAYA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00051",
+        "nombre": "1381_LOS CHANGOS – KIMAL 500KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00265",
+        "nombre": "1395_CONDORES - PARINACOTA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-00274",
+        "nombre": "1436_TEN - CENTRAL MEJILLONES CTM3-TG 220 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00275",
+        "nombre": "1437_TEN - CENTRAL MEJILLONES CTM3-TV 220 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00951",
+        "nombre": "1462_CAITAN – DESALINIZADORA Y BOMBEO (SGO) 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00952",
+        "nombre": "1463_CAITAN – BOMBEO 2 (SGO) 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00288",
+        "nombre": "1492_CERRO NEGRO - TOTORALILLO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-00307",
+        "nombre": "1547_TARAPACA – GEOGLIFOS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-00315",
+        "nombre": "1559_TARAPACA - PUERTO PATACHE 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-00316",
+        "nombre": "1560_PUERTO PATACHE - CONDORES 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-00671",
+        "nombre": "1613_MEJILLONES - GUARDIAMARINA 110 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00672",
+        "nombre": "1614_GUARDIAMARINA - ANTOFAGASTA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00673",
+        "nombre": "1615_LA PORTADA - GUARDIAMARINA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00674",
+        "nombre": "1616_GUARDIAMARINA - ESMERALDA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-01027",
+        "nombre": "164_EL SALADO - CHANARAL 23KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-00382",
+        "nombre": "1731_NUEVA POZO ALMONTE - CONDORES 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "01b_litoral"
+        ]
+      },
+      {
+        "id": "GV-00404",
+        "nombre": "1836_CENTRAL CABO LEONES II – IBERATACAMA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-00405",
+        "nombre": "1837_IBERATACAMA - MAITENCILLO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-00052",
+        "nombre": "1848_LOS CHANGOS – PARINAS 500 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00102",
+        "nombre": "199_PAPOSO - FRANCISCO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00072",
+        "nombre": "60_GUACOLDA - MAITENCILLO 220KV L1",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-00123",
+        "nombre": "701_GUACOLDA - MAITENCILLO 220KV L2",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-00561",
+        "nombre": "702_HUASCO - MAITENCILLO 110KV L1",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-00562",
+        "nombre": "703_HUASCO - MAITENCILLO 110KV L2",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-00572",
+        "nombre": "812_MANTO VERDE - PLANTA DESALADORA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-00579",
+        "nombre": "849_PFV JAVIERA - TAL TAL 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      },
+      {
+        "id": "GV-00584",
+        "nombre": "861_TRAVESIA - PUNTA PADRONES 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-00594",
+        "nombre": "882_GALLEGUILLOS - CALDERA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-00151",
+        "nombre": "902_PUNTA COLORADA - PARQUE EOLICO SAN JUAN 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_litoral"
+        ]
+      },
+      {
+        "id": "GV-00155",
+        "nombre": "919_PAPOSO - CACHIYUYAL 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_litoral"
+        ]
+      }
+    ],
+    "netbilling": []
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "codigo": "A558/2026",
+  "tipo": "Aviso",
+  "titulo": "Precipitaciones Normales a Moderadas en Archipielago Juan Fernández",
+  "fenomeno": "Precipitaciones",
+  "emisionTexto": "Viernes 16 de octubre del 2026 a las 12:04 hrs.",
+  "condicionSinoptica": "Sistema frontal",
+  "desde": "la madrugada del lunes 19 de octubre del 2026",
+  "hasta": "la noche del martes 20 de octubre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Archipielago Juan Fernández",
+  "tablaTitulo": "Montos estimados de precipitaciones en milímetros (mm)",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Región"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 19"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 20"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Archipielago Juan Fernández"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "35-45"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "30-40"
+      }
+    ]
+  ]
+}

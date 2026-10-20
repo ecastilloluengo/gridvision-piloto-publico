@@ -1,0 +1,39 @@
+{
+  "codigo": "AA184/2026",
+  "tipo": "Alerta",
+  "titulo": "Precipitaciones Moderadas a Fuertes en Región de Antofagasta litoral, desde Caleta El Cobre al sur",
+  "fenomeno": "Precipitaciones",
+  "emisionTexto": "Lunes 19 de octubre del 2026 a las 10:47 hrs.",
+  "condicionSinoptica": "Inestabilidad atmosférica",
+  "desde": "la madrugada del martes 20 de octubre del 2026",
+  "hasta": "la noche del martes 20 de octubre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Región de Antofagasta litoral, desde Caleta El Cobre al sur",
+  "tablaTitulo": "Montos estimados de precipitaciones en milímetros (mm)",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Área"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 20"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Región de Antofagasta litoral, desde Caleta El Cobre al sur"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "5-10"
+      }
+    ]
+  ]
+}

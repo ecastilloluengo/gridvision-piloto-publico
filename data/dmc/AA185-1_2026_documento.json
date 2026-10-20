@@ -1,0 +1,14 @@
+{
+  "codigo": "AA185-1/2026",
+  "tipo": "Alerta",
+  "titulo": "Tormentas Eléctricas en zonas desde la región de Valparaíso a la región del Maule",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Martes 20 de octubre del 2026 a las 10:27 hrs.",
+  "condicionSinoptica": "Inestabilidad atmosférica",
+  "desde": "la mañana del martes 20 de octubre del 2026",
+  "hasta": "la noche del martes 20 de octubre del 2026",
+  "observacion": "Probabilidad de precipitaciones fuertes en un corto período de tiempo",
+  "textoZonaAfecta": "Valparaíso (Litoral, Cordillera Costa)\nMetropolitana (Cordillera Costa, Valle, Precordillera, Cordillera)\nO'Higgins (Litoral, Cordillera Costa, Valle, Precordillera, Cordillera)\nMaule (Litoral, Cordillera Costa, Valle, Precordillera, Cordillera)",
+  "tablaTitulo": "",
+  "tablaFilas": []
+}

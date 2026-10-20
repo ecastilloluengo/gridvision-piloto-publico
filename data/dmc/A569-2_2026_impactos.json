@@ -1,0 +1,3626 @@
+{
+  "codigo": "A569-2/2026",
+  "criterio": "intersección geográfica",
+  "advertencia": "Área del aviso: exposición potencial, no impacto confirmado.",
+  "totales": {
+    "activos": 310,
+    "lineas": 135,
+    "netbilling": 0
+  },
+  "elementos": {
+    "activos": [
+      {
+        "id": "GV-00005",
+        "nombre": "1. PORTÓN MOCHO",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02387",
+        "nombre": "1. RECO - TAP OFF MC3",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02237",
+        "nombre": "1005_TAP OFF VICTORIA FFCC",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02241",
+        "nombre": "1011_TAP OFF METRENCO",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02243",
+        "nombre": "1014_TAP OFF RENAICO",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02244",
+        "nombre": "1016_TAP OFF LAUTARO FFCC",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02505",
+        "nombre": "106_HP CAPULLO",
+        "categoria": "Central",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02506",
+        "nombre": "107_HP LICAN",
+        "categoria": "Central",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02507",
+        "nombre": "108_HP PULLINQUE",
+        "categoria": "Central",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02476",
+        "nombre": "109_HP PILMAIQUEN",
+        "categoria": "Central",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03320",
+        "nombre": "139_TER DEGAÑ",
+        "categoria": "Central",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-03324",
+        "nombre": "143_TER TRAPEN",
+        "categoria": "Central",
+        "zonas": [
+          "10b_litoral_interior"
+        ]
+      },
+      {
+        "id": "GV-01660",
+        "nombre": "1620_S/E MARIQUINA",
+        "categoria": "Subestación",
+        "zonas": [
+          "10a_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01661",
+        "nombre": "1621_S/E ANTILLANCA",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01662",
+        "nombre": "1622_S/E RIO BONITO",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01666",
+        "nombre": "1632_S/E LOS SAUCES",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03382",
+        "nombre": "1663_PMGD TER CIRUELILLO",
+        "categoria": "Central",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-01683",
+        "nombre": "1663_S/E PILAUCO",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03256",
+        "nombre": "1664_PMGD TER COPIULEMU",
+        "categoria": "Central",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-01684",
+        "nombre": "1664_S/E RAHUE",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03383",
+        "nombre": "1673_PMGD TER ALERCE",
+        "categoria": "Central",
+        "zonas": [
+          "10b_litoral_interior"
+        ]
+      },
+      {
+        "id": "GV-03384",
+        "nombre": "1674_PMGD TER CALAFATE",
+        "categoria": "Central",
+        "zonas": [
+          "10b_litoral_interior"
+        ]
+      },
+      {
+        "id": "GV-01705",
+        "nombre": "1703_S/E CENTRAL SAN PEDRO DALCAHUE",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-02443",
+        "nombre": "1706_PE MALLECO SUR",
+        "categoria": "Central",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02444",
+        "nombre": "1707_PE MALLECO NORTE",
+        "categoria": "Central",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01709",
+        "nombre": "1708_S/E RUCATAYO",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01710",
+        "nombre": "1709_S/E PICHIRRAHUE",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01713",
+        "nombre": "1717_S/E LOS TAMBORES",
+        "categoria": "Subestación",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01720",
+        "nombre": "1728_S/E ALTO BONITO",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_litoral_interior"
+        ]
+      },
+      {
+        "id": "GV-01721",
+        "nombre": "1731_S/E GORBEA",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01724",
+        "nombre": "1736_S/E CENTRAL PULELFU",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01727",
+        "nombre": "1740_S/E CENTRAL PICOIQUEN",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-03385",
+        "nombre": "1743_PMGD TER AROMOS",
+        "categoria": "Central",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01734",
+        "nombre": "1748_S/E CENTRAL CAREN BAJO",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01735",
+        "nombre": "1749_S/E MELIPEUCO",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01736",
+        "nombre": "1750_S/E TAP OFF RIO TOLTEN",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02446",
+        "nombre": "1753_PE RENAICO II",
+        "categoria": "Central",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01741",
+        "nombre": "1756_S/E PICHIL",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03387",
+        "nombre": "1760_PMGD TER DEUCO",
+        "categoria": "Central",
+        "zonas": [
+          "09_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01745",
+        "nombre": "1761_S/E COPIHUES",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01755",
+        "nombre": "1771_S/E NAHUELBUTA",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03389",
+        "nombre": "1772_PMGD TER PRP LOS NEGROS",
+        "categoria": "Central",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01756",
+        "nombre": "1772_S/E DALCAHUE",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-03390",
+        "nombre": "1773_PMGD TER PRP CAMPESINA (EX ALDEA)",
+        "categoria": "Central",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01757",
+        "nombre": "1774_S/E PARQUE EOLICO RENAICO",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03391",
+        "nombre": "1776_PMGD TER BLUEGATE",
+        "categoria": "Central",
+        "zonas": [
+          "10b_litoral_interior"
+        ]
+      },
+      {
+        "id": "GV-03392",
+        "nombre": "1777_PMGD TER PRP TAMBORES",
+        "categoria": "Central",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03393",
+        "nombre": "1778_PMGD TER PRP CHIFIN",
+        "categoria": "Central",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02628",
+        "nombre": "1779_PMGD HP CENTRAL HIDROELECTRICA CHILCO",
+        "categoria": "Central",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01765",
+        "nombre": "1782_S/E PULELFU",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03394",
+        "nombre": "1785_PMGD TER PRP RAPACO",
+        "categoria": "Central",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02450",
+        "nombre": "1815_PE PUELCHE SUR",
+        "categoria": "Central",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02632",
+        "nombre": "1854_HP PUNTA DEL VIENTO",
+        "categoria": "Central",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03331",
+        "nombre": "185_TER CALLE CALLE",
+        "categoria": "Central",
+        "zonas": [
+          "10a_litoral"
+        ]
+      },
+      {
+        "id": "GV-03400",
+        "nombre": "1868_PMGD TER PRP LAS QUEMAS",
+        "categoria": "Central",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03332",
+        "nombre": "186_TER CHUYACA",
+        "categoria": "Central",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03334",
+        "nombre": "188_TER TRINCAO",
+        "categoria": "Central",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-03402",
+        "nombre": "1898_PMGD TER DAGOBERTO",
+        "categoria": "Central",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03404",
+        "nombre": "1937_PMGD TER GENERADORA LAGUNITAS",
+        "categoria": "Central",
+        "zonas": [
+          "10b_litoral_interior"
+        ]
+      },
+      {
+        "id": "GV-01944",
+        "nombre": "1993_S/E CENTRAL CHILOE",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-00006",
+        "nombre": "2. PORTÓN ELÉCTRICO",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02388",
+        "nombre": "2. RECONECTADOR MC3",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03408",
+        "nombre": "2017_PMGD TER LAS DALIAS",
+        "categoria": "Central",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01963",
+        "nombre": "2021_S/E LOS PEUMOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02634",
+        "nombre": "2049_PMGD HP LOS PORTONES - AMPLIACION II",
+        "categoria": "Central",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01981",
+        "nombre": "2054_S/E MANTILHUE",
+        "categoria": "Subestación",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01987",
+        "nombre": "2060_S/E NUEVA PICHIRROPULLI",
+        "categoria": "Subestación",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01998",
+        "nombre": "2078_S/E EL LAUREL",
+        "categoria": "Subestación",
+        "zonas": [
+          "10a_litoral"
+        ]
+      },
+      {
+        "id": "GV-02003",
+        "nombre": "2087_S/E CENTRAL DEGAÑ 2",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-02004",
+        "nombre": "2088_S/E CENTRAL DEGAÑ",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-02007",
+        "nombre": "2091_S/E AURORA",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02534",
+        "nombre": "209_PMGD HP RECA",
+        "categoria": "Central",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02482",
+        "nombre": "20_PMGD HP DONGUIL",
+        "categoria": "Central",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02017",
+        "nombre": "2101_S/E CUNCO",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02019",
+        "nombre": "2103_S/E DEUCO",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02024",
+        "nombre": "2111_S/E RIO NEGRO",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02026",
+        "nombre": "2115_S/E CENTRAL CUCHILDEO",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_litoral_interior"
+        ]
+      },
+      {
+        "id": "GV-02027",
+        "nombre": "2117_S/E CENTRAL CUMBRES",
+        "categoria": "Subestación",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03265",
+        "nombre": "211_TER LAUTARO",
+        "categoria": "Central",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02029",
+        "nombre": "2121_S/E CHIRRE",
+        "categoria": "Subestación",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02030",
+        "nombre": "2122_S/E SAN GABRIEL",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02031",
+        "nombre": "2123_S/E PARGUA",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_litoral"
+        ]
+      },
+      {
+        "id": "GV-02032",
+        "nombre": "2124_S/E LLOLLELHUE",
+        "categoria": "Subestación",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02039",
+        "nombre": "2133_S/E MOCHO",
+        "categoria": "Subestación",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03160",
+        "nombre": "2134_PMGD PFV REN",
+        "categoria": "Central",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03161",
+        "nombre": "2136_PMGD PFV REN - AMPLIACION",
+        "categoria": "Central",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03411",
+        "nombre": "2142_PMGD TER EL JARDIN",
+        "categoria": "Central",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02046",
+        "nombre": "2148_S/E SANGRA",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02049",
+        "nombre": "2152_S/E CERROS DE HUICHAHUE",
+        "categoria": "Subestación",
+        "zonas": [
+          "10a_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02050",
+        "nombre": "2153_S/E PALMAR",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02051",
+        "nombre": "2154_S/E CENTRAL PALMAR",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02052",
+        "nombre": "2155_S/E CENTRAL CORRENTOSO",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01096",
+        "nombre": "215_S/E PLANTA VALDIVIA",
+        "categoria": "Subestación",
+        "zonas": [
+          "10a_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02059",
+        "nombre": "2164_S/E CANUTILLAR",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02070",
+        "nombre": "2184_S/E CENTRAL PE LA FLOR",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02071",
+        "nombre": "2185_S/E CENTRAL MOCHO",
+        "categoria": "Subestación",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02074",
+        "nombre": "2190_S/E CENTRAL NALCAS",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02075",
+        "nombre": "2191_S/E CENTRAL CALLAO",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02076",
+        "nombre": "2192_S/E BONITO",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02077",
+        "nombre": "2194_S/E TOLPAN SUR",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02080",
+        "nombre": "2197_S/E SECCIONADORA RIO MALLECO",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01099",
+        "nombre": "219_S/E CENTRAL ANTILHUE",
+        "categoria": "Subestación",
+        "zonas": [
+          "10a_litoral"
+        ]
+      },
+      {
+        "id": "GV-02483",
+        "nombre": "21_PMGD HP EL MANZANO (MELIPEUCO)",
+        "categoria": "Central",
+        "zonas": [
+          "09_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02082",
+        "nombre": "2207_S/E RIO TOLTEN",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02083",
+        "nombre": "2208_S/E LA MISION",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02084",
+        "nombre": "2209_S/E REMEHUE",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01100",
+        "nombre": "220_S/E CENTRAL CANUTILLAR",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02090",
+        "nombre": "2216_S/E CENTRAL RUCATAYO",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02537",
+        "nombre": "221_PMGD HP MUCHI",
+        "categoria": "Central",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02097",
+        "nombre": "2224_S/E LLANQUIHUE",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02635",
+        "nombre": "2225_HP HORNOPIREN (SM)",
+        "categoria": "Central",
+        "zonas": [
+          "10b_litoral_interior"
+        ]
+      },
+      {
+        "id": "GV-02538",
+        "nombre": "222_PMGD HP LA ARENA",
+        "categoria": "Central",
+        "zonas": [
+          "10b_litoral_interior"
+        ]
+      },
+      {
+        "id": "GV-02125",
+        "nombre": "2258_S/E NUEVA ANCUD",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-02636",
+        "nombre": "2259_PMGD HP TRANCA DEL TORO",
+        "categoria": "Central",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02138",
+        "nombre": "2274_S/E SURCO Y SEMILLA",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02139",
+        "nombre": "2275_S/E AGUA BUENA",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02141",
+        "nombre": "2281_S/E TINEO",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02147",
+        "nombre": "2287_S/E FRUTILLAR NORTE",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02157",
+        "nombre": "2297_S/E LLAIMA",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02539",
+        "nombre": "229_HP CALLAO",
+        "categoria": "Central",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02160",
+        "nombre": "2301_S/E PUELCHE SUR",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02161",
+        "nombre": "2302_S/E LAS VIOLETAS",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02540",
+        "nombre": "230_HP NALCAS",
+        "categoria": "Central",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02169",
+        "nombre": "2312_S/E LASTARRIA",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02170",
+        "nombre": "2315_S/E E42",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02171",
+        "nombre": "2316_S/E CENTRAL MC3",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02541",
+        "nombre": "231_HP RUCATAYO",
+        "categoria": "Central",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01116",
+        "nombre": "236_S/E CENTRAL CAPULLO",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01117",
+        "nombre": "237_S/E CENTRAL PILMAIQUEN",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02222",
+        "nombre": "2418_S/E LA CABAÑA",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02543",
+        "nombre": "241_HP MC1",
+        "categoria": "Central",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02544",
+        "nombre": "242_HP MC2",
+        "categoria": "Central",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02224",
+        "nombre": "2469_S/E LA ESPERANZA (TRANSELEC)",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02548",
+        "nombre": "249_PMGD HP CONTRA",
+        "categoria": "Central",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02484",
+        "nombre": "24_PMGD HP DOÑA HILDA",
+        "categoria": "Central",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02549",
+        "nombre": "257_PMGD HP LOS CORRALES II",
+        "categoria": "Central",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03270",
+        "nombre": "259_TER CMPC PACIFICO",
+        "categoria": "Central",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02485",
+        "nombre": "25_PMGD HP PEHUI",
+        "categoria": "Central",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02406",
+        "nombre": "268_PE SAN PEDRO",
+        "categoria": "Central",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-01145",
+        "nombre": "268_S/E MOLINOS (ENLASA)",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_litoral_interior"
+        ]
+      },
+      {
+        "id": "GV-02555",
+        "nombre": "270_PMGD HP ALLIPEN",
+        "categoria": "Central",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02556",
+        "nombre": "280_PMGD HP PICHILONCO",
+        "categoria": "Central",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02488",
+        "nombre": "28_PMGD HP TRUFULTRUFUL",
+        "categoria": "Central",
+        "zonas": [
+          "09_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02559",
+        "nombre": "290_HP PULELFU",
+        "categoria": "Central",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02562",
+        "nombre": "293_HP RIO PICOIQUEN",
+        "categoria": "Central",
+        "zonas": [
+          "09_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02564",
+        "nombre": "299_PMGD HP COLLIL",
+        "categoria": "Central",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-02489",
+        "nombre": "29_PMGD HP DONGO",
+        "categoria": "Central",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-02565",
+        "nombre": "300_PMGD HP DON WALTERIO",
+        "categoria": "Central",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02566",
+        "nombre": "301_PMGD HP LAS FLORES",
+        "categoria": "Central",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02567",
+        "nombre": "302_PMGD HP LOS COLONOS",
+        "categoria": "Central",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02569",
+        "nombre": "304_PMGD HP MARIA ELENA",
+        "categoria": "Central",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02570",
+        "nombre": "310_PMGD HP EL CANELO",
+        "categoria": "Central",
+        "zonas": [
+          "09_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02571",
+        "nombre": "311_PMGD HP ENSENADA",
+        "categoria": "Central",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02572",
+        "nombre": "312_PMGD HP MAISAN",
+        "categoria": "Central",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02573",
+        "nombre": "315_PMGD HP EL ARRAYAN",
+        "categoria": "Central",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01181",
+        "nombre": "315_S/E CENTRAL CHUYACA",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01183",
+        "nombre": "317_S/E CENTRAL QUELLON II",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-01184",
+        "nombre": "318_S/E CENTRAL CALLE CALLE",
+        "categoria": "Subestación",
+        "zonas": [
+          "10a_litoral"
+        ]
+      },
+      {
+        "id": "GV-02491",
+        "nombre": "31_PMGD HP RIO TRUENO",
+        "categoria": "Central",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02574",
+        "nombre": "321_PMGD HP CURILEUFU",
+        "categoria": "Central",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01187",
+        "nombre": "321_S/E CENTRAL LAUTARO",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01188",
+        "nombre": "322_S/E CENTRAL LICAN",
+        "categoria": "Subestación",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02575",
+        "nombre": "323_HP CARILAFQUEN",
+        "categoria": "Central",
+        "zonas": [
+          "09_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02576",
+        "nombre": "324_HP MALALCAHUELLO",
+        "categoria": "Central",
+        "zonas": [
+          "09_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02581",
+        "nombre": "336_PMGD HP TRAILELFU",
+        "categoria": "Central",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02415",
+        "nombre": "342_PE RENAICO I",
+        "categoria": "Central",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02586",
+        "nombre": "361_PMGD HP MOLINERA VILLARRICA",
+        "categoria": "Central",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01202",
+        "nombre": "364_S/E CURACAUTIN",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02420",
+        "nombre": "366_PE SAN PEDRO II",
+        "categoria": "Central",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-03344",
+        "nombre": "371_PMGD TER EL CANELO",
+        "categoria": "Central",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01217",
+        "nombre": "379_S/E ANGOL",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01227",
+        "nombre": "389_S/E CHIVILCAN",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01231",
+        "nombre": "394_S/E COLLIPULLI",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03286",
+        "nombre": "3_TER CHILOE",
+        "categoria": "Central",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-01245",
+        "nombre": "408_S/E LAUTARO",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03299",
+        "nombre": "40_PMGD TER CHUFKEN",
+        "categoria": "Central",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02590",
+        "nombre": "410_PMGD HP EL AGRIO",
+        "categoria": "Central",
+        "zonas": [
+          "09_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01251",
+        "nombre": "414_S/E TRAIGUEN",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01255",
+        "nombre": "418_S/E VICTORIA",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02594",
+        "nombre": "423_PMGD HP EL COLORADO",
+        "categoria": "Central",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03300",
+        "nombre": "42_PMGD TER CURACAUTIN",
+        "categoria": "Central",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03353",
+        "nombre": "431_PMGD TER REY",
+        "categoria": "Central",
+        "zonas": [
+          "10a_litoral"
+        ]
+      },
+      {
+        "id": "GV-02595",
+        "nombre": "432_PMGD HP TRANQUIL",
+        "categoria": "Central",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01270",
+        "nombre": "433_S/E PUMAHUE",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01271",
+        "nombre": "434_S/E PADRE LAS CASAS",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02596",
+        "nombre": "438_PMGD HP CHANLEUFU II",
+        "categoria": "Central",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03301",
+        "nombre": "43_PMGD TER LONQUIMAY",
+        "categoria": "Central",
+        "zonas": [
+          "09_cordillera"
+        ]
+      },
+      {
+        "id": "GV-02597",
+        "nombre": "440_PMGD HP PIUTEL",
+        "categoria": "Central",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01278",
+        "nombre": "441_S/E PILLANLELBUN",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01279",
+        "nombre": "442_S/E PITRUFQUEN",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01280",
+        "nombre": "443_S/E VILLARRICA",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02599",
+        "nombre": "458_PMGD HP LOS PORTONES",
+        "categoria": "Central",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01290",
+        "nombre": "472_S/E LONCOCHE",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01292",
+        "nombre": "474_S/E PULLINQUE",
+        "categoria": "Subestación",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01299",
+        "nombre": "486_S/E PUCON",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01304",
+        "nombre": "492_S/E LAS ENCINAS",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03355",
+        "nombre": "494_PMGD TER EL CANELO II",
+        "categoria": "Central",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01311",
+        "nombre": "502_S/E CORRAL",
+        "categoria": "Subestación",
+        "zonas": [
+          "10a_litoral"
+        ]
+      },
+      {
+        "id": "GV-01312",
+        "nombre": "503_S/E ANCUD",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-01314",
+        "nombre": "505_S/E CHONCHI",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-01315",
+        "nombre": "506_S/E COLACO",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_litoral_interior"
+        ]
+      },
+      {
+        "id": "GV-01316",
+        "nombre": "507_S/E LOS NEGROS",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01317",
+        "nombre": "508_S/E EL EMPALME",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01318",
+        "nombre": "509_S/E BARRO BLANCO",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01319",
+        "nombre": "510_S/E FRUTILLAR",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03358",
+        "nombre": "510_TER DEGAÑ II",
+        "categoria": "Central",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-01320",
+        "nombre": "511_S/E AIHUAPI",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02426",
+        "nombre": "512_PE AURORA",
+        "categoria": "Central",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01321",
+        "nombre": "512_S/E LA UNION",
+        "categoria": "Subestación",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01322",
+        "nombre": "513_S/E MELIPULLI",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_litoral_interior"
+        ]
+      },
+      {
+        "id": "GV-01323",
+        "nombre": "514_S/E LOS LAGOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01324",
+        "nombre": "515_S/E PID PID",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-01325",
+        "nombre": "516_S/E OSORNO",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01326",
+        "nombre": "517_S/E PANGUIPULLI",
+        "categoria": "Subestación",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01327",
+        "nombre": "518_S/E PICARTE",
+        "categoria": "Subestación",
+        "zonas": [
+          "10a_litoral"
+        ]
+      },
+      {
+        "id": "GV-01328",
+        "nombre": "519_S/E PICHIRROPULLI",
+        "categoria": "Subestación",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01329",
+        "nombre": "520_S/E PUERTO VARAS",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01330",
+        "nombre": "521_S/E PURRANQUE",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01331",
+        "nombre": "525_S/E QUELLON",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-01332",
+        "nombre": "526_S/E CALBUCO",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_litoral_interior"
+        ]
+      },
+      {
+        "id": "GV-01333",
+        "nombre": "527_S/E CASTRO",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-01334",
+        "nombre": "528_S/E DEGAN",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-01335",
+        "nombre": "529_S/E PUERTO MONTT (STS)",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_litoral_interior"
+        ]
+      },
+      {
+        "id": "GV-02495",
+        "nombre": "52_PMGD HP LOS CORRALES",
+        "categoria": "Central",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01336",
+        "nombre": "530_S/E VALDIVIA (STS)",
+        "categoria": "Subestación",
+        "zonas": [
+          "10a_litoral"
+        ]
+      },
+      {
+        "id": "GV-01337",
+        "nombre": "531_S/E CHILOE",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-02615",
+        "nombre": "532_HP CUCHILDEO (SM)",
+        "categoria": "Central",
+        "zonas": [
+          "10b_litoral_interior"
+        ]
+      },
+      {
+        "id": "GV-03360",
+        "nombre": "533_TER HORNOPIREN (SM)",
+        "categoria": "Central",
+        "zonas": [
+          "10b_litoral_interior"
+        ]
+      },
+      {
+        "id": "GV-00001",
+        "nombre": "538_HP CUMBRES",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03303",
+        "nombre": "53_PMGD TER LOUSIANA PACIFIC",
+        "categoria": "Central",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02616",
+        "nombre": "542_PMGD HP SANTA ELENA",
+        "categoria": "Central",
+        "zonas": [
+          "09_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02429",
+        "nombre": "544_PE SAN GABRIEL",
+        "categoria": "Central",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03304",
+        "nombre": "54_PMGD TER LOUSIANA PACIFIC II",
+        "categoria": "Central",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02618",
+        "nombre": "553_PMGD HP MSA-I",
+        "categoria": "Central",
+        "zonas": [
+          "09_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03305",
+        "nombre": "55_PMGD TER MULTIEXPORT",
+        "categoria": "Central",
+        "zonas": [
+          "10b_litoral_interior"
+        ]
+      },
+      {
+        "id": "GV-02620",
+        "nombre": "569_HP PALMAR",
+        "categoria": "Central",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03306",
+        "nombre": "56_PMGD TER MULTIEXPORT II",
+        "categoria": "Central",
+        "zonas": [
+          "10b_litoral_interior"
+        ]
+      },
+      {
+        "id": "GV-02621",
+        "nombre": "570_HP CORRENTOSO",
+        "categoria": "Central",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01361",
+        "nombre": "585_S/E PUERTO MONTT",
+        "categoria": "Subestación",
+        "zonas": [
+          "10b_litoral_interior"
+        ]
+      },
+      {
+        "id": "GV-03307",
+        "nombre": "58_PMGD TER SALMOFOOD",
+        "categoria": "Central",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-03371",
+        "nombre": "591_PMGD TER ALMENDRADO",
+        "categoria": "Central",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-01366",
+        "nombre": "591_S/E TEMUCO",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01367",
+        "nombre": "592_S/E VALDIVIA",
+        "categoria": "Subestación",
+        "zonas": [
+          "10a_litoral"
+        ]
+      },
+      {
+        "id": "GV-01369",
+        "nombre": "604_S/E CAUTIN",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02623",
+        "nombre": "613_HP MOCHO",
+        "categoria": "Central",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01375",
+        "nombre": "614_S/E CIRUELOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "10a_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-03374",
+        "nombre": "618_PMGD TER GAMI",
+        "categoria": "Central",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03377",
+        "nombre": "624_PMGD TER LOS SAUCES",
+        "categoria": "Central",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02435",
+        "nombre": "626_PE TOLPAN SUR",
+        "categoria": "Central",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03379",
+        "nombre": "650_PMGD TER RIO AZUL",
+        "categoria": "Central",
+        "zonas": [
+          "10b_litoral_interior"
+        ]
+      },
+      {
+        "id": "GV-03380",
+        "nombre": "652_PMGD TER CALFUCO",
+        "categoria": "Central",
+        "zonas": [
+          "10b_litoral_interior"
+        ]
+      },
+      {
+        "id": "GV-03311",
+        "nombre": "78_TER ANTILHUE",
+        "categoria": "Central",
+        "zonas": [
+          "10a_litoral"
+        ]
+      },
+      {
+        "id": "GV-01517",
+        "nombre": "839_S/E IMPERIAL",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01518",
+        "nombre": "840_S/E LICANCO",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01530",
+        "nombre": "854_S/E PAILLACO",
+        "categoria": "Subestación",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01548",
+        "nombre": "875_S/E CHUMPULLO",
+        "categoria": "Subestación",
+        "zonas": [
+          "10a_litoral"
+        ]
+      },
+      {
+        "id": "GV-01560",
+        "nombre": "889_S/E CELULOSA PACIFICO",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03259",
+        "nombre": "88_TER VALDIVIA",
+        "categoria": "Central",
+        "zonas": [
+          "10a_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02461",
+        "nombre": "90_HE CANUTILLAR",
+        "categoria": "Central",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01602",
+        "nombre": "940_S/E RENAICO (FFCC)",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01603",
+        "nombre": "941_S/E COLLIPULLI (FFCC)",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01604",
+        "nombre": "942_S/E VICTORIA (FFCC)",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01606",
+        "nombre": "944_S/E LAUTARO (FFCC)",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01607",
+        "nombre": "945_S/E METRENCO (FFCC)",
+        "categoria": "Subestación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03465",
+        "nombre": "A BT LOS PORTONES",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03459",
+        "nombre": "A Porton ingreso C. Muchi",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02286",
+        "nombre": "AUX_1_TAP OFF ESTRUCTURA 370",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02382",
+        "nombre": "BOMBEO ALTO",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02384",
+        "nombre": "BOMBEO BAJO",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02385",
+        "nombre": "BT CALLAO",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02378",
+        "nombre": "BT CORRENTOSO",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00010",
+        "nombre": "BT CUMBRES",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02373",
+        "nombre": "BT CUMBRES",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02394",
+        "nombre": "BT LAS NIEVES",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "09_cordillera"
+        ]
+      },
+      {
+        "id": "GV-03464",
+        "nombre": "BT LOS PORTONES",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02390",
+        "nombre": "BT MC1",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02391",
+        "nombre": "BT MC2",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02392",
+        "nombre": "BT MC3",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00009",
+        "nombre": "BT MOCHO",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10a_cordillera"
+        ]
+      },
+      {
+        "id": "GV-02374",
+        "nombre": "BT MOCHO",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10a_cordillera"
+        ]
+      },
+      {
+        "id": "GV-03460",
+        "nombre": "BT MUCHI",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02381",
+        "nombre": "BT NALCAS ALT0",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02383",
+        "nombre": "BT NALCAS BAJO",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02377",
+        "nombre": "BT PALMAR",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02369",
+        "nombre": "BT PICOIQUÉN",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "09_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-03466",
+        "nombre": "BT PULELFU",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03457",
+        "nombre": "Central Los Lagos - Rucatayo - 52 MW",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02386",
+        "nombre": "CM - MC1 - MC2",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02380",
+        "nombre": "CM CALLAO",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00003",
+        "nombre": "CM CUMBRES",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02372",
+        "nombre": "CM CUMBRES",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02393",
+        "nombre": "CM LAS NIEVES",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "09_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03462",
+        "nombre": "CM LOS PORTONES",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02389",
+        "nombre": "CM MC3",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00007",
+        "nombre": "CM MOCHO",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02371",
+        "nombre": "CM MOCHO",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03461",
+        "nombre": "CM MUCHI",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02379",
+        "nombre": "CM NALCAS",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02375",
+        "nombre": "CM PALMAR - CORRENTOSO",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03467",
+        "nombre": "CÁMARA DE CARGA PULELFU",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03458",
+        "nombre": "Entrada C. Los Portones",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00002",
+        "nombre": "Entrada Cumbres",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00004",
+        "nombre": "ENTRADA MOCHO",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02640",
+        "nombre": "EXT_008_HP RIO AZUL",
+        "categoria": "Central",
+        "zonas": [
+          "10b_cordillera_austral"
+        ]
+      },
+      {
+        "id": "GV-03419",
+        "nombre": "EXT_016_TER CENTRAL TERMICA CHAITEN",
+        "categoria": "Central",
+        "zonas": [
+          "10b_litoral_interior"
+        ]
+      },
+      {
+        "id": "GV-03463",
+        "nombre": "Reconectador Los Portones",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00008",
+        "nombre": "S/E MOCHO",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02370",
+        "nombre": "S/E MOCHO",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02376",
+        "nombre": "S/E PALMAR",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02396",
+        "nombre": "Tap off Las Nieves",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "09_precordillera"
+        ]
+      }
+    ],
+    "lineas": [
+      {
+        "id": "GV-00757",
+        "nombre": "118_CENTRAL LAUTARO - LAUTARO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00236",
+        "nombre": "1293_NUEVA PICHIRROPULLI - RAHUE 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_valle_longitudinal",
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00649",
+        "nombre": "1341_CUNCO - MELIPEUCO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_precordillera",
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00650",
+        "nombre": "1342_RIO TOLTEN - CUNCO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00933",
+        "nombre": "1343_ANGOL - DEUCO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_cordillera_costa",
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00934",
+        "nombre": "1344_DEUCO - PICOIQUEN 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00938",
+        "nombre": "1358_BARRO BLANCO - RIO NEGRO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00939",
+        "nombre": "1359_RIO NEGRO - PURRANQUE 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00263",
+        "nombre": "1386_MELIPULLI - PARGUA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_litoral",
+          "10b_litoral_interior",
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00941",
+        "nombre": "1388_LLOLLELHUE - NUEVA PICHIRROPULLI 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00942",
+        "nombre": "1390_LLOLLELHUE - LOS LAGOS 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_cordillera_costa",
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00943",
+        "nombre": "1391_LLOLLELHUE - PICHIRROPULLI 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00944",
+        "nombre": "1392_LLOLLELHUE - LA UNION 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00653",
+        "nombre": "1397_ANTILLANCA - CHIRRE 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_valle_longitudinal",
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00654",
+        "nombre": "1398_CHIRRE - MANTILHUE 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_precordillera",
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00655",
+        "nombre": "1399_MANTILHUE - CENTRAL LICAN 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00267",
+        "nombre": "1400_SAN GABRIEL - MULCHEN 220KV C1",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01061",
+        "nombre": "1411_CENTRAL CUMBRES - MOCHO 23KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01062",
+        "nombre": "1412_CENTRAL MOCHO - MOCHO 23KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00656",
+        "nombre": "1417_MANTILHUE - MOCHO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_precordillera",
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00091",
+        "nombre": "141_CANUTILLAR - PUERTO MONTT 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_cordillera",
+          "10b_litoral_interior",
+          "10b_precordillera",
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00945",
+        "nombre": "1422_PURRANQUE - FRUTILLAR 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00946",
+        "nombre": "1429_PUERTO VARAS - SANGRA 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00947",
+        "nombre": "1430_SANGRA - MELIPULLI 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_litoral_interior",
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00276",
+        "nombre": "1439_CIRUELOS - CERROS DE HUICHAHUE 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00277",
+        "nombre": "1440_CERROS DE HUICHAHUE - NUEVA PICHIRROPULLI 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_cordillera_costa",
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00658",
+        "nombre": "1443_PALMAR - COPIHUES 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00659",
+        "nombre": "1448_COLACO - EST. AT 15097 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_litoral",
+          "10b_litoral_interior"
+        ]
+      },
+      {
+        "id": "GV-00660",
+        "nombre": "1460_PARGUA - TAP PARGUA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_litoral"
+        ]
+      },
+      {
+        "id": "GV-01064",
+        "nombre": "1470_NAHUELBUTA – CENTRAL PE LA FLOR 23KV C1",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01065",
+        "nombre": "1479_RIO BONITO - NALCAS 23KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01066",
+        "nombre": "1480_RIO BONITO - CENTRAL BONITO/FEO 23KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00282",
+        "nombre": "1482_VALDIVIA - EL LAUREL 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_litoral"
+        ]
+      },
+      {
+        "id": "GV-00283",
+        "nombre": "1483_EL LAUREL - NUEVA PICHIRROPULLI 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_cordillera_costa",
+          "10a_litoral",
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00285",
+        "nombre": "1489_CAUTIN – RIO MALLECO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00286",
+        "nombre": "1490_RIO MALLECO – MULCHEN 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00291",
+        "nombre": "1500_CAUTIN – SECCIONADORA RIO TOLTEN 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00958",
+        "nombre": "1501_LA MISION - REMEHUE 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00959",
+        "nombre": "1502_OSORNO - REMEHUE 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00960",
+        "nombre": "1503_REMEHUE - LA UNION 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_valle_longitudinal",
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00961",
+        "nombre": "1504_PILAUCO - REMEHUE 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00962",
+        "nombre": "1505_REMEHUE - LOS TAMBORES 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_valle_longitudinal",
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00296",
+        "nombre": "1517_CENTRAL RUCATAYO - RUCATAYO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00969",
+        "nombre": "1552_LLANQUIHUE - PUERTO VARAS 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00970",
+        "nombre": "1553_FRUTILLAR - LLANQUIHUE 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00313",
+        "nombre": "1554_LLANQUIHUE - TAP LLANQUIHUE 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00333",
+        "nombre": "1581_PARGUA - NUEVA ANCUD 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_chiloe",
+          "10b_litoral"
+        ]
+      },
+      {
+        "id": "GV-00334",
+        "nombre": "1582_NUEVA ANCUD - CHILOE 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-00340",
+        "nombre": "1598_SURCO Y SEMILLA - SECCIONADORA RIO MALLECO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00341",
+        "nombre": "1599_AGUA BUENA - SECCIONADORA RIO MALLECO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00348",
+        "nombre": "1611_RAHUE - FRUTILLAR NORTE 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00349",
+        "nombre": "1618_FRUTILLAR NORTE - TINEO 220 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00350",
+        "nombre": "1618_FRUTILLAR NORTE - TINEO 220 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00351",
+        "nombre": "1619_TINEO - PUERTO MONTT 220 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_litoral_interior",
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00352",
+        "nombre": "1619_TINEO - PUERTO MONTT 220 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_litoral_interior",
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00353",
+        "nombre": "1620_TINEO - NUEVA PICHIRROPULLI 220 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_cordillera_costa",
+          "10a_valle_longitudinal",
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00978",
+        "nombre": "1635_PILLANLELBUN - TEMUCO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00979",
+        "nombre": "1645_LLAIMA - PILLANLELBUN 66 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00358",
+        "nombre": "1646_PUELCHE SUR - FRUTILLAR NORTE 220 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00980",
+        "nombre": "1650_LICANCO - LAS VIOLETAS 66 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00981",
+        "nombre": "1651_LAS VIOLETAS - IMPERIAL 66 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00364",
+        "nombre": "1665_LOS OLMOS – MULCHEN 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00984",
+        "nombre": "1669_PADRE LAS CASAS - TEMUCO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00985",
+        "nombre": "1669_PADRE LAS CASAS - TEMUCO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00986",
+        "nombre": "1670_PITRUFQUEN - PADRE LAS CASAS 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00987",
+        "nombre": "1670_PITRUFQUEN - PADRE LAS CASAS 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00988",
+        "nombre": "1677_LONCOCHE - LASTARRIA 66 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_cordillera_costa",
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00989",
+        "nombre": "1677_LONCOCHE - LASTARRIA 66 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_cordillera_costa",
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00990",
+        "nombre": "1678_LASTARRIA – PITRUFQUEN 66 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_cordillera_costa",
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00991",
+        "nombre": "1678_LASTARRIA – PITRUFQUEN 66 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_cordillera_costa",
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00369",
+        "nombre": "1679_SECCIONADORA RIO TOLTEN - LASTARRIA 220 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_cordillera_costa",
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00370",
+        "nombre": "1680_LASTARRIA - CIRUELOS 220 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_cordillera_costa",
+          "10a_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01008",
+        "nombre": "1868_LOS PEUMOS - VICTORIA 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00411",
+        "nombre": "1892_LA CABAÑA – PARQUE EOLICO RENAICO 220kV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01022",
+        "nombre": "2008_PULLINQUE – PANGUIPULLI 66kV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01023",
+        "nombre": "2009_PANGUIPULLI – LOS LAGOS 66kV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_cordillera_costa",
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00419",
+        "nombre": "2025_CELULOSA SANTA FE - CELULOSA PACIFICO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00763",
+        "nombre": "205_PULLINQUE - LOS LAGOS 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_cordillera_costa",
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00764",
+        "nombre": "205_PULLINQUE - LOS LAGOS 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_cordillera_costa",
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00108",
+        "nombre": "225_TEMUCO - CAUTIN 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00490",
+        "nombre": "234_CHONCHI - QUELLON 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-00491",
+        "nombre": "235_EL EMPALME - CALBUCO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_litoral_interior",
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00768",
+        "nombre": "237_PICARTE - CORRAL 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_litoral"
+        ]
+      },
+      {
+        "id": "GV-00109",
+        "nombre": "244_PUERTO MONTT - MELIPULLI 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_litoral_interior"
+        ]
+      },
+      {
+        "id": "GV-00769",
+        "nombre": "251_VALDIVIA - CHUMPULLO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_litoral"
+        ]
+      },
+      {
+        "id": "GV-00770",
+        "nombre": "252_VALDIVIA - LOS LAGOS 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_cordillera_costa",
+          "10a_litoral",
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00771",
+        "nombre": "253_VALDIVIA - PICARTE 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_litoral"
+        ]
+      },
+      {
+        "id": "GV-00778",
+        "nombre": "264_ANGOL - VICTORIA 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00788",
+        "nombre": "282_CHIVILCAN - LAS ENCINAS 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00794",
+        "nombre": "297_VILLARRICA - PUCON 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00743",
+        "nombre": "31_CAPULLO - PULELFU 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_precordillera",
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00744",
+        "nombre": "32_PILMAIQUEN - OSORNO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00808",
+        "nombre": "339_LONCOCHE - PULLINQUE 66KV L1",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_cordillera_costa",
+          "09_valle_longitudinal",
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00809",
+        "nombre": "340_LONCOCHE - PULLINQUE 66KV L2",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_cordillera_costa",
+          "09_valle_longitudinal",
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00823",
+        "nombre": "374_PUMAHUE - CHIVILCAN 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00845",
+        "nombre": "425_TEMUCO - PUMAHUE 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00847",
+        "nombre": "433_VICTORIA - PILLANLELBUN 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00848",
+        "nombre": "434_VICTORIA - TRAIGUEN 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00542",
+        "nombre": "634_ANCUD - CHILOE 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-00543",
+        "nombre": "635_CASTRO - CHONCHI 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-00544",
+        "nombre": "636_CHILOE - DEGAN 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-00545",
+        "nombre": "637_CHILOE - DALCAHUE 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-00546",
+        "nombre": "640_MOLINOS - EL EMPALME 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_litoral_interior",
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00547",
+        "nombre": "641_PID PID - CASTRO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-00563",
+        "nombre": "719_AIHUAPI - ANTILLANCA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00564",
+        "nombre": "720_RIO BONITO - ANTILLANCA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_precordillera",
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00565",
+        "nombre": "726_MELIPULLI - ALTO BONITO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_litoral_interior"
+        ]
+      },
+      {
+        "id": "GV-00566",
+        "nombre": "727_EL EMPALME - COLACO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_litoral_interior",
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00868",
+        "nombre": "785_PILAUCO - OSORNO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00869",
+        "nombre": "786_PILAUCO - BARRO BLANCO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00132",
+        "nombre": "788_RAHUE - PILAUCO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00133",
+        "nombre": "789_ANTILLANCA - RAHUE 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00871",
+        "nombre": "809_LONCOCHE - VILLARRICA L2 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00575",
+        "nombre": "820_CENTRAL SAN PEDRO DE DALCAHUE - CHILOE 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-00140",
+        "nombre": "821_RUCATAYO - PICHIRRAHUE 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_valle_longitudinal",
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00874",
+        "nombre": "845_PULELFU - CENTRAL PULELFU 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00144",
+        "nombre": "857_TAP RIO TOLTEN - RIO TOLTEN 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00876",
+        "nombre": "868_BARRO BLANCO - PICHIL 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00586",
+        "nombre": "871_ALTO BONITO - MOLINOS 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_litoral_interior"
+        ]
+      },
+      {
+        "id": "GV-00877",
+        "nombre": "872_LOS TAMBORES - LA UNION 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00147",
+        "nombre": "873_CIRUELOS - MARIQUINA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00596",
+        "nombre": "893_DALCAHUE - PID PID 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_chiloe"
+        ]
+      },
+      {
+        "id": "GV-00878",
+        "nombre": "894_AIHUAPI - LOS NEGROS 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00597",
+        "nombre": "895_COPIHUES - AIHUAPI 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_precordillera",
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00879",
+        "nombre": "903_ANGOL - LOS SAUCES 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_cordillera_costa",
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00153",
+        "nombre": "915_CIRUELOS - VALDIVIA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_cordillera_costa",
+          "10a_litoral"
+        ]
+      },
+      {
+        "id": "GV-00078",
+        "nombre": "92_PLANTA VALDIVIA - LOS CIRUELOS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00899",
+        "nombre": "971_LAS ENCINAS - PADRE LAS CASAS 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00160",
+        "nombre": "976_PARQUE EOLICO RENAICO - MULCHEN 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00161",
+        "nombre": "978_DUQUECO - LOS PEUMOS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00162",
+        "nombre": "979_LOS PEUMOS - TEMUCO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00900",
+        "nombre": "984_LOS PEUMOS - CURACAUTIN 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "09_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01024",
+        "nombre": "A1_NALCAS - CALLAO 23KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10b_precordillera",
+          "10b_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00739",
+        "nombre": "A5_INTERCONEXION LOS TAMBORES - LOS TAMBORES",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00740",
+        "nombre": "A6_PAILLACO - PICHIRROPULLI",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "10a_valle_longitudinal"
+        ]
+      }
+    ],
+    "netbilling": []
+  }
+}

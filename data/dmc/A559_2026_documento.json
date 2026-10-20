@@ -1,0 +1,14 @@
+{
+  "codigo": "A559/2026",
+  "tipo": "Aviso",
+  "titulo": "Probables Tormentas Eléctricas en Archipielago Juan Fernández",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Viernes 16 de octubre del 2026 a las 12:06 hrs.",
+  "condicionSinoptica": "Sistema frontal",
+  "desde": "la mañana del lunes 19 de octubre del 2026",
+  "hasta": "la tarde del martes 20 de octubre del 2026",
+  "observacion": "Probabilidad de precipitaciones fuertes en un corto período de tiempo",
+  "textoZonaAfecta": "Archipielago Juan Fernández",
+  "tablaTitulo": "",
+  "tablaFilas": []
+}

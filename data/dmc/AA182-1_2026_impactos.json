@@ -1,0 +1,41 @@
+{
+  "codigo": "AA182-1/2026",
+  "criterio": "intersección geográfica",
+  "advertencia": "Área del aviso: exposición potencial, no impacto confirmado.",
+  "totales": {
+    "activos": 1,
+    "lineas": 2,
+    "netbilling": 0
+  },
+  "elementos": {
+    "activos": [
+      {
+        "id": "GV-01423",
+        "nombre": "672_S/E BAÑOS DEL TORO",
+        "categoria": "Subestación",
+        "zonas": [
+          "04_cordillera"
+        ]
+      }
+    ],
+    "lineas": [
+      {
+        "id": "GV-00293",
+        "nombre": "1511_PUNTA COLORADA - TRES QUEBRADAS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "04_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00515",
+        "nombre": "445_VICUÑA - BAÑOS DEL TORO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "04_cordillera"
+        ]
+      }
+    ],
+    "netbilling": []
+  }
+}

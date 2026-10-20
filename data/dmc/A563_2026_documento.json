@@ -1,0 +1,59 @@
+{
+  "codigo": "A563/2026",
+  "tipo": "Aviso",
+  "titulo": "Nevadas Normales a Moderadas en Cordillera Sector Provincia de Huasco",
+  "fenomeno": "Nevadas",
+  "emisionTexto": "Viernes 16 de octubre del 2026 a las 12:22 hrs.",
+  "condicionSinoptica": "Vaguada en altura",
+  "desde": "la tarde del domingo 18 de octubre del 2026",
+  "hasta": "la noche del martes 20 de octubre del 2026",
+  "observacion": "Probabilidad de ventisca",
+  "textoZonaAfecta": "Cordillera Sector Provincia de Huasco",
+  "tablaTitulo": "Montos estimados de nieve en centímetros (cm)",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Área"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "domingo 18"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 19"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 20"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera Sector Provincia de Huasco"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "20-30"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "10-20"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "10-20"
+      }
+    ]
+  ]
+}

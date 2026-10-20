@@ -1,0 +1,49 @@
+{
+  "codigo": "A560/2026",
+  "tipo": "Aviso",
+  "titulo": "Viento Normal a Moderado en Archipielago Juan Fernández",
+  "fenomeno": "Viento",
+  "emisionTexto": "Viernes 16 de octubre del 2026 a las 12:07 hrs.",
+  "condicionSinoptica": "Sistema frontal",
+  "desde": "la mañana del lunes 19 de octubre del 2026",
+  "hasta": "la noche del martes 20 de octubre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Archipielago Juan Fernández",
+  "tablaTitulo": "Intensidad estimada del Viento en Km/h",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Región"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 19"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 20"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Archipielago Juan Fernández"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-40 RACHAS 60"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "40-60 RACHAS 70"
+      }
+    ]
+  ]
+}

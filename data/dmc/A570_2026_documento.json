@@ -1,0 +1,168 @@
+{
+  "codigo": "A570/2026",
+  "tipo": "Aviso",
+  "titulo": "Viento Normal a Moderado en litoral de las regiones de Tarapacá, Antofagasta y Atacama",
+  "fenomeno": "Viento",
+  "emisionTexto": "Lunes 19 de octubre del 2026 a las 15:00 hrs.",
+  "condicionSinoptica": "Jet costero",
+  "desde": "la tarde del jueves 22 de octubre del 2026",
+  "hasta": "la noche del sábado 24 de octubre del 2026",
+  "observacion": "Probabilidad de tormentas de arena",
+  "textoZonaAfecta": "Tarapacá (Litoral)\nAntofagasta (Litoral)\nAtacama (Litoral)",
+  "tablaTitulo": "Intensidad estimada del Viento en Km/h",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: Tarapacá"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 22"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 23"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 24"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Litoral"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-40 RACHAS 50"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-40 RACHAS 50"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-40 RACHAS 50"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: Antofagasta"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 22"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 23"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 24"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Litoral"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "40-60"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "40-60"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "40-60"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: Atacama"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 22"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 23"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 24"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Litoral"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "40-60"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "40-60"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "40-60"
+      }
+    ]
+  ]
+}

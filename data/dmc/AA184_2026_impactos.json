@@ -1,0 +1,89 @@
+{
+  "codigo": "AA184/2026",
+  "criterio": "intersección geográfica",
+  "advertencia": "Área del aviso: exposición potencial, no impacto confirmado.",
+  "totales": {
+    "activos": 5,
+    "lineas": 4,
+    "netbilling": 0
+  },
+  "elementos": {
+    "activos": [
+      {
+        "id": "GV-03430",
+        "nombre": "133_TER TALTAL",
+        "categoria": "Central",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01989",
+        "nombre": "2063_S/E PARANAL",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01129",
+        "nombre": "249_S/E CENTRAL TALTAL (ENEL GENERACION)",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01358",
+        "nombre": "582_S/E PAPOSO",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01515",
+        "nombre": "836_S/E TALTAL (ELECDA)",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      }
+    ],
+    "lineas": [
+      {
+        "id": "GV-00930",
+        "nombre": "1297_PARANAL - ARMAZONES 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00102",
+        "nombre": "199_PAPOSO - FRANCISCO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00579",
+        "nombre": "849_PFV JAVIERA - TAL TAL 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00155",
+        "nombre": "919_PAPOSO - CACHIYUYAL 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      }
+    ],
+    "netbilling": []
+  }
+}

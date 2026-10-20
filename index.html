@@ -84,6 +84,7 @@
 >
 
 <link rel="stylesheet" href="components/senapred/senapred.css?v=4">
+<link rel="stylesheet" href="components/dmc/dmc.css?v=20261020-dmc-v13">
 <link rel="stylesheet" href="components/medicion/medicion.css?v=1">
 </head>
 
@@ -126,6 +127,12 @@
 >
     🚨 SENAPRED
     <span id="senapred-contador-header">(—)</span>
+</button>
+
+<button id="abrir-dmc" class="boton-header-gridvision" type="button"
+        aria-controls="panel-dmc" aria-expanded="false"
+        title="Avisos DMC: capa geográfica y comparación documental">
+    🌩️ DMC <span id="dmc-contador-header">(—)</span>
 </button>
 
 <!--
@@ -610,6 +617,7 @@
             </div>
         </section>
         <div id="contenedor-alertas-senapred"></div>
+        <div id="contenedor-avisos-dmc"></div>
         <div id="contenedor-panel-operacional"></div>
         <div id="contenedor-localizador-fallas"></div>
         <div id="contenedor-acerca-gridvision"></div>
@@ -634,6 +642,7 @@
 <script src="components/google-streetview.js?v=9"></script>
 <script src="components/stll/stll.js?v=20261019-1"></script>
 <script src="app.js?v=stll-20261019-1"></script>
+<script src="components/dmc/dmc.js?v=20261020-dmc-v13"></script>
 <script src="components/medicion/medicion.js?v=1"></script>
 <script src="components/buscador-coordenadas.js?v=1"></script>
 </body>
