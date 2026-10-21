@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-10-21 07:37",
+  "catalogoActualizadoEn": "2026-10-21 13:17",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -74,15 +74,15 @@
       "archivoDocumento": "data/dmc/AA182-1_2026_documento.json"
     },
     {
-      "codigo": "A561-5/2026",
+      "codigo": "A561-6/2026",
       "tipo": "Aviso",
       "fenomeno": "Tormentas Eléctricas",
       "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Coquimbo a la región del Biobío",
-      "desdeTexto": "la mañana del miércoles 21 de octubre del 2026",
+      "desdeTexto": "la tarde del miércoles 21 de octubre del 2026",
       "hastaTexto": "la noche del jueves 22 de octubre del 2026",
       "fechaInicioDia": "2026-10-21",
       "fechaFinDia": "2026-10-22",
-      "fechaEmision": "2026-10-21T07:32:00-03:00",
+      "fechaEmision": "2026-10-21T13:12:00-03:00",
       "regiones": [
         "Biobío",
         "Coquimbo",
@@ -92,12 +92,12 @@
         "Valparaíso",
         "Ñuble"
       ],
-      "numeroPoligonos": 27,
-      "archivoGeojson": "data/dmc/A561-5_2026.geojson",
-      "archivoCobertura": "data/dmc/A561-5_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A561-5_2026_impactos.json",
+      "numeroPoligonos": 28,
+      "archivoGeojson": "data/dmc/A561-6_2026.geojson",
+      "archivoCobertura": "data/dmc/A561-6_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A561-6_2026_impactos.json",
       "observacion": "Probabilidad de granizos y fuertes rachas de vientos locales",
-      "archivoDocumento": "data/dmc/A561-5_2026_documento.json"
+      "archivoDocumento": "data/dmc/A561-6_2026_documento.json"
     },
     {
       "codigo": "A562-4/2026",
@@ -232,5 +232,5 @@
       "archivoDocumento": "data/dmc/A569-2_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-10-21T09:21:52.769312-03:00"
+  "generadoEn": "2026-10-21T14:12:06.694319-03:00"
 }
