@@ -1,6 +1,10 @@
 name: DMC nacional - marcha blanca cada 3 horas
 
 on:
+  # Publicar Pages en cambios manuales a main, sin sincronizar innecesariamente DMC.
+  push:
+    branches: [main]
+  # 00:17, 03:17, 06:17... UTC. GitHub puede demorar el inicio.
   schedule:
     - cron: '17 */3 * * *'
   workflow_dispatch:
@@ -8,15 +12,20 @@ on:
 permissions:
   contents: write
   pages: write
+  id-token: write
 
 concurrency:
-  group: dmc-nacional-marcha-blanca
+  group: gridvision-publicacion-pages-dmc
   cancel-in-progress: false
 
 jobs:
   sincronizar:
+    # Los push manuales solo publican Pages; los horarios y manuales sincronizan DMC.
+    if: github.event_name != 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 35
+    outputs:
+      cambios: ${{ steps.cambios.outputs.cambios }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -64,11 +73,28 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git commit -m 'DMC: sincronizacion nacional validada cada 3 horas'
           git push origin HEAD:main
-      - name: Solicitar reconstruccion de Pages
-        if: steps.cambios.outputs.cambios == 'true'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"
-      - name: Verificar datos visibles en GitHub Pages
-        if: steps.cambios.outputs.cambios == 'true'
+
+  desplegar:
+    needs: sincronizar
+    # Permite desplegar en la prueba manual aunque la DMC no tenga nuevos avisos.
+    # Si sincronizar falla, no se publica nada.
+    if: ${{ always() && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || needs.sincronizar.outputs.cambios == 'true') && (needs.sincronizar.result == 'success' || needs.sincronizar.result == 'skipped') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: github-pages
+      url: ${{ steps.publicacion.outputs.page_url }}
+    steps:
+      - name: Obtener ultima version confirmada de main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Preparar el sitio estatico existente de GridVision
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: '.'
+      - name: Publicar el sitio completo en GitHub Pages
+        id: publicacion
+        uses: actions/deploy-pages@v4
+      - name: Comprobar fecha DMC visible en el portal
         run: python scripts/control_dmc_automatico.py verificar-web --raiz .
