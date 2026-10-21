@@ -1,0 +1,74 @@
+name: DMC nacional - marcha blanca cada 3 horas
+
+on:
+  schedule:
+    - cron: '17 */3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: dmc-nacional-marcha-blanca
+  cancel-in-progress: false
+
+jobs:
+  sincronizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Instalar dependencias
+        run: python -m pip install 'shapely>=2,<3' 'tzdata>=2026.1'
+      - name: Consultar nueva version DMC
+        id: dmc
+        run: python scripts/control_dmc_automatico.py comprobar --raiz .
+      - name: Generar y validar datos nuevos
+        if: steps.dmc.outputs.actualizar == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp data/dmc/indice.json "$RUNNER_TEMP/indice_anterior.json"
+          python scripts/sincronizar_dmc_nacional.py --raiz . --aplicar
+          python scripts/control_dmc_automatico.py validar --raiz . --antes "$RUNNER_TEMP/indice_anterior.json"
+      - name: Preparar cambios DMC exclusivamente
+        if: steps.dmc.outputs.actualizar == 'true'
+        id: cambios
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -- data/dmc/
+          nombres=$(git diff --cached --name-only)
+          if [[ -z "$nombres" ]]; then
+            echo 'cambios=false' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if echo "$nombres" | grep -Ev '^data/dmc/[^/]+\.(json|geojson)$'; then
+            echo 'Archivo fuera de data/dmc/' >&2
+            exit 1
+          fi
+          git diff --cached --check
+          echo 'cambios=true' >> "$GITHUB_OUTPUT"
+      - name: Publicar datos en main
+        if: steps.cambios.outputs.cambios == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'DMC: sincronizacion nacional validada cada 3 horas'
+          git push origin HEAD:main
+      - name: Solicitar reconstruccion de Pages
+        if: steps.cambios.outputs.cambios == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"
+      - name: Verificar datos visibles en GitHub Pages
+        if: steps.cambios.outputs.cambios == 'true'
+        run: python scripts/control_dmc_automatico.py verificar-web --raiz .
