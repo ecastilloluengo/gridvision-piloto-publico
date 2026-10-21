@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-10-20 15:35",
+  "catalogoActualizadoEn": "2026-10-21 07:37",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -74,40 +74,15 @@
       "archivoDocumento": "data/dmc/AA182-1_2026_documento.json"
     },
     {
-      "codigo": "A562-3/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Precipitaciones",
-      "titulo": "Precipitaciones Normales a Moderadas en zonas de las regiones de Coquimbo, Valparaíso, O'Higgins, Maule, Ñuble y Biobío",
-      "desdeTexto": "la tarde del martes 20 de octubre del 2026",
-      "hastaTexto": "la mañana del jueves 22 de octubre del 2026",
-      "fechaInicioDia": "2026-10-20",
-      "fechaFinDia": "2026-10-22",
-      "fechaEmision": "2026-10-20T15:08:00-03:00",
-      "regiones": [
-        "Biobío",
-        "Coquimbo",
-        "Maule",
-        "O’Higgins",
-        "Valparaíso",
-        "Ñuble"
-      ],
-      "numeroPoligonos": 12,
-      "archivoGeojson": "data/dmc/A562-3_2026.geojson",
-      "archivoCobertura": "data/dmc/A562-3_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A562-3_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A562-3_2026_documento.json"
-    },
-    {
-      "codigo": "A561-4/2026",
+      "codigo": "A561-5/2026",
       "tipo": "Aviso",
       "fenomeno": "Tormentas Eléctricas",
       "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Coquimbo a la región del Biobío",
-      "desdeTexto": "la tarde del martes 20 de octubre del 2026",
+      "desdeTexto": "la mañana del miércoles 21 de octubre del 2026",
       "hastaTexto": "la noche del jueves 22 de octubre del 2026",
-      "fechaInicioDia": "2026-10-20",
+      "fechaInicioDia": "2026-10-21",
       "fechaFinDia": "2026-10-22",
-      "fechaEmision": "2026-10-20T14:48:00-03:00",
+      "fechaEmision": "2026-10-21T07:32:00-03:00",
       "regiones": [
         "Biobío",
         "Coquimbo",
@@ -117,12 +92,34 @@
         "Valparaíso",
         "Ñuble"
       ],
-      "numeroPoligonos": 32,
-      "archivoGeojson": "data/dmc/A561-4_2026.geojson",
-      "archivoCobertura": "data/dmc/A561-4_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A561-4_2026_impactos.json",
+      "numeroPoligonos": 27,
+      "archivoGeojson": "data/dmc/A561-5_2026.geojson",
+      "archivoCobertura": "data/dmc/A561-5_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A561-5_2026_impactos.json",
       "observacion": "Probabilidad de granizos y fuertes rachas de vientos locales",
-      "archivoDocumento": "data/dmc/A561-4_2026_documento.json"
+      "archivoDocumento": "data/dmc/A561-5_2026_documento.json"
+    },
+    {
+      "codigo": "A562-4/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Precipitaciones",
+      "titulo": "Precipitaciones Normales a Moderadas en zonas de las regiones del Maule, Ñuble y Biobío",
+      "desdeTexto": "la mañana del miércoles 21 de octubre del 2026",
+      "hastaTexto": "la mañana del jueves 22 de octubre del 2026",
+      "fechaInicioDia": "2026-10-21",
+      "fechaFinDia": "2026-10-22",
+      "fechaEmision": "2026-10-21T07:09:00-03:00",
+      "regiones": [
+        "Biobío",
+        "Maule",
+        "Ñuble"
+      ],
+      "numeroPoligonos": 9,
+      "archivoGeojson": "data/dmc/A562-4_2026.geojson",
+      "archivoCobertura": "data/dmc/A562-4_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A562-4_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A562-4_2026_documento.json"
     },
     {
       "codigo": "A543-6/2026",
@@ -145,6 +142,49 @@
       "archivoImpactos": "data/dmc/A543-6_2026_impactos.json",
       "observacion": "Probabilidad de tormentas de arena",
       "archivoDocumento": "data/dmc/A543-6_2026_documento.json"
+    },
+    {
+      "codigo": "AA186/2026",
+      "tipo": "Alerta",
+      "fenomeno": "Precipitaciones",
+      "titulo": "Precipitaciones Moderadas a Fuertes en corto periodo de tiempo en zonas de las regiones del Maule, Ñuble y Biobío",
+      "desdeTexto": "la madrugada del miércoles 21 de octubre del 2026",
+      "hastaTexto": "la mañana del miércoles 21 de octubre del 2026",
+      "fechaInicioDia": "2026-10-21",
+      "fechaFinDia": "2026-10-21",
+      "fechaEmision": "2026-10-21T00:54:00-03:00",
+      "regiones": [
+        "Biobío",
+        "Maule",
+        "Ñuble"
+      ],
+      "numeroPoligonos": 6,
+      "archivoGeojson": "data/dmc/AA186_2026.geojson",
+      "archivoCobertura": "data/dmc/AA186_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/AA186_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/AA186_2026_documento.json"
+    },
+    {
+      "codigo": "A572-1/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Viento",
+      "titulo": "Viento Normal a Moderado en zonas de las regiones de La Araucanía y Los Ríos",
+      "desdeTexto": "la mañana del miércoles 21 de octubre del 2026",
+      "hastaTexto": "la tarde del miércoles 21 de octubre del 2026",
+      "fechaInicioDia": "2026-10-21",
+      "fechaFinDia": "2026-10-21",
+      "fechaEmision": "2026-10-20T21:29:00-03:00",
+      "regiones": [
+        "La Araucanía",
+        "Los Ríos"
+      ],
+      "numeroPoligonos": 5,
+      "archivoGeojson": "data/dmc/A572-1_2026.geojson",
+      "archivoCobertura": "data/dmc/A572-1_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A572-1_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A572-1_2026_documento.json"
     },
     {
       "codigo": "A571/2026",
@@ -190,173 +230,7 @@
       "archivoImpactos": "data/dmc/A569-2_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A569-2_2026_documento.json"
-    },
-    {
-      "codigo": "AA185-1/2026",
-      "tipo": "Alerta",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Tormentas Eléctricas en zonas desde la región de Valparaíso a la región del Maule",
-      "desdeTexto": "la mañana del martes 20 de octubre del 2026",
-      "hastaTexto": "la noche del martes 20 de octubre del 2026",
-      "fechaInicioDia": "2026-10-20",
-      "fechaFinDia": "2026-10-20",
-      "fechaEmision": "2026-10-20T10:27:00-03:00",
-      "regiones": [
-        "Maule",
-        "Metropolitana",
-        "O’Higgins",
-        "Valparaíso"
-      ],
-      "numeroPoligonos": 16,
-      "archivoGeojson": "data/dmc/AA185-1_2026.geojson",
-      "archivoCobertura": "data/dmc/AA185-1_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/AA185-1_2026_impactos.json",
-      "observacion": "Probabilidad de precipitaciones fuertes en un corto período de tiempo",
-      "archivoDocumento": "data/dmc/AA185-1_2026_documento.json"
-    },
-    {
-      "codigo": "AA180-2/2026",
-      "tipo": "Alerta",
-      "fenomeno": "Precipitaciones",
-      "titulo": "Precipitaciones Moderadas a Fuertes en corto periodo de tiempo en zonas desde la región de Coquimbo a la región del Maule",
-      "desdeTexto": "la tarde del martes 20 de octubre del 2026",
-      "hastaTexto": "la noche del martes 20 de octubre del 2026",
-      "fechaInicioDia": "2026-10-20",
-      "fechaFinDia": "2026-10-20",
-      "fechaEmision": "2026-10-20T06:49:00-03:00",
-      "regiones": [
-        "Coquimbo",
-        "Maule",
-        "Metropolitana",
-        "O’Higgins",
-        "Valparaíso"
-      ],
-      "numeroPoligonos": 13,
-      "archivoGeojson": "data/dmc/AA180-2_2026.geojson",
-      "archivoCobertura": "data/dmc/AA180-2_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/AA180-2_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/AA180-2_2026_documento.json"
-    },
-    {
-      "codigo": "AA184/2026",
-      "tipo": "Alerta",
-      "fenomeno": "Precipitaciones",
-      "titulo": "Precipitaciones Moderadas a Fuertes en Región de Antofagasta litoral, desde Caleta El Cobre al sur",
-      "desdeTexto": "la madrugada del martes 20 de octubre del 2026",
-      "hastaTexto": "la noche del martes 20 de octubre del 2026",
-      "fechaInicioDia": "2026-10-20",
-      "fechaFinDia": "2026-10-20",
-      "fechaEmision": "2026-10-19T10:47:00-03:00",
-      "regiones": [
-        "Antofagasta"
-      ],
-      "numeroPoligonos": 1,
-      "archivoGeojson": "data/dmc/AA184_2026.geojson",
-      "archivoCobertura": "data/dmc/AA184_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/AA184_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/AA184_2026_documento.json"
-    },
-    {
-      "codigo": "AA181/2026",
-      "tipo": "Alerta",
-      "fenomeno": "Viento",
-      "titulo": "Viento Moderado a Fuerte en zonas de las regiones de Antofagasta y Atacama",
-      "desdeTexto": "la madrugada del martes 20 de octubre del 2026",
-      "hastaTexto": "la noche del martes 20 de octubre del 2026",
-      "fechaInicioDia": "2026-10-20",
-      "fechaFinDia": "2026-10-20",
-      "fechaEmision": "2026-10-18T11:01:00-03:00",
-      "regiones": [
-        "Antofagasta",
-        "Atacama"
-      ],
-      "numeroPoligonos": 3,
-      "archivoGeojson": "data/dmc/AA181_2026.geojson",
-      "archivoCobertura": "data/dmc/AA181_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/AA181_2026_impactos.json",
-      "observacion": "Desarrollo de ventisca",
-      "archivoDocumento": "data/dmc/AA181_2026_documento.json"
-    },
-    {
-      "codigo": "A563/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Nevadas",
-      "titulo": "Nevadas Normales a Moderadas en Cordillera Sector Provincia de Huasco",
-      "desdeTexto": "la tarde del domingo 18 de octubre del 2026",
-      "hastaTexto": "la noche del martes 20 de octubre del 2026",
-      "fechaInicioDia": "2026-10-18",
-      "fechaFinDia": "2026-10-20",
-      "fechaEmision": "2026-10-16T12:22:00-03:00",
-      "regiones": [],
-      "numeroPoligonos": 1,
-      "archivoGeojson": "data/dmc/A563_2026.geojson",
-      "archivoCobertura": "data/dmc/A563_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A563_2026_impactos.json",
-      "observacion": "Probabilidad de ventisca",
-      "archivoDocumento": "data/dmc/A563_2026_documento.json"
-    },
-    {
-      "codigo": "A560/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Viento",
-      "titulo": "Viento Normal a Moderado en Archipielago Juan Fernández",
-      "desdeTexto": "la mañana del lunes 19 de octubre del 2026",
-      "hastaTexto": "la noche del martes 20 de octubre del 2026",
-      "fechaInicioDia": "2026-10-19",
-      "fechaFinDia": "2026-10-20",
-      "fechaEmision": "2026-10-16T12:07:00-03:00",
-      "regiones": [
-        "Juan Fernández"
-      ],
-      "numeroPoligonos": 1,
-      "archivoGeojson": "data/dmc/A560_2026.geojson",
-      "archivoCobertura": "data/dmc/A560_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A560_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A560_2026_documento.json"
-    },
-    {
-      "codigo": "A559/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en Archipielago Juan Fernández",
-      "desdeTexto": "la mañana del lunes 19 de octubre del 2026",
-      "hastaTexto": "la tarde del martes 20 de octubre del 2026",
-      "fechaInicioDia": "2026-10-19",
-      "fechaFinDia": "2026-10-20",
-      "fechaEmision": "2026-10-16T12:06:00-03:00",
-      "regiones": [
-        "Juan Fernández"
-      ],
-      "numeroPoligonos": 1,
-      "archivoGeojson": "data/dmc/A559_2026.geojson",
-      "archivoCobertura": "data/dmc/A559_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A559_2026_impactos.json",
-      "observacion": "Probabilidad de precipitaciones fuertes en un corto período de tiempo",
-      "archivoDocumento": "data/dmc/A559_2026_documento.json"
-    },
-    {
-      "codigo": "A558/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Precipitaciones",
-      "titulo": "Precipitaciones Normales a Moderadas en Archipielago Juan Fernández",
-      "desdeTexto": "la madrugada del lunes 19 de octubre del 2026",
-      "hastaTexto": "la noche del martes 20 de octubre del 2026",
-      "fechaInicioDia": "2026-10-19",
-      "fechaFinDia": "2026-10-20",
-      "fechaEmision": "2026-10-16T12:04:00-03:00",
-      "regiones": [
-        "Juan Fernández"
-      ],
-      "numeroPoligonos": 1,
-      "archivoGeojson": "data/dmc/A558_2026.geojson",
-      "archivoCobertura": "data/dmc/A558_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A558_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A558_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-10-20T16:26:49.643590-03:00"
+  "generadoEn": "2026-10-21T09:21:52.769312-03:00"
 }
