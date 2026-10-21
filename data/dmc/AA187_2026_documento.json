@@ -1,0 +1,14 @@
+{
+  "codigo": "AA187/2026",
+  "tipo": "Alerta",
+  "titulo": "Tormentas Eléctricas en las regiones del Maule, Ñuble y Biobío",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Miércoles 21 de octubre del 2026 a las 16:24 hrs.",
+  "condicionSinoptica": "Inestabilidad atmosférica",
+  "desde": "la tarde del miércoles 21 de octubre del 2026",
+  "hasta": "la noche del miércoles 21 de octubre del 2026",
+  "observacion": "Probabilidad de granizos y fuertes rachas de vientos locales",
+  "textoZonaAfecta": "Maule, Ñuble y Biobío",
+  "tablaTitulo": "",
+  "tablaFilas": []
+}

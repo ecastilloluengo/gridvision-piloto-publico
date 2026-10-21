@@ -1,0 +1,14 @@
+{
+  "codigo": "A571-1/2026",
+  "tipo": "Aviso",
+  "titulo": "Probable desarrollo de Nubes Convectivas con características tornádicas en zonas desde la región del Maule a la región de Los Lagos",
+  "fenomeno": "Nubes Convectivas Tornádicas",
+  "emisionTexto": "Miércoles 21 de octubre del 2026 a las 15:06 hrs.",
+  "condicionSinoptica": "Inestabilidad atmosférica",
+  "desde": "la tarde del miércoles 21 de octubre del 2026",
+  "hasta": "la noche del miércoles 21 de octubre del 2026",
+  "observacion": "Probabilidad de intensos vientos locales arrachados y tornádicos",
+  "textoZonaAfecta": "Maule (Litoral, Cordillera Costa, Valle)\nÑuble (Litoral, Cordillera Costa, Valle)\nBiobío (Litoral, Cordillera Costa, Valle)\nLa Araucanía (Litoral, Cordillera Costa, Valle)\nLos Ríos (Litoral, Cordillera Costa, Valle, Precordillera)\nLos Lagos (Valle, Precordillera, Chiloé)",
+  "tablaTitulo": "",
+  "tablaFilas": []
+}
