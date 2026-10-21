@@ -9,6 +9,9 @@ const API =
 const RUTA_ACTIVOS =
     "data/processed/activos_puntuales_validados.geojson";
 
+// Referencias informadas por Operaciones; confirmar parámetros de corte en SCADA/WTG.
+const REF_CORTE_EOLICOS = Object.freeze({"GV-02453":25, "GV-02430":21.5});
+
 const PRIORIDAD = {
     NORMAL: 0,
     PRECAUCION: 1,
@@ -355,6 +358,13 @@ function fmt(valor, decimales = 1) {
 }
 
 
+// Se conserva el cálculo de riesgo en km/h; solo cambia la visualización eólica.
+function mostrarViento(valorKmH, esEolico){
+    const numero = n(valorKmH);
+    if(numero === null) return "--";
+    return fmt(esEolico ? numero/3.6 : numero) + (esEolico ? " m/s" : " km/h");
+}
+
 function nivel(valor, umbral) {
 
     const numero = n(valor);
@@ -639,10 +649,7 @@ function buscarFeature(geojson, id) {
    PRONOSTICO
    ======================================================== */
 
-async function consultarPronostico(
-    feature,
-    horas
-) {
+async function consultarPronostico(feature, horas, id) {
 
     const coordenadas =
         feature?.geometry?.coordinates;
@@ -682,8 +689,8 @@ async function consultarPronostico(
             forecast_hours:
                 String(horas),
 
-            timezone:
-                "America/Santiago",
+            timezone: Object.hasOwn(REF_CORTE_EOLICOS, id)
+                ? "America/Punta_Arenas" : "America/Santiago",
 
             wind_speed_unit:
                 "kmh"
@@ -920,7 +927,7 @@ function fila(
 }
 
 
-function crearTabla(horario) {
+function crearTabla(horario, esEolico = false) {
 
     const tiempos =
         horario.time || [];
@@ -993,13 +1000,13 @@ function crearTabla(horario) {
     const viento =
         horario.wind_speed_10m.map(
             valor =>
-                `${fmt(valor)} km/h`
+                `${mostrarViento(valor, esEolico)}`
         );
 
     const rafaga =
         horario.wind_gusts_10m.map(
             valor =>
-                `${fmt(valor)} km/h`
+                `${mostrarViento(valor, esEolico)}`
         );
 
     const riesgo =
@@ -1099,12 +1106,9 @@ function acumulado(
 }
 
 
-function crearReporteActivo(
-    alias,
-    datos,
-    horas
-) {
-
+function crearReporteActivo(alias, datos, horas, id) {
+    const esEolico = Object.hasOwn(REF_CORTE_EOLICOS, id);
+    const corte = REF_CORTE_EOLICOS[id];
     const h =
         datos.hourly;
 
@@ -1294,18 +1298,14 @@ function crearReporteActivo(
                 <div class="meteo-metrica">
                     <small>Viento</small>
                     <strong>
-                        ${fmt(
-                            h.wind_speed_10m[actual]
-                        )} km/h
+                        ${mostrarViento(h.wind_speed_10m[actual], esEolico)}
                     </strong>
                 </div>
 
                 <div class="meteo-metrica">
                     <small>Rafaga</small>
                     <strong>
-                        ${fmt(
-                            h.wind_gusts_10m[actual]
-                        )} km/h
+                        ${mostrarViento(h.wind_gusts_10m[actual], esEolico)}
                     </strong>
                 </div>
 
@@ -1364,9 +1364,7 @@ function crearReporteActivo(
                     </small>
 
                     <strong>
-                        ${fmt(
-                            rafagaMax.valor
-                        )} km/h
+                        ${mostrarViento(rafagaMax.valor, esEolico)}
                     </strong>
 
                     <em>
@@ -1379,6 +1377,15 @@ function crearReporteActivo(
 
                 </div>
 
+
+                ${esEolico ? `
+                <div class="extremo">
+                    <small>Viento máximo pronosticado a 10 m / referencia corte</small>
+                    <strong>${mostrarViento(maximo(h.wind_speed_10m).valor,true)} / ${fmt(corte)} m/s</strong>
+                    <em>Referencia por validar con cada WTG. El pronóstico a 10 m no confirma
+                    desconexión ni operación de la protección.</em>
+                </div>
+                ` : ""}
 
                 <div class="extremo">
 
@@ -1445,7 +1452,7 @@ function crearReporteActivo(
             </div>
 
 
-            ${crearTabla(h)}
+            ${crearTabla(h, esEolico)}
 
         </article>
     `;
@@ -1556,17 +1563,10 @@ async function generarActivos() {
             try {
 
                 const datos =
-                    await consultarPronostico(
-                        feature,
-                        horas
-                    );
+                    await consultarPronostico(feature, horas, id);
 
                 reportes.push(
-                    crearReporteActivo(
-                        etiqueta,
-                        datos,
-                        horas
-                    )
+                    crearReporteActivo(etiqueta, datos, horas, id)
                 );
             }
 

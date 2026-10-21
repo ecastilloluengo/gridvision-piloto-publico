@@ -2,7 +2,7 @@
 
 "use strict";
 
-const VERSION_RESUMEN_DIARIO = "5.0.0";
+const VERSION_RESUMEN_DIARIO = "5.0.1";
 document.documentElement.dataset.gridvisionResumenDiario = VERSION_RESUMEN_DIARIO;
 console.info("GridVision: Resumen Diario + SENAPRED v" + VERSION_RESUMEN_DIARIO + " cargado.");
 
@@ -11,6 +11,9 @@ const API =
 
 const RUTA_ACTIVOS =
     "data/processed/activos_puntuales_validados.geojson";
+
+// Referencias informadas por Operaciones; confirmar parámetros de corte en SCADA/WTG.
+const REF_CORTE_EOLICOS = Object.freeze({"GV-02453":25, "GV-02430":21.5});
 
 const RUTA_LINEAS =
     "data/processed/lineas_validadas.geojson";
@@ -81,6 +84,8 @@ const TORMENTA = new Set([
  * Si los GeoJSON traen region/provincia/comuna, esos valores se agregan.
  */
 const UBICACION_POR_ID = {
+    "GV-02453": {region:["magallanes"],provincia:["magallanes"],comuna:["punta arenas"]},
+    "GV-02430": {region:["magallanes"],provincia:["magallanes"],comuna:["punta arenas"]},
     "GV-02505": {
         region: ["los lagos"],
         provincia: ["osorno"],
@@ -1286,7 +1291,7 @@ function evaluarActivoDia(
 }
 
 
-async function consultarActivo(feature, horas){
+async function consultarActivo(feature, horas, id){
 
     const coordenadas =
         feature?.geometry?.coordinates;
@@ -1320,8 +1325,8 @@ async function consultarActivo(feature, horas){
             ].join(","),
             forecast_hours:
                 String(horas),
-            timezone:
-                "America/Santiago",
+            timezone: Object.hasOwn(REF_CORTE_EOLICOS, id)
+                ? "America/Punta_Arenas" : "America/Santiago",
             wind_speed_unit:
                 "kmh"
         });
@@ -2840,6 +2845,11 @@ function crearDiasResultado(
 
 
 function descripcionDatoEntidad(item){
+    if(Object.hasOwn(REF_CORTE_EOLICOS, item.id)){
+        return "V " + fmt(item.vientoMax / 3.6,1) +
+            " / R " + fmt(item.rafaga / 3.6,1) + " m/s · corte ref. " +
+            fmt(REF_CORTE_EOLICOS[item.id],1) + " m/s";
+    }
 
     if(item.tipo === "LINEA"){
 
@@ -2996,6 +3006,11 @@ function matrizEntidades(
     fechas,
     resultadosEntidad
 ){
+    const avisoEolico = resultadosEntidad.some(e => Object.hasOwn(REF_CORTE_EOLICOS,e.id))
+        ? `<p style="font-size:11px;color:#91a6b2">PEVP/PECN: V = viento pronosticado a 10 m,
+        R = ráfaga, ambos en m/s. Corte referencial por validar; no equivale a
+        desconexión ni a protección operada.</p>`
+        : "";
 
     const encabezado =
         fechas
@@ -3076,6 +3091,7 @@ function matrizEntidades(
         <div class="resumen-matriz-titulo">
             Detalle diario por activo y linea
         </div>
+        ${avisoEolico}
 
         <div class="resumen-matriz-wrap">
             <table class="resumen-matriz">
@@ -3446,10 +3462,7 @@ async function generarResumenDiario(){
             if(entidad.tipo === "ACTIVO"){
 
                 const datos =
-                    await consultarActivo(
-                        entidad.feature,
-                        horas
-                    );
+                    await consultarActivo(entidad.feature, horas, entidad.id);
 
                 const h = datos.hourly;
 
@@ -3730,6 +3743,17 @@ function crearTextoCompleto(resultado){
             }
         }
     );
+
+    const parques = resultado.entidades.filter(e => Object.hasOwn(REF_CORTE_EOLICOS,e.id));
+    if(parques.length){
+        salida.push("");
+        salida.push("*PARQUES EOLICOS · VIENTO A 10 M Y RAFAGAS (m/s)*");
+        salida.push("Corte referencial por validar. No confirma desconexiones.");
+        parques.forEach(e => {
+            salida.push(`*${e.nombre}* · corte ref. ${fmt(REF_CORTE_EOLICOS[e.id])} m/s`);
+            e.dias.forEach(d => salida.push(`• ${fechaEtiqueta(d.fecha)}: V ${fmt(d.vientoMax/3.6)} m/s · R ${fmt(d.rafaga/3.6)} m/s`));
+        });
+    }
 
     if(resultado.senapred.relevantes.length){
         salida.push("");
@@ -4084,6 +4108,7 @@ function crearPaginaLeyendaPDF(){
                 <p><span class="gv-chip">P = Precipitacion:</span> acumulado de lluvia del periodo, en mm.</p>
                 <p><span class="gv-chip">R = Rafaga:</span> maxima velocidad de rafaga prevista, en km/h.</p>
                 <p><span class="gv-chip">T = Viento transversal:</span> componente perpendicular al trazado de una linea, en km/h.</p>
+                <p><span class="gv-chip">PEVP / PECN:</span> Viento pronosticado a 10 m y ráfagas en m/s; referencia corte PEVP 25 m/s y PECN 21,5 m/s. Validar contra parámetros WTG.</p>
             </section>
 
             <section class="gv-leyenda-bloque">
