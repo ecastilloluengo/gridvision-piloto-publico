@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="GridVision Vulcano: visor nacional de cartografía volcánica oficial e infraestructura eléctrica de Chile.">
+<title>GridVision Vulcano · Visor nacional</title>
+<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="gridvision-vulcano.css?v=06">
+</head>
+<body>
+<header class="gv-header">
+  <div class="gv-brand"><span class="gv-brand-icon">GV</span><div><h1>GridVision <em>Vulcano</em></h1><small>Visor nacional · Amenazas volcánicas y sistema eléctrico</small></div></div>
+  <nav aria-label="Navegación"><a href="portal.html">Portal</a><a href="index.html">GridVision</a><a href="gridvision-fire.html">Fire</a><span class="nav-selected">▲ Vulcano</span></nav>
+  <span class="gv-status"><span class="status-dot"></span>Cartografía de referencia · No es alerta en vivo</span>
+</header>
+<main class="gv-layout">
+  <section class="gv-main" aria-label="Mapa nacional de Chile">
+    <div class="map-shell">
+      <div id="vulcano-map" role="application" aria-label="Mapa geoespacial de Chile"></div>
+      <div class="map-left-controls">
+        <div class="map-search-card">
+          <label for="search">Buscar volcán, PE/PET o sector</label>
+          <input id="search" type="search" autocomplete="off" placeholder="Nombre del volcán o punto…">
+          <div id="search-results" class="search-results" hidden></div>
+        </div>
+        <div class="map-button-bar">
+          <button type="button" id="open-sidebar" class="map-primary-button" aria-controls="sidebar" aria-expanded="false">☷ Capas y filtros <span id="layer-active-count" class="active-count">—</span></button>
+          <button type="button" id="zoom-sector" class="map-secondary-button">⌖ Chile continental</button>
+        </div>
+      </div>
+      <aside class="gv-sidebar" id="sidebar" aria-label="Capas y filtros" aria-hidden="true">
+        <div class="side-head"><div><span class="eyebrow">CONFIGURACIÓN DEL MAPA</span><h2>Capas y filtros</h2></div><button type="button" class="btn-quiet" id="close-sidebar" aria-label="Cerrar filtros">×</button></div>
+        <div class="side-content">
+          <div class="panel-tip">Vista nacional. En el sistema eléctrico, solo las <strong>líneas de transmisión</strong> están activas por defecto.</div>
+          <input id="scope" type="hidden" value="regional">
+          <span id="scope-note" class="sr-only">Nacional</span>
+          <details class="section" open><summary><strong>⚡ Infraestructura eléctrica</strong><span id="n-lines" class="summary-count">—</span></summary>
+            <div class="section-inside">
+              <label class="layer"><input id="power-lines" type="checkbox" checked><span>Líneas de transmisión</span></label>
+              <div class="nested line-voltage-filters" id="voltage-filters">
+                <label class="layer"><input id="line-500" type="checkbox" checked><i class="swatch line" style="--sw:#a02bc7"></i>500 kV</label>
+                <label class="layer"><input id="line-220" type="checkbox" checked><i class="swatch line" style="--sw:#e32b32"></i>220–345 kV</label>
+                <label class="layer"><input id="line-110" type="checkbox" checked><i class="swatch line" style="--sw:#ef8e31"></i>110–154 kV</label>
+                <label class="layer"><input id="line-66" type="checkbox" checked><i class="swatch line" style="--sw:#3689ee"></i>66–69 kV</label>
+                <label class="layer"><input id="line-other" type="checkbox" checked><i class="swatch line" style="--sw:#6f879b"></i>Otras tensiones</label>
+              </div>
+              <label class="layer"><input id="assets" type="checkbox"><span>Centrales, subestaciones y otros activos</span><b id="n-assets">—</b></label>
+            </div>
+          </details>
+          <details class="section"><summary><strong>▲ Amenazas volcánicas</strong><span id="total-hazards" class="summary-count">—</span></summary>
+            <div class="section-inside">
+              <label class="layer"><input id="volcanoes" type="checkbox" checked><span>Volcanes geológicamente activos</span><b id="n-volcanoes">—</b></label>
+              <label class="layer indent"><input id="labels-volcanoes" type="checkbox"><span>Nombres de volcanes</span></label>
+              <label class="layer"><input id="hazards" type="checkbox"><span>Áreas de peligro volcánico</span></label>
+              <div class="nested"><label class="layer"><input id="haz-alto" type="checkbox" checked><i class="swatch" style="--sw:#ff0000"></i>Alto <b id="n-alto">—</b></label><label class="layer"><input id="haz-medio" type="checkbox" checked><i class="swatch" style="--sw:#ffaa00"></i>Medio <b id="n-medio">—</b></label><label class="layer"><input id="haz-bajo" type="checkbox" checked><i class="swatch" style="--sw:#ffff00"></i>Bajo <b id="n-bajo">—</b></label></div>
+            </div>
+          </details>
+          <details class="section"><summary><strong>➤ Evacuación y encuentro</strong><span id="n-routes" class="summary-count">—</span></summary>
+            <div class="section-inside">
+              <label class="layer"><input id="routes" type="checkbox"><i class="swatch line" style="--sw:#004da8"></i><span>Vías de evacuación</span></label>
+              <label class="layer indent"><input id="arrows" type="checkbox"><span>Flechas de trazado (no validadas)</span></label>
+              <label class="layer"><input id="points-pe" type="checkbox"><i class="swatch dot" style="--sw:#09a66d"></i><span>Puntos de encuentro PE</span><b id="n-pe">—</b></label>
+              <label class="layer"><input id="points-pet" type="checkbox"><i class="swatch dot" style="--sw:#e8ae27"></i><span>Encuentro transitorio PET</span><b id="n-pet">—</b></label>
+              <label class="layer indent"><input id="labels-points" type="checkbox"><span>Rótulos PE / PET</span></label>
+              <label class="layer"><input id="evac-areas" type="checkbox"><i class="swatch" style="--sw:#ffa77f"></i><span>Áreas de evacuación</span><b id="n-areas">—</b></label>
+              <p class="hint warning">Las flechas se orientan según la digitalización de ArcGIS, no según un sentido de evacuación confirmado.</p>
+            </div>
+          </details>
+          <details class="section"><summary><strong>◎ Distancias al cráter</strong><span id="n-rings" class="summary-count">—</span></summary>
+            <div class="section-inside"><label class="layer"><input id="rings" type="checkbox"><span>Distancias oficiales</span></label><div id="ring-options" class="nested"></div><p class="hint">La asociación de anillos a cada volcán sigue pendiente de cotejo.</p></div>
+          </details>
+          <details class="section"><summary><strong>▧ Fondo cartográfico</strong></summary>
+            <div class="section-inside base-options">
+              <label class="layer"><input type="radio" name="basemap" value="satelite" checked><span>Satélite + etiquetas</span></label>
+              <label class="layer"><input type="radio" name="basemap" value="osm"><span>OpenStreetMap</span></label>
+              <label class="layer"><input type="radio" name="basemap" value="claro"><span>Mapa claro</span></label>
+              <label class="layer"><input type="radio" name="basemap" value="satellite-only"><span>Satélite sin etiquetas</span></label>
+            </div>
+          </details>
+          <div class="panel-actions"><button id="show-all" type="button">Activar capas volcánicas</button><button id="hide-all" type="button">Ocultar capas volcánicas</button><button id="reset" type="button" class="quiet-action">Restablecer vista</button></div>
+          <a class="source-link" href="https://www.visorchilepreparado.cl/" target="_blank" rel="noopener noreferrer">Consultar visor oficial Chile Preparado ↗</a>
+        </div>
+      </aside>
+      <div class="map-top-right">
+        <button type="button" id="toggle-basemap" aria-expanded="false" aria-controls="basemap-menu">▧ Fondo</button>
+        <button type="button" id="toggle-detail" aria-expanded="false" aria-controls="detail-panel">ⓘ Ficha</button>
+        <button type="button" id="toggle-legend" aria-expanded="false" aria-controls="legend-panel">◩ Leyenda</button>
+        <button type="button" id="measure" title="Medir distancia entre dos puntos">⌁ Regla</button>
+        <button type="button" id="measure-clear" title="Limpiar mediciones">×</button>
+        <div id="basemap-menu" class="basemap-menu" hidden>
+          <label><input type="radio" name="quick-basemap" value="satelite" checked> Satélite + etiquetas</label>
+          <label><input type="radio" name="quick-basemap" value="osm"> OpenStreetMap</label>
+          <label><input type="radio" name="quick-basemap" value="claro"> Mapa claro</label>
+          <label><input type="radio" name="quick-basemap" value="satellite-only"> Satélite puro</label>
+        </div>
+      </div>
+      <aside id="detail-panel" class="gv-detail" hidden aria-label="Ficha geoespacial"><div class="detail-head"><div><span class="eyebrow">INSPECTOR</span><h2>Detalle cartográfico</h2></div><button id="close-detail" class="btn-quiet" aria-label="Cerrar ficha">×</button></div><div id="detail-content"><div class="detail-placeholder"><h3>Selecciona una geometría</h3><p>Haz clic en una línea, volcán, vía, PE/PET o polígono para ver sus atributos y procedencia.</p></div></div><div class="detail-note">No sustituye boletines SERNAGEOMIN, alertas SENAPRED ni instrucciones oficiales.</div></aside>
+      <aside id="legend-panel" class="map-legend" hidden aria-label="Leyenda cartográfica"><div class="mini-panel-head"><strong>Leyenda visible</strong><button id="close-legend" class="btn-quiet" aria-label="Cerrar leyenda">×</button></div><div id="legend-content"></div></aside>
+      <div id="map-state" class="map-state">Inicializando cartografía…</div>
+      <div class="map-warning">Cartografía de referencia · Sin alerta en vivo · Flechas sin dirección operacional validada</div>
+      <div class="sr-only" id="kpi-volcanoes"></div><div class="sr-only" id="kpi-routes"></div><div class="sr-only" id="kpi-points"></div><div class="sr-only" id="kpi-hazards"></div>
+      <div class="sr-only" id="source-date"></div>
+      <button id="zoom-calbuco" hidden type="button">Calbuco</button>
+    </div>
+  </section>
+</main>
+<script src="vendor/leaflet/leaflet.js"></script>
+<script src="gridvision-vulcano.js?v=06"></script>
+</body>
+</html>
