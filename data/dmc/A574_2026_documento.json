@@ -1,0 +1,216 @@
+{
+  "codigo": "A574/2026",
+  "tipo": "Aviso",
+  "titulo": "Precipitaciones Normales a Moderadas en zonas de las regiones del Maule, Ñuble y Biobío",
+  "fenomeno": "Precipitaciones",
+  "emisionTexto": "Jueves 22 de octubre del 2026 a las 09:32 hrs.",
+  "condicionSinoptica": "Baja segregada",
+  "desde": "la mañana del jueves 22 de octubre del 2026",
+  "hasta": "la mañana del viernes 23 de octubre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Maule (Litoral, Cordillera Costa, Valle, Precordillera)\nÑuble (Litoral, Cordillera Costa, Valle, Precordillera)\nBiobío (Litoral, Cordillera Costa, Valle, Precordillera)",
+  "tablaTitulo": "Montos estimados de precipitaciones en milímetros (mm)",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Maule"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 22"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Litoral"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "20-30"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera Costa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-35"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "20-40"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "20-40"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Ñuble"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 22"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Litoral"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "20-30"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera Costa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-35"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "20-40"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "20-40"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Biobío"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 22"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Litoral"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "20-30"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera Costa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-35"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-35"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-35"
+      }
+    ]
+  ]
+}

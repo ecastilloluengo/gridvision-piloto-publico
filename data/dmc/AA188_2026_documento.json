@@ -1,0 +1,101 @@
+{
+  "codigo": "AA188/2026",
+  "tipo": "Alerta",
+  "titulo": "Precipitaciones Moderadas a Fuertes en corto periodo de tiempo en zonas de las regiones del Maule y Ñuble",
+  "fenomeno": "Precipitaciones",
+  "emisionTexto": "Jueves 22 de octubre del 2026 a las 09:39 hrs.",
+  "condicionSinoptica": "Baja segregada",
+  "desde": "la tarde del jueves 22 de octubre del 2026",
+  "hasta": "la noche del jueves 22 de octubre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Maule (Valle, Precordillera)\nÑuble (Valle, Precordillera)",
+  "tablaTitulo": "Montos estimados de precipitaciones en milímetros (mm)",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Maule"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Monto"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-35"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-35"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Ñuble"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Monto"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "30-40"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "30-40"
+      }
+    ]
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-10-21 23:50",
+  "catalogoActualizadoEn": "2026-10-22 11:20",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -49,6 +49,54 @@
       "archivoDocumento": "data/dmc/A570_2026_documento.json"
     },
     {
+      "codigo": "A561-7/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Coquimbo a la región del Biobío",
+      "desdeTexto": "la tarde del jueves 22 de octubre del 2026",
+      "hastaTexto": "la noche del viernes 23 de octubre del 2026",
+      "fechaInicioDia": "2026-10-22",
+      "fechaFinDia": "2026-10-23",
+      "fechaEmision": "2026-10-22T10:23:00-03:00",
+      "regiones": [
+        "Biobío",
+        "Coquimbo",
+        "Maule",
+        "Metropolitana",
+        "O’Higgins",
+        "Valparaíso",
+        "Ñuble"
+      ],
+      "numeroPoligonos": 30,
+      "archivoGeojson": "data/dmc/A561-7_2026.geojson",
+      "archivoCobertura": "data/dmc/A561-7_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A561-7_2026_impactos.json",
+      "observacion": "Probabilidad de granizos y fuertes rachas de vientos locales",
+      "archivoDocumento": "data/dmc/A561-7_2026_documento.json"
+    },
+    {
+      "codigo": "A574/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Precipitaciones",
+      "titulo": "Precipitaciones Normales a Moderadas en zonas de las regiones del Maule, Ñuble y Biobío",
+      "desdeTexto": "la mañana del jueves 22 de octubre del 2026",
+      "hastaTexto": "la mañana del viernes 23 de octubre del 2026",
+      "fechaInicioDia": "2026-10-22",
+      "fechaFinDia": "2026-10-23",
+      "fechaEmision": "2026-10-22T09:32:00-03:00",
+      "regiones": [
+        "Biobío",
+        "Maule",
+        "Ñuble"
+      ],
+      "numeroPoligonos": 12,
+      "archivoGeojson": "data/dmc/A574_2026.geojson",
+      "archivoCobertura": "data/dmc/A574_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A574_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A574_2026_documento.json"
+    },
+    {
       "codigo": "A564-4/2026",
       "tipo": "Aviso",
       "fenomeno": "Viento",
@@ -95,6 +143,52 @@
       "archivoDocumento": "data/dmc/AA182-1_2026_documento.json"
     },
     {
+      "codigo": "A575-1/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Nubes Convectivas Tornádicas",
+      "titulo": "Probable desarrollo de Nubes Convectivas con características tornádicas en zonas desde la región del Maule a la región de Los Lagos",
+      "desdeTexto": "la tarde del jueves 22 de octubre del 2026",
+      "hastaTexto": "la noche del jueves 22 de octubre del 2026",
+      "fechaInicioDia": "2026-10-22",
+      "fechaFinDia": "2026-10-22",
+      "fechaEmision": "2026-10-22T11:15:00-03:00",
+      "regiones": [
+        "Biobío",
+        "La Araucanía",
+        "Los Lagos",
+        "Los Ríos",
+        "Maule",
+        "Ñuble"
+      ],
+      "numeroPoligonos": 12,
+      "archivoGeojson": "data/dmc/A575-1_2026.geojson",
+      "archivoCobertura": "data/dmc/A575-1_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A575-1_2026_impactos.json",
+      "observacion": "Probabilidad de intensos vientos locales arrachados y tornádicos",
+      "archivoDocumento": "data/dmc/A575-1_2026_documento.json"
+    },
+    {
+      "codigo": "AA188/2026",
+      "tipo": "Alerta",
+      "fenomeno": "Precipitaciones",
+      "titulo": "Precipitaciones Moderadas a Fuertes en corto periodo de tiempo en zonas de las regiones del Maule y Ñuble",
+      "desdeTexto": "la tarde del jueves 22 de octubre del 2026",
+      "hastaTexto": "la noche del jueves 22 de octubre del 2026",
+      "fechaInicioDia": "2026-10-22",
+      "fechaFinDia": "2026-10-22",
+      "fechaEmision": "2026-10-22T09:39:00-03:00",
+      "regiones": [
+        "Maule",
+        "Ñuble"
+      ],
+      "numeroPoligonos": 4,
+      "archivoGeojson": "data/dmc/AA188_2026.geojson",
+      "archivoCobertura": "data/dmc/AA188_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/AA188_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/AA188_2026_documento.json"
+    },
+    {
       "codigo": "A573/2026",
       "tipo": "Aviso",
       "fenomeno": "Tormentas Eléctricas",
@@ -115,55 +209,7 @@
       "archivoImpactos": "data/dmc/A573_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A573_2026_documento.json"
-    },
-    {
-      "codigo": "A561-6/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Coquimbo a la región del Biobío",
-      "desdeTexto": "la tarde del miércoles 21 de octubre del 2026",
-      "hastaTexto": "la noche del jueves 22 de octubre del 2026",
-      "fechaInicioDia": "2026-10-21",
-      "fechaFinDia": "2026-10-22",
-      "fechaEmision": "2026-10-21T13:12:00-03:00",
-      "regiones": [
-        "Biobío",
-        "Coquimbo",
-        "Maule",
-        "Metropolitana",
-        "O’Higgins",
-        "Valparaíso",
-        "Ñuble"
-      ],
-      "numeroPoligonos": 28,
-      "archivoGeojson": "data/dmc/A561-6_2026.geojson",
-      "archivoCobertura": "data/dmc/A561-6_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A561-6_2026_impactos.json",
-      "observacion": "Probabilidad de granizos y fuertes rachas de vientos locales",
-      "archivoDocumento": "data/dmc/A561-6_2026_documento.json"
-    },
-    {
-      "codigo": "A562-4/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Precipitaciones",
-      "titulo": "Precipitaciones Normales a Moderadas en zonas de las regiones del Maule, Ñuble y Biobío",
-      "desdeTexto": "la mañana del miércoles 21 de octubre del 2026",
-      "hastaTexto": "la mañana del jueves 22 de octubre del 2026",
-      "fechaInicioDia": "2026-10-21",
-      "fechaFinDia": "2026-10-22",
-      "fechaEmision": "2026-10-21T07:09:00-03:00",
-      "regiones": [
-        "Biobío",
-        "Maule",
-        "Ñuble"
-      ],
-      "numeroPoligonos": 9,
-      "archivoGeojson": "data/dmc/A562-4_2026.geojson",
-      "archivoCobertura": "data/dmc/A562-4_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A562-4_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A562-4_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-10-22T01:44:40.873197-03:00"
+  "generadoEn": "2026-10-22T14:10:51.213998-03:00"
 }
