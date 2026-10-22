@@ -7,6 +7,18 @@
 <title>GridVision Vulcano · Visor nacional</title>
 <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
 <link rel="stylesheet" href="gridvision-vulcano.css?v=06">
+<style id="gv-universal-search-css">
+.gv-universal-search{min-width:280px;max-width:min(440px,calc(100vw - 28px))}
+.gv-search-controls{display:flex;gap:5px;align-items:center;margin-top:5px}
+.gv-search-controls select{min-width:100px;max-width:115px;background:#0b2941;color:#e9f5fc;border:1px solid #56788b;border-radius:6px;padding:9px 5px;font:inherit}
+.gv-search-controls #search{min-width:0;flex:1;width:auto;margin:0}
+.gv-universal-search .search-results{max-height:min(410px,55vh);overflow-y:auto}
+.gv-search-hit{display:flex!important;flex-direction:column;align-items:flex-start;gap:3px;text-align:left;white-space:normal!important;overflow-wrap:anywhere;padding:9px!important;width:100%}
+.gv-search-hit strong{font-size:12px;line-height:1.25}.gv-search-hit span{font-size:10px;opacity:.85;line-height:1.3}
+.gv-search-info{padding:9px 10px;font-size:12px;color:#d0e4ee}
+.gv-search-hint{font-size:10px;line-height:1.35;color:#c2d6e2;margin:5px 0 0}
+@media(max-width:530px){.gv-universal-search{min-width:0;width:min(95vw,400px)}.gv-search-controls select{min-width:75px;max-width:95px}}
+</style>
 </head>
 <body>
 <header class="gv-header">
@@ -19,25 +31,72 @@
     <div class="map-shell">
       <div id="vulcano-map" role="application" aria-label="Mapa geoespacial de Chile"></div>
       <div class="map-left-controls">
-        <div class="map-search-card">
-          <label for="search">Buscar volcán, PE/PET o sector</label>
-          <input id="search" type="search" autocomplete="off" placeholder="Nombre del volcán o punto…">
-          <div id="search-results" class="search-results" hidden></div>
+        <div class="map-search-card gv-universal-search">
+          <label for="search">Buscar en Vulcano y SEN · Chile</label>
+          <div class="gv-search-controls">
+            <select id="search-type" aria-label="Tipo de elemento a buscar">
+              <option value="todo">Todos</option>
+              <option value="linea">Línea</option>
+              <option value="se">S/E</option>
+              <option value="central">Central</option>
+              <option value="volcan">Volcán</option>
+              <option value="lugar">Lugar</option>
+              <option value="coordenadas">Coordenadas</option>
+            </select>
+            <input id="search" type="search" autocomplete="off" spellcheck="false" placeholder="Nombre, código o -40.574, -73.135" aria-controls="search-results" aria-label="Nombre, ID, lugar o coordenadas">
+          </div>
+          <div id="search-results" class="search-results" aria-live="polite" hidden></div>
+          <p class="gv-search-hint">Datos SEN locales. Para lugares, consulta explícita a OpenStreetMap; coordenadas WGS84 decimales.</p>
         </div>
         <div class="map-button-bar">
           <button type="button" id="open-sidebar" class="map-primary-button" aria-controls="sidebar" aria-expanded="false">☷ Capas y filtros <span id="layer-active-count" class="active-count">—</span></button>
-          <button type="button" id="zoom-sector" class="map-secondary-button">⌖ Chile continental</button>
+          <button type="button" id="zoom-sector" class="map-secondary-button">⌖ Enfocar volcán(es)</button>
         </div>
       </div>
       <aside class="gv-sidebar" id="sidebar" aria-label="Capas y filtros" aria-hidden="true">
         <div class="side-head"><div><span class="eyebrow">CONFIGURACIÓN DEL MAPA</span><h2>Capas y filtros</h2></div><button type="button" class="btn-quiet" id="close-sidebar" aria-label="Cerrar filtros">×</button></div>
         <div class="side-content">
-          <div class="panel-tip">Vista nacional. En el sistema eléctrico, solo las <strong>líneas de transmisión</strong> están activas por defecto.</div>
+          <!-- GV VULCANO 0.6.5: REGIONES CON DESCARGA AISLADA -->
+          <details class="section" open><summary><strong>⌖ Región de trabajo</strong></summary>
+            <div class="section-inside">
+              <label class="layer"><input id="auto-viewport" type="checkbox"><span><strong>Mostrar volcanes al acercar</strong> (máx. 2)</span></label>
+              <p class="hint" id="auto-volcano-info">Zoom lejano: solo mapa base. Acércate para descubrir volcanes del sector.</p>
+              <label for="macrozona-selector" class="hint">Macrozona para organizar la búsqueda</label>
+              <select id="macrozona-selector" style="width:100%;padding:9px;margin:8px 0 5px;border:1px solid #50728b;border-radius:7px;background:#092438;color:#edf8ff">
+                <option value="norte">Norte</option><option value="centro">Centro</option><option value="sur" selected>Sur</option>
+              </select>
+              <label for="region-selector" class="hint">Región activa (solo una)</label>
+              <select id="region-selector" style="width:100%;padding:9px;margin:8px 0 5px;border:1px solid #50728b;border-radius:7px;background:#092438;color:#edf8ff">
+                <option value="15">Arica y Parinacota</option>
+                <option value="01">Tarapacá</option>
+                <option value="02">Antofagasta</option>
+                <option value="03">Atacama</option>
+                <option value="04">Coquimbo</option>
+                <option value="05">Valparaíso</option>
+                <option value="13">Metropolitana de Santiago</option>
+                <option value="06">O’Higgins</option>
+                <option value="07">Maule</option>
+                <option value="16">Ñuble</option>
+                <option value="08">Biobío</option>
+                <option value="09">La Araucanía</option>
+                <option value="14">Los Ríos</option>
+                <option value="10" selected>Los Lagos (inicio)</option>
+                <option value="11">Aysén</option>
+                <option value="12">Magallanes</option>
+              </select>
+              <label for="volcano-one" class="hint">Volcán principal (uno a la vez)</label>
+              <select id="volcano-one" style="width:100%;padding:9px;margin:6px 0;border:1px solid #50728b;border-radius:7px;background:#092438;color:#edf8ff"><option value="">Cargando índice…</option></select>
+              <label for="volcano-two" class="hint">Comparación opcional · segundo volcán</label>
+              <select id="volcano-two" style="width:100%;padding:9px;margin:6px 0;border:1px solid #50728b;border-radius:7px;background:#092438;color:#edf8ff"><option value="">Ninguno · solo uno</option></select>
+              <p class="hint">Una sola región para seleccionar volcanes; hasta dos volcanes en pantalla. Los archivos se eligen por proximidad aproximada de 40 km, pero las geometrías originales NO se recortan en límites regionales ni en la ventana. La proximidad NO acredita atribución exclusiva al volcán.</p>
+            </div>
+          </details>
+          <div class="panel-tip">SEN nacional independiente del volcán: líneas y centrales visibles desde la vista general de Chile. Capas volcánicas desde zoom 8; peligros desde 9, vías desde 10 y PE/PET desde 11. Máximo dos volcanes. Usa «Enfocar volcán(es)» para saltar a Calbuco.</div>
           <input id="scope" type="hidden" value="regional">
           <span id="scope-note" class="sr-only">Nacional</span>
-          <details class="section" open><summary><strong>⚡ Infraestructura eléctrica</strong><span id="n-lines" class="summary-count">—</span></summary>
+          <details class="section" open><summary><strong>⚡ SEN · cobertura nacional</strong><span id="n-lines" class="summary-count">—</span></summary>
             <div class="section-inside">
-              <label class="layer"><input id="power-lines" type="checkbox" checked><span>Líneas de transmisión</span></label>
+              <label class="layer"><input id="power-lines" type="checkbox" checked><span>Líneas de transmisión · todo Chile</span></label>
               <div class="nested line-voltage-filters" id="voltage-filters">
                 <label class="layer"><input id="line-500" type="checkbox" checked><i class="swatch line" style="--sw:#a02bc7"></i>500 kV</label>
                 <label class="layer"><input id="line-220" type="checkbox" checked><i class="swatch line" style="--sw:#e32b32"></i>220–345 kV</label>
@@ -45,24 +104,27 @@
                 <label class="layer"><input id="line-66" type="checkbox" checked><i class="swatch line" style="--sw:#3689ee"></i>66–69 kV</label>
                 <label class="layer"><input id="line-other" type="checkbox" checked><i class="swatch line" style="--sw:#6f879b"></i>Otras tensiones</label>
               </div>
-              <label class="layer"><input id="assets" type="checkbox"><span>Centrales, subestaciones y otros activos</span><b id="n-assets">—</b></label>
+              <label class="layer"><input id="assets" type="checkbox" checked><span>Centrales eléctricas · todo Chile</span><b id="n-assets">—</b></label>
+              <label class="layer"><input id="substations" type="checkbox"><span>Subestaciones S/E (opcional)</span><b id="n-substations">—</b></label>
+              <p class="hint" id="sen-state">Preparando cobertura nacional del SEN…</p>
+              <p class="hint">Selecciona o pasa el cursor sobre una línea, central o S/E para conocer su nombre, clase y tensión cuando está informada. La región solo filtra volcanes.</p>
             </div>
           </details>
           <details class="section"><summary><strong>▲ Amenazas volcánicas</strong><span id="total-hazards" class="summary-count">—</span></summary>
             <div class="section-inside">
               <label class="layer"><input id="volcanoes" type="checkbox" checked><span>Volcanes geológicamente activos</span><b id="n-volcanoes">—</b></label>
-              <label class="layer indent"><input id="labels-volcanoes" type="checkbox"><span>Nombres de volcanes</span></label>
-              <label class="layer"><input id="hazards" type="checkbox"><span>Áreas de peligro volcánico</span></label>
+              <label class="layer indent"><input id="labels-volcanoes" type="checkbox" checked><span>Nombres de volcanes</span></label>
+              <label class="layer"><input id="hazards" type="checkbox" checked><span>Áreas de peligro volcánico</span></label>
               <div class="nested"><label class="layer"><input id="haz-alto" type="checkbox" checked><i class="swatch" style="--sw:#ff0000"></i>Alto <b id="n-alto">—</b></label><label class="layer"><input id="haz-medio" type="checkbox" checked><i class="swatch" style="--sw:#ffaa00"></i>Medio <b id="n-medio">—</b></label><label class="layer"><input id="haz-bajo" type="checkbox" checked><i class="swatch" style="--sw:#ffff00"></i>Bajo <b id="n-bajo">—</b></label></div>
             </div>
           </details>
           <details class="section"><summary><strong>➤ Evacuación y encuentro</strong><span id="n-routes" class="summary-count">—</span></summary>
             <div class="section-inside">
-              <label class="layer"><input id="routes" type="checkbox"><i class="swatch line" style="--sw:#004da8"></i><span>Vías de evacuación</span></label>
+              <label class="layer"><input id="routes" type="checkbox" checked><i class="swatch line" style="--sw:#004da8"></i><span>Vías de evacuación</span></label>
               <label class="layer indent"><input id="arrows" type="checkbox"><span>Flechas de trazado (no validadas)</span></label>
-              <label class="layer"><input id="points-pe" type="checkbox"><i class="swatch dot" style="--sw:#09a66d"></i><span>Puntos de encuentro PE</span><b id="n-pe">—</b></label>
-              <label class="layer"><input id="points-pet" type="checkbox"><i class="swatch dot" style="--sw:#e8ae27"></i><span>Encuentro transitorio PET</span><b id="n-pet">—</b></label>
-              <label class="layer indent"><input id="labels-points" type="checkbox"><span>Rótulos PE / PET</span></label>
+              <label class="layer"><input id="points-pe" type="checkbox" checked><i class="swatch dot" style="--sw:#09a66d"></i><span>Puntos de encuentro PE</span><b id="n-pe">—</b></label>
+              <label class="layer"><input id="points-pet" type="checkbox" checked><i class="swatch dot" style="--sw:#e8ae27"></i><span>Encuentro transitorio PET</span><b id="n-pet">—</b></label>
+              <label class="layer indent"><input id="labels-points" type="checkbox" checked><span>Rótulos PE / PET</span></label>
               <label class="layer"><input id="evac-areas" type="checkbox"><i class="swatch" style="--sw:#ffa77f"></i><span>Áreas de evacuación</span><b id="n-areas">—</b></label>
               <p class="hint warning">Las flechas se orientan según la digitalización de ArcGIS, no según un sentido de evacuación confirmado.</p>
             </div>
@@ -74,7 +136,6 @@
             <div class="section-inside base-options">
               <label class="layer"><input type="radio" name="basemap" value="satelite" checked><span>Satélite + etiquetas</span></label>
               <label class="layer"><input type="radio" name="basemap" value="osm"><span>OpenStreetMap</span></label>
-              <label class="layer"><input type="radio" name="basemap" value="claro"><span>Mapa claro</span></label>
               <label class="layer"><input type="radio" name="basemap" value="satellite-only"><span>Satélite sin etiquetas</span></label>
             </div>
           </details>
@@ -89,9 +150,8 @@
         <button type="button" id="measure" title="Medir distancia entre dos puntos">⌁ Regla</button>
         <button type="button" id="measure-clear" title="Limpiar mediciones">×</button>
         <div id="basemap-menu" class="basemap-menu" hidden>
-          <label><input type="radio" name="quick-basemap" value="satelite" checked> Satélite + etiquetas</label>
+          <label><input type="radio" name="quick-basemap" value="satelite"> Satélite + etiquetas</label>
           <label><input type="radio" name="quick-basemap" value="osm"> OpenStreetMap</label>
-          <label><input type="radio" name="quick-basemap" value="claro"> Mapa claro</label>
           <label><input type="radio" name="quick-basemap" value="satellite-only"> Satélite puro</label>
         </div>
       </div>
@@ -106,6 +166,7 @@
   </section>
 </main>
 <script src="vendor/leaflet/leaflet.js"></script>
-<script src="gridvision-vulcano.js?v=06"></script>
+<script src="gridvision-vulcano.js?v=0684"></script>
+<!-- GridVision_Vulcano_SEN_v0682 -->
 </body>
 </html>
