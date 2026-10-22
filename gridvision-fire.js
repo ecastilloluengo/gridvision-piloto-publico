@@ -160,7 +160,7 @@ fireLineLegend.addTo(map);
 
 const satellite = L.tileLayer(
   "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-  { maxZoom: 19, attribution: "Tiles © Esri - Sources: Esri, Maxar, Earthstar Geographics and the GIS User Community" }
+  { maxZoom: 19, maxNativeZoom: 12, attribution: "Tiles © Esri - Sources: Esri, Maxar, Earthstar Geographics and the GIS User Community" }
 ).addTo(map);
 const mapLabels = L.tileLayer(
   "https://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}",
@@ -170,6 +170,11 @@ const mapLabels = L.tileLayer(
     attribution: "Labels © Esri"
   }
 ).addTo(map);
+
+// GV FIRE: SATELITE SEGURO FIJO v0.3 (sin selector visible)
+// Esri World Imagery: maxNativeZoom=12, maxZoom=19.
+// No se crea selector de modos ni capa satelital duplicada.
+// Zoom superior: Leaflet amplia el mosaico del nivel 12.
 
 const layers = {
   fires: L.layerGroup().addTo(map),

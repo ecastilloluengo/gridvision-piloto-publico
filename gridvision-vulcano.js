@@ -35,7 +35,7 @@ function populateVolcanoSelectors(initial=false){
  let prevA=initial?'':a.value,prevB=initial?'':b.value;
  for(const el of [a,b]){el.replaceChildren();const opt=document.createElement('option');opt.value='';opt.textContent=el===a?'Selecciona un volcán':'Ninguno · solo uno';el.append(opt);
   for(const volcano of opts){const o=document.createElement('option');o.value=volcano.id;o.textContent=volcano.nombre;el.append(o);}}
- if(initial){const calbuco=opts.find(v=>norm(v.nombre)==='calbuco');prevA=calbuco?.id||opts[0]?.id||'';}
+ if(initial){const calbuco=opts.find(v=>norm(v.nombre)==='calbuco');prevA=regionCode()==='05'?'':(calbuco?.id||opts[0]?.id||'');}
  a.value=opts.some(v=>v.id===prevA)?prevA:'';
  b.value=opts.some(v=>v.id===prevB&&v.id!==a.value)?prevB:'';
 }
@@ -103,9 +103,31 @@ function initMap(){
  const m=state.map=L.map('vulcano-map',{preferCanvas:true,zoomControl:false,maxZoom:18,minZoom:3}).fitBounds(BOUNDS,{padding:[14,14],animate:false});
  L.control.zoom({position:'bottomright'}).addTo(m);L.control.scale({position:'bottomleft',imperial:false}).addTo(m);
  const sat=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{attribution:'© Esri, Maxar, Earthstar Geographics y colaboradores GIS',maxZoom:18});
+ // GV RAPA NUI: PROTECCION DE MOSAICOS SATELITALES v0.2
+ const satRapa=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{attribution:'© Esri, Maxar, Earthstar Geographics y colaboradores GIS',maxNativeZoom:12,maxZoom:18});
  const labels=L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{attribution:'Esri Reference',maxZoom:18,opacity:.85});
  const osm=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:18});
  state.baseLayers={satelite:[sat,labels],osm:[osm],'satellite-only':[sat]};sat.addTo(m);labels.addTo(m);
+  // En Isla de Pascua el proveedor Esri devuelve mosaicos grises a zoom alto.
+  // Allí reutilizamos mosaicos del nivel 12 (escalados por Leaflet) en vez de pedir
+  // niveles sin cobertura. En Chile continental se conserva la resolución original.
+  function gvSyncSatRapa(){
+    const centro=m.getCenter();
+    const esRapa=centro.lng < -100 && centro.lat > -29 && centro.lat < -25;
+    const siguiente=esRapa?satRapa:sat;
+    const anterior=state.baseLayers.satelite[0];
+    if(anterior===siguiente)return;
+    state.baseLayers.satelite=[siguiente,labels];
+    state.baseLayers['satellite-only']=[siguiente];
+    if(m.hasLayer(anterior)){
+      m.removeLayer(anterior);
+      siguiente.addTo(m);
+      siguiente.bringToBack(); // No tapar etiquetas del fondo
+    }
+  }
+  m.on('moveend',gvSyncSatRapa);
+  gvSyncSatRapa();
+
  // Si el proveedor satelital falla, se usa el fondo de calles ya configurado.
  let fallosSatelite=0;
  sat.on('tileload',()=>{fallosSatelite=0;});
@@ -271,29 +293,63 @@ function drawHazards(){const g=L.layerGroup();if(!enabled('hazards'))return g;co
  return g;}
 function decorateRing(f){let distance=Number(f.properties?.distance);return {pane:'gv-distance',color:RING_COLORS[distance]||'#d5dc42',weight:2,opacity:.92,dashArray:'7 6'};}
 function redrawGroup(key,active,features,opts){if(!active)return;const g=drawGeo(key,features,opts);state.layerGroups[key]=g;g.addTo(state.map);}
+/* GV ZOOM ESTABLE v01: conserva geometrias ya dibujadas al cambiar la escala.
+   Reemplaza solo la capa cuyo filtro, seleccion o fuente de datos cambia. */
+const gvZoomGroupCache = new WeakMap();
+function gvApplyVolcanoGroup(name, active, signature, makeLayer) {
+  const old = state.layerGroups[name];
+  if (!active) {
+    if (old && state.map.hasLayer(old)) state.map.removeLayer(old);
+    delete state.layerGroups[name];
+    return;
+  }
+  if (old && state.map.hasLayer(old) && gvZoomGroupCache.get(old) === signature) return;
+  // Construir antes de retirar la anterior evita una pantalla vacia al cruzar niveles.
+  const next = makeLayer();
+  next.addTo(state.map);
+  if (old && state.map.hasLayer(old)) state.map.removeLayer(old);
+  state.layerGroups[name] = next;
+  gvZoomGroupCache.set(next, signature);
+}
 async function render(){
- if(!state.loaded)return;
- const epoch=++state.renderId;
- const keys=[];
- if(!chosenIds().length){clearGroups();bindCounts();renderLegend();updateActiveBadge();return;}
- if(layerVisible('volcanoes'))keys.push('centros');
- if(layerVisible('hazards'))keys.push('peligro');
- if(layerVisible('routes'))keys.push('vias');
- if(layerVisible('points-pe')||layerVisible('points-pet'))keys.push('puntos');
- if(layerVisible('evac-areas'))keys.push('evacuacion');
- if(layerVisible('rings'))keys.push('anillos');
- await Promise.all(keys.map(ensureLayer));
- if(epoch!==state.renderId)return;
- clearGroups();bindCounts();
- redrawGroup('peligro',layerVisible('hazards'),[],{});
- if(layerVisible('hazards')){state.layerGroups.peligro=drawHazards();state.layerGroups.peligro.addTo(state.map);}
- redrawGroup('evacuacion',layerVisible('evac-areas'),filtered('evacuacion'),{pane:'gv-area',renderer:L.canvas({pane:'gv-area'}),style:{color:'#161c22',weight:.6,fillColor:'#ffa77f',fillOpacity:.47},onEachFeature:each('evacuacion')});
- redrawGroup('anillos',layerVisible('rings'),filtered('anillos').filter(f=>enabled('ring-'+f.properties?.distance)),{pane:'gv-distance',renderer:L.canvas({pane:'gv-distance'}),style:decorateRing,onEachFeature:each('anillos')});
- redrawGroup('vias',layerVisible('routes'),filtered('vias'),{pane:'gv-route',renderer:L.canvas({pane:'gv-route'}),style:{color:'#004da8',weight:3.4,opacity:.96},onEachFeature:each('vias')});
- redrawGroup('centros',layerVisible('volcanoes'),filtered('centros'),{pane:'gv-volcano',pointToLayer:markerVolcano,onEachFeature:each('centros')});
- const pts=filtered('puntos').filter(f=>layerVisible('points-'+getType(f).toLowerCase()));
- redrawGroup('puntos',pts.length>0,pts,{pane:'gv-point',pointToLayer:markerPoint,onEachFeature:each('puntos')});
- updateLabels();updateArrows();renderLegend();updateActiveBadge();
+  if (!state.loaded) return;
+  const epoch = ++state.renderId;
+  if (!chosenIds().length) {
+    clearGroups(); bindCounts(); renderLegend(); updateActiveBadge(); return;
+  }
+  const keys=[];
+  if(layerVisible('volcanoes')) keys.push('centros');
+  if(layerVisible('hazards')) keys.push('peligro');
+  if(layerVisible('routes')) keys.push('vias');
+  if(layerVisible('points-pe')||layerVisible('points-pet')) keys.push('puntos');
+  if(layerVisible('evac-areas')) keys.push('evacuacion');
+  if(layerVisible('rings')) keys.push('anillos');
+  await Promise.all(keys.map(ensureLayer));
+  if (epoch !== state.renderId) return;
+  bindCounts();
+  const selected = chosenIds().join('+');
+  const sign = (key, extra='') => selected+'|'+key+'|'+(state.raw[key]?.features?.length ?? 'sin-datos')+'|'+extra;
+  const hazardFilters=['haz-alto','haz-medio','haz-bajo'].filter(enabled).join(',');
+  gvApplyVolcanoGroup('peligro',layerVisible('hazards'),sign('peligro',hazardFilters),()=>drawHazards());
+  gvApplyVolcanoGroup('evacuacion',layerVisible('evac-areas'),sign('evacuacion'),()=>drawGeo('evacuacion',filtered('evacuacion'),{
+    pane:'gv-area',renderer:L.canvas({pane:'gv-area'}),style:{color:'#161c22',weight:.6,fillColor:'#ffa77f',fillOpacity:.47},onEachFeature:each('evacuacion')
+  }));
+  const ringIds=[...document.querySelectorAll('[id^="ring-"]')].filter(x=>x.checked).map(x=>x.id).join(',');
+  gvApplyVolcanoGroup('anillos',layerVisible('rings'),sign('anillos',ringIds),()=>drawGeo('anillos',filtered('anillos').filter(f=>enabled('ring-'+f.properties?.distance)),{
+    pane:'gv-distance',renderer:L.canvas({pane:'gv-distance'}),style:decorateRing,onEachFeature:each('anillos')
+  }));
+  gvApplyVolcanoGroup('vias',layerVisible('routes'),sign('vias'),()=>drawGeo('vias',filtered('vias'),{
+    pane:'gv-route',renderer:L.canvas({pane:'gv-route'}),style:{color:'#004da8',weight:3.4,opacity:.96},onEachFeature:each('vias')
+  }));
+  gvApplyVolcanoGroup('centros',layerVisible('volcanoes'),sign('centros'),()=>drawGeo('centros',filtered('centros'),{
+    pane:'gv-volcano',pointToLayer:markerVolcano,onEachFeature:each('centros')
+  }));
+  const pts=filtered('puntos').filter(f=>layerVisible('points-'+getType(f).toLowerCase()));
+  const pointFilters=[layerVisible('points-pe'),layerVisible('points-pet')].join(',');
+  gvApplyVolcanoGroup('puntos',pts.length>0,sign('puntos',pointFilters),()=>drawGeo('puntos',pts,{
+    pane:'gv-point',pointToLayer:markerPoint,onEachFeature:each('puntos')
+  }));
+  updateLabels(); updateArrows(); renderLegend(); updateActiveBadge();
 }
 function updateLabels(){if(!state.loaded)return;const zoom=state.map.getZoom();for(const key of ['centros','puntos']){
  const group=state.layerGroups[key];if(!group)continue;group.eachLayer(marker=>{if(!(marker instanceof L.Marker))return;
