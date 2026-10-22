@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   actualizar:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     timeout-minutes: 15
     outputs:
       cambios: ${{ steps.version.outputs.cambios }}
