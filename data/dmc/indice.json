@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-10-21 18:12",
+  "catalogoActualizadoEn": "2026-10-21 23:50",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -163,76 +163,7 @@
       "archivoImpactos": "data/dmc/A562-4_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A562-4_2026_documento.json"
-    },
-    {
-      "codigo": "AA187/2026",
-      "tipo": "Alerta",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Tormentas Eléctricas en las regiones del Maule, Ñuble y Biobío",
-      "desdeTexto": "la tarde del miércoles 21 de octubre del 2026",
-      "hastaTexto": "la noche del miércoles 21 de octubre del 2026",
-      "fechaInicioDia": "2026-10-21",
-      "fechaFinDia": "2026-10-21",
-      "fechaEmision": "2026-10-21T16:24:00-03:00",
-      "regiones": [
-        "Biobío",
-        "Maule",
-        "Ñuble"
-      ],
-      "numeroPoligonos": 3,
-      "archivoGeojson": "data/dmc/AA187_2026.geojson",
-      "archivoCobertura": "data/dmc/AA187_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/AA187_2026_impactos.json",
-      "observacion": "Probabilidad de granizos y fuertes rachas de vientos locales",
-      "archivoDocumento": "data/dmc/AA187_2026_documento.json"
-    },
-    {
-      "codigo": "A571-1/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Nubes Convectivas Tornádicas",
-      "titulo": "Probable desarrollo de Nubes Convectivas con características tornádicas en zonas desde la región del Maule a la región de Los Lagos",
-      "desdeTexto": "la tarde del miércoles 21 de octubre del 2026",
-      "hastaTexto": "la noche del miércoles 21 de octubre del 2026",
-      "fechaInicioDia": "2026-10-21",
-      "fechaFinDia": "2026-10-21",
-      "fechaEmision": "2026-10-21T15:06:00-03:00",
-      "regiones": [
-        "Biobío",
-        "La Araucanía",
-        "Los Lagos",
-        "Los Ríos",
-        "Maule",
-        "Ñuble"
-      ],
-      "numeroPoligonos": 19,
-      "archivoGeojson": "data/dmc/A571-1_2026.geojson",
-      "archivoCobertura": "data/dmc/A571-1_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A571-1_2026_impactos.json",
-      "observacion": "Probabilidad de intensos vientos locales arrachados y tornádicos",
-      "archivoDocumento": "data/dmc/A571-1_2026_documento.json"
-    },
-    {
-      "codigo": "A569-2/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas de las regiones de La Araucanía, Los Ríos y Los Lagos",
-      "desdeTexto": "la tarde del martes 20 de octubre del 2026",
-      "hastaTexto": "la noche del miércoles 21 de octubre del 2026",
-      "fechaInicioDia": "2026-10-20",
-      "fechaFinDia": "2026-10-21",
-      "fechaEmision": "2026-10-20T12:02:00-03:00",
-      "regiones": [
-        "La Araucanía",
-        "Los Lagos",
-        "Los Ríos"
-      ],
-      "numeroPoligonos": 18,
-      "archivoGeojson": "data/dmc/A569-2_2026.geojson",
-      "archivoCobertura": "data/dmc/A569-2_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A569-2_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A569-2_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-10-21T18:42:55.535044-03:00"
+  "generadoEn": "2026-10-22T01:44:40.873197-03:00"
 }
