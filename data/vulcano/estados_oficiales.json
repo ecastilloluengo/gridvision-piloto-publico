@@ -5,7 +5,7 @@
   "tipo": "ALERTAS_TECNICAS_PUBLICADAS",
   "modo": "CONSULTA_AUTOMATICA",
   "esquema": "COLORES_PRE_EAV",
-  "consultadoEn": "2026-10-22T18:38:29+00:00",
+  "consultadoEn": "2026-10-22T19:44:58+00:00",
   "volcanes": [
     {
       "clave": "nevados_chillan",
