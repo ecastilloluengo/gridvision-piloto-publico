@@ -1,0 +1,137 @@
+name: Vulcano - SERNAGEOMIN cada 3 horas
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '43 */3 * * *'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# Comparte el bloqueo de publicacion con el flujo SENAPRED.
+concurrency:
+  group: gridvision-pages
+  cancel-in-progress: false
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      cambios: ${{ steps.version.outputs.cambios }}
+    steps:
+      - name: Obtener GridVision main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Control de transicion EAV
+        id: gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          # 2026-10-28 00:00 en Chile continental equivale a 03:00 UTC.
+          # No procesar iconos antiguos una vez que entra el sistema EAV 0-5.
+          if [[ "$(date -u +%Y%m%d%H%M)" < '202610280300' ]]; then
+            echo 'permitido=true' >> "$GITHUB_OUTPUT"
+            echo 'Lectura de colores pre-EAV habilitada.' >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo 'permitido=false' >> "$GITHUB_OUTPUT"
+            echo 'Lectura pre-EAV detenida desde el 28/10/2026; validar nueva fuente EAV.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Configurar Python seguro
+        if: steps.gate.outputs.permitido == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Certificados TLS del sistema
+        if: steps.gate.outputs.permitido == 'true'
+        run: python -m pip install 'truststore>=0.10,<1'
+
+      - name: Autoprueba del lector
+        if: steps.gate.outputs.permitido == 'true'
+        run: python scripts/actualizar_estados_volcanicos.py --autoprueba
+
+      - name: Consultar fuente oficial SERNAGEOMIN
+        if: steps.gate.outputs.permitido == 'true'
+        run: python scripts/actualizar_estados_volcanicos.py --timeout 30
+
+      - name: Validar los estados antes de publicar
+        if: steps.gate.outputs.permitido == 'true'
+        shell: bash
+        run: |
+          python - <<'PY_CHECK'
+          import json
+          from pathlib import Path
+          from datetime import datetime, timezone, timedelta
+
+          file = Path('data/vulcano/estados_oficiales.json')
+          data = json.loads(file.read_text(encoding='utf-8'))
+          assert data.get('schema') == 1, 'Esquema JSON inesperado'
+          assert data.get('fuente') == 'SERNAGEOMIN', 'Fuente inesperada'
+          assert data.get('modo') == 'CONSULTA_AUTOMATICA', 'Modo no oficial'
+          assert data.get('esquema') == 'COLORES_PRE_EAV', 'Esquema EAV no admitido aun'
+          assert data.get('fuenteURL') == 'https://www.sernageomin.cl/alertas-volcanicas/', 'URL de fuente incorrecta'
+          ts = datetime.fromisoformat(data['consultadoEn'])
+          assert ts.tzinfo is not None, 'Consulta sin zona horaria'
+          age = datetime.now(timezone.utc) - ts
+          assert -timedelta(minutes=2) <= age <= timedelta(minutes=10), 'Fecha de consulta fuera de rango'
+          records = data.get('volcanes')
+          assert isinstance(records,list) and records, 'Sin estados reconocidos'
+          assert len(records) == len({r['clave'] for r in records}), 'Volcanes duplicados'
+          levels = {'VERDE', 'AMARILLA', 'NARANJA', 'ROJA'}
+          assert all(r.get('nivel') in levels and r.get('eav') is None for r in records), 'Nivel tecnico no valido'
+          assert all(isinstance(r.get('nombre'), str) and r['nombre'].strip() for r in records), 'Nombre vacio'
+          print('Fuente oficial y datos validados:', len(records), 'registros')
+          PY_CHECK
+
+      - name: Confirmar y subir unicamente el JSON de estados
+        if: steps.gate.outputs.permitido == 'true'
+        id: version
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -- data/vulcano/estados_oficiales.json
+          git diff --cached --check
+          archivos="$(git diff --cached --name-only)"
+          if [[ -z "$archivos" ]]; then
+            echo 'cambios=false' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [[ "$archivos" != 'data/vulcano/estados_oficiales.json' ]]; then
+            echo 'Cambios fuera de archivo autorizado: '"$archivos" >&2
+            exit 1
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Vulcano: actualizar estados tecnicos SERNAGEOMIN'
+          # Si la rama remoto cambio en paralelo, fallar sin forzar.
+          git push origin HEAD:main
+          echo 'cambios=true' >> "$GITHUB_OUTPUT"
+
+  publicar:
+    needs: actualizar
+    if: needs.actualizar.outputs.cambios == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: github-pages
+      url: ${{ steps.pages.outputs.page_url }}
+    steps:
+      - name: Tomar datos ya confirmados en main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Empaquetar GridVision completo
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: '.'
+      - name: Desplegar GridVision Pages
+        id: pages
+        uses: actions/deploy-pages@v4
