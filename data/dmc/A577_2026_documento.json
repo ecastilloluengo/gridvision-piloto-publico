@@ -1,0 +1,46 @@
+{
+  "codigo": "A577/2026",
+  "tipo": "Aviso",
+  "titulo": "Probables Tormentas Eléctricas en cordillera de la región de Arica y Parinacota",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Jueves 22 de octubre del 2026 a las 15:24 hrs.",
+  "condicionSinoptica": "Dorsal en altura",
+  "desde": "la tarde del viernes 23 de octubre del 2026",
+  "hasta": "la noche del viernes 23 de octubre del 2026",
+  "observacion": "Asociadas con Chubascos aislados",
+  "textoZonaAfecta": "Arica y Parinacota (Cordillera)",
+  "tablaTitulo": "Ocurrencia de Tormentas Eléctricas",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Arica y Parinacota"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 23"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ]
+  ]
+}

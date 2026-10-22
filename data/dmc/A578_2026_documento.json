@@ -1,0 +1,70 @@
+{
+  "codigo": "A578/2026",
+  "tipo": "Aviso",
+  "titulo": "Altas Temperaturas en zonas de la región de Atacama",
+  "fenomeno": "Altas Temperaturas",
+  "emisionTexto": "Jueves 22 de octubre del 2026 a las 15:25 hrs.",
+  "condicionSinoptica": "Dorsal en altura",
+  "desde": "la tarde del domingo 25 de octubre del 2026",
+  "hasta": "la tarde del domingo 25 de octubre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Atacama (Cordillera Costa y sectores de valles, Pampa, Precordillera)",
+  "tablaTitulo": "Valores estimados de temperatura en grados Celsius (°C)",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Atacama"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "domingo 25"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera Costa y sectores de valles"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "29-31"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Pampa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "30-32"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "33-35"
+      }
+    ]
+  ]
+}

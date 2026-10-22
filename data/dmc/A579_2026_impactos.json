@@ -1,0 +1,489 @@
+{
+  "codigo": "A579/2026",
+  "criterio": "intersección geográfica",
+  "advertencia": "Área del aviso: exposición potencial, no impacto confirmado.",
+  "totales": {
+    "activos": 33,
+    "lineas": 26,
+    "netbilling": 0
+  },
+  "elementos": {
+    "activos": [
+      {
+        "id": "GV-00013",
+        "nombre": "10_CA S/E ANGAMOS CT1",
+        "categoria": "Almacenamiento de energía",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01796",
+        "nombre": "1816_S/E ANGAMOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01800",
+        "nombre": "1820_S/E ATACAMA",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01805",
+        "nombre": "1825_S/E CENTRAL ATACAMA",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01808",
+        "nombre": "1828_S/E CENTRAL DIESEL ENAEX",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01810",
+        "nombre": "1833_S/E CENTRAL MEJILLONES",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01820",
+        "nombre": "1844_S/E CHACAYA",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01825",
+        "nombre": "1849_S/E COCHRANE",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01849",
+        "nombre": "1873_S/E ESTACION DE BOMBEO SIERRA GORDA N°1",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01850",
+        "nombre": "1874_S/E ESTACION DE BOMBEO SIERRA GORDA N°2",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01853",
+        "nombre": "1877_S/E GNL MEJILLONES",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01862",
+        "nombre": "1887_S/E KELAR",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01877",
+        "nombre": "1902_S/E MEJILLONES",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01879",
+        "nombre": "1904_S/E MOLYCOP",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01923",
+        "nombre": "1954_S/E TAP OFF E.C. ALGORTA",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01954",
+        "nombre": "2010_S/E TEN GIS",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01990",
+        "nombre": "2064_S/E IEM",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01991",
+        "nombre": "2069_S/E GIS COCHRANE BESS",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-03128",
+        "nombre": "2088_PMGD PFV TALLADO",
+        "categoria": "Central",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-02064",
+        "nombre": "2178_S/E DESALINIZADORA Y BOMBEO 1 (SGO)",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-03199",
+        "nombre": "2214_PMGD PFV PARQUE FAROL SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-02131",
+        "nombre": "2266_S/E CENTRAL ANDINA",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-02132",
+        "nombre": "2267_S/E CENTRAL HORNITOS (TER)",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-03278",
+        "nombre": "376_TER ANDINA",
+        "categoria": "Central",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-03279",
+        "nombre": "377_TER ANGAMOS",
+        "categoria": "Central",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-03280",
+        "nombre": "379_TER COCHRANE",
+        "categoria": "Central",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-03444",
+        "nombre": "386_TER MEJILLONES",
+        "categoria": "Central",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-03445",
+        "nombre": "393_TER ATACAMA",
+        "categoria": "Central",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-03282",
+        "nombre": "395_TER HORNITOS",
+        "categoria": "Central",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-03283",
+        "nombre": "397_TER PLANTA DE ACIDO SULFURICO MEJILLONES",
+        "categoria": "Central",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-03446",
+        "nombre": "404_TER KELAR",
+        "categoria": "Central",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-03284",
+        "nombre": "488_TER IEM",
+        "categoria": "Central",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00012",
+        "nombre": "9_CA S/E COCHRANE D12",
+        "categoria": "Almacenamiento de energía",
+        "zonas": [
+          "Area DMC"
+        ]
+      }
+    ],
+    "lineas": [
+      {
+        "id": "GV-00623",
+        "nombre": "1013_CHACAYA - GNL MEJILLONES 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00624",
+        "nombre": "1014_CHACAYA - MEJILLONES 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00625",
+        "nombre": "1015_CHACAYA - MUELLE 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00632",
+        "nombre": "1023_EST. DE BOMBEO SG N°1 - EST. DE BOMBEO SG N°2 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00633",
+        "nombre": "1025_MEJILLONES - EL LINCE 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00634",
+        "nombre": "1026_MEJILLONES - ENAEX 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00165",
+        "nombre": "1042_ANGAMOS - ESTACION DE BOMBEO SIERRA GORDA N°1 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00166",
+        "nombre": "1043_ANGAMOS - KAPATUR 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00167",
+        "nombre": "1047_ATACAMA - ESMERALDA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00168",
+        "nombre": "1048_ATACAMA - MIRAJE 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00169",
+        "nombre": "1049_ATACAMA - O'HIGGINS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00171",
+        "nombre": "1053_CHACAYA - CRUCERO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00172",
+        "nombre": "1054_CHACAYA - EL COBRE 220 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00173",
+        "nombre": "1055_CHACAYA - MANTOS BLANCOS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00174",
+        "nombre": "1056_CHACAYA - MEJILLONES 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00175",
+        "nombre": "1057_CHACAYA - MOLYCOP 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00177",
+        "nombre": "1059_COCHRANE - ENCUENTRO 220 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00199",
+        "nombre": "1093_KELAR - KAPATUR 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00206",
+        "nombre": "1102_MEJILLONES - O'HIGGINS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00224",
+        "nombre": "1164_TEN – CHANGOS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00226",
+        "nombre": "1231_ATACAMA - O'HIGGINS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00239",
+        "nombre": "1299_IEM - TEN 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00274",
+        "nombre": "1436_TEN - CENTRAL MEJILLONES CTM3-TG 220 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00275",
+        "nombre": "1437_TEN - CENTRAL MEJILLONES CTM3-TV 220 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00951",
+        "nombre": "1462_CAITAN – DESALINIZADORA Y BOMBEO (SGO) 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00671",
+        "nombre": "1613_MEJILLONES - GUARDIAMARINA 110 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      }
+    ],
+    "netbilling": []
+  }
+}

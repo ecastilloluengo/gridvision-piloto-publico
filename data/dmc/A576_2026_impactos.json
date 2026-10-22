@@ -1,0 +1,24 @@
+{
+  "codigo": "A576/2026",
+  "criterio": "intersección geográfica",
+  "advertencia": "Área del aviso: exposición potencial, no impacto confirmado.",
+  "totales": {
+    "activos": 1,
+    "lineas": 0,
+    "netbilling": 0
+  },
+  "elementos": {
+    "activos": [
+      {
+        "id": "GV-03453",
+        "nombre": "EXT_021_TER PUERTO NATALES",
+        "categoria": "Central",
+        "zonas": [
+          "Area DMC"
+        ]
+      }
+    ],
+    "lineas": [],
+    "netbilling": []
+  }
+}

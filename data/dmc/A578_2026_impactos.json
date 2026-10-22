@@ -1,0 +1,2016 @@
+{
+  "codigo": "A578/2026",
+  "criterio": "intersección geográfica",
+  "advertencia": "Área del aviso: exposición potencial, no impacto confirmado.",
+  "totales": {
+    "activos": 138,
+    "lineas": 107,
+    "netbilling": 0
+  },
+  "elementos": {
+    "activos": [
+      {
+        "id": "GV-01639",
+        "nombre": "1044_TAP OFF EL EDEN",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01643",
+        "nombre": "1054_TAP OFF IMPULSION",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-03316",
+        "nombre": "110_TER CENIZAS",
+        "categoria": "Central",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02255",
+        "nombre": "1121_TAP OFF PUNTA TORO",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-03317",
+        "nombre": "113_TER EMELDA",
+        "categoria": "Central",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-03318",
+        "nombre": "120_TER DIEGO DE ALMAGRO",
+        "categoria": "Central",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-03322",
+        "nombre": "141_TER SAN LORENZO DE D. DE ALMAGRO",
+        "categoria": "Central",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-03326",
+        "nombre": "155_TER TERMOPACIFICO",
+        "categoria": "Central",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01674",
+        "nombre": "1650_S/E JORQUERA",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01675",
+        "nombre": "1651_S/E CERRO NEGRO NORTE",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01680",
+        "nombre": "1659_S/E CENTRAL RIO HUASCO",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01686",
+        "nombre": "1668_S/E SECCIONADORA LLANO DE LLAMPOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01687",
+        "nombre": "1669_S/E CENTRAL LLANO DE LLAMPOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01688",
+        "nombre": "1671_S/E CENTRAL SAN ANDRES (SAN ANDRES SPA)",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01694",
+        "nombre": "1686_S/E TRAVESIA",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02835",
+        "nombre": "1694_PFV RIO ESCONDIDO",
+        "categoria": "Central",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01703",
+        "nombre": "1701_S/E BOMBEO 2",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02838",
+        "nombre": "1704_PFV CAMPOS DEL SOL",
+        "categoria": "Central",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01706",
+        "nombre": "1704_S/E EB2",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02845",
+        "nombre": "1714_PFV MALGARIDA",
+        "categoria": "Central",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-01717",
+        "nombre": "1724_TAP OFF CHAÑARES",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02856",
+        "nombre": "1729_PMGD PFV COVADONGA",
+        "categoria": "Central",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01723",
+        "nombre": "1735_S/E CENTRAL PV SALVADOR",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-01729",
+        "nombre": "1742_S/E CENTRAL JAVIERA",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01731",
+        "nombre": "1744_S/E CENTRAL LUZ DEL NORTE",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02879",
+        "nombre": "1756_PFV SOL DE LOS ANDES",
+        "categoria": "Central",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-01748",
+        "nombre": "1764_S/E GALLEGUILLOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01749",
+        "nombre": "1765_S/E COPAYAPU",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01750",
+        "nombre": "1766_S/E CENTRAL ANDES GENERACION",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-01751",
+        "nombre": "1767_S/E PASTORA",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01764",
+        "nombre": "1781_S/E CENTRAL PARQUE SOLAR LOS LOROS",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01770",
+        "nombre": "1789_S/E CENTRAL CARDONES SOLAR I",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01774",
+        "nombre": "1793_S/E NUEVA CARDONES",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01775",
+        "nombre": "1794_S/E NUEVA MAITENCILLO",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02913",
+        "nombre": "1809_PFV VALLE ESCONDIDO",
+        "categoria": "Central",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02954",
+        "nombre": "1862_PFV DIEGO DE ALMAGRO SUR",
+        "categoria": "Central",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-02982",
+        "nombre": "1899_PFV CASTILLA",
+        "categoria": "Central",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-02983",
+        "nombre": "1900_PFV GUANCHOI",
+        "categoria": "Central",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-02987",
+        "nombre": "1908_PMGD PFV PARQUE LA TRAVESIA",
+        "categoria": "Central",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02999",
+        "nombre": "1923_PMGD PFV ASTILLAS",
+        "categoria": "Central",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-03335",
+        "nombre": "194_TER EL SALVADOR",
+        "categoria": "Central",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-03432",
+        "nombre": "195_TER CARDONES",
+        "categoria": "Central",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01945",
+        "nombre": "1994_S/E CENTRAL EL ROMERO",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01950",
+        "nombre": "2003_S/E DON HECTOR",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01967",
+        "nombre": "2026_S/E CUMBRE",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-01972",
+        "nombre": "2033_S/E SECCIONADORA SAN ANDRES",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03095",
+        "nombre": "2043_PMGD PFV MARAÑON",
+        "categoria": "Central",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03099",
+        "nombre": "2047_PMGD PFV TIERRA",
+        "categoria": "Central",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-03113",
+        "nombre": "2063_PMGD PFV PARQUE SOLAR JOTABECHE",
+        "categoria": "Central",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01992",
+        "nombre": "2070_S/E ILLAPA",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-03137",
+        "nombre": "2102_PFV PMG NORTH WEST",
+        "categoria": "Central",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01093",
+        "nombre": "212_S/E CENTRAL CARDONES",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02043",
+        "nombre": "2143_S/E CENTRAL PAJONALES",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02067",
+        "nombre": "2181_S/E ALMEYDA",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-02068",
+        "nombre": "2182_S/E C.R. MAITENCILLO",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-03194",
+        "nombre": "2205_PMGD PFV CORSO",
+        "categoria": "Central",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02118",
+        "nombre": "2249_S/E ALGARROBAL",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-02130",
+        "nombre": "2264_S/E CENTRAL RIO ESCONDIDO",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02137",
+        "nombre": "2273_S/E CAMPOS DEL SOL",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02143",
+        "nombre": "2283_S/E MALGARIDA I",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-02144",
+        "nombre": "2284_S/E MALGARIDA",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-02145",
+        "nombre": "2285_S/E MALGARIDA II",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-02158",
+        "nombre": "2298_S/E SOL DE LOS ANDES",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-02159",
+        "nombre": "2299_S/E RIO SALADO",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-00023",
+        "nombre": "22_CA S/E INCA DE ORO F1",
+        "categoria": "Almacenamiento de energía",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-02174",
+        "nombre": "2319_S/E VALLE ESCONDIDO",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02187",
+        "nombre": "2337_S/E INCA DE ORO",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-02199",
+        "nombre": "2356_S/E BELLA MONICA",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-02206",
+        "nombre": "2368_S/E SANTA ESTER SOLAR",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-02219",
+        "nombre": "2388_S/E AGUA AMARGA",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01118",
+        "nombre": "238_S/E CENTRAL CENIZAS",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00024",
+        "nombre": "23_CA S/E INCA DE ORO F17",
+        "categoria": "Almacenamiento de energía",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-02546",
+        "nombre": "244_HP RIO HUASCO",
+        "categoria": "Central",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02645",
+        "nombre": "247_PFV LLANO DE LLAMPOS",
+        "categoria": "Central",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02646",
+        "nombre": "248_PFV SAN ANDRES",
+        "categoria": "Central",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02647",
+        "nombre": "269_PFV DIEGO DE ALMAGRO",
+        "categoria": "Central",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-01146",
+        "nombre": "269_S/E CENTRAL SAN LORENZO DE DIEGO DE ALMAGRO",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-01147",
+        "nombre": "271_S/E CENTRAL EMELDA",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-01150",
+        "nombre": "276_S/E CENTRAL TERMOPACIFICO",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02648",
+        "nombre": "278_PMGD PFV SANTA CECILIA",
+        "categoria": "Central",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01152",
+        "nombre": "278_S/E PLANTA MATTA",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02650",
+        "nombre": "285_PFV CHAÑARES",
+        "categoria": "Central",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02651",
+        "nombre": "288_PFV SALVADOR",
+        "categoria": "Central",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-02652",
+        "nombre": "305_PMGD PFV LAS TERRAZAS",
+        "categoria": "Central",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02657",
+        "nombre": "314_PFV JAVIERA",
+        "categoria": "Central",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02658",
+        "nombre": "319_PFV LUZ DEL NORTE",
+        "categoria": "Central",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02659",
+        "nombre": "320_PMGD PFV HORNITOS",
+        "categoria": "Central",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03342",
+        "nombre": "330_TER ANDES GENERACION",
+        "categoria": "Central",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-02660",
+        "nombre": "331_PFV PILAR LOS AMARILLOS",
+        "categoria": "Central",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-02663",
+        "nombre": "337_PFV CARRERA PINTO",
+        "categoria": "Central",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00025",
+        "nombre": "33_CA S/E FUTURO F6",
+        "categoria": "Almacenamiento de energía",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-02666",
+        "nombre": "346_PFV ESPERANZA",
+        "categoria": "Central",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02671",
+        "nombre": "355_PFV LOS LOROS",
+        "categoria": "Central",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02675",
+        "nombre": "362_PFV PILOTO SOLAR CARDONES",
+        "categoria": "Central",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-01206",
+        "nombre": "368_S/E INCAHUASI",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02691",
+        "nombre": "418_PFV EL ROMERO",
+        "categoria": "Central",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02714",
+        "nombre": "489_PFV ANTAY",
+        "categoria": "Central",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02736",
+        "nombre": "528_PMGD PFV DIEGO DE ALMAGRO SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01340",
+        "nombre": "562_S/E CARDONES",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01341",
+        "nombre": "563_S/E CARRERA PINTO",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01342",
+        "nombre": "564_S/E CASTILLA",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-03366",
+        "nombre": "566_TER PAJONALES",
+        "categoria": "Central",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01346",
+        "nombre": "569_S/E DIEGO DE ALMAGRO",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-01347",
+        "nombre": "570_S/E DOS AMIGOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01348",
+        "nombre": "571_S/E EL SALADO",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02761",
+        "nombre": "578_PMGD PFV VALLE SOLAR ESTE II",
+        "categoria": "Central",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02762",
+        "nombre": "579_PMGD PFV VALLE SOLAR OESTE II",
+        "categoria": "Central",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01356",
+        "nombre": "580_S/E MAITENCILLO",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02767",
+        "nombre": "586_PMGD PFV MALAQUITA SOLAR II",
+        "categoria": "Central",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02769",
+        "nombre": "590_PMGD PFV CACHIYUYO SOLAR II",
+        "categoria": "Central",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01368",
+        "nombre": "593_S/E VALLENAR",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02775",
+        "nombre": "599_PFV ALMEYDA",
+        "categoria": "Central",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-03373",
+        "nombre": "610_TER MAITENCILLO",
+        "categoria": "Central",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01377",
+        "nombre": "616_S/E ALTO DEL CARMEN",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01379",
+        "nombre": "618_S/E CERRILLOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01380",
+        "nombre": "619_S/E CHAÑARAL",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01381",
+        "nombre": "620_S/E COPIAPO",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01382",
+        "nombre": "621_S/E HERNAN FUENTES",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01383",
+        "nombre": "622_S/E LOS LOROS",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01384",
+        "nombre": "623_S/E PLANTAS",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01385",
+        "nombre": "624_S/E TIERRA AMARILLA",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01531",
+        "nombre": "855_S/E AGROSUPER",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01544",
+        "nombre": "870_S/E MANTO VERDE",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01545",
+        "nombre": "871_S/E IMPULSION",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01546",
+        "nombre": "872_S/E ATACAMA KOZAN",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01553",
+        "nombre": "881_S/E LOS COLORADOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01555",
+        "nombre": "883_S/E MAGNETITA",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01556",
+        "nombre": "884_S/E ALGARROBO",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01573",
+        "nombre": "908_S/E EL SALVADOR",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01574",
+        "nombre": "909_S/E POTRERILLOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01575",
+        "nombre": "910_S/E LLANTA",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-01609",
+        "nombre": "948_S/E FUNDICION PAIPOTE",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01613",
+        "nombre": "952_S/E PAJONALES",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01623",
+        "nombre": "965_S/E MINERA LA CANDELARIA",
+        "categoria": "Subestación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-02302",
+        "nombre": "LDT_014_TAP LLANTA",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-02313",
+        "nombre": "TAP_163_TAP RIO HUASCO",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02315",
+        "nombre": "TAP_172_TAP PV SALVADOR",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-02324",
+        "nombre": "TAP_251_TAP PAJONALES",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      }
+    ],
+    "lineas": [
+      {
+        "id": "GV-00481",
+        "nombre": "104_CENTRAL CENIZAS - CARDONES 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00081",
+        "nombre": "112_CARDONES - CENTRAL CARDONES 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00083",
+        "nombre": "115_CARDONES - MEDELLIN 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00045",
+        "nombre": "1166_CUMBRE – NUEVA CARDONES 500KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_pampa",
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00644",
+        "nombre": "1173_MAITENCILLO - CARDONES 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-00484",
+        "nombre": "117_CENTRAL EMELDA - DIEGO DE ALMAGRO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-00086",
+        "nombre": "124_SAN LORENZO - DIEGO DE ALMAGRO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-00229",
+        "nombre": "1273_CARDONES - NUEVA CARDONES 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00230",
+        "nombre": "1279_MAITENCILLO - CENTRAL PARQUE EOLICO CABO LEONES I 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00231",
+        "nombre": "1280_MAITENCILLO - NUEVA MAITENCILLO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00240",
+        "nombre": "1301_ILLAPA - CUMBRES 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-00252",
+        "nombre": "1335_MAITENCILLO - SARCO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00257",
+        "nombre": "1357_CENTRAL EL ROMERO - DON HECTOR 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00259",
+        "nombre": "1382_DIEGO DE ALMAGRO - ILLAPA 220KV L1",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-00260",
+        "nombre": "1383_DIEGO DE ALMAGRO - ILLAPA 220KV L2",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-00261",
+        "nombre": "1384_ILLAPA - CARRERA PINTO 220KV L1",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_pampa",
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00262",
+        "nombre": "1385_ILLAPA - CARRERA PINTO 220KV L2",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_pampa",
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00270",
+        "nombre": "1420_CARRERA PINTO - SECCIONADORA SAN ANDRES 220KV L2",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00271",
+        "nombre": "1421_SECCIONADORA SAN ANDRES - CARDONES 220KV L2",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00272",
+        "nombre": "1425_DON HECTOR - CENTRAL PAJONALES",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00092",
+        "nombre": "143_CARRERA PINTO - SECCIONADORA SAN ANDRES 220KV L1",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00093",
+        "nombre": "143_CARRERA PINTO - SECCIONADORA SAN ANDRES 220KV L2",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00662",
+        "nombre": "1469_C.R. MAITENCILLO - MAITENCILLO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00287",
+        "nombre": "1491_SECCIONADORA LLANO DE LLAMPOS - CERRO NEGRO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00288",
+        "nombre": "1492_CERRO NEGRO - TOTORALILLO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00293",
+        "nombre": "1511_PUNTA COLORADA - TRES QUEBRADAS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00321",
+        "nombre": "1566_CARDONES – ALGARROBAL 220KV C1 Y C2",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_pampa",
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00322",
+        "nombre": "1566_CARDONES – ALGARROBAL 220KV C3",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-00323",
+        "nombre": "1567_ALGARROBAL – MAITENCILLO 220KV C1 Y C2",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-00324",
+        "nombre": "1567_ALGARROBAL – MAITENCILLO 220KV C3",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-00336",
+        "nombre": "1585_LA HUELLA - DON HECTOR 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00339",
+        "nombre": "1596_CAMPOS DEL SOL - CARRERA PINTO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00342",
+        "nombre": "1605_MALGARIDA - ALMEYDA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-00343",
+        "nombre": "1606_CUMBRES - MALGARIDA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-00686",
+        "nombre": "1647_SOL DE LOS ANDES - RIO SALADO 110 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-00687",
+        "nombre": "1648_RIO SALADO - POTRERILLOS 110 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_pampa",
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00688",
+        "nombre": "1649_DIEGO DE ALMAGRO - RIO SALADO 110 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-01027",
+        "nombre": "164_EL SALADO - CHANARAL 23KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00486",
+        "nombre": "165_DIEGO DE ALMAGRO - EL SALADO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-00374",
+        "nombre": "1691_RIO ESCONDIDO - VALLE ESCONDIDO 220 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00375",
+        "nombre": "1692_VALLE ESCONDIDO - CARDONES 220 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00386",
+        "nombre": "1749_INCA DE ORO - ILLAPA 220 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-00698",
+        "nombre": "1760_PAJONALES - TAP PAJONALES 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-01072",
+        "nombre": "1761_CENTRAL LA SILLA - PAJONALES 23KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00391",
+        "nombre": "1774_BELLA MONICA - ILLAPA 220 kV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-00701",
+        "nombre": "1811_MAITENCILLO - ALGARROBO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00702",
+        "nombre": "1812_ALGARROBO - DOS AMIGOS 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00703",
+        "nombre": "1813_DOS AMIGOS - INCAHUASI 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00704",
+        "nombre": "1814_INCAHUASI - LAS COMPAÑÍAS 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00401",
+        "nombre": "1830_NUEVA MAITENCILLO - PUNTA COLORADA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00405",
+        "nombre": "1837_IBERATACAMA - MAITENCILLO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00053",
+        "nombre": "1849_PARINAS – CUMBRE 500 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-00409",
+        "nombre": "1860_DON HECTOR – AGUA AMARGA 220kV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00410",
+        "nombre": "1861_AGUA AMARGA - MAITENCILLO 220kV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00099",
+        "nombre": "186_MAITENCILLO - AGROSUPER 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00487",
+        "nombre": "189_MAITENCILLO - VALLENAR 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00494",
+        "nombre": "292_COPIAPO - HERNAN FUENTES 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00495",
+        "nombre": "298_EL EDEN - ALTO DEL CARMEN 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00512",
+        "nombre": "429_TIERRA AMARILLA - ATACAMA KOZAN 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00513",
+        "nombre": "430_TIERRA AMARILLA - PLANTAS 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00514",
+        "nombre": "431_VALLENAR - EL EDEN 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00476",
+        "nombre": "59_CARDONES - PLANTA MATTA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00072",
+        "nombre": "60_GUACOLDA - MAITENCILLO 220KV L1",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00541",
+        "nombre": "623_DIEGO DE ALMAGRO - PFV JAVIERA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-00477",
+        "nombre": "62_TAP IMPULSION - IMPULSION 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00549",
+        "nombre": "644_CARDONES - MAGNETITA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00550",
+        "nombre": "647_TAP PUNTA TORO - LOS COLORADOS 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-00551",
+        "nombre": "667_CARDONES - REFUGIO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00121",
+        "nombre": "671_CARRERA PINTO - LA COIPA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00552",
+        "nombre": "672_DIEGO DE ALMAGRO - MANTO VERDE 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-00122",
+        "nombre": "673_CARDONES - MINERA LA CANDELARIA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00554",
+        "nombre": "682_DIEGO DE ALMAGRO - MINERA FRANKE 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-00557",
+        "nombre": "690_DIEGO DE ALMAGRO - POTRERILLOS 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_pampa",
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00558",
+        "nombre": "692_DIEGO DE ALMAGRO - EL SALVADOR 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_pampa",
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00559",
+        "nombre": "693_LLANTA - SALVADOR 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_pampa",
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00123",
+        "nombre": "701_GUACOLDA - MAITENCILLO 220KV L2",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00561",
+        "nombre": "702_HUASCO - MAITENCILLO 110KV L1",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00562",
+        "nombre": "703_HUASCO - MAITENCILLO 110KV L2",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00127",
+        "nombre": "762_MAITENCILLO - CASERONES 220KV L1",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00570",
+        "nombre": "779_RIO HUASCO - TAP RIO HUASCO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00131",
+        "nombre": "784_LLANO DE LLAMPOS - SECCIONADORA LLANO DE LLAMPOS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00136",
+        "nombre": "796_CARDONES - SECCIONADORA LLANO DE LLAMPOS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00572",
+        "nombre": "812_MANTO VERDE - PLANTA DESALADORA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00141",
+        "nombre": "831_SECCIONADORA SAN ANDRES - CARDONES 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00577",
+        "nombre": "842_TAP CHAÑARES - CHAÑARES 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00578",
+        "nombre": "844_TAP PV SALVADOR - PV SALVADOR 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-00143",
+        "nombre": "848_LUZ DEL NORTE - CARRERA PINTO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00579",
+        "nombre": "849_PFV JAVIERA - TAL TAL 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00583",
+        "nombre": "860_CARDONES - TRAVESIA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00584",
+        "nombre": "861_TRAVESIA - PUNTA PADRONES 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00589",
+        "nombre": "877_CARDONES - COPAYAPU 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00590",
+        "nombre": "878_COPAYAPU - TIERRA AMARILLA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00591",
+        "nombre": "879_COPAYAPU -CERRILLOS 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00592",
+        "nombre": "880_COPAYAPU - GALLEGUILLOS 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00593",
+        "nombre": "881_HERNAN FUENTES - GALLEGUILLOS 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00594",
+        "nombre": "882_GALLEGUILLOS - CALDERA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00595",
+        "nombre": "883_DIEGO DE ALMAGRO - CENTRAL ANDES GENERACION 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-00148",
+        "nombre": "888_CARRERA PINTO - PASTORA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00598",
+        "nombre": "896_LOS LOROS - CENTRAL PARQUE SOLAR LOS LOROS 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00151",
+        "nombre": "902_PUNTA COLORADA - PARQUE EOLICO SAN JUAN 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00040",
+        "nombre": "904_NUEVA CARDONES - NUEVA MAITENCILLO 500KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_pampa",
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00041",
+        "nombre": "905_NUEVA MAITENCILLO - NUEVA PAN DE AZUCAR 500KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00154",
+        "nombre": "918_FRANCISCO - DIEGO DE ALMAGRO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-00156",
+        "nombre": "920_CACHIYUYAL - DIEGO DE ALMAGRO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_pampa"
+        ]
+      },
+      {
+        "id": "GV-00602",
+        "nombre": "943_CERRILLOS - LOS LOROS 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa",
+          "03_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00158",
+        "nombre": "973_PUNTA COLORADA - DON HECTOR 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      },
+      {
+        "id": "GV-00159",
+        "nombre": "974_EL PELICANO - DON HECTOR 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "03_cordillera_costa"
+        ]
+      }
+    ],
+    "netbilling": []
+  }
+}

@@ -1,10 +1,70 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-10-22 11:20",
+  "catalogoActualizadoEn": "2026-10-22 17:29",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
+    {
+      "codigo": "A578/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Altas Temperaturas",
+      "titulo": "Altas Temperaturas en zonas de la región de Atacama",
+      "desdeTexto": "la tarde del domingo 25 de octubre del 2026",
+      "hastaTexto": "la tarde del domingo 25 de octubre del 2026",
+      "fechaInicioDia": "2026-10-25",
+      "fechaFinDia": "2026-10-25",
+      "fechaEmision": "2026-10-22T15:25:00-03:00",
+      "regiones": [
+        "Atacama"
+      ],
+      "numeroPoligonos": 3,
+      "archivoGeojson": "data/dmc/A578_2026.geojson",
+      "archivoCobertura": "data/dmc/A578_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A578_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A578_2026_documento.json"
+    },
+    {
+      "codigo": "A579/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Altas Temperaturas",
+      "titulo": "Altas Temperaturas en Litoral comuna de Mejillones de la región de Antofagasta.",
+      "desdeTexto": "la tarde del jueves 22 de octubre del 2026",
+      "hastaTexto": "la tarde del sábado 24 de octubre del 2026",
+      "fechaInicioDia": "2026-10-22",
+      "fechaFinDia": "2026-10-24",
+      "fechaEmision": "2026-10-22T15:45:00-03:00",
+      "regiones": [
+        "Antofagasta"
+      ],
+      "numeroPoligonos": 1,
+      "archivoGeojson": "data/dmc/A579_2026.geojson",
+      "archivoCobertura": "data/dmc/A579_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A579_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A579_2026_documento.json"
+    },
+    {
+      "codigo": "A576/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Altas Temperaturas",
+      "titulo": "Altas Temperaturas en Pampa Patagonica Norte, Laguna Blanca, San Gregorio y Primavera en la región de Magallanes",
+      "desdeTexto": "la tarde del sábado 24 de octubre del 2026",
+      "hastaTexto": "la noche del sábado 24 de octubre del 2026",
+      "fechaInicioDia": "2026-10-24",
+      "fechaFinDia": "2026-10-24",
+      "fechaEmision": "2026-10-22T14:24:00-03:00",
+      "regiones": [
+        "Magallanes"
+      ],
+      "numeroPoligonos": 1,
+      "archivoGeojson": "data/dmc/A576_2026.geojson",
+      "archivoCobertura": "data/dmc/A576_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A576_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A576_2026_documento.json"
+    },
     {
       "codigo": "A543-7/2026",
       "tipo": "Aviso",
@@ -47,6 +107,26 @@
       "archivoImpactos": "data/dmc/A570_2026_impactos.json",
       "observacion": "Probabilidad de tormentas de arena",
       "archivoDocumento": "data/dmc/A570_2026_documento.json"
+    },
+    {
+      "codigo": "A577/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en cordillera de la región de Arica y Parinacota",
+      "desdeTexto": "la tarde del viernes 23 de octubre del 2026",
+      "hastaTexto": "la noche del viernes 23 de octubre del 2026",
+      "fechaInicioDia": "2026-10-23",
+      "fechaFinDia": "2026-10-23",
+      "fechaEmision": "2026-10-22T15:24:00-03:00",
+      "regiones": [
+        "Arica y Parinacota"
+      ],
+      "numeroPoligonos": 1,
+      "archivoGeojson": "data/dmc/A577_2026.geojson",
+      "archivoCobertura": "data/dmc/A577_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A577_2026_impactos.json",
+      "observacion": "Asociadas con Chubascos aislados",
+      "archivoDocumento": "data/dmc/A577_2026_documento.json"
     },
     {
       "codigo": "A561-7/2026",
@@ -143,6 +223,28 @@
       "archivoDocumento": "data/dmc/AA182-1_2026_documento.json"
     },
     {
+      "codigo": "AA189/2026",
+      "tipo": "Alerta",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Tormentas Eléctricas en las regiones del Maule, Ñuble y Biobío",
+      "desdeTexto": "la tarde del jueves 22 de octubre del 2026",
+      "hastaTexto": "la noche del jueves 22 de octubre del 2026",
+      "fechaInicioDia": "2026-10-22",
+      "fechaFinDia": "2026-10-22",
+      "fechaEmision": "2026-10-22T17:24:00-03:00",
+      "regiones": [
+        "Biobío",
+        "Maule",
+        "Ñuble"
+      ],
+      "numeroPoligonos": 3,
+      "archivoGeojson": "data/dmc/AA189_2026.geojson",
+      "archivoCobertura": "data/dmc/AA189_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/AA189_2026_impactos.json",
+      "observacion": "Probabilidad de granizos y fuertes rachas de vientos locales",
+      "archivoDocumento": "data/dmc/AA189_2026_documento.json"
+    },
+    {
       "codigo": "A575-1/2026",
       "tipo": "Aviso",
       "fenomeno": "Nubes Convectivas Tornádicas",
@@ -211,5 +313,5 @@
       "archivoDocumento": "data/dmc/A573_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-10-22T14:10:51.213998-03:00"
+  "generadoEn": "2026-10-22T18:35:53.965974-03:00"
 }

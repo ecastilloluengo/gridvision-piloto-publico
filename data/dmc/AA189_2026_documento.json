@@ -1,0 +1,14 @@
+{
+  "codigo": "AA189/2026",
+  "tipo": "Alerta",
+  "titulo": "Tormentas Eléctricas en las regiones del Maule, Ñuble y Biobío",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Jueves 22 de octubre del 2026 a las 17:24 hrs.",
+  "condicionSinoptica": "Baja segregada",
+  "desde": "la tarde del jueves 22 de octubre del 2026",
+  "hasta": "la noche del jueves 22 de octubre del 2026",
+  "observacion": "Probabilidad de granizos y fuertes rachas de vientos locales",
+  "textoZonaAfecta": "Maule, Ñuble y Biobío",
+  "tablaTitulo": "",
+  "tablaFilas": []
+}

@@ -1,0 +1,59 @@
+{
+  "codigo": "A579/2026",
+  "tipo": "Aviso",
+  "titulo": "Altas Temperaturas en Litoral comuna de Mejillones de la región de Antofagasta.",
+  "fenomeno": "Altas Temperaturas",
+  "emisionTexto": "Jueves 22 de octubre del 2026 a las 15:45 hrs.",
+  "condicionSinoptica": "Jet costero",
+  "desde": "la tarde del jueves 22 de octubre del 2026",
+  "hasta": "la tarde del sábado 24 de octubre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Litoral comuna de Mejillones de la región de Antofagasta.",
+  "tablaTitulo": "Valores estimados de temperatura en grados Celsius (°C)",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Área"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 22"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 23"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 24"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Litoral comuna de Mejillones de la región de Antofagasta."
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "27-29"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "27-29"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "27-29"
+      }
+    ]
+  ]
+}

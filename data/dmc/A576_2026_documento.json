@@ -1,0 +1,39 @@
+{
+  "codigo": "A576/2026",
+  "tipo": "Aviso",
+  "titulo": "Altas Temperaturas en Pampa Patagonica Norte, Laguna Blanca, San Gregorio y Primavera en la región de Magallanes",
+  "fenomeno": "Altas Temperaturas",
+  "emisionTexto": "Jueves 22 de octubre del 2026 a las 14:24 hrs.",
+  "condicionSinoptica": "Altas presiones",
+  "desde": "la tarde del sábado 24 de octubre del 2026",
+  "hasta": "la noche del sábado 24 de octubre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Pampa Patagonica Norte, Laguna Blanca, San Gregorio y Primavera en la región de Magallanes",
+  "tablaTitulo": "Valores estimados de temperatura en grados Celsius (°C)",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Área"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 24"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Pampa Patagonica Norte, Laguna Blanca, San Gregorio y Primavera en la región de Magallanes"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "18 - 21"
+      }
+    ]
+  ]
+}
