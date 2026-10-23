@@ -1,0 +1,14 @@
+{
+  "codigo": "A580/2026",
+  "tipo": "Aviso",
+  "titulo": "Probables Tormentas Eléctricas en zonas de las regiones de La Araucanía, Los Ríos y Los Lagos",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Jueves 22 de octubre del 2026 a las 19:28 hrs.",
+  "condicionSinoptica": "Inestabilidad atmosférica",
+  "desde": "la tarde del viernes 23 de octubre del 2026",
+  "hasta": "la noche del viernes 23 de octubre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "La Araucanía (Valle, Precordillera)\nLos Ríos (Litoral, Cordillera Costa, Valle, Precordillera, Cordillera)\nLos Lagos (Litoral, Cordillera Costa, Valle, Precordillera, Cordillera, Chiloé, Litoral Interior, Cordillera Austral)",
+  "tablaTitulo": "",
+  "tablaFilas": []
+}
