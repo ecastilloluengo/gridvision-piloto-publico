@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-10-23 00:04",
+  "catalogoActualizadoEn": "2026-10-23 06:00",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -177,28 +177,6 @@
       "archivoDocumento": "data/dmc/A561-7_2026_documento.json"
     },
     {
-      "codigo": "A574/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Precipitaciones",
-      "titulo": "Precipitaciones Normales a Moderadas en zonas de las regiones del Maule, Ñuble y Biobío",
-      "desdeTexto": "la mañana del jueves 22 de octubre del 2026",
-      "hastaTexto": "la mañana del viernes 23 de octubre del 2026",
-      "fechaInicioDia": "2026-10-22",
-      "fechaFinDia": "2026-10-23",
-      "fechaEmision": "2026-10-22T09:32:00-03:00",
-      "regiones": [
-        "Biobío",
-        "Maule",
-        "Ñuble"
-      ],
-      "numeroPoligonos": 12,
-      "archivoGeojson": "data/dmc/A574_2026.geojson",
-      "archivoCobertura": "data/dmc/A574_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A574_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A574_2026_documento.json"
-    },
-    {
       "codigo": "A564-4/2026",
       "tipo": "Aviso",
       "fenomeno": "Viento",
@@ -245,5 +223,5 @@
       "archivoDocumento": "data/dmc/AA182-1_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-10-23T01:49:01.312455-03:00"
+  "generadoEn": "2026-10-23T08:38:41.464699-03:00"
 }
