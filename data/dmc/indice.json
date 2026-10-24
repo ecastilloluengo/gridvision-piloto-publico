@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-10-24 16:48",
+  "catalogoActualizadoEn": "2026-10-24 19:53",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -93,26 +93,6 @@
       "archivoDocumento": "data/dmc/A582_2026_documento.json"
     },
     {
-      "codigo": "A579/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Altas Temperaturas",
-      "titulo": "Altas Temperaturas en Litoral comuna de Mejillones de la región de Antofagasta.",
-      "desdeTexto": "la tarde del jueves 22 de octubre del 2026",
-      "hastaTexto": "la tarde del sábado 24 de octubre del 2026",
-      "fechaInicioDia": "2026-10-22",
-      "fechaFinDia": "2026-10-24",
-      "fechaEmision": "2026-10-22T15:45:00-03:00",
-      "regiones": [
-        "Antofagasta"
-      ],
-      "numeroPoligonos": 1,
-      "archivoGeojson": "data/dmc/A579_2026.geojson",
-      "archivoCobertura": "data/dmc/A579_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A579_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A579_2026_documento.json"
-    },
-    {
       "codigo": "A576/2026",
       "tipo": "Aviso",
       "fenomeno": "Altas Temperaturas",
@@ -131,27 +111,6 @@
       "archivoImpactos": "data/dmc/A576_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A576_2026_documento.json"
-    },
-    {
-      "codigo": "A543-7/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Viento",
-      "titulo": "Viento Normal a Moderado en zonas de las regiones de Antofagasta y Atacama",
-      "desdeTexto": "la tarde del miércoles 21 de octubre del 2026",
-      "hastaTexto": "la noche del sábado 24 de octubre del 2026",
-      "fechaInicioDia": "2026-10-21",
-      "fechaFinDia": "2026-10-24",
-      "fechaEmision": "2026-10-21T15:55:00-03:00",
-      "regiones": [
-        "Antofagasta",
-        "Atacama"
-      ],
-      "numeroPoligonos": 6,
-      "archivoGeojson": "data/dmc/A543-7_2026.geojson",
-      "archivoCobertura": "data/dmc/A543-7_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A543-7_2026_impactos.json",
-      "observacion": "Probabilidad de tormentas de arena",
-      "archivoDocumento": "data/dmc/A543-7_2026_documento.json"
     },
     {
       "codigo": "A570/2026",
@@ -176,5 +135,5 @@
       "archivoDocumento": "data/dmc/A570_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-10-24T17:49:20.990972-03:00"
+  "generadoEn": "2026-10-24T20:14:16.568433-03:00"
 }
