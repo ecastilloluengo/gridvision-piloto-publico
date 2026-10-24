@@ -1,0 +1,14 @@
+{
+  "codigo": "A582/2026",
+  "tipo": "Aviso",
+  "titulo": "Probables Tormentas Eléctricas en zonas de las regiones Metropolitana, O'Higgins y Maule",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Sábado 24 de octubre del 2026 a las 14:15 hrs.",
+  "condicionSinoptica": "Inestabilidad atmosférica",
+  "desde": "la tarde del sábado 24 de octubre del 2026",
+  "hasta": "la noche del sábado 24 de octubre del 2026",
+  "observacion": "Probabilidad de granizos y fuertes rachas de vientos locales",
+  "textoZonaAfecta": "Metropolitana (Cordillera Costa, Valle, Precordillera, Cordillera)\nO'Higgins (Cordillera Costa, Valle, Precordillera, Cordillera)\nMaule (Cordillera Costa, Valle, Precordillera, Cordillera)",
+  "tablaTitulo": "",
+  "tablaFilas": []
+}

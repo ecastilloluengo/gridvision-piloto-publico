@@ -1,10 +1,55 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-10-24 07:03",
+  "catalogoActualizadoEn": "2026-10-24 16:48",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
+    {
+      "codigo": "A583/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Valparaíso a la región del Biobío",
+      "desdeTexto": "la tarde del lunes 26 de octubre del 2026",
+      "hastaTexto": "la noche del lunes 26 de octubre del 2026",
+      "fechaInicioDia": "2026-10-26",
+      "fechaFinDia": "2026-10-26",
+      "fechaEmision": "2026-10-24T16:43:00-03:00",
+      "regiones": [
+        "Biobío",
+        "Maule",
+        "Metropolitana",
+        "O’Higgins",
+        "Valparaíso",
+        "Ñuble"
+      ],
+      "numeroPoligonos": 15,
+      "archivoGeojson": "data/dmc/A583_2026.geojson",
+      "archivoCobertura": "data/dmc/A583_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A583_2026_impactos.json",
+      "observacion": "Probabilidad de granizos",
+      "archivoDocumento": "data/dmc/A583_2026_documento.json"
+    },
+    {
+      "codigo": "A581/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en zonas de la región de Magallanes",
+      "desdeTexto": "la tarde del domingo 25 de octubre del 2026",
+      "hastaTexto": "la noche del domingo 25 de octubre del 2026",
+      "fechaInicioDia": "2026-10-25",
+      "fechaFinDia": "2026-10-25",
+      "fechaEmision": "2026-10-24T13:25:00-03:00",
+      "regiones": [
+        "Magallanes"
+      ],
+      "numeroPoligonos": 4,
+      "archivoGeojson": "data/dmc/A581_2026.geojson",
+      "archivoCobertura": "data/dmc/A581_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A581_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A581_2026_documento.json"
+    },
     {
       "codigo": "A578/2026",
       "tipo": "Aviso",
@@ -24,6 +69,28 @@
       "archivoImpactos": "data/dmc/A578_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A578_2026_documento.json"
+    },
+    {
+      "codigo": "A582/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en zonas de las regiones Metropolitana, O'Higgins y Maule",
+      "desdeTexto": "la tarde del sábado 24 de octubre del 2026",
+      "hastaTexto": "la noche del sábado 24 de octubre del 2026",
+      "fechaInicioDia": "2026-10-24",
+      "fechaFinDia": "2026-10-24",
+      "fechaEmision": "2026-10-24T14:15:00-03:00",
+      "regiones": [
+        "Maule",
+        "Metropolitana",
+        "O’Higgins"
+      ],
+      "numeroPoligonos": 12,
+      "archivoGeojson": "data/dmc/A582_2026.geojson",
+      "archivoCobertura": "data/dmc/A582_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A582_2026_impactos.json",
+      "observacion": "Probabilidad de granizos y fuertes rachas de vientos locales",
+      "archivoDocumento": "data/dmc/A582_2026_documento.json"
     },
     {
       "codigo": "A579/2026",
@@ -109,5 +176,5 @@
       "archivoDocumento": "data/dmc/A570_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-10-24T07:59:23.238528-03:00"
+  "generadoEn": "2026-10-24T17:49:20.990972-03:00"
 }

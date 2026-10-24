@@ -1,0 +1,3593 @@
+{
+  "codigo": "A581/2026",
+  "criterio": "intersección geográfica",
+  "advertencia": "Área del aviso: exposición potencial, no impacto confirmado.",
+  "totales": {
+    "activos": 443,
+    "lineas": 4,
+    "netbilling": 0
+  },
+  "elementos": {
+    "activos": [
+      {
+        "id": "GV-02453",
+        "nombre": "1865_PE VIENTOS PATAGONICOS (SM)",
+        "categoria": "Central",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-02188",
+        "nombre": "2338_S/E CENTRAL PE VIENTOS PATAGONICOS (SM)",
+        "categoria": "Subestación",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03877",
+        "nombre": "52E1",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03449",
+        "nombre": "535_TER TRES PUENTES (SM)",
+        "categoria": "Central",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03450",
+        "nombre": "536_TER PUNTA ARENAS (SM)",
+        "categoria": "Central",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-02430",
+        "nombre": "549_PE CABO NEGRO (SM)",
+        "categoria": "Central",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03473",
+        "nombre": "Acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03474",
+        "nombre": "Acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03475",
+        "nombre": "Acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03476",
+        "nombre": "Acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03477",
+        "nombre": "acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03478",
+        "nombre": "Acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03479",
+        "nombre": "acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03480",
+        "nombre": "acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03481",
+        "nombre": "acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03482",
+        "nombre": "acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03483",
+        "nombre": "acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03484",
+        "nombre": "acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03485",
+        "nombre": "acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03486",
+        "nombre": "acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03904",
+        "nombre": "Alim. N°6",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03492",
+        "nombre": "Central Tres Puentes",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03487",
+        "nombre": "cruce",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03488",
+        "nombre": "cruce",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03529",
+        "nombre": "Elemento sin nombre GV-03529",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03530",
+        "nombre": "Elemento sin nombre GV-03530",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03531",
+        "nombre": "Elemento sin nombre GV-03531",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03532",
+        "nombre": "Elemento sin nombre GV-03532",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03533",
+        "nombre": "Elemento sin nombre GV-03533",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03534",
+        "nombre": "Elemento sin nombre GV-03534",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03535",
+        "nombre": "Elemento sin nombre GV-03535",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03536",
+        "nombre": "Elemento sin nombre GV-03536",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03537",
+        "nombre": "Elemento sin nombre GV-03537",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03538",
+        "nombre": "Elemento sin nombre GV-03538",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03539",
+        "nombre": "Elemento sin nombre GV-03539",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03540",
+        "nombre": "Elemento sin nombre GV-03540",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03541",
+        "nombre": "Elemento sin nombre GV-03541",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03542",
+        "nombre": "Elemento sin nombre GV-03542",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03543",
+        "nombre": "Elemento sin nombre GV-03543",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03544",
+        "nombre": "Elemento sin nombre GV-03544",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03545",
+        "nombre": "Elemento sin nombre GV-03545",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03546",
+        "nombre": "Elemento sin nombre GV-03546",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03547",
+        "nombre": "Elemento sin nombre GV-03547",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03548",
+        "nombre": "Elemento sin nombre GV-03548",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03549",
+        "nombre": "Elemento sin nombre GV-03549",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03550",
+        "nombre": "Elemento sin nombre GV-03550",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03551",
+        "nombre": "Elemento sin nombre GV-03551",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03552",
+        "nombre": "Elemento sin nombre GV-03552",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03553",
+        "nombre": "Elemento sin nombre GV-03553",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03554",
+        "nombre": "Elemento sin nombre GV-03554",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03555",
+        "nombre": "Elemento sin nombre GV-03555",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03556",
+        "nombre": "Elemento sin nombre GV-03556",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03557",
+        "nombre": "Elemento sin nombre GV-03557",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03558",
+        "nombre": "Elemento sin nombre GV-03558",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03559",
+        "nombre": "Elemento sin nombre GV-03559",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03560",
+        "nombre": "Elemento sin nombre GV-03560",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03561",
+        "nombre": "Elemento sin nombre GV-03561",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03562",
+        "nombre": "Elemento sin nombre GV-03562",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03563",
+        "nombre": "Elemento sin nombre GV-03563",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03564",
+        "nombre": "Elemento sin nombre GV-03564",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03565",
+        "nombre": "Elemento sin nombre GV-03565",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03566",
+        "nombre": "Elemento sin nombre GV-03566",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03567",
+        "nombre": "Elemento sin nombre GV-03567",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03568",
+        "nombre": "Elemento sin nombre GV-03568",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03570",
+        "nombre": "Elemento sin nombre GV-03570",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03571",
+        "nombre": "Elemento sin nombre GV-03571",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03572",
+        "nombre": "Elemento sin nombre GV-03572",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03573",
+        "nombre": "Elemento sin nombre GV-03573",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03574",
+        "nombre": "Elemento sin nombre GV-03574",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03575",
+        "nombre": "Elemento sin nombre GV-03575",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03576",
+        "nombre": "Elemento sin nombre GV-03576",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03577",
+        "nombre": "Elemento sin nombre GV-03577",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03578",
+        "nombre": "Elemento sin nombre GV-03578",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03579",
+        "nombre": "Elemento sin nombre GV-03579",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03580",
+        "nombre": "Elemento sin nombre GV-03580",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03581",
+        "nombre": "Elemento sin nombre GV-03581",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03582",
+        "nombre": "Elemento sin nombre GV-03582",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03583",
+        "nombre": "Elemento sin nombre GV-03583",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03584",
+        "nombre": "Elemento sin nombre GV-03584",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03585",
+        "nombre": "Elemento sin nombre GV-03585",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03586",
+        "nombre": "Elemento sin nombre GV-03586",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03587",
+        "nombre": "Elemento sin nombre GV-03587",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03588",
+        "nombre": "Elemento sin nombre GV-03588",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03589",
+        "nombre": "Elemento sin nombre GV-03589",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03590",
+        "nombre": "Elemento sin nombre GV-03590",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03591",
+        "nombre": "Elemento sin nombre GV-03591",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03592",
+        "nombre": "Elemento sin nombre GV-03592",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03593",
+        "nombre": "Elemento sin nombre GV-03593",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03594",
+        "nombre": "Elemento sin nombre GV-03594",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03595",
+        "nombre": "Elemento sin nombre GV-03595",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03596",
+        "nombre": "Elemento sin nombre GV-03596",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03597",
+        "nombre": "Elemento sin nombre GV-03597",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03598",
+        "nombre": "Elemento sin nombre GV-03598",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03599",
+        "nombre": "Elemento sin nombre GV-03599",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03600",
+        "nombre": "Elemento sin nombre GV-03600",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03601",
+        "nombre": "Elemento sin nombre GV-03601",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03602",
+        "nombre": "Elemento sin nombre GV-03602",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03603",
+        "nombre": "Elemento sin nombre GV-03603",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03604",
+        "nombre": "Elemento sin nombre GV-03604",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03605",
+        "nombre": "Elemento sin nombre GV-03605",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03606",
+        "nombre": "Elemento sin nombre GV-03606",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03607",
+        "nombre": "Elemento sin nombre GV-03607",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03608",
+        "nombre": "Elemento sin nombre GV-03608",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03609",
+        "nombre": "Elemento sin nombre GV-03609",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03610",
+        "nombre": "Elemento sin nombre GV-03610",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03611",
+        "nombre": "Elemento sin nombre GV-03611",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03612",
+        "nombre": "Elemento sin nombre GV-03612",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03613",
+        "nombre": "Elemento sin nombre GV-03613",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03614",
+        "nombre": "Elemento sin nombre GV-03614",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03615",
+        "nombre": "Elemento sin nombre GV-03615",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03616",
+        "nombre": "Elemento sin nombre GV-03616",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03617",
+        "nombre": "Elemento sin nombre GV-03617",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03618",
+        "nombre": "Elemento sin nombre GV-03618",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03619",
+        "nombre": "Elemento sin nombre GV-03619",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03620",
+        "nombre": "Elemento sin nombre GV-03620",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03621",
+        "nombre": "Elemento sin nombre GV-03621",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03622",
+        "nombre": "Elemento sin nombre GV-03622",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03623",
+        "nombre": "Elemento sin nombre GV-03623",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03624",
+        "nombre": "Elemento sin nombre GV-03624",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03625",
+        "nombre": "Elemento sin nombre GV-03625",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03626",
+        "nombre": "Elemento sin nombre GV-03626",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03627",
+        "nombre": "Elemento sin nombre GV-03627",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03628",
+        "nombre": "Elemento sin nombre GV-03628",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03629",
+        "nombre": "Elemento sin nombre GV-03629",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03630",
+        "nombre": "Elemento sin nombre GV-03630",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03631",
+        "nombre": "Elemento sin nombre GV-03631",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03632",
+        "nombre": "Elemento sin nombre GV-03632",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03633",
+        "nombre": "Elemento sin nombre GV-03633",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03634",
+        "nombre": "Elemento sin nombre GV-03634",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03635",
+        "nombre": "Elemento sin nombre GV-03635",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03636",
+        "nombre": "Elemento sin nombre GV-03636",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03637",
+        "nombre": "Elemento sin nombre GV-03637",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03638",
+        "nombre": "Elemento sin nombre GV-03638",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03639",
+        "nombre": "Elemento sin nombre GV-03639",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03640",
+        "nombre": "Elemento sin nombre GV-03640",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03641",
+        "nombre": "Elemento sin nombre GV-03641",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03642",
+        "nombre": "Elemento sin nombre GV-03642",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03643",
+        "nombre": "Elemento sin nombre GV-03643",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03644",
+        "nombre": "Elemento sin nombre GV-03644",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03645",
+        "nombre": "Elemento sin nombre GV-03645",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03646",
+        "nombre": "Elemento sin nombre GV-03646",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03647",
+        "nombre": "Elemento sin nombre GV-03647",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03648",
+        "nombre": "Elemento sin nombre GV-03648",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03649",
+        "nombre": "Elemento sin nombre GV-03649",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03650",
+        "nombre": "Elemento sin nombre GV-03650",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03651",
+        "nombre": "Elemento sin nombre GV-03651",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03652",
+        "nombre": "Elemento sin nombre GV-03652",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03653",
+        "nombre": "Elemento sin nombre GV-03653",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03654",
+        "nombre": "Elemento sin nombre GV-03654",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03655",
+        "nombre": "Elemento sin nombre GV-03655",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03656",
+        "nombre": "Elemento sin nombre GV-03656",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03657",
+        "nombre": "Elemento sin nombre GV-03657",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03658",
+        "nombre": "Elemento sin nombre GV-03658",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03659",
+        "nombre": "Elemento sin nombre GV-03659",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03660",
+        "nombre": "Elemento sin nombre GV-03660",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03661",
+        "nombre": "Elemento sin nombre GV-03661",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03662",
+        "nombre": "Elemento sin nombre GV-03662",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03663",
+        "nombre": "Elemento sin nombre GV-03663",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03664",
+        "nombre": "Elemento sin nombre GV-03664",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03665",
+        "nombre": "Elemento sin nombre GV-03665",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03666",
+        "nombre": "Elemento sin nombre GV-03666",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03667",
+        "nombre": "Elemento sin nombre GV-03667",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03668",
+        "nombre": "Elemento sin nombre GV-03668",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03669",
+        "nombre": "Elemento sin nombre GV-03669",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03670",
+        "nombre": "Elemento sin nombre GV-03670",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03671",
+        "nombre": "Elemento sin nombre GV-03671",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03672",
+        "nombre": "Elemento sin nombre GV-03672",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03673",
+        "nombre": "Elemento sin nombre GV-03673",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03674",
+        "nombre": "Elemento sin nombre GV-03674",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03675",
+        "nombre": "Elemento sin nombre GV-03675",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03676",
+        "nombre": "Elemento sin nombre GV-03676",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03677",
+        "nombre": "Elemento sin nombre GV-03677",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03678",
+        "nombre": "Elemento sin nombre GV-03678",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03679",
+        "nombre": "Elemento sin nombre GV-03679",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03680",
+        "nombre": "Elemento sin nombre GV-03680",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03681",
+        "nombre": "Elemento sin nombre GV-03681",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03682",
+        "nombre": "Elemento sin nombre GV-03682",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03683",
+        "nombre": "Elemento sin nombre GV-03683",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03684",
+        "nombre": "Elemento sin nombre GV-03684",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03685",
+        "nombre": "Elemento sin nombre GV-03685",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03686",
+        "nombre": "Elemento sin nombre GV-03686",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03687",
+        "nombre": "Elemento sin nombre GV-03687",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03688",
+        "nombre": "Elemento sin nombre GV-03688",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03689",
+        "nombre": "Elemento sin nombre GV-03689",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03690",
+        "nombre": "Elemento sin nombre GV-03690",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03691",
+        "nombre": "Elemento sin nombre GV-03691",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03692",
+        "nombre": "Elemento sin nombre GV-03692",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03693",
+        "nombre": "Elemento sin nombre GV-03693",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03694",
+        "nombre": "Elemento sin nombre GV-03694",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03695",
+        "nombre": "Elemento sin nombre GV-03695",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03696",
+        "nombre": "Elemento sin nombre GV-03696",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03697",
+        "nombre": "Elemento sin nombre GV-03697",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03698",
+        "nombre": "Elemento sin nombre GV-03698",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03699",
+        "nombre": "Elemento sin nombre GV-03699",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03700",
+        "nombre": "Elemento sin nombre GV-03700",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03701",
+        "nombre": "Elemento sin nombre GV-03701",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03702",
+        "nombre": "Elemento sin nombre GV-03702",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03703",
+        "nombre": "Elemento sin nombre GV-03703",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03704",
+        "nombre": "Elemento sin nombre GV-03704",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03705",
+        "nombre": "Elemento sin nombre GV-03705",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03706",
+        "nombre": "Elemento sin nombre GV-03706",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03707",
+        "nombre": "Elemento sin nombre GV-03707",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03708",
+        "nombre": "Elemento sin nombre GV-03708",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03709",
+        "nombre": "Elemento sin nombre GV-03709",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03710",
+        "nombre": "Elemento sin nombre GV-03710",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03711",
+        "nombre": "Elemento sin nombre GV-03711",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03712",
+        "nombre": "Elemento sin nombre GV-03712",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03713",
+        "nombre": "Elemento sin nombre GV-03713",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03714",
+        "nombre": "Elemento sin nombre GV-03714",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03715",
+        "nombre": "Elemento sin nombre GV-03715",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03716",
+        "nombre": "Elemento sin nombre GV-03716",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03717",
+        "nombre": "Elemento sin nombre GV-03717",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03718",
+        "nombre": "Elemento sin nombre GV-03718",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03719",
+        "nombre": "Elemento sin nombre GV-03719",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03720",
+        "nombre": "Elemento sin nombre GV-03720",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03721",
+        "nombre": "Elemento sin nombre GV-03721",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03722",
+        "nombre": "Elemento sin nombre GV-03722",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03723",
+        "nombre": "Elemento sin nombre GV-03723",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03724",
+        "nombre": "Elemento sin nombre GV-03724",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03725",
+        "nombre": "Elemento sin nombre GV-03725",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03726",
+        "nombre": "Elemento sin nombre GV-03726",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03727",
+        "nombre": "Elemento sin nombre GV-03727",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03728",
+        "nombre": "Elemento sin nombre GV-03728",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03729",
+        "nombre": "Elemento sin nombre GV-03729",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03730",
+        "nombre": "Elemento sin nombre GV-03730",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03731",
+        "nombre": "Elemento sin nombre GV-03731",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03732",
+        "nombre": "Elemento sin nombre GV-03732",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03733",
+        "nombre": "Elemento sin nombre GV-03733",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03734",
+        "nombre": "Elemento sin nombre GV-03734",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03735",
+        "nombre": "Elemento sin nombre GV-03735",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03736",
+        "nombre": "Elemento sin nombre GV-03736",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03737",
+        "nombre": "Elemento sin nombre GV-03737",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03738",
+        "nombre": "Elemento sin nombre GV-03738",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03739",
+        "nombre": "Elemento sin nombre GV-03739",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03740",
+        "nombre": "Elemento sin nombre GV-03740",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03741",
+        "nombre": "Elemento sin nombre GV-03741",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03742",
+        "nombre": "Elemento sin nombre GV-03742",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03743",
+        "nombre": "Elemento sin nombre GV-03743",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03744",
+        "nombre": "Elemento sin nombre GV-03744",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03745",
+        "nombre": "Elemento sin nombre GV-03745",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03746",
+        "nombre": "Elemento sin nombre GV-03746",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03747",
+        "nombre": "Elemento sin nombre GV-03747",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03748",
+        "nombre": "Elemento sin nombre GV-03748",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03749",
+        "nombre": "Elemento sin nombre GV-03749",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03750",
+        "nombre": "Elemento sin nombre GV-03750",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03751",
+        "nombre": "Elemento sin nombre GV-03751",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03752",
+        "nombre": "Elemento sin nombre GV-03752",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03753",
+        "nombre": "Elemento sin nombre GV-03753",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03754",
+        "nombre": "Elemento sin nombre GV-03754",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03755",
+        "nombre": "Elemento sin nombre GV-03755",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03756",
+        "nombre": "Elemento sin nombre GV-03756",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03757",
+        "nombre": "Elemento sin nombre GV-03757",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03758",
+        "nombre": "Elemento sin nombre GV-03758",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03759",
+        "nombre": "Elemento sin nombre GV-03759",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03760",
+        "nombre": "Elemento sin nombre GV-03760",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03761",
+        "nombre": "Elemento sin nombre GV-03761",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03762",
+        "nombre": "Elemento sin nombre GV-03762",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03763",
+        "nombre": "Elemento sin nombre GV-03763",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03764",
+        "nombre": "Elemento sin nombre GV-03764",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03765",
+        "nombre": "Elemento sin nombre GV-03765",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03766",
+        "nombre": "Elemento sin nombre GV-03766",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03767",
+        "nombre": "Elemento sin nombre GV-03767",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03768",
+        "nombre": "Elemento sin nombre GV-03768",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03769",
+        "nombre": "Elemento sin nombre GV-03769",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03770",
+        "nombre": "Elemento sin nombre GV-03770",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03771",
+        "nombre": "Elemento sin nombre GV-03771",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03772",
+        "nombre": "Elemento sin nombre GV-03772",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03773",
+        "nombre": "Elemento sin nombre GV-03773",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03775",
+        "nombre": "Elemento sin nombre GV-03775",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03776",
+        "nombre": "Elemento sin nombre GV-03776",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03777",
+        "nombre": "Elemento sin nombre GV-03777",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03778",
+        "nombre": "Elemento sin nombre GV-03778",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03780",
+        "nombre": "Elemento sin nombre GV-03780",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03781",
+        "nombre": "Elemento sin nombre GV-03781",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03782",
+        "nombre": "Elemento sin nombre GV-03782",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03783",
+        "nombre": "Elemento sin nombre GV-03783",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03784",
+        "nombre": "Elemento sin nombre GV-03784",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03785",
+        "nombre": "Elemento sin nombre GV-03785",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03786",
+        "nombre": "Elemento sin nombre GV-03786",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03790",
+        "nombre": "Elemento sin nombre GV-03790",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03791",
+        "nombre": "Elemento sin nombre GV-03791",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03792",
+        "nombre": "Elemento sin nombre GV-03792",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03793",
+        "nombre": "Elemento sin nombre GV-03793",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03794",
+        "nombre": "Elemento sin nombre GV-03794",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03795",
+        "nombre": "Elemento sin nombre GV-03795",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03796",
+        "nombre": "Elemento sin nombre GV-03796",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03797",
+        "nombre": "Elemento sin nombre GV-03797",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03798",
+        "nombre": "Elemento sin nombre GV-03798",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03799",
+        "nombre": "Elemento sin nombre GV-03799",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03800",
+        "nombre": "Elemento sin nombre GV-03800",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03801",
+        "nombre": "Elemento sin nombre GV-03801",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03802",
+        "nombre": "Elemento sin nombre GV-03802",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03803",
+        "nombre": "Elemento sin nombre GV-03803",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03804",
+        "nombre": "Elemento sin nombre GV-03804",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03805",
+        "nombre": "Elemento sin nombre GV-03805",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03806",
+        "nombre": "Elemento sin nombre GV-03806",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03807",
+        "nombre": "Elemento sin nombre GV-03807",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03808",
+        "nombre": "Elemento sin nombre GV-03808",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03809",
+        "nombre": "Elemento sin nombre GV-03809",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03810",
+        "nombre": "Elemento sin nombre GV-03810",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03811",
+        "nombre": "Elemento sin nombre GV-03811",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03812",
+        "nombre": "Elemento sin nombre GV-03812",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03813",
+        "nombre": "Elemento sin nombre GV-03813",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03814",
+        "nombre": "Elemento sin nombre GV-03814",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03815",
+        "nombre": "Elemento sin nombre GV-03815",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03816",
+        "nombre": "Elemento sin nombre GV-03816",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03817",
+        "nombre": "Elemento sin nombre GV-03817",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03818",
+        "nombre": "Elemento sin nombre GV-03818",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03819",
+        "nombre": "Elemento sin nombre GV-03819",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03820",
+        "nombre": "Elemento sin nombre GV-03820",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03821",
+        "nombre": "Elemento sin nombre GV-03821",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03822",
+        "nombre": "Elemento sin nombre GV-03822",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03823",
+        "nombre": "Elemento sin nombre GV-03823",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03824",
+        "nombre": "Elemento sin nombre GV-03824",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03825",
+        "nombre": "Elemento sin nombre GV-03825",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03826",
+        "nombre": "Elemento sin nombre GV-03826",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03827",
+        "nombre": "Elemento sin nombre GV-03827",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03828",
+        "nombre": "Elemento sin nombre GV-03828",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03833",
+        "nombre": "Elemento sin nombre GV-03833",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03834",
+        "nombre": "Elemento sin nombre GV-03834",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03835",
+        "nombre": "Elemento sin nombre GV-03835",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03836",
+        "nombre": "Elemento sin nombre GV-03836",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03837",
+        "nombre": "Elemento sin nombre GV-03837",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03838",
+        "nombre": "Elemento sin nombre GV-03838",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03839",
+        "nombre": "Elemento sin nombre GV-03839",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03840",
+        "nombre": "Elemento sin nombre GV-03840",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03841",
+        "nombre": "Elemento sin nombre GV-03841",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03842",
+        "nombre": "Elemento sin nombre GV-03842",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03843",
+        "nombre": "Elemento sin nombre GV-03843",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03844",
+        "nombre": "Elemento sin nombre GV-03844",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03845",
+        "nombre": "Elemento sin nombre GV-03845",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03846",
+        "nombre": "Elemento sin nombre GV-03846",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03847",
+        "nombre": "Elemento sin nombre GV-03847",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03848",
+        "nombre": "Elemento sin nombre GV-03848",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03849",
+        "nombre": "Elemento sin nombre GV-03849",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03850",
+        "nombre": "Elemento sin nombre GV-03850",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03851",
+        "nombre": "Elemento sin nombre GV-03851",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03852",
+        "nombre": "Elemento sin nombre GV-03852",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03853",
+        "nombre": "Elemento sin nombre GV-03853",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03854",
+        "nombre": "Elemento sin nombre GV-03854",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03855",
+        "nombre": "Elemento sin nombre GV-03855",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03856",
+        "nombre": "Elemento sin nombre GV-03856",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03857",
+        "nombre": "Elemento sin nombre GV-03857",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03858",
+        "nombre": "Elemento sin nombre GV-03858",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03859",
+        "nombre": "Elemento sin nombre GV-03859",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03860",
+        "nombre": "Elemento sin nombre GV-03860",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03861",
+        "nombre": "Elemento sin nombre GV-03861",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03862",
+        "nombre": "Elemento sin nombre GV-03862",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03863",
+        "nombre": "Elemento sin nombre GV-03863",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03864",
+        "nombre": "Elemento sin nombre GV-03864",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03865",
+        "nombre": "Elemento sin nombre GV-03865",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03866",
+        "nombre": "Elemento sin nombre GV-03866",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03867",
+        "nombre": "Elemento sin nombre GV-03867",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03868",
+        "nombre": "Elemento sin nombre GV-03868",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03869",
+        "nombre": "Elemento sin nombre GV-03869",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03870",
+        "nombre": "Elemento sin nombre GV-03870",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03871",
+        "nombre": "Elemento sin nombre GV-03871",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03872",
+        "nombre": "Elemento sin nombre GV-03872",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03873",
+        "nombre": "Elemento sin nombre GV-03873",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03874",
+        "nombre": "Elemento sin nombre GV-03874",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03875",
+        "nombre": "Elemento sin nombre GV-03875",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03876",
+        "nombre": "Elemento sin nombre GV-03876",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03452",
+        "nombre": "EXT_020_TER PORVENIR",
+        "categoria": "Central",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03453",
+        "nombre": "EXT_021_TER PUERTO NATALES",
+        "categoria": "Central",
+        "zonas": [
+          "12_pampa_patagonica_norte"
+        ]
+      },
+      {
+        "id": "GV-03884",
+        "nombre": "LMT Metanex",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03885",
+        "nombre": "LMT Metanex",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03886",
+        "nombre": "LMT Metanex",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03489",
+        "nombre": "Nota",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03490",
+        "nombre": "NOTA",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03491",
+        "nombre": "Nota",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03569",
+        "nombre": "nota",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03774",
+        "nombre": "NOTA",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03779",
+        "nombre": "NOTA",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03787",
+        "nombre": "nota",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03788",
+        "nombre": "nota",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03789",
+        "nombre": "nota",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03829",
+        "nombre": "nota",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03830",
+        "nombre": "nota",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03831",
+        "nombre": "nota",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03832",
+        "nombre": "nota",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03493",
+        "nombre": "P00",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03882",
+        "nombre": "P00",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03495",
+        "nombre": "P01",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03883",
+        "nombre": "P01",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03494",
+        "nombre": "P02",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03887",
+        "nombre": "P02",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03496",
+        "nombre": "P03",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03888",
+        "nombre": "P03",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03497",
+        "nombre": "P04",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03889",
+        "nombre": "P04",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03498",
+        "nombre": "P05",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03890",
+        "nombre": "P05",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03499",
+        "nombre": "P06",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03891",
+        "nombre": "P06",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03500",
+        "nombre": "P07",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03892",
+        "nombre": "P07",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03501",
+        "nombre": "P08",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03893",
+        "nombre": "P08",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03502",
+        "nombre": "P09",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03894",
+        "nombre": "P09",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03503",
+        "nombre": "P10",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03895",
+        "nombre": "P10",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03504",
+        "nombre": "P11",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03896",
+        "nombre": "P11",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03505",
+        "nombre": "P12",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03897",
+        "nombre": "P12",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03506",
+        "nombre": "P13",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03898",
+        "nombre": "P13",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03507",
+        "nombre": "P14",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03508",
+        "nombre": "P14",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03899",
+        "nombre": "P14",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03509",
+        "nombre": "P15",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03900",
+        "nombre": "P15",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03510",
+        "nombre": "P16",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03901",
+        "nombre": "P16",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03511",
+        "nombre": "P17",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03902",
+        "nombre": "P17 52IA",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03512",
+        "nombre": "P18",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03903",
+        "nombre": "P18",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03513",
+        "nombre": "P19",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03514",
+        "nombre": "P20",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03515",
+        "nombre": "P21",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03516",
+        "nombre": "P22",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03517",
+        "nombre": "P23",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03518",
+        "nombre": "P24",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03519",
+        "nombre": "P25",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03520",
+        "nombre": "P26",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03521",
+        "nombre": "P27",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03522",
+        "nombre": "P28",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03523",
+        "nombre": "P29",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03524",
+        "nombre": "P30",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03525",
+        "nombre": "P31",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03526",
+        "nombre": "P32",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03527",
+        "nombre": "P33",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03528",
+        "nombre": "P34",
+        "categoria": "Poste",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03878",
+        "nombre": "Sala Control CN",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03471",
+        "nombre": "SALA DE CONTROL VP",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03470",
+        "nombre": "WTG01",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03881",
+        "nombre": "WTG01",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03469",
+        "nombre": "WTG02",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03880",
+        "nombre": "WTG02",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03468",
+        "nombre": "WTG03",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03879",
+        "nombre": "WTG03",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      }
+    ],
+    "lineas": [
+      {
+        "id": "GV-03905",
+        "nombre": "LMT",
+        "categoria": "Línea",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03907",
+        "nombre": "LMT Alim. N°6",
+        "categoria": "Línea",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03906",
+        "nombre": "LMT hacia Metanex",
+        "categoria": "Línea",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      },
+      {
+        "id": "GV-03472",
+        "nombre": "LTVP",
+        "categoria": "Línea",
+        "zonas": [
+          "12_pampa_patagonica_sur"
+        ]
+      }
+    ],
+    "netbilling": []
+  }
+}

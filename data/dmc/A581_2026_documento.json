@@ -1,0 +1,14 @@
+{
+  "codigo": "A581/2026",
+  "tipo": "Aviso",
+  "titulo": "Probables Tormentas Eléctricas en zonas de la región de Magallanes",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Sábado 24 de octubre del 2026 a las 13:25 hrs.",
+  "condicionSinoptica": "Inestabilidad atmosférica",
+  "desde": "la tarde del domingo 25 de octubre del 2026",
+  "hasta": "la noche del domingo 25 de octubre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Magallanes (Cordillera Austral Norte, Insular Norte, Pampa Patagonica Norte, Pampa Patagonica Sur)",
+  "tablaTitulo": "",
+  "tablaFilas": []
+}
