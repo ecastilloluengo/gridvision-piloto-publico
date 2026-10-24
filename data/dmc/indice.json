@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-10-23 06:00",
+  "catalogoActualizadoEn": "2026-10-23 22:16",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -109,48 +109,6 @@
       "archivoDocumento": "data/dmc/A570_2026_documento.json"
     },
     {
-      "codigo": "A580/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas de las regiones de La Araucanía, Los Ríos y Los Lagos",
-      "desdeTexto": "la tarde del viernes 23 de octubre del 2026",
-      "hastaTexto": "la noche del viernes 23 de octubre del 2026",
-      "fechaInicioDia": "2026-10-23",
-      "fechaFinDia": "2026-10-23",
-      "fechaEmision": "2026-10-22T19:28:00-03:00",
-      "regiones": [
-        "La Araucanía",
-        "Los Lagos",
-        "Los Ríos"
-      ],
-      "numeroPoligonos": 15,
-      "archivoGeojson": "data/dmc/A580_2026.geojson",
-      "archivoCobertura": "data/dmc/A580_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A580_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A580_2026_documento.json"
-    },
-    {
-      "codigo": "A577/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en cordillera de la región de Arica y Parinacota",
-      "desdeTexto": "la tarde del viernes 23 de octubre del 2026",
-      "hastaTexto": "la noche del viernes 23 de octubre del 2026",
-      "fechaInicioDia": "2026-10-23",
-      "fechaFinDia": "2026-10-23",
-      "fechaEmision": "2026-10-22T15:24:00-03:00",
-      "regiones": [
-        "Arica y Parinacota"
-      ],
-      "numeroPoligonos": 1,
-      "archivoGeojson": "data/dmc/A577_2026.geojson",
-      "archivoCobertura": "data/dmc/A577_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A577_2026_impactos.json",
-      "observacion": "Asociadas con Chubascos aislados",
-      "archivoDocumento": "data/dmc/A577_2026_documento.json"
-    },
-    {
       "codigo": "A561-7/2026",
       "tipo": "Aviso",
       "fenomeno": "Tormentas Eléctricas",
@@ -175,53 +133,7 @@
       "archivoImpactos": "data/dmc/A561-7_2026_impactos.json",
       "observacion": "Probabilidad de granizos y fuertes rachas de vientos locales",
       "archivoDocumento": "data/dmc/A561-7_2026_documento.json"
-    },
-    {
-      "codigo": "A564-4/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Viento",
-      "titulo": "Viento Normal a Moderado en zonas desde la región de Coquimbo a la región del Biobío",
-      "desdeTexto": "la tarde del martes 20 de octubre del 2026",
-      "hastaTexto": "la noche del viernes 23 de octubre del 2026",
-      "fechaInicioDia": "2026-10-20",
-      "fechaFinDia": "2026-10-23",
-      "fechaEmision": "2026-10-20T14:56:00-03:00",
-      "regiones": [
-        "Biobío",
-        "Coquimbo",
-        "Maule",
-        "Metropolitana",
-        "O’Higgins",
-        "Valparaíso",
-        "Ñuble"
-      ],
-      "numeroPoligonos": 28,
-      "archivoGeojson": "data/dmc/A564-4_2026.geojson",
-      "archivoCobertura": "data/dmc/A564-4_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A564-4_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A564-4_2026_documento.json"
-    },
-    {
-      "codigo": "AA182-1/2026",
-      "tipo": "Alerta",
-      "fenomeno": "Viento",
-      "titulo": "Viento Moderado a Fuerte en cordillera de la región de Coquimbo",
-      "desdeTexto": "la madrugada del martes 20 de octubre del 2026",
-      "hastaTexto": "la noche del viernes 23 de octubre del 2026",
-      "fechaInicioDia": "2026-10-20",
-      "fechaFinDia": "2026-10-23",
-      "fechaEmision": "2026-10-19T14:03:00-03:00",
-      "regiones": [
-        "Coquimbo"
-      ],
-      "numeroPoligonos": 1,
-      "archivoGeojson": "data/dmc/AA182-1_2026.geojson",
-      "archivoCobertura": "data/dmc/AA182-1_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/AA182-1_2026_impactos.json",
-      "observacion": "Desarrollo de ventisca",
-      "archivoDocumento": "data/dmc/AA182-1_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-10-23T08:38:41.464699-03:00"
+  "generadoEn": "2026-10-24T01:36:12.060420-03:00"
 }
