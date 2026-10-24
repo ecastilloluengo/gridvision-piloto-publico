@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-10-23 22:16",
+  "catalogoActualizadoEn": "2026-10-24 07:03",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -107,33 +107,7 @@
       "archivoImpactos": "data/dmc/A570_2026_impactos.json",
       "observacion": "Probabilidad de tormentas de arena",
       "archivoDocumento": "data/dmc/A570_2026_documento.json"
-    },
-    {
-      "codigo": "A561-7/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Coquimbo a la región del Biobío",
-      "desdeTexto": "la tarde del jueves 22 de octubre del 2026",
-      "hastaTexto": "la noche del viernes 23 de octubre del 2026",
-      "fechaInicioDia": "2026-10-22",
-      "fechaFinDia": "2026-10-23",
-      "fechaEmision": "2026-10-22T10:23:00-03:00",
-      "regiones": [
-        "Biobío",
-        "Coquimbo",
-        "Maule",
-        "Metropolitana",
-        "O’Higgins",
-        "Valparaíso",
-        "Ñuble"
-      ],
-      "numeroPoligonos": 30,
-      "archivoGeojson": "data/dmc/A561-7_2026.geojson",
-      "archivoCobertura": "data/dmc/A561-7_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A561-7_2026_impactos.json",
-      "observacion": "Probabilidad de granizos y fuertes rachas de vientos locales",
-      "archivoDocumento": "data/dmc/A561-7_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-10-24T01:36:12.060420-03:00"
+  "generadoEn": "2026-10-24T07:59:23.238528-03:00"
 }
