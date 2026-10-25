@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-10-25 00:07",
+  "catalogoActualizadoEn": "2026-10-25 06:53",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -69,27 +69,7 @@
       "archivoImpactos": "data/dmc/A578_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A578_2026_documento.json"
-    },
-    {
-      "codigo": "A576/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Altas Temperaturas",
-      "titulo": "Altas Temperaturas en Pampa Patagonica Norte, Laguna Blanca, San Gregorio y Primavera en la región de Magallanes",
-      "desdeTexto": "la tarde del sábado 24 de octubre del 2026",
-      "hastaTexto": "la noche del sábado 24 de octubre del 2026",
-      "fechaInicioDia": "2026-10-24",
-      "fechaFinDia": "2026-10-24",
-      "fechaEmision": "2026-10-22T14:24:00-03:00",
-      "regiones": [
-        "Magallanes"
-      ],
-      "numeroPoligonos": 1,
-      "archivoGeojson": "data/dmc/A576_2026.geojson",
-      "archivoCobertura": "data/dmc/A576_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A576_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A576_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-10-25T01:41:02.760600-03:00"
+  "generadoEn": "2026-10-25T08:28:30.402773-03:00"
 }
