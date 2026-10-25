@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-10-24 19:53",
+  "catalogoActualizadoEn": "2026-10-25 00:07",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -71,28 +71,6 @@
       "archivoDocumento": "data/dmc/A578_2026_documento.json"
     },
     {
-      "codigo": "A582/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas de las regiones Metropolitana, O'Higgins y Maule",
-      "desdeTexto": "la tarde del sábado 24 de octubre del 2026",
-      "hastaTexto": "la noche del sábado 24 de octubre del 2026",
-      "fechaInicioDia": "2026-10-24",
-      "fechaFinDia": "2026-10-24",
-      "fechaEmision": "2026-10-24T14:15:00-03:00",
-      "regiones": [
-        "Maule",
-        "Metropolitana",
-        "O’Higgins"
-      ],
-      "numeroPoligonos": 12,
-      "archivoGeojson": "data/dmc/A582_2026.geojson",
-      "archivoCobertura": "data/dmc/A582_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A582_2026_impactos.json",
-      "observacion": "Probabilidad de granizos y fuertes rachas de vientos locales",
-      "archivoDocumento": "data/dmc/A582_2026_documento.json"
-    },
-    {
       "codigo": "A576/2026",
       "tipo": "Aviso",
       "fenomeno": "Altas Temperaturas",
@@ -111,29 +89,7 @@
       "archivoImpactos": "data/dmc/A576_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A576_2026_documento.json"
-    },
-    {
-      "codigo": "A570/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Viento",
-      "titulo": "Viento Normal a Moderado en litoral de las regiones de Tarapacá, Antofagasta y Atacama",
-      "desdeTexto": "la tarde del jueves 22 de octubre del 2026",
-      "hastaTexto": "la noche del sábado 24 de octubre del 2026",
-      "fechaInicioDia": "2026-10-22",
-      "fechaFinDia": "2026-10-24",
-      "fechaEmision": "2026-10-19T15:00:00-03:00",
-      "regiones": [
-        "Antofagasta",
-        "Atacama",
-        "Tarapacá"
-      ],
-      "numeroPoligonos": 3,
-      "archivoGeojson": "data/dmc/A570_2026.geojson",
-      "archivoCobertura": "data/dmc/A570_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A570_2026_impactos.json",
-      "observacion": "Probabilidad de tormentas de arena",
-      "archivoDocumento": "data/dmc/A570_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-10-24T20:14:16.568433-03:00"
+  "generadoEn": "2026-10-25T01:41:02.760600-03:00"
 }
