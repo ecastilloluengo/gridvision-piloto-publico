@@ -1,0 +1,14 @@
+{
+  "codigo": "A584/2026",
+  "tipo": "Aviso",
+  "titulo": "Probables Tormentas Eléctricas en zonas de las regiones de La Araucanía, Los Ríos y Los Lagos",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Domingo 25 de octubre del 2026 a las 13:59 hrs.",
+  "condicionSinoptica": "Inestabilidad atmosférica",
+  "desde": "la tarde del lunes 26 de octubre del 2026",
+  "hasta": "la noche del lunes 26 de octubre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "La Araucanía (Litoral, Cordillera Costa, Valle, Precordillera, Cordillera)\nLos Ríos (Precordillera, Cordillera)\nLos Lagos (Precordillera, Cordillera, Cordillera Austral)",
+  "tablaTitulo": "",
+  "tablaFilas": []
+}

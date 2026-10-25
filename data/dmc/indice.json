@@ -1,10 +1,32 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-10-25 06:53",
+  "catalogoActualizadoEn": "2026-10-25 17:49",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
+    {
+      "codigo": "A584/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en zonas de las regiones de La Araucanía, Los Ríos y Los Lagos",
+      "desdeTexto": "la tarde del lunes 26 de octubre del 2026",
+      "hastaTexto": "la noche del lunes 26 de octubre del 2026",
+      "fechaInicioDia": "2026-10-26",
+      "fechaFinDia": "2026-10-26",
+      "fechaEmision": "2026-10-25T13:59:00-03:00",
+      "regiones": [
+        "La Araucanía",
+        "Los Lagos",
+        "Los Ríos"
+      ],
+      "numeroPoligonos": 10,
+      "archivoGeojson": "data/dmc/A584_2026.geojson",
+      "archivoCobertura": "data/dmc/A584_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A584_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A584_2026_documento.json"
+    },
     {
       "codigo": "A583/2026",
       "tipo": "Aviso",
@@ -49,27 +71,7 @@
       "archivoImpactos": "data/dmc/A581_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A581_2026_documento.json"
-    },
-    {
-      "codigo": "A578/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Altas Temperaturas",
-      "titulo": "Altas Temperaturas en zonas de la región de Atacama",
-      "desdeTexto": "la tarde del domingo 25 de octubre del 2026",
-      "hastaTexto": "la tarde del domingo 25 de octubre del 2026",
-      "fechaInicioDia": "2026-10-25",
-      "fechaFinDia": "2026-10-25",
-      "fechaEmision": "2026-10-22T15:25:00-03:00",
-      "regiones": [
-        "Atacama"
-      ],
-      "numeroPoligonos": 3,
-      "archivoGeojson": "data/dmc/A578_2026.geojson",
-      "archivoCobertura": "data/dmc/A578_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A578_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A578_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-10-25T08:28:30.402773-03:00"
+  "generadoEn": "2026-10-25T17:50:59.327877-03:00"
 }
