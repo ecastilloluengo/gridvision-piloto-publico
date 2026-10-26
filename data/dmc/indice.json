@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-10-25 17:49",
+  "catalogoActualizadoEn": "2026-10-25 22:34",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -51,27 +51,7 @@
       "archivoImpactos": "data/dmc/A583_2026_impactos.json",
       "observacion": "Probabilidad de granizos",
       "archivoDocumento": "data/dmc/A583_2026_documento.json"
-    },
-    {
-      "codigo": "A581/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas de la región de Magallanes",
-      "desdeTexto": "la tarde del domingo 25 de octubre del 2026",
-      "hastaTexto": "la noche del domingo 25 de octubre del 2026",
-      "fechaInicioDia": "2026-10-25",
-      "fechaFinDia": "2026-10-25",
-      "fechaEmision": "2026-10-24T13:25:00-03:00",
-      "regiones": [
-        "Magallanes"
-      ],
-      "numeroPoligonos": 4,
-      "archivoGeojson": "data/dmc/A581_2026.geojson",
-      "archivoCobertura": "data/dmc/A581_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A581_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A581_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-10-25T17:50:59.327877-03:00"
+  "generadoEn": "2026-10-26T01:46:51.688830-03:00"
 }
