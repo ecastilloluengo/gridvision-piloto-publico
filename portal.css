@@ -1177,3 +1177,20 @@ button,a{font:inherit}button{color:inherit}.portal-shell{min-height:100vh}
     font-weight: 500;
     opacity: 0.9;
 }
+
+/* GRIDVISION_SITR_BADGE_V01 */
+.nav-alert-badge.sitr-badge-ok {
+  color: #9be000;
+  border-color: rgba(155,224,0,.35);
+  background: rgba(155,224,0,.08);
+}
+.nav-alert-badge.sitr-badge-error {
+  color: #ff9292;
+  border-color: rgba(255,83,83,.55);
+  background: rgba(190,23,23,.23);
+}
+.nav-alert-badge.sitr-badge-unknown {
+  color: #c5d4e2;
+  border-color: rgba(197,212,226,.35);
+  background: rgba(197,212,226,.08);
+}

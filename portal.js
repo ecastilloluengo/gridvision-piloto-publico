@@ -1749,3 +1749,62 @@ if (botonMenuMovil && navegacionPortal) {
     });
 
 }
+
+/* GRIDVISION_SITR_BADGE_V01 */
+(() => {
+  const badge = document.getElementById('badge-sitr');
+  if (!badge) return;
+  const endpoint = 'https://gridvision-piloto-publico.onrender.com/api/sitr';
+  const INTERVALO_MS = 15 * 60 * 1000;
+  const TIMEOUT_MS = 15000;
+
+  function pintar(numero, estado, descripcion) {
+    badge.textContent = numero;
+    badge.classList.remove('sitr-badge-ok','sitr-badge-error','sitr-badge-unknown');
+    badge.classList.add('sitr-badge-' + estado);
+    badge.title = descripcion;
+    badge.setAttribute('aria-label', descripcion);
+  }
+
+  async function actualizarContadorSitr() {
+    const controlador = new AbortController();
+    const cancelacion = setTimeout(() => controlador.abort(), TIMEOUT_MS);
+    try {
+      const respuesta = await fetch(endpoint, {cache:'no-store', signal:controlador.signal});
+      if (!respuesta.ok) throw new Error('SITR HTTP ' + respuesta.status);
+      const datos = await respuesta.json();
+      const centrales = datos && datos.instalaciones;
+      if (!Array.isArray(centrales) || centrales.length === 0) throw new Error('SITR sin centrales');
+      let total = 0;
+      let incidencias = 0;
+      for (const central of centrales) {
+        const esperado = Number(central.variables_total);
+        const fallas = Number(central.variables_incidentes);
+        if (!Number.isInteger(esperado) || esperado <= 0 ||
+            !Number.isInteger(fallas) || fallas < 0 || fallas > esperado) {
+          throw new Error('Conteo SITR incompleto');
+        }
+        total += esperado;
+        incidencias += fallas;
+      }
+      // Este portal supervisa 45 señales. Evita un falso cero por respuesta parcial.
+      if (total !== 45) throw new Error('SITR parcial: ' + total + '/45');
+      const frescura = datos.frescura_cen && datos.frescura_cen.estado;
+      if (frescura === 'DESACTUALIZADO' || frescura === 'DESCONOCIDA') {
+        throw new Error('Fuente CEN desactualizada');
+      }
+      pintar(String(incidencias), incidencias > 0 ? 'error':'ok',
+        'SITR: ' + incidencias + ' incidencia(s) activa(s) de ' + total + ' variables');
+    } catch (error) {
+      pintar('—','unknown','SITR: no se pudo verificar el estado actual');
+      console.warn('Contador SITR: sin estado verificable', error);
+    } finally {
+      clearTimeout(cancelacion);
+    }
+  }
+  actualizarContadorSitr();
+  setInterval(actualizarContadorSitr, INTERVALO_MS);
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) actualizarContadorSitr();
+  });
+})();
