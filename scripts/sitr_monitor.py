@@ -9,6 +9,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from sitr_qlik import consultar_sitr
+from sitr_disponibilidad_mensual import (acumular_disponibilidad_mensual, resumen_publico_mensual)
 
 
 TZ = ZoneInfo("America/Santiago")
@@ -1828,7 +1829,7 @@ def encolar_correo(
 
 
 def _grupo_transicion_sitr(evento):
-    """Distingue recuperaci??n, anomal??a y alertas de la fuente CEN."""
+    """Distingue recuperación, anomalía y alertas de la fuente CEN."""
     tipo = str(evento.get("tipo") or "")
     if tipo == "FUENTE_NORMALIZADA":
         return "FUENTE_RECUPERACION"
@@ -1840,13 +1841,13 @@ def _grupo_transicion_sitr(evento):
 
 
 def _correo_consolidado_sitr(eventos, grupo, snapshot):
-    """Una notificaci??n por clase de transici??n y ejecuci??n del monitor."""
+    """Una notificación por clase de transición y ejecución del monitor."""
     cantidad = len(eventos)
     nombres = {
-        "INCIDENCIA": ("????", "Alerta consolidada"),
-        "RECUPERACION": ("????", "Normalizaci??n consolidada"),
-        "FUENTE_ALERTA": ("????", "Alerta fuente CEN"),
-        "FUENTE_RECUPERACION": ("????", "Fuente CEN normalizada"),
+        "INCIDENCIA": ("🔴", "Alerta consolidada"),
+        "RECUPERACION": ("🟢", "Normalización consolidada"),
+        "FUENTE_ALERTA": ("🔴", "Alerta fuente CEN"),
+        "FUENTE_RECUPERACION": ("🟢", "Fuente CEN normalizada"),
     }
     icono, titulo = nombres[grupo]
     centrales = {}
@@ -1862,26 +1863,26 @@ def _correo_consolidado_sitr(eventos, grupo, snapshot):
         f"{icono} {titulo.upper()}",
         "",
         f"Cambios detectados: {cantidad}",
-        f"Distribuci??n: {resumen}",
-        f"Estado actual: {snapshot.get('validas', 0)}/{snapshot.get('total', 0)} variables v??lidas",
+        f"Distribución: {resumen}",
+        f"Estado actual: {snapshot.get('validas', 0)}/{snapshot.get('total', 0)} variables válidas",
         f"Variables faltantes: {snapshot.get('faltantes', 0)}",
         "",
         "DETALLE DE CAMBIOS",
     ]
     for central, items in sorted(centrales.items()):
-        lineas.extend(["", f"{central} ??? {len(items)} cambio(s)"])
+        lineas.extend(["", f"{central} — {len(items)} cambio(s)"])
         for evento in items:
             variable = evento.get("variable") or _evento_humano(evento)
             estado = _evento_humano(evento)
             hora = _hora_operacional(evento.get("fecha"))
             irn = f" | IRN {evento['irn']}" if evento.get("irn") else ""
             duracion = _duracion_humana(evento.get("duracion_minutos"))
-            duracion_txt = f" | duraci??n {duracion}" if duracion else ""
+            duracion_txt = f" | duración {duracion}" if duracion else ""
             lineas.append(f"- {hora} | {variable} | {estado}{irn}{duracion_txt}")
     lineas.extend([
         "",
-        "Nota: las horas corresponden a detecci??n por el monitor; no necesariamente al inicio f??sico de la anomal??a.",
-        "Fuente: Coordinador El??ctrico Nacional",
+        "Nota: las horas corresponden a detección por el monitor; no necesariamente al inicio físico de la anomalía.",
+        "Fuente: Coordinador Eléctrico Nacional",
     ])
     return asunto, "\n".join(lineas)
 
@@ -1898,7 +1899,7 @@ def encolar_eventos_correo(estado, snapshot, fecha):
     cantidad = 0
     for grupo, items in grupos.items():
         # Los eventos pueden tener marcas distintas; el ID del lote es estable
-        # para la misma ejecuci??n y transiciones, incluso tras un reintento.
+        # para la misma ejecución y transiciones, incluso tras un reintento.
         ids = sorted(
             f"{e.get('fecha')}|{e.get('tipo')}|{e.get('clave')}"
             for e in items
@@ -2180,6 +2181,11 @@ def ejecutar(
     estado[
         "ultimo_snapshot"
     ] = snapshot
+
+    # Acumulado referencial; no afecta transición de alarmas ni Power Automate.
+    acumular_disponibilidad_mensual(estado, snapshot, fecha)
+    guardar_json(CARPETA_MONITOR / "disponibilidad_mensual.json",
+                 resumen_publico_mensual(estado, fecha))
 
     inicializar_marcas_reporte(
         estado,

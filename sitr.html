@@ -646,12 +646,17 @@
     </div>
 
 
+    <div class="monitor-grid" id="sitr-mensual-grid" style="margin-bottom:16px">
+      <article class="monitor-card"><span class="monitor-label">Capullo · Mensual estimada</span><strong class="monitor-value" id="sitr-mes-capullo">--</strong><small class="monitor-sub" id="sitr-cob-capullo">Sin datos históricos suficientes</small></article>
+      <article class="monitor-card"><span class="monitor-label">Pulelfu · Mensual estimada</span><strong class="monitor-value" id="sitr-mes-pulelfu">--</strong><small class="monitor-sub" id="sitr-cob-pulelfu">Sin datos históricos suficientes</small></article>
+      <p style="grid-column:1/-1;font-size:.82rem;opacity:.8">Cálculo referencial GridVision, no corresponde a la disponibilidad oficial del CEN. Cobertura temporal y períodos sin evidencia se informan separadamente.</p>
+    </div>
     <div class="monitor-grid">
 
       <article class="monitor-card">
 
         <span class="monitor-label">
-          Estado actual
+          Disponibilidad de datos SITR
         </span>
 
         <strong
@@ -714,7 +719,7 @@
       <article class="monitor-card">
 
         <span class="monitor-label">
-          Estado de actualización CEN
+          Actualización de la fuente CEN
         </span>
 
         <strong
@@ -735,6 +740,9 @@
 
     </div>
 
+    <div id="monitor-aclaracion" class="config-note" aria-live="polite">
+      La cobertura de registros y la validez de los valores SITR son indicadores distintos.
+    </div>
 
     <div class="config-note">
 
@@ -817,7 +825,7 @@
           </div>
 
           <div class="asset-var">
-            <span>Recibidas</span>
+            <span>Registros encontrados</span>
             <strong id="capullo-recibidas">
               --
             </strong>
@@ -831,7 +839,7 @@
           </div>
 
           <div class="asset-var">
-            <span>Faltantes</span>
+            <span>Registros ausentes</span>
             <strong id="capullo-faltantes">
               --
             </strong>
@@ -879,7 +887,7 @@
           </div>
 
           <div class="asset-var">
-            <span>Recibidas</span>
+            <span>Registros encontrados</span>
             <strong id="pulelfu-recibidas">
               --
             </strong>
@@ -893,7 +901,7 @@
           </div>
 
           <div class="asset-var">
-            <span>Faltantes</span>
+            <span>Registros ausentes</span>
             <strong id="pulelfu-faltantes">
               --
             </strong>
@@ -1579,37 +1587,27 @@ function renderEstadoGeneral(
     );
 
 
-  if (
-    faltantes === 0
-    &&
-    incidentes === 0
-    &&
-    total > 0
-  ) {
+  const sinDatoValido = Math.max(0, total - validas);
+  const porcentaje = total > 0 ? (100 * validas / total) : null;
+  const porcentajeTxt = porcentaje === null
+    ? "Sin datos"
+    : `${porcentaje.toFixed(1).replace(".", ",")} %`;
+  const aclaracion = document.getElementById("monitor-aclaracion");
 
-    estado.textContent =
-      `🟢 ${validas}/${total} válidas`;
+  estado.textContent = porcentajeTxt;
+  estado.className = "monitor-value " + (
+    porcentaje === null ? "estado-warning" :
+    sinDatoValido === 0 ? "estado-ok" : "estado-error"
+  );
+  detalle.textContent = `${validas} de ${total} variables con dato válido`;
 
-    estado.className =
-      "monitor-value estado-ok";
-
-    detalle.textContent =
-      "Sin incidencias detectadas.";
-
-  } else {
-
-    estado.textContent =
-      `🔴 ${incidentes} incidencia${
-        incidentes === 1 ? "" : "s"
-      }`;
-
-    estado.className =
-      "monitor-value estado-error";
-
-    detalle.textContent =
-      `${recibidas}/${total} recibidas · `
-      +
-      `${faltantes} faltantes`;
+  if (aclaracion) {
+    aclaracion.textContent =
+      `${sinDatoValido} variables sin dato válido · ` +
+      `${recibidas}/${total} registros encontrados · ` +
+      `${faltantes} registros ausentes. ` +
+      `La vigencia de la fuente CEN no garantiza la validez de las señales. ` +
+      `Este porcentaje corresponde a la consulta actual, no a la disponibilidad mensual oficial del CEN.`;
   }
 }
 
@@ -1701,8 +1699,8 @@ function renderVariables(
         ✓ ${validas} de ${total}
         variables SITR válidas.
 
-        ${recibidas} recibidas ·
-        ${faltantes} faltantes ·
+        ${recibidas}/${total} registros encontrados ·
+        ${faltantes} registros ausentes ·
         sin incidencias detectadas.
 
       </div>
@@ -1718,19 +1716,12 @@ function renderVariables(
   resumenEl.innerHTML = `
     <div class="vars-error">
 
-      ⚠ ${incidentes}
-      incidencia${
-        incidentes === 1
-          ? ""
-          : "s"
-      } detectada${
-        incidentes === 1
-          ? ""
-          : "s"
-      }.
+      ⚠ ${Math.max(0, total - validas)} variable${
+        total - validas === 1 ? "" : "s"
+      } sin dato válido.
 
-      ${recibidas}/${total} variables recibidas ·
-      ${faltantes} faltantes.
+      ${recibidas}/${total} registros encontrados ·
+      ${faltantes} registros ausentes.
 
     </div>
   `;
@@ -1969,7 +1960,31 @@ function renderHistorial(
    CONSULTA API
    ======================================== */
 
+
+async function cargarSitrMensual() {
+  try {
+    const url = 'https://raw.githubusercontent.com/ecastilloluengo/gridvision-piloto-publico/sitr-monitor-state/data/sitr_monitor/disponibilidad_mensual.json?t=' + Date.now();
+    const respuesta = await fetch(url, {cache:'no-store'});
+    if (!respuesta.ok) throw new Error('sin histórico mensual');
+    const datos = await respuesta.json();
+    for (const id of ['capullo','pulelfu']) {
+      const elemento = document.getElementById('sitr-mes-'+id);
+      const info = document.getElementById('sitr-cob-'+id);
+      const c = (datos.centrales || {})[id];
+      if (!elemento || !info) continue;
+      elemento.textContent = c && c.disponibilidad_estimada_pct !== null ? c.disponibilidad_estimada_pct.toFixed(2).replace('.',',') + ' %' : 'Sin datos';
+      info.textContent = c ? `Cobertura del mes ${c.cobertura_temporal_pct.toFixed(1)} % · Corte ${datos.corte || '--'}` : 'Sin datos históricos suficientes';
+    }
+  } catch (err) {
+    for (const id of ['capullo','pulelfu']) {
+      const info = document.getElementById('sitr-cob-'+id);
+      if (info) info.textContent = 'Acumulado todavía no publicado';
+    }
+  }
+}
+
 async function cargarSitr() {
+  cargarSitrMensual();
 
   const boton =
     document.getElementById(
