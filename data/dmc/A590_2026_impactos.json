@@ -1,0 +1,209 @@
+{
+  "codigo": "A590/2026",
+  "criterio": "intersección geográfica",
+  "advertencia": "Área del aviso: exposición potencial, no impacto confirmado.",
+  "totales": {
+    "activos": 15,
+    "lineas": 9,
+    "netbilling": 0
+  },
+  "elementos": {
+    "activos": [
+      {
+        "id": "GV-03319",
+        "nombre": "122_TER HUASCO",
+        "categoria": "Central",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-02437",
+        "nombre": "1658_PE CABO LEONES II",
+        "categoria": "Central",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01752",
+        "nombre": "1768_S/E NUEVA PELLETS",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01773",
+        "nombre": "1792_S/E CENTRAL PARQUE EOLICO SAN JUAN",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-02455",
+        "nombre": "1995_PE ATACAMA",
+        "categoria": "Central",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01982",
+        "nombre": "2055_S/E CENTRAL PARQUE EOLICO CABO LEONES I",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-02012",
+        "nombre": "2096_S/E SARCO",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-02101",
+        "nombre": "2228_S/E CABO LEONES II",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-02213",
+        "nombre": "2378_S/E IBERATACAMA",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-02419",
+        "nombre": "365_PE SAN JUAN",
+        "categoria": "Central",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-02425",
+        "nombre": "478_PE CABO LEONES",
+        "categoria": "Central",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-02427",
+        "nombre": "516_PE SARCO",
+        "categoria": "Central",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01351",
+        "nombre": "574_S/E HUASCO",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-02436",
+        "nombre": "636_PE CABO LEONES III",
+        "categoria": "Central",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01554",
+        "nombre": "882_S/E PELLETS",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      }
+    ],
+    "lineas": [
+      {
+        "id": "GV-00230",
+        "nombre": "1279_MAITENCILLO - CENTRAL PARQUE EOLICO CABO LEONES I 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00252",
+        "nombre": "1335_MAITENCILLO - SARCO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00404",
+        "nombre": "1836_CENTRAL CABO LEONES II – IBERATACAMA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00405",
+        "nombre": "1837_IBERATACAMA - MAITENCILLO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00072",
+        "nombre": "60_GUACOLDA - MAITENCILLO 220KV L1",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00123",
+        "nombre": "701_GUACOLDA - MAITENCILLO 220KV L2",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00561",
+        "nombre": "702_HUASCO - MAITENCILLO 110KV L1",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00562",
+        "nombre": "703_HUASCO - MAITENCILLO 110KV L2",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00151",
+        "nombre": "902_PUNTA COLORADA - PARQUE EOLICO SAN JUAN 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      }
+    ],
+    "netbilling": []
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "codigo": "AA190-1/2026",
+  "tipo": "Alerta",
+  "titulo": "Tormentas Eléctricas en zonas desde la región Metropolitana a la región del Biobío",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Lunes 26 de octubre del 2026 a las 16:23 hrs.",
+  "condicionSinoptica": "Inestabilidad atmosférica",
+  "desde": "la tarde del lunes 26 de octubre del 2026",
+  "hasta": "la noche del lunes 26 de octubre del 2026",
+  "observacion": "Probabilidad de granizos y fuertes rachas de vientos locales",
+  "textoZonaAfecta": "Metropolitana (Valle, Precordillera, Cordillera)\nO'Higgins (Cordillera Costa, Valle, Precordillera, Cordillera)\nMaule (Cordillera Costa, Valle, Precordillera, Cordillera)\nÑuble (Cordillera Costa, Valle, Precordillera, Cordillera)\nBiobío (Cordillera Costa, Valle, Precordillera, Cordillera)",
+  "tablaTitulo": "",
+  "tablaFilas": []
+}

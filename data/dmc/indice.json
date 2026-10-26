@@ -1,10 +1,115 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-10-26 09:22",
+  "catalogoActualizadoEn": "2026-10-26 16:28",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
+    {
+      "codigo": "A588/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Nevadas",
+      "titulo": "Nevadas Normales a Moderadas en cordillera de la región de Antofagasta",
+      "desdeTexto": "la mañana del jueves 29 de octubre del 2026",
+      "hastaTexto": "la madrugada del viernes 30 de octubre del 2026",
+      "fechaInicioDia": "2026-10-29",
+      "fechaFinDia": "2026-10-30",
+      "fechaEmision": "2026-10-26T15:09:00-03:00",
+      "regiones": [
+        "Antofagasta"
+      ],
+      "numeroPoligonos": 1,
+      "archivoGeojson": "data/dmc/A588_2026.geojson",
+      "archivoCobertura": "data/dmc/A588_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A588_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A588_2026_documento.json"
+    },
+    {
+      "codigo": "A587/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en zonas de las regiones de Tarapacá y Antofagasta",
+      "desdeTexto": "la mañana del miércoles 28 de octubre del 2026",
+      "hastaTexto": "la noche del jueves 29 de octubre del 2026",
+      "fechaInicioDia": "2026-10-28",
+      "fechaFinDia": "2026-10-29",
+      "fechaEmision": "2026-10-26T15:08:00-03:00",
+      "regiones": [
+        "Antofagasta",
+        "Tarapacá"
+      ],
+      "numeroPoligonos": 6,
+      "archivoGeojson": "data/dmc/A587_2026.geojson",
+      "archivoCobertura": "data/dmc/A587_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A587_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A587_2026_documento.json"
+    },
+    {
+      "codigo": "A589/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Altas Temperaturas",
+      "titulo": "Altas Temperaturas en zonas de la región de Magallanes",
+      "desdeTexto": "la mañana del miércoles 28 de octubre del 2026",
+      "hastaTexto": "la noche del miércoles 28 de octubre del 2026",
+      "fechaInicioDia": "2026-10-28",
+      "fechaFinDia": "2026-10-28",
+      "fechaEmision": "2026-10-26T15:38:00-03:00",
+      "regiones": [
+        "Magallanes"
+      ],
+      "numeroPoligonos": 2,
+      "archivoGeojson": "data/dmc/A589_2026.geojson",
+      "archivoCobertura": "data/dmc/A589_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A589_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A589_2026_documento.json"
+    },
+    {
+      "codigo": "A590/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Viento",
+      "titulo": "Viento Normal a Moderado en Sector costero de provincia de Huasco - Región de Atacama",
+      "desdeTexto": "la tarde del lunes 26 de octubre del 2026",
+      "hastaTexto": "la noche del martes 27 de octubre del 2026",
+      "fechaInicioDia": "2026-10-26",
+      "fechaFinDia": "2026-10-27",
+      "fechaEmision": "2026-10-26T16:04:00-03:00",
+      "regiones": [
+        "Atacama"
+      ],
+      "numeroPoligonos": 1,
+      "archivoGeojson": "data/dmc/A590_2026.geojson",
+      "archivoCobertura": "data/dmc/A590_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A590_2026_impactos.json",
+      "observacion": "Probabilidad de tormentas de arena",
+      "archivoDocumento": "data/dmc/A590_2026_documento.json"
+    },
+    {
+      "codigo": "AA190-1/2026",
+      "tipo": "Alerta",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Tormentas Eléctricas en zonas desde la región Metropolitana a la región del Biobío",
+      "desdeTexto": "la tarde del lunes 26 de octubre del 2026",
+      "hastaTexto": "la noche del lunes 26 de octubre del 2026",
+      "fechaInicioDia": "2026-10-26",
+      "fechaFinDia": "2026-10-26",
+      "fechaEmision": "2026-10-26T16:23:00-03:00",
+      "regiones": [
+        "Biobío",
+        "Maule",
+        "Metropolitana",
+        "O’Higgins",
+        "Ñuble"
+      ],
+      "numeroPoligonos": 19,
+      "archivoGeojson": "data/dmc/AA190-1_2026.geojson",
+      "archivoCobertura": "data/dmc/AA190-1_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/AA190-1_2026_impactos.json",
+      "observacion": "Probabilidad de granizos y fuertes rachas de vientos locales",
+      "archivoDocumento": "data/dmc/AA190-1_2026_documento.json"
+    },
     {
       "codigo": "A586/2026",
       "tipo": "Aviso",
@@ -96,5 +201,5 @@
       "archivoDocumento": "data/dmc/A584_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-10-26T10:02:00.620382-03:00"
+  "generadoEn": "2026-10-26T17:29:26.439837-03:00"
 }

@@ -1,0 +1,49 @@
+{
+  "codigo": "A590/2026",
+  "tipo": "Aviso",
+  "titulo": "Viento Normal a Moderado en Sector costero de provincia de Huasco - Región de Atacama",
+  "fenomeno": "Viento",
+  "emisionTexto": "Lunes 26 de octubre del 2026 a las 16:04 hrs.",
+  "condicionSinoptica": "Jet costero",
+  "desde": "la tarde del lunes 26 de octubre del 2026",
+  "hasta": "la noche del martes 27 de octubre del 2026",
+  "observacion": "Probabilidad de tormentas de arena",
+  "textoZonaAfecta": "Sector costero de provincia de Huasco - Región de Atacama",
+  "tablaTitulo": "Intensidad estimada del Viento en Km/h",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Área"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 26"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 27"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Sector costero de provincia de Huasco - Región de Atacama"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "40-60"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "40-60"
+      }
+    ]
+  ]
+}

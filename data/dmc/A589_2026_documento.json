@@ -1,0 +1,58 @@
+{
+  "codigo": "A589/2026",
+  "tipo": "Aviso",
+  "titulo": "Altas Temperaturas en zonas de la región de Magallanes",
+  "fenomeno": "Altas Temperaturas",
+  "emisionTexto": "Lunes 26 de octubre del 2026 a las 15:38 hrs.",
+  "condicionSinoptica": "Altas presiones",
+  "desde": "la mañana del miércoles 28 de octubre del 2026",
+  "hasta": "la noche del miércoles 28 de octubre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Magallanes (Pampa Patagonica Norte, Pampa Patagonica Sur)",
+  "tablaTitulo": "Valores estimados de temperatura en grados Celsius (°C)",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Magallanes"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 28"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Pampa Patagonica Norte"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "20 - 24"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Pampa Patagonica Sur"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "16 - 22"
+      }
+    ]
+  ]
+}
