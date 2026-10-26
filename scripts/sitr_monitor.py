@@ -1827,42 +1827,88 @@ def encolar_correo(
     return True
 
 
-def encolar_eventos_correo(
-    estado,
-    snapshot,
-    fecha
-):
+def _grupo_transicion_sitr(evento):
+    """Distingue recuperaci??n, anomal??a y alertas de la fuente CEN."""
+    tipo = str(evento.get("tipo") or "")
+    if tipo == "FUENTE_NORMALIZADA":
+        return "FUENTE_RECUPERACION"
+    if tipo.startswith("FUENTE_"):
+        return "FUENTE_ALERTA"
+    if tipo == "NORMALIZADA":
+        return "RECUPERACION"
+    return "INCIDENCIA"
+
+
+def _correo_consolidado_sitr(eventos, grupo, snapshot):
+    """Una notificaci??n por clase de transici??n y ejecuci??n del monitor."""
+    cantidad = len(eventos)
+    nombres = {
+        "INCIDENCIA": ("????", "Alerta consolidada"),
+        "RECUPERACION": ("????", "Normalizaci??n consolidada"),
+        "FUENTE_ALERTA": ("????", "Alerta fuente CEN"),
+        "FUENTE_RECUPERACION": ("????", "Fuente CEN normalizada"),
+    }
+    icono, titulo = nombres[grupo]
+    centrales = {}
+    for evento in eventos:
+        central = _nombre_central_corto(
+            evento.get("central") or evento.get("coordinado")
+        ) if not str(evento.get("tipo") or "").startswith("FUENTE_") else "Fuente CEN"
+        centrales.setdefault(central, []).append(evento)
+
+    resumen = ", ".join(f"{central}: {len(items)}" for central, items in sorted(centrales.items()))
+    asunto = f"SITR | {icono} {titulo} | {cantidad} cambio(s)"
+    lineas = [
+        f"{icono} {titulo.upper()}",
+        "",
+        f"Cambios detectados: {cantidad}",
+        f"Distribuci??n: {resumen}",
+        f"Estado actual: {snapshot.get('validas', 0)}/{snapshot.get('total', 0)} variables v??lidas",
+        f"Variables faltantes: {snapshot.get('faltantes', 0)}",
+        "",
+        "DETALLE DE CAMBIOS",
+    ]
+    for central, items in sorted(centrales.items()):
+        lineas.extend(["", f"{central} ??? {len(items)} cambio(s)"])
+        for evento in items:
+            variable = evento.get("variable") or _evento_humano(evento)
+            estado = _evento_humano(evento)
+            hora = _hora_operacional(evento.get("fecha"))
+            irn = f" | IRN {evento['irn']}" if evento.get("irn") else ""
+            duracion = _duracion_humana(evento.get("duracion_minutos"))
+            duracion_txt = f" | duraci??n {duracion}" if duracion else ""
+            lineas.append(f"- {hora} | {variable} | {estado}{irn}{duracion_txt}")
+    lineas.extend([
+        "",
+        "Nota: las horas corresponden a detecci??n por el monitor; no necesariamente al inicio f??sico de la anomal??a.",
+        "Fuente: Coordinador El??ctrico Nacional",
+    ])
+    return asunto, "\n".join(lineas)
+
+
+def encolar_eventos_correo(estado, snapshot, fecha):
     if not correo_configurado():
         return 0
 
+    eventos = estado.get("eventos_ultima_ejecucion", [])
+    grupos = {}
+    for evento in eventos:
+        grupos.setdefault(_grupo_transicion_sitr(evento), []).append(evento)
+
     cantidad = 0
-
-    for evento in estado.get(
-        "eventos_ultima_ejecucion",
-        []
-    ):
-        identificador = (
-            "evento|"
-            f"{evento.get('fecha')}|"
-            f"{evento.get('tipo')}|"
-            f"{evento.get('clave')}"
+    for grupo, items in grupos.items():
+        # Los eventos pueden tener marcas distintas; el ID del lote es estable
+        # para la misma ejecuci??n y transiciones, incluso tras un reintento.
+        ids = sorted(
+            f"{e.get('fecha')}|{e.get('tipo')}|{e.get('clave')}"
+            for e in items
         )
-
-        agregado = encolar_correo(
-            estado,
-            identificador,
-            "EVENTO",
-            asunto_evento(evento),
-            cuerpo_evento(
-                evento,
-                snapshot
-            ),
-            fecha
-        )
-
-        if agregado:
+        import hashlib
+        huella = hashlib.sha256("\n".join(ids).encode("utf-8")).hexdigest()[:20]
+        identificador = f"lote_sitr_v2|{grupo}|{huella}"
+        asunto, cuerpo = _correo_consolidado_sitr(items, grupo, snapshot)
+        if encolar_correo(estado, identificador, "EVENTO_CONSOLIDADO", asunto, cuerpo, fecha):
             cantidad += 1
-
     return cantidad
 
 
