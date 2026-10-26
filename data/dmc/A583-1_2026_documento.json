@@ -1,0 +1,14 @@
+{
+  "codigo": "A583-1/2026",
+  "tipo": "Aviso",
+  "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Valparaíso a la región del Biobío",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Lunes 26 de octubre del 2026 a las 06:33 hrs.",
+  "condicionSinoptica": "Vaguada en altura",
+  "desde": "la tarde del lunes 26 de octubre del 2026",
+  "hasta": "la noche del lunes 26 de octubre del 2026",
+  "observacion": "Probabilidad de granizos",
+  "textoZonaAfecta": "Valparaíso (Precordillera y valles precordilleranos, Cordillera)\nMetropolitana (Valle, Precordillera, Cordillera)\nO'Higgins (Cordillera Costa, Valle, Precordillera, Cordillera)\nMaule (Cordillera Costa, Valle, Precordillera, Cordillera)\nÑuble (Cordillera Costa, Valle, Precordillera, Cordillera)\nBiobío (Cordillera Costa, Valle, Precordillera, Cordillera)",
+  "tablaTitulo": "",
+  "tablaFilas": []
+}

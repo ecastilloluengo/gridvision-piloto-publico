@@ -1,10 +1,78 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-10-25 22:34",
+  "catalogoActualizadoEn": "2026-10-26 09:22",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
+    {
+      "codigo": "A586/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en zonas de la región de Magallanes",
+      "desdeTexto": "la tarde del lunes 26 de octubre del 2026",
+      "hastaTexto": "la noche del lunes 26 de octubre del 2026",
+      "fechaInicioDia": "2026-10-26",
+      "fechaFinDia": "2026-10-26",
+      "fechaEmision": "2026-10-26T09:17:00-03:00",
+      "regiones": [
+        "Magallanes"
+      ],
+      "numeroPoligonos": 2,
+      "archivoGeojson": "data/dmc/A586_2026.geojson",
+      "archivoCobertura": "data/dmc/A586_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A586_2026_impactos.json",
+      "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
+      "archivoDocumento": "data/dmc/A586_2026_documento.json"
+    },
+    {
+      "codigo": "A585/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Precipitaciones",
+      "titulo": "Precipitaciones Normales a Moderadas en corto periodo de tiempo en zonas desde la región de Valparaíso a la región del Maule",
+      "desdeTexto": "la tarde del lunes 26 de octubre del 2026",
+      "hastaTexto": "la noche del lunes 26 de octubre del 2026",
+      "fechaInicioDia": "2026-10-26",
+      "fechaFinDia": "2026-10-26",
+      "fechaEmision": "2026-10-26T07:20:00-03:00",
+      "regiones": [
+        "Maule",
+        "Metropolitana",
+        "O’Higgins",
+        "Valparaíso"
+      ],
+      "numeroPoligonos": 7,
+      "archivoGeojson": "data/dmc/A585_2026.geojson",
+      "archivoCobertura": "data/dmc/A585_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A585_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A585_2026_documento.json"
+    },
+    {
+      "codigo": "A583-1/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Valparaíso a la región del Biobío",
+      "desdeTexto": "la tarde del lunes 26 de octubre del 2026",
+      "hastaTexto": "la noche del lunes 26 de octubre del 2026",
+      "fechaInicioDia": "2026-10-26",
+      "fechaFinDia": "2026-10-26",
+      "fechaEmision": "2026-10-26T06:33:00-03:00",
+      "regiones": [
+        "Biobío",
+        "Maule",
+        "Metropolitana",
+        "O’Higgins",
+        "Valparaíso",
+        "Ñuble"
+      ],
+      "numeroPoligonos": 21,
+      "archivoGeojson": "data/dmc/A583-1_2026.geojson",
+      "archivoCobertura": "data/dmc/A583-1_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A583-1_2026_impactos.json",
+      "observacion": "Probabilidad de granizos",
+      "archivoDocumento": "data/dmc/A583-1_2026_documento.json"
+    },
     {
       "codigo": "A584/2026",
       "tipo": "Aviso",
@@ -26,32 +94,7 @@
       "archivoImpactos": "data/dmc/A584_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A584_2026_documento.json"
-    },
-    {
-      "codigo": "A583/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Valparaíso a la región del Biobío",
-      "desdeTexto": "la tarde del lunes 26 de octubre del 2026",
-      "hastaTexto": "la noche del lunes 26 de octubre del 2026",
-      "fechaInicioDia": "2026-10-26",
-      "fechaFinDia": "2026-10-26",
-      "fechaEmision": "2026-10-24T16:43:00-03:00",
-      "regiones": [
-        "Biobío",
-        "Maule",
-        "Metropolitana",
-        "O’Higgins",
-        "Valparaíso",
-        "Ñuble"
-      ],
-      "numeroPoligonos": 15,
-      "archivoGeojson": "data/dmc/A583_2026.geojson",
-      "archivoCobertura": "data/dmc/A583_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A583_2026_impactos.json",
-      "observacion": "Probabilidad de granizos",
-      "archivoDocumento": "data/dmc/A583_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-10-26T01:46:51.688830-03:00"
+  "generadoEn": "2026-10-26T10:02:00.620382-03:00"
 }

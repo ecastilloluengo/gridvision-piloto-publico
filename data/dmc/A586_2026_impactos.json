@@ -1,0 +1,24 @@
+{
+  "codigo": "A586/2026",
+  "criterio": "intersección geográfica",
+  "advertencia": "Área del aviso: exposición potencial, no impacto confirmado.",
+  "totales": {
+    "activos": 1,
+    "lineas": 0,
+    "netbilling": 0
+  },
+  "elementos": {
+    "activos": [
+      {
+        "id": "GV-03453",
+        "nombre": "EXT_021_TER PUERTO NATALES",
+        "categoria": "Central",
+        "zonas": [
+          "12_pampa_patagonica_norte"
+        ]
+      }
+    ],
+    "lineas": [],
+    "netbilling": []
+  }
+}

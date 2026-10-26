@@ -1,0 +1,14 @@
+{
+  "codigo": "A586/2026",
+  "tipo": "Aviso",
+  "titulo": "Probables Tormentas Eléctricas en zonas de la región de Magallanes",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Lunes 26 de octubre del 2026 a las 09:17 hrs.",
+  "condicionSinoptica": "Inestabilidad atmosférica",
+  "desde": "la tarde del lunes 26 de octubre del 2026",
+  "hasta": "la noche del lunes 26 de octubre del 2026",
+  "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
+  "textoZonaAfecta": "Magallanes (Cordillera Austral Norte, Pampa Patagonica Norte)",
+  "tablaTitulo": "",
+  "tablaFilas": []
+}
