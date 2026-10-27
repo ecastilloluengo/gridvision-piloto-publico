@@ -1,0 +1,97 @@
+{
+  "codigo": "A592/2026",
+  "tipo": "Aviso",
+  "titulo": "Viento Normal a Moderado en cordillera de las regiones de Arica y Parinacota y Tarapacá",
+  "fenomeno": "Viento",
+  "emisionTexto": "Martes 27 de octubre del 2026 a las 15:10 hrs.",
+  "condicionSinoptica": "Corriente en chorro",
+  "desde": "la tarde del miércoles 28 de octubre del 2026",
+  "hasta": "la mañana del jueves 29 de octubre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Arica y Parinacota (Cordillera)\nTarapacá (Cordillera)",
+  "tablaTitulo": "Intensidad estimada del Viento en Km/h",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Arica y Parinacota"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 28"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 29"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "50-70"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "50-70"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Tarapacá"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 28"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 29"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "60-80"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "50-70"
+      }
+    ]
+  ]
+}

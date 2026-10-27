@@ -1,50 +1,96 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-10-26 16:28",
+  "catalogoActualizadoEn": "2026-10-27 15:16",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
     {
-      "codigo": "A588/2026",
+      "codigo": "A588-1/2026",
       "tipo": "Aviso",
       "fenomeno": "Nevadas",
       "titulo": "Nevadas Normales a Moderadas en cordillera de la región de Antofagasta",
-      "desdeTexto": "la mañana del jueves 29 de octubre del 2026",
+      "desdeTexto": "la tarde del miércoles 28 de octubre del 2026",
       "hastaTexto": "la madrugada del viernes 30 de octubre del 2026",
-      "fechaInicioDia": "2026-10-29",
+      "fechaInicioDia": "2026-10-28",
       "fechaFinDia": "2026-10-30",
-      "fechaEmision": "2026-10-26T15:09:00-03:00",
+      "fechaEmision": "2026-10-27T12:48:00-03:00",
       "regiones": [
         "Antofagasta"
       ],
       "numeroPoligonos": 1,
-      "archivoGeojson": "data/dmc/A588_2026.geojson",
-      "archivoCobertura": "data/dmc/A588_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A588_2026_impactos.json",
+      "archivoGeojson": "data/dmc/A588-1_2026.geojson",
+      "archivoCobertura": "data/dmc/A588-1_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A588-1_2026_impactos.json",
       "observacion": "",
-      "archivoDocumento": "data/dmc/A588_2026_documento.json"
+      "archivoDocumento": "data/dmc/A588-1_2026_documento.json"
     },
     {
-      "codigo": "A587/2026",
+      "codigo": "A587-1/2026",
       "tipo": "Aviso",
       "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas de las regiones de Tarapacá y Antofagasta",
+      "titulo": "Probables Tormentas Eléctricas en zonas de las regiones de Tarapacá, Antofagasta y Atacama",
       "desdeTexto": "la mañana del miércoles 28 de octubre del 2026",
       "hastaTexto": "la noche del jueves 29 de octubre del 2026",
       "fechaInicioDia": "2026-10-28",
       "fechaFinDia": "2026-10-29",
-      "fechaEmision": "2026-10-26T15:08:00-03:00",
+      "fechaEmision": "2026-10-27T15:11:00-03:00",
       "regiones": [
         "Antofagasta",
+        "Atacama",
         "Tarapacá"
       ],
-      "numeroPoligonos": 6,
-      "archivoGeojson": "data/dmc/A587_2026.geojson",
-      "archivoCobertura": "data/dmc/A587_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A587_2026_impactos.json",
+      "numeroPoligonos": 7,
+      "archivoGeojson": "data/dmc/A587-1_2026.geojson",
+      "archivoCobertura": "data/dmc/A587-1_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A587-1_2026_impactos.json",
       "observacion": "",
-      "archivoDocumento": "data/dmc/A587_2026_documento.json"
+      "archivoDocumento": "data/dmc/A587-1_2026_documento.json"
+    },
+    {
+      "codigo": "A592/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Viento",
+      "titulo": "Viento Normal a Moderado en cordillera de las regiones de Arica y Parinacota y Tarapacá",
+      "desdeTexto": "la tarde del miércoles 28 de octubre del 2026",
+      "hastaTexto": "la mañana del jueves 29 de octubre del 2026",
+      "fechaInicioDia": "2026-10-28",
+      "fechaFinDia": "2026-10-29",
+      "fechaEmision": "2026-10-27T15:10:00-03:00",
+      "regiones": [
+        "Arica y Parinacota",
+        "Tarapacá"
+      ],
+      "numeroPoligonos": 2,
+      "archivoGeojson": "data/dmc/A592_2026.geojson",
+      "archivoCobertura": "data/dmc/A592_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A592_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A592_2026_documento.json"
+    },
+    {
+      "codigo": "A591/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Coquimbo a la región del Maule",
+      "desdeTexto": "la tarde del miércoles 28 de octubre del 2026",
+      "hastaTexto": "la noche del jueves 29 de octubre del 2026",
+      "fechaInicioDia": "2026-10-28",
+      "fechaFinDia": "2026-10-29",
+      "fechaEmision": "2026-10-27T12:49:00-03:00",
+      "regiones": [
+        "Coquimbo",
+        "Maule",
+        "Metropolitana",
+        "O’Higgins",
+        "Valparaíso"
+      ],
+      "numeroPoligonos": 11,
+      "archivoGeojson": "data/dmc/A591_2026.geojson",
+      "archivoCobertura": "data/dmc/A591_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A591_2026_impactos.json",
+      "observacion": "Probabilidad de granizos y fuertes rachas de vientos locales",
+      "archivoDocumento": "data/dmc/A591_2026_documento.json"
     },
     {
       "codigo": "A589/2026",
@@ -85,121 +131,7 @@
       "archivoImpactos": "data/dmc/A590_2026_impactos.json",
       "observacion": "Probabilidad de tormentas de arena",
       "archivoDocumento": "data/dmc/A590_2026_documento.json"
-    },
-    {
-      "codigo": "AA190-1/2026",
-      "tipo": "Alerta",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Tormentas Eléctricas en zonas desde la región Metropolitana a la región del Biobío",
-      "desdeTexto": "la tarde del lunes 26 de octubre del 2026",
-      "hastaTexto": "la noche del lunes 26 de octubre del 2026",
-      "fechaInicioDia": "2026-10-26",
-      "fechaFinDia": "2026-10-26",
-      "fechaEmision": "2026-10-26T16:23:00-03:00",
-      "regiones": [
-        "Biobío",
-        "Maule",
-        "Metropolitana",
-        "O’Higgins",
-        "Ñuble"
-      ],
-      "numeroPoligonos": 19,
-      "archivoGeojson": "data/dmc/AA190-1_2026.geojson",
-      "archivoCobertura": "data/dmc/AA190-1_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/AA190-1_2026_impactos.json",
-      "observacion": "Probabilidad de granizos y fuertes rachas de vientos locales",
-      "archivoDocumento": "data/dmc/AA190-1_2026_documento.json"
-    },
-    {
-      "codigo": "A586/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas de la región de Magallanes",
-      "desdeTexto": "la tarde del lunes 26 de octubre del 2026",
-      "hastaTexto": "la noche del lunes 26 de octubre del 2026",
-      "fechaInicioDia": "2026-10-26",
-      "fechaFinDia": "2026-10-26",
-      "fechaEmision": "2026-10-26T09:17:00-03:00",
-      "regiones": [
-        "Magallanes"
-      ],
-      "numeroPoligonos": 2,
-      "archivoGeojson": "data/dmc/A586_2026.geojson",
-      "archivoCobertura": "data/dmc/A586_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A586_2026_impactos.json",
-      "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
-      "archivoDocumento": "data/dmc/A586_2026_documento.json"
-    },
-    {
-      "codigo": "A585/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Precipitaciones",
-      "titulo": "Precipitaciones Normales a Moderadas en corto periodo de tiempo en zonas desde la región de Valparaíso a la región del Maule",
-      "desdeTexto": "la tarde del lunes 26 de octubre del 2026",
-      "hastaTexto": "la noche del lunes 26 de octubre del 2026",
-      "fechaInicioDia": "2026-10-26",
-      "fechaFinDia": "2026-10-26",
-      "fechaEmision": "2026-10-26T07:20:00-03:00",
-      "regiones": [
-        "Maule",
-        "Metropolitana",
-        "O’Higgins",
-        "Valparaíso"
-      ],
-      "numeroPoligonos": 7,
-      "archivoGeojson": "data/dmc/A585_2026.geojson",
-      "archivoCobertura": "data/dmc/A585_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A585_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A585_2026_documento.json"
-    },
-    {
-      "codigo": "A583-1/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Valparaíso a la región del Biobío",
-      "desdeTexto": "la tarde del lunes 26 de octubre del 2026",
-      "hastaTexto": "la noche del lunes 26 de octubre del 2026",
-      "fechaInicioDia": "2026-10-26",
-      "fechaFinDia": "2026-10-26",
-      "fechaEmision": "2026-10-26T06:33:00-03:00",
-      "regiones": [
-        "Biobío",
-        "Maule",
-        "Metropolitana",
-        "O’Higgins",
-        "Valparaíso",
-        "Ñuble"
-      ],
-      "numeroPoligonos": 21,
-      "archivoGeojson": "data/dmc/A583-1_2026.geojson",
-      "archivoCobertura": "data/dmc/A583-1_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A583-1_2026_impactos.json",
-      "observacion": "Probabilidad de granizos",
-      "archivoDocumento": "data/dmc/A583-1_2026_documento.json"
-    },
-    {
-      "codigo": "A584/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas de las regiones de La Araucanía, Los Ríos y Los Lagos",
-      "desdeTexto": "la tarde del lunes 26 de octubre del 2026",
-      "hastaTexto": "la noche del lunes 26 de octubre del 2026",
-      "fechaInicioDia": "2026-10-26",
-      "fechaFinDia": "2026-10-26",
-      "fechaEmision": "2026-10-25T13:59:00-03:00",
-      "regiones": [
-        "La Araucanía",
-        "Los Lagos",
-        "Los Ríos"
-      ],
-      "numeroPoligonos": 10,
-      "archivoGeojson": "data/dmc/A584_2026.geojson",
-      "archivoCobertura": "data/dmc/A584_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A584_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A584_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-10-26T17:29:26.439837-03:00"
+  "generadoEn": "2026-10-27T19:14:13.480589-03:00"
 }

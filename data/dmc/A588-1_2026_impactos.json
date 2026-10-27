@@ -1,0 +1,81 @@
+{
+  "codigo": "A588-1/2026",
+  "criterio": "intersección geográfica",
+  "advertencia": "Área del aviso: exposición potencial, no impacto confirmado.",
+  "totales": {
+    "activos": 3,
+    "lineas": 5,
+    "netbilling": 0
+  },
+  "elementos": {
+    "activos": [
+      {
+        "id": "GV-01882",
+        "nombre": "1907_S/E NEURARA",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01965",
+        "nombre": "2023_S/E CERRO PABELLON",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_cordillera"
+        ]
+      },
+      {
+        "id": "GV-02460",
+        "nombre": "464_GEO CERRO PABELLON",
+        "categoria": "Central",
+        "zonas": [
+          "02_cordillera"
+        ]
+      }
+    ],
+    "lineas": [
+      {
+        "id": "GV-00179",
+        "nombre": "1061_CONCHI - CERRO PABELLON 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00182",
+        "nombre": "1065_CRUCERO - CONCHI 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00926",
+        "nombre": "1263_ZALDIVAR - NEGRILLAR 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00928",
+        "nombre": "1265_ESCONDIDA - MONTURAQUI 69KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00054",
+        "nombre": "1831_ANDES – LA PUNA 345 kV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_cordillera"
+        ]
+      }
+    ],
+    "netbilling": []
+  }
+}

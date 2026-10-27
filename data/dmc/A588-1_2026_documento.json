@@ -1,0 +1,56 @@
+{
+  "codigo": "A588-1/2026",
+  "tipo": "Aviso",
+  "titulo": "Nevadas Normales a Moderadas en cordillera de la región de Antofagasta",
+  "fenomeno": "Nevadas",
+  "emisionTexto": "Martes 27 de octubre del 2026 a las 12:48 hrs.",
+  "condicionSinoptica": "Vaguada en altura",
+  "desde": "la tarde del miércoles 28 de octubre del 2026",
+  "hasta": "la madrugada del viernes 30 de octubre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Antofagasta (Cordillera)",
+  "tablaTitulo": "Montos estimados de nieve en centímetros (cm)",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Antofagasta"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 28"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 29"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "10-15"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "5-15"
+      }
+    ]
+  ]
+}
