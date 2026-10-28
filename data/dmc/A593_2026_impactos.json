@@ -1,0 +1,24 @@
+{
+  "codigo": "A593/2026",
+  "criterio": "intersección geográfica",
+  "advertencia": "Área del aviso: exposición potencial, no impacto confirmado.",
+  "totales": {
+    "activos": 1,
+    "lineas": 0,
+    "netbilling": 0
+  },
+  "elementos": {
+    "activos": [
+      {
+        "id": "GV-03454",
+        "nombre": "EXT_022_TER PUERTO WILLIAMS",
+        "categoria": "Central",
+        "zonas": [
+          "12_insular_sur"
+        ]
+      }
+    ],
+    "lineas": [],
+    "netbilling": []
+  }
+}

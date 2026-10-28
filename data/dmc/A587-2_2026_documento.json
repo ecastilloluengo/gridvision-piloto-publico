@@ -1,0 +1,349 @@
+{
+  "codigo": "A587-2/2026",
+  "tipo": "Aviso",
+  "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Arica y Parinacota a la región de Atacama",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Miércoles 28 de octubre del 2026 a las 12:16 hrs.",
+  "condicionSinoptica": "Vaguada en altura",
+  "desde": "la tarde del miércoles 28 de octubre del 2026",
+  "hasta": "la noche del jueves 29 de octubre del 2026",
+  "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
+  "textoZonaAfecta": "Arica y Parinacota (Pampa, Precordillera)\nTarapacá (Cordillera Costa, Pampa, Precordillera, Cordillera)\nAntofagasta (Cordillera Costa, Pampa, Precordillera Occidental, Precordillera Alto Loa, Precordillera Salar, Cordillera)\nAtacama (Precordillera, Cordillera)",
+  "tablaTitulo": "Ocurrencia de Tormentas Eléctricas",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Arica y Parinacota"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 28"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 29"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Pampa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Tarapacá"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 28"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 29"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera Costa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Pampa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Antofagasta"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 28"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 29"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera Costa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Pampa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera Occidental"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera Alto Loa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera Salar"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Atacama"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 28"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 29"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ]
+  ]
+}

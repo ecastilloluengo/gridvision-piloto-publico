@@ -1,10 +1,52 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-10-27 23:05",
+  "catalogoActualizadoEn": "2026-10-28 14:53",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
+    {
+      "codigo": "A593/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Precipitaciones",
+      "titulo": "Precipitaciones Normales a Moderadas en insular sur de la región de Magallanes",
+      "desdeTexto": "la tarde del jueves 29 de octubre del 2026",
+      "hastaTexto": "la mañana del viernes 30 de octubre del 2026",
+      "fechaInicioDia": "2026-10-29",
+      "fechaFinDia": "2026-10-30",
+      "fechaEmision": "2026-10-28T14:48:00-03:00",
+      "regiones": [
+        "Magallanes"
+      ],
+      "numeroPoligonos": 1,
+      "archivoGeojson": "data/dmc/A593_2026.geojson",
+      "archivoCobertura": "data/dmc/A593_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A593_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A593_2026_documento.json"
+    },
+    {
+      "codigo": "A592-1/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Viento",
+      "titulo": "Viento Normal a Moderado en zonas de las regiones de Arica y Parinacota, Tarapacá y Antofagasta",
+      "desdeTexto": "la tarde del miércoles 28 de octubre del 2026",
+      "hastaTexto": "la noche del viernes 30 de octubre del 2026",
+      "fechaInicioDia": "2026-10-28",
+      "fechaFinDia": "2026-10-30",
+      "fechaEmision": "2026-10-28T12:16:00-03:00",
+      "regiones": [
+        "Antofagasta",
+        "Arica y Parinacota",
+        "Tarapacá"
+      ],
+      "numeroPoligonos": 6,
+      "archivoGeojson": "data/dmc/A592-1_2026.geojson",
+      "archivoCobertura": "data/dmc/A592-1_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A592-1_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A592-1_2026_documento.json"
+    },
     {
       "codigo": "A588-1/2026",
       "tipo": "Aviso",
@@ -26,71 +68,49 @@
       "archivoDocumento": "data/dmc/A588-1_2026_documento.json"
     },
     {
-      "codigo": "A587-1/2026",
+      "codigo": "A591-1/2026",
       "tipo": "Aviso",
       "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas de las regiones de Tarapacá, Antofagasta y Atacama",
-      "desdeTexto": "la mañana del miércoles 28 de octubre del 2026",
+      "titulo": "Probables Tormentas Eléctricas en zonas de las regiones de Coquimbo, Valparaíso y Metropolitana",
+      "desdeTexto": "la tarde del miércoles 28 de octubre del 2026",
       "hastaTexto": "la noche del jueves 29 de octubre del 2026",
       "fechaInicioDia": "2026-10-28",
       "fechaFinDia": "2026-10-29",
-      "fechaEmision": "2026-10-27T15:11:00-03:00",
+      "fechaEmision": "2026-10-28T12:18:00-03:00",
+      "regiones": [
+        "Coquimbo",
+        "Metropolitana",
+        "Valparaíso"
+      ],
+      "numeroPoligonos": 5,
+      "archivoGeojson": "data/dmc/A591-1_2026.geojson",
+      "archivoCobertura": "data/dmc/A591-1_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A591-1_2026_impactos.json",
+      "observacion": "Probabilidad de granizos y fuertes rachas de vientos locales",
+      "archivoDocumento": "data/dmc/A591-1_2026_documento.json"
+    },
+    {
+      "codigo": "A587-2/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Arica y Parinacota a la región de Atacama",
+      "desdeTexto": "la tarde del miércoles 28 de octubre del 2026",
+      "hastaTexto": "la noche del jueves 29 de octubre del 2026",
+      "fechaInicioDia": "2026-10-28",
+      "fechaFinDia": "2026-10-29",
+      "fechaEmision": "2026-10-28T12:16:00-03:00",
       "regiones": [
         "Antofagasta",
+        "Arica y Parinacota",
         "Atacama",
         "Tarapacá"
       ],
-      "numeroPoligonos": 7,
-      "archivoGeojson": "data/dmc/A587-1_2026.geojson",
-      "archivoCobertura": "data/dmc/A587-1_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A587-1_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A587-1_2026_documento.json"
-    },
-    {
-      "codigo": "A592/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Viento",
-      "titulo": "Viento Normal a Moderado en cordillera de las regiones de Arica y Parinacota y Tarapacá",
-      "desdeTexto": "la tarde del miércoles 28 de octubre del 2026",
-      "hastaTexto": "la mañana del jueves 29 de octubre del 2026",
-      "fechaInicioDia": "2026-10-28",
-      "fechaFinDia": "2026-10-29",
-      "fechaEmision": "2026-10-27T15:10:00-03:00",
-      "regiones": [
-        "Arica y Parinacota",
-        "Tarapacá"
-      ],
-      "numeroPoligonos": 2,
-      "archivoGeojson": "data/dmc/A592_2026.geojson",
-      "archivoCobertura": "data/dmc/A592_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A592_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A592_2026_documento.json"
-    },
-    {
-      "codigo": "A591/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Coquimbo a la región del Maule",
-      "desdeTexto": "la tarde del miércoles 28 de octubre del 2026",
-      "hastaTexto": "la noche del jueves 29 de octubre del 2026",
-      "fechaInicioDia": "2026-10-28",
-      "fechaFinDia": "2026-10-29",
-      "fechaEmision": "2026-10-27T12:49:00-03:00",
-      "regiones": [
-        "Coquimbo",
-        "Maule",
-        "Metropolitana",
-        "O’Higgins",
-        "Valparaíso"
-      ],
-      "numeroPoligonos": 11,
-      "archivoGeojson": "data/dmc/A591_2026.geojson",
-      "archivoCobertura": "data/dmc/A591_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A591_2026_impactos.json",
-      "observacion": "Probabilidad de granizos y fuertes rachas de vientos locales",
-      "archivoDocumento": "data/dmc/A591_2026_documento.json"
+      "numeroPoligonos": 14,
+      "archivoGeojson": "data/dmc/A587-2_2026.geojson",
+      "archivoCobertura": "data/dmc/A587-2_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A587-2_2026_impactos.json",
+      "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
+      "archivoDocumento": "data/dmc/A587-2_2026_documento.json"
     },
     {
       "codigo": "A589/2026",
@@ -113,5 +133,5 @@
       "archivoDocumento": "data/dmc/A589_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-10-28T02:42:28.924355-03:00"
+  "generadoEn": "2026-10-28T17:16:33.183658-03:00"
 }

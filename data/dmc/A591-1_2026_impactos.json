@@ -1,0 +1,1379 @@
+{
+  "codigo": "A591-1/2026",
+  "criterio": "intersección geográfica",
+  "advertencia": "Área del aviso: exposición potencial, no impacto confirmado.",
+  "totales": {
+    "activos": 119,
+    "lineas": 48,
+    "netbilling": 2
+  },
+  "elementos": {
+    "activos": [
+      {
+        "id": "GV-01653",
+        "nombre": "1131_TAP OFF MAURO",
+        "categoria": "Subestación",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02512",
+        "nombre": "124_HP LOS MOLLES",
+        "categoria": "Central",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02517",
+        "nombre": "157_HP BLANCO",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02518",
+        "nombre": "158_HP JUNCAL",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02519",
+        "nombre": "159_HP LOS QUILOS",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01664",
+        "nombre": "1630_S/E CERRO NEGRO",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03255",
+        "nombre": "1652_PMGD TER DOÑA JAVIERA",
+        "categoria": "Central",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02830",
+        "nombre": "1683_PMGD PFV KONDA",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02849",
+        "nombre": "1721_PMGD PFV LLANOS DE POTROSO",
+        "categoria": "Central",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02852",
+        "nombre": "1725_PMGD PFV JAHUEL",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02525",
+        "nombre": "173_HP CHACABUQUITO",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01737",
+        "nombre": "1751_S/E NUEVA NIVEL 17",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01738",
+        "nombre": "1752_S/E NUEVA NIVEL 11",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-02882",
+        "nombre": "1762_PMGD PFV FILOMENA SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01759",
+        "nombre": "1776_S/E CENTRAL LA SILLA",
+        "categoria": "Subestación",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02917",
+        "nombre": "1816_PMGD PFV EL SALITRAL",
+        "categoria": "Central",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02927",
+        "nombre": "1831_PMGD PFV LAS MAJADAS",
+        "categoria": "Central",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02529",
+        "nombre": "184_HP HORNITOS",
+        "categoria": "Central",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-02961",
+        "nombre": "1871_PMGD PFV RINCONADA NORTE (SLK 808)",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02966",
+        "nombre": "1877_PMGD PFV ESFENA",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02991",
+        "nombre": "1913_PFV MESETA DE LOS ANDES",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03000",
+        "nombre": "1924_PMGD PFV GUADALUPE",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03002",
+        "nombre": "1927_PMGD PFV SANTA FRANCISCA",
+        "categoria": "Central",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03003",
+        "nombre": "1928_PMGD PFV ESCORIAL DEL VERANO SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03019",
+        "nombre": "1949_PMGD PFV GABRIELA",
+        "categoria": "Central",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03025",
+        "nombre": "1955_PMGD PFV REXNER",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03027",
+        "nombre": "1958_PMGD PFV LAS TORTOLAS DEL VERANO",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01951",
+        "nombre": "2004_S/E EL PELICANO",
+        "categoria": "Subestación",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03075",
+        "nombre": "2013_PMGD PFV SLK CB NUEVE",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01971",
+        "nombre": "2031_S/E CENTRAL JUNCALITO",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03093",
+        "nombre": "2040_PMGD PFV AÑUÑUCA DEL VERANO SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03107",
+        "nombre": "2057_PMGD PFV LIQUIDAMBAR",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01996",
+        "nombre": "2075_S/E CENTRAL ALFALFAL II",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-03155",
+        "nombre": "2129_PMGD PFV OLIVIER",
+        "categoria": "Central",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03157",
+        "nombre": "2131_PMGD PFV OLIVIA",
+        "categoria": "Central",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03168",
+        "nombre": "2150_PMGD PFV SOFIA",
+        "categoria": "Central",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02058",
+        "nombre": "2163_S/E CENTRAL LOS MOLLES",
+        "categoria": "Subestación",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03180",
+        "nombre": "2177_PMGD PFV JARDIN SOLAR PETORCA",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02089",
+        "nombre": "2215_S/E NUEVA PANQUEHUE",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03210",
+        "nombre": "2232_PMGD PFV PLAZA SUNLIGHT",
+        "categoria": "Central",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03295",
+        "nombre": "22_PMGD TER MONTE PATRIA",
+        "categoria": "Central",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02190",
+        "nombre": "2341_S/E EL CHACAY",
+        "categoria": "Subestación",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02191",
+        "nombre": "2346_S/E LOS VILLARES",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02201",
+        "nombre": "2358_S/E MESETA DE LOS ANDES",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02214",
+        "nombre": "2380_S/E ESTANCILLA",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02486",
+        "nombre": "26_PMGD HP SAUCE ANDES",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02487",
+        "nombre": "27_HP JUNCALITO",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01153",
+        "nombre": "280_S/E ACONCAGUA",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01157",
+        "nombre": "285_S/E CENTRAL LOS QUILOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01168",
+        "nombre": "299_S/E CENTRAL CHACABUQUITO",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01169",
+        "nombre": "300_S/E LOS MAQUIS",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01170",
+        "nombre": "301_S/E TOTORALILLO",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02653",
+        "nombre": "306_PMGD PFV PAMA",
+        "categoria": "Central",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02654",
+        "nombre": "307_PMGD PFV LOMAS COLORADAS",
+        "categoria": "Central",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02656",
+        "nombre": "309_PMGD PFV TAMBO REAL",
+        "categoria": "Central",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01180",
+        "nombre": "314_S/E CENTRAL HORNITOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-02662",
+        "nombre": "333_PMGD PFV LUNA DEL NORTE",
+        "categoria": "Central",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02664",
+        "nombre": "339_PMGD PFV SOL DEL NORTE",
+        "categoria": "Central",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02667",
+        "nombre": "348_PFV LA SILLA",
+        "categoria": "Central",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01193",
+        "nombre": "355_S/E EL ESPINO",
+        "categoria": "Subestación",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02493",
+        "nombre": "35_PMGD HP EL TARTARO",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01233",
+        "nombre": "396_S/E COMBARBALA",
+        "categoria": "Subestación",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01240",
+        "nombre": "403_S/E SALAMANCA",
+        "categoria": "Subestación",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01256",
+        "nombre": "419_S/E VICUÑA",
+        "categoria": "Subestación",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02693",
+        "nombre": "426_PFV EL PELICANO",
+        "categoria": "Central",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02696",
+        "nombre": "429_PMGD PFV HORMIGA SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01269",
+        "nombre": "432_S/E MONTE PATRIA",
+        "categoria": "Subestación",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02698",
+        "nombre": "435_PMGD PFV ÑILHUE",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02609",
+        "nombre": "492_HP ALFALFAL II",
+        "categoria": "Central",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-02721",
+        "nombre": "501_PMGD PFV PANQUEHUE II",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02723",
+        "nombre": "506_PMGD PFV SANTUARIO SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03362",
+        "nombre": "547_PMGD TER CORTES",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02750",
+        "nombre": "558_PMGD PFV CATAN SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02756",
+        "nombre": "572_PMGD PFV ALICAHUE",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02757",
+        "nombre": "573_PMGD PFV ENCON SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01354",
+        "nombre": "578_S/E LOS MOLLES",
+        "categoria": "Subestación",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02764",
+        "nombre": "582_PMGD PFV RODEO",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02771",
+        "nombre": "593_PMGD PFV CALLE LARGA",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02772",
+        "nombre": "595_PMGD PFV MARIN",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02782",
+        "nombre": "606_PMGD PFV PEDREROS SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02789",
+        "nombre": "617_PMGD PFV CASUTO",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02793",
+        "nombre": "630_PMGD PFV CHALINGA SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02794",
+        "nombre": "631_PMGD PFV CRUZ SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01423",
+        "nombre": "672_S/E BAÑOS DEL TORO",
+        "categoria": "Subestación",
+        "zonas": [
+          "04_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01481",
+        "nombre": "778_S/E CATEMU",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01482",
+        "nombre": "779_S/E CHAGRES",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01485",
+        "nombre": "783_S/E JUNCAL PORTILLO",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01491",
+        "nombre": "789_S/E PANQUEHUE",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01498",
+        "nombre": "796_S/E RIECILLOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01499",
+        "nombre": "797_S/E RIO BLANCO",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01501",
+        "nombre": "799_S/E SAN FELIPE",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01502",
+        "nombre": "801_S/E SAN RAFAEL (CHILQUINTA)",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01532",
+        "nombre": "857_S/E FUNDICION CHAGRES",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01534",
+        "nombre": "860_S/E PHI",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01536",
+        "nombre": "862_S/E LOS BRONCES",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01538",
+        "nombre": "864_S/E SAN FRANCISCO",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01539",
+        "nombre": "865_S/E SAG 1",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01540",
+        "nombre": "866_S/E SAG 2",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01541",
+        "nombre": "867_S/E MINA NUEVA",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01542",
+        "nombre": "868_S/E MOLIENDA 3",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01543",
+        "nombre": "869_S/E CONFLUENCIA",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01563",
+        "nombre": "896_S/E KM 21",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01564",
+        "nombre": "897_S/E SALADILLO",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01565",
+        "nombre": "898_S/E SAG",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01566",
+        "nombre": "899_S/E MINA",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01567",
+        "nombre": "900_S/E MOLINOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01568",
+        "nombre": "901_S/E SPPC",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01569",
+        "nombre": "902_S/E CORDILLERA (ANDINA)",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01570",
+        "nombre": "904_S/E MOLINO DE BOLAS",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01572",
+        "nombre": "907_S/E REFUGIO KM 21",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01583",
+        "nombre": "921_S/E LOS ANDES (FFCC)",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01628",
+        "nombre": "974_S/E LOS PIUQUENES",
+        "categoria": "Subestación",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03241",
+        "nombre": "EXT_003_PSF CASAS BLANCAS",
+        "categoria": "Central",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02295",
+        "nombre": "LDT_007_TAP SAN RAFAEL",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02296",
+        "nombre": "LDT_008_TAP SAN RAFAEL",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02357",
+        "nombre": "TAP_70_TAP SAN FELIPE 110",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02358",
+        "nombre": "TAP_71_TAP SAN FELIPE 44",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02359",
+        "nombre": "TAP_72_TAP SAN RAFAEL 44",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02356",
+        "nombre": "TAP_7_TAP LOS MAQUIS",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "05_precordillera"
+        ]
+      }
+    ],
+    "lineas": [
+      {
+        "id": "GV-00079",
+        "nombre": "101_LOS MAQUIS - HORNITOS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_cordillera",
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01057",
+        "nombre": "1172_JUNCALITO - HORNITOS 11KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_cordillera",
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00293",
+        "nombre": "1511_PUNTA COLORADA - TRES QUEBRADAS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "04_cordillera",
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00665",
+        "nombre": "1514_FUNDICION CHAGRES - NUEVA PANQUEHUE 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00362",
+        "nombre": "1659_RIO ACONCAGUA – POLPAICO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00690",
+        "nombre": "1660_RIO ACONCAGUA – NUEVA PANQUEHUE 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00692",
+        "nombre": "1663_RIO ACONCAGUA – FUNDICION CHAGRES 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00368",
+        "nombre": "1676_LAS TORTOLAS - LOS MAITENES 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00693",
+        "nombre": "1695_TOTORALILLO - CENTRAL CHACABUQUITO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00994",
+        "nombre": "1702_EL SAUCE - COMBARBALA 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00995",
+        "nombre": "1703_ILLAPEL - COMBARBALA 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00389",
+        "nombre": "1754_QUILLOTA - EL CHACAY 220kV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "04_precordillera",
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01072",
+        "nombre": "1761_CENTRAL LA SILLA - PAJONALES 23KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00398",
+        "nombre": "1788_MESETA DE LOS ANDES - LOS MAQUIS 220kV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00762",
+        "nombre": "183_LOS MOLLES - OVALLE 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00705",
+        "nombre": "1840_NUEVA PANQUEHUE - LOS VILLARES 110kV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00706",
+        "nombre": "1842_LOS VILLARES - TOTORALILLO 110kV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01074",
+        "nombre": "1844_LAS VEGAS - ESTANCILLA 44kV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01075",
+        "nombre": "1845_ESTANCILLA - LOS ANDES (FFCC) 44kV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01076",
+        "nombre": "1846_ESTANCILLA – CATEMU 44kV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01079",
+        "nombre": "1942_TAP SAN RAFAEL - SAN RAFAEL 44KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01080",
+        "nombre": "1959_JUNCAL - HNOS CLARK 44 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00412",
+        "nombre": "1977_TAP MAURO - MAURO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01081",
+        "nombre": "2068_CATEMU - TAP OFF LOS ANGELES 44KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00498",
+        "nombre": "328_ILLAPEL - SALAMANCA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00068",
+        "nombre": "34_CENTRAL ALFALFAL - LOS ALMENDROS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00501",
+        "nombre": "358_OVALLE - ILLAPEL 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00503",
+        "nombre": "366_PAN DE AZUCAR - VICUÑA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00112",
+        "nombre": "398_SANTA FILOMENA - CONFLUENCIA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00515",
+        "nombre": "445_VICUÑA - BAÑOS DEL TORO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "04_cordillera",
+          "04_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01031",
+        "nombre": "573_FFCC LOS ANDES - JUNCAL 44KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_cordillera",
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00537",
+        "nombre": "608_TAP SAN FELIPE - SAN FELIPE 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01035",
+        "nombre": "610_TAP SAN FELIPE - SAN FELIPE 44KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00854",
+        "nombre": "631_SAN FRANCISCO - LOS BRONCES 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00745",
+        "nombre": "63_ACONCAGUA - SALADILLO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_cordillera",
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00119",
+        "nombre": "648_CONFLUENCIA - LOS MAITENES 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00855",
+        "nombre": "650_LOS MAITENES - SAN FRANCISCO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00748",
+        "nombre": "70_LOS QUILOS - ACONCAGUA 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00478",
+        "nombre": "71_CENTRAL LOS QUILOS - LOS MAQUIS 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01044",
+        "nombre": "725_LOS ANGELES - CERRO NEGRO 44KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00569",
+        "nombre": "742_TAP SAN RAFAEL - SAN RAFAEL 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00865",
+        "nombre": "759_TAP PHI - PHI 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00866",
+        "nombre": "760_LOS BRONCES - MINA NUEVA 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00075",
+        "nombre": "80_QUILAPILUN - LOS MAQUIS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_cordillera",
+          "05_precordillera",
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00076",
+        "nombre": "80_QUILAPILUN - LOS MAQUIS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00576",
+        "nombre": "836_TAP LOS MAQUIS - LOS MAQUIS 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00601",
+        "nombre": "942_TOTORALILLO - ACONCAGUA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00159",
+        "nombre": "974_EL PELICANO - DON HECTOR 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "04_precordillera"
+        ]
+      }
+    ],
+    "netbilling": [
+      {
+        "id": "PFV-NB-002",
+        "nombre": "PFV VSE (Techo)",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      },
+      {
+        "id": "PFV-NB-003",
+        "nombre": "VSE Paidahuén",
+        "categoria": "Central",
+        "zonas": [
+          "05_precordillera"
+        ]
+      }
+    ]
+  }
+}

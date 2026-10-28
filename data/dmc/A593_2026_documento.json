@@ -1,0 +1,46 @@
+{
+  "codigo": "A593/2026",
+  "tipo": "Aviso",
+  "titulo": "Precipitaciones Normales a Moderadas en insular sur de la región de Magallanes",
+  "fenomeno": "Precipitaciones",
+  "emisionTexto": "Miércoles 28 de octubre del 2026 a las 14:48 hrs.",
+  "condicionSinoptica": "Oclusión frontal",
+  "desde": "la tarde del jueves 29 de octubre del 2026",
+  "hasta": "la mañana del viernes 30 de octubre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Magallanes (Insular Sur)",
+  "tablaTitulo": "Montos estimados de precipitaciones en milímetros (mm)",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Magallanes"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 29"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Insular Sur"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "8 - 25"
+      }
+    ]
+  ]
+}
