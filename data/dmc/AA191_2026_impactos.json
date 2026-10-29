@@ -1,0 +1,137 @@
+{
+  "codigo": "AA191/2026",
+  "criterio": "intersección geográfica",
+  "advertencia": "Área del aviso: exposición potencial, no impacto confirmado.",
+  "totales": {
+    "activos": 7,
+    "lineas": 8,
+    "netbilling": 0
+  },
+  "elementos": {
+    "activos": [
+      {
+        "id": "GV-01673",
+        "nombre": "1649_S/E CASERONES",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01880",
+        "nombre": "1905_S/E MONTURAQUI",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01882",
+        "nombre": "1907_S/E NEURARA",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01977",
+        "nombre": "2044_S/E NEGRILLAR",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-02087",
+        "nombre": "2213_S/E TRES QUEBRADAS",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01626",
+        "nombre": "969_S/E LA COIPA",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-01627",
+        "nombre": "972_S/E MINERA MARICUNGA",
+        "categoria": "Subestación",
+        "zonas": [
+          "Area DMC"
+        ]
+      }
+    ],
+    "lineas": [
+      {
+        "id": "GV-00926",
+        "nombre": "1263_ZALDIVAR - NEGRILLAR 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00928",
+        "nombre": "1265_ESCONDIDA - MONTURAQUI 69KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00293",
+        "nombre": "1511_PUNTA COLORADA - TRES QUEBRADAS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00294",
+        "nombre": "1512_TRES QUEBRADAS - LAMA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00054",
+        "nombre": "1831_ANDES – LA PUNA 345 kV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00551",
+        "nombre": "667_CARDONES - REFUGIO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00121",
+        "nombre": "671_CARRERA PINTO - LA COIPA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      },
+      {
+        "id": "GV-00127",
+        "nombre": "762_MAITENCILLO - CASERONES 220KV L1",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "Area DMC"
+        ]
+      }
+    ],
+    "netbilling": []
+  }
+}

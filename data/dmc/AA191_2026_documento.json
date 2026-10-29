@@ -1,0 +1,39 @@
+{
+  "codigo": "AA191/2026",
+  "tipo": "Alerta",
+  "titulo": "Tormentas Eléctricas en Cordillera sur Antofagasta-Cordillera y Precordillera Atacama",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Jueves 29 de octubre del 2026 a las 14:08 hrs.",
+  "condicionSinoptica": "Vaguada en altura",
+  "desde": "la tarde del jueves 29 de octubre del 2026",
+  "hasta": "la noche del jueves 29 de octubre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Cordillera sur Antofagasta-Cordillera y Precordillera Atacama",
+  "tablaTitulo": "Ocurrencia de Tormentas Eléctricas",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Área"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 29"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera sur Antofagasta-Cordillera y Precordillera Atacama"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ]
+  ]
+}

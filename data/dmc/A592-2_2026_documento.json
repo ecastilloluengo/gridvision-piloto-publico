@@ -1,0 +1,256 @@
+{
+  "codigo": "A592-2/2026",
+  "tipo": "Aviso",
+  "titulo": "Viento Normal a Moderado en zonas de las regiones de Arica y Parinacota, Tarapacá y Antofagasta",
+  "fenomeno": "Viento",
+  "emisionTexto": "Jueves 29 de octubre del 2026 a las 13:55 hrs.",
+  "condicionSinoptica": "Vaguada en altura",
+  "desde": "la tarde del jueves 29 de octubre del 2026",
+  "hasta": "la noche del sábado 31 de octubre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Arica y Parinacota (Cordillera)\nTarapacá (Cordillera)\nAntofagasta (Cordillera Costa, Precordillera Occidental, Precordillera Alto Loa, Precordillera Salar, Cordillera)",
+  "tablaTitulo": "Intensidad estimada del Viento en Km/h",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: Arica y Parinacota"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 29"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 30"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 31"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "50-70"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: Tarapacá"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 29"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 30"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 31"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "50-70"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "50-70"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "50-70"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: Antofagasta"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 29"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 30"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 31"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera Costa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "60-80"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "60-80"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "60-80"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera Occidental"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "60-80"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "60-80"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "50-70"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera Alto Loa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "60-80"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "60-80"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "50-70"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera Salar"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "40-60"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "40-60"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "40-60"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "50-70"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "50-70"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "50-70"
+      }
+    ]
+  ]
+}
