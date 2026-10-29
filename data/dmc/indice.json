@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-10-28 14:53",
+  "catalogoActualizadoEn": "2026-10-28 23:12",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -111,27 +111,7 @@
       "archivoImpactos": "data/dmc/A587-2_2026_impactos.json",
       "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
       "archivoDocumento": "data/dmc/A587-2_2026_documento.json"
-    },
-    {
-      "codigo": "A589/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Altas Temperaturas",
-      "titulo": "Altas Temperaturas en zonas de la región de Magallanes",
-      "desdeTexto": "la mañana del miércoles 28 de octubre del 2026",
-      "hastaTexto": "la noche del miércoles 28 de octubre del 2026",
-      "fechaInicioDia": "2026-10-28",
-      "fechaFinDia": "2026-10-28",
-      "fechaEmision": "2026-10-26T15:38:00-03:00",
-      "regiones": [
-        "Magallanes"
-      ],
-      "numeroPoligonos": 2,
-      "archivoGeojson": "data/dmc/A589_2026.geojson",
-      "archivoCobertura": "data/dmc/A589_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A589_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A589_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-10-28T17:16:33.183658-03:00"
+  "generadoEn": "2026-10-29T06:57:57.779532-03:00"
 }
