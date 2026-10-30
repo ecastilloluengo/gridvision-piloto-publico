@@ -1,0 +1,5801 @@
+{
+  "codigo": "A594/2026",
+  "criterio": "intersección geográfica",
+  "advertencia": "Área del aviso: exposición potencial, no impacto confirmado.",
+  "totales": {
+    "activos": 610,
+    "lineas": 113,
+    "netbilling": 0
+  },
+  "elementos": {
+    "activos": [
+      {
+        "id": "GV-01639",
+        "nombre": "1044_TAP OFF EL EDEN",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01643",
+        "nombre": "1054_TAP OFF IMPULSION",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03316",
+        "nombre": "110_TER CENIZAS",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02255",
+        "nombre": "1121_TAP OFF PUNTA TORO",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03317",
+        "nombre": "113_TER EMELDA",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03318",
+        "nombre": "120_TER DIEGO DE ALMAGRO",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03319",
+        "nombre": "122_TER HUASCO",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03322",
+        "nombre": "141_TER SAN LORENZO DE D. DE ALMAGRO",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03326",
+        "nombre": "155_TER TERMOPACIFICO",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01673",
+        "nombre": "1649_S/E CASERONES",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01674",
+        "nombre": "1650_S/E JORQUERA",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01675",
+        "nombre": "1651_S/E CERRO NEGRO NORTE",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01676",
+        "nombre": "1652_S/E TOTORALILLO (CAP CMP)",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02437",
+        "nombre": "1658_PE CABO LEONES II",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01680",
+        "nombre": "1659_S/E CENTRAL RIO HUASCO",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01686",
+        "nombre": "1668_S/E SECCIONADORA LLANO DE LLAMPOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01687",
+        "nombre": "1669_S/E CENTRAL LLANO DE LLAMPOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01688",
+        "nombre": "1671_S/E CENTRAL SAN ANDRES (SAN ANDRES SPA)",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01694",
+        "nombre": "1686_S/E TRAVESIA",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01695",
+        "nombre": "1687_S/E PUNTA PADRONES",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02835",
+        "nombre": "1694_PFV RIO ESCONDIDO",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01701",
+        "nombre": "1699_S/E PLANTA DESALADORA Y BOMBEO N°1",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01703",
+        "nombre": "1701_S/E BOMBEO 2",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02838",
+        "nombre": "1704_PFV CAMPOS DEL SOL",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01706",
+        "nombre": "1704_S/E EB2",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02845",
+        "nombre": "1714_PFV MALGARIDA",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01717",
+        "nombre": "1724_TAP OFF CHAÑARES",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01718",
+        "nombre": "1725_S/E CENTRAL CHAÑARES",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02856",
+        "nombre": "1729_PMGD PFV COVADONGA",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01723",
+        "nombre": "1735_S/E CENTRAL PV SALVADOR",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01729",
+        "nombre": "1742_S/E CENTRAL JAVIERA",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01731",
+        "nombre": "1744_S/E CENTRAL LUZ DEL NORTE",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02879",
+        "nombre": "1756_PFV SOL DE LOS ANDES",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01748",
+        "nombre": "1764_S/E GALLEGUILLOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01749",
+        "nombre": "1765_S/E COPAYAPU",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01750",
+        "nombre": "1766_S/E CENTRAL ANDES GENERACION",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01751",
+        "nombre": "1767_S/E PASTORA",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01752",
+        "nombre": "1768_S/E NUEVA PELLETS",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01764",
+        "nombre": "1781_S/E CENTRAL PARQUE SOLAR LOS LOROS",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01770",
+        "nombre": "1789_S/E CENTRAL CARDONES SOLAR I",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01773",
+        "nombre": "1792_S/E CENTRAL PARQUE EOLICO SAN JUAN",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01774",
+        "nombre": "1793_S/E NUEVA CARDONES",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01775",
+        "nombre": "1794_S/E NUEVA MAITENCILLO",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02913",
+        "nombre": "1809_PFV VALLE ESCONDIDO",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02954",
+        "nombre": "1862_PFV DIEGO DE ALMAGRO SUR",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02453",
+        "nombre": "1865_PE VIENTOS PATAGONICOS (SM)",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02982",
+        "nombre": "1899_PFV CASTILLA",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02983",
+        "nombre": "1900_PFV GUANCHOI",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02987",
+        "nombre": "1908_PMGD PFV PARQUE LA TRAVESIA",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02999",
+        "nombre": "1923_PMGD PFV ASTILLAS",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03335",
+        "nombre": "194_TER EL SALVADOR",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03432",
+        "nombre": "195_TER CARDONES",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03042",
+        "nombre": "1975_PMGD PFV SANTA ELIZABETH",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01945",
+        "nombre": "1994_S/E CENTRAL EL ROMERO",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02455",
+        "nombre": "1995_PE ATACAMA",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01950",
+        "nombre": "2003_S/E DON HECTOR",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03436",
+        "nombre": "201_TER GUACOLDA",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01967",
+        "nombre": "2026_S/E CUMBRE",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01972",
+        "nombre": "2033_S/E SECCIONADORA SAN ANDRES",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03095",
+        "nombre": "2043_PMGD PFV MARAÑON",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03099",
+        "nombre": "2047_PMGD PFV TIERRA",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01982",
+        "nombre": "2055_S/E CENTRAL PARQUE EOLICO CABO LEONES I",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03113",
+        "nombre": "2063_PMGD PFV PARQUE SOLAR JOTABECHE",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01992",
+        "nombre": "2070_S/E ILLAPA",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02012",
+        "nombre": "2096_S/E SARCO",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03137",
+        "nombre": "2102_PFV PMG NORTH WEST",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01093",
+        "nombre": "212_S/E CENTRAL CARDONES",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02043",
+        "nombre": "2143_S/E CENTRAL PAJONALES",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02067",
+        "nombre": "2181_S/E ALMEYDA",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02068",
+        "nombre": "2182_S/E C.R. MAITENCILLO",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03194",
+        "nombre": "2205_PMGD PFV CORSO",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02087",
+        "nombre": "2213_S/E TRES QUEBRADAS",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03203",
+        "nombre": "2219_PMGD PFV CE CALDERA",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02101",
+        "nombre": "2228_S/E CABO LEONES II",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02118",
+        "nombre": "2249_S/E ALGARROBAL",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02130",
+        "nombre": "2264_S/E CENTRAL RIO ESCONDIDO",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02137",
+        "nombre": "2273_S/E CAMPOS DEL SOL",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02143",
+        "nombre": "2283_S/E MALGARIDA I",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02144",
+        "nombre": "2284_S/E MALGARIDA",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02145",
+        "nombre": "2285_S/E MALGARIDA II",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02158",
+        "nombre": "2298_S/E SOL DE LOS ANDES",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02159",
+        "nombre": "2299_S/E RIO SALADO",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00023",
+        "nombre": "22_CA S/E INCA DE ORO F1",
+        "categoria": "Almacenamiento de energía",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02174",
+        "nombre": "2319_S/E VALLE ESCONDIDO",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02187",
+        "nombre": "2337_S/E INCA DE ORO",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02188",
+        "nombre": "2338_S/E CENTRAL PE VIENTOS PATAGONICOS (SM)",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02199",
+        "nombre": "2356_S/E BELLA MONICA",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02206",
+        "nombre": "2368_S/E SANTA ESTER SOLAR",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02213",
+        "nombre": "2378_S/E IBERATACAMA",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02219",
+        "nombre": "2388_S/E AGUA AMARGA",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01118",
+        "nombre": "238_S/E CENTRAL CENIZAS",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00024",
+        "nombre": "23_CA S/E INCA DE ORO F17",
+        "categoria": "Almacenamiento de energía",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02546",
+        "nombre": "244_HP RIO HUASCO",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02645",
+        "nombre": "247_PFV LLANO DE LLAMPOS",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02646",
+        "nombre": "248_PFV SAN ANDRES",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02647",
+        "nombre": "269_PFV DIEGO DE ALMAGRO",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01146",
+        "nombre": "269_S/E CENTRAL SAN LORENZO DE DIEGO DE ALMAGRO",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01147",
+        "nombre": "271_S/E CENTRAL EMELDA",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01150",
+        "nombre": "276_S/E CENTRAL TERMOPACIFICO",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01151",
+        "nombre": "277_S/E CENTRAL GUACOLDA",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02648",
+        "nombre": "278_PMGD PFV SANTA CECILIA",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01152",
+        "nombre": "278_S/E PLANTA MATTA",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02650",
+        "nombre": "285_PFV CHAÑARES",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02651",
+        "nombre": "288_PFV SALVADOR",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02652",
+        "nombre": "305_PMGD PFV LAS TERRAZAS",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02657",
+        "nombre": "314_PFV JAVIERA",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02658",
+        "nombre": "319_PFV LUZ DEL NORTE",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02659",
+        "nombre": "320_PMGD PFV HORNITOS",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03342",
+        "nombre": "330_TER ANDES GENERACION",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02660",
+        "nombre": "331_PFV PILAR LOS AMARILLOS",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02663",
+        "nombre": "337_PFV CARRERA PINTO",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00025",
+        "nombre": "33_CA S/E FUTURO F6",
+        "categoria": "Almacenamiento de energía",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02666",
+        "nombre": "346_PFV ESPERANZA",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02671",
+        "nombre": "355_PFV LOS LOROS",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02675",
+        "nombre": "362_PFV PILOTO SOLAR CARDONES",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02419",
+        "nombre": "365_PE SAN JUAN",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01206",
+        "nombre": "368_S/E INCAHUASI",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02691",
+        "nombre": "418_PFV EL ROMERO",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02425",
+        "nombre": "478_PE CABO LEONES",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02714",
+        "nombre": "489_PFV ANTAY",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02427",
+        "nombre": "516_PE SARCO",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02736",
+        "nombre": "528_PMGD PFV DIEGO DE ALMAGRO SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03877",
+        "nombre": "52E1",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03449",
+        "nombre": "535_TER TRES PUENTES (SM)",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03450",
+        "nombre": "536_TER PUNTA ARENAS (SM)",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02430",
+        "nombre": "549_PE CABO NEGRO (SM)",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01340",
+        "nombre": "562_S/E CARDONES",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01341",
+        "nombre": "563_S/E CARRERA PINTO",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01342",
+        "nombre": "564_S/E CASTILLA",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03366",
+        "nombre": "566_TER PAJONALES",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01346",
+        "nombre": "569_S/E DIEGO DE ALMAGRO",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01347",
+        "nombre": "570_S/E DOS AMIGOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01348",
+        "nombre": "571_S/E EL SALADO",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01351",
+        "nombre": "574_S/E HUASCO",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02761",
+        "nombre": "578_PMGD PFV VALLE SOLAR ESTE II",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02762",
+        "nombre": "579_PMGD PFV VALLE SOLAR OESTE II",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01356",
+        "nombre": "580_S/E MAITENCILLO",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02767",
+        "nombre": "586_PMGD PFV MALAQUITA SOLAR II",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02769",
+        "nombre": "590_PMGD PFV CACHIYUYO SOLAR II",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01368",
+        "nombre": "593_S/E VALLENAR",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02775",
+        "nombre": "599_PFV ALMEYDA",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03373",
+        "nombre": "610_TER MAITENCILLO",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01377",
+        "nombre": "616_S/E ALTO DEL CARMEN",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01378",
+        "nombre": "617_S/E CALDERA",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01379",
+        "nombre": "618_S/E CERRILLOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01380",
+        "nombre": "619_S/E CHAÑARAL",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01381",
+        "nombre": "620_S/E COPIAPO",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01382",
+        "nombre": "621_S/E HERNAN FUENTES",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01383",
+        "nombre": "622_S/E LOS LOROS",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01384",
+        "nombre": "623_S/E PLANTAS",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01385",
+        "nombre": "624_S/E TIERRA AMARILLA",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02436",
+        "nombre": "636_PE CABO LEONES III",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01531",
+        "nombre": "855_S/E AGROSUPER",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01544",
+        "nombre": "870_S/E MANTO VERDE",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01545",
+        "nombre": "871_S/E IMPULSION",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01546",
+        "nombre": "872_S/E ATACAMA KOZAN",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01553",
+        "nombre": "881_S/E LOS COLORADOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01554",
+        "nombre": "882_S/E PELLETS",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01555",
+        "nombre": "883_S/E MAGNETITA",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01556",
+        "nombre": "884_S/E ALGARROBO",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01573",
+        "nombre": "908_S/E EL SALVADOR",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01574",
+        "nombre": "909_S/E POTRERILLOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01575",
+        "nombre": "910_S/E LLANTA",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01609",
+        "nombre": "948_S/E FUNDICION PAIPOTE",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01613",
+        "nombre": "952_S/E PAJONALES",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01623",
+        "nombre": "965_S/E MINERA LA CANDELARIA",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01626",
+        "nombre": "969_S/E LA COIPA",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01627",
+        "nombre": "972_S/E MINERA MARICUNGA",
+        "categoria": "Subestación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03473",
+        "nombre": "Acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03474",
+        "nombre": "Acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03475",
+        "nombre": "Acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03476",
+        "nombre": "Acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03477",
+        "nombre": "acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03478",
+        "nombre": "Acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03479",
+        "nombre": "acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03480",
+        "nombre": "acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03481",
+        "nombre": "acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03482",
+        "nombre": "acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03483",
+        "nombre": "acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03484",
+        "nombre": "acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03485",
+        "nombre": "acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03486",
+        "nombre": "acceso",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03904",
+        "nombre": "Alim. N°6",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03492",
+        "nombre": "Central Tres Puentes",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03487",
+        "nombre": "cruce",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03488",
+        "nombre": "cruce",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03529",
+        "nombre": "Elemento sin nombre GV-03529",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03530",
+        "nombre": "Elemento sin nombre GV-03530",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03531",
+        "nombre": "Elemento sin nombre GV-03531",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03532",
+        "nombre": "Elemento sin nombre GV-03532",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03533",
+        "nombre": "Elemento sin nombre GV-03533",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03534",
+        "nombre": "Elemento sin nombre GV-03534",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03535",
+        "nombre": "Elemento sin nombre GV-03535",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03536",
+        "nombre": "Elemento sin nombre GV-03536",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03537",
+        "nombre": "Elemento sin nombre GV-03537",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03538",
+        "nombre": "Elemento sin nombre GV-03538",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03539",
+        "nombre": "Elemento sin nombre GV-03539",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03540",
+        "nombre": "Elemento sin nombre GV-03540",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03541",
+        "nombre": "Elemento sin nombre GV-03541",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03542",
+        "nombre": "Elemento sin nombre GV-03542",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03543",
+        "nombre": "Elemento sin nombre GV-03543",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03544",
+        "nombre": "Elemento sin nombre GV-03544",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03545",
+        "nombre": "Elemento sin nombre GV-03545",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03546",
+        "nombre": "Elemento sin nombre GV-03546",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03547",
+        "nombre": "Elemento sin nombre GV-03547",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03548",
+        "nombre": "Elemento sin nombre GV-03548",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03549",
+        "nombre": "Elemento sin nombre GV-03549",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03550",
+        "nombre": "Elemento sin nombre GV-03550",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03551",
+        "nombre": "Elemento sin nombre GV-03551",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03552",
+        "nombre": "Elemento sin nombre GV-03552",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03553",
+        "nombre": "Elemento sin nombre GV-03553",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03554",
+        "nombre": "Elemento sin nombre GV-03554",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03555",
+        "nombre": "Elemento sin nombre GV-03555",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03556",
+        "nombre": "Elemento sin nombre GV-03556",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03557",
+        "nombre": "Elemento sin nombre GV-03557",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03558",
+        "nombre": "Elemento sin nombre GV-03558",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03559",
+        "nombre": "Elemento sin nombre GV-03559",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03560",
+        "nombre": "Elemento sin nombre GV-03560",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03561",
+        "nombre": "Elemento sin nombre GV-03561",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03562",
+        "nombre": "Elemento sin nombre GV-03562",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03563",
+        "nombre": "Elemento sin nombre GV-03563",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03564",
+        "nombre": "Elemento sin nombre GV-03564",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03565",
+        "nombre": "Elemento sin nombre GV-03565",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03566",
+        "nombre": "Elemento sin nombre GV-03566",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03567",
+        "nombre": "Elemento sin nombre GV-03567",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03568",
+        "nombre": "Elemento sin nombre GV-03568",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03570",
+        "nombre": "Elemento sin nombre GV-03570",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03571",
+        "nombre": "Elemento sin nombre GV-03571",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03572",
+        "nombre": "Elemento sin nombre GV-03572",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03573",
+        "nombre": "Elemento sin nombre GV-03573",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03574",
+        "nombre": "Elemento sin nombre GV-03574",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03575",
+        "nombre": "Elemento sin nombre GV-03575",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03576",
+        "nombre": "Elemento sin nombre GV-03576",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03577",
+        "nombre": "Elemento sin nombre GV-03577",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03578",
+        "nombre": "Elemento sin nombre GV-03578",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03579",
+        "nombre": "Elemento sin nombre GV-03579",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03580",
+        "nombre": "Elemento sin nombre GV-03580",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03581",
+        "nombre": "Elemento sin nombre GV-03581",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03582",
+        "nombre": "Elemento sin nombre GV-03582",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03583",
+        "nombre": "Elemento sin nombre GV-03583",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03584",
+        "nombre": "Elemento sin nombre GV-03584",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03585",
+        "nombre": "Elemento sin nombre GV-03585",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03586",
+        "nombre": "Elemento sin nombre GV-03586",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03587",
+        "nombre": "Elemento sin nombre GV-03587",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03588",
+        "nombre": "Elemento sin nombre GV-03588",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03589",
+        "nombre": "Elemento sin nombre GV-03589",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03590",
+        "nombre": "Elemento sin nombre GV-03590",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03591",
+        "nombre": "Elemento sin nombre GV-03591",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03592",
+        "nombre": "Elemento sin nombre GV-03592",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03593",
+        "nombre": "Elemento sin nombre GV-03593",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03594",
+        "nombre": "Elemento sin nombre GV-03594",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03595",
+        "nombre": "Elemento sin nombre GV-03595",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03596",
+        "nombre": "Elemento sin nombre GV-03596",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03597",
+        "nombre": "Elemento sin nombre GV-03597",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03598",
+        "nombre": "Elemento sin nombre GV-03598",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03599",
+        "nombre": "Elemento sin nombre GV-03599",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03600",
+        "nombre": "Elemento sin nombre GV-03600",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03601",
+        "nombre": "Elemento sin nombre GV-03601",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03602",
+        "nombre": "Elemento sin nombre GV-03602",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03603",
+        "nombre": "Elemento sin nombre GV-03603",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03604",
+        "nombre": "Elemento sin nombre GV-03604",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03605",
+        "nombre": "Elemento sin nombre GV-03605",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03606",
+        "nombre": "Elemento sin nombre GV-03606",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03607",
+        "nombre": "Elemento sin nombre GV-03607",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03608",
+        "nombre": "Elemento sin nombre GV-03608",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03609",
+        "nombre": "Elemento sin nombre GV-03609",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03610",
+        "nombre": "Elemento sin nombre GV-03610",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03611",
+        "nombre": "Elemento sin nombre GV-03611",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03612",
+        "nombre": "Elemento sin nombre GV-03612",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03613",
+        "nombre": "Elemento sin nombre GV-03613",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03614",
+        "nombre": "Elemento sin nombre GV-03614",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03615",
+        "nombre": "Elemento sin nombre GV-03615",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03616",
+        "nombre": "Elemento sin nombre GV-03616",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03617",
+        "nombre": "Elemento sin nombre GV-03617",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03618",
+        "nombre": "Elemento sin nombre GV-03618",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03619",
+        "nombre": "Elemento sin nombre GV-03619",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03620",
+        "nombre": "Elemento sin nombre GV-03620",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03621",
+        "nombre": "Elemento sin nombre GV-03621",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03622",
+        "nombre": "Elemento sin nombre GV-03622",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03623",
+        "nombre": "Elemento sin nombre GV-03623",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03624",
+        "nombre": "Elemento sin nombre GV-03624",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03625",
+        "nombre": "Elemento sin nombre GV-03625",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03626",
+        "nombre": "Elemento sin nombre GV-03626",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03627",
+        "nombre": "Elemento sin nombre GV-03627",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03628",
+        "nombre": "Elemento sin nombre GV-03628",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03629",
+        "nombre": "Elemento sin nombre GV-03629",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03630",
+        "nombre": "Elemento sin nombre GV-03630",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03631",
+        "nombre": "Elemento sin nombre GV-03631",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03632",
+        "nombre": "Elemento sin nombre GV-03632",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03633",
+        "nombre": "Elemento sin nombre GV-03633",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03634",
+        "nombre": "Elemento sin nombre GV-03634",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03635",
+        "nombre": "Elemento sin nombre GV-03635",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03636",
+        "nombre": "Elemento sin nombre GV-03636",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03637",
+        "nombre": "Elemento sin nombre GV-03637",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03638",
+        "nombre": "Elemento sin nombre GV-03638",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03639",
+        "nombre": "Elemento sin nombre GV-03639",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03640",
+        "nombre": "Elemento sin nombre GV-03640",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03641",
+        "nombre": "Elemento sin nombre GV-03641",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03642",
+        "nombre": "Elemento sin nombre GV-03642",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03643",
+        "nombre": "Elemento sin nombre GV-03643",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03644",
+        "nombre": "Elemento sin nombre GV-03644",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03645",
+        "nombre": "Elemento sin nombre GV-03645",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03646",
+        "nombre": "Elemento sin nombre GV-03646",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03647",
+        "nombre": "Elemento sin nombre GV-03647",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03648",
+        "nombre": "Elemento sin nombre GV-03648",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03649",
+        "nombre": "Elemento sin nombre GV-03649",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03650",
+        "nombre": "Elemento sin nombre GV-03650",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03651",
+        "nombre": "Elemento sin nombre GV-03651",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03652",
+        "nombre": "Elemento sin nombre GV-03652",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03653",
+        "nombre": "Elemento sin nombre GV-03653",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03654",
+        "nombre": "Elemento sin nombre GV-03654",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03655",
+        "nombre": "Elemento sin nombre GV-03655",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03656",
+        "nombre": "Elemento sin nombre GV-03656",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03657",
+        "nombre": "Elemento sin nombre GV-03657",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03658",
+        "nombre": "Elemento sin nombre GV-03658",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03659",
+        "nombre": "Elemento sin nombre GV-03659",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03660",
+        "nombre": "Elemento sin nombre GV-03660",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03661",
+        "nombre": "Elemento sin nombre GV-03661",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03662",
+        "nombre": "Elemento sin nombre GV-03662",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03663",
+        "nombre": "Elemento sin nombre GV-03663",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03664",
+        "nombre": "Elemento sin nombre GV-03664",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03665",
+        "nombre": "Elemento sin nombre GV-03665",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03666",
+        "nombre": "Elemento sin nombre GV-03666",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03667",
+        "nombre": "Elemento sin nombre GV-03667",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03668",
+        "nombre": "Elemento sin nombre GV-03668",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03669",
+        "nombre": "Elemento sin nombre GV-03669",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03670",
+        "nombre": "Elemento sin nombre GV-03670",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03671",
+        "nombre": "Elemento sin nombre GV-03671",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03672",
+        "nombre": "Elemento sin nombre GV-03672",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03673",
+        "nombre": "Elemento sin nombre GV-03673",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03674",
+        "nombre": "Elemento sin nombre GV-03674",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03675",
+        "nombre": "Elemento sin nombre GV-03675",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03676",
+        "nombre": "Elemento sin nombre GV-03676",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03677",
+        "nombre": "Elemento sin nombre GV-03677",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03678",
+        "nombre": "Elemento sin nombre GV-03678",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03679",
+        "nombre": "Elemento sin nombre GV-03679",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03680",
+        "nombre": "Elemento sin nombre GV-03680",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03681",
+        "nombre": "Elemento sin nombre GV-03681",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03682",
+        "nombre": "Elemento sin nombre GV-03682",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03683",
+        "nombre": "Elemento sin nombre GV-03683",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03684",
+        "nombre": "Elemento sin nombre GV-03684",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03685",
+        "nombre": "Elemento sin nombre GV-03685",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03686",
+        "nombre": "Elemento sin nombre GV-03686",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03687",
+        "nombre": "Elemento sin nombre GV-03687",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03688",
+        "nombre": "Elemento sin nombre GV-03688",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03689",
+        "nombre": "Elemento sin nombre GV-03689",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03690",
+        "nombre": "Elemento sin nombre GV-03690",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03691",
+        "nombre": "Elemento sin nombre GV-03691",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03692",
+        "nombre": "Elemento sin nombre GV-03692",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03693",
+        "nombre": "Elemento sin nombre GV-03693",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03694",
+        "nombre": "Elemento sin nombre GV-03694",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03695",
+        "nombre": "Elemento sin nombre GV-03695",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03696",
+        "nombre": "Elemento sin nombre GV-03696",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03697",
+        "nombre": "Elemento sin nombre GV-03697",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03698",
+        "nombre": "Elemento sin nombre GV-03698",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03699",
+        "nombre": "Elemento sin nombre GV-03699",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03700",
+        "nombre": "Elemento sin nombre GV-03700",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03701",
+        "nombre": "Elemento sin nombre GV-03701",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03702",
+        "nombre": "Elemento sin nombre GV-03702",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03703",
+        "nombre": "Elemento sin nombre GV-03703",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03704",
+        "nombre": "Elemento sin nombre GV-03704",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03705",
+        "nombre": "Elemento sin nombre GV-03705",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03706",
+        "nombre": "Elemento sin nombre GV-03706",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03707",
+        "nombre": "Elemento sin nombre GV-03707",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03708",
+        "nombre": "Elemento sin nombre GV-03708",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03709",
+        "nombre": "Elemento sin nombre GV-03709",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03710",
+        "nombre": "Elemento sin nombre GV-03710",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03711",
+        "nombre": "Elemento sin nombre GV-03711",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03712",
+        "nombre": "Elemento sin nombre GV-03712",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03713",
+        "nombre": "Elemento sin nombre GV-03713",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03714",
+        "nombre": "Elemento sin nombre GV-03714",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03715",
+        "nombre": "Elemento sin nombre GV-03715",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03716",
+        "nombre": "Elemento sin nombre GV-03716",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03717",
+        "nombre": "Elemento sin nombre GV-03717",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03718",
+        "nombre": "Elemento sin nombre GV-03718",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03719",
+        "nombre": "Elemento sin nombre GV-03719",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03720",
+        "nombre": "Elemento sin nombre GV-03720",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03721",
+        "nombre": "Elemento sin nombre GV-03721",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03722",
+        "nombre": "Elemento sin nombre GV-03722",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03723",
+        "nombre": "Elemento sin nombre GV-03723",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03724",
+        "nombre": "Elemento sin nombre GV-03724",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03725",
+        "nombre": "Elemento sin nombre GV-03725",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03726",
+        "nombre": "Elemento sin nombre GV-03726",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03727",
+        "nombre": "Elemento sin nombre GV-03727",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03728",
+        "nombre": "Elemento sin nombre GV-03728",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03729",
+        "nombre": "Elemento sin nombre GV-03729",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03730",
+        "nombre": "Elemento sin nombre GV-03730",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03731",
+        "nombre": "Elemento sin nombre GV-03731",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03732",
+        "nombre": "Elemento sin nombre GV-03732",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03733",
+        "nombre": "Elemento sin nombre GV-03733",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03734",
+        "nombre": "Elemento sin nombre GV-03734",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03735",
+        "nombre": "Elemento sin nombre GV-03735",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03736",
+        "nombre": "Elemento sin nombre GV-03736",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03737",
+        "nombre": "Elemento sin nombre GV-03737",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03738",
+        "nombre": "Elemento sin nombre GV-03738",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03739",
+        "nombre": "Elemento sin nombre GV-03739",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03740",
+        "nombre": "Elemento sin nombre GV-03740",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03741",
+        "nombre": "Elemento sin nombre GV-03741",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03742",
+        "nombre": "Elemento sin nombre GV-03742",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03743",
+        "nombre": "Elemento sin nombre GV-03743",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03744",
+        "nombre": "Elemento sin nombre GV-03744",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03745",
+        "nombre": "Elemento sin nombre GV-03745",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03746",
+        "nombre": "Elemento sin nombre GV-03746",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03747",
+        "nombre": "Elemento sin nombre GV-03747",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03748",
+        "nombre": "Elemento sin nombre GV-03748",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03749",
+        "nombre": "Elemento sin nombre GV-03749",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03750",
+        "nombre": "Elemento sin nombre GV-03750",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03751",
+        "nombre": "Elemento sin nombre GV-03751",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03752",
+        "nombre": "Elemento sin nombre GV-03752",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03753",
+        "nombre": "Elemento sin nombre GV-03753",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03754",
+        "nombre": "Elemento sin nombre GV-03754",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03755",
+        "nombre": "Elemento sin nombre GV-03755",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03756",
+        "nombre": "Elemento sin nombre GV-03756",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03757",
+        "nombre": "Elemento sin nombre GV-03757",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03758",
+        "nombre": "Elemento sin nombre GV-03758",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03759",
+        "nombre": "Elemento sin nombre GV-03759",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03760",
+        "nombre": "Elemento sin nombre GV-03760",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03761",
+        "nombre": "Elemento sin nombre GV-03761",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03762",
+        "nombre": "Elemento sin nombre GV-03762",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03763",
+        "nombre": "Elemento sin nombre GV-03763",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03764",
+        "nombre": "Elemento sin nombre GV-03764",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03765",
+        "nombre": "Elemento sin nombre GV-03765",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03766",
+        "nombre": "Elemento sin nombre GV-03766",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03767",
+        "nombre": "Elemento sin nombre GV-03767",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03768",
+        "nombre": "Elemento sin nombre GV-03768",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03769",
+        "nombre": "Elemento sin nombre GV-03769",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03770",
+        "nombre": "Elemento sin nombre GV-03770",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03771",
+        "nombre": "Elemento sin nombre GV-03771",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03772",
+        "nombre": "Elemento sin nombre GV-03772",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03773",
+        "nombre": "Elemento sin nombre GV-03773",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03775",
+        "nombre": "Elemento sin nombre GV-03775",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03776",
+        "nombre": "Elemento sin nombre GV-03776",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03777",
+        "nombre": "Elemento sin nombre GV-03777",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03778",
+        "nombre": "Elemento sin nombre GV-03778",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03780",
+        "nombre": "Elemento sin nombre GV-03780",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03781",
+        "nombre": "Elemento sin nombre GV-03781",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03782",
+        "nombre": "Elemento sin nombre GV-03782",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03783",
+        "nombre": "Elemento sin nombre GV-03783",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03784",
+        "nombre": "Elemento sin nombre GV-03784",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03785",
+        "nombre": "Elemento sin nombre GV-03785",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03786",
+        "nombre": "Elemento sin nombre GV-03786",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03790",
+        "nombre": "Elemento sin nombre GV-03790",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03791",
+        "nombre": "Elemento sin nombre GV-03791",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03792",
+        "nombre": "Elemento sin nombre GV-03792",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03793",
+        "nombre": "Elemento sin nombre GV-03793",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03794",
+        "nombre": "Elemento sin nombre GV-03794",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03795",
+        "nombre": "Elemento sin nombre GV-03795",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03796",
+        "nombre": "Elemento sin nombre GV-03796",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03797",
+        "nombre": "Elemento sin nombre GV-03797",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03798",
+        "nombre": "Elemento sin nombre GV-03798",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03799",
+        "nombre": "Elemento sin nombre GV-03799",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03800",
+        "nombre": "Elemento sin nombre GV-03800",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03801",
+        "nombre": "Elemento sin nombre GV-03801",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03802",
+        "nombre": "Elemento sin nombre GV-03802",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03803",
+        "nombre": "Elemento sin nombre GV-03803",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03804",
+        "nombre": "Elemento sin nombre GV-03804",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03805",
+        "nombre": "Elemento sin nombre GV-03805",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03806",
+        "nombre": "Elemento sin nombre GV-03806",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03807",
+        "nombre": "Elemento sin nombre GV-03807",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03808",
+        "nombre": "Elemento sin nombre GV-03808",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03809",
+        "nombre": "Elemento sin nombre GV-03809",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03810",
+        "nombre": "Elemento sin nombre GV-03810",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03811",
+        "nombre": "Elemento sin nombre GV-03811",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03812",
+        "nombre": "Elemento sin nombre GV-03812",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03813",
+        "nombre": "Elemento sin nombre GV-03813",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03814",
+        "nombre": "Elemento sin nombre GV-03814",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03815",
+        "nombre": "Elemento sin nombre GV-03815",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03816",
+        "nombre": "Elemento sin nombre GV-03816",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03817",
+        "nombre": "Elemento sin nombre GV-03817",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03818",
+        "nombre": "Elemento sin nombre GV-03818",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03819",
+        "nombre": "Elemento sin nombre GV-03819",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03820",
+        "nombre": "Elemento sin nombre GV-03820",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03821",
+        "nombre": "Elemento sin nombre GV-03821",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03822",
+        "nombre": "Elemento sin nombre GV-03822",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03823",
+        "nombre": "Elemento sin nombre GV-03823",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03824",
+        "nombre": "Elemento sin nombre GV-03824",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03825",
+        "nombre": "Elemento sin nombre GV-03825",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03826",
+        "nombre": "Elemento sin nombre GV-03826",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03827",
+        "nombre": "Elemento sin nombre GV-03827",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03828",
+        "nombre": "Elemento sin nombre GV-03828",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03833",
+        "nombre": "Elemento sin nombre GV-03833",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03834",
+        "nombre": "Elemento sin nombre GV-03834",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03835",
+        "nombre": "Elemento sin nombre GV-03835",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03836",
+        "nombre": "Elemento sin nombre GV-03836",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03837",
+        "nombre": "Elemento sin nombre GV-03837",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03838",
+        "nombre": "Elemento sin nombre GV-03838",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03839",
+        "nombre": "Elemento sin nombre GV-03839",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03840",
+        "nombre": "Elemento sin nombre GV-03840",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03841",
+        "nombre": "Elemento sin nombre GV-03841",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03842",
+        "nombre": "Elemento sin nombre GV-03842",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03843",
+        "nombre": "Elemento sin nombre GV-03843",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03844",
+        "nombre": "Elemento sin nombre GV-03844",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03845",
+        "nombre": "Elemento sin nombre GV-03845",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03846",
+        "nombre": "Elemento sin nombre GV-03846",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03847",
+        "nombre": "Elemento sin nombre GV-03847",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03848",
+        "nombre": "Elemento sin nombre GV-03848",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03849",
+        "nombre": "Elemento sin nombre GV-03849",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03850",
+        "nombre": "Elemento sin nombre GV-03850",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03851",
+        "nombre": "Elemento sin nombre GV-03851",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03852",
+        "nombre": "Elemento sin nombre GV-03852",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03853",
+        "nombre": "Elemento sin nombre GV-03853",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03854",
+        "nombre": "Elemento sin nombre GV-03854",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03855",
+        "nombre": "Elemento sin nombre GV-03855",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03856",
+        "nombre": "Elemento sin nombre GV-03856",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03857",
+        "nombre": "Elemento sin nombre GV-03857",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03858",
+        "nombre": "Elemento sin nombre GV-03858",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03859",
+        "nombre": "Elemento sin nombre GV-03859",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03860",
+        "nombre": "Elemento sin nombre GV-03860",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03861",
+        "nombre": "Elemento sin nombre GV-03861",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03862",
+        "nombre": "Elemento sin nombre GV-03862",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03863",
+        "nombre": "Elemento sin nombre GV-03863",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03864",
+        "nombre": "Elemento sin nombre GV-03864",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03865",
+        "nombre": "Elemento sin nombre GV-03865",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03866",
+        "nombre": "Elemento sin nombre GV-03866",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03867",
+        "nombre": "Elemento sin nombre GV-03867",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03868",
+        "nombre": "Elemento sin nombre GV-03868",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03869",
+        "nombre": "Elemento sin nombre GV-03869",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03870",
+        "nombre": "Elemento sin nombre GV-03870",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03871",
+        "nombre": "Elemento sin nombre GV-03871",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03872",
+        "nombre": "Elemento sin nombre GV-03872",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03873",
+        "nombre": "Elemento sin nombre GV-03873",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03874",
+        "nombre": "Elemento sin nombre GV-03874",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03875",
+        "nombre": "Elemento sin nombre GV-03875",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03876",
+        "nombre": "Elemento sin nombre GV-03876",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03452",
+        "nombre": "EXT_020_TER PORVENIR",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03453",
+        "nombre": "EXT_021_TER PUERTO NATALES",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03454",
+        "nombre": "EXT_022_TER PUERTO WILLIAMS",
+        "categoria": "Central",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02302",
+        "nombre": "LDT_014_TAP LLANTA",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03884",
+        "nombre": "LMT Metanex",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03885",
+        "nombre": "LMT Metanex",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03886",
+        "nombre": "LMT Metanex",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03489",
+        "nombre": "Nota",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03490",
+        "nombre": "NOTA",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03491",
+        "nombre": "Nota",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03569",
+        "nombre": "nota",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03774",
+        "nombre": "NOTA",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03779",
+        "nombre": "NOTA",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03787",
+        "nombre": "nota",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03788",
+        "nombre": "nota",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03789",
+        "nombre": "nota",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03829",
+        "nombre": "nota",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03830",
+        "nombre": "nota",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03831",
+        "nombre": "nota",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03832",
+        "nombre": "nota",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03493",
+        "nombre": "P00",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03882",
+        "nombre": "P00",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03495",
+        "nombre": "P01",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03883",
+        "nombre": "P01",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03494",
+        "nombre": "P02",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03887",
+        "nombre": "P02",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03496",
+        "nombre": "P03",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03888",
+        "nombre": "P03",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03497",
+        "nombre": "P04",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03889",
+        "nombre": "P04",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03498",
+        "nombre": "P05",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03890",
+        "nombre": "P05",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03499",
+        "nombre": "P06",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03891",
+        "nombre": "P06",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03500",
+        "nombre": "P07",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03892",
+        "nombre": "P07",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03501",
+        "nombre": "P08",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03893",
+        "nombre": "P08",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03502",
+        "nombre": "P09",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03894",
+        "nombre": "P09",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03503",
+        "nombre": "P10",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03895",
+        "nombre": "P10",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03504",
+        "nombre": "P11",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03896",
+        "nombre": "P11",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03505",
+        "nombre": "P12",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03897",
+        "nombre": "P12",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03506",
+        "nombre": "P13",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03898",
+        "nombre": "P13",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03507",
+        "nombre": "P14",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03508",
+        "nombre": "P14",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03899",
+        "nombre": "P14",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03509",
+        "nombre": "P15",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03900",
+        "nombre": "P15",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03510",
+        "nombre": "P16",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03901",
+        "nombre": "P16",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03511",
+        "nombre": "P17",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03902",
+        "nombre": "P17 52IA",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03512",
+        "nombre": "P18",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03903",
+        "nombre": "P18",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03513",
+        "nombre": "P19",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03514",
+        "nombre": "P20",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03515",
+        "nombre": "P21",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03516",
+        "nombre": "P22",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03517",
+        "nombre": "P23",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03518",
+        "nombre": "P24",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03519",
+        "nombre": "P25",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03520",
+        "nombre": "P26",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03521",
+        "nombre": "P27",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03522",
+        "nombre": "P28",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03523",
+        "nombre": "P29",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03524",
+        "nombre": "P30",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03525",
+        "nombre": "P31",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03526",
+        "nombre": "P32",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03527",
+        "nombre": "P33",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03528",
+        "nombre": "P34",
+        "categoria": "Poste",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03878",
+        "nombre": "Sala Control CN",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03471",
+        "nombre": "SALA DE CONTROL VP",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02313",
+        "nombre": "TAP_163_TAP RIO HUASCO",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02315",
+        "nombre": "TAP_172_TAP PV SALVADOR",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-02324",
+        "nombre": "TAP_251_TAP PAJONALES",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03470",
+        "nombre": "WTG01",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03881",
+        "nombre": "WTG01",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03469",
+        "nombre": "WTG02",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03880",
+        "nombre": "WTG02",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03468",
+        "nombre": "WTG03",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03879",
+        "nombre": "WTG03",
+        "categoria": "Activo puntual",
+        "zonas": [
+          "12"
+        ]
+      }
+    ],
+    "lineas": [
+      {
+        "id": "GV-00481",
+        "nombre": "104_CENTRAL CENIZAS - CARDONES 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00081",
+        "nombre": "112_CARDONES - CENTRAL CARDONES 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00083",
+        "nombre": "115_CARDONES - MEDELLIN 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00045",
+        "nombre": "1166_CUMBRE – NUEVA CARDONES 500KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00644",
+        "nombre": "1173_MAITENCILLO - CARDONES 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00484",
+        "nombre": "117_CENTRAL EMELDA - DIEGO DE ALMAGRO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00086",
+        "nombre": "124_SAN LORENZO - DIEGO DE ALMAGRO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00229",
+        "nombre": "1273_CARDONES - NUEVA CARDONES 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00230",
+        "nombre": "1279_MAITENCILLO - CENTRAL PARQUE EOLICO CABO LEONES I 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00231",
+        "nombre": "1280_MAITENCILLO - NUEVA MAITENCILLO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00240",
+        "nombre": "1301_ILLAPA - CUMBRES 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00252",
+        "nombre": "1335_MAITENCILLO - SARCO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00257",
+        "nombre": "1357_CENTRAL EL ROMERO - DON HECTOR 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00259",
+        "nombre": "1382_DIEGO DE ALMAGRO - ILLAPA 220KV L1",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00260",
+        "nombre": "1383_DIEGO DE ALMAGRO - ILLAPA 220KV L2",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00261",
+        "nombre": "1384_ILLAPA - CARRERA PINTO 220KV L1",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00262",
+        "nombre": "1385_ILLAPA - CARRERA PINTO 220KV L2",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00270",
+        "nombre": "1420_CARRERA PINTO - SECCIONADORA SAN ANDRES 220KV L2",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00271",
+        "nombre": "1421_SECCIONADORA SAN ANDRES - CARDONES 220KV L2",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00272",
+        "nombre": "1425_DON HECTOR - CENTRAL PAJONALES",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00092",
+        "nombre": "143_CARRERA PINTO - SECCIONADORA SAN ANDRES 220KV L1",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00093",
+        "nombre": "143_CARRERA PINTO - SECCIONADORA SAN ANDRES 220KV L2",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00662",
+        "nombre": "1469_C.R. MAITENCILLO - MAITENCILLO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00287",
+        "nombre": "1491_SECCIONADORA LLANO DE LLAMPOS - CERRO NEGRO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00288",
+        "nombre": "1492_CERRO NEGRO - TOTORALILLO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00293",
+        "nombre": "1511_PUNTA COLORADA - TRES QUEBRADAS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00294",
+        "nombre": "1512_TRES QUEBRADAS - LAMA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00321",
+        "nombre": "1566_CARDONES – ALGARROBAL 220KV C1 Y C2",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00322",
+        "nombre": "1566_CARDONES – ALGARROBAL 220KV C3",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00323",
+        "nombre": "1567_ALGARROBAL – MAITENCILLO 220KV C1 Y C2",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00324",
+        "nombre": "1567_ALGARROBAL – MAITENCILLO 220KV C3",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00336",
+        "nombre": "1585_LA HUELLA - DON HECTOR 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00339",
+        "nombre": "1596_CAMPOS DEL SOL - CARRERA PINTO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00342",
+        "nombre": "1605_MALGARIDA - ALMEYDA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00343",
+        "nombre": "1606_CUMBRES - MALGARIDA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00686",
+        "nombre": "1647_SOL DE LOS ANDES - RIO SALADO 110 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00687",
+        "nombre": "1648_RIO SALADO - POTRERILLOS 110 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00688",
+        "nombre": "1649_DIEGO DE ALMAGRO - RIO SALADO 110 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01027",
+        "nombre": "164_EL SALADO - CHANARAL 23KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00486",
+        "nombre": "165_DIEGO DE ALMAGRO - EL SALADO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00374",
+        "nombre": "1691_RIO ESCONDIDO - VALLE ESCONDIDO 220 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00375",
+        "nombre": "1692_VALLE ESCONDIDO - CARDONES 220 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00386",
+        "nombre": "1749_INCA DE ORO - ILLAPA 220 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00698",
+        "nombre": "1760_PAJONALES - TAP PAJONALES 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-01072",
+        "nombre": "1761_CENTRAL LA SILLA - PAJONALES 23KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00391",
+        "nombre": "1774_BELLA MONICA - ILLAPA 220 kV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00701",
+        "nombre": "1811_MAITENCILLO - ALGARROBO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00702",
+        "nombre": "1812_ALGARROBO - DOS AMIGOS 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00703",
+        "nombre": "1813_DOS AMIGOS - INCAHUASI 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00704",
+        "nombre": "1814_INCAHUASI - LAS COMPAÑÍAS 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00401",
+        "nombre": "1830_NUEVA MAITENCILLO - PUNTA COLORADA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00404",
+        "nombre": "1836_CENTRAL CABO LEONES II – IBERATACAMA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00405",
+        "nombre": "1837_IBERATACAMA - MAITENCILLO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00053",
+        "nombre": "1849_PARINAS – CUMBRE 500 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00409",
+        "nombre": "1860_DON HECTOR – AGUA AMARGA 220kV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00410",
+        "nombre": "1861_AGUA AMARGA - MAITENCILLO 220kV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00099",
+        "nombre": "186_MAITENCILLO - AGROSUPER 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00487",
+        "nombre": "189_MAITENCILLO - VALLENAR 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00494",
+        "nombre": "292_COPIAPO - HERNAN FUENTES 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00495",
+        "nombre": "298_EL EDEN - ALTO DEL CARMEN 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00512",
+        "nombre": "429_TIERRA AMARILLA - ATACAMA KOZAN 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00513",
+        "nombre": "430_TIERRA AMARILLA - PLANTAS 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00514",
+        "nombre": "431_VALLENAR - EL EDEN 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00476",
+        "nombre": "59_CARDONES - PLANTA MATTA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00072",
+        "nombre": "60_GUACOLDA - MAITENCILLO 220KV L1",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00541",
+        "nombre": "623_DIEGO DE ALMAGRO - PFV JAVIERA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00477",
+        "nombre": "62_TAP IMPULSION - IMPULSION 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00549",
+        "nombre": "644_CARDONES - MAGNETITA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00550",
+        "nombre": "647_TAP PUNTA TORO - LOS COLORADOS 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00551",
+        "nombre": "667_CARDONES - REFUGIO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00121",
+        "nombre": "671_CARRERA PINTO - LA COIPA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00552",
+        "nombre": "672_DIEGO DE ALMAGRO - MANTO VERDE 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00122",
+        "nombre": "673_CARDONES - MINERA LA CANDELARIA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00554",
+        "nombre": "682_DIEGO DE ALMAGRO - MINERA FRANKE 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00557",
+        "nombre": "690_DIEGO DE ALMAGRO - POTRERILLOS 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00558",
+        "nombre": "692_DIEGO DE ALMAGRO - EL SALVADOR 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00559",
+        "nombre": "693_LLANTA - SALVADOR 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00123",
+        "nombre": "701_GUACOLDA - MAITENCILLO 220KV L2",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00561",
+        "nombre": "702_HUASCO - MAITENCILLO 110KV L1",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00562",
+        "nombre": "703_HUASCO - MAITENCILLO 110KV L2",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00127",
+        "nombre": "762_MAITENCILLO - CASERONES 220KV L1",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00570",
+        "nombre": "779_RIO HUASCO - TAP RIO HUASCO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00131",
+        "nombre": "784_LLANO DE LLAMPOS - SECCIONADORA LLANO DE LLAMPOS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00136",
+        "nombre": "796_CARDONES - SECCIONADORA LLANO DE LLAMPOS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00572",
+        "nombre": "812_MANTO VERDE - PLANTA DESALADORA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00141",
+        "nombre": "831_SECCIONADORA SAN ANDRES - CARDONES 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00577",
+        "nombre": "842_TAP CHAÑARES - CHAÑARES 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00578",
+        "nombre": "844_TAP PV SALVADOR - PV SALVADOR 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00143",
+        "nombre": "848_LUZ DEL NORTE - CARRERA PINTO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00579",
+        "nombre": "849_PFV JAVIERA - TAL TAL 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00583",
+        "nombre": "860_CARDONES - TRAVESIA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00584",
+        "nombre": "861_TRAVESIA - PUNTA PADRONES 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00589",
+        "nombre": "877_CARDONES - COPAYAPU 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00590",
+        "nombre": "878_COPAYAPU - TIERRA AMARILLA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00591",
+        "nombre": "879_COPAYAPU -CERRILLOS 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00592",
+        "nombre": "880_COPAYAPU - GALLEGUILLOS 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00593",
+        "nombre": "881_HERNAN FUENTES - GALLEGUILLOS 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00594",
+        "nombre": "882_GALLEGUILLOS - CALDERA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00595",
+        "nombre": "883_DIEGO DE ALMAGRO - CENTRAL ANDES GENERACION 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00148",
+        "nombre": "888_CARRERA PINTO - PASTORA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00598",
+        "nombre": "896_LOS LOROS - CENTRAL PARQUE SOLAR LOS LOROS 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00151",
+        "nombre": "902_PUNTA COLORADA - PARQUE EOLICO SAN JUAN 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00040",
+        "nombre": "904_NUEVA CARDONES - NUEVA MAITENCILLO 500KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00041",
+        "nombre": "905_NUEVA MAITENCILLO - NUEVA PAN DE AZUCAR 500KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00154",
+        "nombre": "918_FRANCISCO - DIEGO DE ALMAGRO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00156",
+        "nombre": "920_CACHIYUYAL - DIEGO DE ALMAGRO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00602",
+        "nombre": "943_CERRILLOS - LOS LOROS 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00158",
+        "nombre": "973_PUNTA COLORADA - DON HECTOR 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-00159",
+        "nombre": "974_EL PELICANO - DON HECTOR 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03905",
+        "nombre": "LMT",
+        "categoria": "Línea",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03907",
+        "nombre": "LMT Alim. N°6",
+        "categoria": "Línea",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03906",
+        "nombre": "LMT hacia Metanex",
+        "categoria": "Línea",
+        "zonas": [
+          "12"
+        ]
+      },
+      {
+        "id": "GV-03472",
+        "nombre": "LTVP",
+        "categoria": "Línea",
+        "zonas": [
+          "12"
+        ]
+      }
+    ],
+    "netbilling": []
+  }
+}

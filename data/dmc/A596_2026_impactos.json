@@ -1,0 +1,3633 @@
+{
+  "codigo": "A596/2026",
+  "criterio": "intersección geográfica",
+  "advertencia": "Área del aviso: exposición potencial, no impacto confirmado.",
+  "totales": {
+    "activos": 329,
+    "lineas": 118,
+    "netbilling": 0
+  },
+  "elementos": {
+    "activos": [
+      {
+        "id": "GV-02234",
+        "nombre": "1001_TAP OFF LA PALOMA",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02238",
+        "nombre": "1006_TAP OFF QUINTA",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02239",
+        "nombre": "1007_TAP OFF RENGO",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02242",
+        "nombre": "1013_TAP OFF LONGAVI",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02245",
+        "nombre": "1017_TAP OFF LOS LIRIOS",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02503",
+        "nombre": "102_HP SAN CLEMENTE",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01638",
+        "nombre": "1033_TAP OFF PUNTA DE CORTES",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02248",
+        "nombre": "1035_TAP OFF TILCOCO",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02504",
+        "nombre": "103_HP SAN IGNACIO",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02250",
+        "nombre": "1059_TAP OFF MINERA VALLE CENTRAL",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02256",
+        "nombre": "1125_TAP OFF MAESTRANZA",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02465",
+        "nombre": "119_HE CIPRESES",
+        "categoria": "Central",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03291",
+        "nombre": "11_TER LINARES NORTE",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02511",
+        "nombre": "123_HP ISLA",
+        "categoria": "Central",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02469",
+        "nombre": "131_HE SAUZAL",
+        "categoria": "Central",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02514",
+        "nombre": "132_HP SAUZALITO",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02515",
+        "nombre": "134_HP OJOS DE AGUA",
+        "categoria": "Central",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03323",
+        "nombre": "142_TER TENO",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03325",
+        "nombre": "144_TER ESPERANZA",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02520",
+        "nombre": "160_HP LA CONFLUENCIA",
+        "categoria": "Central",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02521",
+        "nombre": "162_HP LA HIGUERA",
+        "categoria": "Central",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01669",
+        "nombre": "1638_S/E CENTRAL PROVIDENCIA",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02522",
+        "nombre": "163_HP LIRCAY",
+        "categoria": "Central",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01670",
+        "nombre": "1640_S/E YERBAS BUENAS",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02813",
+        "nombre": "1653_PMGD PFV VILLA SECA",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02817",
+        "nombre": "1659_PMGD PFV SAN ISIDRO",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02818",
+        "nombre": "1660_PMGD PFV LAS MERCEDES",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01681",
+        "nombre": "1660_S/E CENTRAL CHACAYES",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02624",
+        "nombre": "1677_HP DIGUA",
+        "categoria": "Central",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02625",
+        "nombre": "1679_PMGD HP LA COMPAÑIA II",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01691",
+        "nombre": "1679_S/E CANAL MELADO",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02828",
+        "nombre": "1680_PMGD PFV RINCONADA",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01692",
+        "nombre": "1680_S/E CENTRAL LOS HIERROS",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02829",
+        "nombre": "1681_PMGD PFV LO MIRANDA",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01698",
+        "nombre": "1693_S/E PLANTA MDP TENO",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02837",
+        "nombre": "1698_PMGD PFV PARAGUAY",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03329",
+        "nombre": "169_TER COLIHUES",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01707",
+        "nombre": "1706_S/E CEMENTOS BIO BIO CENTRO",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01708",
+        "nombre": "1707_S/E CENTRAL SAUZALITO",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02840",
+        "nombre": "1708_PMGD PFV RAUQUEN",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02844",
+        "nombre": "1713_PMGD PFV VILLA CRUZ",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02848",
+        "nombre": "1720_PMGD PFV TRICA-DOS",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02851",
+        "nombre": "1724_PMGD PFV EL CHUCAO",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01719",
+        "nombre": "1726_S/E CENTRAL LOS HIERROS II",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02858",
+        "nombre": "1731_PMGD PFV ANTONIA SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02859",
+        "nombre": "1732_PMGD PFV PARQUE SOLAR SANTA FE",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02861",
+        "nombre": "1734_PMGD PFV DON MARIANO",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02862",
+        "nombre": "1735_PMGD PFV VILLA ALEGRE",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02863",
+        "nombre": "1736_PMGD PFV QUELTEHUE SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02864",
+        "nombre": "1737_PMGD PFV PITOTOY",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02865",
+        "nombre": "1738_PMGD PFV GR LEMU",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02526",
+        "nombre": "174_HP COYA",
+        "categoria": "Central",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02875",
+        "nombre": "1750_PMGD PFV GRANADA",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02876",
+        "nombre": "1751_PMGD PFV ARGOMEDO",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02886",
+        "nombre": "1766_PMGD PFV CIPRES",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02893",
+        "nombre": "1781_PMGD PFV LAS TENCAS",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02894",
+        "nombre": "1782_PMGD PFV PARQUE SOLAR BICENTENARIO",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02899",
+        "nombre": "1788_PMGD PFV SANTA CAROLINA",
+        "categoria": "Central",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02900",
+        "nombre": "1791_PMGD PFV CANDELARIA SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02904",
+        "nombre": "1798_PMGD PFV PARQUE SOLAR SAN JAVIER",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02905",
+        "nombre": "1799_PMGD PFV EL ROMERAL",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02527",
+        "nombre": "179_HP CURILLINQUE",
+        "categoria": "Central",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02907",
+        "nombre": "1802_PMGD PFV GR RAULI",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02910",
+        "nombre": "1806_PMGD PFV QUINANTU SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02911",
+        "nombre": "1807_PMGD PFV MERCURIO SUR",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02912",
+        "nombre": "1808_PMGD PFV SATURNO NORTE",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02528",
+        "nombre": "180_HP LOMA ALTA",
+        "categoria": "Central",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02471",
+        "nombre": "181_HE PEHUENCHE",
+        "categoria": "Central",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02921",
+        "nombre": "1824_PMGD PFV PARQUE SOLAR LA MURALLA",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02930",
+        "nombre": "1834_PMGD PFV PARQUE ROMERIA",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02931",
+        "nombre": "1835_PMGD PFV PARQUE SOLAR MEMBRILLO",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02937",
+        "nombre": "1842_PMGD PFV SAN CAMILO",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02941",
+        "nombre": "1848_PMGD PFV EL FLAMENCO",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02944",
+        "nombre": "1851_PFV TENO SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02945",
+        "nombre": "1852_PFV MACHICURA",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02951",
+        "nombre": "1859_PMGD PFV PARQUE PENCAHUE ESTE",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02952",
+        "nombre": "1860_PMGD PFV PARQUE CURICURA",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02957",
+        "nombre": "1866_PMGD PFV GR PITAO",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02959",
+        "nombre": "1869_PMGD PFV LINARES SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02973",
+        "nombre": "1888_PMGD PFV PARQUE PANGUILEMO AEROPUERTO",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02980",
+        "nombre": "1896_PMGD PFV GR PEUMO",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03403",
+        "nombre": "1904_PMGD TER DIESEL CEREZO",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02989",
+        "nombre": "1910_PMGD PFV PACHIRA",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02996",
+        "nombre": "1918_PMGD PFV SAN ANTONIO",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02998",
+        "nombre": "1920_PMGD PFV MELI",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03004",
+        "nombre": "1930_PMGD PFV PARQUE SOLAR NANCAGUA",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03006",
+        "nombre": "1932_PMGD PFV LAS CATITAS",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03007",
+        "nombre": "1933_PMGD PFV EL ZORZAL",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03012",
+        "nombre": "1939_PMGD PFV LOS TORDOS",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03013",
+        "nombre": "1940_PMGD PFV LOICA",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03031",
+        "nombre": "1964_PMGD PFV ENCINO",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03038",
+        "nombre": "1971_PMGD PFV CARACOLES",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03039",
+        "nombre": "1972_PMGD PFV EL TRILE",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03040",
+        "nombre": "1973_PMGD PFV SAN EMILIO SOLAR I",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03050",
+        "nombre": "1985_PMGD PFV VENTISQUERO SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03053",
+        "nombre": "1988_PMGD PFV LAS CACHAÑAS",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03054",
+        "nombre": "1989_PMGD PFV LAS GOLONDRINAS",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03055",
+        "nombre": "1990_PMGD PFV EL TIUQUE",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03056",
+        "nombre": "1991_PMGD PFV IDAHUE DEL VERANO SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01946",
+        "nombre": "1996_S/E ARMERILLO",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02280",
+        "nombre": "1997_TAP OFF RIO COLORADO",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01947",
+        "nombre": "1998_S/E CENTRAL RIO COLORADO",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01948",
+        "nombre": "1999_S/E CENTRAL LA MINA",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03074",
+        "nombre": "2012_PMGD PFV PEQUEN",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03076",
+        "nombre": "2014_PMGD PFV ITAHUE SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03078",
+        "nombre": "2016_PMGD PFV MILAN A",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03080",
+        "nombre": "2021_PMGD PFV DON RODRIGO",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03082",
+        "nombre": "2025_PMGD PFV SOLAR TORINO",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03083",
+        "nombre": "2027_PMGD PFV SANTA EMILIA",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03085",
+        "nombre": "2029_PMGD PFV CONDOR CHEPICA",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01970",
+        "nombre": "2029_S/E PASO HONDO",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03086",
+        "nombre": "2030_PMGD PFV LIMA",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02281",
+        "nombre": "2030_TAP OFF PASO HONDO",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03087",
+        "nombre": "2031_PMGD PFV PICUNCHE",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03088",
+        "nombre": "2034_PMGD PFV NAN",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03090",
+        "nombre": "2036_PMGD PFV BERGAMO",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01980",
+        "nombre": "2051_S/E CENTRAL ANCOA",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03104",
+        "nombre": "2053_PMGD PFV AROMO DEL VERANO SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02282",
+        "nombre": "2053_TAP OFF PUTAGAN",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03106",
+        "nombre": "2055_PMGD PFV PARQUE SOLAR RIO PEUCO",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02533",
+        "nombre": "205_PMGD HP PURISIMA",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03114",
+        "nombre": "2066_PMGD PFV CAUQUENES",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03115",
+        "nombre": "2068_PMGD PFV LOS LIRIOS",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03118",
+        "nombre": "2071_PMGD PFV RATULEMUS",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01997",
+        "nombre": "2076_S/E SANTA ISABEL",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02000",
+        "nombre": "2080_TAP OFF",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03125",
+        "nombre": "2084_PMGD PFV ROSARIO",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02005",
+        "nombre": "2089_S/E PUENTE NEGRO",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03133",
+        "nombre": "2097_PMGD PFV PSF LA GAMBOINA",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02021",
+        "nombre": "2105_S/E SECCIONADORA CONVENTO VIEJO",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02022",
+        "nombre": "2106_S/E CENTRAL CONVENTO VIEJO",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03141",
+        "nombre": "2110_PMGD PFV EL PICHON",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03142",
+        "nombre": "2111_PMGD PFV AYLA SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03143",
+        "nombre": "2112_PMGD PFV LAS BANDURRIAS",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03145",
+        "nombre": "2114_PMGD PFV DON MATIAS",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02033",
+        "nombre": "2126_S/E MAITENES",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02034",
+        "nombre": "2127_S/E CENTRAL PANGAL",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02035",
+        "nombre": "2128_S/E TAP OFF",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02036",
+        "nombre": "2129_S/E TORRE 7",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03156",
+        "nombre": "2130_PMGD PFV LO MIGUEL",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02037",
+        "nombre": "2130_S/E SAUZAL 60HZ",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03162",
+        "nombre": "2137_PMGD PFV FOTOVOLT LIN",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02042",
+        "nombre": "2141_S/E AGUAS CLARAS",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03166",
+        "nombre": "2146_PMGD PFV QUEMADOS",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03336",
+        "nombre": "214_TER CEMENTOS BIO BIO CENTRO",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03170",
+        "nombre": "2152_PMGD PFV EL CHERCAN",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02055",
+        "nombre": "2158_S/E ALTO CACHAPOAL",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03175",
+        "nombre": "2167_PMGD PFV CHILENER",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02535",
+        "nombre": "216_HP CHACAYES",
+        "categoria": "Central",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03177",
+        "nombre": "2171_PMGD PFV PENCAHUE",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03412",
+        "nombre": "2172_PMGD TER DIESEL COYA",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03184",
+        "nombre": "2182_PMGD PFV TALAGANTE",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03266",
+        "nombre": "218_TER ENERGIA PACIFICO",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03187",
+        "nombre": "2191_PMGD PFV VERONA SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03189",
+        "nombre": "2197_PMGD PFV LAS ARBOLEDAS",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03190",
+        "nombre": "2198_PMGD PFV SOL DEL MAULE",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03191",
+        "nombre": "2199_PMGD PFV EL LORO CHOROY",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03193",
+        "nombre": "2204_PMGD PFV ALDEBARAN",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03197",
+        "nombre": "2212_PMGD PFV EL CARDENAL",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01101",
+        "nombre": "221_S/E CANDELARIA",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03204",
+        "nombre": "2220_PMGD PFV PARQUE PVP UNIHUE",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03207",
+        "nombre": "2229_PMGD PFV PARQUE SAN FRANCISCO PARRAL",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01102",
+        "nombre": "222_S/E CENTRAL CANDELARIA",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03208",
+        "nombre": "2230_PMGD PFV PVP MAYOS",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01103",
+        "nombre": "223_S/E COLBUN",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03211",
+        "nombre": "2241_PMGD PFV DON SIMON",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01104",
+        "nombre": "224_S/E CENTRAL MACHICURA",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03216",
+        "nombre": "2250_PMGD PFV LA VENDIMIA",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03217",
+        "nombre": "2251_PMGD PFV ALAMEDA",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03218",
+        "nombre": "2253_PMGD PFV EL MIRLO",
+        "categoria": "Central",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02123",
+        "nombre": "2254_S/E DIGUA",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02124",
+        "nombre": "2255_S/E CATILLO",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03219",
+        "nombre": "2256_PMGD PFV LOS ROBLES",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03222",
+        "nombre": "2271_PMGD PFV PUEBLO HUNDIDOO",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03224",
+        "nombre": "2276_PMGD PFV EL CAIQUEN",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03225",
+        "nombre": "2277_PMGD PFV SAN CLEMENTE FLOR DEL LLANO",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03228",
+        "nombre": "2286_PMGD PFV ROMA",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03230",
+        "nombre": "2292_PMGD PFV ALBATROS",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03233",
+        "nombre": "2297_PMGD PFV RCU (RTN)",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03234",
+        "nombre": "2298_PMGD PFV SOLARPARK MALLOA",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01109",
+        "nombre": "229_S/E CENTRAL SAN IGNACIO",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03236",
+        "nombre": "2306_PMGD PFV SAN RAFAEL",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03237",
+        "nombre": "2308_PMGD PFV JILGUERO",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01111",
+        "nombre": "231_S/E CENTRAL CHIBURGO",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02184",
+        "nombre": "2334_S/E PFV MACHICURA",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01113",
+        "nombre": "233_S/E CENTRAL SAN CLEMENTE (COLBUN)",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02542",
+        "nombre": "234_HP PROVIDENCIA",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01114",
+        "nombre": "234_S/E MINERO",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02200",
+        "nombre": "2357_S/E FUENTECILLA",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02202",
+        "nombre": "2359_S/E CENTRAL COLBUN",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03245",
+        "nombre": "235_PMGD TER TAMM",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02204",
+        "nombre": "2362_S/E PUQUILLAY",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02221",
+        "nombre": "2397_S/E SOLIS",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02545",
+        "nombre": "243_PMGD HP ROBLERIA",
+        "categoria": "Central",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01125",
+        "nombre": "245_S/E CENTRAL CIPRESES",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01126",
+        "nombre": "246_S/E CENTRAL ISLA",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01135",
+        "nombre": "255_S/E CENTRAL OJOS DE AGUA",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02553",
+        "nombre": "263_HP LOS HIERROS",
+        "categoria": "Central",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01143",
+        "nombre": "266_S/E AGUAS NEGRAS",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02558",
+        "nombre": "287_HP LOS HIERROS II",
+        "categoria": "Central",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01158",
+        "nombre": "288_S/E CENTRAL LIRCAY",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01162",
+        "nombre": "292_S/E CENTRAL LA HIGUERA",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01163",
+        "nombre": "293_S/E CENTRAL LA CONFLUENCIA",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01171",
+        "nombre": "302_S/E CENTRAL COYA",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01172",
+        "nombre": "303_S/E INTERCONEXION CHACAYES",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01175",
+        "nombre": "308_S/E CENTRAL CURILLINQUE",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01176",
+        "nombre": "309_S/E LOMA ALTA",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01177",
+        "nombre": "310_S/E CENTRAL RIO MELADO",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01186",
+        "nombre": "320_S/E CENTRAL MARIPOSAS",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02577",
+        "nombre": "325_PMGD HP DOSAL",
+        "categoria": "Central",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01197",
+        "nombre": "359_S/E RAUQUEN",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01198",
+        "nombre": "360_S/E MOLINA",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01199",
+        "nombre": "361_S/E LA PALMA",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01201",
+        "nombre": "363_S/E GRANEROS",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01207",
+        "nombre": "369_S/E LA RONDA",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02587",
+        "nombre": "370_PMGD HP CUMPEO",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02588",
+        "nombre": "373_PMGD HP EL GALPON",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01211",
+        "nombre": "373_S/E ALAMEDA",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01221",
+        "nombre": "383_S/E CACHAPOAL",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01226",
+        "nombre": "388_S/E CHIMBARONGO",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01229",
+        "nombre": "391_S/E CHUMAQUITO",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01230",
+        "nombre": "392_S/E COLCHAGUA",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01234",
+        "nombre": "397_S/E LINARES",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01237",
+        "nombre": "400_S/E PUNTA DE CORTES",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01239",
+        "nombre": "402_S/E RENGO",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01241",
+        "nombre": "404_S/E SAN FERNANDO",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01242",
+        "nombre": "405_S/E SAN FRANCISCO DE MOSTAZAL",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01244",
+        "nombre": "407_S/E SAN MIGUEL",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01246",
+        "nombre": "409_S/E SAN VICENTE DE TAGUA TAGUA",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01248",
+        "nombre": "411_S/E TALCA",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03251",
+        "nombre": "413_PMGD TER MOLINA",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02591",
+        "nombre": "417_PMGD HP LA MONTAÑA",
+        "categoria": "Central",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01254",
+        "nombre": "417_S/E TUNICHE",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02592",
+        "nombre": "419_HP RIO COLORADO",
+        "categoria": "Central",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02593",
+        "nombre": "420_HP LA MINA",
+        "categoria": "Central",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01257",
+        "nombre": "420_S/E LOS MAQUIS (CGE)",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01260",
+        "nombre": "423_S/E LO MIRANDA",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01262",
+        "nombre": "425_S/E LORETO",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02694",
+        "nombre": "427_PMGD PFV CORDILLERILLA SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01265",
+        "nombre": "428_S/E MALLOA",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01273",
+        "nombre": "436_S/E PANGUILEMO",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01274",
+        "nombre": "437_S/E PELEQUEN",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01277",
+        "nombre": "440_S/E PIDUCO",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01281",
+        "nombre": "444_S/E MAULE",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01282",
+        "nombre": "449_S/E CHACAHUIN",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01287",
+        "nombre": "469_S/E CURICO",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01288",
+        "nombre": "470_S/E TENO",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01291",
+        "nombre": "473_S/E PARRAL",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01294",
+        "nombre": "476_S/E VILLA ALEGRE",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02473",
+        "nombre": "477_HE ANCOA",
+        "categoria": "Central",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01295",
+        "nombre": "477_S/E TENO EMPALME",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01301",
+        "nombre": "488_S/E ROSARIO",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01302",
+        "nombre": "489_S/E MACHALI",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01305",
+        "nombre": "493_S/E MALLOA NUEVA",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01307",
+        "nombre": "496_S/E QUINTA DE TILCOCO",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02474",
+        "nombre": "499_HE CONVENTO VIEJO",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02720",
+        "nombre": "500_PMGD PFV FRANCISCO",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03356",
+        "nombre": "502_PMGD TER CHILE",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02613",
+        "nombre": "509_PMGD HP LA MONTAÑA II",
+        "categoria": "Central",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02728",
+        "nombre": "515_PMGD PFV CHIMBARONGO",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02732",
+        "nombre": "522_PMGD PFV LOS GORRIONES",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02734",
+        "nombre": "526_PMGD PFV HOMERO SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02737",
+        "nombre": "529_PMGD PFV EL PITIO",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02740",
+        "nombre": "537_PMGD PFV MOSTAZAL",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02741",
+        "nombre": "539_PMGD PFV CHANCON",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02742",
+        "nombre": "541_PMGD PFV LA ACACIA",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02743",
+        "nombre": "543_PMGD PFV LUDERS",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02745",
+        "nombre": "546_PMGD PFV LOS PATOS",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02617",
+        "nombre": "551_HP PANGAL",
+        "categoria": "Central",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03451",
+        "nombre": "557_TER TENO GAS",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01339",
+        "nombre": "561_S/E ANCOA",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02753",
+        "nombre": "562_PMGD PFV EL PICURIO",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01352",
+        "nombre": "575_S/E ITAHUE",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01359",
+        "nombre": "583_S/E CENTRAL PEHUENCHE",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-03369",
+        "nombre": "587_PMGD TER ZAPALLAR",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01363",
+        "nombre": "587_S/E RANCAGUA",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03370",
+        "nombre": "588_PMGD TER MIMBRE",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01365",
+        "nombre": "590_S/E SAUZAL",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02770",
+        "nombre": "592_PMGD PFV LA BLANQUINA",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02475",
+        "nombre": "5_HP MARIPOSAS",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01372",
+        "nombre": "607_S/E TINGUIRIRICA",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02788",
+        "nombre": "616_PMGD PFV TRICAHUE II",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02790",
+        "nombre": "619_PMGD PFV ROVIAN",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01389",
+        "nombre": "630_S/E CAUQUENES",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02797",
+        "nombre": "635_PMGD PFV EL CONDOR",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02798",
+        "nombre": "637_PMGD PFV TALCA",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02803",
+        "nombre": "642_PMGD PFV LAS PERDICES",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02806",
+        "nombre": "645_PMGD PFV DOÑIHUE",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02809",
+        "nombre": "648_PMGD PFV JOSE SOLER MALLAFRE",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01407",
+        "nombre": "648_S/E NANCAGUA",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01410",
+        "nombre": "651_S/E PLACILLA",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02811",
+        "nombre": "653_PMGD PFV PLACILLA SOLAR",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01416",
+        "nombre": "657_S/E RETIRO",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01418",
+        "nombre": "659_S/E SAN CLEMENTE",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01419",
+        "nombre": "660_S/E SAN JAVIER",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01422",
+        "nombre": "669_S/E SAN RAFAEL",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01506",
+        "nombre": "822_S/E QUINTA",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01526",
+        "nombre": "850_S/E LINARES NORTE",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01527",
+        "nombre": "851_S/E PANIMAVIDA",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01528",
+        "nombre": "852_S/E LONGAVI",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01549",
+        "nombre": "876_S/E PROCART",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03426",
+        "nombre": "89_TER CANDELARIA",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01576",
+        "nombre": "912_S/E COLON",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01577",
+        "nombre": "913_S/E CORDILLERA (EL TENIENTE)",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01578",
+        "nombre": "914_S/E EL COBRE (CODELCO)",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02500",
+        "nombre": "91_HP CHIBURGO",
+        "categoria": "Central",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01587",
+        "nombre": "925_S/E GRANEROS (FFCC)",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01588",
+        "nombre": "926_S/E LOS LIRIOS (FFCC)",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01589",
+        "nombre": "927_S/E RENGO (FFCC)",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01590",
+        "nombre": "928_S/E SAN FERNANDO (FFCC)",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01591",
+        "nombre": "929_S/E QUINTA (FFCC)",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02462",
+        "nombre": "92_HE COLBUN",
+        "categoria": "Central",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-01592",
+        "nombre": "930_S/E CURICO (FFCC)",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01593",
+        "nombre": "931_S/E ITAHUE (FFCC)",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01594",
+        "nombre": "932_S/E PANGUILEMO (FFCC)",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01595",
+        "nombre": "933_S/E VILLA ALEGRE (FFCC)",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01596",
+        "nombre": "934_S/E LONGAVI (FFCC)",
+        "categoria": "Subestación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02463",
+        "nombre": "94_HE MACHICURA",
+        "categoria": "Central",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01614",
+        "nombre": "954_S/E R",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01615",
+        "nombre": "955_S/E R2",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01617",
+        "nombre": "958_S/E GRANEROS INDURA",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01632",
+        "nombre": "979_S/E MINERA VALLE CENTRAL",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02232",
+        "nombre": "999_TAP OFF GRANEROS",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-03415",
+        "nombre": "EXT_012_TER SAN FRANCISCO DE MOSTAZAL",
+        "categoria": "Central",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02289",
+        "nombre": "LDT_001_TAP RIO MELADO",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-02301",
+        "nombre": "LDT_013_TAP SAN MIGUEL",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02304",
+        "nombre": "TAP_120_TAP ALAMEDA",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02307",
+        "nombre": "TAP_134_TAP TUNICHE",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-02316",
+        "nombre": "TAP_176_TAP LOS HIERROS",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "07_precordillera"
+        ]
+      }
+    ],
+    "lineas": [
+      {
+        "id": "GV-00755",
+        "nombre": "102_MAULE - LIRCAY 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_precordillera",
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00059",
+        "nombre": "10_CANDELARIA - MINERO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_precordillera",
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00925",
+        "nombre": "1171_TAP PASO HONDO - PASO HONDO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00758",
+        "nombre": "119_LIRCAY - MARIPOSAS 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_precordillera",
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00085",
+        "nombre": "121_CENTRAL LA HIGUERA - CENTRAL LA CONFLUENCIA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00228",
+        "nombre": "1272_PEHUENCHE - ANCOA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_precordillera",
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00929",
+        "nombre": "1277_CENTRAL ANCOA - TAP PUTAGAN 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_precordillera",
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00234",
+        "nombre": "1283_ANCOA - SAN FABIAN 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_precordillera",
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00046",
+        "nombre": "1294_ENTRE RIOS - ANCOA 500KV L1",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00047",
+        "nombre": "1294_ENTRE RIOS - ANCOA 500KV L2",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_precordillera",
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00741",
+        "nombre": "12_CHIBURGO - COLBUN 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_precordillera",
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00243",
+        "nombre": "1306_MAULE – SANTA ISABEL 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00050",
+        "nombre": "1315_CHARRUA - ANCOA 500KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_precordillera",
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00247",
+        "nombre": "1321_CANDELARIA - PUENTE NEGRO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_precordillera",
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00248",
+        "nombre": "1322_PUENTE NEGRO - COLBUN 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_precordillera",
+          "06_valle_longitudinal",
+          "07_precordillera",
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00036",
+        "nombre": "134_ANCOA - ALTO JAHUEL 500KV L1",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_precordillera",
+          "06_valle_longitudinal",
+          "07_precordillera",
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00446",
+        "nombre": "1351_SECCIONADORA CONVENTO VIEJO - TINGUIRIRICA 154 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00447",
+        "nombre": "1352_CENTRAL CONVENTO VIEJO - SECCIONADORA CONVENTO VIEJO 154 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00089",
+        "nombre": "135_ANCOA - ITAHUE 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_precordillera",
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00060",
+        "nombre": "13_COLBUN - MACHICURA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01063",
+        "nombre": "1446_CENTRAL CIPRESILLOS - ALTO CACHAPOAL 23KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00948",
+        "nombre": "1447_TAP ALTO CACHAPOAL - ALTO CACHAPOAL 66 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00954",
+        "nombre": "1465_ANCOA - PANIMAVIDA 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_precordillera",
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00955",
+        "nombre": "1466_PANIMAVIDA - CHACAHUIN 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00956",
+        "nombre": "1485_VILLA ALEGRE - LINARES NORTE 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00957",
+        "nombre": "1486_LINARES NORTE - LINARES 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00451",
+        "nombre": "1495_ALTO JAHUEL - PUNTA DE CORTES 154KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00452",
+        "nombre": "1496_PUNTA DE CORTES - TINGUIRIRICA 154KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00061",
+        "nombre": "14_COLBUN - PROCART 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00964",
+        "nombre": "1526_SAN JAVIER - CONSTITUCION 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00965",
+        "nombre": "1532_CHACAHUIN - LINARES 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00332",
+        "nombre": "1579_DIGUA - CATILLO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_precordillera",
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00424",
+        "nombre": "157_CENTRAL CIPRESES - CENTRAL ISLA 154KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00425",
+        "nombre": "159_CENTRAL CIPRESES - ITAHUE 154KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_precordillera",
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00972",
+        "nombre": "1601_TALCA - LA PALMA 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00973",
+        "nombre": "1602_LA PALMA - SAN JAVIER 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00345",
+        "nombre": "1608_LA HIGUERA - PUENTE NEGRO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00346",
+        "nombre": "1609_PUENTE NEGRO – TINGUIRIRICA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_precordillera",
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00063",
+        "nombre": "16_MAIPO - CANDELARIA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_precordillera",
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00429",
+        "nombre": "175_ITAHUE - MAULE 154KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00998",
+        "nombre": "1763_SAN GREGORIO - PARRAL 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00459",
+        "nombre": "1765_PARRAL - MONTERRICO 154KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01000",
+        "nombre": "1775_MALLOA NUEVA - FUENTECILLA 66 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-01001",
+        "nombre": "1776_FUENTECILLA - SAN VICENTE DE TAGUA TAGUA 66 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00901",
+        "nombre": "1808_ALAMEDA – CACHAPOAL 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00462",
+        "nombre": "1877_ITAHUE - SOLIS 154 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00463",
+        "nombre": "1878_TINGUIRIRICA - SOLIS 154 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal",
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00464",
+        "nombre": "1879_SECCIONADORA CONVENTO VIEJO - SOLIS 154 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal",
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00466",
+        "nombre": "2019_RANCAGUA - EST. E-172 (TAP TUNICHE) 154kV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00103",
+        "nombre": "201_PEHUENCHE - CANAL MELADO - ANCOA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_precordillera",
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00765",
+        "nombre": "214_LA RONDA - SAN VIC DE TAGUA TAGUA 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00766",
+        "nombre": "216_SAN VIC DE TAGUA TAGUA - LAS CABRAS 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00489",
+        "nombre": "220_SAUZAL - ALTO JAHUEL 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_precordillera",
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00107",
+        "nombre": "221_CANAL MELADO - LOMA ALTA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00431",
+        "nombre": "226_TILCOCO - INDAC 154KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00432",
+        "nombre": "227_TINGUIRIRICA - SAN FERNANDO 154KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00784",
+        "nombre": "270_CACHAPOAL - MACHALI 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00785",
+        "nombre": "273_CAUQUENES - LA VEGA 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00742",
+        "nombre": "30_TALCA - SAN IGNACIO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00802",
+        "nombre": "330_ITAHUE - CURICO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00803",
+        "nombre": "332_ITAHUE - TALCA 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00805",
+        "nombre": "336_LINARES - PARRAL 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00806",
+        "nombre": "337_LO MIRANDA - LORETO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00811",
+        "nombre": "348_LOS MAQUIS (CGE) - HUALANE 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00812",
+        "nombre": "349_MALLOA - QUINTA DE TILCOCO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00813",
+        "nombre": "350_MALLOA NUEVA - MALLOA 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00818",
+        "nombre": "369_PARRAL - CAUQUENES 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00819",
+        "nombre": "370_PELEQUEN - MALLOA NUEVA 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00824",
+        "nombre": "375_PUNTA DE CORTES - CACHAPOAL 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00825",
+        "nombre": "377_PUNTA DE CORTES - LO MIRANDA 66KV L1",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00826",
+        "nombre": "378_PUNTA DE CORTES - LO MIRANDA 66KV L2",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00827",
+        "nombre": "379_PUNTA DE CORTES - TUNICHE 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00828",
+        "nombre": "384_RANCAGUA - ALAMEDA 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00829",
+        "nombre": "386_RANCAGUA - SAN FRANCISCO DE MOSTAZAL 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00830",
+        "nombre": "387_RANCAGUA - ROSARIO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_precordillera",
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00832",
+        "nombre": "392_SAN CLEMENTE COLBUN - CHIBURGO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_precordillera",
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00833",
+        "nombre": "393_SAN FERNANDO - COLCHAGUA 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00834",
+        "nombre": "394_SAN FERNANDO - TENO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal",
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00835",
+        "nombre": "399_TALCA - LINARES 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00836",
+        "nombre": "400_TALCA - PIDUCO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00841",
+        "nombre": "412_TAP GRANEROS - GRANEROS 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00842",
+        "nombre": "416_TAP LA PALOMA - LA RONDA 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00844",
+        "nombre": "422_TAP RENGO - RENGO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00846",
+        "nombre": "427_TENO - AGUAS NEGRAS 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00438",
+        "nombre": "428_TENO EMPALME - TENO 154KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00856",
+        "nombre": "653_SAN FERNANDO - PLACILLA 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00858",
+        "nombre": "657_SAUZAL - COYA 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00439",
+        "nombre": "658_SAUZAL - RANCAGUA 154KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_precordillera",
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00441",
+        "nombre": "666_TAP MINERA VALLE CENTRAL - SE MINERA VALLE CENTRAL 154KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00862",
+        "nombre": "675_RANCAGUA - R 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00555",
+        "nombre": "683_MINERO - COLON 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00556",
+        "nombre": "684_MINERO - CORDILLERA 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00058",
+        "nombre": "6_CANDELARIA - CENTRAL CANDELARIA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00128",
+        "nombre": "771_COLBUN - ANCOA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00867",
+        "nombre": "781_MAULE - TALCA 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00130",
+        "nombre": "782_CENTRAL SAN ANDRES - CENTRAL LA CONFLUENCIA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00870",
+        "nombre": "795_PROVIDENCIA - LIRCAY 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_precordillera",
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00442",
+        "nombre": "807_PLANTA MDP TENO - TENO 154KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00573",
+        "nombre": "813_CENTRAL LOS HIERROS - CANAL MELADO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00037",
+        "nombre": "814_ANCOA - ALTO JAHUEL 500KV L2",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal",
+          "07_precordillera",
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00574",
+        "nombre": "815_CENTRAL CHACAYES - INTERCONEXION MAITENES 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00581",
+        "nombre": "852_MINERO - EL COBRE 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00145",
+        "nombre": "862_CENTRAL LA CONFLUENCIA - CENTRAL EL PASO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00038",
+        "nombre": "864_ANCOA - ALTO JAHUEL 500KV L3",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_precordillera",
+          "06_valle_longitudinal",
+          "07_precordillera",
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00585",
+        "nombre": "865_LOS HIERROS II - TAP LOS HIERROS 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00587",
+        "nombre": "875_MINERO - SEWELL 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00039",
+        "nombre": "889_ANCOA - ALTO JAHUEL 500KV L4",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_precordillera",
+          "06_valle_longitudinal",
+          "07_precordillera",
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00599",
+        "nombre": "899_MINERO - INTERCONEXION MAITENES 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00444",
+        "nombre": "944_MAULE - LINARES 154KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00445",
+        "nombre": "945_LINARES - PARRAL 154KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00885",
+        "nombre": "951_NANCAGUA - PANIAHUE 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00886",
+        "nombre": "954_SAN FRANCISCO DE MOSTAZAL - PAINE 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00887",
+        "nombre": "955_ROSARIO - SAN FERNANDO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_precordillera",
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00888",
+        "nombre": "956_TENO - CURICO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00889",
+        "nombre": "957_SAN FERNANDO - LA RONDA 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      },
+      {
+        "id": "GV-00893",
+        "nombre": "965_TAP RIO COLORADO - RIO COLORADO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00894",
+        "nombre": "966_ARMERILLO - LA MINA 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "07_precordillera"
+        ]
+      },
+      {
+        "id": "GV-00737",
+        "nombre": "A3_CENTRAL SAN FRANCISCO MOSTAZAL - SAN FRANCISCO MOSTAZAL",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_valle_longitudinal"
+        ]
+      }
+    ],
+    "netbilling": []
+  }
+}

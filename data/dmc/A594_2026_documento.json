@@ -1,0 +1,14 @@
+{
+  "codigo": "A594/2026",
+  "tipo": "Aviso",
+  "titulo": "Probables Tormentas Eléctricas en la región de Magallanes",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Viernes 30 de octubre del 2026 a las 09:03 hrs.",
+  "condicionSinoptica": "Inestabilidad atmosférica",
+  "desde": "la tarde del sábado 31 de octubre del 2026",
+  "hasta": "la noche del domingo 01 de noviembre del 2026",
+  "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
+  "textoZonaAfecta": "Magallanes",
+  "tablaTitulo": "",
+  "tablaFilas": []
+}

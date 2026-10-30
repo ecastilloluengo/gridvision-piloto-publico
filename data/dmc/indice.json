@@ -1,20 +1,20 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-10-30 06:24",
+  "catalogoActualizadoEn": "2026-10-30 12:07",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
     {
-      "codigo": "A591-4/2026",
+      "codigo": "A591-5/2026",
       "tipo": "Aviso",
       "fenomeno": "Tormentas Eléctricas",
       "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Coquimbo a la región del Biobío",
       "desdeTexto": "la tarde del viernes 30 de octubre del 2026",
-      "hastaTexto": "la noche del sábado 31 de octubre del 2026",
+      "hastaTexto": "la noche del domingo 01 de noviembre del 2026",
       "fechaInicioDia": "2026-10-30",
-      "fechaFinDia": "2026-10-31",
-      "fechaEmision": "2026-10-30T06:19:00-03:00",
+      "fechaFinDia": "2026-11-01",
+      "fechaEmision": "2026-10-30T12:02:00-03:00",
       "regiones": [
         "Biobío",
         "Coquimbo",
@@ -25,11 +25,74 @@
         "Ñuble"
       ],
       "numeroPoligonos": 19,
-      "archivoGeojson": "data/dmc/A591-4_2026.geojson",
-      "archivoCobertura": "data/dmc/A591-4_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A591-4_2026_impactos.json",
-      "observacion": "Asociadas con Chubascos aislados",
-      "archivoDocumento": "data/dmc/A591-4_2026_documento.json"
+      "archivoGeojson": "data/dmc/A591-5_2026.geojson",
+      "archivoCobertura": "data/dmc/A591-5_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A591-5_2026_impactos.json",
+      "observacion": "Probabilidad de granizos",
+      "archivoDocumento": "data/dmc/A591-5_2026_documento.json"
+    },
+    {
+      "codigo": "A594/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en la región de Magallanes",
+      "desdeTexto": "la tarde del sábado 31 de octubre del 2026",
+      "hastaTexto": "la noche del domingo 01 de noviembre del 2026",
+      "fechaInicioDia": "2026-10-31",
+      "fechaFinDia": "2026-11-01",
+      "fechaEmision": "2026-10-30T09:03:00-03:00",
+      "regiones": [
+        "Magallanes"
+      ],
+      "numeroPoligonos": 2,
+      "archivoGeojson": "data/dmc/A594_2026.geojson",
+      "archivoCobertura": "data/dmc/A594_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A594_2026_impactos.json",
+      "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
+      "archivoDocumento": "data/dmc/A594_2026_documento.json"
+    },
+    {
+      "codigo": "A596/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Nubes Convectivas Tornádicas",
+      "titulo": "Probable desarrollo de Nubes Convectivas con características tornádicas en zonas de las regiones de O'Higgins y Maule",
+      "desdeTexto": "la tarde del sábado 31 de octubre del 2026",
+      "hastaTexto": "la noche del sábado 31 de octubre del 2026",
+      "fechaInicioDia": "2026-10-31",
+      "fechaFinDia": "2026-10-31",
+      "fechaEmision": "2026-10-30T11:49:00-03:00",
+      "regiones": [
+        "Maule",
+        "O’Higgins"
+      ],
+      "numeroPoligonos": 4,
+      "archivoGeojson": "data/dmc/A596_2026.geojson",
+      "archivoCobertura": "data/dmc/A596_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A596_2026_impactos.json",
+      "observacion": "Probabilidad de intensos vientos locales arrachados y tornádicos",
+      "archivoDocumento": "data/dmc/A596_2026_documento.json"
+    },
+    {
+      "codigo": "A595/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Precipitaciones",
+      "titulo": "Precipitaciones Normales a Moderadas en corto periodo de tiempo en zonas de las regiones Metropolitana, O'Higgins y Maule",
+      "desdeTexto": "la tarde del sábado 31 de octubre del 2026",
+      "hastaTexto": "la noche del sábado 31 de octubre del 2026",
+      "fechaInicioDia": "2026-10-31",
+      "fechaFinDia": "2026-10-31",
+      "fechaEmision": "2026-10-30T11:48:00-03:00",
+      "regiones": [
+        "Maule",
+        "Metropolitana",
+        "O’Higgins"
+      ],
+      "numeroPoligonos": 6,
+      "archivoGeojson": "data/dmc/A595_2026.geojson",
+      "archivoCobertura": "data/dmc/A595_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A595_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A595_2026_documento.json"
     },
     {
       "codigo": "A592-2/2026",
@@ -52,27 +115,7 @@
       "archivoImpactos": "data/dmc/A592-2_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A592-2_2026_documento.json"
-    },
-    {
-      "codigo": "A593/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Precipitaciones",
-      "titulo": "Precipitaciones Normales a Moderadas en insular sur de la región de Magallanes",
-      "desdeTexto": "la tarde del jueves 29 de octubre del 2026",
-      "hastaTexto": "la mañana del viernes 30 de octubre del 2026",
-      "fechaInicioDia": "2026-10-29",
-      "fechaFinDia": "2026-10-30",
-      "fechaEmision": "2026-10-28T14:48:00-03:00",
-      "regiones": [
-        "Magallanes"
-      ],
-      "numeroPoligonos": 1,
-      "archivoGeojson": "data/dmc/A593_2026.geojson",
-      "archivoCobertura": "data/dmc/A593_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A593_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A593_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-10-30T07:00:10.273388-03:00"
+  "generadoEn": "2026-10-30T15:00:44.993247-03:00"
 }
