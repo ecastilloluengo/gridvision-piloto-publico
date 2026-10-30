@@ -1,20 +1,20 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-10-29 14:46",
+  "catalogoActualizadoEn": "2026-10-30 06:24",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
     {
-      "codigo": "A591-3/2026",
+      "codigo": "A591-4/2026",
       "tipo": "Aviso",
       "fenomeno": "Tormentas Eléctricas",
       "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Coquimbo a la región del Biobío",
-      "desdeTexto": "la tarde del jueves 29 de octubre del 2026",
+      "desdeTexto": "la tarde del viernes 30 de octubre del 2026",
       "hastaTexto": "la noche del sábado 31 de octubre del 2026",
-      "fechaInicioDia": "2026-10-29",
+      "fechaInicioDia": "2026-10-30",
       "fechaFinDia": "2026-10-31",
-      "fechaEmision": "2026-10-29T14:08:00-03:00",
+      "fechaEmision": "2026-10-30T06:19:00-03:00",
       "regiones": [
         "Biobío",
         "Coquimbo",
@@ -25,11 +25,11 @@
         "Ñuble"
       ],
       "numeroPoligonos": 19,
-      "archivoGeojson": "data/dmc/A591-3_2026.geojson",
-      "archivoCobertura": "data/dmc/A591-3_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A591-3_2026_impactos.json",
+      "archivoGeojson": "data/dmc/A591-4_2026.geojson",
+      "archivoCobertura": "data/dmc/A591-4_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A591-4_2026_impactos.json",
       "observacion": "Asociadas con Chubascos aislados",
-      "archivoDocumento": "data/dmc/A591-3_2026_documento.json"
+      "archivoDocumento": "data/dmc/A591-4_2026_documento.json"
     },
     {
       "codigo": "A592-2/2026",
@@ -72,71 +72,7 @@
       "archivoImpactos": "data/dmc/A593_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A593_2026_documento.json"
-    },
-    {
-      "codigo": "A588-1/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Nevadas",
-      "titulo": "Nevadas Normales a Moderadas en cordillera de la región de Antofagasta",
-      "desdeTexto": "la tarde del miércoles 28 de octubre del 2026",
-      "hastaTexto": "la madrugada del viernes 30 de octubre del 2026",
-      "fechaInicioDia": "2026-10-28",
-      "fechaFinDia": "2026-10-30",
-      "fechaEmision": "2026-10-27T12:48:00-03:00",
-      "regiones": [
-        "Antofagasta"
-      ],
-      "numeroPoligonos": 1,
-      "archivoGeojson": "data/dmc/A588-1_2026.geojson",
-      "archivoCobertura": "data/dmc/A588-1_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A588-1_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A588-1_2026_documento.json"
-    },
-    {
-      "codigo": "AA191/2026",
-      "tipo": "Alerta",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Tormentas Eléctricas en Cordillera sur Antofagasta-Cordillera y Precordillera Atacama",
-      "desdeTexto": "la tarde del jueves 29 de octubre del 2026",
-      "hastaTexto": "la noche del jueves 29 de octubre del 2026",
-      "fechaInicioDia": "2026-10-29",
-      "fechaFinDia": "2026-10-29",
-      "fechaEmision": "2026-10-29T14:08:00-03:00",
-      "regiones": [
-        "Antofagasta",
-        "Atacama"
-      ],
-      "numeroPoligonos": 1,
-      "archivoGeojson": "data/dmc/AA191_2026.geojson",
-      "archivoCobertura": "data/dmc/AA191_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/AA191_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/AA191_2026_documento.json"
-    },
-    {
-      "codigo": "A587-2/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Arica y Parinacota a la región de Atacama",
-      "desdeTexto": "la tarde del miércoles 28 de octubre del 2026",
-      "hastaTexto": "la noche del jueves 29 de octubre del 2026",
-      "fechaInicioDia": "2026-10-28",
-      "fechaFinDia": "2026-10-29",
-      "fechaEmision": "2026-10-28T12:16:00-03:00",
-      "regiones": [
-        "Antofagasta",
-        "Arica y Parinacota",
-        "Atacama",
-        "Tarapacá"
-      ],
-      "numeroPoligonos": 14,
-      "archivoGeojson": "data/dmc/A587-2_2026.geojson",
-      "archivoCobertura": "data/dmc/A587-2_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A587-2_2026_impactos.json",
-      "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
-      "archivoDocumento": "data/dmc/A587-2_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-10-29T15:28:37.588133-03:00"
+  "generadoEn": "2026-10-30T07:00:10.273388-03:00"
 }

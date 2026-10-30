@@ -1,0 +1,506 @@
+{
+  "codigo": "A591-4/2026",
+  "tipo": "Aviso",
+  "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Coquimbo a la región del Biobío",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Viernes 30 de octubre del 2026 a las 06:19 hrs.",
+  "condicionSinoptica": "Inestabilidad atmosférica",
+  "desde": "la tarde del viernes 30 de octubre del 2026",
+  "hasta": "la noche del sábado 31 de octubre del 2026",
+  "observacion": "Asociadas con Chubascos aislados",
+  "textoZonaAfecta": "Coquimbo (Precordillera y valles precordilleranos, Cordillera)\nValparaíso (Precordillera y valles precordilleranos, Cordillera)\nMetropolitana (Valle, Precordillera, Cordillera)\nO'Higgins (Valle, Precordillera, Cordillera)\nMaule (Valle, Precordillera, Cordillera)\nÑuble (Valle, Precordillera, Cordillera)\nBiobío (Valle, Precordillera, Cordillera)",
+  "tablaTitulo": "Ocurrencia de Tormentas Eléctricas",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Coquimbo"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 30"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 31"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera y valles precordilleranos"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Valparaíso"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 30"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 31"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera y valles precordilleranos"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Metropolitana"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 30"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 31"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: O'Higgins"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 30"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 31"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Maule"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 30"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 31"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Ñuble"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 30"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 31"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Biobío"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 30"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 31"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ]
+  ]
+}
