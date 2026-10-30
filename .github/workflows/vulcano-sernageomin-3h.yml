@@ -2,8 +2,6 @@ name: Vulcano - SERNAGEOMIN cada 3 horas
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '43 */3 * * *'
 
 permissions:
   contents: write
@@ -17,7 +15,7 @@ concurrency:
 
 jobs:
   actualizar:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     timeout-minutes: 15
     outputs:
       cambios: ${{ steps.version.outputs.cambios }}

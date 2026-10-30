@@ -2,27 +2,32 @@
   "schema": 1,
   "fuente": "SERNAGEOMIN",
   "fuenteURL": "https://www.sernageomin.cl/alertas-volcanicas/",
-  "tipo": "ALERTAS_TECNICAS_PUBLICADAS",
+  "tipo": "ESTADOS_EAV_PUBLICADOS",
   "modo": "CONSULTA_AUTOMATICA",
-  "esquema": "COLORES_PRE_EAV",
-  "consultadoEn": "2026-10-28T00:44:12+00:00",
+  "esquema": "EAV_0_5",
+  "consultadoEn": "2026-10-30T13:22:47+00:00",
+  "paginaModificadaEn": "2026-10-28T21:35:29-03:00",
   "volcanes": [
     {
       "clave": "nevados_chillan",
       "nombre": "Complejo Volcánico Nevados de Chillán",
-      "nivel": "AMARILLA",
-      "eav": null,
+      "nivel": null,
+      "eav": 3,
       "fuenteURL": "https://www.sernageomin.cl/alertas-volcanicas/",
+      "imagenOficialURL": "https://www.sernageomin.cl/wp-content/uploads/2026/10/Nevados-de-Chillan.png",
+      "metodoVerificacion": "OCR_DOBLE_PASADA",
       "fechaEmision": null
     },
     {
       "clave": "villarrica",
       "nombre": "Volcán Villarrica",
-      "nivel": "AMARILLA",
-      "eav": null,
+      "nivel": null,
+      "eav": 1,
       "fuenteURL": "https://www.sernageomin.cl/alertas-volcanicas/",
+      "imagenOficialURL": "https://www.sernageomin.cl/wp-content/uploads/2026/10/Volcan-Villarrica.png",
+      "metodoVerificacion": "OCR_DOBLE_PASADA",
       "fechaEmision": null
     }
   ],
-  "nota": "Estados reconocidos en la página pública oficial. No es monitoreo instrumental en vivo; no implica que otros volcanes estén en verde. La fecha de consulta no equivale a fecha de emisión de la alerta. Al entrar en vigor los EAV se requiere validar su nueva fuente y formato."
+  "nota": "Números obtenidos mediante dos lecturas OCR coincidentes del distintivo EAV en PNG oficiales. Los niveles sin lectura fiable permanecen sin confirmar. Fecha de consulta y fecha de modificación web no equivalen a fecha de emisión oficial. SERNAGEOMIN es fuente técnica, SENAPRED gestiona alertas territoriales."
 }

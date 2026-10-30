@@ -1,0 +1,115 @@
+name: Vulcano - EAV oficiales cada 3 horas
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 */3 * * *'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: gridvision-vulcano-eav
+  cancel-in-progress: false
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      cambios: ${{ steps.commit.outputs.cambios }}
+    steps:
+      - name: Obtener rama principal
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Preparar OCR y certificados
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! command -v tesseract >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y tesseract-ocr
+          fi
+          tesseract --version
+          python -m pip install 'pillow>=10,<13' 'pytesseract>=0.3.10,<0.4' 'truststore>=0.10,<1'
+      - name: Autoprueba estructural del lector
+        run: python scripts/actualizar_estados_volcanicos.py --autoprueba
+      - name: Consultar HTML e imágenes oficiales
+        run: python scripts/actualizar_estados_volcanicos.py --timeout 30
+      - name: Validar estados antes de confirmar
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY_CHECK'
+          import json
+          from pathlib import Path
+          from datetime import datetime, timezone, timedelta
+          p = Path('data/vulcano/estados_oficiales.json')
+          d = json.loads(p.read_text(encoding='utf-8'))
+          assert d['schema'] == 1 and d['fuente'] == 'SERNAGEOMIN'
+          assert d['modo'] == 'CONSULTA_AUTOMATICA'
+          assert d['esquema'] in ('EAV_0_5', 'EAV_PENDIENTE')
+          assert d['fuenteURL'] == 'https://www.sernageomin.cl/alertas-volcanicas/'
+          dt = datetime.fromisoformat(d['consultadoEn'])
+          assert dt.tzinfo is not None
+          age = datetime.now(timezone.utc) - dt
+          assert -timedelta(minutes=2) < age < timedelta(minutes=10)
+          records = d['volcanes']
+          assert len(records) == 2 and {v['clave'] for v in records} == {'villarrica','nevados_chillan'}
+          for v in records:
+            n = v.get('eav')
+            assert type(n) is int and 0 <= n <= 5, v
+            assert v.get('nivel') is None
+            assert v.get('fechaEmision') is None
+            assert v.get('metodoVerificacion') == ('OCR_DOBLE_PASADA' if n is not None else 'NO_CONFIRMADO')
+            assert v['imagenOficialURL'].startswith('https://www.sernageomin.cl/wp-content/uploads/')
+          assert (d['esquema'] == 'EAV_0_5') == any(v['eav'] is not None for v in records)
+          print('EAV validados:', {v['clave']: v['eav'] for v in records})
+          PY_CHECK
+      - name: Confirmar exclusivamente JSON volcánico
+        id: commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -- data/vulcano/estados_oficiales.json
+          git diff --cached --check
+          archivos="$(git diff --cached --name-only)"
+          if [[ -z "$archivos" ]]; then
+            echo 'cambios=false' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [[ "$archivos" != 'data/vulcano/estados_oficiales.json' ]]; then
+            echo "Cambios inesperados: $archivos" >&2
+            exit 1
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Vulcano: actualizar niveles EAV oficiales'
+          git push origin HEAD:main
+          echo 'cambios=true' >> "$GITHUB_OUTPUT"
+
+  publicar:
+    needs: actualizar
+    if: needs.actualizar.outputs.cambios == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: github-pages
+      url: ${{ steps.pages.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: '.'
+      - name: Publicar GridVision completo en GitHub Pages
+        id: pages
+        uses: actions/deploy-pages@v4
