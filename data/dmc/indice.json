@@ -1,10 +1,50 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-10-30 12:07",
+  "catalogoActualizadoEn": "2026-10-31 14:58",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
+    {
+      "codigo": "A597/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Viento",
+      "titulo": "Viento Normal a Moderado en cordillera de la región de Coquimbo",
+      "desdeTexto": "la mañana del domingo 01 de noviembre del 2026",
+      "hastaTexto": "la noche del miércoles 04 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-01",
+      "fechaFinDia": "2026-11-04",
+      "fechaEmision": "2026-10-31T12:45:00-03:00",
+      "regiones": [
+        "Coquimbo"
+      ],
+      "numeroPoligonos": 1,
+      "archivoGeojson": "data/dmc/A597_2026.geojson",
+      "archivoCobertura": "data/dmc/A597_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A597_2026_impactos.json",
+      "observacion": "Probabilidad de ventisca",
+      "archivoDocumento": "data/dmc/A597_2026_documento.json"
+    },
+    {
+      "codigo": "A598/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Viento",
+      "titulo": "Viento Normal a Moderado en zonas de la región de Magallanes",
+      "desdeTexto": "la madrugada del martes 03 de noviembre del 2026",
+      "hastaTexto": "la noche del martes 03 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-03",
+      "fechaFinDia": "2026-11-03",
+      "fechaEmision": "2026-10-31T14:53:00-03:00",
+      "regiones": [
+        "Magallanes"
+      ],
+      "numeroPoligonos": 3,
+      "archivoGeojson": "data/dmc/A598_2026.geojson",
+      "archivoCobertura": "data/dmc/A598_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A598_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A598_2026_documento.json"
+    },
     {
       "codigo": "A591-5/2026",
       "tipo": "Aviso",
@@ -117,5 +157,5 @@
       "archivoDocumento": "data/dmc/A592-2_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-10-30T15:00:44.993247-03:00"
+  "generadoEn": "2026-10-31T16:17:14.711824-03:00"
 }

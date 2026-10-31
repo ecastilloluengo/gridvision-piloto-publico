@@ -1,0 +1,70 @@
+{
+  "codigo": "A598/2026",
+  "tipo": "Aviso",
+  "titulo": "Viento Normal a Moderado en zonas de la región de Magallanes",
+  "fenomeno": "Viento",
+  "emisionTexto": "Sábado 31 de octubre del 2026 a las 14:53 hrs.",
+  "condicionSinoptica": "Jet de bajo nivel",
+  "desde": "la madrugada del martes 03 de noviembre del 2026",
+  "hasta": "la noche del martes 03 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Magallanes (Cordillera Austral Sur, Insular Central, Pampa Patagonica Sur)",
+  "tablaTitulo": "Intensidad estimada del Viento en Km/h",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Magallanes"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 03"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera Austral Sur"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "50 - 100"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Insular Central"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "70 - 100"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Pampa Patagonica Sur"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "60 - 100"
+      }
+    ]
+  ]
+}

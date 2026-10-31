@@ -1,0 +1,76 @@
+{
+  "codigo": "A597/2026",
+  "tipo": "Aviso",
+  "titulo": "Viento Normal a Moderado en cordillera de la región de Coquimbo",
+  "fenomeno": "Viento",
+  "emisionTexto": "Sábado 31 de octubre del 2026 a las 12:45 hrs.",
+  "condicionSinoptica": "Corriente en chorro",
+  "desde": "la mañana del domingo 01 de noviembre del 2026",
+  "hasta": "la noche del miércoles 04 de noviembre del 2026",
+  "observacion": "Probabilidad de ventisca",
+  "textoZonaAfecta": "Coquimbo (Cordillera)",
+  "tablaTitulo": "Intensidad estimada del Viento en Km/h",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 5,
+        "texto": "Región: Coquimbo"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "domingo 01"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 02"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 03"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 04"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-40 RACHAS 70"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-40 RACHAS 70"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "40-60 RACHAS 80"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-40 RACHAS 70"
+      }
+    ]
+  ]
+}
