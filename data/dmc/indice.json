@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-10-31 21:05",
+  "catalogoActualizadoEn": "2026-11-01 06:43",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -46,30 +46,28 @@
       "archivoDocumento": "data/dmc/A598_2026_documento.json"
     },
     {
-      "codigo": "A591-5/2026",
+      "codigo": "A591-6/2026",
       "tipo": "Aviso",
       "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Coquimbo a la región del Biobío",
-      "desdeTexto": "la tarde del viernes 30 de octubre del 2026",
+      "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Coquimbo a la región del Maule",
+      "desdeTexto": "la tarde del domingo 01 de noviembre del 2026",
       "hastaTexto": "la noche del domingo 01 de noviembre del 2026",
-      "fechaInicioDia": "2026-10-30",
+      "fechaInicioDia": "2026-11-01",
       "fechaFinDia": "2026-11-01",
-      "fechaEmision": "2026-10-30T12:02:00-03:00",
+      "fechaEmision": "2026-11-01T06:38:00-03:00",
       "regiones": [
-        "Biobío",
         "Coquimbo",
         "Maule",
         "Metropolitana",
         "O’Higgins",
-        "Valparaíso",
-        "Ñuble"
+        "Valparaíso"
       ],
-      "numeroPoligonos": 19,
-      "archivoGeojson": "data/dmc/A591-5_2026.geojson",
-      "archivoCobertura": "data/dmc/A591-5_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A591-5_2026_impactos.json",
+      "numeroPoligonos": 12,
+      "archivoGeojson": "data/dmc/A591-6_2026.geojson",
+      "archivoCobertura": "data/dmc/A591-6_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A591-6_2026_impactos.json",
       "observacion": "Probabilidad de granizos",
-      "archivoDocumento": "data/dmc/A591-5_2026_documento.json"
+      "archivoDocumento": "data/dmc/A591-6_2026_documento.json"
     },
     {
       "codigo": "A594/2026",
@@ -92,5 +90,5 @@
       "archivoDocumento": "data/dmc/A594_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-10-31T21:07:42.782869-03:00"
+  "generadoEn": "2026-11-01T10:23:47.130809-03:00"
 }
