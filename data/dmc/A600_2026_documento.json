@@ -1,0 +1,139 @@
+{
+  "codigo": "A600/2026",
+  "tipo": "Aviso",
+  "titulo": "Viento Normal a Moderado en zonas de las regiones de Antofagasta y Atacama",
+  "fenomeno": "Viento",
+  "emisionTexto": "Domingo 1 de noviembre del 2026 a las 12:35 hrs.",
+  "condicionSinoptica": "Corriente en chorro",
+  "desde": "la mañana del lunes 02 de noviembre del 2026",
+  "hasta": "la mañana del miércoles 04 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Antofagasta (Cordillera Costa, Cordillera)\nAtacama (Cordillera)",
+  "tablaTitulo": "Intensidad estimada del Viento en Km/h",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: Antofagasta"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 02"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 03"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 04"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera Costa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "60-80"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "60-80"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "60-80"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "60-80"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "60-80"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "60-80"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: Atacama"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 02"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 03"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 04"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "70-90"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "70-90"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "70-90"
+      }
+    ]
+  ]
+}

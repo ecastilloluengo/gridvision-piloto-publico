@@ -1,0 +1,339 @@
+{
+  "codigo": "A591-7/2026",
+  "tipo": "Aviso",
+  "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Coquimbo a la región del Maule",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Domingo 1 de noviembre del 2026 a las 12:41 hrs.",
+  "condicionSinoptica": "Inestabilidad atmosférica",
+  "desde": "la tarde del domingo 01 de noviembre del 2026",
+  "hasta": "la noche del lunes 02 de noviembre del 2026",
+  "observacion": "Probabilidad de granizos y fuertes rachas de vientos locales",
+  "textoZonaAfecta": "Coquimbo (Cordillera)\nValparaíso (Precordillera y valles precordilleranos, Cordillera)\nMetropolitana (Valle, Precordillera, Cordillera)\nO'Higgins (Valle, Precordillera, Cordillera)\nMaule (Valle, Precordillera, Cordillera)",
+  "tablaTitulo": "Ocurrencia de Tormentas Eléctricas",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Coquimbo"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "domingo 01"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 02"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Valparaíso"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "domingo 01"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 02"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera y valles precordilleranos"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Metropolitana"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "domingo 01"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 02"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: O'Higgins"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "domingo 01"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 02"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Maule"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "domingo 01"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 02"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ]
+  ]
+}

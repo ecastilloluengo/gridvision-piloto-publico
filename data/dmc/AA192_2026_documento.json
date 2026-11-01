@@ -1,0 +1,46 @@
+{
+  "codigo": "AA192/2026",
+  "tipo": "Alerta",
+  "titulo": "Viento Moderado a Fuerte en cordillera de la región de Coquimbo",
+  "fenomeno": "Viento",
+  "emisionTexto": "Domingo 1 de noviembre del 2026 a las 13:10 hrs.",
+  "condicionSinoptica": "Corriente en chorro",
+  "desde": "la madrugada del martes 03 de noviembre del 2026",
+  "hasta": "la noche del martes 03 de noviembre del 2026",
+  "observacion": "Desarrollo de ventisca",
+  "textoZonaAfecta": "Coquimbo (Cordillera)",
+  "tablaTitulo": "Intensidad estimada del Viento en Km/h",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Coquimbo"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 03"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "50-70 RACHAS 90"
+      }
+    ]
+  ]
+}

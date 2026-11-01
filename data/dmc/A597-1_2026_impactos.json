@@ -1,0 +1,554 @@
+{
+  "codigo": "A597-1/2026",
+  "criterio": "intersección geográfica",
+  "advertencia": "Área del aviso: exposición potencial, no impacto confirmado.",
+  "totales": {
+    "activos": 42,
+    "lineas": 25,
+    "netbilling": 0
+  },
+  "elementos": {
+    "activos": [
+      {
+        "id": "GV-01685",
+        "nombre": "1667_S/E CENTRAL SAN ANDRES (HSA)",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01737",
+        "nombre": "1751_S/E NUEVA NIVEL 17",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01738",
+        "nombre": "1752_S/E NUEVA NIVEL 11",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01739",
+        "nombre": "1753_S/E CENTRAL EL PASO",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01747",
+        "nombre": "1763_S/E SEWELL",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_cordillera"
+        ]
+      },
+      {
+        "id": "GV-02630",
+        "nombre": "1792_HP CORRALES",
+        "categoria": "Central",
+        "zonas": [
+          "06_cordillera"
+        ]
+      },
+      {
+        "id": "GV-02631",
+        "nombre": "1804_HP MC3",
+        "categoria": "Central",
+        "zonas": [
+          "06_cordillera"
+        ]
+      },
+      {
+        "id": "GV-02529",
+        "nombre": "184_HP HORNITOS",
+        "categoria": "Central",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-03073",
+        "nombre": "2011_PMGD PFV COLTAUCO ALMENDRO",
+        "categoria": "Central",
+        "zonas": [
+          "06_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01962",
+        "nombre": "2020_S/E DOS VALLES",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01996",
+        "nombre": "2075_S/E CENTRAL ALFALFAL II",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-02002",
+        "nombre": "2085_S/E CENTRAL HIDROELECTRICA PALACIOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_cordillera"
+        ]
+      },
+      {
+        "id": "GV-02283",
+        "nombre": "2086_TAP OFF PALACIOS",
+        "categoria": "Conexión en derivación",
+        "zonas": [
+          "06_cordillera"
+        ]
+      },
+      {
+        "id": "GV-02056",
+        "nombre": "2159_S/E CENTRAL CIPRESILLOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_cordillera"
+        ]
+      },
+      {
+        "id": "GV-02176",
+        "nombre": "2322_S/E CENTRAL CORRALES",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_cordillera"
+        ]
+      },
+      {
+        "id": "GV-02186",
+        "nombre": "2336_S/E CENTRAL PUNTA DEL VIENTO",
+        "categoria": "Subestación",
+        "zonas": [
+          "06_cordillera"
+        ]
+      },
+      {
+        "id": "GV-02547",
+        "nombre": "246_HP SAN ANDRES",
+        "categoria": "Central",
+        "zonas": [
+          "06_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01180",
+        "nombre": "314_S/E CENTRAL HORNITOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-02578",
+        "nombre": "327_HP EL PASO",
+        "categoria": "Central",
+        "zonas": [
+          "06_cordillera"
+        ]
+      },
+      {
+        "id": "GV-02598",
+        "nombre": "441_HP DOS VALLES",
+        "categoria": "Central",
+        "zonas": [
+          "06_cordillera"
+        ]
+      },
+      {
+        "id": "GV-02609",
+        "nombre": "492_HP ALFALFAL II",
+        "categoria": "Central",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-02611",
+        "nombre": "504_HP PALACIOS",
+        "categoria": "Central",
+        "zonas": [
+          "06_cordillera"
+        ]
+      },
+      {
+        "id": "GV-02622",
+        "nombre": "583_HP CIPRESILLOS",
+        "categoria": "Central",
+        "zonas": [
+          "06_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01423",
+        "nombre": "672_S/E BAÑOS DEL TORO",
+        "categoria": "Subestación",
+        "zonas": [
+          "04_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01485",
+        "nombre": "783_S/E JUNCAL PORTILLO",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01534",
+        "nombre": "860_S/E PHI",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01536",
+        "nombre": "862_S/E LOS BRONCES",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01538",
+        "nombre": "864_S/E SAN FRANCISCO",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01539",
+        "nombre": "865_S/E SAG 1",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01540",
+        "nombre": "866_S/E SAG 2",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01541",
+        "nombre": "867_S/E MINA NUEVA",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01542",
+        "nombre": "868_S/E MOLIENDA 3",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01543",
+        "nombre": "869_S/E CONFLUENCIA",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01563",
+        "nombre": "896_S/E KM 21",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01564",
+        "nombre": "897_S/E SALADILLO",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01565",
+        "nombre": "898_S/E SAG",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01566",
+        "nombre": "899_S/E MINA",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01567",
+        "nombre": "900_S/E MOLINOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01568",
+        "nombre": "901_S/E SPPC",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01569",
+        "nombre": "902_S/E CORDILLERA (ANDINA)",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01570",
+        "nombre": "904_S/E MOLINO DE BOLAS",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01572",
+        "nombre": "907_S/E REFUGIO KM 21",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      }
+    ],
+    "lineas": [
+      {
+        "id": "GV-00079",
+        "nombre": "101_LOS MAQUIS - HORNITOS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01057",
+        "nombre": "1172_JUNCALITO - HORNITOS 11KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01059",
+        "nombre": "1320_TAP PALACIOS - CENTRAL PALACIOS 23KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01060",
+        "nombre": "1328_CALAMA - PUERTO SECO SOLAR 23KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01063",
+        "nombre": "1446_CENTRAL CIPRESILLOS - ALTO CACHAPOAL 23KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00293",
+        "nombre": "1511_PUNTA COLORADA - TRES QUEBRADAS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "04_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00368",
+        "nombre": "1676_LAS TORTOLAS - LOS MAITENES 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01069",
+        "nombre": "1723_CENTRAL CORRALES – CENTRAL SAN ANDRES (HSA) 23KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01071",
+        "nombre": "1744_CENTRAL CORRALES – CENTRAL PUNTA DEL VIENTO 23KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01080",
+        "nombre": "1959_JUNCAL - HNOS CLARK 44 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00068",
+        "nombre": "34_CENTRAL ALFALFAL - LOS ALMENDROS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00112",
+        "nombre": "398_SANTA FILOMENA - CONFLUENCIA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00515",
+        "nombre": "445_VICUÑA - BAÑOS DEL TORO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "04_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01031",
+        "nombre": "573_FFCC LOS ANDES - JUNCAL 44KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00854",
+        "nombre": "631_SAN FRANCISCO - LOS BRONCES 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00745",
+        "nombre": "63_ACONCAGUA - SALADILLO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00119",
+        "nombre": "648_CONFLUENCIA - LOS MAITENES 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00855",
+        "nombre": "650_LOS MAITENES - SAN FRANCISCO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00865",
+        "nombre": "759_TAP PHI - PHI 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00866",
+        "nombre": "760_LOS BRONCES - MINA NUEVA 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00130",
+        "nombre": "782_CENTRAL SAN ANDRES - CENTRAL LA CONFLUENCIA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00075",
+        "nombre": "80_QUILAPILUN - LOS MAQUIS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_cordillera",
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00145",
+        "nombre": "862_CENTRAL LA CONFLUENCIA - CENTRAL EL PASO 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00587",
+        "nombre": "875_MINERO - SEWELL 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01050",
+        "nombre": "977_DOS VALLES - EL PASO 23KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "06_cordillera"
+        ]
+      }
+    ],
+    "netbilling": []
+  }
+}
