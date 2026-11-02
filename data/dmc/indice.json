@@ -1,10 +1,35 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-01 22:47",
+  "catalogoActualizadoEn": "2026-11-02 15:33",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
+    {
+      "codigo": "A601/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Viento",
+      "titulo": "Viento Normal a Moderado en litoral de las regiones de Coquimbo, Valparaíso, O'Higgins, Maule, Ñuble y Biobío",
+      "desdeTexto": "la tarde del jueves 05 de noviembre del 2026",
+      "hastaTexto": "la tarde del sábado 07 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-05",
+      "fechaFinDia": "2026-11-07",
+      "fechaEmision": "2026-11-02T12:08:00-03:00",
+      "regiones": [
+        "Biobío",
+        "Coquimbo",
+        "Maule",
+        "O’Higgins",
+        "Valparaíso",
+        "Ñuble"
+      ],
+      "numeroPoligonos": 6,
+      "archivoGeojson": "data/dmc/A601_2026.geojson",
+      "archivoCobertura": "data/dmc/A601_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A601_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A601_2026_documento.json"
+    },
     {
       "codigo": "A599/2026",
       "tipo": "Aviso",
@@ -24,6 +49,26 @@
       "archivoImpactos": "data/dmc/A599_2026_impactos.json",
       "observacion": "Probabilidad de tormentas de arena",
       "archivoDocumento": "data/dmc/A599_2026_documento.json"
+    },
+    {
+      "codigo": "A602/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en cordillera de la región de Arica y Parinacota",
+      "desdeTexto": "la tarde del miércoles 04 de noviembre del 2026",
+      "hastaTexto": "la noche del miércoles 04 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-04",
+      "fechaFinDia": "2026-11-04",
+      "fechaEmision": "2026-11-02T14:22:00-03:00",
+      "regiones": [
+        "Arica y Parinacota"
+      ],
+      "numeroPoligonos": 1,
+      "archivoGeojson": "data/dmc/A602_2026.geojson",
+      "archivoCobertura": "data/dmc/A602_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A602_2026_impactos.json",
+      "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
+      "archivoDocumento": "data/dmc/A602_2026_documento.json"
     },
     {
       "codigo": "A597-1/2026",
@@ -71,6 +116,53 @@
       "archivoDocumento": "data/dmc/A600_2026_documento.json"
     },
     {
+      "codigo": "A591-8/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Valparaíso a la región del Biobío",
+      "desdeTexto": "la tarde del lunes 02 de noviembre del 2026",
+      "hastaTexto": "la noche del martes 03 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-02",
+      "fechaFinDia": "2026-11-03",
+      "fechaEmision": "2026-11-02T15:28:00-03:00",
+      "regiones": [
+        "Biobío",
+        "Maule",
+        "Metropolitana",
+        "O’Higgins",
+        "Valparaíso",
+        "Ñuble"
+      ],
+      "numeroPoligonos": 12,
+      "archivoGeojson": "data/dmc/A591-8_2026.geojson",
+      "archivoCobertura": "data/dmc/A591-8_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A591-8_2026_impactos.json",
+      "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
+      "archivoDocumento": "data/dmc/A591-8_2026_documento.json"
+    },
+    {
+      "codigo": "A603/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en zonas de las regiones de La Araucanía, Los Ríos y Los Lagos",
+      "desdeTexto": "la mañana del martes 03 de noviembre del 2026",
+      "hastaTexto": "la tarde del martes 03 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-03",
+      "fechaFinDia": "2026-11-03",
+      "fechaEmision": "2026-11-02T14:25:00-03:00",
+      "regiones": [
+        "La Araucanía",
+        "Los Lagos",
+        "Los Ríos"
+      ],
+      "numeroPoligonos": 10,
+      "archivoGeojson": "data/dmc/A603_2026.geojson",
+      "archivoCobertura": "data/dmc/A603_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A603_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A603_2026_documento.json"
+    },
+    {
       "codigo": "AA192/2026",
       "tipo": "Alerta",
       "fenomeno": "Viento",
@@ -109,31 +201,7 @@
       "archivoImpactos": "data/dmc/A598_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A598_2026_documento.json"
-    },
-    {
-      "codigo": "A591-7/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Coquimbo a la región del Maule",
-      "desdeTexto": "la tarde del domingo 01 de noviembre del 2026",
-      "hastaTexto": "la noche del lunes 02 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-01",
-      "fechaFinDia": "2026-11-02",
-      "fechaEmision": "2026-11-01T12:41:00-03:00",
-      "regiones": [
-        "Coquimbo",
-        "Maule",
-        "Metropolitana",
-        "O’Higgins",
-        "Valparaíso"
-      ],
-      "numeroPoligonos": 12,
-      "archivoGeojson": "data/dmc/A591-7_2026.geojson",
-      "archivoCobertura": "data/dmc/A591-7_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A591-7_2026_impactos.json",
-      "observacion": "Probabilidad de granizos y fuertes rachas de vientos locales",
-      "archivoDocumento": "data/dmc/A591-7_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-02T08:05:35.802455-03:00"
+  "generadoEn": "2026-11-02T18:43:11.296362-03:00"
 }

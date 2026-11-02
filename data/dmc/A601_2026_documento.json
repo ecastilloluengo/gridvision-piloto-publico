@@ -1,0 +1,321 @@
+{
+  "codigo": "A601/2026",
+  "tipo": "Aviso",
+  "titulo": "Viento Normal a Moderado en litoral de las regiones de Coquimbo, Valparaíso, O'Higgins, Maule, Ñuble y Biobío",
+  "fenomeno": "Viento",
+  "emisionTexto": "Lunes 2 de noviembre del 2026 a las 12:08 hrs.",
+  "condicionSinoptica": "Altas presiones",
+  "desde": "la tarde del jueves 05 de noviembre del 2026",
+  "hasta": "la tarde del sábado 07 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Coquimbo (Litoral)\nValparaíso (Litoral)\nO'Higgins (Litoral)\nMaule (Litoral)\nÑuble (Litoral)\nBiobío (Litoral)",
+  "tablaTitulo": "Intensidad estimada del Viento en Km/h",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: Coquimbo"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 05"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 06"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 07"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Litoral"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-40 RACHAS 50"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: Valparaíso"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 05"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 06"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 07"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Litoral"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-40 RACHAS 50"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-40 RACHAS 50"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: O'Higgins"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 05"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 06"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 07"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Litoral"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-40 RACHAS 50"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-40 RACHAS 50"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: Maule"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 05"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 06"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 07"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Litoral"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-40 RACHAS 50"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-40 RACHAS 50"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: Ñuble"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 05"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 06"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 07"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Litoral"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-40 RACHAS 50"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-40 RACHAS 50"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: Biobío"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 05"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 06"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 07"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Litoral"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-40 RACHAS 50"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-40 RACHAS 50"
+      }
+    ]
+  ]
+}

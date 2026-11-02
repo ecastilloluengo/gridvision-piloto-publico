@@ -1,0 +1,14 @@
+{
+  "codigo": "A603/2026",
+  "tipo": "Aviso",
+  "titulo": "Probables Tormentas Eléctricas en zonas de las regiones de La Araucanía, Los Ríos y Los Lagos",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Lunes 2 de noviembre del 2026 a las 14:25 hrs.",
+  "condicionSinoptica": "Inestabilidad atmosférica",
+  "desde": "la mañana del martes 03 de noviembre del 2026",
+  "hasta": "la tarde del martes 03 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "La Araucanía (Cordillera Costa, Valle)\nLos Ríos (Litoral, Cordillera Costa, Valle, Precordillera)\nLos Lagos (Litoral, Cordillera Costa, Valle, Chiloé)",
+  "tablaTitulo": "",
+  "tablaFilas": []
+}
