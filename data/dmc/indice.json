@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-02 15:33",
+  "catalogoActualizadoEn": "2026-11-03 09:44",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -51,6 +51,29 @@
       "archivoDocumento": "data/dmc/A599_2026_documento.json"
     },
     {
+      "codigo": "A597-2/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Viento",
+      "titulo": "Viento Normal a Moderado en cordillera de las regiones de Coquimbo, Maule, Ñuble y Biobío",
+      "desdeTexto": "la mañana del martes 03 de noviembre del 2026",
+      "hastaTexto": "la noche del miércoles 04 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-03",
+      "fechaFinDia": "2026-11-04",
+      "fechaEmision": "2026-11-03T06:07:00-03:00",
+      "regiones": [
+        "Biobío",
+        "Coquimbo",
+        "Maule",
+        "Ñuble"
+      ],
+      "numeroPoligonos": 4,
+      "archivoGeojson": "data/dmc/A597-2_2026.geojson",
+      "archivoCobertura": "data/dmc/A597-2_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A597-2_2026_impactos.json",
+      "observacion": "Probabilidad de ventisca",
+      "archivoDocumento": "data/dmc/A597-2_2026_documento.json"
+    },
+    {
       "codigo": "A602/2026",
       "tipo": "Aviso",
       "fenomeno": "Tormentas Eléctricas",
@@ -69,30 +92,6 @@
       "archivoImpactos": "data/dmc/A602_2026_impactos.json",
       "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
       "archivoDocumento": "data/dmc/A602_2026_documento.json"
-    },
-    {
-      "codigo": "A597-1/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Viento",
-      "titulo": "Viento Normal a Moderado en cordillera desde la región de Coquimbo a la región del Maule",
-      "desdeTexto": "la tarde del domingo 01 de noviembre del 2026",
-      "hastaTexto": "la noche del miércoles 04 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-01",
-      "fechaFinDia": "2026-11-04",
-      "fechaEmision": "2026-11-01T13:08:00-03:00",
-      "regiones": [
-        "Coquimbo",
-        "Maule",
-        "Metropolitana",
-        "O’Higgins",
-        "Valparaíso"
-      ],
-      "numeroPoligonos": 5,
-      "archivoGeojson": "data/dmc/A597-1_2026.geojson",
-      "archivoCobertura": "data/dmc/A597-1_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A597-1_2026_impactos.json",
-      "observacion": "Probabilidad de ventisca",
-      "archivoDocumento": "data/dmc/A597-1_2026_documento.json"
     },
     {
       "codigo": "A600/2026",
@@ -116,15 +115,15 @@
       "archivoDocumento": "data/dmc/A600_2026_documento.json"
     },
     {
-      "codigo": "A591-8/2026",
+      "codigo": "A591-9/2026",
       "tipo": "Aviso",
       "fenomeno": "Tormentas Eléctricas",
       "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Valparaíso a la región del Biobío",
-      "desdeTexto": "la tarde del lunes 02 de noviembre del 2026",
+      "desdeTexto": "la tarde del martes 03 de noviembre del 2026",
       "hastaTexto": "la noche del martes 03 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-02",
+      "fechaInicioDia": "2026-11-03",
       "fechaFinDia": "2026-11-03",
-      "fechaEmision": "2026-11-02T15:28:00-03:00",
+      "fechaEmision": "2026-11-03T09:39:00-03:00",
       "regiones": [
         "Biobío",
         "Maule",
@@ -133,12 +132,32 @@
         "Valparaíso",
         "Ñuble"
       ],
-      "numeroPoligonos": 12,
-      "archivoGeojson": "data/dmc/A591-8_2026.geojson",
-      "archivoCobertura": "data/dmc/A591-8_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A591-8_2026_impactos.json",
+      "numeroPoligonos": 14,
+      "archivoGeojson": "data/dmc/A591-9_2026.geojson",
+      "archivoCobertura": "data/dmc/A591-9_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A591-9_2026_impactos.json",
       "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
-      "archivoDocumento": "data/dmc/A591-8_2026_documento.json"
+      "archivoDocumento": "data/dmc/A591-9_2026_documento.json"
+    },
+    {
+      "codigo": "A604/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Nubes Convectivas Tornádicas",
+      "titulo": "Probable desarrollo de Nubes Convectivas con características tornádicas en zonas de la región de La Araucanía",
+      "desdeTexto": "la tarde del martes 03 de noviembre del 2026",
+      "hastaTexto": "la tarde del martes 03 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-03",
+      "fechaFinDia": "2026-11-03",
+      "fechaEmision": "2026-11-03T09:12:00-03:00",
+      "regiones": [
+        "La Araucanía"
+      ],
+      "numeroPoligonos": 3,
+      "archivoGeojson": "data/dmc/A604_2026.geojson",
+      "archivoCobertura": "data/dmc/A604_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A604_2026_impactos.json",
+      "observacion": "Probabilidad de intensos vientos locales arrachados y tornádicos",
+      "archivoDocumento": "data/dmc/A604_2026_documento.json"
     },
     {
       "codigo": "A603/2026",
@@ -203,5 +222,5 @@
       "archivoDocumento": "data/dmc/A598_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-02T18:43:11.296362-03:00"
+  "generadoEn": "2026-11-03T14:02:59.588484-03:00"
 }

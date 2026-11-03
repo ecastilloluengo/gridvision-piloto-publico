@@ -1,0 +1,179 @@
+{
+  "codigo": "A597-2/2026",
+  "tipo": "Aviso",
+  "titulo": "Viento Normal a Moderado en cordillera de las regiones de Coquimbo, Maule, Ñuble y Biobío",
+  "fenomeno": "Viento",
+  "emisionTexto": "Martes 3 de noviembre del 2026 a las 06:07 hrs.",
+  "condicionSinoptica": "Corriente en chorro",
+  "desde": "la mañana del martes 03 de noviembre del 2026",
+  "hasta": "la noche del miércoles 04 de noviembre del 2026",
+  "observacion": "Probabilidad de ventisca",
+  "textoZonaAfecta": "Coquimbo (Cordillera)\nMaule (Cordillera)\nÑuble (Cordillera)\nBiobío (Cordillera)",
+  "tablaTitulo": "Intensidad estimada del Viento en Km/h",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Coquimbo"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 03"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 04"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-40 RACHAS 70"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Maule"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 03"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 04"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-40 RACHA 60"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Ñuble"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 03"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 04"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-40 RACHA 60"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Biobío"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 03"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 04"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-40 RACHA 60"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ]
+  ]
+}
