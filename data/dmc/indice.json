@@ -1,20 +1,20 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-04 00:07",
+  "catalogoActualizadoEn": "2026-11-04 11:51",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
     {
-      "codigo": "A601/2026",
+      "codigo": "A601-1/2026",
       "tipo": "Aviso",
       "fenomeno": "Viento",
-      "titulo": "Viento Normal a Moderado en litoral de las regiones de Coquimbo, Valparaíso, O'Higgins, Maule, Ñuble y Biobío",
+      "titulo": "Viento Normal a Moderado en zonas de las regiones de Coquimbo, Valparaíso, O'Higgins, Maule, Ñuble y Biobío",
       "desdeTexto": "la tarde del jueves 05 de noviembre del 2026",
       "hastaTexto": "la tarde del sábado 07 de noviembre del 2026",
       "fechaInicioDia": "2026-11-05",
       "fechaFinDia": "2026-11-07",
-      "fechaEmision": "2026-11-02T12:08:00-03:00",
+      "fechaEmision": "2026-11-04T11:46:00-03:00",
       "regiones": [
         "Biobío",
         "Coquimbo",
@@ -23,12 +23,12 @@
         "Valparaíso",
         "Ñuble"
       ],
-      "numeroPoligonos": 6,
-      "archivoGeojson": "data/dmc/A601_2026.geojson",
-      "archivoCobertura": "data/dmc/A601_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A601_2026_impactos.json",
+      "numeroPoligonos": 10,
+      "archivoGeojson": "data/dmc/A601-1_2026.geojson",
+      "archivoCobertura": "data/dmc/A601-1_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A601-1_2026_impactos.json",
       "observacion": "",
-      "archivoDocumento": "data/dmc/A601_2026_documento.json"
+      "archivoDocumento": "data/dmc/A601-1_2026_documento.json"
     },
     {
       "codigo": "A599/2026",
@@ -115,5 +115,5 @@
       "archivoDocumento": "data/dmc/A600_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-04T03:22:01.730948-03:00"
+  "generadoEn": "2026-11-04T14:14:41.326094-03:00"
 }
