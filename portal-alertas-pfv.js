@@ -173,16 +173,23 @@
     if (!contenedor) return;
     const texto = contenedor.querySelector('.pfv-aviso-texto');
     const boton = contenedor.querySelector('.pfv-silenciar');
-    if (e.activa) {
+    // Una interrupcion del backend suspende el sonido, pero conserva visible
+    // la ultima alarma como dato NO verificado hasta recuperar telemetria.
+    if (e.sinConexion) {
+      contenedor.dataset.nivel = 'sin-conexion';
+      texto.textContent = e.activa
+        ? '⚠ Sin conexión a GridVision. Última alerta NO verificada: ' + e.mensaje
+        : '⚠ Sin conexión a GridVision. Revisar directamente el fabricante.';
+      boton.hidden = true;
+    } else if (e.activa) {
       const silenciada = reconocida(id);
       contenedor.dataset.nivel = silenciada ? 'reconocida' : 'alarma';
       texto.textContent = (silenciada ? '✓ Reconocida en este PC. ' : '🔔 ') + e.mensaje;
       boton.hidden = silenciada;
     } else {
       contenedor.dataset.nivel = 'normal';
-      texto.textContent = e.sinConexion
-        ? 'Sin conexión a GridVision. Revisar fabricante (sin alarma de inversores).'
-        : (!e.datoRecibido ? 'Esperando lecturas…' : (e.candidato ? 'Verificando lectura anormal…' : 'Sin avisos detectados'));
+      texto.textContent = !e.datoRecibido ? 'Esperando lecturas…'
+        : (e.candidato ? 'Verificando lectura anormal…' : 'Sin avisos detectados');
       boton.hidden = true;
     }
   }
@@ -199,6 +206,10 @@
       } finally { clearTimeout(timeout); }
       if (!respuesta.ok) throw new Error('HTTP ' + respuesta.status);
       const datos = await respuesta.json();
+      // Algunos proxies responden HTTP 200 con un JSON de error.
+      if (datos && typeof datos === 'object' && datos.error) {
+        throw new Error('Error de GridVision: ' + String(datos.error));
+      }
       estado.sinConexion = 0;
       estado.datoRecibido = true;
       actualizarCondicion(id, evaluar(id, datos));
@@ -234,7 +245,8 @@
     }
   }
   function comprobarSonido() {
-    if (Object.keys(PLANTAS).some(id => estados[id].activa && !reconocida(id))) {
+    if (Object.keys(PLANTAS).some(id =>
+      estados[id].activa && !estados[id].sinConexion && !reconocida(id))) {
       emitirTresPitidos();
     }
   }
@@ -296,6 +308,7 @@
     .pfv-alerta-integrada{margin-top:10px;border-radius:8px;border:1px solid #314f5c;background:rgba(12,43,56,.7);padding:8px 10px;display:flex;flex-wrap:wrap;gap:7px;align-items:center;justify-content:space-between}
     .pfv-alerta-integrada[data-nivel="alarma"]{border-color:#ff6565;background:rgba(153,35,47,.24);box-shadow:inset 3px 0 #ff5d65}
     .pfv-alerta-integrada[data-nivel="reconocida"]{border-color:#f5b948;background:rgba(148,99,21,.13)}
+    .pfv-alerta-integrada[data-nivel="sin-conexion"]{border-color:#f5b948;background:rgba(148,99,21,.13)}
     .pfv-aviso-texto{color:#bad0dc;font:600 11px/1.45 system-ui;flex:1 1 190px}
     .pfv-alerta-integrada[data-nivel="alarma"] .pfv-aviso-texto{color:#ffd4d4}
     .pfv-aviso-acciones{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
@@ -308,8 +321,12 @@
   `;
   document.head.appendChild(css);
   montar();
-  revisar();
-  setInterval(revisar, INTERVAL_MS);
+  // Evitar solapamiento: programar siguiente sondeo solo al terminar el actual.
+  async function cicloConsulta() {
+    try { await revisar(); }
+    finally { setTimeout(cicloConsulta, INTERVAL_MS); }
+  }
+  cicloConsulta();
   setInterval(comprobarSonido, PITIDOS_MS);
   window.addEventListener('storage', evento => {
     if (evento.key?.startsWith(PREFIJO)) {
