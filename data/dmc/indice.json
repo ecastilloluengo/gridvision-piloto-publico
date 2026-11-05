@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-04 15:17",
+  "catalogoActualizadoEn": "2026-11-04 22:50",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -75,50 +75,7 @@
       "archivoImpactos": "data/dmc/A599_2026_impactos.json",
       "observacion": "Probabilidad de tormentas de arena",
       "archivoDocumento": "data/dmc/A599_2026_documento.json"
-    },
-    {
-      "codigo": "A597-2/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Viento",
-      "titulo": "Viento Normal a Moderado en cordillera de las regiones de Coquimbo, Maule, Ñuble y Biobío",
-      "desdeTexto": "la mañana del martes 03 de noviembre del 2026",
-      "hastaTexto": "la noche del miércoles 04 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-03",
-      "fechaFinDia": "2026-11-04",
-      "fechaEmision": "2026-11-03T06:07:00-03:00",
-      "regiones": [
-        "Biobío",
-        "Coquimbo",
-        "Maule",
-        "Ñuble"
-      ],
-      "numeroPoligonos": 4,
-      "archivoGeojson": "data/dmc/A597-2_2026.geojson",
-      "archivoCobertura": "data/dmc/A597-2_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A597-2_2026_impactos.json",
-      "observacion": "Probabilidad de ventisca",
-      "archivoDocumento": "data/dmc/A597-2_2026_documento.json"
-    },
-    {
-      "codigo": "A602/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en cordillera de la región de Arica y Parinacota",
-      "desdeTexto": "la tarde del miércoles 04 de noviembre del 2026",
-      "hastaTexto": "la noche del miércoles 04 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-04",
-      "fechaFinDia": "2026-11-04",
-      "fechaEmision": "2026-11-02T14:22:00-03:00",
-      "regiones": [
-        "Arica y Parinacota"
-      ],
-      "numeroPoligonos": 1,
-      "archivoGeojson": "data/dmc/A602_2026.geojson",
-      "archivoCobertura": "data/dmc/A602_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A602_2026_impactos.json",
-      "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
-      "archivoDocumento": "data/dmc/A602_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-04T20:39:59.820546-03:00"
+  "generadoEn": "2026-11-05T03:46:14.824217-03:00"
 }
