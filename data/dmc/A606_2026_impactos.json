@@ -1,0 +1,346 @@
+{
+  "codigo": "A606/2026",
+  "criterio": "intersección geográfica",
+  "advertencia": "Área del aviso: exposición potencial, no impacto confirmado.",
+  "totales": {
+    "activos": 25,
+    "lineas": 16,
+    "netbilling": 0
+  },
+  "elementos": {
+    "activos": [
+      {
+        "id": "GV-01737",
+        "nombre": "1751_S/E NUEVA NIVEL 17",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01738",
+        "nombre": "1752_S/E NUEVA NIVEL 11",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-02529",
+        "nombre": "184_HP HORNITOS",
+        "categoria": "Central",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01996",
+        "nombre": "2075_S/E CENTRAL ALFALFAL II",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01180",
+        "nombre": "314_S/E CENTRAL HORNITOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-02609",
+        "nombre": "492_HP ALFALFAL II",
+        "categoria": "Central",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01423",
+        "nombre": "672_S/E BAÑOS DEL TORO",
+        "categoria": "Subestación",
+        "zonas": [
+          "04_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01485",
+        "nombre": "783_S/E JUNCAL PORTILLO",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01534",
+        "nombre": "860_S/E PHI",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01536",
+        "nombre": "862_S/E LOS BRONCES",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01538",
+        "nombre": "864_S/E SAN FRANCISCO",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01539",
+        "nombre": "865_S/E SAG 1",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01540",
+        "nombre": "866_S/E SAG 2",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01541",
+        "nombre": "867_S/E MINA NUEVA",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01542",
+        "nombre": "868_S/E MOLIENDA 3",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01543",
+        "nombre": "869_S/E CONFLUENCIA",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01563",
+        "nombre": "896_S/E KM 21",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01564",
+        "nombre": "897_S/E SALADILLO",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01565",
+        "nombre": "898_S/E SAG",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01566",
+        "nombre": "899_S/E MINA",
+        "categoria": "Subestación",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01567",
+        "nombre": "900_S/E MOLINOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01568",
+        "nombre": "901_S/E SPPC",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01569",
+        "nombre": "902_S/E CORDILLERA (ANDINA)",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01570",
+        "nombre": "904_S/E MOLINO DE BOLAS",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01572",
+        "nombre": "907_S/E REFUGIO KM 21",
+        "categoria": "Subestación",
+        "zonas": [
+          "05_cordillera"
+        ]
+      }
+    ],
+    "lineas": [
+      {
+        "id": "GV-00079",
+        "nombre": "101_LOS MAQUIS - HORNITOS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01057",
+        "nombre": "1172_JUNCALITO - HORNITOS 11KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00293",
+        "nombre": "1511_PUNTA COLORADA - TRES QUEBRADAS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "04_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00368",
+        "nombre": "1676_LAS TORTOLAS - LOS MAITENES 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01080",
+        "nombre": "1959_JUNCAL - HNOS CLARK 44 KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00068",
+        "nombre": "34_CENTRAL ALFALFAL - LOS ALMENDROS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00112",
+        "nombre": "398_SANTA FILOMENA - CONFLUENCIA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00515",
+        "nombre": "445_VICUÑA - BAÑOS DEL TORO 110KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "04_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01031",
+        "nombre": "573_FFCC LOS ANDES - JUNCAL 44KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00854",
+        "nombre": "631_SAN FRANCISCO - LOS BRONCES 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00745",
+        "nombre": "63_ACONCAGUA - SALADILLO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00119",
+        "nombre": "648_CONFLUENCIA - LOS MAITENES 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00855",
+        "nombre": "650_LOS MAITENES - SAN FRANCISCO 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00865",
+        "nombre": "759_TAP PHI - PHI 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00866",
+        "nombre": "760_LOS BRONCES - MINA NUEVA 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05m_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00075",
+        "nombre": "80_QUILAPILUN - LOS MAQUIS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "05_cordillera",
+          "05m_cordillera"
+        ]
+      }
+    ],
+    "netbilling": []
+  }
+}

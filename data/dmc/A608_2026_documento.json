@@ -1,0 +1,14 @@
+{
+  "codigo": "A608/2026",
+  "tipo": "Aviso",
+  "titulo": "Probables Tormentas Eléctricas en zonas de las regiones de La Araucanía, Los Ríos y Los Lagos",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Jueves 5 de noviembre del 2026 a las 12:19 hrs.",
+  "condicionSinoptica": "Inestabilidad atmosférica",
+  "desde": "la tarde del jueves 05 de noviembre del 2026",
+  "hasta": "la noche del jueves 05 de noviembre del 2026",
+  "observacion": "Probabilidad de fuertes rachas de vientos locales",
+  "textoZonaAfecta": "La Araucanía (Precordillera)\nLos Ríos (Valle, Precordillera)\nLos Lagos (Valle, Precordillera, Chiloé, Litoral Interior)",
+  "tablaTitulo": "",
+  "tablaFilas": []
+}

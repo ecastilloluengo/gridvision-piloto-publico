@@ -1,38 +1,61 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-04 22:50",
+  "catalogoActualizadoEn": "2026-11-05 12:24",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
     {
-      "codigo": "A605/2026",
+      "codigo": "A607/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en cordillera de las regiones de Arica y Parinacota y Tarapacá",
+      "desdeTexto": "la tarde del viernes 06 de noviembre del 2026",
+      "hastaTexto": "la noche del lunes 09 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-06",
+      "fechaFinDia": "2026-11-09",
+      "fechaEmision": "2026-11-05T11:51:00-03:00",
+      "regiones": [
+        "Arica y Parinacota",
+        "Tarapacá"
+      ],
+      "numeroPoligonos": 2,
+      "archivoGeojson": "data/dmc/A607_2026.geojson",
+      "archivoCobertura": "data/dmc/A607_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A607_2026_impactos.json",
+      "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
+      "archivoDocumento": "data/dmc/A607_2026_documento.json"
+    },
+    {
+      "codigo": "A605-2/2026",
       "tipo": "Aviso",
       "fenomeno": "Altas Temperaturas",
-      "titulo": "Altas Temperaturas en zonas desde la región de Coquimbo a la región del Biobío",
+      "titulo": "Altas Temperaturas en zonas desde la región de Atacama a la región de La Araucanía",
       "desdeTexto": "la tarde del sábado 07 de noviembre del 2026",
       "hastaTexto": "la tarde del domingo 08 de noviembre del 2026",
       "fechaInicioDia": "2026-11-07",
       "fechaFinDia": "2026-11-08",
-      "fechaEmision": "2026-11-04T11:46:00-03:00",
+      "fechaEmision": "2026-11-05T11:58:00-03:00",
       "regiones": [
+        "Atacama",
         "Biobío",
         "Coquimbo",
+        "La Araucanía",
         "Maule",
         "Metropolitana",
         "O’Higgins",
         "Valparaíso",
         "Ñuble"
       ],
-      "numeroPoligonos": 21,
-      "archivoGeojson": "data/dmc/A605_2026.geojson",
-      "archivoCobertura": "data/dmc/A605_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A605_2026_impactos.json",
+      "numeroPoligonos": 26,
+      "archivoGeojson": "data/dmc/A605-2_2026.geojson",
+      "archivoCobertura": "data/dmc/A605-2_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A605-2_2026_impactos.json",
       "observacion": "",
-      "archivoDocumento": "data/dmc/A605_2026_documento.json"
+      "archivoDocumento": "data/dmc/A605-2_2026_documento.json"
     },
     {
-      "codigo": "A601-1/2026",
+      "codigo": "A601-2/2026",
       "tipo": "Aviso",
       "fenomeno": "Viento",
       "titulo": "Viento Normal a Moderado en zonas de las regiones de Coquimbo, Valparaíso, O'Higgins, Maule, Ñuble y Biobío",
@@ -40,7 +63,7 @@
       "hastaTexto": "la tarde del sábado 07 de noviembre del 2026",
       "fechaInicioDia": "2026-11-05",
       "fechaFinDia": "2026-11-07",
-      "fechaEmision": "2026-11-04T11:46:00-03:00",
+      "fechaEmision": "2026-11-05T11:53:00-03:00",
       "regiones": [
         "Biobío",
         "Coquimbo",
@@ -50,32 +73,76 @@
         "Ñuble"
       ],
       "numeroPoligonos": 10,
-      "archivoGeojson": "data/dmc/A601-1_2026.geojson",
-      "archivoCobertura": "data/dmc/A601-1_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A601-1_2026_impactos.json",
+      "archivoGeojson": "data/dmc/A601-2_2026.geojson",
+      "archivoCobertura": "data/dmc/A601-2_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A601-2_2026_impactos.json",
       "observacion": "",
-      "archivoDocumento": "data/dmc/A601-1_2026_documento.json"
+      "archivoDocumento": "data/dmc/A601-2_2026_documento.json"
     },
     {
-      "codigo": "A599/2026",
+      "codigo": "A599-1/2026",
       "tipo": "Aviso",
       "fenomeno": "Viento",
       "titulo": "Viento Normal a Moderado en Litoral provincia de Huasco - Región de Atacama",
-      "desdeTexto": "la tarde del miércoles 04 de noviembre del 2026",
-      "hastaTexto": "la noche del viernes 06 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-04",
-      "fechaFinDia": "2026-11-06",
-      "fechaEmision": "2026-11-01T12:34:00-03:00",
+      "desdeTexto": "la tarde del jueves 05 de noviembre del 2026",
+      "hastaTexto": "la noche del sábado 07 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-05",
+      "fechaFinDia": "2026-11-07",
+      "fechaEmision": "2026-11-05T11:53:00-03:00",
       "regiones": [
         "Atacama"
       ],
       "numeroPoligonos": 1,
-      "archivoGeojson": "data/dmc/A599_2026.geojson",
-      "archivoCobertura": "data/dmc/A599_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A599_2026_impactos.json",
+      "archivoGeojson": "data/dmc/A599-1_2026.geojson",
+      "archivoCobertura": "data/dmc/A599-1_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A599-1_2026_impactos.json",
       "observacion": "Probabilidad de tormentas de arena",
-      "archivoDocumento": "data/dmc/A599_2026_documento.json"
+      "archivoDocumento": "data/dmc/A599-1_2026_documento.json"
+    },
+    {
+      "codigo": "A606/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Viento",
+      "titulo": "Viento Normal a Moderado en cordillera de las regiones de Coquimbo, Valparaíso y Metropolitana",
+      "desdeTexto": "la madrugada del viernes 06 de noviembre del 2026",
+      "hastaTexto": "la noche del viernes 06 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-06",
+      "fechaFinDia": "2026-11-06",
+      "fechaEmision": "2026-11-05T11:43:00-03:00",
+      "regiones": [
+        "Coquimbo",
+        "Metropolitana",
+        "Valparaíso"
+      ],
+      "numeroPoligonos": 3,
+      "archivoGeojson": "data/dmc/A606_2026.geojson",
+      "archivoCobertura": "data/dmc/A606_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A606_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A606_2026_documento.json"
+    },
+    {
+      "codigo": "A608/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en zonas de las regiones de La Araucanía, Los Ríos y Los Lagos",
+      "desdeTexto": "la tarde del jueves 05 de noviembre del 2026",
+      "hastaTexto": "la noche del jueves 05 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-05",
+      "fechaFinDia": "2026-11-05",
+      "fechaEmision": "2026-11-05T12:19:00-03:00",
+      "regiones": [
+        "La Araucanía",
+        "Los Lagos",
+        "Los Ríos"
+      ],
+      "numeroPoligonos": 7,
+      "archivoGeojson": "data/dmc/A608_2026.geojson",
+      "archivoCobertura": "data/dmc/A608_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A608_2026_impactos.json",
+      "observacion": "Probabilidad de fuertes rachas de vientos locales",
+      "archivoDocumento": "data/dmc/A608_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-05T03:46:14.824217-03:00"
+  "generadoEn": "2026-11-05T14:23:45.334908-03:00"
 }
