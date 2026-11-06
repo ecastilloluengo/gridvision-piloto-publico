@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-05 12:24",
+  "catalogoActualizadoEn": "2026-11-05 23:17",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -120,29 +120,7 @@
       "archivoImpactos": "data/dmc/A606_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A606_2026_documento.json"
-    },
-    {
-      "codigo": "A608/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas de las regiones de La Araucanía, Los Ríos y Los Lagos",
-      "desdeTexto": "la tarde del jueves 05 de noviembre del 2026",
-      "hastaTexto": "la noche del jueves 05 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-05",
-      "fechaFinDia": "2026-11-05",
-      "fechaEmision": "2026-11-05T12:19:00-03:00",
-      "regiones": [
-        "La Araucanía",
-        "Los Lagos",
-        "Los Ríos"
-      ],
-      "numeroPoligonos": 7,
-      "archivoGeojson": "data/dmc/A608_2026.geojson",
-      "archivoCobertura": "data/dmc/A608_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A608_2026_impactos.json",
-      "observacion": "Probabilidad de fuertes rachas de vientos locales",
-      "archivoDocumento": "data/dmc/A608_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-05T14:23:45.334908-03:00"
+  "generadoEn": "2026-11-06T03:44:31.938249-03:00"
 }
