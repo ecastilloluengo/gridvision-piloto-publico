@@ -265,7 +265,7 @@ const ControlUbicacion = L.Control.extend({
 
         mapa.locate({
             watch: true,
-            setView: true,
+            setView: false,
             maxZoom: 17,
             enableHighAccuracy: true,
             timeout: 20000,
@@ -328,6 +328,11 @@ mapa.on("locationfound", function (evento) {
         return;
     }
     const posicion = evento.latlng;
+
+    if (primeraLecturaSeguimiento) {
+        primeraLecturaSeguimiento = false;
+        mapa.setView(posicion, 17);
+    }
     const precision = Math.round(evento.accuracy);
 
     if (marcadorUbicacion) {
@@ -367,7 +372,7 @@ mapa.on("locationfound", function (evento) {
              📤 Compartir ubicación
          </button>`
     )
-    .openPopup();
+    ;
 
     circuloPrecision = L.circle(posicion, {
         radius: evento.accuracy,
