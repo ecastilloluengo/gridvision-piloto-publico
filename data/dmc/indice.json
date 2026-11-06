@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-05 23:17",
+  "catalogoActualizadoEn": "2026-11-06 12:10",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -27,43 +27,66 @@
       "archivoDocumento": "data/dmc/A607_2026_documento.json"
     },
     {
-      "codigo": "A605-2/2026",
-      "tipo": "Aviso",
+      "codigo": "AA193/2026",
+      "tipo": "Alerta",
       "fenomeno": "Altas Temperaturas",
-      "titulo": "Altas Temperaturas en zonas desde la región de Atacama a la región de La Araucanía",
+      "titulo": "Evento de Altas Temperaturas Extremas en zonas desde la región de Coquimbo a la región del Maule",
       "desdeTexto": "la tarde del sábado 07 de noviembre del 2026",
       "hastaTexto": "la tarde del domingo 08 de noviembre del 2026",
       "fechaInicioDia": "2026-11-07",
       "fechaFinDia": "2026-11-08",
-      "fechaEmision": "2026-11-05T11:58:00-03:00",
+      "fechaEmision": "2026-11-06T12:02:00-03:00",
+      "regiones": [
+        "Coquimbo",
+        "Maule",
+        "Metropolitana",
+        "O’Higgins",
+        "Valparaíso"
+      ],
+      "numeroPoligonos": 11,
+      "archivoGeojson": "data/dmc/AA193_2026.geojson",
+      "archivoCobertura": "data/dmc/AA193_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/AA193_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/AA193_2026_documento.json"
+    },
+    {
+      "codigo": "A605-3/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Altas Temperaturas",
+      "titulo": "Altas Temperaturas en zonas de las regiones de Atacama, Coquimbo, Valparaíso, O'Higgins, Maule, Ñuble, Biobío y La Araucanía",
+      "desdeTexto": "la tarde del sábado 07 de noviembre del 2026",
+      "hastaTexto": "la tarde del domingo 08 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-07",
+      "fechaFinDia": "2026-11-08",
+      "fechaEmision": "2026-11-06T12:02:00-03:00",
       "regiones": [
         "Atacama",
         "Biobío",
         "Coquimbo",
         "La Araucanía",
         "Maule",
-        "Metropolitana",
         "O’Higgins",
         "Valparaíso",
         "Ñuble"
       ],
-      "numeroPoligonos": 26,
-      "archivoGeojson": "data/dmc/A605-2_2026.geojson",
-      "archivoCobertura": "data/dmc/A605-2_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A605-2_2026_impactos.json",
+      "numeroPoligonos": 15,
+      "archivoGeojson": "data/dmc/A605-3_2026.geojson",
+      "archivoCobertura": "data/dmc/A605-3_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A605-3_2026_impactos.json",
       "observacion": "",
-      "archivoDocumento": "data/dmc/A605-2_2026_documento.json"
+      "archivoDocumento": "data/dmc/A605-3_2026_documento.json"
     },
     {
-      "codigo": "A601-2/2026",
+      "codigo": "A601-3/2026",
       "tipo": "Aviso",
       "fenomeno": "Viento",
       "titulo": "Viento Normal a Moderado en zonas de las regiones de Coquimbo, Valparaíso, O'Higgins, Maule, Ñuble y Biobío",
-      "desdeTexto": "la tarde del jueves 05 de noviembre del 2026",
+      "desdeTexto": "la tarde del viernes 06 de noviembre del 2026",
       "hastaTexto": "la tarde del sábado 07 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-05",
+      "fechaInicioDia": "2026-11-06",
       "fechaFinDia": "2026-11-07",
-      "fechaEmision": "2026-11-05T11:53:00-03:00",
+      "fechaEmision": "2026-11-06T12:05:00-03:00",
       "regiones": [
         "Biobío",
         "Coquimbo",
@@ -72,12 +95,12 @@
         "Valparaíso",
         "Ñuble"
       ],
-      "numeroPoligonos": 10,
-      "archivoGeojson": "data/dmc/A601-2_2026.geojson",
-      "archivoCobertura": "data/dmc/A601-2_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A601-2_2026_impactos.json",
+      "numeroPoligonos": 11,
+      "archivoGeojson": "data/dmc/A601-3_2026.geojson",
+      "archivoCobertura": "data/dmc/A601-3_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A601-3_2026_impactos.json",
       "observacion": "",
-      "archivoDocumento": "data/dmc/A601-2_2026_documento.json"
+      "archivoDocumento": "data/dmc/A601-3_2026_documento.json"
     },
     {
       "codigo": "A599-1/2026",
@@ -122,5 +145,5 @@
       "archivoDocumento": "data/dmc/A606_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-06T03:44:31.938249-03:00"
+  "generadoEn": "2026-11-06T13:45:46.349534-03:00"
 }
