@@ -1,4 +1,4 @@
-﻿const MAP_CENTER = [-40.8, -72.4];
+const MAP_CENTER = [-40.8, -72.4];
 const MAP_ZOOM = 7;
 const ASSETS_URL = "data/processed/activos_puntuales_validados.geojson";
 const LINES_URL = "data/processed/lineas_validadas.geojson";
@@ -21,6 +21,172 @@ const map = L.map("fire-map", {
 window.GridVisionFireMap = map;
 L.control.zoom({ position: "topleft" }).addTo(map);
 L.control.scale({ imperial: false, position: "bottomleft" }).addTo(map);
+
+// ======================================================
+// GRIDVISION FIRE GPS V2 - ACTIVAR / DESACTIVAR / NAVEGACION LIBRE
+// ======================================================
+(() => {
+    let seguimientoActivo = false;
+    let primeraLectura = true;
+    let marcador = null;
+    let circuloPrecision = null;
+    let boton = null;
+    let ultimaLectura = null;
+
+    const control = L.control({ position: "topleft" });
+
+    function mostrarEstado() {
+        if (!boton) return;
+        boton.style.color = seguimientoActivo ? "#1976d2" : "#23313c";
+        boton.style.backgroundColor = seguimientoActivo ? "#e1f0ff" : "white";
+        boton.title = seguimientoActivo
+            ? "Desactivar mi ubicacion actual"
+            : "Activar mi ubicacion actual";
+        boton.setAttribute("aria-label", boton.title);
+        boton.setAttribute("aria-pressed", String(seguimientoActivo));
+    }
+
+    function desactivar() {
+        seguimientoActivo = false;
+        primeraLectura = true;
+        ultimaLectura = null;
+        map.stopLocate();
+        if (marcador) {
+            map.removeLayer(marcador);
+            marcador = null;
+        }
+        if (circuloPrecision) {
+            map.removeLayer(circuloPrecision);
+            circuloPrecision = null;
+        }
+        mostrarEstado();
+    }
+
+    function activar() {
+        seguimientoActivo = true;
+        primeraLectura = true;
+        mostrarEstado();
+        map.locate({
+            watch: true,
+            setView: false,
+            enableHighAccuracy: true,
+            timeout: 20000,
+            maximumAge: 0
+        });
+    }
+
+    async function compartirUbicacion() {
+        if (!ultimaLectura) return;
+        const lat = ultimaLectura.latlng.lat.toFixed(6);
+        const lng = ultimaLectura.latlng.lng.toFixed(6);
+        const url = `https://www.google.com/maps?q=${lat},${lng}`;
+        const texto = `Mi ubicacion actual: ${lat}, ${lng}\nPrecision aproximada: ${Math.round(ultimaLectura.accuracy)} m\n${url}`;
+        try {
+            if (navigator.share) {
+                await navigator.share({ title: "Mi ubicacion - GridVision Fire", text: texto });
+            } else if (navigator.clipboard && navigator.clipboard.writeText) {
+                await navigator.clipboard.writeText(texto);
+                alert("Ubicacion copiada al portapapeles.");
+            } else {
+                window.prompt("Copia tu ubicacion:", texto);
+            }
+        } catch (error) {
+            if (error.name !== "AbortError") {
+                window.prompt("Copia tu ubicacion:", texto);
+            }
+        }
+    }
+
+    control.onAdd = function () {
+        const contenedor = L.DomUtil.create("div", "leaflet-bar leaflet-control");
+        boton = L.DomUtil.create("a", "", contenedor);
+        boton.href = "#";
+        boton.innerHTML = `
+<svg viewBox="0 0 24 24" width="20" height="20"
+     aria-hidden="true">
+  <circle cx="12" cy="12" r="4"
+          fill="none" stroke="currentColor"
+          stroke-width="2"/>
+  <path d="M12 2V5 M12 19V22 M2 12H5 M19 12H22"
+        fill="none" stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"/>
+</svg>`;
+        boton.style.cssText =
+            "display:block;width:30px;height:30px;line-height:30px;" +
+            "font-size:24px;text-align:center;font-weight:bold;cursor:pointer;";
+
+        L.DomEvent.disableClickPropagation(contenedor);
+        L.DomEvent.disableScrollPropagation(contenedor);
+        L.DomEvent.on(boton, "click", function (e) {
+            L.DomEvent.stop(e);
+            if (seguimientoActivo) desactivar();
+            else activar();
+        });
+        mostrarEstado();
+        return contenedor;
+    };
+    control.addTo(map);
+
+    map.on("locationfound", function (e) {
+        if (!seguimientoActivo) return;
+        ultimaLectura = { latlng: e.latlng, accuracy: e.accuracy };
+
+        if (!marcador) {
+            marcador = L.circleMarker(e.latlng, {
+                radius: 8,
+                color: "#ffffff",
+                weight: 3,
+                fillColor: "#1976d2",
+                fillOpacity: 1
+            }).addTo(map);
+            marcador.bindPopup("");
+            marcador.on("popupopen", function (evento) {
+                const popup = evento.popup.getElement();
+                const compartir = popup && popup.querySelector(".gv-fire-share-gps");
+                if (compartir) compartir.addEventListener("click", compartirUbicacion);
+            });
+        } else {
+            marcador.setLatLng(e.latlng);
+        }
+
+        if (!circuloPrecision) {
+            circuloPrecision = L.circle(e.latlng, {
+                radius: e.accuracy,
+                interactive: false,
+                color: "#1976d2",
+                weight: 1,
+                fillColor: "#1976d2",
+                fillOpacity: 0.12
+            }).addTo(map);
+        } else {
+            circuloPrecision.setLatLng(e.latlng);
+            circuloPrecision.setRadius(e.accuracy);
+        }
+
+        const contenido =
+            "<strong>Mi ubicacion actual</strong>" +
+            "<br>Latitud: " + e.latlng.lat.toFixed(6) +
+            "<br>Longitud: " + e.latlng.lng.toFixed(6) +
+            "<br>Precision aproximada: " + Math.round(e.accuracy) + " m" +
+            '<br><br><button type="button" class="gv-fire-share-gps">Compartir ubicacion</button>';
+        marcador.setPopupContent(contenido);
+
+        // Solo se centra al iniciar el GPS, nunca en las actualizaciones.
+        if (primeraLectura) {
+            primeraLectura = false;
+            map.setView(e.latlng, 17);
+        }
+    });
+
+    map.on("locationerror", function (e) {
+        if (!seguimientoActivo) return;
+        console.warn("GridVision Fire GPS:", e.message);
+        desactivar();
+        alert("No se pudo obtener la ubicacion. Comprueba los permisos GPS del navegador.");
+    });
+})();
+
 /* =========================================================
    CONTROLES CARTOGRAFICOS - GRIDVISION FIRE
    ========================================================= */
