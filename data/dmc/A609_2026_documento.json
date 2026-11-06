@@ -1,0 +1,49 @@
+{
+  "codigo": "A609/2026",
+  "tipo": "Aviso",
+  "titulo": "Viento Normal a Moderado en la región de Magallanes",
+  "fenomeno": "Viento",
+  "emisionTexto": "Viernes 6 de noviembre del 2026 a las 17:40 hrs.",
+  "condicionSinoptica": "Jet de bajo nivel asociado a paso de sistema frontal",
+  "desde": "la mañana del domingo 08 de noviembre del 2026",
+  "hasta": "la noche del lunes 09 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Magallanes",
+  "tablaTitulo": "Intensidad estimada del Viento en Km/h",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Región"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "domingo 08"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 09"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Magallanes"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "60 - 100"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "60 -100"
+      }
+    ]
+  ]
+}

@@ -1,12 +1,61 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-06 12:10",
+  "catalogoActualizadoEn": "2026-11-06 17:45",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
     {
-      "codigo": "A607/2026",
+      "codigo": "A609/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Viento",
+      "titulo": "Viento Normal a Moderado en la región de Magallanes",
+      "desdeTexto": "la mañana del domingo 08 de noviembre del 2026",
+      "hastaTexto": "la noche del lunes 09 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-08",
+      "fechaFinDia": "2026-11-09",
+      "fechaEmision": "2026-11-06T17:40:00-03:00",
+      "regiones": [
+        "Magallanes"
+      ],
+      "numeroPoligonos": 2,
+      "archivoGeojson": "data/dmc/A609_2026.geojson",
+      "archivoCobertura": "data/dmc/A609_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A609_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A609_2026_documento.json"
+    },
+    {
+      "codigo": "A605-5/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Altas Temperaturas",
+      "titulo": "Altas Temperaturas en zonas de las regiones de Atacama, Coquimbo, Valparaíso, O'Higgins, Maule, Ñuble, Biobío, La Araucanía, Los Ríos y Los Lagos",
+      "desdeTexto": "la tarde del sábado 07 de noviembre del 2026",
+      "hastaTexto": "la tarde del lunes 09 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-07",
+      "fechaFinDia": "2026-11-09",
+      "fechaEmision": "2026-11-06T15:37:00-03:00",
+      "regiones": [
+        "Atacama",
+        "Biobío",
+        "Coquimbo",
+        "La Araucanía",
+        "Los Lagos",
+        "Los Ríos",
+        "Maule",
+        "O’Higgins",
+        "Valparaíso",
+        "Ñuble"
+      ],
+      "numeroPoligonos": 18,
+      "archivoGeojson": "data/dmc/A605-5_2026.geojson",
+      "archivoCobertura": "data/dmc/A605-5_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A605-5_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A605-5_2026_documento.json"
+    },
+    {
+      "codigo": "A607-1/2026",
       "tipo": "Aviso",
       "fenomeno": "Tormentas Eléctricas",
       "titulo": "Probables Tormentas Eléctricas en cordillera de las regiones de Arica y Parinacota y Tarapacá",
@@ -14,17 +63,17 @@
       "hastaTexto": "la noche del lunes 09 de noviembre del 2026",
       "fechaInicioDia": "2026-11-06",
       "fechaFinDia": "2026-11-09",
-      "fechaEmision": "2026-11-05T11:51:00-03:00",
+      "fechaEmision": "2026-11-06T14:53:00-03:00",
       "regiones": [
         "Arica y Parinacota",
         "Tarapacá"
       ],
       "numeroPoligonos": 2,
-      "archivoGeojson": "data/dmc/A607_2026.geojson",
-      "archivoCobertura": "data/dmc/A607_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A607_2026_impactos.json",
+      "archivoGeojson": "data/dmc/A607-1_2026.geojson",
+      "archivoCobertura": "data/dmc/A607-1_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A607-1_2026_impactos.json",
       "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
-      "archivoDocumento": "data/dmc/A607_2026_documento.json"
+      "archivoDocumento": "data/dmc/A607-1_2026_documento.json"
     },
     {
       "codigo": "AA193/2026",
@@ -49,33 +98,6 @@
       "archivoImpactos": "data/dmc/AA193_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/AA193_2026_documento.json"
-    },
-    {
-      "codigo": "A605-3/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Altas Temperaturas",
-      "titulo": "Altas Temperaturas en zonas de las regiones de Atacama, Coquimbo, Valparaíso, O'Higgins, Maule, Ñuble, Biobío y La Araucanía",
-      "desdeTexto": "la tarde del sábado 07 de noviembre del 2026",
-      "hastaTexto": "la tarde del domingo 08 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-07",
-      "fechaFinDia": "2026-11-08",
-      "fechaEmision": "2026-11-06T12:02:00-03:00",
-      "regiones": [
-        "Atacama",
-        "Biobío",
-        "Coquimbo",
-        "La Araucanía",
-        "Maule",
-        "O’Higgins",
-        "Valparaíso",
-        "Ñuble"
-      ],
-      "numeroPoligonos": 15,
-      "archivoGeojson": "data/dmc/A605-3_2026.geojson",
-      "archivoCobertura": "data/dmc/A605-3_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A605-3_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A605-3_2026_documento.json"
     },
     {
       "codigo": "A601-3/2026",
@@ -145,5 +167,5 @@
       "archivoDocumento": "data/dmc/A606_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-06T13:45:46.349534-03:00"
+  "generadoEn": "2026-11-06T20:07:59.799831-03:00"
 }
