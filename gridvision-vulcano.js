@@ -98,10 +98,132 @@ function syncMapScale(){
 }
 
 function makePane(name,z){if(!state.map.getPane(name))state.map.createPane(name);state.map.getPane(name).style.zIndex=String(z);}
+// =====================================================
+// GRIDVISION VULCANO GPS V1 - NAVEGACION LIBRE
+// =====================================================
+function instalarGpsVulcano(m) {
+  let activo = false;
+  let primeraLectura = true;
+  let ultimaPosicion = null;
+  let marcador = null;
+  let circuloPrecision = null;
+  let boton = null;
+  const control = L.control({position: 'bottomright'});
+
+  function actualizarBoton() {
+    if (!boton) return;
+    boton.style.color = activo ? '#1976d2' : '#203748';
+    boton.style.background = activo ? '#e2f3ff' : '#ffffff';
+    boton.title = activo ? 'Desactivar mi ubicacion GPS' : 'Activar mi ubicacion GPS';
+    boton.setAttribute('aria-label', boton.title);
+    boton.setAttribute('aria-pressed', String(activo));
+  }
+
+  function desactivar() {
+    activo = false;
+    primeraLectura = true;
+    ultimaPosicion = null;
+    m.stopLocate();
+    if (marcador) { m.removeLayer(marcador); marcador = null; }
+    if (circuloPrecision) { m.removeLayer(circuloPrecision); circuloPrecision = null; }
+    actualizarBoton();
+  }
+
+  control.onAdd = function () {
+    const contenedor = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+    boton = L.DomUtil.create('a', '', contenedor);
+    boton.href = '#';
+    boton.setAttribute('role', 'button');
+    boton.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2V5 M12 19V22 M2 12H5 M19 12H22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+    boton.style.cssText = 'width:34px;height:34px;line-height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;';
+    L.DomEvent.disableClickPropagation(contenedor);
+    L.DomEvent.disableScrollPropagation(contenedor);
+    const activarDesactivar = (evento) => {
+      L.DomEvent.stop(evento);
+      if (activo) { desactivar(); return; }
+      activo = true;
+      primeraLectura = true;
+      actualizarBoton();
+      m.locate({watch:true,setView:false,enableHighAccuracy:true,timeout:20000,maximumAge:0});
+    };
+    L.DomEvent.on(boton, 'click', activarDesactivar);
+    L.DomEvent.on(boton, 'keydown', (evento) => {
+      if (evento.key === 'Enter' || evento.key === ' ') activarDesactivar(evento);
+    });
+    actualizarBoton();
+    return contenedor;
+  };
+  control.addTo(m);
+
+  m.on('locationfound', (evento) => {
+    if (!activo) return;
+    ultimaPosicion = evento.latlng;
+    if (!marcador) {
+      marcador = L.circleMarker(evento.latlng, {
+        radius:8,color:'#ffffff',weight:3,fillColor:'#1976d2',fillOpacity:1,
+        pane:'markerPane',interactive:true
+      }).addTo(m);
+      marcador.on('popupopen', (popupEvento) => {
+        const compartir = popupEvento.popup.getElement()?.querySelector('.gv-vulcano-compartir');
+        if (!compartir) return;
+        compartir.addEventListener('click', async () => {
+          if (!ultimaPosicion) return;
+          const lat = ultimaPosicion.lat.toFixed(6);
+          const lng = ultimaPosicion.lng.toFixed(6);
+          const url = 'https://www.google.com/maps?q=' + encodeURIComponent(lat + ',' + lng);
+          const texto = 'Mi ubicacion actual: ' + lat + ', ' + lng + '\n' + url;
+          try {
+            if (navigator.share) {
+              await navigator.share({title:'Mi ubicacion - GridVision Vulcano',text:texto,url:url});
+            } else if (navigator.clipboard?.writeText) {
+              await navigator.clipboard.writeText(texto);
+              compartir.textContent = 'Copiado';
+            } else {
+              window.prompt('Copia tu ubicacion:', texto);
+            }
+          } catch (error) {
+            if (error.name !== 'AbortError') window.prompt('Copia tu ubicacion:', texto);
+          }
+        });
+      });
+    } else {
+      marcador.setLatLng(evento.latlng);
+    }
+    if (!circuloPrecision) {
+      circuloPrecision = L.circle(evento.latlng, {
+        radius:evento.accuracy,color:'#1976d2',weight:1,
+        fillColor:'#1976d2',fillOpacity:0.12,interactive:false
+      }).addTo(m);
+    } else {
+      circuloPrecision.setLatLng(evento.latlng);
+      circuloPrecision.setRadius(evento.accuracy);
+    }
+    const lat = evento.latlng.lat.toFixed(6);
+    const lng = evento.latlng.lng.toFixed(6);
+    marcador.bindPopup(
+      '<strong>Mi ubicacion actual</strong>' +
+      '<p>Latitud: ' + lat + '<br>Longitud: ' + lng +
+      '<br>Precision aproximada: ' + Math.round(evento.accuracy) + ' m</p>' +
+      '<button type="button" class="gv-vulcano-compartir">Compartir ubicacion</button>',
+      {autoPan:false}
+    );
+    if (primeraLectura) {
+      primeraLectura = false;
+      m.setView(evento.latlng, Math.min(17, m.getMaxZoom()));
+    }
+  });
+  m.on('locationerror', (evento) => {
+    if (!activo) return;
+    desactivar();
+    console.warn('GridVision Vulcano GPS:', evento.message);
+    window.alert('No fue posible obtener tu ubicacion. Revisa el permiso de ubicacion del navegador.');
+  });
+}
 function initMap(){
  if(!window.L){status('No se ha cargado Leaflet. Compruebe vendor/leaflet/leaflet.js',true);return false;}
  const m=state.map=L.map('vulcano-map',{preferCanvas:true,zoomControl:false,maxZoom:18,minZoom:3}).fitBounds(BOUNDS,{padding:[14,14],animate:false});
  L.control.zoom({position:'bottomright'}).addTo(m);L.control.scale({position:'bottomleft',imperial:false}).addTo(m);
+  instalarGpsVulcano(m);
  const sat=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{attribution:'© Esri, Maxar, Earthstar Geographics y colaboradores GIS',maxZoom:18});
  // GV RAPA NUI: PROTECCION DE MOSAICOS SATELITALES v0.2
  const satRapa=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{attribution:'© Esri, Maxar, Earthstar Geographics y colaboradores GIS',maxNativeZoom:12,maxZoom:18});
