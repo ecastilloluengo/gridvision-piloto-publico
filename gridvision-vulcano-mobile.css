@@ -1,0 +1,41 @@
+/* GridVision Vulcano Mobile v1 - only phones; preserves map controls */
+.gv-v-mobile-tools {display:none;}
+@media(max-width:700px) {
+  html,body { max-width:100%; overflow:hidden; }
+  .gv-header { height:58px!important; padding:5px 8px!important; gap:4px; }
+  .gv-brand { gap:6px; }
+  .gv-brand h1 { font-size:14px; white-space:nowrap; }
+  .gv-brand-icon { width:29px; height:29px; }
+  .gv-header nav { gap:3px; max-width:56%; overflow-x:auto; scrollbar-width:none; }
+  .gv-header nav a,.gv-header nav span { flex:none; padding:8px 6px; font-size:10px; }
+  .gv-layout {height:calc(100dvh - 58px)!important; min-height:0!important;}
+  .gv-v-mobile-tools { display:flex; gap:5px; position:absolute; left:8px; top:8px; z-index:1050; max-width:calc(100vw - 16px); }
+  .gv-v-mobile-tools button { min-height:44px; padding:0 11px; border:1px solid #9cd8f4; color:#0c3550; background:#f2fbff; border-radius:10px; font-size:12px; font-weight:800; box-shadow:0 5px 12px #0006; }
+  .gv-v-mobile-tools button[aria-expanded="true"] {background:#1b739b;color:white;}
+  .map-left-controls { top:60px!important; left:8px!important; width:min(94vw,375px)!important; display:none; }
+  body.gv-v-search-open .map-left-controls { display:block; }
+  .map-search-card {padding:9px!important;}
+  .gv-universal-search {min-width:0!important;width:100%!important;max-width:100%!important;}
+  .gv-search-controls { gap:5px; }
+  .gv-search-controls #search { font-size:16px!important; min-height:44px; }
+  .gv-search-controls select {min-height:44px; font-size:14px!important;}
+  .map-button-bar {gap:5px;}
+  .map-button-bar button {min-height:43px; font-size:12px;}
+  .map-top-right {top:60px!important;right:8px!important;display:none!important;flex-direction:column;max-height:calc(100dvh - 155px);overflow:auto;}
+  body.gv-v-actions-open .map-top-right {display:flex!important;}
+  .map-top-right > button {min-width:100px; min-height:44px; padding:9px!important; font-size:12px!important;}
+  .basemap-menu {right:105px;top:0;}
+  .gv-sidebar {top:58px!important;left:5px!important;bottom:8px!important;width:min(94vw,365px)!important;z-index:1150!important;}
+  .gv-detail {top:60px!important;right:5px!important;bottom:8px!important;width:min(95vw,365px)!important;z-index:1120!important;}
+  .map-legend {left:6px!important;bottom:65px!important; max-width:70vw;max-height:35dvh;}
+  .map-state { bottom:12px!important;left:6px!important;right:62px!important;max-width:none!important;white-space:nowrap;}
+  .map-warning {display:none!important;}
+  .leaflet-bottom.leaflet-right { bottom:46px; }
+  .leaflet-control-zoom {margin-right:8px!important;margin-bottom:18px!important;}
+  .leaflet-control-zoom a,.leaflet-bar a {min-height:36px;min-width:36px;}
+  .leaflet-popup-content {max-width:75vw;}
+  .side-content .layer {min-height:42px;font-size:13px;}
+  .side-content .layer input {width:20px;height:20px;}
+  .section>summary {min-height:44px;}
+}
+@media(max-width:370px) {.gv-brand h1 {font-size:12px;} .gv-header nav {max-width:54%;}}
