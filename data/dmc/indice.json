@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-06 17:45",
+  "catalogoActualizadoEn": "2026-11-06 23:52",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -143,29 +143,7 @@
       "archivoImpactos": "data/dmc/A599-1_2026_impactos.json",
       "observacion": "Probabilidad de tormentas de arena",
       "archivoDocumento": "data/dmc/A599-1_2026_documento.json"
-    },
-    {
-      "codigo": "A606/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Viento",
-      "titulo": "Viento Normal a Moderado en cordillera de las regiones de Coquimbo, Valparaíso y Metropolitana",
-      "desdeTexto": "la madrugada del viernes 06 de noviembre del 2026",
-      "hastaTexto": "la noche del viernes 06 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-06",
-      "fechaFinDia": "2026-11-06",
-      "fechaEmision": "2026-11-05T11:43:00-03:00",
-      "regiones": [
-        "Coquimbo",
-        "Metropolitana",
-        "Valparaíso"
-      ],
-      "numeroPoligonos": 3,
-      "archivoGeojson": "data/dmc/A606_2026.geojson",
-      "archivoCobertura": "data/dmc/A606_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A606_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A606_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-06T20:07:59.799831-03:00"
+  "generadoEn": "2026-11-07T02:57:48.492055-03:00"
 }
