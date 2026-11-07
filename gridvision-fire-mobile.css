@@ -1,0 +1,51 @@
+/* GridVision Fire - Mobile v1: only narrow viewports */
+.gv-mobile-tools { display:none; }
+@media (max-width: 700px) {
+  html, body { width:100%; max-width:100%; overflow-x:hidden; }
+  body { overflow-y:auto; }
+  .fire-header { height:auto!important; min-height:54px!important; padding:7px 9px!important; gap:6px; flex-wrap:wrap; }
+  .brand { min-width:0!important; flex:1; gap:8px; }
+  .brand-logo { width:34px;height:34px; flex:none; font-size:13px; }
+  .brand h1 { font-size:16px; white-space:nowrap; }
+  .brand p { display:none; }
+  .top-nav { order:3; flex:0 0 100%; justify-content:flex-start; overflow-x:auto; scrollbar-width:none; gap:5px; }
+  .top-nav a,.top-nav span { padding:8px 10px; font-size:11px; white-space:nowrap; }
+  .live-state { margin-left:auto; }
+  .live-state > span:not(.dot) { display:none; }
+  .live-state button { min-width:40px; min-height:40px; }
+  .gv-mobile-tools { display:flex; position:sticky; top:0; z-index:1400; gap:6px; padding:6px 8px; background:#07192beF; border-bottom:1px solid #31506a; }
+  .gv-mobile-tools button { flex:1; min-width:0; min-height:42px; border:1px solid #466986; border-radius:8px; background:#123550; color:#effaff; font-size:13px; font-weight:750; }
+  .gv-mobile-tools button[aria-expanded="true"] { background:#246e96; border-color:#8cdbff; }
+  .fire-layout { display:block!important; height:auto!important; min-height:0!important; padding:7px!important; }
+  .fire-main { display:flex!important; flex-direction:column; min-height:0!important; height:auto!important; gap:7px; }
+  .kpi-row { order:0; grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px; }
+  .kpi-row article { display:flex; flex-direction:column; gap:2px; align-items:center; text-align:center; padding:6px 2px; min-height:59px; }
+  .kpi-row article span { font-size:13px; }
+  .kpi-row article strong { font-size:16px; line-height:19px; }
+  .kpi-row article small { font-size:9px; line-height:1.15; }
+  .map-shell { order:1; display:block; position:relative; height:calc(100dvh - 225px)!important; min-height:320px!important; max-height:760px; width:100%; overflow:hidden; }
+  #fire-map { position:absolute; inset:0; }
+  .map-search-status { max-width:55%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; top:6px;left:6px; font-size:9px; pointer-events:none; }
+  .map-source { display:none; }
+  .incidents-panel { order:2; height:auto!important; min-height:180px!important; max-height:none!important; }
+  .incidents-panel .table-wrap { max-height:290px!important; overflow:auto; }
+  .incidents-panel .panel-title h2 { font-size:13px; }
+  #gv-fire-exposure-main { order:3; height:auto!important; min-height:140px!important; max-height:280px; }
+  .fire-sidebar, .fire-detail { position:fixed!important; top:0!important; bottom:0!important; height:100dvh!important; max-height:100dvh!important; width:min(92vw,370px)!important; z-index:2100!important; overflow-y:auto!important; overscroll-behavior:contain; box-shadow:0 0 0 9999px #0005,0 9px 35px #000b; transition:transform .18s ease,visibility .18s ease; }
+  .fire-sidebar { left:0; transform:translateX(-110%); visibility:hidden; border-radius:0 12px 12px 0; }
+  .fire-detail { right:0; transform:translateX(110%); visibility:hidden; border-radius:12px 0 0 12px; }
+  body.gv-fire-sidebar-open .fire-sidebar { transform:translateX(0); visibility:visible; }
+  body.gv-fire-detail-open .fire-detail { transform:translateX(0); visibility:visible; }
+  .fire-sidebar input[type=search], .fire-sidebar select { min-height:44px; font-size:16px; }
+  .fire-sidebar .check { font-size:14px; min-height:42px; }
+  .fire-sidebar .check input { width:19px; height:19px; }
+  .measure-tools button { min-height:44px; font-size:12px; }
+  .leaflet-control-zoom a, .leaflet-bar a { min-width:36px; min-height:36px; }
+  .leaflet-control.gv-fire-compass { transform:scale(.7); transform-origin:top right; margin:5px!important; }
+  .leaflet-control.gv-fire-line-legend { min-width:145px!important; max-width:165px!important; margin:5px!important; padding:7px!important; }
+  .leaflet-control.gv-fire-line-legend .gv-legend-title { font-size:11px!important; margin-bottom:3px!important; }
+  .leaflet-control.gv-fire-line-legend .gv-legend-row { font-size:10px!important; line-height:14px!important; min-height:16px!important; }
+  .leaflet-popup-content { max-width:min(75vw,300px); }
+}
+@media (max-width:370px) { .kpi-row article small { font-size:8px; } .brand h1 {font-size:14px;} }
+@media (max-width:700px) and (orientation:landscape) { .map-shell { height:max(300px,70dvh)!important; } }
