@@ -1,0 +1,39 @@
+{
+  "codigo": "AA194/2026",
+  "tipo": "Alerta",
+  "titulo": "Viento Moderado a Fuerte en comunas de Laguna Blanca, Río Verde, Punta Arenas y San Gregorio - Reg. Magallanes",
+  "fenomeno": "Viento",
+  "emisionTexto": "Sábado 7 de noviembre del 2026 a las 15:10 hrs.",
+  "condicionSinoptica": "Jet de bajo nivel",
+  "desde": "la mañana del domingo 08 de noviembre del 2026",
+  "hasta": "la noche del domingo 08 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "comunas de Laguna Blanca, Río Verde, Punta Arenas y San Gregorio - Reg. Magallanes",
+  "tablaTitulo": "Intensidad estimada del Viento en Km/h",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Área"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "domingo 08"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "comunas de Laguna Blanca, Río Verde, Punta Arenas y San Gregorio - Reg. Magallanes"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "80 - 120"
+      }
+    ]
+  ]
+}

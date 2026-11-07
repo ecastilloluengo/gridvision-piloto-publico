@@ -1,29 +1,29 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-06 23:52",
+  "catalogoActualizadoEn": "2026-11-07 15:15",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
     {
-      "codigo": "A609/2026",
+      "codigo": "A609-1/2026",
       "tipo": "Aviso",
       "fenomeno": "Viento",
       "titulo": "Viento Normal a Moderado en la región de Magallanes",
       "desdeTexto": "la mañana del domingo 08 de noviembre del 2026",
-      "hastaTexto": "la noche del lunes 09 de noviembre del 2026",
+      "hastaTexto": "la tarde del martes 10 de noviembre del 2026",
       "fechaInicioDia": "2026-11-08",
-      "fechaFinDia": "2026-11-09",
-      "fechaEmision": "2026-11-06T17:40:00-03:00",
+      "fechaFinDia": "2026-11-10",
+      "fechaEmision": "2026-11-07T15:06:00-03:00",
       "regiones": [
         "Magallanes"
       ],
       "numeroPoligonos": 2,
-      "archivoGeojson": "data/dmc/A609_2026.geojson",
-      "archivoCobertura": "data/dmc/A609_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A609_2026_impactos.json",
+      "archivoGeojson": "data/dmc/A609-1_2026.geojson",
+      "archivoCobertura": "data/dmc/A609-1_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A609-1_2026_impactos.json",
       "observacion": "",
-      "archivoDocumento": "data/dmc/A609_2026_documento.json"
+      "archivoDocumento": "data/dmc/A609-1_2026_documento.json"
     },
     {
       "codigo": "A605-5/2026",
@@ -74,6 +74,26 @@
       "archivoImpactos": "data/dmc/A607-1_2026_impactos.json",
       "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
       "archivoDocumento": "data/dmc/A607-1_2026_documento.json"
+    },
+    {
+      "codigo": "AA194/2026",
+      "tipo": "Alerta",
+      "fenomeno": "Viento",
+      "titulo": "Viento Moderado a Fuerte en comunas de Laguna Blanca, Río Verde, Punta Arenas y San Gregorio - Reg. Magallanes",
+      "desdeTexto": "la mañana del domingo 08 de noviembre del 2026",
+      "hastaTexto": "la noche del domingo 08 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-08",
+      "fechaFinDia": "2026-11-08",
+      "fechaEmision": "2026-11-07T15:10:00-03:00",
+      "regiones": [
+        "Magallanes"
+      ],
+      "numeroPoligonos": 1,
+      "archivoGeojson": "data/dmc/AA194_2026.geojson",
+      "archivoCobertura": "data/dmc/AA194_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/AA194_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/AA194_2026_documento.json"
     },
     {
       "codigo": "AA193/2026",
@@ -145,5 +165,5 @@
       "archivoDocumento": "data/dmc/A599-1_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-07T02:57:48.492055-03:00"
+  "generadoEn": "2026-11-07T16:25:42.265751-03:00"
 }
