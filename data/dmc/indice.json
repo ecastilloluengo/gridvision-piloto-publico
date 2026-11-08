@@ -1,10 +1,76 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-07 22:54",
+  "catalogoActualizadoEn": "2026-11-08 12:53",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
+    {
+      "codigo": "A610/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Altas Temperaturas",
+      "titulo": "Altas Temperaturas en zonas de las regiones de Antofagasta y Atacama",
+      "desdeTexto": "la tarde del domingo 08 de noviembre del 2026",
+      "hastaTexto": "la tarde del miércoles 11 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-08",
+      "fechaFinDia": "2026-11-11",
+      "fechaEmision": "2026-11-08T10:58:00-03:00",
+      "regiones": [
+        "Antofagasta",
+        "Atacama"
+      ],
+      "numeroPoligonos": 4,
+      "archivoGeojson": "data/dmc/A610_2026.geojson",
+      "archivoCobertura": "data/dmc/A610_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A610_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A610_2026_documento.json"
+    },
+    {
+      "codigo": "A612/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Precipitaciones",
+      "titulo": "Precipitaciones Normales a Moderadas en corto periodo de tiempo en zonas de las regiones de Valparaíso, Metropolitana y O'Higgins",
+      "desdeTexto": "la noche del lunes 09 de noviembre del 2026",
+      "hastaTexto": "la madrugada del martes 10 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-09",
+      "fechaFinDia": "2026-11-10",
+      "fechaEmision": "2026-11-08T12:48:00-03:00",
+      "regiones": [
+        "Metropolitana",
+        "O’Higgins",
+        "Valparaíso"
+      ],
+      "numeroPoligonos": 5,
+      "archivoGeojson": "data/dmc/A612_2026.geojson",
+      "archivoCobertura": "data/dmc/A612_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A612_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A612_2026_documento.json"
+    },
+    {
+      "codigo": "A611/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Valparaíso a la región del Maule",
+      "desdeTexto": "la tarde del lunes 09 de noviembre del 2026",
+      "hastaTexto": "la madrugada del martes 10 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-09",
+      "fechaFinDia": "2026-11-10",
+      "fechaEmision": "2026-11-08T12:25:00-03:00",
+      "regiones": [
+        "Maule",
+        "Metropolitana",
+        "O’Higgins",
+        "Valparaíso"
+      ],
+      "numeroPoligonos": 11,
+      "archivoGeojson": "data/dmc/A611_2026.geojson",
+      "archivoCobertura": "data/dmc/A611_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A611_2026_impactos.json",
+      "observacion": "Probabilidad de precipitaciones fuertes en un corto período de tiempo",
+      "archivoDocumento": "data/dmc/A611_2026_documento.json"
+    },
     {
       "codigo": "A609-1/2026",
       "tipo": "Aviso",
@@ -120,5 +186,5 @@
       "archivoDocumento": "data/dmc/AA193_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-08T07:22:18.151113-03:00"
+  "generadoEn": "2026-11-08T14:55:45.233699-03:00"
 }

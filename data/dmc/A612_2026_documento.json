@@ -1,0 +1,132 @@
+{
+  "codigo": "A612/2026",
+  "tipo": "Aviso",
+  "titulo": "Precipitaciones Normales a Moderadas en corto periodo de tiempo en zonas de las regiones de Valparaíso, Metropolitana y O'Higgins",
+  "fenomeno": "Precipitaciones",
+  "emisionTexto": "Domingo 8 de noviembre del 2026 a las 12:48 hrs.",
+  "condicionSinoptica": "Baja segregada",
+  "desde": "la noche del lunes 09 de noviembre del 2026",
+  "hasta": "la madrugada del martes 10 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Valparaíso (Precordillera y valles precordilleranos)\nMetropolitana (Valle, Precordillera)\nO'Higgins (Valle, Precordillera)",
+  "tablaTitulo": "Montos estimados de precipitaciones en milímetros (mm)",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Valparaíso"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Monto"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera y valles precordilleranos"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "5-15"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Metropolitana"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Monto"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "5-15"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "10-20"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: O'Higgins"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Monto"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "5-15"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "10-20"
+      }
+    ]
+  ]
+}

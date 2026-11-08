@@ -1,0 +1,14 @@
+{
+  "codigo": "A611/2026",
+  "tipo": "Aviso",
+  "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Valparaíso a la región del Maule",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Domingo 8 de noviembre del 2026 a las 12:25 hrs.",
+  "condicionSinoptica": "Baja segregada",
+  "desde": "la tarde del lunes 09 de noviembre del 2026",
+  "hasta": "la madrugada del martes 10 de noviembre del 2026",
+  "observacion": "Probabilidad de precipitaciones fuertes en un corto período de tiempo",
+  "textoZonaAfecta": "Valparaíso (Precordillera y valles precordilleranos, Cordillera)\nMetropolitana (Valle, Precordillera, Cordillera)\nO'Higgins (Valle, Precordillera, Cordillera)\nMaule (Valle, Precordillera, Cordillera)",
+  "tablaTitulo": "",
+  "tablaFilas": []
+}
