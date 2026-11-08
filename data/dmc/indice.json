@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-07 15:15",
+  "catalogoActualizadoEn": "2026-11-07 22:54",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -118,52 +118,7 @@
       "archivoImpactos": "data/dmc/AA193_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/AA193_2026_documento.json"
-    },
-    {
-      "codigo": "A601-3/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Viento",
-      "titulo": "Viento Normal a Moderado en zonas de las regiones de Coquimbo, Valparaíso, O'Higgins, Maule, Ñuble y Biobío",
-      "desdeTexto": "la tarde del viernes 06 de noviembre del 2026",
-      "hastaTexto": "la tarde del sábado 07 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-06",
-      "fechaFinDia": "2026-11-07",
-      "fechaEmision": "2026-11-06T12:05:00-03:00",
-      "regiones": [
-        "Biobío",
-        "Coquimbo",
-        "Maule",
-        "O’Higgins",
-        "Valparaíso",
-        "Ñuble"
-      ],
-      "numeroPoligonos": 11,
-      "archivoGeojson": "data/dmc/A601-3_2026.geojson",
-      "archivoCobertura": "data/dmc/A601-3_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A601-3_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A601-3_2026_documento.json"
-    },
-    {
-      "codigo": "A599-1/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Viento",
-      "titulo": "Viento Normal a Moderado en Litoral provincia de Huasco - Región de Atacama",
-      "desdeTexto": "la tarde del jueves 05 de noviembre del 2026",
-      "hastaTexto": "la noche del sábado 07 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-05",
-      "fechaFinDia": "2026-11-07",
-      "fechaEmision": "2026-11-05T11:53:00-03:00",
-      "regiones": [
-        "Atacama"
-      ],
-      "numeroPoligonos": 1,
-      "archivoGeojson": "data/dmc/A599-1_2026.geojson",
-      "archivoCobertura": "data/dmc/A599-1_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A599-1_2026_impactos.json",
-      "observacion": "Probabilidad de tormentas de arena",
-      "archivoDocumento": "data/dmc/A599-1_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-07T16:25:42.265751-03:00"
+  "generadoEn": "2026-11-08T07:22:18.151113-03:00"
 }
