@@ -1,0 +1,191 @@
+{
+  "codigo": "A610-1/2026",
+  "tipo": "Aviso",
+  "titulo": "Altas Temperaturas en zonas de las regiones de Tarapacá y Antofagasta",
+  "fenomeno": "Altas Temperaturas",
+  "emisionTexto": "Lunes 9 de noviembre del 2026 a las 16:40 hrs.",
+  "condicionSinoptica": "Dorsal en altura",
+  "desde": "la tarde del lunes 09 de noviembre del 2026",
+  "hasta": "la tarde del jueves 12 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Tarapacá (Pampa)\nAntofagasta (Pampa, Precordillera Occidental, Precordillera Salar)",
+  "tablaTitulo": "Valores estimados de temperatura en grados Celsius (°C)",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 5,
+        "texto": "Región: Tarapacá"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 09"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 10"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 11"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 12"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Pampa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "35-36"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "35-36"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "35-36"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 5,
+        "texto": "Región: Antofagasta"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 09"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 10"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 11"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 12"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Pampa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "34-36"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "34-36"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "34-36"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "34-36"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera Occidental"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "28-30"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "28-30"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "28-30"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera Salar"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "33-35"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "33-35"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "32-34"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "32-34"
+      }
+    ]
+  ]
+}

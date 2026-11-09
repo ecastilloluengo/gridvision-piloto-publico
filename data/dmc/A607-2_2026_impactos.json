@@ -1,0 +1,209 @@
+{
+  "codigo": "A607-2/2026",
+  "criterio": "intersección geográfica",
+  "advertencia": "Área del aviso: exposición potencial, no impacto confirmado.",
+  "totales": {
+    "activos": 14,
+    "lineas": 10,
+    "netbilling": 0
+  },
+  "elementos": {
+    "activos": [
+      {
+        "id": "GV-01826",
+        "nombre": "1850_S/E COLLAHUASI",
+        "categoria": "Subestación",
+        "zonas": [
+          "01b_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01827",
+        "nombre": "1851_S/E COLLAHUASI SALA ELECTRICA 3501",
+        "categoria": "Subestación",
+        "zonas": [
+          "01b_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01828",
+        "nombre": "1852_S/E COLLAHUASI SALA ELECTRICA 3502",
+        "categoria": "Subestación",
+        "zonas": [
+          "01b_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01829",
+        "nombre": "1853_S/E COLLAHUASI UNITARIA N°1",
+        "categoria": "Subestación",
+        "zonas": [
+          "01b_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01830",
+        "nombre": "1854_S/E COLLAHUASI UNITARIA N°2",
+        "categoria": "Subestación",
+        "zonas": [
+          "01b_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01831",
+        "nombre": "1855_S/E COLLAHUASI UNITARIA N°3",
+        "categoria": "Subestación",
+        "zonas": [
+          "01b_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01832",
+        "nombre": "1856_S/E COLLAHUASI UNITARIA N°4",
+        "categoria": "Subestación",
+        "zonas": [
+          "01b_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01882",
+        "nombre": "1907_S/E NEURARA",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01898",
+        "nombre": "1923_S/E QUEBRADA BLANCA",
+        "categoria": "Subestación",
+        "zonas": [
+          "01b_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01940",
+        "nombre": "1986_S/E UJINA",
+        "categoria": "Subestación",
+        "zonas": [
+          "01b_cordillera"
+        ]
+      },
+      {
+        "id": "GV-01965",
+        "nombre": "2023_S/E CERRO PABELLON",
+        "categoria": "Subestación",
+        "zonas": [
+          "02_cordillera"
+        ]
+      },
+      {
+        "id": "GV-02105",
+        "nombre": "2235_S/E PUQUIOS",
+        "categoria": "Subestación",
+        "zonas": [
+          "01b_cordillera"
+        ]
+      },
+      {
+        "id": "GV-03350",
+        "nombre": "396_TER UJINA",
+        "categoria": "Central",
+        "zonas": [
+          "01b_cordillera"
+        ]
+      },
+      {
+        "id": "GV-02460",
+        "nombre": "464_GEO CERRO PABELLON",
+        "categoria": "Central",
+        "zonas": [
+          "02_cordillera"
+        ]
+      }
+    ],
+    "lineas": [
+      {
+        "id": "GV-00178",
+        "nombre": "1060_COLLAHUASI - QUEBRADA BLANCA 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "01b_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00179",
+        "nombre": "1061_CONCHI - CERRO PABELLON 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00182",
+        "nombre": "1065_CRUCERO - CONCHI 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00192",
+        "nombre": "1083_ENCUENTRO - COLLAHUASI 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "01b_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00204",
+        "nombre": "1098_LAGUNAS - COLLAHUASI 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "01b_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00926",
+        "nombre": "1263_ZALDIVAR - NEGRILLAR 66KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00928",
+        "nombre": "1265_ESCONDIDA - MONTURAQUI 69KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00302",
+        "nombre": "1542_LAGUNAS - PUQUIOS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "01b_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00306",
+        "nombre": "1546_PAGUANA - PUQUIOS 220KV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "01b_cordillera"
+        ]
+      },
+      {
+        "id": "GV-00054",
+        "nombre": "1831_ANDES – LA PUNA 345 kV",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "02_cordillera"
+        ]
+      }
+    ],
+    "netbilling": []
+  }
+}

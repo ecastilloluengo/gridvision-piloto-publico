@@ -1,30 +1,72 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-08 23:54",
+  "catalogoActualizadoEn": "2026-11-09 16:45",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
     {
-      "codigo": "A610/2026",
+      "codigo": "A610-1/2026",
       "tipo": "Aviso",
       "fenomeno": "Altas Temperaturas",
-      "titulo": "Altas Temperaturas en zonas de las regiones de Antofagasta y Atacama",
-      "desdeTexto": "la tarde del domingo 08 de noviembre del 2026",
-      "hastaTexto": "la tarde del miércoles 11 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-08",
-      "fechaFinDia": "2026-11-11",
-      "fechaEmision": "2026-11-08T10:58:00-03:00",
+      "titulo": "Altas Temperaturas en zonas de las regiones de Tarapacá y Antofagasta",
+      "desdeTexto": "la tarde del lunes 09 de noviembre del 2026",
+      "hastaTexto": "la tarde del jueves 12 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-09",
+      "fechaFinDia": "2026-11-12",
+      "fechaEmision": "2026-11-09T16:40:00-03:00",
       "regiones": [
         "Antofagasta",
-        "Atacama"
+        "Tarapacá"
       ],
       "numeroPoligonos": 4,
-      "archivoGeojson": "data/dmc/A610_2026.geojson",
-      "archivoCobertura": "data/dmc/A610_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A610_2026_impactos.json",
+      "archivoGeojson": "data/dmc/A610-1_2026.geojson",
+      "archivoCobertura": "data/dmc/A610-1_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A610-1_2026_impactos.json",
       "observacion": "",
-      "archivoDocumento": "data/dmc/A610_2026_documento.json"
+      "archivoDocumento": "data/dmc/A610-1_2026_documento.json"
+    },
+    {
+      "codigo": "A613/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Precipitaciones",
+      "titulo": "Precipitaciones Normales a Moderadas en corto periodo de tiempo en zonas de la región de Magallanes",
+      "desdeTexto": "la noche del martes 10 de noviembre del 2026",
+      "hastaTexto": "la mañana del miércoles 11 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-10",
+      "fechaFinDia": "2026-11-11",
+      "fechaEmision": "2026-11-09T15:51:00-03:00",
+      "regiones": [
+        "Magallanes"
+      ],
+      "numeroPoligonos": 2,
+      "archivoGeojson": "data/dmc/A613_2026.geojson",
+      "archivoCobertura": "data/dmc/A613_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A613_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A613_2026_documento.json"
+    },
+    {
+      "codigo": "A607-2/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en cordillera de las regiones de Arica y Parinacota, Tarapacá y Antofagasta",
+      "desdeTexto": "la tarde del lunes 09 de noviembre del 2026",
+      "hastaTexto": "la noche del martes 10 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-09",
+      "fechaFinDia": "2026-11-10",
+      "fechaEmision": "2026-11-09T11:55:00-03:00",
+      "regiones": [
+        "Antofagasta",
+        "Arica y Parinacota",
+        "Tarapacá"
+      ],
+      "numeroPoligonos": 3,
+      "archivoGeojson": "data/dmc/A607-2_2026.geojson",
+      "archivoCobertura": "data/dmc/A607-2_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A607-2_2026_impactos.json",
+      "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
+      "archivoDocumento": "data/dmc/A607-2_2026_documento.json"
     },
     {
       "codigo": "A612/2026",
@@ -92,55 +134,48 @@
       "archivoDocumento": "data/dmc/A609-1_2026_documento.json"
     },
     {
-      "codigo": "A605-5/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Altas Temperaturas",
-      "titulo": "Altas Temperaturas en zonas de las regiones de Atacama, Coquimbo, Valparaíso, O'Higgins, Maule, Ñuble, Biobío, La Araucanía, Los Ríos y Los Lagos",
-      "desdeTexto": "la tarde del sábado 07 de noviembre del 2026",
-      "hastaTexto": "la tarde del lunes 09 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-07",
-      "fechaFinDia": "2026-11-09",
-      "fechaEmision": "2026-11-06T15:37:00-03:00",
-      "regiones": [
-        "Atacama",
-        "Biobío",
-        "Coquimbo",
-        "La Araucanía",
-        "Los Lagos",
-        "Los Ríos",
-        "Maule",
-        "O’Higgins",
-        "Valparaíso",
-        "Ñuble"
-      ],
-      "numeroPoligonos": 18,
-      "archivoGeojson": "data/dmc/A605-5_2026.geojson",
-      "archivoCobertura": "data/dmc/A605-5_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A605-5_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A605-5_2026_documento.json"
-    },
-    {
-      "codigo": "A607-1/2026",
-      "tipo": "Aviso",
+      "codigo": "AA195/2026",
+      "tipo": "Alerta",
       "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en cordillera de las regiones de Arica y Parinacota y Tarapacá",
-      "desdeTexto": "la tarde del viernes 06 de noviembre del 2026",
+      "titulo": "Tormentas Eléctricas en cordillera de las regiones de Arica y Parinacota y Tarapacá",
+      "desdeTexto": "la tarde del lunes 09 de noviembre del 2026",
       "hastaTexto": "la noche del lunes 09 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-06",
+      "fechaInicioDia": "2026-11-09",
       "fechaFinDia": "2026-11-09",
-      "fechaEmision": "2026-11-06T14:53:00-03:00",
+      "fechaEmision": "2026-11-09T13:52:00-03:00",
       "regiones": [
         "Arica y Parinacota",
         "Tarapacá"
       ],
       "numeroPoligonos": 2,
-      "archivoGeojson": "data/dmc/A607-1_2026.geojson",
-      "archivoCobertura": "data/dmc/A607-1_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A607-1_2026_impactos.json",
-      "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
-      "archivoDocumento": "data/dmc/A607-1_2026_documento.json"
+      "archivoGeojson": "data/dmc/AA195_2026.geojson",
+      "archivoCobertura": "data/dmc/AA195_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/AA195_2026_impactos.json",
+      "observacion": "Asociadas con Chubascos aislados",
+      "archivoDocumento": "data/dmc/AA195_2026_documento.json"
+    },
+    {
+      "codigo": "A605-6/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Altas Temperaturas",
+      "titulo": "Altas Temperaturas en zonas de las regiones de La Araucanía, Los Ríos y Los Lagos",
+      "desdeTexto": "la tarde del lunes 09 de noviembre del 2026",
+      "hastaTexto": "la tarde del lunes 09 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-09",
+      "fechaFinDia": "2026-11-09",
+      "fechaEmision": "2026-11-09T07:18:00-03:00",
+      "regiones": [
+        "La Araucanía",
+        "Los Lagos",
+        "Los Ríos"
+      ],
+      "numeroPoligonos": 5,
+      "archivoGeojson": "data/dmc/A605-6_2026.geojson",
+      "archivoCobertura": "data/dmc/A605-6_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A605-6_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A605-6_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-09T03:26:46.025295-03:00"
+  "generadoEn": "2026-11-09T16:49:00.001780-03:00"
 }

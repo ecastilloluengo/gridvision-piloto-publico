@@ -1,0 +1,58 @@
+{
+  "codigo": "A613/2026",
+  "tipo": "Aviso",
+  "titulo": "Precipitaciones Normales a Moderadas en corto periodo de tiempo en zonas de la región de Magallanes",
+  "fenomeno": "Precipitaciones",
+  "emisionTexto": "Lunes 9 de noviembre del 2026 a las 15:51 hrs.",
+  "condicionSinoptica": "Sistema frontal",
+  "desde": "la noche del martes 10 de noviembre del 2026",
+  "hasta": "la mañana del miércoles 11 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Magallanes (Cordillera Austral Norte, Pampa Patagonica Norte)",
+  "tablaTitulo": "Montos estimados de precipitaciones en milímetros (mm)",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Magallanes"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Monto"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera Austral Norte"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "10 - 28 MM / ISO O°C: 1400 A 800 M"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Pampa Patagonica Norte"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "05 - 19 MM / ISO 0°C: 1300 A 600 M"
+      }
+    ]
+  ]
+}
