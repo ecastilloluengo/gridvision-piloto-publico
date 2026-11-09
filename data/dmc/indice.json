@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-08 12:53",
+  "catalogoActualizadoEn": "2026-11-08 23:54",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -140,51 +140,7 @@
       "archivoImpactos": "data/dmc/A607-1_2026_impactos.json",
       "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
       "archivoDocumento": "data/dmc/A607-1_2026_documento.json"
-    },
-    {
-      "codigo": "AA194/2026",
-      "tipo": "Alerta",
-      "fenomeno": "Viento",
-      "titulo": "Viento Moderado a Fuerte en comunas de Laguna Blanca, Río Verde, Punta Arenas y San Gregorio - Reg. Magallanes",
-      "desdeTexto": "la mañana del domingo 08 de noviembre del 2026",
-      "hastaTexto": "la noche del domingo 08 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-08",
-      "fechaFinDia": "2026-11-08",
-      "fechaEmision": "2026-11-07T15:10:00-03:00",
-      "regiones": [
-        "Magallanes"
-      ],
-      "numeroPoligonos": 1,
-      "archivoGeojson": "data/dmc/AA194_2026.geojson",
-      "archivoCobertura": "data/dmc/AA194_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/AA194_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/AA194_2026_documento.json"
-    },
-    {
-      "codigo": "AA193/2026",
-      "tipo": "Alerta",
-      "fenomeno": "Altas Temperaturas",
-      "titulo": "Evento de Altas Temperaturas Extremas en zonas desde la región de Coquimbo a la región del Maule",
-      "desdeTexto": "la tarde del sábado 07 de noviembre del 2026",
-      "hastaTexto": "la tarde del domingo 08 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-07",
-      "fechaFinDia": "2026-11-08",
-      "fechaEmision": "2026-11-06T12:02:00-03:00",
-      "regiones": [
-        "Coquimbo",
-        "Maule",
-        "Metropolitana",
-        "O’Higgins",
-        "Valparaíso"
-      ],
-      "numeroPoligonos": 11,
-      "archivoGeojson": "data/dmc/AA193_2026.geojson",
-      "archivoCobertura": "data/dmc/AA193_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/AA193_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/AA193_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-08T14:55:45.233699-03:00"
+  "generadoEn": "2026-11-09T03:26:46.025295-03:00"
 }
