@@ -1,0 +1,117 @@
+{
+  "codigo": "AA196-1/2026",
+  "tipo": "Alerta",
+  "titulo": "Evento de Altas Temperaturas Extremas en zonas de las regiones de Atacama y Coquimbo",
+  "fenomeno": "Altas Temperaturas",
+  "emisionTexto": "Martes 10 de noviembre del 2026 a las 11:40 hrs.",
+  "condicionSinoptica": "Dorsal en altura",
+  "desde": "la tarde del martes 10 de noviembre del 2026",
+  "hasta": "la tarde del jueves 12 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Atacama (Precordillera)\nCoquimbo (Precordillera y valles precordilleranos)",
+  "tablaTitulo": "Valores estimados de temperatura en grados Celsius (°C)",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: Atacama"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 10"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 11"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 12"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "36-38"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "36-38"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "36-38"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: Coquimbo"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 10"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 11"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 12"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera y valles precordilleranos"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "32-34"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ]
+  ]
+}
