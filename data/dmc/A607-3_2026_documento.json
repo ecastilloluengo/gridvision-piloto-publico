@@ -1,0 +1,228 @@
+{
+  "codigo": "A607-3/2026",
+  "tipo": "Aviso",
+  "titulo": "Probables Tormentas Eléctricas en cordillera de las regiones de Arica y Parinacota, Tarapacá y Antofagasta",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Martes 10 de noviembre del 2026 a las 15:15 hrs.",
+  "condicionSinoptica": "Alta de Bolivia",
+  "desde": "la tarde del martes 10 de noviembre del 2026",
+  "hasta": "la noche del sábado 14 de noviembre del 2026",
+  "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
+  "textoZonaAfecta": "Arica y Parinacota (Cordillera)\nTarapacá (Cordillera)\nAntofagasta (Cordillera)",
+  "tablaTitulo": "Ocurrencia de Tormentas Eléctricas",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 6,
+        "texto": "Región: Arica y Parinacota"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 10"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 11"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 12"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 13"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 14"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 6,
+        "texto": "Región: Tarapacá"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 10"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 11"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 12"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 13"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 14"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 6,
+        "texto": "Región: Antofagasta"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 10"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 11"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 12"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 13"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 14"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ]
+  ]
+}

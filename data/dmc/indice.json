@@ -1,10 +1,54 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-10 11:45",
+  "catalogoActualizadoEn": "2026-11-10 16:27",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
+    {
+      "codigo": "A607-3/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en cordillera de las regiones de Arica y Parinacota, Tarapacá y Antofagasta",
+      "desdeTexto": "la tarde del martes 10 de noviembre del 2026",
+      "hastaTexto": "la noche del sábado 14 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-10",
+      "fechaFinDia": "2026-11-14",
+      "fechaEmision": "2026-11-10T15:15:00-03:00",
+      "regiones": [
+        "Antofagasta",
+        "Arica y Parinacota",
+        "Tarapacá"
+      ],
+      "numeroPoligonos": 3,
+      "archivoGeojson": "data/dmc/A607-3_2026.geojson",
+      "archivoCobertura": "data/dmc/A607-3_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A607-3_2026_impactos.json",
+      "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
+      "archivoDocumento": "data/dmc/A607-3_2026_documento.json"
+    },
+    {
+      "codigo": "A610-2/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Altas Temperaturas",
+      "titulo": "Altas Temperaturas en zonas de las regiones de Tarapacá, Antofagasta y Atacama",
+      "desdeTexto": "la tarde del martes 10 de noviembre del 2026",
+      "hastaTexto": "la tarde del jueves 12 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-10",
+      "fechaFinDia": "2026-11-12",
+      "fechaEmision": "2026-11-10T16:22:00-03:00",
+      "regiones": [
+        "Antofagasta",
+        "Atacama",
+        "Tarapacá"
+      ],
+      "numeroPoligonos": 6,
+      "archivoGeojson": "data/dmc/A610-2_2026.geojson",
+      "archivoCobertura": "data/dmc/A610-2_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A610-2_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A610-2_2026_documento.json"
+    },
     {
       "codigo": "AA196-1/2026",
       "tipo": "Alerta",
@@ -27,25 +71,24 @@
       "archivoDocumento": "data/dmc/AA196-1_2026_documento.json"
     },
     {
-      "codigo": "A610-1/2026",
+      "codigo": "A614/2026",
       "tipo": "Aviso",
-      "fenomeno": "Altas Temperaturas",
-      "titulo": "Altas Temperaturas en zonas de las regiones de Tarapacá y Antofagasta",
-      "desdeTexto": "la tarde del lunes 09 de noviembre del 2026",
-      "hastaTexto": "la tarde del jueves 12 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-09",
-      "fechaFinDia": "2026-11-12",
-      "fechaEmision": "2026-11-09T16:40:00-03:00",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en zonas de la región de Magallanes",
+      "desdeTexto": "la mañana del miércoles 11 de noviembre del 2026",
+      "hastaTexto": "la tarde del miércoles 11 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-11",
+      "fechaFinDia": "2026-11-11",
+      "fechaEmision": "2026-11-10T14:57:00-03:00",
       "regiones": [
-        "Antofagasta",
-        "Tarapacá"
+        "Magallanes"
       ],
-      "numeroPoligonos": 4,
-      "archivoGeojson": "data/dmc/A610-1_2026.geojson",
-      "archivoCobertura": "data/dmc/A610-1_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A610-1_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A610-1_2026_documento.json"
+      "numeroPoligonos": 3,
+      "archivoGeojson": "data/dmc/A614_2026.geojson",
+      "archivoCobertura": "data/dmc/A614_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A614_2026_impactos.json",
+      "observacion": "Asociadas con Chubascos aislados",
+      "archivoDocumento": "data/dmc/A614_2026_documento.json"
     },
     {
       "codigo": "A613/2026",
@@ -68,28 +111,6 @@
       "archivoDocumento": "data/dmc/A613_2026_documento.json"
     },
     {
-      "codigo": "A607-2/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en cordillera de las regiones de Arica y Parinacota, Tarapacá y Antofagasta",
-      "desdeTexto": "la tarde del lunes 09 de noviembre del 2026",
-      "hastaTexto": "la noche del martes 10 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-09",
-      "fechaFinDia": "2026-11-10",
-      "fechaEmision": "2026-11-09T11:55:00-03:00",
-      "regiones": [
-        "Antofagasta",
-        "Arica y Parinacota",
-        "Tarapacá"
-      ],
-      "numeroPoligonos": 3,
-      "archivoGeojson": "data/dmc/A607-2_2026.geojson",
-      "archivoCobertura": "data/dmc/A607-2_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A607-2_2026_impactos.json",
-      "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
-      "archivoDocumento": "data/dmc/A607-2_2026_documento.json"
-    },
-    {
       "codigo": "A609-1/2026",
       "tipo": "Aviso",
       "fenomeno": "Viento",
@@ -110,5 +131,5 @@
       "archivoDocumento": "data/dmc/A609-1_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-10T11:53:17.182302-03:00"
+  "generadoEn": "2026-11-10T18:17:53.341486-03:00"
 }
