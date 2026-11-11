@@ -1729,7 +1729,16 @@ async function bootstrap() {
   try {
     layers.assets.clearLayers();
     layers.lines.clearLayers();
-    await Promise.all([loadAssets(),loadLines(),loadFires()]);
+    const gvTrabajos = await Promise.allSettled([
+      loadAssets(),
+      loadLines(),
+      navigator.onLine ? loadFires() : Promise.reject(new Error('Sin internet'))
+    ]);
+    if (gvTrabajos[0].status === 'rejected' || gvTrabajos[1].status === 'rejected') {
+      throw new Error('No fue posible cargar el catalogo electrico SEN');
+    }
+    const gvFiresEnVivo = gvTrabajos[2].status === 'fulfilled';
+    if (!gvFiresEnVivo) fires = [];
     fires = fires.map(enrichFire);
     initRegions();
     applyFilters();
@@ -1748,7 +1757,9 @@ if (fireInicial) {
     false
   );
 }
-    $("map-status").textContent=`${fires.length} incendios · datos Power BI`;
+    $("map-status").textContent = gvFiresEnVivo
+      ? `${fires.length} incendios · datos Power BI`
+      : 'SEN disponible · incendios sin datos en vivo';
   } catch (e) {
     console.error(e); $("map-status").textContent="Error cargando datos";
   }

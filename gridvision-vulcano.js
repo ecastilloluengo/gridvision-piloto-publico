@@ -222,6 +222,7 @@ function instalarGpsVulcano(m) {
 function initMap(){
  if(!window.L){status('No se ha cargado Leaflet. Compruebe vendor/leaflet/leaflet.js',true);return false;}
  const m=state.map=L.map('vulcano-map',{preferCanvas:true,zoomControl:false,maxZoom:18,minZoom:3}).fitBounds(BOUNDS,{padding:[14,14],animate:false});
+ window.GridVisionVulcanoMap=m;
  L.control.zoom({position:'bottomright'}).addTo(m);L.control.scale({position:'bottomleft',imperial:false}).addTo(m);
   instalarGpsVulcano(m);
  const sat=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{attribution:'© Esri, Maxar, Earthstar Geographics y colaboradores GIS',maxZoom:18});
