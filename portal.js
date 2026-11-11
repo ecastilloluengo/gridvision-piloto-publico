@@ -602,6 +602,19 @@ async function cargarClima(id, zona) {
         Array.isArray(datos.inversores)
           ? datos.inversores
           : [];
+      // Diagnostico Lo Aguirre: expone solo telemetria publica del inversor,
+      // sin una consulta extra a SolaX ni informacion de autenticacion.
+      window.__gvSolaxLoAguirreSnapshot = inversores.map(inversor => ({
+        nombre: inversor.nombre,
+        estado: inversor.estado,
+        nivel: inversor.nivel,
+        ultimo_dato: inversor.ultimo_dato,
+        potencia_ac: inversor.potencia_ac,
+        potencia_nominal_kw: inversor.potencia_nominal_kw
+      }));
+      window.dispatchEvent(new CustomEvent('gv:solax:lo-aguirre-actualizado', {
+        detail: window.__gvSolaxLoAguirreSnapshot
+      }));
 
       // Mismo criterio utilizado por GridVision:
       // un dato SolaX con m?s de 10 minutos
@@ -652,20 +665,158 @@ async function cargarClima(id, zona) {
         );
       }
 
-      const inversoresDisponibles =
-        inversores.filter(
-          inversor =>
-            inversor
-            && inversor.nivel !== "sin_datos"
-            && datoSolaxVigente(inversor)
-        ).length;
-
-      actualizarInversoresSolar(
-        id,
-        inversoresDisponibles,
-        inversores.length
+      // GRIDVISION SOLAX COMPACTO V3
+      // Estado conocido y dato vigente son conceptos diferentes.
+      const totalInversores = inversores.length;
+      const vigentes = inversores.filter(
+        inversor => inversor && datoSolaxVigente(inversor)
       );
+      const operativos = vigentes.filter(
+        inversor => inversor.nivel === "ok"
+      ).length;
+      const fallasConocidas = inversores.filter(
+        inversor => inversor && inversor.nivel === "falla"
+      ).length;
+      const fallasVigentes = vigentes.filter(
+        inversor => inversor.nivel === "falla"
+      ).length;
+      const enEspera = vigentes.filter(
+        inversor => inversor.nivel === "espera"
+      ).length;
+      const sinVerificar = totalInversores - vigentes.length;
+      actualizarInversoresSolar(id, operativos, totalInversores);
 
+      // GRIDVISION SOLAX DISENO V5: resumen discreto + diagnostico modal.
+      const detalle = document.getElementById("solar-inverters-detail-lo-aguirre");
+      if (detalle) {
+        detalle.replaceChildren();
+        detalle.className = "gv-solax-v5-strip";
+        detalle.removeAttribute("style");
+
+        const resumen = document.createElement("span");
+        resumen.className = "gv-solax-v5-resumen";
+        // GRIDVISION SOLAX - RESUMEN OPERACIONAL CLARO
+        const fallasAntiguas = Math.max(
+          0, fallasConocidas - fallasVigentes
+        );
+
+        let mensajeOperacional = "";
+
+        if (totalInversores === 0) {
+          mensajeOperacional = "Sin datos de inversores";
+        } else if (fallasVigentes > 0) {
+          mensajeOperacional =
+            `${fallasVigentes} inversor(es) en falla vigente` +
+            (sinVerificar > 0
+              ? ` \u00B7 ${sinVerificar} sin verificar`
+              : "");
+        } else if (sinVerificar > 0) {
+          mensajeOperacional =
+            `${sinVerificar} inversor(es) sin datos recientes` +
+            (fallasAntiguas > 0
+              ? ` \u00B7 \u00DAltimo estado: falla en ${fallasAntiguas}`
+              : "");
+        } else if (enEspera > 0) {
+          mensajeOperacional =
+            `${enEspera} inversor(es) en espera` +
+            ` \u00B7 ${operativos} operativos`;
+        } else if (operativos === totalInversores) {
+          mensajeOperacional = "Todos los inversores operativos";
+        } else {
+          mensajeOperacional =
+            `${operativos}/${totalInversores} operativos` +
+            " \u00B7 Revisar estados SolaX";
+        }
+
+        resumen.textContent = mensajeOperacional;
+        const botonDetalle = document.createElement("button");
+        botonDetalle.type = "button";
+        botonDetalle.className = "gv-solax-v5-abrir";
+        botonDetalle.textContent = "Ver equipos";
+        botonDetalle.setAttribute("aria-haspopup", "dialog");
+        botonDetalle.setAttribute("aria-controls", "gv-solax-v5-dialogo");
+        detalle.append(resumen, botonDetalle);
+
+        let dialogo = document.getElementById("gv-solax-v5-dialogo");
+        if (!dialogo) {
+          dialogo = document.createElement("dialog");
+          dialogo.id = "gv-solax-v5-dialogo";
+          dialogo.className = "gv-solax-v5-dialogo";
+          dialogo.setAttribute("aria-labelledby", "gv-solax-v5-titulo");
+          dialogo.innerHTML =
+            '<div class="gv-solax-v5-cabecera">' +
+              '<div><small>DIAGNOSTICO SOLAX CLOUD</small>' +
+              '<h2 id="gv-solax-v5-titulo">PFV ICV Lo Aguirre</h2></div>' +
+              '<button type="button" class="gv-solax-v5-cerrar" aria-label="Cerrar diagnostico"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="display:block;pointer-events:none"><path d="M6 6L18 18M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>' +
+            '</div>' +
+            '<p class="gv-solax-v5-nota">Estado comunicado por SolaX. ' +
+              'Una lectura antigua no confirma el estado actual.</p>' +
+            '<div class="gv-solax-v5-indicadores" id="gv-solax-v5-indicadores"></div>' +
+            '<div class="gv-solax-v5-filas" id="gv-solax-v5-filas"></div>' +
+            '<div class="gv-solax-v5-pie">Vigencia: hasta 10 minutos desde la ultima lectura.</div>';
+          document.body.appendChild(dialogo);
+          dialogo.querySelector(".gv-solax-v5-cerrar").addEventListener("click", evento => {
+            evento.stopPropagation();
+            dialogo.close();
+          });
+          dialogo.addEventListener("click", evento => {
+            if (evento.target === dialogo) dialogo.close();
+          });
+        }
+
+        const indicadores = dialogo.querySelector("#gv-solax-v5-indicadores");
+        indicadores.replaceChildren();
+        for (const [titulo, valor, clase] of [
+          ["Operativos confirmados", `${operativos}/${totalInversores}`, "ok"],
+          ["Ultima falla conocida", `${fallasConocidas}/${totalInversores}`, "falla"],
+          ["Datos vigentes", `${vigentes.length}/${totalInversores}`, "vigente"]
+        ]) {
+          const bloque = document.createElement("div");
+          bloque.className = "gv-solax-v5-indicador " + clase;
+          const e = document.createElement("span");
+          e.textContent = titulo;
+          const n = document.createElement("strong");
+          n.textContent = valor;
+          bloque.append(e, n);
+          indicadores.appendChild(bloque);
+        }
+
+        const filas = dialogo.querySelector("#gv-solax-v5-filas");
+        filas.replaceChildren();
+        for (const inversor of inversores) {
+          if (!inversor) continue;
+          const vigente = datoSolaxVigente(inversor);
+          const fila = document.createElement("div");
+          fila.className = "gv-solax-v5-fila";
+          const izquierda = document.createElement("div");
+          izquierda.className = "gv-solax-v5-equipo";
+          const nombre = document.createElement("strong");
+          nombre.textContent = String(inversor.nombre || "Inversor");
+          const fecha = document.createElement("small");
+          fecha.textContent = inversor.ultimo_dato
+            ? `Ultima lectura: ${String(inversor.ultimo_dato)}`
+            : "Sin fecha de lectura";
+          izquierda.append(nombre, fecha);
+          const derecha = document.createElement("div");
+          derecha.className = "gv-solax-v5-estados";
+          const estado = document.createElement("strong");
+          estado.className = "gv-solax-v5-estado " +
+            (inversor.nivel === "falla" ? "falla" : inversor.nivel === "ok" ? "ok" : "espera");
+          estado.textContent = String(inversor.estado || "SIN ESTADO");
+          const vigencia = document.createElement("span");
+          vigencia.className = "gv-solax-v5-vigencia " + (vigente ? "vigente" : "antiguo");
+          vigencia.textContent = vigente ? "Dato vigente" : "Dato antiguo / no verificable";
+          derecha.append(estado, vigencia);
+          fila.append(izquierda, derecha);
+          filas.appendChild(fila);
+        }
+
+        botonDetalle.addEventListener("click", evento => {
+          evento.preventDefault();
+          evento.stopPropagation();
+          if (!dialogo.open) dialogo.showModal();
+        });
+      }
       let potenciaTotalKw = 0;
       let energiaHoyKwh = 0;
 
@@ -1226,14 +1377,27 @@ async function cargarClima(id, zona) {
             }
           };
 
-          tarjeta.addEventListener(
-            "click",
-            abrir
-          );
+          // GRIDVISION SOLAX DETALLE V4: el desplegable no navega al mapa.
+          tarjeta.addEventListener("click", evento => {
+            if (
+              tarjeta.id === "solar-lo-aguirre"
+              && evento.target.closest("#solar-inverters-detail-lo-aguirre")
+            ) {
+              return;
+            }
+            abrir();
+          });
 
           tarjeta.addEventListener(
             "keydown",
             evento => {
+              // No secuestrar Enter/Espacio del control <summary>.
+              if (
+                tarjeta.id === "solar-lo-aguirre"
+                && evento.target.closest("#solar-inverters-detail-lo-aguirre")
+              ) {
+                return;
+              }
 
               if (
                 evento.key === "Enter"
