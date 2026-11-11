@@ -5,6 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portal Operacional Pecket Energy</title>
   <link rel="stylesheet" href="portal.css?v=sitr-badge-v01">
+<style id="gv-solax-diseno-v5">
+/* GridVision Lo Aguirre V5: resumen compacto y diagnostico aislado */
+#solar-lo-aguirre .gv-solax-v5-strip{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  min-height:30px;margin:3px 0 6px;padding:3px 0;
+  color:#a9c5d6;font-size:10px;line-height:1.35;
+}
+#solar-lo-aguirre .gv-solax-v5-resumen{min-width:0;flex:1;overflow-wrap:anywhere}
+#solar-lo-aguirre .gv-solax-v5-abrir{
+  flex:none;border:0;background:transparent;padding:6px 2px;
+  color:#78d8fd;font-size:11px;font-weight:800;cursor:pointer;
+}
+#solar-lo-aguirre .gv-solax-v5-abrir:hover{text-decoration:underline}
+#solar-lo-aguirre .gv-solax-v5-abrir:focus-visible{outline:2px solid #80d9ff;outline-offset:2px}
+.gv-solax-v5-dialogo{
+  width:min(620px,calc(100vw - 28px));max-height:min(680px,calc(100dvh - 38px));
+  padding:0;overflow:auto;color:#eaf5fb;background:#081c2d;
+  border:1px solid #3d667f;border-radius:16px;
+  box-shadow:0 25px 90px rgba(0,0,0,.7);font-family:Inter,Segoe UI,Arial,sans-serif;
+}
+.gv-solax-v5-dialogo::backdrop{background:rgba(1,9,16,.74);backdrop-filter:blur(3px)}
+.gv-solax-v5-cabecera{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 24px 14px;border-bottom:1px solid #234459}
+.gv-solax-v5-cabecera small{font-size:10px;letter-spacing:.12em;color:#78b8d4;font-weight:700}
+.gv-solax-v5-cabecera h2{font-size:21px;line-height:1.2;margin:6px 0 0;color:#f2faff}
+.gv-solax-v5-cerrar{display:grid;place-items:center;flex:none;width:38px;height:38px;border:1px solid #42647b;border-radius:10px;background:#142f42;color:#fff;font-size:24px;cursor:pointer}
+.gv-solax-v5-nota{margin:0;padding:14px 24px 8px;color:#a7bfd0;font-size:12px;line-height:1.5}
+.gv-solax-v5-indicadores{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:12px 24px 20px}
+.gv-solax-v5-indicador{display:flex;flex-direction:column;justify-content:space-between;gap:12px;padding:14px;border:1px solid #2b4e63;background:#10283b;border-radius:10px}
+.gv-solax-v5-indicador span{font-size:11px;color:#a5bdcc;line-height:1.3}
+.gv-solax-v5-indicador strong{font-size:25px;line-height:1.1;color:#ecf6fa}
+.gv-solax-v5-indicador.falla strong{color:#ff9497}.gv-solax-v5-indicador.ok strong{color:#87e4ac}
+.gv-solax-v5-filas{padding:0 24px 18px;display:grid;gap:9px}
+.gv-solax-v5-fila{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 16px;background:#10283b;border:1px solid #2d4f65;border-radius:10px}
+.gv-solax-v5-equipo{display:flex;flex-direction:column;gap:6px;min-width:0}
+.gv-solax-v5-equipo strong{font-size:13px;color:#f3fbff}.gv-solax-v5-equipo small{font-size:11px;color:#9cb4c5;line-height:1.3}
+.gv-solax-v5-estados{display:flex;align-items:flex-end;flex-direction:column;gap:6px;text-align:right}
+.gv-solax-v5-estado{font-size:11px;color:#ddd}.gv-solax-v5-estado.falla{color:#ff9299}.gv-solax-v5-estado.ok{color:#87e4ac}
+.gv-solax-v5-vigencia{font-size:10px;color:#97abbc}.gv-solax-v5-vigencia.vigente{color:#85e5b1}.gv-solax-v5-vigencia.antiguo{color:#ffce87}
+.gv-solax-v5-pie{padding:0 24px 22px;color:#8ca9bb;font-size:11px}
+@media(max-width:540px){
+  .gv-solax-v5-cabecera{padding:16px 16px 12px}.gv-solax-v5-cabecera h2{font-size:18px}
+  .gv-solax-v5-nota{padding:12px 16px 5px}
+  .gv-solax-v5-indicadores{gap:6px;padding:10px 16px 16px}
+  .gv-solax-v5-indicador{padding:9px;gap:7px}
+  .gv-solax-v5-indicador span{font-size:9px}.gv-solax-v5-indicador strong{font-size:19px}
+  .gv-solax-v5-filas{padding:0 16px 16px}
+  .gv-solax-v5-fila{align-items:flex-start;flex-direction:column;gap:8px}
+  .gv-solax-v5-estados{align-items:flex-start;text-align:left}
+  .gv-solax-v5-pie{padding:0 16px 18px}
+}
+</style>
+  <link rel="stylesheet" href="fusionsolar-detalle-v1.css?v=20261111">
 </head>
 <body>
 <div class="portal-shell">
@@ -275,7 +327,7 @@
           </div>
 
           <div>
-            <span>Inversores</span>
+            <span>Operativos confirmados</span>
             <strong id="solar-inverters-lo-aguirre">
               -- / --
             </strong>
@@ -283,7 +335,13 @@
 
         </div>
 
-        <div class="solar-weather">
+        <div id="solar-inverters-detail-lo-aguirre"
+     role="status"
+     aria-live="polite"
+     style="font-size:11px;line-height:1.5;color:#b9d7e7;padding:3px 0 9px;">
+  Verificando estados SolaX...
+</div>
+<div class="solar-weather">
 
           <div>
             <span>Irradiancia GHI</span>
@@ -547,8 +605,10 @@
   <symbol id="i-wind" viewBox="0 0 24 24"><path d="M3 8h11c2.5 0 2.5-4 0-4M3 12h16c3 0 3 4 0 4h-2M3 16h9"/></symbol>
 </svg>
 <script src="components/alertas/activos-meteorologicos.js"></script>
-<script src="portal.js?v=sitr-badge-v01"></script>
+<script src="portal.js?v=solax-potencias-v7-20261111"></script>
+  <script src="portal-solax-diagnostico-potencias.js?v=7-20261111"></script>
 <script src="portal-alertas-pfv.js?v=2"></script>
 <script src="components/alertas/estado-alertas.js"></script>
+  <script src="fusionsolar-detalle-v1.js?v=20261111"></script>
 </body>
 </html>
