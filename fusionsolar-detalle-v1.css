@@ -10,3 +10,24 @@
 .gv-fusion-explicacion{font-size:11px;color:#9ebaca;line-height:1.5;margin:10px 0 20px}.gv-fusion-subtitulo{font-size:14px;margin:8px 0 11px}.gv-fusion-lista{display:grid;gap:8px}.gv-fusion-fila{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:13px 15px;background:#123247;border:1px solid #31566d;border-radius:10px}.gv-fusion-equipo,.gv-fusion-valores{display:flex;flex-direction:column;gap:5px;min-width:0}.gv-fusion-equipo strong{font-size:13px}.gv-fusion-equipo small,.gv-fusion-valores small{font-size:11px;color:#acc5d3;overflow-wrap:anywhere}.gv-fusion-valores{text-align:right;align-items:flex-end}.gv-fusion-valores strong{font-size:15px}.gv-fusion-pot-ok{color:#a9e669}.gv-fusion-vigente{font-size:10px;color:#8ae5b0}.gv-fusion-antiguo{font-size:10px;color:#f1c57d}.gv-fusion-aviso{padding:14px;background:#44341d;color:#ffe2b2;border-radius:8px;font-size:12px}
 .gv-fusion-pie{display:flex;justify-content:flex-end;padding:13px 22px 19px}.gv-fusion-pie a{display:inline-flex;align-items:center;padding:10px 13px;background:#163d52;color:#98e6ff;text-decoration:none;border:1px solid #3c7998;border-radius:8px;font-size:12px;font-weight:800}
 @media(max-width:550px){.gv-fusion-cabecera{padding:15px}.gv-fusion-cuerpo{padding:15px 15px 5px}.gv-fusion-indicadores{gap:6px}.gv-fusion-metrica{padding:9px;min-height:70px}.gv-fusion-metrica span{font-size:9px}.gv-fusion-metrica strong{font-size:15px}.gv-fusion-fila{flex-direction:column;align-items:stretch;gap:10px}.gv-fusion-valores{text-align:left;align-items:flex-start}.gv-fusion-pie{padding:12px 15px 18px}}
+
+/* GridVision PFV: alineacion uniforme de las tres tarjetas */
+#solar-lo-aguirre .gv-solax-v5-strip,
+#solar-techo .gv-fusion-banda,
+#solar-paidahuen .gv-fusion-banda {
+    min-height: 42px;
+    margin: 3px 0 6px;
+    padding: 3px 0;
+}
+
+#solar-techo .gv-fusion-banda,
+#solar-paidahuen .gv-fusion-banda {
+    gap: 10px;
+    line-height: 1.35;
+}
+
+#solar-lo-aguirre .gv-solax-v5-abrir,
+#solar-techo .gv-fusion-ver,
+#solar-paidahuen .gv-fusion-ver {
+    min-height: 30px;
+}
