@@ -34,3 +34,15 @@
   .gv-nav-panel button{min-height:36px;padding:7px;font-size:10px;}
   .gv-nav-status{font-size:9px;}
 }
+
+/* GridVision Vulcano: control GPS debajo del buscador - V1.1 */
+#vulcano-map .leaflet-top.leaflet-left .gv-nav-panel.leaflet-control {
+  margin-top: 185px;
+  margin-left: 14px;
+}
+@media (max-width: 700px) {
+  #vulcano-map .leaflet-top.leaflet-left .gv-nav-panel.leaflet-control {
+    margin-top: 175px;
+    margin-left: 9px;
+  }
+}
