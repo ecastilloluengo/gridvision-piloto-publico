@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-10 16:27",
+  "catalogoActualizadoEn": "2026-11-10 22:25",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -109,27 +109,7 @@
       "archivoImpactos": "data/dmc/A613_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A613_2026_documento.json"
-    },
-    {
-      "codigo": "A609-1/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Viento",
-      "titulo": "Viento Normal a Moderado en la región de Magallanes",
-      "desdeTexto": "la mañana del domingo 08 de noviembre del 2026",
-      "hastaTexto": "la tarde del martes 10 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-08",
-      "fechaFinDia": "2026-11-10",
-      "fechaEmision": "2026-11-07T15:06:00-03:00",
-      "regiones": [
-        "Magallanes"
-      ],
-      "numeroPoligonos": 2,
-      "archivoGeojson": "data/dmc/A609-1_2026.geojson",
-      "archivoCobertura": "data/dmc/A609-1_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A609-1_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A609-1_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-10T18:17:53.341486-03:00"
+  "generadoEn": "2026-11-11T03:18:48.191600-03:00"
 }
