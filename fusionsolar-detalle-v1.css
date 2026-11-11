@@ -1,5 +1,5 @@
 /* GridVision FusionSolar: UI aislada para VSE Techo y VSE Paidahuen */
-.gv-fusion-banda{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 0;margin-top:5px;border-bottom:1px solid rgba(94,147,176,.25);color:#b6ccd8;font-size:10px}
+.gv-fusion-banda{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 0;margin-top:5px;color:#b6ccd8;font-size:10px}
 .gv-fusion-ver{border:0;background:transparent;color:#60d5f6;cursor:pointer;font:inherit;font-weight:800;white-space:nowrap;padding:6px 3px;min-height:30px}
 .gv-fusion-ver:hover{text-decoration:underline}.gv-fusion-ver:focus-visible{outline:2px solid #60d5f6;outline-offset:2px}
 .gv-fusion-modal{box-sizing:border-box;width:min(720px,calc(100vw - 24px));max-height:min(86dvh,780px);padding:0;overflow-y:auto;border:1px solid #476e85;border-radius:14px;background:#092235;color:#ebf8ff;box-shadow:0 22px 70px #000b;font:inherit}
