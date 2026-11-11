@@ -1,0 +1,254 @@
+{
+  "codigo": "AA196-3/2026",
+  "tipo": "Alerta",
+  "titulo": "Evento de Altas Temperaturas Extremas en zonas desde la región de Antofagasta a la región Metropolitana",
+  "fenomeno": "Altas Temperaturas",
+  "emisionTexto": "Miércoles 11 de noviembre del 2026 a las 12:07 hrs.",
+  "condicionSinoptica": "Dorsal en altura",
+  "desde": "la tarde del miércoles 11 de noviembre del 2026",
+  "hasta": "la tarde del jueves 12 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Antofagasta (Pampa)\nAtacama (Precordillera)\nCoquimbo (Precordillera y valles precordilleranos)\nValparaíso (Precordillera y valles precordilleranos)\nMetropolitana (Cordillera Costa, Valle, Precordillera)",
+  "tablaTitulo": "Valores estimados de temperatura en grados Celsius (°C)",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Antofagasta"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 11"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 12"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Pampa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "36-38"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "36-38"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Atacama"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 11"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 12"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "36-38"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "36-38"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Coquimbo"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 11"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 12"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera y valles precordilleranos"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "32-34"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "32-34"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Valparaíso"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 11"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 12"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera y valles precordilleranos"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "35-37"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "35-37"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Metropolitana"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 11"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 12"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera Costa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "32-34"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "32-34"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "34-36"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "34-36"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "33-35"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "33-35"
+      }
+    ]
+  ]
+}

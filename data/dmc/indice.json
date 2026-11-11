@@ -1,10 +1,51 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-10 22:25",
+  "catalogoActualizadoEn": "2026-11-11 12:43",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
+    {
+      "codigo": "A610-4/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Altas Temperaturas",
+      "titulo": "Altas Temperaturas en zonas desde la región de Tarapacá a la región de Coquimbo",
+      "desdeTexto": "la tarde del miércoles 11 de noviembre del 2026",
+      "hastaTexto": "la tarde del sábado 14 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-11",
+      "fechaFinDia": "2026-11-14",
+      "fechaEmision": "2026-11-11T12:07:00-03:00",
+      "regiones": [
+        "Antofagasta",
+        "Atacama",
+        "Coquimbo",
+        "Tarapacá"
+      ],
+      "numeroPoligonos": 7,
+      "archivoGeojson": "data/dmc/A610-4_2026.geojson",
+      "archivoCobertura": "data/dmc/A610-4_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A610-4_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A610-4_2026_documento.json"
+    },
+    {
+      "codigo": "A615/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Viento",
+      "titulo": "Viento Normal a Moderado en Isla de Pascua",
+      "desdeTexto": "la mañana del viernes 13 de noviembre del 2026",
+      "hastaTexto": "la mañana del sábado 14 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-13",
+      "fechaFinDia": "2026-11-14",
+      "fechaEmision": "2026-11-11T09:27:00-03:00",
+      "regiones": [],
+      "numeroPoligonos": 1,
+      "archivoGeojson": "data/dmc/A615_2026.geojson",
+      "archivoCobertura": "data/dmc/A615_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A615_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A615_2026_documento.json"
+    },
     {
       "codigo": "A607-3/2026",
       "tipo": "Aviso",
@@ -28,47 +69,28 @@
       "archivoDocumento": "data/dmc/A607-3_2026_documento.json"
     },
     {
-      "codigo": "A610-2/2026",
-      "tipo": "Aviso",
+      "codigo": "AA196-3/2026",
+      "tipo": "Alerta",
       "fenomeno": "Altas Temperaturas",
-      "titulo": "Altas Temperaturas en zonas de las regiones de Tarapacá, Antofagasta y Atacama",
-      "desdeTexto": "la tarde del martes 10 de noviembre del 2026",
+      "titulo": "Evento de Altas Temperaturas Extremas en zonas desde la región de Antofagasta a la región Metropolitana",
+      "desdeTexto": "la tarde del miércoles 11 de noviembre del 2026",
       "hastaTexto": "la tarde del jueves 12 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-10",
+      "fechaInicioDia": "2026-11-11",
       "fechaFinDia": "2026-11-12",
-      "fechaEmision": "2026-11-10T16:22:00-03:00",
+      "fechaEmision": "2026-11-11T12:07:00-03:00",
       "regiones": [
         "Antofagasta",
         "Atacama",
-        "Tarapacá"
+        "Coquimbo",
+        "Metropolitana",
+        "Valparaíso"
       ],
-      "numeroPoligonos": 6,
-      "archivoGeojson": "data/dmc/A610-2_2026.geojson",
-      "archivoCobertura": "data/dmc/A610-2_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A610-2_2026_impactos.json",
+      "numeroPoligonos": 7,
+      "archivoGeojson": "data/dmc/AA196-3_2026.geojson",
+      "archivoCobertura": "data/dmc/AA196-3_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/AA196-3_2026_impactos.json",
       "observacion": "",
-      "archivoDocumento": "data/dmc/A610-2_2026_documento.json"
-    },
-    {
-      "codigo": "AA196-1/2026",
-      "tipo": "Alerta",
-      "fenomeno": "Altas Temperaturas",
-      "titulo": "Evento de Altas Temperaturas Extremas en zonas de las regiones de Atacama y Coquimbo",
-      "desdeTexto": "la tarde del martes 10 de noviembre del 2026",
-      "hastaTexto": "la tarde del jueves 12 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-10",
-      "fechaFinDia": "2026-11-12",
-      "fechaEmision": "2026-11-10T11:40:00-03:00",
-      "regiones": [
-        "Atacama",
-        "Coquimbo"
-      ],
-      "numeroPoligonos": 2,
-      "archivoGeojson": "data/dmc/AA196-1_2026.geojson",
-      "archivoCobertura": "data/dmc/AA196-1_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/AA196-1_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/AA196-1_2026_documento.json"
+      "archivoDocumento": "data/dmc/AA196-3_2026_documento.json"
     },
     {
       "codigo": "A614/2026",
@@ -89,27 +111,7 @@
       "archivoImpactos": "data/dmc/A614_2026_impactos.json",
       "observacion": "Asociadas con Chubascos aislados",
       "archivoDocumento": "data/dmc/A614_2026_documento.json"
-    },
-    {
-      "codigo": "A613/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Precipitaciones",
-      "titulo": "Precipitaciones Normales a Moderadas en corto periodo de tiempo en zonas de la región de Magallanes",
-      "desdeTexto": "la noche del martes 10 de noviembre del 2026",
-      "hastaTexto": "la mañana del miércoles 11 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-10",
-      "fechaFinDia": "2026-11-11",
-      "fechaEmision": "2026-11-09T15:51:00-03:00",
-      "regiones": [
-        "Magallanes"
-      ],
-      "numeroPoligonos": 2,
-      "archivoGeojson": "data/dmc/A613_2026.geojson",
-      "archivoCobertura": "data/dmc/A613_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A613_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A613_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-11T03:18:48.191600-03:00"
+  "generadoEn": "2026-11-11T14:07:47.403611-03:00"
 }

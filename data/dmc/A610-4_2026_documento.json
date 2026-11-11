@@ -1,0 +1,340 @@
+{
+  "codigo": "A610-4/2026",
+  "tipo": "Aviso",
+  "titulo": "Altas Temperaturas en zonas desde la región de Tarapacá a la región de Coquimbo",
+  "fenomeno": "Altas Temperaturas",
+  "emisionTexto": "Miércoles 11 de noviembre del 2026 a las 12:07 hrs.",
+  "condicionSinoptica": "Dorsal en altura",
+  "desde": "la tarde del miércoles 11 de noviembre del 2026",
+  "hasta": "la tarde del sábado 14 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Tarapacá (Pampa)\nAntofagasta (Pampa, Precordillera Occidental, Precordillera Salar)\nAtacama (Cordillera Costa y sectores de valles, Pampa)\nCoquimbo (Cordillera Costa)",
+  "tablaTitulo": "Valores estimados de temperatura en grados Celsius (°C)",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 5,
+        "texto": "Región: Tarapacá"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 11"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 12"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 13"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 14"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Pampa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "35-36"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "35-36"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "35-36"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "35-36"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 5,
+        "texto": "Región: Antofagasta"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 11"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 12"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 13"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 14"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Pampa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "--"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "--"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "34-36"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "34-36"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera Occidental"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "28-30"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "28-30"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "28-30"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "--"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera Salar"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "33-35"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "33-35"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "33-35"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "33-35"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 5,
+        "texto": "Región: Atacama"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 11"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 12"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 13"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 14"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera Costa y sectores de valles"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "29-31"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "--"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "--"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "--"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Pampa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "30-32"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "--"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "--"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "--"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 5,
+        "texto": "Región: Coquimbo"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 11"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 12"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 13"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 14"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera Costa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "29-31"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "--"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "--"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "--"
+      }
+    ]
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "codigo": "A615/2026",
+  "tipo": "Aviso",
+  "titulo": "Viento Normal a Moderado en Isla de Pascua",
+  "fenomeno": "Viento",
+  "emisionTexto": "Miércoles 11 de noviembre del 2026 a las 09:27 hrs.",
+  "condicionSinoptica": "Sistema frontal",
+  "desde": "la mañana del viernes 13 de noviembre del 2026",
+  "hasta": "la mañana del sábado 14 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Isla de Pascua",
+  "tablaTitulo": "Intensidad estimada del Viento en Km/h",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Región"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 13"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 14"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Isla de Pascua"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-40 RACHAS DE 50 KM/H"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-40 RACHAS DE 50 KM/H"
+      }
+    ]
+  ]
+}
