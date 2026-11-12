@@ -159,3 +159,57 @@ body > header #estado::after {
         font-size: 11px;
     }
 }
+
+/* GV V212 */
+#gv-menu-visor { position:relative; flex:0 0 auto; }
+#gv-menu-visor summary { display:none; }
+.gv-menu-enlaces { display:flex; align-items:center; gap:6px; }
+#gv-modo-mobile { display:none; }
+#gv-selector-clima {
+    box-sizing:border-box; padding:9px; border-radius:9px;
+    background:#fff; color:#17354a; box-shadow:0 2px 8px #0004;
+    font:600 11px/1.35 "Segoe UI",Arial,sans-serif;
+}
+.gv-modo-label { display:block; margin-bottom:6px; }
+.gv-modo-botones { display:flex; gap:3px; }
+#gv-selector-clima button {
+    min-height:30px; padding:5px 9px; border:1px solid #ccd9e3;
+    border-radius:6px; font:600 11px "Segoe UI",Arial,sans-serif;
+    background:#eef3f6; color:#28465b; white-space:nowrap; cursor:pointer;
+}
+#gv-selector-clima button[aria-pressed="true"] { background:#145a7b; color:#fff; border-color:#145a7b; }
+#gv-selector-clima #gv-modo-sin-clima[aria-pressed="true"] { background:#236345; border-color:#236345; }
+#gv-selector-clima button:disabled { cursor:default; opacity:.8; }
+#gv-modo-estado:not([hidden]) { display:block; color:#a26112; margin-top:5px; }
+#gv-modo-estado[hidden] { display:none!important; }
+body > header .estado-aplicacion #estado { max-width:185px; }
+@media(max-width:700px) {
+    body > header { grid-template-columns:minmax(0,1fr) auto; gap:6px; }
+    body > header .titulo { min-width:0; }
+    body > header .subtitulo { display:none; }
+    body > header h1 { font-size:16px; white-space:normal; }
+    body > header .estado-aplicacion { grid-column:1/-1; gap:5px; }
+    #gv-modo-mobile { display:block; }
+    #gv-modo-mobile #gv-selector-clima { background:transparent; color:#d7e8f5; box-shadow:none; padding:0; }
+    #gv-modo-mobile .gv-modo-label { display:none; }
+    #gv-modo-mobile button { min-height:34px; padding:5px 7px; font-size:10px; }
+    #gv-modo-mobile #gv-modo-estado { color:#ffd18a; text-align:right; margin:2px 0 0; }
+    #gv-menu-visor summary {
+        display:flex; align-items:center; cursor:pointer; list-style:none;
+        min-height:34px; padding:0 9px; border:1px solid #4a6785;
+        border-radius:8px; color:#fff; font:600 11px "Segoe UI",Arial,sans-serif;
+    }
+    #gv-menu-visor summary::-webkit-details-marker { display:none; }
+    #gv-menu-visor .gv-menu-enlaces {
+        position:absolute; z-index:3001; top:calc(100% + 6px); left:0;
+        min-width:150px; background:#10283c; padding:8px; border:1px solid #4a6785;
+        border-radius:9px; box-shadow:0 7px 20px #0006; flex-direction:column; align-items:stretch;
+    }
+    #gv-menu-visor:not([open]) .gv-menu-enlaces { display:none; }
+    body > header .estado-aplicacion #estado {
+        flex:1 1 100%; max-width:none; min-height:20px; padding:3px 8px 3px 22px;
+        border:0; background:transparent; font-size:10px;
+    }
+    body > header #estado::before { top:6px; }
+    body > header #estado::after { display:inline; }
+}
