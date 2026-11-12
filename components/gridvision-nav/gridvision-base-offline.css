@@ -1,0 +1,14 @@
+/* National offline background only; all electrical and hazard layers remain above it. */
+.gv-base-v2-active {background:#b7dce7!important;background-image:none!important;}
+.gv-base-v2-active .leaflet-tile-pane {visibility:hidden!important;}
+.gv-base-label {pointer-events:none!important;white-space:nowrap;}
+.gv-base-label span {display:inline-block;transform:translate(-50%,-50%);font:600 11px/1.2 'Segoe UI',Arial,sans-serif;color:#263b43;text-shadow:0 0 2px #fff,0 0 4px #fff,1px 1px #fff,-1px -1px #fff;}
+.gv-base-label.town span::before {content:'• ';color:#4b6675;}
+.gv-base-label.region span {font-size:10px;font-weight:700;letter-spacing:.04em;color:#63766c;}
+.gv-base-label.country span {font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#526963;}
+.gv-nav-base-choice {width:100%;margin-top:4px;}
+.gv-nav-base-choice[aria-pressed="true"] {border-color:#a0dbe7;background:#174d65;color:#fff;}
+/* Override V1 neutral grid in offline mode. */
+.gv-nav-offline #mapa.gv-base-v2-active,
+.gv-nav-offline #fire-map.gv-base-v2-active,
+.gv-nav-offline #vulcano-map.gv-base-v2-active {background:#b7dce7!important;background-image:none!important;}

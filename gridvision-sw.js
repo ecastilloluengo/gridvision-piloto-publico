@@ -5,6 +5,8 @@ const CACHE='gridvision-nav-offline-v1';
 const CORE=['index.html','gridvision-fire.html','gridvision-vulcano.html',
   'components/gridvision-nav/gridvision-nav.css',
   'components/gridvision-nav/gridvision-nav.js',
+  'components/gridvision-nav/gridvision-base-offline.js',
+  'components/gridvision-nav/gridvision-base-offline.css',
   'vendor/leaflet/leaflet.css','vendor/leaflet/leaflet.js'];
 const root = new URL('./', self.registration.scope);
 const urlFor = p => new URL(p,root).href;
@@ -33,7 +35,7 @@ self.addEventListener('fetch',event=>{
      /^data\/(alertas_senapred\.json|dmc\/|sitr_)/i.test(relative)) return;
   const appPage=['index.html','gridvision-fire.html','gridvision-vulcano.html'].includes(relative);
   const appStatic=/\.(js|css|svg|png|webmanifest|ico|woff2?)$/i.test(relative);
-  const geo=/^data\/processed\/.+\.geojson$/i.test(relative);
+  const geo=/^data\/processed\/.+\.geojson$/i.test(relative) || relative==='data/offline/base-chile-v2.geojson';
   const vol=/^data\/vulcano\/.+\.(geojson|json)$/i.test(relative);
   if(!appPage && !appStatic && !geo && !vol)return;
   const key=normURL(req.url);

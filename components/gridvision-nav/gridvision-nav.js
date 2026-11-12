@@ -3,7 +3,7 @@
   'use strict';
   const scriptURL = document.currentScript?.src || location.href;
   function iniciarNavegacion() {
-  const VERSION = 'gv-nav-v13-20261112';
+  const VERSION = 'gv-nav-v20-20261112';
   const CACHE = 'gridvision-nav-offline-v1';
   const METADATA = '__gv-nav-offline-ready-v1.json';
   const ROOT = new URL('../../', scriptURL);
@@ -26,7 +26,7 @@
   let marker = null;
   let accuracyCircle = null;
   let lastFix = null;
-  let statusEl, followBtn, locateBtn, downloadBtn, offlineMenuBtn;
+  let statusEl, followBtn, locateBtn, downloadBtn, offlineMenuBtn, baseBtn;
   const absolute = name => new URL(name, ROOT).href;
   const clean = href => {const url = new URL(href, ROOT); url.search=''; url.hash=''; return url.href;};
   const inScope = url => url.origin === ROOT.origin && url.pathname.startsWith(ROOT.pathname);
@@ -142,14 +142,17 @@
     if (!('caches' in window)) return false;
     const cache=await caches.open(CACHE);
     const response=await cache.match(absolute(METADATA));
-    return response?.ok ? await response.json() : false;
+    if (!response?.ok) return false;
+    const meta=await response.json();
+    if (meta.version!==VERSION || !(await cache.match(absolute('data/offline/base-chile-v2.geojson')))?.ok) return false;
+    return meta;
   }
   async function gatherFiles() {
     const pages=['index.html','gridvision-fire.html','gridvision-vulcano.html'];
     const targets=new Set([
       ...pages,'vendor/leaflet/leaflet.js','vendor/leaflet/leaflet.css',
       'components/gridvision-nav/gridvision-nav.js','components/gridvision-nav/gridvision-nav.css',
-      'gridvision-sw.js',
+      'gridvision-sw.js','data/offline/base-chile-v2.geojson',
       'data/processed/activos_puntuales_validados.geojson',
       'data/processed/lineas_validadas.geojson',
       'data/processed/pfv_netbilling.geojson',
@@ -189,16 +192,20 @@
           const url=absolute(name);
           const response=await fetch(url,{cache:'no-store'});
           if (!response.ok) throw new Error('HTTP '+response.status);
+          if(name==='data/offline/base-chile-v2.geojson'){
+            const baseData=await response.clone().json();
+            if(baseData.metadata?.schema!=='gv-base-chile-v2'||baseData.type!=='FeatureCollection'||!baseData.features?.length)throw new Error('Cartografía nacional inválida');
+          }
           await cache.put(clean(url),response.clone());
           const saved=await cache.match(clean(url));
           if (!saved?.ok) throw new Error('No se verificó en almacenamiento');
           complete++;
         } catch (err) { failed.push(name+' ('+err.message+')'); }
-        status('Preparando SEN offline: '+(complete+failed.length)+'/'+files.length+' archivos…');
+        status('Preparando SEN y mapa offline: '+(complete+failed.length)+'/'+files.length+' archivos…');
       }
       const required=['index.html','gridvision-fire.html','gridvision-vulcano.html',
         'vendor/leaflet/leaflet.js','data/processed/activos_puntuales_validados.geojson',
-        'data/processed/lineas_validadas.geojson'];
+        'data/processed/lineas_validadas.geojson','data/offline/base-chile-v2.geojson'];
       const critical=required.filter(x=>failed.some(f=>f.startsWith(x+' (')));
       if (failed.length) {
         // Nunca registrar como listo si falta un archivo JS, CSS o geográfico.
@@ -207,13 +214,13 @@
         console.warn('GridVision offline: descargas fallidas',failed,critical);
       } else {
         const meta={version:VERSION,fecha:new Date().toISOString(),archivos:complete,
-          alcance:'Visores, librerías y catálogo SEN; sin fondo detallado ni alertas en vivo'};
+          alcance:'Visores, librerías, SEN y mapa nacional Natural Earth; sin detalle rural ni alertas en vivo'};
         await cache.put(absolute(METADATA),new Response(JSON.stringify(meta),
           {headers:{'Content-Type':'application/json'}}));
         if (navigator.storage?.persist) {
           try { await navigator.storage.persist(); } catch (_) { /* best effort */ }
         }
-        status('SEN offline preparado · '+complete+' archivos · prueba en modo avión.','ok');
+        status('SEN y mapa nacional preparados · '+complete+' archivos · prueba en modo avión.','ok');
       }
     } catch(err) {
       console.error('GridVision offline',err);
@@ -235,11 +242,13 @@
     locateBtn=makeButton(actions,'◎ Mi ubicación','Mostrar ubicación actual',locateOnce);
     followBtn=makeButton(actions,'▶ Seguir','Seguir el GPS sin cambiar el zoom',toggleFollow);
     updateGpsButtons();
-    downloadBtn=makeButton(wrapper,'⬇ Preparar SEN offline','Guardar los tres visores y el inventario SEN',prepareOffline);
+    downloadBtn=makeButton(wrapper,'⬇ Preparar SEN + mapa offline','Guardar los tres visores, el SEN y el mapa nacional',prepareOffline);
     downloadBtn.className='gv-nav-download';
     statusEl=document.createElement('div');statusEl.className='gv-nav-status';
     statusEl.setAttribute('role','status');statusEl.textContent='GPS listo · Internet '+(navigator.onLine?'conectado':'no disponible');
     wrapper.append(statusEl);
+    baseBtn=makeButton(wrapper,'Mapa nacional offline','Activar el mapa vectorial nacional de referencia',()=>{});
+    baseBtn.className='gv-nav-base-choice';baseBtn.setAttribute('aria-pressed','false');
     // GV NAV V1.2 compact rail: solo GridVision Chile. Fire y Vulcano conservan sus controles.
     if (viewId === 'mapa') {
       wrapper.classList.add('gv-nav-compact');
@@ -253,8 +262,8 @@
       const title=document.createElement('h2');title.id='gv-nav-dialog-title';title.textContent='Navegación y SEN offline';
       const close=makeButton(head,'×','Cerrar panel de navegación',()=>dialog.close());
       close.className='gv-nav-dialog-close';head.prepend(title);
-      const note=document.createElement('p');note.textContent='Descarga el inventario eléctrico y los tres visores antes de salir a terreno. No incluye cartografía base detallada ni alertas en vivo.';
-      dialog.append(head,note,statusEl,downloadBtn);
+      const note=document.createElement('p');note.textContent='Descarga el SEN y el mapa nacional de referencia antes de salir. Caminos principales, localidades, hidrografía y límites generales; sin detalle rural ni alertas en vivo.';
+      dialog.append(head,note,statusEl,downloadBtn,baseBtn);
       document.body.append(dialog);
       offlineMenuBtn=makeButton(actions,'SEN offline','Navegación y SEN offline',()=>{
         if (!dialog.open) dialog.showModal();
@@ -271,8 +280,9 @@
   ctrl.addTo(map);
   oldGpsHide();
   offlineStyle();
+  if(window.GridVisionBaseOfflineInstall)window.GridVisionBaseOfflineInstall(map,baseBtn,status);
   window.addEventListener('offline',()=>{
-    offlineStyle();status('Sin internet · el SEN descargado sigue disponible; clima y alertas NO son en vivo.','warning');
+    offlineStyle();status('Sin internet · consulta datos descargados; clima y alertas NO son en vivo.','warning');
   });
   window.addEventListener('online',()=>{offlineStyle();status('Conexión recuperada.','ok');});
   window.addEventListener('pagehide',clearGps);
@@ -280,7 +290,8 @@
   if ('serviceWorker' in navigator && window.isSecureContext) {
     navigator.serviceWorker.register(absolute('gridvision-sw.js'),{scope:ROOT.pathname})
       .then(()=>readyState()).then(meta=>{
-        if (meta) status('SEN offline descargado: '+new Date(meta.fecha).toLocaleDateString('es-CL'),'ok');
+        if (meta) status('SEN + mapa offline descargados: '+new Date(meta.fecha).toLocaleDateString('es-CL'),'ok');
+        else if(navigator.onLine)status('Prepara SEN + mapa offline para uso sin conexión.');
       }).catch(err=>console.warn('GridVision SW no disponible:',err));
   }
   }
