@@ -1,32 +1,53 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-11 20:39",
+  "catalogoActualizadoEn": "2026-11-12 14:48",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
     {
-      "codigo": "A616-1/2026",
-      "tipo": "Aviso",
+      "codigo": "AA197/2026",
+      "tipo": "Alerta",
       "fenomeno": "Altas Temperaturas",
-      "titulo": "Altas Temperaturas en zonas desde la región de La Araucanía a la región de Aysén",
-      "desdeTexto": "la madrugada del sábado 14 de noviembre del 2026",
-      "hastaTexto": "la noche del sábado 14 de noviembre del 2026",
+      "titulo": "Evento de Altas Temperaturas Extremas en zonas de las regiones de La Araucanía, Los Ríos y Los Lagos",
+      "desdeTexto": "la tarde del sábado 14 de noviembre del 2026",
+      "hastaTexto": "la tarde del sábado 14 de noviembre del 2026",
       "fechaInicioDia": "2026-11-14",
       "fechaFinDia": "2026-11-14",
-      "fechaEmision": "2026-11-11T16:00:00-03:00",
+      "fechaEmision": "2026-11-12T13:31:00-03:00",
       "regiones": [
-        "Aysén",
         "La Araucanía",
         "Los Lagos",
         "Los Ríos"
       ],
-      "numeroPoligonos": 10,
-      "archivoGeojson": "data/dmc/A616-1_2026.geojson",
-      "archivoCobertura": "data/dmc/A616-1_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A616-1_2026_impactos.json",
+      "numeroPoligonos": 4,
+      "archivoGeojson": "data/dmc/AA197_2026.geojson",
+      "archivoCobertura": "data/dmc/AA197_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/AA197_2026_impactos.json",
       "observacion": "Este evento también afectará la comuna de Valdivia",
-      "archivoDocumento": "data/dmc/A616-1_2026_documento.json"
+      "archivoDocumento": "data/dmc/AA197_2026_documento.json"
+    },
+    {
+      "codigo": "A616-2/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Altas Temperaturas",
+      "titulo": "Altas Temperaturas en zonas de las regiones de Los Ríos, Los Lagos y Aysén",
+      "desdeTexto": "la madrugada del sábado 14 de noviembre del 2026",
+      "hastaTexto": "la noche del sábado 14 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-14",
+      "fechaFinDia": "2026-11-14",
+      "fechaEmision": "2026-11-12T13:31:00-03:00",
+      "regiones": [
+        "Aysén",
+        "Los Lagos",
+        "Los Ríos"
+      ],
+      "numeroPoligonos": 7,
+      "archivoGeojson": "data/dmc/A616-2_2026.geojson",
+      "archivoCobertura": "data/dmc/A616-2_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A616-2_2026_impactos.json",
+      "observacion": "Este evento también afectará la comuna de Valdivia",
+      "archivoDocumento": "data/dmc/A616-2_2026_documento.json"
     },
     {
       "codigo": "A610-4/2026",
@@ -136,5 +157,5 @@
       "archivoDocumento": "data/dmc/AA196-3_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-11T21:43:43.857757-03:00"
+  "generadoEn": "2026-11-12T16:53:42.336922-03:00"
 }
