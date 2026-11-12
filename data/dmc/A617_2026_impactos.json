@@ -1,0 +1,113 @@
+{
+  "codigo": "A617/2026",
+  "criterio": "intersección geográfica",
+  "advertencia": "Área del aviso: exposición potencial, no impacto confirmado.",
+  "totales": {
+    "activos": 11,
+    "lineas": 1,
+    "netbilling": 0
+  },
+  "elementos": {
+    "activos": [
+      {
+        "id": "GV-02633",
+        "nombre": "1890_HP SAN VICTOR (SM)",
+        "categoria": "Central",
+        "zonas": [
+          "11_cordillera_austral_norte"
+        ]
+      },
+      {
+        "id": "GV-02196",
+        "nombre": "2353_S/E SAN VICTOR (SM)",
+        "categoria": "Subestación",
+        "zonas": [
+          "11_cordillera_austral_norte"
+        ]
+      },
+      {
+        "id": "GV-02197",
+        "nombre": "2354_S/E CENTRAL HP SAN VICTOR (SM)",
+        "categoria": "Subestación",
+        "zonas": [
+          "11_cordillera_austral_norte"
+        ]
+      },
+      {
+        "id": "GV-02198",
+        "nombre": "2355_S/E TAP OFF SAN VICTOR (SM)",
+        "categoria": "Subestación",
+        "zonas": [
+          "11_cordillera_austral_norte"
+        ]
+      },
+      {
+        "id": "GV-02641",
+        "nombre": "EXT_009_HP LAGO ATREVESADO",
+        "categoria": "Central",
+        "zonas": [
+          "11_cordillera_austral_norte"
+        ]
+      },
+      {
+        "id": "GV-02643",
+        "nombre": "EXT_011_HP PUERTO AYSEN",
+        "categoria": "Central",
+        "zonas": [
+          "11_cordillera_austral_norte"
+        ]
+      },
+      {
+        "id": "GV-03416",
+        "nombre": "EXT_013_TER CENTRAL CALETA ANDRADE",
+        "categoria": "Central",
+        "zonas": [
+          "11_cordillera_austral_norte"
+        ]
+      },
+      {
+        "id": "GV-03417",
+        "nombre": "EXT_014_TER CENTRAL TEHUELCHE",
+        "categoria": "Central",
+        "zonas": [
+          "11_patagonia_subandina_norte"
+        ]
+      },
+      {
+        "id": "GV-03418",
+        "nombre": "EXT_015_TER CENTRAL TERMICA AYSEN",
+        "categoria": "Central",
+        "zonas": [
+          "11_cordillera_austral_norte"
+        ]
+      },
+      {
+        "id": "GV-03420",
+        "nombre": "EXT_017_TER CENTRAL TERMICA CHILE CHICO",
+        "categoria": "Central",
+        "zonas": [
+          "11_patagonia_subandina_norte"
+        ]
+      },
+      {
+        "id": "GV-02459",
+        "nombre": "EXT_024_TER ALTO BAGUALES",
+        "categoria": "Central",
+        "zonas": [
+          "11_patagonia_subandina_norte"
+        ]
+      }
+    ],
+    "lineas": [
+      {
+        "id": "GV-01073",
+        "nombre": "1771_SAN VICTOR – TAP OFF SAN VICTOR 33kV (SM)",
+        "categoria": "Línea de transmisión",
+        "zonas": [
+          "11_cordillera_austral_norte"
+        ]
+      }
+    ],
+    "netbilling": []
+  }
+}

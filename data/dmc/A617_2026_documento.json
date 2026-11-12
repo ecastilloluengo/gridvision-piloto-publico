@@ -1,0 +1,14 @@
+{
+  "codigo": "A617/2026",
+  "tipo": "Aviso",
+  "titulo": "Probables Tormentas Eléctricas en zonas de la región de Aysén",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Miércoles 11 de noviembre del 2026 a las 14:14 hrs.",
+  "condicionSinoptica": "Inestabilidad atmosférica",
+  "desde": "la tarde del jueves 12 de noviembre del 2026",
+  "hasta": "la tarde del jueves 12 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Aysén (Cordillera Austral Norte, Patagonia Subandina Norte)",
+  "tablaTitulo": "",
+  "tablaFilas": []
+}

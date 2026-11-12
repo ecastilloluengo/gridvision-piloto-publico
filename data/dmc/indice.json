@@ -1,10 +1,33 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-11 12:43",
+  "catalogoActualizadoEn": "2026-11-11 20:39",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
+    {
+      "codigo": "A616-1/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Altas Temperaturas",
+      "titulo": "Altas Temperaturas en zonas desde la región de La Araucanía a la región de Aysén",
+      "desdeTexto": "la madrugada del sábado 14 de noviembre del 2026",
+      "hastaTexto": "la noche del sábado 14 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-14",
+      "fechaFinDia": "2026-11-14",
+      "fechaEmision": "2026-11-11T16:00:00-03:00",
+      "regiones": [
+        "Aysén",
+        "La Araucanía",
+        "Los Lagos",
+        "Los Ríos"
+      ],
+      "numeroPoligonos": 10,
+      "archivoGeojson": "data/dmc/A616-1_2026.geojson",
+      "archivoCobertura": "data/dmc/A616-1_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A616-1_2026_impactos.json",
+      "observacion": "Este evento también afectará la comuna de Valdivia",
+      "archivoDocumento": "data/dmc/A616-1_2026_documento.json"
+    },
     {
       "codigo": "A610-4/2026",
       "tipo": "Aviso",
@@ -69,6 +92,26 @@
       "archivoDocumento": "data/dmc/A607-3_2026_documento.json"
     },
     {
+      "codigo": "A617/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en zonas de la región de Aysén",
+      "desdeTexto": "la tarde del jueves 12 de noviembre del 2026",
+      "hastaTexto": "la tarde del jueves 12 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-12",
+      "fechaFinDia": "2026-11-12",
+      "fechaEmision": "2026-11-11T14:14:00-03:00",
+      "regiones": [
+        "Aysén"
+      ],
+      "numeroPoligonos": 2,
+      "archivoGeojson": "data/dmc/A617_2026.geojson",
+      "archivoCobertura": "data/dmc/A617_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A617_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A617_2026_documento.json"
+    },
+    {
       "codigo": "AA196-3/2026",
       "tipo": "Alerta",
       "fenomeno": "Altas Temperaturas",
@@ -91,27 +134,7 @@
       "archivoImpactos": "data/dmc/AA196-3_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/AA196-3_2026_documento.json"
-    },
-    {
-      "codigo": "A614/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas de la región de Magallanes",
-      "desdeTexto": "la mañana del miércoles 11 de noviembre del 2026",
-      "hastaTexto": "la tarde del miércoles 11 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-11",
-      "fechaFinDia": "2026-11-11",
-      "fechaEmision": "2026-11-10T14:57:00-03:00",
-      "regiones": [
-        "Magallanes"
-      ],
-      "numeroPoligonos": 3,
-      "archivoGeojson": "data/dmc/A614_2026.geojson",
-      "archivoCobertura": "data/dmc/A614_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A614_2026_impactos.json",
-      "observacion": "Asociadas con Chubascos aislados",
-      "archivoDocumento": "data/dmc/A614_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-11T14:07:47.403611-03:00"
+  "generadoEn": "2026-11-11T21:43:43.857757-03:00"
 }
