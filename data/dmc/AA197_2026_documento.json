@@ -1,0 +1,120 @@
+{
+  "codigo": "AA197/2026",
+  "tipo": "Alerta",
+  "titulo": "Evento de Altas Temperaturas Extremas en zonas de las regiones de La Araucanía, Los Ríos y Los Lagos",
+  "fenomeno": "Altas Temperaturas",
+  "emisionTexto": "Jueves 12 de noviembre del 2026 a las 13:31 hrs.",
+  "condicionSinoptica": "Alta subtropical",
+  "desde": "la tarde del sábado 14 de noviembre del 2026",
+  "hasta": "la tarde del sábado 14 de noviembre del 2026",
+  "observacion": "Este evento también afectará la comuna de Valdivia",
+  "textoZonaAfecta": "La Araucanía (Valle, Precordillera)\nLos Ríos (Precordillera)\nLos Lagos (Precordillera)",
+  "tablaTitulo": "Valores estimados de temperatura en grados Celsius (°C)",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: La Araucanía"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 14"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "29-31"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "29-31"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Los Ríos"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 14"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "29-31"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Los Lagos"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 14"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "28-30"
+      }
+    ]
+  ]
+}

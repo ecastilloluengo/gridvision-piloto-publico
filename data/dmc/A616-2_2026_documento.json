@@ -1,0 +1,156 @@
+{
+  "codigo": "A616-2/2026",
+  "tipo": "Aviso",
+  "titulo": "Altas Temperaturas en zonas de las regiones de Los Ríos, Los Lagos y Aysén",
+  "fenomeno": "Altas Temperaturas",
+  "emisionTexto": "Jueves 12 de noviembre del 2026 a las 13:31 hrs.",
+  "condicionSinoptica": "Alta subtropical",
+  "desde": "la madrugada del sábado 14 de noviembre del 2026",
+  "hasta": "la noche del sábado 14 de noviembre del 2026",
+  "observacion": "Este evento también afectará la comuna de Valdivia",
+  "textoZonaAfecta": "Los Ríos (Valle)\nLos Lagos (Valle, Chiloé, Litoral Interior, Patagonia Subandina)\nAysén (Insular Norte, Litoral Interior Norte)",
+  "tablaTitulo": "Valores estimados de temperatura en grados Celsius (°C)",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Los Ríos"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 14"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "27-29"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Los Lagos"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 14"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "26-28"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Chiloé"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "24-26"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Litoral Interior"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "24-26"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Patagonia Subandina"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "27-29"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Aysén"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 14"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Insular Norte"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "23-25"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Litoral Interior Norte"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "24-26"
+      }
+    ]
+  ]
+}
