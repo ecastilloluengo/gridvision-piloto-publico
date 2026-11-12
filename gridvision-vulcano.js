@@ -276,7 +276,15 @@ function switchBasemap(name){
  state.baseName=name;
  for(const input of document.querySelectorAll('input[name="basemap"],input[name="quick-basemap"]'))input.checked=input.value===name;
 }
-async function fetchJSON(path,max=20e6){const r=await fetch(path,{cache:'default',signal:state.controller.signal});if(!r.ok)throw new Error(`${r.status}: ${path}`);const n=Number(r.headers.get('content-length')||0);if(n>max)throw new Error(`Archivo demasiado grande: ${path}`);const text=await r.text();if(text.length>max)throw new Error(`Límite de descarga excedido: ${path}`);return JSON.parse(text);}
+async function fetchJSON(path,max=20e6){
+ const url=new URL(path,location.href);url.search='';url.hash='';
+ let r;
+ // Los datos geograficos de referencia descargados no dependen de una peticion externa.
+ if(!navigator.onLine && url.origin===location.origin && /^data\/vulcano\//.test(path) && 'caches' in window){
+  const cache=await caches.open('gridvision-nav-offline-v1');r=await cache.match(url.href);
+  if(!r?.ok)throw new Error('Cartografia volcanica no descargada: '+path);
+ }
+ if(!r)r=await fetch(path,{cache:'default',signal:state.controller.signal});if(!r.ok)throw new Error(`${r.status}: ${path}`);const n=Number(r.headers.get('content-length')||0);if(n>max)throw new Error(`Archivo demasiado grande: ${path}`);const text=await r.text();if(text.length>max)throw new Error(`Límite de descarga excedido: ${path}`);return JSON.parse(text);}
 async function readLayer(key,spec){const a=spec?.archivos;if(!Array.isArray(a)||(!a.length&&spec.conteo!==0)||a.length>90)throw new Error('Catálogo inválido: '+key);
  let result=[];for(const path of a){if(typeof path!=='string'||!/^data\/vulcano\/[a-z0-9_\-]+\.geojson$/i.test(path))throw new Error('Ruta fuera del módulo volcánico');
  const d=await fetchJSON(path);if(!isGeo(key,d))throw new Error('GeoJSON no válido: '+path);result.push(...d.features);}

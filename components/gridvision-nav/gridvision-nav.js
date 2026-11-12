@@ -3,7 +3,7 @@
   'use strict';
   const scriptURL = document.currentScript?.src || location.href;
   function iniciarNavegacion() {
-  const VERSION = 'gv-nav-v201-20261112';
+  const VERSION = 'gv-nav-v202-20261112';
   const CACHE = 'gridvision-nav-offline-v1';
   const METADATA = '__gv-nav-offline-ready-v1.json';
   const ROOT = new URL('../../', scriptURL);
@@ -243,6 +243,98 @@
       status('No se pudo preparar offline: '+String(err.message||err),'warning');
     } finally {downloadBtn.disabled=false;}
   }
+  // V2.0.2: separate explicit download for the original volcanic reference geometries.
+  // No live EAV, no external tile downloads, no change to electrical data.
+  function installVulcanoOffline(wrapper) {
+    const INDEX='data/vulcano/volcanes_v068.json';
+    const MANIFEST='data/vulcano/catalogo_vulcano_v06.json';
+    const READY='__gv-vulcano-reference-v202.json';
+    const PARTIAL='__gv-vulcano-partial-v202.json';
+    let busy=false;
+    const btn=makeButton(wrapper,'⬇ Descargar Vulcano offline','Guardar las capas originales de peligro, evacuación y volcanes para todo Chile',prepare);
+    btn.className='gv-nav-download';
+    const info=document.createElement('div');info.className='gv-nav-status';info.setAttribute('role','status');wrapper.append(info);
+    const report=(msg,kind='normal')=>{info.textContent=msg;info.dataset.kind=kind;};
+    const metaResponse=obj=>new Response(JSON.stringify(obj),{headers:{'Content-Type':'application/json'}});
+    async function signature(text){
+      const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(text));
+      return Array.from(new Uint8Array(digest),x=>x.toString(16).padStart(2,'0')).join('');
+    }
+    function catalog(index){
+      if(index.schema!==68||index.ambito!=='VOLCANES_COMPLETOS_1_O_2'||!Array.isArray(index.volcanes)||index.volcanes.length!==104)throw new Error('Índice volcánico incompatible');
+      const files=new Set(),specs=[];
+      for(const v of index.volcanes){
+        if(!v.capas||typeof v.capas!=='object')throw new Error('Volcán sin catálogo: '+v.id);
+        for(const spec of Object.values(v.capas)){
+          if(!Array.isArray(spec.archivos)||!Number.isInteger(spec.conteo)||spec.conteo<0)throw new Error('Capa inválida: '+v.id);
+          for(const p of spec.archivos){if(typeof p!=='string'||!/^data\/vulcano\/[a-z0-9_\-]+\.geojson$/i.test(p))throw new Error('Ruta inválida: '+p);files.add(p);}
+          specs.push(spec);
+        }
+      }
+      if(files.size!==537)throw new Error('Cantidad inesperada de archivos: '+files.size);
+      return {files:[...files],specs};
+    }
+    async function fetchChecked(name){const r=await fetch(absolute(name),{cache:'no-store'});if(!r.ok)throw new Error(name+' · HTTP '+r.status);return r;}
+    async function featureCount(r,p){const d=await r.clone().json();if(d.type!=='FeatureCollection'||!Array.isArray(d.features)||!d.features.every(f=>f.type==='Feature'&&f.geometry&&f.properties))throw new Error('GeoJSON inválido: '+p);return d.features.length;}
+    async function verify(){
+      if(!('caches' in window))return false;
+      const cache=await caches.open(CACHE), m=await cache.match(absolute(READY)), i=await cache.match(absolute(INDEX)), c=await cache.match(absolute(MANIFEST));
+      if(!m?.ok||!i?.ok||!c?.ok)return false;
+      const meta=await m.json(), raw=await i.text();
+      if(meta.version!=='gv-vulcano-v202'||meta.sha!==await signature(raw))return false;
+      const list=catalog(JSON.parse(raw)).files;
+      if(meta.archivos!==list.length)return false;
+      for(let n=0;n<list.length;n+=24){const responses=await Promise.all(list.slice(n,n+24).map(p=>cache.match(absolute(p))));if(responses.some(r=>!r?.ok))return false;}
+      return meta;
+    }
+    async function showState(){
+      if(busy)return;
+      try {const meta=await verify();
+        if(busy)return;
+        if(meta)report('Vulcano offline listo · 104 volcanes · '+meta.archivos+' archivos de referencia. No es alerta en vivo.','ok');
+        else report('Vulcano: capas de peligro y evacuación pendientes de descarga. No disponible offline.','warning');
+      } catch(e){if(!busy)report('Vulcano: no se pudo verificar la descarga.','warning');}
+    }
+    async function prepare(){
+      if(busy||downloadBtn.disabled)return;
+      if(!navigator.onLine){report('Conéctate para descargar las capas de Vulcano.','warning');return;}
+      if(!('caches' in window)||!window.crypto?.subtle){report('Almacenamiento offline no disponible en este navegador.','warning');return;}
+      if(!window.confirm('Descargar cartografía volcánica nacional de referencia: aproximadamente 157 MB en 537 archivos. Usa Wi-Fi. No incluye alertas EAV en vivo. ¿Continuar?'))return;
+      busy=true;btn.disabled=true;downloadBtn.disabled=true;
+      let cache;
+      try{
+        cache=await caches.open(CACHE);
+        // Fetch and validate the current index before reusing any partial download.
+        const ir=await fetchChecked(INDEX), raw=await ir.clone().text(), sha=await signature(raw), data=catalog(JSON.parse(raw));
+        const mr=await fetchChecked(MANIFEST), manifest=await mr.clone().json();
+        if(manifest.schema!==60||manifest.ambito!=='NACIONAL_CHILE')throw new Error('Manifiesto volcánico incompatible');
+        const saved=await cache.match(absolute(PARTIAL)), old=saved?.ok?await saved.json():null;
+        const resume=old?.sha===sha;
+        await cache.delete(absolute(READY));
+        await cache.put(absolute(PARTIAL),metaResponse({sha}));
+        await cache.put(absolute(INDEX),ir.clone());await cache.put(absolute(MANIFEST),mr.clone());
+        const counts=new Map();let done=0;
+        for(const p of data.files){
+          if(!navigator.onLine)throw new Error('Conexión perdida');
+          let r=resume?await cache.match(absolute(p)):null;
+          let count;
+          if(r?.ok){try{count=await featureCount(r,p);}catch(_){r=null;}}
+          if(!r?.ok){r=await fetchChecked(p);count=await featureCount(r,p);await cache.put(absolute(p),r.clone());}
+          if(!(await cache.match(absolute(p)))?.ok)throw new Error('No se guardó '+p);
+          counts.set(p,count);done++;
+          report('Descargando Vulcano: '+done+'/'+data.files.length+' archivos…');
+        }
+        for(const spec of data.specs){const actual=spec.archivos.reduce((n,p)=>n+counts.get(p),0);if(actual!==spec.conteo){await cache.delete(absolute(PARTIAL));throw new Error('Conteo de geometrías no coincide con el índice');}}
+        await cache.put(absolute(READY),metaResponse({version:'gv-vulcano-v202',sha,archivos:done,fecha:new Date().toISOString()}));
+        try{await navigator.storage?.persist?.();}catch(_){}
+      }catch(e){report('Descarga Vulcano incompleta: '+String(e.message||e)+'. Reintenta conectado.','warning');console.warn('Vulcano offline:',e);return;}
+      finally{busy=false;btn.disabled=false;downloadBtn.disabled=false;}
+      await showState();
+    }
+    window.GridVisionVulcanoOffline={version:'gv-vulcano-v202',verify,prepare};
+    report('Verificando cartografía volcánica descargada…');void showState();
+  }
+
   function makeButton(container,label,title,fn) {
     const button=document.createElement('button');button.type='button';button.textContent=label;
     button.title=title;button.setAttribute('aria-label',title);
@@ -265,6 +357,7 @@
     wrapper.append(statusEl);
     baseBtn=makeButton(wrapper,'Mapa nacional offline','Activar el mapa vectorial nacional de referencia',()=>{});
     baseBtn.className='gv-nav-base-choice';baseBtn.setAttribute('aria-pressed','false');
+    if(viewId==='vulcano-map')installVulcanoOffline(wrapper);
     // GV NAV V1.2 compact rail: solo GridVision Chile. Fire y Vulcano conservan sus controles.
     if (viewId === 'mapa') {
       wrapper.classList.add('gv-nav-compact');
