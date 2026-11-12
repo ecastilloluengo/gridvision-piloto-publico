@@ -11,6 +11,53 @@
 <link rel="stylesheet" href="gridvision-fire-mobile.css?v=gv-mobile-v1-20261106">
   <link rel="stylesheet" href="components/gridvision-nav/gridvision-nav.css?v=gv-nav-v12-20261112">
   <link rel="stylesheet" href="components/gridvision-nav/gridvision-base-offline.css?v=gv-base-v201-20261112">
+
+<style id="gv-fire-layout-v204">
+#gv-fire-backup-status {
+    grid-column: 1 / -1 !important;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 7px 10px;
+    border: 1px solid #987041;
+    border-radius: 7px;
+    background: #302517;
+    color: #ffdc99;
+    font-size: 11px;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+#gv-fire-backup-status[data-mode="live"] {
+    background: #112c24;
+    color: #bce6cb;
+    border-color: #37694d;
+}
+body.gv-fire-snapshot .kpi-row #kpi-total,
+body.gv-fire-snapshot .kpi-row #kpi-critical,
+body.gv-fire-snapshot .kpi-row #kpi-attention,
+body.gv-fire-snapshot .kpi-row #kpi-watch {
+    font-size: 19px !important;
+    color: #ffca7b !important;
+}
+body.gv-fire-snapshot .kpi-row #kpi-total::after,
+body.gv-fire-snapshot .kpi-row #kpi-critical::after,
+body.gv-fire-snapshot .kpi-row #kpi-attention::after,
+body.gv-fire-snapshot .kpi-row #kpi-watch::after {
+    content: none !important;
+}
+body.gv-fire-snapshot .map-shell #map-status {
+    font-size: 10px !important;
+    color: #ffca7b !important;
+}
+body.gv-fire-snapshot .map-shell #map-status::after {
+    content: none !important;
+}
+@media (max-width: 700px) {
+    body.gv-fire-snapshot .kpi-row strong[id] {
+        font-size: 16px !important;
+    }
+}
+</style>
+
 </head>
 <body>
   <header class="fire-header">
@@ -165,7 +212,7 @@
   </main>
 
   <script src="vendor/leaflet/leaflet.js"></script>
-  <script src="gridvision-fire.js?v=gv-fire-v203-20261112"></script>
+  <script src="gridvision-fire.js?v=gv-fire-v204-20261112"></script>
 <script src="gridvision-fire-mobile.js?v=gv-mobile-v1-20261106"></script>
   <script src="components/gridvision-nav/gridvision-base-offline.js?v=gv-base-v201-20261112"></script>
   <script src="components/gridvision-nav/gridvision-nav.js?v=gv-nav-v202-20261112"></script>

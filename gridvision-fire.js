@@ -414,12 +414,16 @@ function gvFireSaveSnapshot(rows,sourceTimestamp) {
   catch(e){console.warn('Fire: no se pudo guardar el respaldo persistente',e);}
   return s;
 }
-window.GridVisionFireSnapshotV203 = {version:'gv-fire-v203-20261112', get status(){return gvFireMode;}, get receivedAt(){return gvFireSnapshot?.receivedAt??null;}, get count(){return gvFireSnapshot?.rows.length??null;}, get persisted(){return gvFireStored;}};
+window.GridVisionFireSnapshotV203 = {version:'gv-fire-v204-20261112', get status(){return gvFireMode;}, get receivedAt(){return gvFireSnapshot?.receivedAt??null;}, get count(){return gvFireSnapshot?.rows.length??null;}, get persisted(){return gvFireStored;}};
 function gvFireFormatTime(value) {
   const d=new Date(value);return value!=null&&Number.isFinite(d.getTime())?d.toLocaleString('es-CL',{timeZone:'America/Santiago',hour12:false}):'sin fecha disponible';
 }
 function gvFirePaintStatus() {
   const saved=gvFireMode==='snapshot';
+  const totalLabel = $('kpi-total')?.parentElement?.querySelector('small');
+  if (totalLabel) totalLabel.textContent =
+    saved ? 'Vigentes en copia' : 'Incendios CONAF vigentes';
+
   const live=gvFireMode==='live'&&navigator.onLine;
   document.body.classList.toggle('gv-fire-snapshot',saved);
   document.body.classList.toggle('gv-nav-live-stale',!live);
