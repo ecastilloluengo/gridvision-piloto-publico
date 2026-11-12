@@ -366,6 +366,118 @@ let selectedFireWeather = null;
 
 const $ = (id) => document.getElementById(id);
 
+// GV FIRE V2.0.3 - last successful query, never a live alert offline.
+const GV_FIRE_SNAPSHOT_KEY = 'gv-fire-last-valid-query-v203';
+const GV_FIRE_POLL_MS = 5 * 60 * 1000;
+let gvFireMode = 'unavailable';
+let gvFireSnapshot = null;
+let gvFireStored = false;
+let gvFireBusy = false;
+let gvFireAssetsReady = false;
+let gvFireController = null;
+let gvFireLastAttempt = 0;
+
+function gvFireStateKey(value) {
+  return String(value ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toLowerCase();
+}
+function gvFireIsCurrent(f) {
+  return ['en combate','bajo observacion','observacion','controlado'].includes(gvFireStateKey(f.estado));
+}
+function gvFireValidRow(f) {
+  return f && Number.isFinite(f.lat) && Number.isFinite(f.lon) &&
+    f.lat >= -90 && f.lat <= 90 && f.lon >= -180 && f.lon <= 180 &&
+    typeof f.nombre === 'string' && !!f.nombre.trim() && typeof f.estado === 'string' && !!f.estado.trim();
+}
+function gvFireCompact(f) {
+  const estado = gvFireStateKey(f.estado);
+  return {lat:f.lat,lon:f.lon,nombre:f.nombre,region:String(f.region??''),comuna:String(f.comuna??''),
+    ambito:String(f.ambito??''),f_inicio:f.f_inicio??null,
+    estado:estado==='en combate'?'En combate':estado==='controlado'?'Controlado':'Bajo observacion',
+    superficie_ha:Number.isFinite(f.superficie_ha)?f.superficie_ha:null};
+}
+function gvFireReadSnapshot() {
+  if (gvFireSnapshot) return gvFireSnapshot;
+  try {
+    const s=JSON.parse(localStorage.getItem(GV_FIRE_SNAPSHOT_KEY)||'null');
+    if(s?.schema===203 && Number.isFinite(Date.parse(s.receivedAt)) &&
+       Array.isArray(s.rows) && s.rows.every(f=>gvFireValidRow(f)&&gvFireIsCurrent(f))) {
+      gvFireSnapshot=s; gvFireStored=true; return s;
+    }
+  } catch(e) { console.warn('Fire: respaldo no disponible',e); }
+  return null;
+}
+function gvFireSaveSnapshot(rows,sourceTimestamp) {
+  const s={schema:203,receivedAt:new Date().toISOString(),sourceTimestamp:sourceTimestamp??null,
+    rows:rows.filter(gvFireIsCurrent).map(gvFireCompact)};
+  gvFireSnapshot=s;gvFireStored=false;
+  try {localStorage.setItem(GV_FIRE_SNAPSHOT_KEY,JSON.stringify(s));gvFireStored=true;}
+  catch(e){console.warn('Fire: no se pudo guardar el respaldo persistente',e);}
+  return s;
+}
+window.GridVisionFireSnapshotV203 = {version:'gv-fire-v203-20261112', get status(){return gvFireMode;}, get receivedAt(){return gvFireSnapshot?.receivedAt??null;}, get count(){return gvFireSnapshot?.rows.length??null;}, get persisted(){return gvFireStored;}};
+function gvFireFormatTime(value) {
+  const d=new Date(value);return value!=null&&Number.isFinite(d.getTime())?d.toLocaleString('es-CL',{timeZone:'America/Santiago',hour12:false}):'sin fecha disponible';
+}
+function gvFirePaintStatus() {
+  const saved=gvFireMode==='snapshot';
+  const live=gvFireMode==='live'&&navigator.onLine;
+  document.body.classList.toggle('gv-fire-snapshot',saved);
+  document.body.classList.toggle('gv-nav-live-stale',!live);
+  const s=gvFireSnapshot;
+  const date=gvFireFormatTime(s?.receivedAt);
+  const banner=$('gv-fire-backup-status');
+  if(banner) {
+    banner.dataset.mode=live?'live':saved?'snapshot':'unavailable';
+    banner.textContent=live
+      ? 'Power BI · Última consulta exitosa: '+date+(gvFireStored?' · Respaldo de vigentes guardado':' · Respaldo no persistente')
+      : saved ? 'SIN ACTUALIZACIÓN EN VIVO · Última copia: '+date+' · '+s.rows.length+' incendios registrados entonces como vigentes. Estado actual desconocido.'
+      : 'INCENDIOS SIN DATOS · No hay respaldo válido. No implica ausencia de incendios.';
+  }
+  $('map-status').textContent=live?`${currentFiltered.length} incendios · Power BI`:saved?'Copia de referencia · no en vivo':'Incendios sin datos';
+  if(!live) $('table-count').textContent=saved?`${currentFiltered.length} registros de la copia`:'Sin datos';
+  for(const id of ['kpi-total','kpi-critical','kpi-attention','kpi-watch']) {
+    const el=$(id);if(!el)continue;
+    if(!live&&!saved)el.textContent='—';
+    el.setAttribute('aria-label',live?'Consulta Power BI: '+el.textContent:saved?'Última copia, no estado actual: '+el.textContent:'Sin datos de incendios');
+  }
+  if(!live&&!currentFiltered.length) {
+    const detail=$('detail-panel');
+    if(detail)detail.innerHTML='<div class="detail-empty"><div class="detail-icon">🔥</div><h2>'+ (saved?'Sin registros en esta copia':'Incendios sin datos') +'</h2><p>El estado actual no está disponible. No implica ausencia de incendios.</p></div>';
+  }
+}
+function gvFireRenderRows(rows,mode,sourceTimestamp) {
+  const selectedRegion=$('filter-region').value;
+  gvFireMode=mode; window.GV_POWERBI_TIMESTAMP=sourceTimestamp??null;
+  selectedFire=null;selectedFireWeather=null;clearWindLayer();
+  fires=rows.map(enrichFire);
+  initRegions();
+  if([...$('filter-region').options].some(o=>o.value===selectedRegion))$('filter-region').value=selectedRegion;
+  applyFilters();
+}
+function gvFireUseSnapshot() {
+  const s=gvFireReadSnapshot();
+  gvFireRenderRows(s?.rows||[],s?'snapshot':'unavailable',s?.sourceTimestamp);
+}
+async function gvFireRefresh() {
+  if(gvFireBusy||!gvFireAssetsReady)return;
+  if(!navigator.onLine){gvFireUseSnapshot();return;}
+  gvFireBusy=true;gvFireLastAttempt=Date.now();
+  const controller=new AbortController();gvFireController=controller;
+  const timer=setTimeout(()=>controller.abort(),20000);
+  try {
+    const result=await loadFires(controller.signal);
+    if(controller.signal.aborted||!navigator.onLine)throw new Error('Conexión interrumpida');
+    gvFireSaveSnapshot(result.rows,result.sourceTimestamp);
+    gvFireRenderRows(result.rows,'live',result.sourceTimestamp);
+  } catch(e) {
+    console.warn('Fire: consulta no disponible; usando última copia válida',e);
+    gvFireUseSnapshot();
+  } finally {
+    clearTimeout(timer);gvFireController=null;gvFireBusy=false;
+  }
+}
+
+
 function haversineKm(aLat, aLon, bLat, bLon) {
   const R = 6371;
   const rad = Math.PI / 180;
@@ -518,6 +630,7 @@ function linePopupHtml(line, latlng, feature) {
 async function loadPointWeather(lat, lon, containerId) {
   const box = document.getElementById(containerId);
   if (!box) return;
+  if(!navigator.onLine){box.textContent="Sin conexión · meteorología no disponible.";return;}
   const url = `${OPEN_METEO}?latitude=${encodeURIComponent(lat)}&longitude=${encodeURIComponent(lon)}&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_gusts_10m,wind_direction_10m&hourly=precipitation,temperature_2m,wind_speed_10m,wind_gusts_10m&forecast_days=1&timezone=auto`;
   try {
     const r = await fetch(url);
@@ -606,11 +719,12 @@ function loadLines() {
     console.warn("No fue posible cargar líneas", err);
   });
 }
-async function loadFires() {
+async function loadFires(signal) {
   console.log("GridVision Fire: consultando Power BI...");
 
   const response = await fetch(POWERBI_FIRE_URL, {
     method: "POST",
+    signal,
     headers: {
       "accept": "application/json, text/plain, */*",
       "content-type": "application/json;charset=UTF-8",
@@ -838,6 +952,7 @@ async function loadFires() {
     data.results[0].result.data.dsr.DS[0].PH[0].DM0;
 
   // Decodificar formato comprimido de Power BI
+  if (!Array.isArray(dm0) || !dm0.length || dm0.length >= 30000) throw new Error('Respuesta de incendios vacía o potencialmente truncada');
   const rows = [];
   let previous = new Array(9).fill(null);
 
@@ -858,8 +973,8 @@ async function loadFires() {
     previous = values;
 
     rows.push({
-      lat: Number(values[0]),
-      lon: Number(values[1]),
+      lat: values[0] == null || values[0] === "" ? NaN : Number(values[0]),
+      lon: values[1] == null || values[1] === "" ? NaN : Number(values[1]),
       f_inicio: values[2],
       nombre: values[3],
       region: values[4],
@@ -870,12 +985,10 @@ async function loadFires() {
     });
   }
 
-  fires = rows
-    .filter(f => Number.isFinite(f.lat) && Number.isFinite(f.lon))
-    .map(enrichFire);
-
-  console.log("🔥 INCENDIOS POWER BI:", fires.length);
-  console.table(fires.slice(0, 10));
+  if (rows.some(f=>gvFireIsCurrent(f)&&!gvFireValidRow(f))) throw new Error('Respuesta con incendios vigentes sin datos geográficos válidos');
+  const validRows=rows.filter(gvFireValidRow);
+  if(!validRows.length)throw new Error('Respuesta sin registros válidos');
+  return {rows:validRows,sourceTimestamp:window.GV_POWERBI_TIMESTAMP};
 }
 function bearingDeg(lat1, lon1, lat2, lon2) {
   const rad = Math.PI / 180;
@@ -1247,7 +1360,7 @@ function renderTable(list) {
 }
 
 function statusClass(status) {
-  return status === "En combate" ? "combate" : status === "Observación" ? "observacion" : status === "Controlado" ? "controlado" : "extinguido";
+  const k=gvFireStateKey(status);return k === "en combate" ? "combate" : ["observacion","bajo observacion"].includes(k) ? "observacion" : k === "controlado" ? "controlado" : "extinguido";
 }
 
 function renderKpis() {
@@ -1319,7 +1432,7 @@ function applyFilters() {
   const risk = $("filter-risk").value;
   currentFiltered = fires.filter(f => {
     const text = `${f.nombre} ${f.comuna} ${f.region} ${f.nearest?.nombre || ""}`.toLowerCase();
-    return (!q || text.includes(q)) && (!status || f.estado === status) && (!region || f.region === region) && (!risk || f.risk === risk);
+    return (!q || text.includes(q)) && (!status || (gvFireStateKey(status)==="bajo observacion" ? ["observacion","bajo observacion"].includes(gvFireStateKey(f.estado)) : gvFireStateKey(f.estado)===gvFireStateKey(status))) && (!region || f.region === region) && (!risk || f.risk === risk);
   });
   renderFires(currentFiltered); renderTable(currentFiltered); renderKpis(currentFiltered);
     // ---------------------------------------------------------
@@ -1359,7 +1472,7 @@ function applyFilters() {
       </div>
     `;
   }
-  $("map-status").textContent = `${currentFiltered.length} incendios · actualización ${new Date().toLocaleTimeString("es-CL",{hour:"2-digit",minute:"2-digit"})}`;
+  gvFirePaintStatus();
 }
 
 async function selectFire(fire, fly=true) {
@@ -1376,7 +1489,7 @@ function renderDetail(fire) {
     <div class="detail-head">
       <div class="photo"></div>
       <div class="detail-head-body">
-        <div class="detail-head-label">🔥 INCENDIO FORESTAL</div>
+        <div class="detail-head-label">🔥 INCENDIO FORESTAL${gvFireMode === "snapshot" ? " · COPIA NO ACTUALIZADA" : ""}</div>
         <h2>${escapeHtml(fire.nombre)}</h2>
         <span class="status ${statusClass(fire.estado)}">${escapeHtml(fire.estado)}</span>
 
@@ -1397,7 +1510,7 @@ function renderDetail(fire) {
           </div>
 
           <div>
-            <span>Consulta Power BI</span>
+            <span>${gvFireMode === "snapshot" ? "Consulta Power BI (copia)" : "Consulta Power BI"}</span>
             <strong>${
               window.GV_POWERBI_TIMESTAMP
                 ? new Date(window.GV_POWERBI_TIMESTAMP).toLocaleString("es-CL", {
@@ -1505,10 +1618,12 @@ function renderDetail(fire) {
 async function loadWeather(fire) {
   const box = $("fire-weather");
   if (!box) return;
+  if(!navigator.onLine||gvFireMode!=="live"){box.textContent="Meteorología no actualizada · sin evaluación en vivo.";return;}
   const url = `${OPEN_METEO}?latitude=${encodeURIComponent(fire.lat)}&longitude=${encodeURIComponent(fire.lon)}&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_gusts_10m,wind_direction_10m&hourly=precipitation,wind_speed_10m,wind_direction_10m&forecast_days=1&timezone=auto`;
   try {
     const r = await fetch(url); if (!r.ok) throw new Error("Open-Meteo respondió con error");
     const d = await r.json(); const c = d.current || {};
+    if(!navigator.onLine||gvFireMode!=="live"||selectedFire!==fire)return;
     selectedFireWeather = c;
     const times = Array.isArray(d.hourly?.time) ? d.hourly.time : [];
     const precipitation = Array.isArray(d.hourly?.precipitation) ? d.hourly.precipitation : [];
@@ -1725,49 +1840,26 @@ function bindUI() {
 }
 
 async function bootstrap() {
-  $("map-status").textContent="Cargando activos, líneas e incendios…";
-  try {
-    layers.assets.clearLayers();
-    layers.lines.clearLayers();
-    const gvTrabajos = await Promise.allSettled([
-      loadAssets(),
-      loadLines(),
-      navigator.onLine ? loadFires() : Promise.reject(new Error('Sin internet'))
-    ]);
-    if (gvTrabajos[0].status === 'rejected' || gvTrabajos[1].status === 'rejected') {
-      throw new Error('No fue posible cargar el catalogo electrico SEN');
-    }
-    const gvFiresEnVivo = gvTrabajos[2].status === 'fulfilled';
-    if (!gvFiresEnVivo) fires = [];
-    fires = fires.map(enrichFire);
-    initRegions();
-    applyFilters();
-    const firstVigente =
-  currentFiltered.find(
-    fire =>
-      String(fire.estado || "").trim() !== "Extinguido"
-  );
-
-const fireInicial =
-  firstVigente || currentFiltered[0];
-
-if (fireInicial) {
-  selectFire(
-    fireInicial,
-    false
-  );
-}
-    $("map-status").textContent = gvFiresEnVivo
-      ? `${fires.length} incendios · datos Power BI`
-      : 'SEN disponible · incendios sin datos en vivo';
-  } catch (e) {
-    console.error(e); $("map-status").textContent="Error cargando datos";
+  if(gvFireBusy)return;
+  if(!gvFireAssetsReady){
+    gvFireBusy=true;
+    $('map-status').textContent='Cargando inventario SEN…';
+    try {
+      layers.assets.clearLayers();layers.lines.clearLayers();
+      await Promise.all([loadAssets(),loadLines()]);
+      gvFireAssetsReady=true;
+      gvFireUseSnapshot();
+    } catch(e) {console.error(e);gvFirePaintStatus();$('map-status').textContent='Error cargando inventario SEN';return;}
+    finally {gvFireBusy=false;}
   }
+  await gvFireRefresh();
 }
-
 bindUI();
+window.addEventListener('offline',()=>{gvFireController?.abort();if(gvFireAssetsReady)gvFireUseSnapshot();});
+window.addEventListener('online',()=>{if(gvFireAssetsReady)void gvFireRefresh();});
+window.setInterval(()=>{if(navigator.onLine&&!document.hidden&&gvFireAssetsReady)void gvFireRefresh();},GV_FIRE_POLL_MS);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&navigator.onLine&&gvFireAssetsReady&&(gvFireMode!=='live'||Date.now()-gvFireLastAttempt>=GV_FIRE_POLL_MS))void gvFireRefresh();});
 bootstrap();
-
 
 /* GRIDVISION FIRE - EXPOSURE MODULE V1 */
 (() => {

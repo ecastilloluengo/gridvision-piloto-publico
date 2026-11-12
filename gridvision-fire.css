@@ -848,6 +848,16 @@
   font-size: 11px !important;
   font-weight: 700 !important;
 }
-
-
-
+/* GV FIRE V2.0.3: never confuse saved counts with live incidents. */
+#gv-fire-backup-status{grid-column:1/-1;padding:7px 10px;border:1px solid #9a6e35;border-radius:7px;background:#302517;color:#ffdc99;font-size:11px;line-height:1.35;overflow-wrap:anywhere;}
+#gv-fire-backup-status[data-mode="live"]{background:#112c24;color:#bce6cb;border-color:#37694d;}
+body.gv-nav-live-stale.gv-fire-snapshot #kpi-total,
+body.gv-nav-live-stale.gv-fire-snapshot #kpi-critical,
+body.gv-nav-live-stale.gv-fire-snapshot #kpi-attention,
+body.gv-nav-live-stale.gv-fire-snapshot #kpi-watch{font-size:19px!important;color:#ffc46d;}
+body.gv-nav-live-stale.gv-fire-snapshot #kpi-total::after,
+body.gv-nav-live-stale.gv-fire-snapshot #kpi-critical::after,
+body.gv-nav-live-stale.gv-fire-snapshot #kpi-attention::after,
+body.gv-nav-live-stale.gv-fire-snapshot #kpi-watch::after{content:none!important;}
+body.gv-nav-live-stale.gv-fire-snapshot #map-status{font-size:10px!important;color:#ffc46d;}
+body.gv-nav-live-stale.gv-fire-snapshot #map-status::after{content:none!important;}
