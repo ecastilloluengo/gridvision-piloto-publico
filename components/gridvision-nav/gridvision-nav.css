@@ -46,3 +46,40 @@
     margin-left: 9px;
   }
 }
+
+/* GV NAV V1.2 compact rail: GridVision Chile only */
+#mapa .gv-nav-compact.leaflet-control {
+  display:block; width:36px; max-width:36px; padding:0;
+  margin-left:10px; margin-top:9px;
+  border:0; border-radius:8px; background:#fff;
+  box-shadow:0 2px 8px rgb(0 0 0 / 28%); overflow:hidden;
+}
+#mapa .gv-nav-compact .gv-nav-actions { display:flex; flex-direction:column; gap:0; }
+#mapa .gv-nav-compact button {
+  display:grid; place-items:center; box-sizing:border-box;
+  width:36px; height:37px; min-height:37px; padding:0; margin:0;
+  border:0; border-bottom:1px solid #dce4e9; border-radius:0;
+  background:#fff; color:#18394d; font-size:0; position:relative;
+}
+#mapa .gv-nav-compact button:last-child { border-bottom:0; }
+#mapa .gv-nav-compact button:hover { background:#e6f3fa; }
+#mapa .gv-nav-compact button:focus-visible { outline:2px solid #1c8bd0; outline-offset:-3px; }
+#mapa .gv-nav-compact button[aria-pressed="true"] { background:#dceefb; color:#1263a7; box-shadow:inset 3px 0 #1976d2; }
+#mapa .gv-nav-compact button::before { content:""; width:20px; height:20px; background:currentColor; mask-size:contain; mask-repeat:no-repeat; mask-position:center; }
+#mapa .gv-nav-compact button[data-action="locate"]::before { mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v3m0 14v3M2 12h3m14 0h3'/%3E%3C/svg%3E"); }
+#mapa .gv-nav-compact button[data-action="follow"]::before { mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='m21 3-7 18-3-8-8-3Z'/%3E%3C/svg%3E"); }
+#mapa .gv-nav-compact button[data-action="follow"][aria-pressed="true"]::before { mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='6' y='6' width='12' height='12' rx='2'/%3E%3C/svg%3E"); }
+#mapa .gv-nav-compact button[data-action="offline"]::before { mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3v12m-5-5 5 5 5-5M4 16v4h16v-4'/%3E%3C/svg%3E"); }
+#mapa .gv-nav-compact button[data-kind="warning"]::after, body.gv-nav-offline #mapa .gv-nav-compact button[data-action="offline"]::after { content:""; position:absolute; width:7px; height:7px; border-radius:50%; background:#e79b22; top:4px; right:4px; }
+.gv-nav-dialog { box-sizing:border-box; width:min(380px,calc(100vw - 30px)); max-height:calc(100dvh - 30px); overflow:auto; padding:18px; border:1px solid #466b83; border-radius:14px; color:#eaf5fb; background:#0b2436; box-shadow:0 20px 60px #0009; font:13px/1.5 Inter,'Segoe UI',Arial,sans-serif; }
+.gv-nav-dialog::backdrop { background:#06142180; }
+.gv-nav-dialog-head { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.gv-nav-dialog-head h2 { margin:0; color:#edf8ff; font-size:17px; }
+.gv-nav-dialog p { margin:12px 0; color:#c8dce7; }
+.gv-nav-dialog .gv-nav-status { box-sizing:border-box; max-width:none; padding:10px; margin:12px 0; background:#102f43; border:1px solid #355c72; border-radius:8px; font-size:12px; }
+.gv-nav-dialog button { background:#174259; color:#f2fbff; border:1px solid #47768a; border-radius:8px; padding:10px; min-height:40px; font:600 12px Inter,'Segoe UI',Arial,sans-serif; cursor:pointer; }
+.gv-nav-dialog button:disabled { opacity:.65; cursor:wait; }
+.gv-nav-dialog button:focus-visible { outline:2px solid #82daf5; }
+.gv-nav-dialog .gv-nav-dialog-close { width:34px; min-height:34px; padding:0; font-size:22px; flex:none; }
+@media (min-width:701px) and (max-width:900px) { .panel-busqueda { left:55px; } }
+@media (max-width:700px) { #mapa .gv-nav-compact.leaflet-control { width:36px; max-width:36px; margin-left:8px; } #mapa .gv-nav-compact button { height:42px; min-height:42px; } }

@@ -3,7 +3,7 @@
   'use strict';
   const scriptURL = document.currentScript?.src || location.href;
   function iniciarNavegacion() {
-  const VERSION = 'gv-nav-v1-20261111';
+  const VERSION = 'gv-nav-v12-20261112';
   const CACHE = 'gridvision-nav-offline-v1';
   const METADATA = '__gv-nav-offline-ready-v1.json';
   const ROOT = new URL('../../', scriptURL);
@@ -23,7 +23,7 @@
   let marker = null;
   let accuracyCircle = null;
   let lastFix = null;
-  let statusEl, followBtn, locateBtn, downloadBtn;
+  let statusEl, followBtn, locateBtn, downloadBtn, offlineMenuBtn;
   const absolute = name => new URL(name, ROOT).href;
   const clean = href => {const url = new URL(href, ROOT); url.search=''; url.hash=''; return url.href;};
   const inScope = url => url.origin === ROOT.origin && url.pathname.startsWith(ROOT.pathname);
@@ -31,6 +31,10 @@
     if (!statusEl) return;
     statusEl.textContent = message;
     statusEl.dataset.kind = kind;
+    if (offlineMenuBtn) {
+      offlineMenuBtn.dataset.kind = kind;
+      offlineMenuBtn.title = 'Navegación y SEN offline · ' + message;
+    }
   }
   function oldGpsHide() {
     const gps = Array.from(document.querySelectorAll('.leaflet-control a')).filter(el => {
@@ -82,14 +86,14 @@
   function stopFollow() {
     if (watchId != null && navigator.geolocation) navigator.geolocation.clearWatch(watchId);
     watchId = null;
-    if (followBtn) {followBtn.setAttribute('aria-pressed','false');followBtn.textContent='▶ Seguir';}
+    if (followBtn) {followBtn.setAttribute('aria-pressed','false');followBtn.textContent='▶ Seguir';followBtn.title='Seguir el GPS sin cambiar el zoom';followBtn.setAttribute('aria-label',followBtn.title);}
     status(lastFix?'Seguimiento detenido · ubicación disponible':'Seguimiento detenido.');
   }
   function toggleFollow() {
     if (watchId !== null) return stopFollow();
     if (!navigator.geolocation) return status('Este dispositivo no ofrece ubicación GPS.','warning');
     status('Iniciando seguimiento GPS…');
-    followBtn.setAttribute('aria-pressed','true');followBtn.textContent='■ Detener';
+    followBtn.setAttribute('aria-pressed','true');followBtn.textContent='■ Detener';followBtn.title='Detener seguimiento GPS';followBtn.setAttribute('aria-label',followBtn.title);
     // Nunca usamos setView en modo seguimiento; así el zoom se mantiene.
     watchId = navigator.geolocation.watchPosition(pos=>drawFix(pos,true,false),
       err=>gpsError(err,true),GPS_OPTS);
@@ -197,6 +201,32 @@
     statusEl=document.createElement('div');statusEl.className='gv-nav-status';
     statusEl.setAttribute('role','status');statusEl.textContent='GPS listo · Internet '+(navigator.onLine?'conectado':'no disponible');
     wrapper.append(statusEl);
+    // GV NAV V1.2 compact rail: solo GridVision Chile. Fire y Vulcano conservan sus controles.
+    if (viewId === 'mapa') {
+      wrapper.classList.add('gv-nav-compact');
+      locateBtn.dataset.action='locate';
+      followBtn.dataset.action='follow';
+      const dialog=document.createElement('dialog');
+      dialog.className='gv-nav-dialog';
+      dialog.id='gv-nav-dialog';
+      dialog.setAttribute('aria-labelledby','gv-nav-dialog-title');
+      const head=document.createElement('div');head.className='gv-nav-dialog-head';
+      const title=document.createElement('h2');title.id='gv-nav-dialog-title';title.textContent='Navegación y SEN offline';
+      const close=makeButton(head,'×','Cerrar panel de navegación',()=>dialog.close());
+      close.className='gv-nav-dialog-close';head.prepend(title);
+      const note=document.createElement('p');note.textContent='Descarga el inventario eléctrico y los tres visores antes de salir a terreno. No incluye cartografía base detallada ni alertas en vivo.';
+      dialog.append(head,note,statusEl,downloadBtn);
+      document.body.append(dialog);
+      offlineMenuBtn=makeButton(actions,'SEN offline','Navegación y SEN offline',()=>{
+        if (!dialog.open) dialog.showModal();
+      });
+      offlineMenuBtn.dataset.action='offline';
+      offlineMenuBtn.setAttribute('aria-haspopup','dialog');
+      offlineMenuBtn.setAttribute('aria-controls',dialog.id);
+      dialog.addEventListener('close',()=>offlineMenuBtn.focus());
+      dialog.addEventListener('click',e=>{if(e.target===dialog) { const b=dialog.getBoundingClientRect(); if(e.clientX<b.left||e.clientX>b.right||e.clientY<b.top||e.clientY>b.bottom)dialog.close(); }});
+      status(statusEl.textContent);
+    }
     return wrapper;
   };
   ctrl.addTo(map);
