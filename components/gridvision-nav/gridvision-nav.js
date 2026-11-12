@@ -3,7 +3,7 @@
   'use strict';
   const scriptURL = document.currentScript?.src || location.href;
   function iniciarNavegacion() {
-  const VERSION = 'gv-nav-v12-20261112';
+  const VERSION = 'gv-nav-v13-20261112';
   const CACHE = 'gridvision-nav-offline-v1';
   const METADATA = '__gv-nav-offline-ready-v1.json';
   const ROOT = new URL('../../', scriptURL);
@@ -19,7 +19,10 @@
   if (window.GridVisionNavigationV1) return;
 
   const GPS_OPTS = {enableHighAccuracy:true, maximumAge:0, timeout:20000};
+  // GV GPS V1.3: mutually exclusive modes; stale callbacks are ignored.
   let watchId = null;
+  let gpsMode = 'off';
+  let gpsGeneration = 0;
   let marker = null;
   let accuracyCircle = null;
   let lastFix = null;
@@ -61,7 +64,7 @@
       accuracyCircle = L.circle(latlng,{radius:accuracy,interactive:false,
         color:'#1976d2',weight:1,fillColor:'#1976d2',fillOpacity:.10}).addTo(map);
     } else { accuracyCircle.setLatLng(latlng); accuracyCircle.setRadius(accuracy); }
-    marker.bindPopup('<strong>Mi ubicación GPS</strong><br>Latitud: '+lat.toFixed(6)+
+    marker.bindPopup('<strong>'+(gpsMode === 'locate' ? 'Ubicación puntual' : 'Seguimiento GPS')+'</strong><br>Latitud: '+lat.toFixed(6)+
       '<br>Longitud: '+lon.toFixed(6)+'<br>Precisión aproximada: '+Math.round(accuracy)+' m',
       {autoPan:false});
     // Solo "Mi ubicación" cambia el zoom. Seguimiento conserva el zoom del usuario.
@@ -69,34 +72,70 @@
     else if (center) map.panTo(latlng,{animate:false});
     status('GPS activo · precisión ±'+Math.round(accuracy)+' m'+(!navigator.onLine?' · sin internet':''),'ok');
   }
-  function gpsError(err, follow=false) {
+  function updateGpsButtons() {
+    const located = gpsMode === 'locate';
+    const following = gpsMode === 'follow';
+    if (locateBtn) {
+      locateBtn.setAttribute('aria-pressed', String(located));
+      locateBtn.textContent = located ? '◎ Ocultar ubicación' : '◎ Mi ubicación';
+      locateBtn.title = located ? 'Desactivar mi ubicación' : 'Mostrar ubicación actual';
+      locateBtn.setAttribute('aria-label', locateBtn.title);
+    }
+    if (followBtn) {
+      followBtn.setAttribute('aria-pressed', String(following));
+      followBtn.textContent = following ? '■ Detener' : '▶ Seguir';
+      followBtn.title = following ? 'Detener seguimiento GPS' : 'Seguir el GPS sin cambiar el zoom';
+      followBtn.setAttribute('aria-label', followBtn.title);
+    }
+  }
+  function clearGps() {
+    ++gpsGeneration;
+    if (watchId !== null && navigator.geolocation) navigator.geolocation.clearWatch(watchId);
+    watchId = null;
+    if (marker) { map.removeLayer(marker); marker = null; }
+    if (accuracyCircle) { map.removeLayer(accuracyCircle); accuracyCircle = null; }
+    lastFix = null;
+    gpsMode = 'off';
+    updateGpsButtons();
+  }
+  function gpsError(err, generation, follow=false) {
+    if (generation !== gpsGeneration) return;
     const denied = err?.code === 1;
-    status(denied?'Ubicación denegada. Revisa permisos del navegador.':
-      'GPS sin posición reciente. Se conserva la última ubicación.', 'warning');
-    if (denied && follow) stopFollow();
-    if (locateBtn) locateBtn.disabled=false;
+    if (denied || !follow) clearGps();
+    status(denied ? 'Ubicación denegada. Revisa permisos del navegador.' :
+      follow ? 'GPS sin posición reciente. Esperando una nueva lectura.' :
+      'No se obtuvo ubicación. Pulsa Mi ubicación para reintentar.', 'warning');
   }
   function locateOnce() {
+    if (gpsMode === 'locate') {
+      clearGps(); status('Ubicación desactivada.'); return;
+    }
     if (!navigator.geolocation) return status('Este dispositivo no ofrece ubicación GPS.','warning');
-    locateBtn.disabled = true;
+    clearGps();
+    gpsMode = 'locate'; updateGpsButtons();
+    const generation = gpsGeneration;
     status('Buscando ubicación actual…');
-    navigator.geolocation.getCurrentPosition(pos=>{drawFix(pos,false,true);locateBtn.disabled=false;},
-      err=>gpsError(err), GPS_OPTS);
+    navigator.geolocation.getCurrentPosition(pos=>{
+      if (generation !== gpsGeneration || gpsMode !== 'locate') return;
+      drawFix(pos,false,true);
+      if (lastFix) status('Ubicación puntual · precisión ±'+Math.round(lastFix.accuracy)+' m · pulsa para ocultar','ok');
+    }, err=>gpsError(err,generation), GPS_OPTS);
   }
   function stopFollow() {
-    if (watchId != null && navigator.geolocation) navigator.geolocation.clearWatch(watchId);
-    watchId = null;
-    if (followBtn) {followBtn.setAttribute('aria-pressed','false');followBtn.textContent='▶ Seguir';followBtn.title='Seguir el GPS sin cambiar el zoom';followBtn.setAttribute('aria-label',followBtn.title);}
-    status(lastFix?'Seguimiento detenido · ubicación disponible':'Seguimiento detenido.');
+    clearGps(); status('GPS desactivado.');
   }
   function toggleFollow() {
-    if (watchId !== null) return stopFollow();
+    if (gpsMode === 'follow') return stopFollow();
     if (!navigator.geolocation) return status('Este dispositivo no ofrece ubicación GPS.','warning');
+    clearGps();
+    gpsMode = 'follow'; updateGpsButtons();
+    const generation = gpsGeneration;
     status('Iniciando seguimiento GPS…');
-    followBtn.setAttribute('aria-pressed','true');followBtn.textContent='■ Detener';followBtn.title='Detener seguimiento GPS';followBtn.setAttribute('aria-label',followBtn.title);
-    // Nunca usamos setView en modo seguimiento; así el zoom se mantiene.
-    watchId = navigator.geolocation.watchPosition(pos=>drawFix(pos,true,false),
-      err=>gpsError(err,true),GPS_OPTS);
+    // panTo conserva el zoom seleccionado.
+    watchId = navigator.geolocation.watchPosition(pos=>{
+      if (generation !== gpsGeneration || gpsMode !== 'follow') return;
+      drawFix(pos,true,false);
+    }, err=>gpsError(err,generation,true), GPS_OPTS);
   }
   function offlineStyle() {document.body.classList.toggle('gv-nav-offline',!navigator.onLine);}
   async function readyState() {
@@ -195,7 +234,7 @@
     const actions=document.createElement('div');actions.className='gv-nav-actions';wrapper.append(actions);
     locateBtn=makeButton(actions,'◎ Mi ubicación','Mostrar ubicación actual',locateOnce);
     followBtn=makeButton(actions,'▶ Seguir','Seguir el GPS sin cambiar el zoom',toggleFollow);
-    followBtn.setAttribute('aria-pressed','false');
+    updateGpsButtons();
     downloadBtn=makeButton(wrapper,'⬇ Preparar SEN offline','Guardar los tres visores y el inventario SEN',prepareOffline);
     downloadBtn.className='gv-nav-download';
     statusEl=document.createElement('div');statusEl.className='gv-nav-status';
@@ -236,7 +275,7 @@
     offlineStyle();status('Sin internet · el SEN descargado sigue disponible; clima y alertas NO son en vivo.','warning');
   });
   window.addEventListener('online',()=>{offlineStyle();status('Conexión recuperada.','ok');});
-  window.addEventListener('pagehide',()=>{if(watchId!=null) navigator.geolocation.clearWatch(watchId);});
+  window.addEventListener('pagehide',clearGps);
   window.GridVisionNavigationV1={version:VERSION,prepareOffline,stopFollow};
   if ('serviceWorker' in navigator && window.isSecureContext) {
     navigator.serviceWorker.register(absolute('gridvision-sw.js'),{scope:ROOT.pathname})
