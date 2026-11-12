@@ -1297,6 +1297,21 @@ async function cargarPanelOperacional() {
             }
         });
 
+
+        window.addEventListener('gridvision:modo-clima', () => {
+            ultimoMeteograma = {};
+
+            const vacio = document.getElementById(
+                'panel-operacional-vacio'
+            );
+            const resumen = document.getElementById(
+                'panel-operacional-resumen'
+            );
+
+            if (vacio) vacio.hidden = false;
+            if (resumen) resumen.hidden = true;
+        });
+
         window.addEventListener(
             "gridvision:pronostico-activo",
             actualizarPanelOperacional

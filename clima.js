@@ -662,6 +662,11 @@ escribirAlertaExtendida(
     }
 
     async function seleccionarActivo(feature) {
+        if (!(window.GridVisionModoClima?.enabled() ?? navigator.onLine)) {
+            ocultar();
+            return;
+        }
+
         const coordenadas = coordenadaActivo(feature);
 
         if (!coordenadas) {
@@ -689,7 +694,7 @@ escribirAlertaExtendida(
         mostrarEstado("cargando");
 
         try {
-            const respuesta = await fetch(
+            const respuesta = await (window.GridVisionModoClima?.fetch || window.fetch.bind(window))(
                 construirUrl(latitud, longitud),
                 {
                     signal: controladorActivo.signal
@@ -703,6 +708,7 @@ escribirAlertaExtendida(
             }
 
             const datos = await respuesta.json();
+            if (!(window.GridVisionModoClima?.enabled() ?? navigator.onLine)) return;
 
 escribirActual(datos);
 escribirPronostico(datos);

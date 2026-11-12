@@ -1,0 +1,48 @@
+/* GridVision V2.1 */
+
+#gv-modo-clima {
+    min-height: 35px;
+    padding: 7px 12px;
+    border: 1px solid #6091ad;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+#gv-modo-clima[data-modo="con"] {
+    background: #174965;
+    color: #e2f4ff;
+}
+
+#gv-modo-clima[data-modo="sin"] {
+    background: #174b3a;
+    color: #b8f6db;
+    border-color: #479b78;
+}
+
+#gv-modo-clima:disabled {
+    opacity: .8;
+    cursor: default;
+}
+
+html.gv-clima-pausado #panel-clima,
+html.gv-clima-pausado #panel-clima-linea,
+html.gv-clima-pausado #contenedor-panel-operacional,
+html.gv-clima-pausado #panel-centro-alertas {
+    display: none !important;
+}
+
+html.gv-clima-pausado #boton-centro-alertas {
+    opacity: .7;
+    background: #334155 !important;
+    cursor: default;
+}
+
+@media (max-width: 700px) {
+    #gv-modo-clima {
+        font-size: 11px;
+        padding: 6px 10px;
+    }
+}

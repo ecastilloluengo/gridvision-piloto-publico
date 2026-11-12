@@ -443,7 +443,7 @@
             return cache.datos;
         }
 
-        const respuesta = await fetch(
+        const respuesta = await (window.GridVisionModoClima?.fetch || window.fetch.bind(window))(
             construirUrl(tramos),
             { signal }
         );
@@ -801,6 +801,11 @@ mostrarEstado("contenido");
     }
 
     async function seleccionarLinea(feature) {
+        if (!(window.GridVisionModoClima?.enabled() ?? navigator.onLine)) {
+            ocultar();
+            return;
+        }
+
         if (!mapa || !capaAnalisis) {
             return;
         }
@@ -842,6 +847,7 @@ mostrarEstado("contenido");
                 controladorActivo.signal
             );
 
+            if (!(window.GridVisionModoClima?.enabled() ?? navigator.onLine)) return;
             analisisActivo = {
                 feature,
                 longitudTotalKm: segmentacion.longitudTotalKm,

@@ -3,7 +3,7 @@
   'use strict';
   const scriptURL = document.currentScript?.src || location.href;
   function iniciarNavegacion() {
-  const VERSION = 'gv-nav-v202-20261112';
+  const VERSION = 'gv-nav-v21-20261112';
   const CACHE = 'gridvision-nav-offline-v1';
   const METADATA = '__gv-nav-offline-ready-v1.json';
   const ROOT = new URL('../../', scriptURL);
@@ -169,6 +169,10 @@
       ...pages,'vendor/leaflet/leaflet.js','vendor/leaflet/leaflet.css',
       'components/gridvision-nav/gridvision-nav.js','components/gridvision-nav/gridvision-nav.css',
       'gridvision-sw.js','data/offline/base-chile-v2.geojson',
+      'components/localizador-fallas/localizador-fallas.html',
+      'components/panel-operacional.html',
+      'components/gridvision-nav/gridvision-modo-clima.js',
+      'components/gridvision-nav/gridvision-modo-clima.css',
       'data/processed/activos_puntuales_validados.geojson',
       'data/processed/lineas_validadas.geojson',
       'data/processed/pfv_netbilling.geojson',

@@ -88,6 +88,8 @@
 <link rel="stylesheet" href="components/medicion/medicion.css?v=1">
   <link rel="stylesheet" href="components/gridvision-nav/gridvision-nav.css?v=gv-nav-v12-20261112">
   <link rel="stylesheet" href="components/gridvision-nav/gridvision-base-offline.css?v=gv-base-v201-20261112">
+
+<link rel="stylesheet" href="components/gridvision-nav/gridvision-modo-clima.css?v=21">
 </head>
 
 <body>
@@ -131,6 +133,12 @@
     🚨 SENAPRED
     <span id="senapred-contador-header">(—)</span>
 </button>
+
+
+<button id="gv-modo-clima"
+        class="boton-header-gridvision"
+        type="button"
+        aria-pressed="true">Con clima</button>
 
 <button id="abrir-dmc" class="boton-header-gridvision" type="button"
         aria-controls="panel-dmc" aria-expanded="false"
@@ -627,24 +635,25 @@
         <div id="contenedor-administracion-accesos"></div>
 </main>
 
+<script src="components/gridvision-nav/gridvision-modo-clima.js?v=21"></script>
 <script src="vendor/leaflet/leaflet.js"></script>
 
 <script src="piloto.js"></script>
-<script src="clima.js"></script>
-<script src="clima-lineas.js"></script>
+<script src="clima.js?v=gv-v21"></script>
+<script src="clima-lineas.js?v=gv-v21"></script>
 <script src="components/localizador-fallas/localizador-fallas.js?v=5"></script>
 <script src="components/acerca-gridvision/acerca-gridvision.js"></script>
 <script src="components/administracion-accesos/usuarios.js"></script>
 <script src="components/administracion-accesos/almacenamiento.js"></script>
 <script src="components/administracion-accesos/administracion-accesos.js"></script>
 <script src="components/alertas/activos-meteorologicos.js"></script>
-<script src="components/alertas/estado-alertas.js?v=gv-v201-20261112"></script>
-<script src="components/alertas/alertas.js"></script>
+<script src="components/alertas/estado-alertas.js?v=gv-v21"></script>
+<script src="components/alertas/alertas.js?v=gv-v21"></script>
 <script src="components/senapred/senapred.js?v=gv-v201-20261112"></script>
-<script src="components/panel-operacional.js?v=2"></script>
+<script src="components/panel-operacional.js?v=gv-v21"></script>
 <script src="components/google-streetview.js?v=9"></script>
 <script src="components/stll/stll.js?v=20261019-1"></script>
-<script src="app.js?v=stll-20261019-1"></script>
+<script src="app.js?v=gv-v21"></script>
 <script src="gridvision-medidor-lineas-v01/gridvision-medidor-lineas.js?v=20261022-1"></script>
 <script src="gridvision-medidor-lineas-v01/integracion-gridvision.js?v=20261022-1"></script>
 <script src="components/dmc/dmc.js?v=20261020-dmc-v13"></script>
@@ -652,6 +661,6 @@
 <script src="components/medicion/medicion-unificada-v01.js?v=20261022-04"></script>
 <script src="components/buscador-coordenadas.js?v=1"></script>
   <script src="components/gridvision-nav/gridvision-base-offline.js?v=gv-base-v201-20261112"></script>
-  <script src="components/gridvision-nav/gridvision-nav.js?v=gv-nav-v202-20261112"></script>
+  <script src="components/gridvision-nav/gridvision-nav.js?v=gv-nav-v21"></script>
 </body>
 </html>

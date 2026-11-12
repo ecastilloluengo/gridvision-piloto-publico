@@ -1554,9 +1554,10 @@ if (
 // METEOROLOGÍA / IRRADIANCIA ESTIMADA
 // --------------------------------------------
 
+if ((window.GridVisionModoClima?.enabled() ?? navigator.onLine)) {
 try {
 
-    const respuestaMeteo = await fetch(
+    const respuestaMeteo = await (window.GridVisionModoClima?.fetch || window.fetch.bind(window))(
         "https://api.open-meteo.com/v1/forecast" +
         "?latitude=-33.453723" +
         "&longitude=-70.870886" +
@@ -1652,6 +1653,12 @@ try {
         "No fue posible consultar Open-Meteo:",
         errorMeteo
     );
+}
+
+} else {
+    const notaMeteo = document.createElement("p");
+    notaMeteo.textContent = "Meteorologia pausada - modo sin clima";
+    bloque.appendChild(notaMeteo);
 }
 
 // --------------------------------------------
@@ -2542,11 +2549,12 @@ async function cargarEstadoSolarPendienteFusion(
             // METEOROLOGÍA
             // =============================================
 
+            if ((window.GridVisionModoClima?.enabled() ?? navigator.onLine)) {
             let meteoDisponible = false;
 
             try {
 
-                const respuestaMeteo = await fetch(
+                const respuestaMeteo = await (window.GridVisionModoClima?.fetch || window.fetch.bind(window))(
                     "https://api.open-meteo.com/v1/forecast" +
                     `?latitude=${latitud}` +
                     `&longitude=${longitud}` +
@@ -2662,6 +2670,10 @@ async function cargarEstadoSolarPendienteFusion(
                 }
             );
 
+
+            } else {
+                agregarLinea("Meteorologia pausada - modo sin clima");
+            }
 
             // =============================================
             // HORA CONSULTA GRIDVISION
@@ -3121,9 +3133,40 @@ async function cargarLineas() {
         },
 
         onEachFeature(feature, layer) {
-            layer.bindPopup(
-                crearPopup(feature.properties)
-            );
+            layer.bindPopup(() => {
+                const contenido = crearPopup(feature.properties);
+                if (!(window.GridVisionModoClima?.enabled() ?? navigator.onLine)) {
+                    const geo = feature.geometry;
+                    const partes = geo.type === 'MultiLineString'
+                        ? geo.coordinates : [geo.coordinates];
+                    let longitud = 0;
+                    for (const parte of partes) {
+                        for (let i = 1; i < parte.length; i++) {
+                            const a = parte[i - 1], b = parte[i];
+                            longitud += mapa.distance([a[1], a[0]], [b[1], b[0]]);
+                        }
+                    }
+                    const boton = document.createElement('button');
+                    boton.type = 'button';
+                    boton.className = 'popup-boton-localizar-falla';
+                    boton.textContent = 'Localizar falla';
+                    boton.addEventListener('click', async () => {
+                        try {
+                            await window.GridVisionLocalizadorFallas.abrirPanelLocalizador({
+                                nombreLinea: feature.properties.nombre,
+                                longitudTotalKm: longitud / 1000,
+                                feature, mapa
+                            });
+                            mapa.closePopup();
+                        } catch (error) {
+                            boton.textContent = 'Localizador no disponible';
+                            console.warn(error);
+                        }
+                    });
+                    contenido.appendChild(boton);
+                }
+                return contenido;
+            });
 
             layer.on("popupopen", () => {
                 window.GridVisionClima
@@ -3726,6 +3769,12 @@ function inicializarFiltros() {
 
     aplicarFiltros();
 }
+
+window.addEventListener('gridvision:modo-clima', () => {
+    window.GridVisionClima?.ocultar();
+    window.GridVisionClimaLineas?.ocultar();
+    mapa.closePopup();
+});
 
 window.GridVisionClima.inicializar();
 window.GridVisionClimaLineas.inicializar(mapa);

@@ -134,6 +134,19 @@
     contenedor.appendChild(panel);
 
     function actualizarBoton() {
+        if (!(window.GridVisionModoClima?.enabled() ?? navigator.onLine)) {
+            boton.innerHTML = '<span>Clima pausado</span>';
+            boton.disabled = true;
+            boton.dataset.nivel = 'pausado';
+            boton.title = 'Monitoreo meteorologico deshabilitado';
+            cerrarPanel();
+            return;
+        }
+
+        boton.disabled =
+            document.body.classList.contains('gv-nav-live-stale');
+        boton.title = 'Centro de alertas meteorologicas';
+
         const cantidad = contarAlertasActivas();
 
         boton.innerHTML = `
@@ -385,6 +398,11 @@
             renderizarPanel();
         }
     };
+
+    window.addEventListener('gridvision:modo-clima', () => {
+        cerrarPanel();
+        actualizarBoton();
+    });
 
     actualizarBoton();
 })();

@@ -61,6 +61,7 @@
     };
 
     let actualizando = false;
+    let cicloClima = 0;
     let temporizador = null;
     let inventarioPromise = null;
 
@@ -607,7 +608,7 @@
     }
 
     async function evaluarLinea(feature) {
-        if (!navigator.onLine) throw new Error("Sin conexion");
+        if (!(window.GridVisionModoClima?.enabled() ?? navigator.onLine)) throw new DOMException("Clima pausado", "AbortError");
         const muestras = generarMuestrasLinea(feature);
 
         if (!muestras.length) {
@@ -624,7 +625,7 @@
             "wind_gusts_10m%2Cwind_direction_10m"
         );
 
-        const respuesta = await fetch(urlConDireccion, {
+        const respuesta = await (window.GridVisionModoClima?.fetch || window.fetch.bind(window))(urlConDireccion, {
             cache: "no-store"
         });
 
@@ -666,8 +667,8 @@
         };
     }
 
-    async function evaluarActivosPuntuales(items, inventario) {
-        if (!navigator.onLine) return;
+    async function evaluarActivosPuntuales(items, inventario, ciclo) {
+        if (!(window.GridVisionModoClima?.enabled() ?? navigator.onLine) || ciclo !== cicloClima) return;
         const evaluables = [];
 
         items.forEach((item) => {
@@ -697,7 +698,7 @@
             return;
         }
 
-        const respuesta = await fetch(
+        const respuesta = await (window.GridVisionModoClima?.fetch || window.fetch.bind(window))(
             construirUrlPuntos(
                 evaluables.map((registro) => registro.coordenadas)
             ),
@@ -711,6 +712,8 @@
         }
 
         const pronosticos = resultadoALista(await respuesta.json());
+
+        if (!(window.GridVisionModoClima?.enabled() ?? navigator.onLine) || ciclo !== cicloClima) return;
 
         evaluables.forEach((registro, indice) => {
             const datos = pronosticos[indice];
@@ -734,8 +737,9 @@
         });
     }
 
-    async function evaluarLineas(items, inventario) {
+    async function evaluarLineas(items, inventario, ciclo) {
         for (const item of items) {
+            if (!(window.GridVisionModoClima?.enabled() ?? navigator.onLine) || ciclo !== cicloClima) return;
             const feature = inventario.get(String(item.id));
 
             if (!feature) {
@@ -745,6 +749,7 @@
 
             try {
                 const resultado = await evaluarLinea(feature);
+                if (!(window.GridVisionModoClima?.enabled() ?? navigator.onLine) || ciclo !== cicloClima) return;
 
                 actualizarEstado(item.id, {
                     estado: resultado.estado,
@@ -753,6 +758,7 @@
                     errorConsulta: false
                 });
             } catch (error) {
+                if (!(window.GridVisionModoClima?.enabled() ?? navigator.onLine) || ciclo !== cicloClima) return;
                 console.warn(
                     `GridVision: no fue posible evaluar ${item.alias}:`,
                     error
@@ -767,14 +773,16 @@
     }
 
     async function actualizarMonitoreo() {
-        if (!navigator.onLine || actualizando) {
+        if (!(window.GridVisionModoClima?.enabled() ?? navigator.onLine) || actualizando) {
             return;
         }
 
         actualizando = true;
+        const ciclo = cicloClima;
 
         try {
             const inventario = await cargarInventario();
+            if (!(window.GridVisionModoClima?.enabled() ?? navigator.onLine) || ciclo !== cicloClima) return;
             const items = Array.isArray(window.ACTIVOS_MONITOREADOS)
                 ? window.ACTIVOS_MONITOREADOS
                 : [];
@@ -782,11 +790,14 @@
             const activos = items.filter((item) => item.tipo === "activo");
             const lineas = items.filter((item) => item.tipo === "linea");
 
-            await Promise.all([
-                evaluarActivosPuntuales(activos, inventario),
-                evaluarLineas(lineas, inventario)
+            const resultados = await Promise.allSettled([
+                evaluarActivosPuntuales(activos, inventario, ciclo),
+                evaluarLineas(lineas, inventario, ciclo)
             ]);
+            const fallo = resultados.find(r => r.status === 'rejected');
+            if (fallo) throw fallo.reason;
         } catch (error) {
+            if (!(window.GridVisionModoClima?.enabled() ?? navigator.onLine) || ciclo !== cicloClima) return;
             console.error(
                 "GridVision: error en monitoreo meteorológico automático:",
                 error
@@ -800,6 +811,9 @@
             });
         } finally {
             actualizando = false;
+            if (ciclo !== cicloClima && (window.GridVisionModoClima?.enabled() ?? navigator.onLine)) {
+                queueMicrotask(actualizarMonitoreo);
+            }
 
             if (typeof window.actualizarCentroAlertas === "function") {
                 window.actualizarCentroAlertas();
@@ -808,6 +822,7 @@
     }
 
     function iniciar() {
+        if (!(window.GridVisionModoClima?.enabled() ?? navigator.onLine)) return;
         if (temporizador) {
             return;
         }
@@ -840,6 +855,15 @@
             return CONFIG.intervaloActualizacionMs / 60000;
         }
     };
+
+    window.addEventListener('gridvision:modo-clima', () => {
+        cicloClima++;
+        detener();
+        crearEstadosIniciales();
+        window.actualizarCentroAlertas?.();
+
+        if (window.GridVisionModoClima?.enabled()) iniciar();
+    });
 
     iniciar();
 })();
