@@ -607,6 +607,7 @@
     }
 
     async function evaluarLinea(feature) {
+        if (!navigator.onLine) throw new Error("Sin conexion");
         const muestras = generarMuestrasLinea(feature);
 
         if (!muestras.length) {
@@ -666,6 +667,7 @@
     }
 
     async function evaluarActivosPuntuales(items, inventario) {
+        if (!navigator.onLine) return;
         const evaluables = [];
 
         items.forEach((item) => {
@@ -765,7 +767,7 @@
     }
 
     async function actualizarMonitoreo() {
-        if (actualizando) {
+        if (!navigator.onLine || actualizando) {
             return;
         }
 

@@ -48,6 +48,10 @@ self.addEventListener('fetch',event=>{
         // almacena cuando el usuario lo prepara explícitamente.
         if(!vol) event.waitUntil(cache.put(key,result.clone()).catch(()=>{}));
       }
+      if([502,503,504].includes(result.status)){
+        const saved=await cache.match(key);
+        if(saved)return saved;
+      }
       return result;
     } catch(err){
       const saved=await cache.match(key);

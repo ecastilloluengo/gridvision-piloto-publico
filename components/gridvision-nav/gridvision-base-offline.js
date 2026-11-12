@@ -10,7 +10,37 @@
     button.dataset.gvBaseInstalled='1';
     const container=map.getContainer();
     let data=null, loading=null, active=false, desired=false, generation=0, layers=null, labels=null, frame=0;
-    let manual=false;
+    let manual=false, tilesSuspended=false;
+    const suspended=new Set();
+    const originalAdd=map.addLayer, originalRemove=map.removeLayer;
+    const isTile=layer=>layer instanceof L.TileLayer;
+    // Pause tile layers, not vector overlays; preserve the selected base group.
+    function guardedAdd(layer){
+      if(tilesSuspended&&isTile(layer)){suspended.add(layer);return this;}
+      return originalAdd.call(this,layer);
+    }
+    function guardedRemove(layer){
+      if(tilesSuspended&&isTile(layer)){suspended.delete(layer);}
+      return originalRemove.call(this,layer);
+    }
+    function suspendTiles(){
+      if(tilesSuspended)return;
+      tilesSuspended=true;
+      map.addLayer=guardedAdd;map.removeLayer=guardedRemove;
+      const list=[];map.eachLayer(layer=>{if(isTile(layer))list.push(layer);});
+      for(const layer of list){suspended.add(layer);originalRemove.call(map,layer);}
+      container.classList.add('gv-base-tiles-paused');
+    }
+    function resumeTiles(){
+      if(!tilesSuspended)return;
+      tilesSuspended=false;
+      if(map.addLayer===guardedAdd)map.addLayer=originalAdd;
+      if(map.removeLayer===guardedRemove)map.removeLayer=originalRemove;
+      container.classList.remove('gv-base-tiles-paused');
+      const list=Array.from(suspended);suspended.clear();
+      for(const layer of list)map.addLayer(layer);
+      map.fire('gv-basemap-restored');
+    }
     const credit='Made with Natural Earth · mapa general (1:10m)';
     for (const [name,z] of [['gv-base-v2',230],['gv-base-v2-label',260]]) {
       const pane=map.getPane(name)||map.createPane(name);pane.style.zIndex=z;pane.style.pointerEvents='none';
@@ -18,7 +48,13 @@
     async function getData(){
       if (data) return data;
       if (!loading) loading=(async()=>{
-        const response=await fetch(url,{cache:'default'}); if(!response.ok)throw new Error('HTTP '+response.status);
+        let response;
+        if(!navigator.onLine && 'caches' in window){
+          const cache=await caches.open('gridvision-nav-offline-v1');
+          response=await cache.match(url);
+        }
+        if(!response){response=await fetch(url,{cache:'default'});}
+        if(!response.ok)throw new Error('HTTP '+response.status);
         const result=await response.json();
         if(result.type!=='FeatureCollection'||result.metadata?.schema!=='gv-base-chile-v2'||!Array.isArray(result.features)||!REQUIRED.every(x=>result.features.some(f=>f.properties?.capa===x)))throw new Error('Base incompleta o incompatible');
         data=result;return result;
@@ -65,24 +101,26 @@
       desired=false;++generation;
       if(active){map.removeLayer(layers);map.removeLayer(labels);map.attributionControl?.removeAttribution(credit);}
       active=false;container.classList.remove('gv-base-v2-active');button.setAttribute('aria-pressed','false');button.textContent='Mapa nacional offline';
+      if(navigator.onLine)resumeTiles();
     }
     async function show(){
       desired=true;const token=++generation;
+      if(!navigator.onLine)suspendTiles();
       button.disabled=true;button.textContent='Cargando mapa nacional…';
       try{
         await getData();if(token!==generation||!desired)return;
-        createLayers();if(!active){layers.addTo(map);labels.addTo(map);map.attributionControl?.addAttribution(credit);}
+        createLayers();suspendTiles();if(!active){layers.addTo(map);labels.addTo(map);map.attributionControl?.addAttribution(credit);}
         active=true;container.classList.add('gv-base-v2-active');button.setAttribute('aria-pressed','true');button.textContent='Volver al fondo en línea';queueLabels();
         report('Mapa nacional de referencia · Natural Earth · sin detalle rural.','ok');
       }catch(e){if(token===generation){hide();report('Mapa nacional no disponible. Descárgalo conectado: '+e.message,'warning');}}
       finally{button.disabled=false;}
     }
-    button.addEventListener('click',()=>{if(active){manual=false;hide();}else{manual=true;void show();}});
+    button.addEventListener('click',()=>{if(active){if(!navigator.onLine){report('Sin conexion: el mapa nacional sigue activo.','warning');return;}manual=false;hide();}else{manual=true;void show();}});
     map.on('moveend zoomend',queueLabels);
-    window.addEventListener('offline',()=>{if(!active)void show();});
-    window.addEventListener('online',()=>{if(!manual)hide();});
+    window.addEventListener('offline',()=>{suspendTiles();if(!active)void show();});
+    window.addEventListener('online',()=>{if(!manual||!active)hide();});
     if(!navigator.onLine)void show();
-    window.GridVisionBaseOfflineV2={show,hide,ready:()=>!!data,active:()=>active};
+    window.GridVisionBaseOfflineV2={show,hide,ready:()=>!!data,active:()=>active,tilesSuspended:()=>tilesSuspended};
   }
   window.GridVisionBaseOfflineInstall=install;
 })();

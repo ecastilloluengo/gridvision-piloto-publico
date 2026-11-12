@@ -3,7 +3,7 @@
   'use strict';
   const scriptURL = document.currentScript?.src || location.href;
   function iniciarNavegacion() {
-  const VERSION = 'gv-nav-v20-20261112';
+  const VERSION = 'gv-nav-v201-20261112';
   const CACHE = 'gridvision-nav-offline-v1';
   const METADATA = '__gv-nav-offline-ready-v1.json';
   const ROOT = new URL('../../', scriptURL);
@@ -137,7 +137,23 @@
       drawFix(pos,true,false);
     }, err=>gpsError(err,generation,true), GPS_OPTS);
   }
-  function offlineStyle() {document.body.classList.toggle('gv-nav-offline',!navigator.onLine);}
+  function offlineStyle() {
+    document.body.classList.toggle('gv-nav-offline',!navigator.onLine);
+    if(!navigator.onLine)document.body.classList.add('gv-nav-live-stale');
+  }
+  // Do not allow historical/empty live counters to be interpreted as a current zero.
+  function markLiveUnavailable(){
+    if(!document.body.classList.contains('gv-nav-live-stale'))return;
+    for(const id of ['abrir-senapred','abrir-dmc','boton-centro-alertas']){
+      const el=document.getElementById(id);if(!el)continue;
+      el.disabled=true;
+      el.title='Datos no actualizados. Conectate y recarga GridVision.';
+      el.setAttribute('aria-label',el.title);
+    }
+    for(const id of ['kpi-total','kpi-critical','kpi-attention','kpi-watch','map-status']){
+      const el=document.getElementById(id);if(el)el.setAttribute('aria-label','Datos de incendios no actualizados');
+    }
+  }
   async function readyState() {
     if (!('caches' in window)) return false;
     const cache=await caches.open(CACHE);
@@ -280,12 +296,16 @@
   ctrl.addTo(map);
   oldGpsHide();
   offlineStyle();
+  markLiveUnavailable();
+  // Components may create their header buttons after the map is ready.
+  const liveObserver=new MutationObserver(markLiveUnavailable);
+  liveObserver.observe(document.body,{childList:true,subtree:true});
   if(window.GridVisionBaseOfflineInstall)window.GridVisionBaseOfflineInstall(map,baseBtn,status);
   window.addEventListener('offline',()=>{
-    offlineStyle();status('Sin internet · consulta datos descargados; clima y alertas NO son en vivo.','warning');
+    offlineStyle();markLiveUnavailable();status('Sin internet · consulta datos descargados; clima y alertas NO son en vivo.','warning');
   });
-  window.addEventListener('online',()=>{offlineStyle();status('Conexión recuperada.','ok');});
-  window.addEventListener('pagehide',clearGps);
+  window.addEventListener('online',()=>{offlineStyle();status('Conexion recuperada. Recarga para actualizar clima y alertas.','warning');});
+  window.addEventListener('pagehide',()=>{clearGps();liveObserver.disconnect();});
   window.GridVisionNavigationV1={version:VERSION,prepareOffline,stopFollow};
   if ('serviceWorker' in navigator && window.isSecureContext) {
     navigator.serviceWorker.register(absolute('gridvision-sw.js'),{scope:ROOT.pathname})

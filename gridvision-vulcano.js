@@ -235,6 +235,7 @@ function initMap(){
   // Allí reutilizamos mosaicos del nivel 12 (escalados por Leaflet) en vez de pedir
   // niveles sin cobertura. En Chile continental se conserva la resolución original.
   function gvSyncSatRapa(){
+    if(window.GridVisionBaseOfflineV2?.tilesSuspended?.())return;
     const centro=m.getCenter();
     const esRapa=centro.lng < -100 && centro.lat > -29 && centro.lat < -25;
     const siguiente=esRapa?satRapa:sat;
@@ -248,7 +249,7 @@ function initMap(){
       siguiente.bringToBack(); // No tapar etiquetas del fondo
     }
   }
-  m.on('moveend',gvSyncSatRapa);
+  m.on('moveend gv-basemap-restored',gvSyncSatRapa);
   gvSyncSatRapa();
 
  // Si el proveedor satelital falla, se usa el fondo de calles ya configurado.
@@ -268,6 +269,7 @@ function initMap(){
  return true;
 }
 function switchBasemap(name){
+ if(window.GridVisionBaseOfflineV2?.tilesSuspended?.()){for(const input of document.querySelectorAll('input[name="basemap"],input[name="quick-basemap"]'))input.checked=input.value===state.baseName;return;}
  if(!state.baseLayers[name]||name===state.baseName)return;
  for(const items of Object.values(state.baseLayers))for(const layer of items)if(state.map.hasLayer(layer))state.map.removeLayer(layer);
  for(const layer of state.baseLayers[name])layer.addTo(state.map);

@@ -1222,6 +1222,10 @@ if (contadorHeader) {
     async function cargarDatos() {
         const estado =
             elemento("senapred-estado");
+        if (!navigator.onLine) {
+            if (estado) { estado.hidden=false; estado.textContent="Sin conexion: SENAPRED no actualizado."; }
+            return;
+        }
 
         const esLocal =
             window.location.hostname === "localhost"

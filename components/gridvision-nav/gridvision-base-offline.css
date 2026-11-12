@@ -12,3 +12,32 @@
 .gv-nav-offline #mapa.gv-base-v2-active,
 .gv-nav-offline #fire-map.gv-base-v2-active,
 .gv-nav-offline #vulcano-map.gv-base-v2-active {background:#b7dce7!important;background-image:none!important;}
+
+/* V2.0.1: hide every remote tile pane, including the separate Esri label pane. */
+.gv-base-v2-active .leaflet-tile-container,
+.gv-base-tiles-paused .leaflet-tile-container,
+.gv-base-v2-active .leaflet-etiquetasMapa-pane { visibility:hidden!important; }
+/* Keep electrical overlay selectors; hide only online background choices. */
+#mapa.gv-base-tiles-paused .leaflet-control-layers-base {display:none!important;}
+body:has(#vulcano-map.gv-base-tiles-paused) input[name="basemap"],
+body:has(#vulcano-map.gv-base-tiles-paused) input[name="quick-basemap"] {opacity:.5;pointer-events:none;}
+/* Offline is unavailable, not zero. Applies also after reconnection until reload. */
+body.gv-nav-live-stale #senapred-contador-header,
+body.gv-nav-live-stale #dmc-contador-header,
+body.gv-nav-live-stale #boton-centro-alertas strong {display:none!important;}
+body.gv-nav-live-stale #abrir-senapred::after,
+body.gv-nav-live-stale #abrir-dmc::after,
+body.gv-nav-live-stale #boton-centro-alertas::after {content:" (—)";color:#ffc46d;}
+body.gv-nav-live-stale #estado {border-color:#d69a48!important;color:#ffd18a!important;}
+body.gv-nav-live-stale #estado::before {background:#e5a34c!important;box-shadow:none!important;}
+body.gv-nav-live-stale #estado::after {content:" · Alertas no actualizadas";font-size:11px;color:#ffc46d;}
+body.gv-nav-live-stale #kpi-total,
+body.gv-nav-live-stale #kpi-critical,
+body.gv-nav-live-stale #kpi-attention,
+body.gv-nav-live-stale #kpi-watch {font-size:0!important;}
+body.gv-nav-live-stale #kpi-total::after,
+body.gv-nav-live-stale #kpi-critical::after,
+body.gv-nav-live-stale #kpi-attention::after,
+body.gv-nav-live-stale #kpi-watch::after {content:"—";font-size:20px;color:#ffc46d;}
+body.gv-nav-live-stale #map-status {font-size:0!important;}
+body.gv-nav-live-stale #map-status::after {content:"Incendios no actualizados";font-size:11px;color:#ffc46d;}
