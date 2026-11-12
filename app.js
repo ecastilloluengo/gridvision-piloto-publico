@@ -3264,14 +3264,18 @@ async function iniciarGridVision() {
         // enfocamos el activo y abrimos su popup.
         abrirClimaDesdeURL();
 
-        estado.textContent =
-            "Datos cargados correctamente";
+        estado.textContent = "Carga datos";
+        estado.dataset.carga = "ok";
+        estado.title = "Datos cargados correctamente";
+        estado.setAttribute("aria-label", estado.title);
 
     } catch (error) {
         console.error(error);
 
-        estado.textContent =
-            "Error al cargar los datos locales";
+        estado.textContent = "Carga datos";
+        estado.dataset.carga = "error";
+        estado.title = "Error al cargar los datos locales";
+        estado.setAttribute("aria-label", estado.title);
 
         document.getElementById(
             "error-carga"
