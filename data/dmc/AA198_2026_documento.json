@@ -1,0 +1,14 @@
+{
+  "codigo": "AA198/2026",
+  "tipo": "Alerta",
+  "titulo": "Tormentas Eléctricas en cordillera de las regiones de Arica y Parinacota y Tarapacá",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Viernes 13 de noviembre del 2026 a las 12:31 hrs.",
+  "condicionSinoptica": "Alta de Bolivia",
+  "desde": "la tarde del viernes 13 de noviembre del 2026",
+  "hasta": "la noche del viernes 13 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Arica y Parinacota (Cordillera)\nTarapacá (Cordillera)",
+  "tablaTitulo": "",
+  "tablaFilas": []
+}
