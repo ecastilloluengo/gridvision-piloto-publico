@@ -156,6 +156,11 @@
         menu.append(resumen, lista);
         acciones.insertBefore(menu, enlaces[0]);
         enlaces.forEach(e => lista.append(e));
+        const actual = document.createElement('span');
+        actual.className = 'gv-visor-activo';
+        actual.textContent = 'Chile';
+        actual.setAttribute('aria-current', 'page');
+        enlaces[0].after(actual);
 
         const slot = document.createElement('div');
         slot.id = 'gv-modo-mobile';
