@@ -1,3 +1,200 @@
+
+/* GV PORTAL CONTADORES OFFLINE V2154 */
+
+const gvContadoresOffline = (() => {
+
+  const PREFIJO = 'gv-portal-contador-v1:';
+  const memoria = new Map();
+
+  function fecha(ms) {
+    return new Intl.DateTimeFormat('es-CL', {
+      timeZone: 'America/Santiago',
+      dateStyle: 'short',
+      timeStyle: 'short'
+    }).format(new Date(ms));
+  }
+
+  function leer(id) {
+
+    let dato = memoria.get(id);
+
+    if (!dato) {
+      try {
+        dato = JSON.parse(localStorage.getItem(PREFIJO + id) || 'null');
+      } catch (_) {}
+    }
+
+    if (!dato ||
+        !Number.isInteger(dato.numero) ||
+        dato.numero < 0 ||
+        !Number.isFinite(dato.fuente) ||
+        !Number.isFinite(dato.guardadoEn)) {
+      return null;
+    }
+
+    return dato;
+  }
+
+  function guardar(id, numero, fuente) {
+
+    if (!navigator.onLine ||
+        !Number.isInteger(numero) ||
+        numero < 0 ||
+        !Number.isFinite(fuente) ||
+        fuente > Date.now() + 120000) return false;
+
+    const anterior = leer(id);
+
+    if (anterior && fuente < anterior.fuente) return false;
+
+    const dato = {
+      numero,
+      fuente,
+      guardadoEn: Date.now()
+    };
+
+    memoria.set(id, dato);
+
+    try {
+      localStorage.setItem(PREFIJO + id, JSON.stringify(dato));
+    } catch (_) {}
+
+    return true;
+  }
+
+  function limpiar(id) {
+
+    const badge = document.getElementById('badge-' + id);
+
+    if (!badge) return;
+
+    if (badge.dataset.gvHistorico) {
+
+      badge.style.removeProperty('color');
+      badge.style.removeProperty('border-color');
+      badge.style.removeProperty('background-color');
+
+      delete badge.dataset.gvHistorico;
+    }
+  }
+
+  function historico(id, motivo) {
+
+    const badge = document.getElementById('badge-' + id);
+    const dato = leer(id);
+
+    if (!badge) return;
+
+    badge.textContent = dato ? dato.numero + '*' : '\u2014';
+
+    badge.classList.remove(
+      'sitr-badge-ok',
+      'sitr-badge-error'
+    );
+
+    badge.dataset.gvHistorico = 'true';
+
+    badge.style.color = '#ffbf47';
+    badge.style.borderColor = '#99733b';
+    badge.style.backgroundColor = 'rgba(148,99,21,.18)';
+
+    const descripcion = dato
+      ? motivo + '. Ultimo conteo: ' + dato.numero +
+        '. Fuente: ' + fecha(dato.fuente) +
+        '. Estado actual no verificable.'
+      : motivo + '. Sin respaldo disponible.';
+
+    badge.title = descripcion;
+    badge.setAttribute('aria-label', descripcion);
+  }
+
+  // Convertir fecha CEN local de Chile a instante UTC.
+  // Admite dd-mm-aaaa, dd/mm/aaaa e ISO con zona horaria.
+
+  function fechaCEN(valor) {
+
+    const texto = String(valor || '').trim();
+
+    if (/^\d{4}-\d{2}-\d{2}T.*(?:Z|[+-]\d{2}:\d{2})$/.test(texto)) {
+      return Date.parse(texto);
+    }
+
+    const m = texto.match(
+      /^(\d{2})[-/](\d{2})[-/](\d{4})\s+(\d{2}):(\d{2})$/
+    );
+
+    if (!m) return NaN;
+
+    const [dia, mes, anio, hora, minuto] = m.slice(1).map(Number);
+
+    const base = Date.UTC(anio, mes - 1, dia, hora, minuto);
+
+    const fmt = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'America/Santiago',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      hourCycle: 'h23'
+    });
+
+    const candidatos = [];
+
+    for (const offset of [3, 4]) {
+
+      const ms = base + offset * 3600000;
+
+      const partes = Object.fromEntries(
+        fmt.formatToParts(ms).map(p => [p.type, Number(p.value)])
+      );
+
+      if (partes.year === anio &&
+          partes.month === mes &&
+          partes.day === dia &&
+          partes.hour === hora &&
+          partes.minute === minuto) {
+        candidatos.push(ms);
+      }
+    }
+
+    return candidatos.length ? Math.min(...candidatos) : NaN;
+  }
+
+  function resumen() {
+    return ['sitr', 'senapred'].map(id => {
+
+      const dato = leer(id);
+      const badge = document.getElementById('badge-' + id);
+      let persistido = false;
+
+      try {
+        persistido = Boolean(localStorage.getItem(PREFIJO + id));
+      } catch (_) {}
+
+      return {
+        fuente: id,
+        guardado: Boolean(dato),
+        persistido,
+        conteo: dato?.numero ?? null,
+        fecha: dato ? fecha(dato.fuente) : null,
+        visible: badge?.textContent,
+        historico: Boolean(badge?.dataset.gvHistorico)
+      };
+    });
+  }
+
+  return {
+    leer, guardar, limpiar, historico, fechaCEN, resumen
+  };
+
+})();
+
+window.GVPortalContadoresOffline = {
+  resumen: gvContadoresOffline.resumen
+};
+
+
 (() => {
   const $ = (sel) => document.querySelector(sel);
 
@@ -2201,71 +2398,94 @@ async function cargarClima(id, zona) {
   }
 
 
-  async function actualizarSenapredPortal() {
 
-    const badge =
-      document.getElementById(
-        "badge-senapred"
-      );
+async function actualizarSenapredPortal() {
+
+    const badge = document.getElementById('badge-senapred');
+
+    if (!navigator.onLine) {
+      alertaSenapredPrincipalPortal = null;
+      gvContadoresOffline.historico('senapred', 'Sin conexion');
+      return;
+    }
 
     try {
 
-      const respuesta =
-        await fetch(
-          "data/alertas_senapred.json"
-          + "?t="
-          + Date.now(),
-          {
-            cache: "no-store"
-          }
-        );
-
-      if (!respuesta.ok) {
-        throw new Error(
-          `HTTP ${respuesta.status}`
-        );
-      }
-
-      const datos =
-        await respuesta.json();
-
-      const alertas =
-        Array.isArray(datos.alertas)
-          ? datos.alertas
-          : [];
-
-      const vigentes =
-        alertas
-          .filter(alertaSenapredVigente)
-          .sort(
-            (a, b) =>
-              new Date(b.fechaHora || 0)
-              - new Date(a.fechaHora || 0)
-          );
-
-      alertaSenapredPrincipalPortal =
-        vigentes[0] || null;
-
-      if (badge) {
-        badge.textContent =
-          String(vigentes.length);
-      }
-
-    }
-
-    catch (error) {
-
-      console.warn(
-        "Portal SENAPRED:",
-        error
+      const r = await fetch(
+        'data/alertas_senapred.json?t=' + Date.now(),
+        {cache: 'no-store'}
       );
 
-      if (badge) {
-        badge.textContent = "--";
-      }
-    }
-  }
+      if (!r.ok) throw Error('HTTP ' + r.status);
 
+      const datos = await r.json();
+
+      if (!navigator.onLine ||
+          datos.fuente !== 'SENAPRED' ||
+          !Array.isArray(datos.alertas)) {
+        throw Error('SENAPRED no verificable');
+      }
+
+      const fuente = Date.parse(datos.generadoEn);
+      const edad = Date.now() - fuente;
+
+      if (!Number.isFinite(fuente) || edad < -120000) {
+        throw Error('Fecha SENAPRED no verificable');
+      }
+
+      const vigentes = datos.alertas
+        .filter(alertaSenapredVigente)
+        .sort((a,b) => new Date(b.fechaHora || 0) -
+                        new Date(a.fechaHora || 0));
+
+      const guardado = gvContadoresOffline.guardar(
+        'senapred', vigentes.length, fuente
+      );
+
+      if (!guardado || edad > 45 * 60000) {
+
+        alertaSenapredPrincipalPortal = null;
+
+        gvContadoresOffline.historico(
+          'senapred', 'Archivo SENAPRED antiguo'
+        );
+
+        return;
+      }
+
+      alertaSenapredPrincipalPortal = vigentes[0] || null;
+
+      gvContadoresOffline.limpiar('senapred');
+
+      if (badge) {
+
+        badge.textContent = String(vigentes.length);
+
+        badge.title =
+          'SENAPRED: ' + vigentes.length +
+          ' alertas en el ultimo archivo consultado';
+
+        badge.setAttribute('aria-label', badge.title);
+      }
+
+    } catch (error) {
+
+      alertaSenapredPrincipalPortal = null;
+
+      gvContadoresOffline.historico(
+        'senapred', 'SENAPRED no verificable'
+      );
+
+      console.warn('Portal SENAPRED:', error);
+    }
+}
+
+window.addEventListener('offline', () => {
+  alertaSenapredPrincipalPortal = null;
+  gvContadoresOffline.historico('senapred', 'Sin conexion');
+});
+
+window.addEventListener('online', actualizarSenapredPortal);
 
   function estadoClimaActivo(estado) {
 
@@ -2530,61 +2750,165 @@ if (botonMenuMovil && navegacionPortal) {
 
 }
 
-/* GRIDVISION_SITR_BADGE_V01 */
+
+/* GRIDVISION_SITR_BADGE_V01 - OFFLINE V2154 */
+
 (() => {
+
   const badge = document.getElementById('badge-sitr');
+
   if (!badge) return;
-  const endpoint = 'https://gridvision-piloto-publico.onrender.com/api/sitr';
+
+  const endpoint = /^(localhost|127\.0\.0\.1)$/.test(location.hostname)
+    ? location.origin + '/api/sitr'
+    : 'https://gridvision-piloto-publico.onrender.com/api/sitr';
+
   const INTERVALO_MS = 15 * 60 * 1000;
-  const TIMEOUT_MS = 15000;
 
   function pintar(numero, estado, descripcion) {
+
+    gvContadoresOffline.limpiar('sitr');
+
     badge.textContent = numero;
-    badge.classList.remove('sitr-badge-ok','sitr-badge-error','sitr-badge-unknown');
+
+    badge.classList.remove(
+      'sitr-badge-ok',
+      'sitr-badge-error',
+      'sitr-badge-unknown'
+    );
+
     badge.classList.add('sitr-badge-' + estado);
+
     badge.title = descripcion;
     badge.setAttribute('aria-label', descripcion);
   }
 
   async function actualizarContadorSitr() {
+
+    if (!navigator.onLine) {
+      gvContadoresOffline.historico('sitr', 'Sin conexion');
+      return;
+    }
+
     const controlador = new AbortController();
-    const cancelacion = setTimeout(() => controlador.abort(), TIMEOUT_MS);
+
+    const cancelacion = setTimeout(
+      () => controlador.abort(), 15000
+    );
+
     try {
-      const respuesta = await fetch(endpoint, {cache:'no-store', signal:controlador.signal});
-      if (!respuesta.ok) throw new Error('SITR HTTP ' + respuesta.status);
-      const datos = await respuesta.json();
-      const centrales = datos && datos.instalaciones;
-      if (!Array.isArray(centrales) || centrales.length === 0) throw new Error('SITR sin centrales');
+
+      const r = await fetch(endpoint, {
+        cache: 'no-store',
+        signal: controlador.signal
+      });
+
+      if (!r.ok) throw Error('HTTP ' + r.status);
+
+      const datos = await r.json();
+
+      if (!navigator.onLine ||
+          datos.ok === false ||
+          datos.error ||
+          !Array.isArray(datos.instalaciones) ||
+          !datos.instalaciones.length) {
+        throw Error('SITR no verificable');
+      }
+
       let total = 0;
       let incidencias = 0;
-      for (const central of centrales) {
+
+      for (const central of datos.instalaciones) {
+
+        if (central.variables_total == null ||
+            central.variables_incidentes == null ||
+            String(central.variables_total).trim() === '' ||
+            String(central.variables_incidentes).trim() === '') {
+          throw Error('Variables SITR incompletas');
+        }
+
         const esperado = Number(central.variables_total);
         const fallas = Number(central.variables_incidentes);
-        if (!Number.isInteger(esperado) || esperado <= 0 ||
-            !Number.isInteger(fallas) || fallas < 0 || fallas > esperado) {
-          throw new Error('Conteo SITR incompleto');
+
+        if (!Number.isInteger(esperado) ||
+            esperado <= 0 ||
+            !Number.isInteger(fallas) ||
+            fallas < 0 ||
+            fallas > esperado) {
+          throw Error('Conteo SITR incorrecto');
         }
+
         total += esperado;
         incidencias += fallas;
       }
-      // Este portal supervisa 45 señales. Evita un falso cero por respuesta parcial.
-      if (total !== 45) throw new Error('SITR parcial: ' + total + '/45');
-      const frescura = datos.frescura_cen && datos.frescura_cen.estado;
-      if (frescura === 'DESACTUALIZADO' || frescura === 'DESCONOCIDA') {
-        throw new Error('Fuente CEN desactualizada');
+
+      if (total !== 45) {
+        throw Error('SITR parcial: ' + total + '/45');
       }
-      pintar(String(incidencias), incidencias > 0 ? 'error':'ok',
-        'SITR: ' + incidencias + ' incidencia(s) activa(s) de ' + total + ' variables');
+
+      const fuente = gvContadoresOffline.fechaCEN(
+        datos.actualizado_cen ||
+        datos.frescura_cen?.actualizado_cen
+      );
+
+      const edad = (Date.now() - fuente) / 60000;
+
+      if (!Number.isFinite(edad) ||
+          edad < -2 ||
+          edad > 60 ||
+          ['DESACTUALIZADO','DESCONOCIDA'].includes(
+            datos.frescura_cen?.estado
+          )) {
+        throw Error('Fuente CEN antigua o desconocida');
+      }
+
+      if (!gvContadoresOffline.guardar(
+        'sitr', incidencias, fuente
+      )) {
+        throw Error('Lectura anterior al respaldo');
+      }
+
+      if (edad > 30) {
+
+        gvContadoresOffline.historico(
+          'sitr', 'Fuente CEN con retraso'
+        );
+
+        return;
+      }
+
+      pintar(
+        String(incidencias),
+        incidencias > 0 ? 'error' : 'ok',
+        'SITR: ' + incidencias + ' incidencias de 45 variables'
+      );
+
     } catch (error) {
-      pintar('—','unknown','SITR: no se pudo verificar el estado actual');
-      console.warn('Contador SITR: sin estado verificable', error);
+
+      gvContadoresOffline.historico(
+        'sitr', 'Estado SITR no verificable'
+      );
+
+      console.warn('Contador SITR:', error);
+
     } finally {
+
       clearTimeout(cancelacion);
     }
   }
+
   actualizarContadorSitr();
+
   setInterval(actualizarContadorSitr, INTERVALO_MS);
+
+  window.addEventListener('offline', () => {
+    gvContadoresOffline.historico('sitr', 'Sin conexion');
+  });
+
+  window.addEventListener('online', actualizarContadorSitr);
+
   document.addEventListener('visibilitychange', () => {
     if (!document.hidden) actualizarContadorSitr();
   });
+
 })();
