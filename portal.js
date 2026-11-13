@@ -336,7 +336,7 @@ window.GVPortalContadoresOffline = {
       return true;
     }
 
-    function restaurar(id) {
+    function restaurar(id, conservarDetalle = false) {
 
       const dato = leer(id);
 
@@ -403,7 +403,7 @@ window.GVPortalContadoresOffline = {
         actualizacion.dataset.gvSolarHistorico = 'true';
       }
 
-      if (id === 'lo-aguirre') {
+      if (id === 'lo-aguirre' && !conservarDetalle) {
 
         const detalle = document.getElementById(
           'solar-inverters-detail-lo-aguirre'
@@ -427,20 +427,71 @@ window.GVPortalContadoresOffline = {
       if (dialogo?.open) dialogo.close();
     }
 
-    function parcial(id) {
 
-      if (leer(id)) {
+    // GV PORTAL SEGURIDAD PFV V2155
+
+    function parcial(id, estadoActual, falla, verificable) {
+
+      if (!verificable) {
         restaurar(id);
         return;
       }
 
+      const conteo = el(id, 'inverters')?.textContent;
+
+      const respaldo = leer(id);
+
+      restaurar(id, true);
+
       const estado = el(id, 'status');
 
       if (estado) {
-        estado.classList.remove('estado-ok', 'estado-error');
-        estado.classList.add('estado-espera');
-        estado.textContent = 'NO VERIFICADO';
-        estado.title = 'Lectura incompleta. Sin respaldo completo.';
+
+        estado.classList.remove(
+          'estado-ok',
+          'estado-error',
+          'estado-espera'
+        );
+
+        estado.classList.add(
+          falla ? 'estado-error' : 'estado-espera'
+        );
+
+        estado.textContent = falla
+          ? 'FALLA'
+          : 'PARCIAL';
+
+        estado.title =
+          'Estado informado en la consulta actual: ' +
+          estadoActual;
+      }
+
+      const actualizacion = el(id, 'update');
+
+      if (actualizacion) {
+
+        actualizacion.textContent =
+          'Consulta parcial: ' + estadoActual +
+          (respaldo
+            ? ' | Valores historicos: ' + fecha(respaldo.fuente)
+            : ' | Sin respaldo completo');
+      }
+
+      const inversores = el(id, 'inverters');
+
+      if (inversores && conteo) {
+
+        inversores.textContent = conteo;
+
+        inversores.title =
+          'Conteo de la consulta parcial actual';
+
+        const etiqueta =
+          inversores.parentElement?.querySelector('span');
+
+        if (etiqueta) {
+          etiqueta.textContent = 'Conteo parcial';
+        }
       }
     }
 
@@ -1609,11 +1660,15 @@ async function cargarClima(id, zona) {
         }
       }
 
-      const estado =
+      let estado =
         String(
           datos.estado_general
           || "DESCONOCIDO"
         ).toUpperCase();
+
+      if (fallasVigentes > 0) {
+        estado = "FALLA";
+      }
 
       let clase = "estado-espera";
 
@@ -1671,7 +1726,12 @@ async function cargarClima(id, zona) {
           new Date(ultimaFuente.replace(' ', 'T')).toISOString()
         );
       } else {
-        solarOffline.parcial(id);
+        solarOffline.parcial(
+          id,
+          estado,
+          fallasVigentes > 0,
+          vigentes.length > 0
+        );
       }
 
     } catch (error) {
@@ -1816,7 +1876,18 @@ async function cargarClima(id, zona) {
       if (lecturaCompleta) {
         solarOffline.guardar(id, new Date(instante).toISOString());
       } else {
-        solarOffline.parcial(id);
+        solarOffline.parcial(
+          id,
+          estado,
+          estado.includes('FALLA') ||
+            estado.includes('COMUNICACION'),
+          Number.isFinite(instante) &&
+            Date.now() - instante <= 720000 &&
+            Date.now() - instante >= -120000 &&
+            solarOffline.valido(edad) &&
+            Number(edad) >= 0 &&
+            Number(edad) <= 720
+        );
       }
 
     } catch (error) {
