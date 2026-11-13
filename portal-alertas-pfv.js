@@ -86,6 +86,68 @@
       && validos.some(otro => otro.id !== e.id && otro.kw >= Math.max(2, 0.06 * maxNominal))
     ).map(e => e.id);
   }
+
+  // GV ALARMAS VIGENTES V21551
+  function vigenciaAlarma(id, datos, ahora = Date.now()) {
+
+    if (id === 'lo-aguirre') {
+
+      const equipos = Array.isArray(datos?.inversores)
+        ? datos.inversores : [];
+
+      if (!equipos.length) return 0;
+
+      const lecturas = equipos.map(e => {
+
+        const fecha = Date.parse(
+          String(e?.ultimo_dato || '').replace(' ', 'T')
+        );
+
+        const valida = Number.isFinite(fecha) &&
+          fecha <= ahora + 120000 &&
+          ahora < fecha + 600000;
+
+        return {
+          valida,
+          falla: e?.nivel === 'falla',
+          vence: fecha + 600000
+        };
+      });
+
+      const fallas = lecturas.filter(
+        e => e.valida && e.falla
+      );
+
+      if (fallas.length) {
+        return Math.min(...fallas.map(e => e.vence));
+      }
+
+      if (!lecturas.every(e => e.valida)) return 0;
+
+      return Math.min(...lecturas.map(e => e.vence));
+    }
+
+    const fecha = Date.parse(datos?.actualizado_en);
+
+    const valor = datos?.edad_dato_segundos;
+
+    if (valor == null || String(valor).trim() === '') return 0;
+
+    const edad = Number(valor);
+
+    if (!Number.isFinite(fecha) ||
+        !Number.isFinite(edad) ||
+        edad < 0 ||
+        edad >= 720 ||
+        fecha > ahora + 120000 ||
+        ahora >= fecha + 720000) return 0;
+
+    return Math.min(
+      fecha + 720000,
+      ahora + (720 - edad) * 1000
+    );
+  }
+
   function evaluar(id, datos) {
     const planta = PLANTAS[id];
     const equipos = Array.isArray(datos?.inversores) ? datos.inversores : [];
@@ -93,7 +155,11 @@
       return { firma: 'lista-incompleta', texto: 'Datos incompletos de los inversores. Revisar en fabricante.' };
     }
     if (planta.tipo === 'solax') {
-      const fallas = equipos.filter(e => e.nivel === 'falla');
+      const fallas = equipos.filter(e =>
+        e.nivel === 'falla' &&
+        edadSolaX(e.ultimo_dato) >= -120000 &&
+        edadSolaX(e.ultimo_dato) < 600000
+      );
       if (fallas.length) {
         return { firma: 'falla:' + fallas.map(e => e.wifiSn || e.nombre).sort().join(','),
           texto: 'SolaX informa falla en uno o más inversores. Verificar en plataforma.' };
@@ -221,11 +287,21 @@
       if (datos && typeof datos === 'object' && datos.error) {
         throw new Error('Error de GridVision: ' + String(datos.error));
       }
+      estado.vigenteHasta = vigenciaAlarma(id, datos);
+
+      if (estado.vigenteHasta <= Date.now()) {
+        throw new Error('Lectura antigua o no verificable');
+      }
+
       estado.sinConexion = 0;
       estado.datoRecibido = true;
       actualizarCondicion(id, evaluar(id, datos));
     } catch (error) {
       if (epoca !== epocaConexion) return;
+      estado.vigenteHasta = 0;
+      estado.candidato = '';
+      estado.repetidas = 0;
+      estado.confirmacionesNormales = 0;
       estado.sinConexion += 1;
       // Una falla de conectividad de GridVision NO es una falla de los inversores.
       // Se muestra la advertencia informativa, sin generar una alarma sonora nueva.
@@ -259,7 +335,10 @@
   function comprobarSonido() {
     if (!navigator.onLine) return;
     if (Object.keys(PLANTAS).some(id =>
-      estados[id].activa && !estados[id].sinConexion && !reconocida(id))) {
+      estados[id].activa &&
+      !estados[id].sinConexion &&
+      estados[id].vigenteHasta > Date.now() &&
+      !reconocida(id))) {
       emitirTresPitidos();
     }
   }
