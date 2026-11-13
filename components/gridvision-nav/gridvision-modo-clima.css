@@ -296,3 +296,19 @@ body.gv-nav-live-stale #gv-alertas-no-actualizadas {
         padding: 4px 8px 4px 22px;
     }
 }
+
+
+/* GV HOTFIX CARGA V2131 */
+
+#gv-modo-clima[hidden],
+#gv-modo-sin-clima[hidden],
+body > header .estado-aplicacion > #gv-modo-clima,
+body > header .estado-aplicacion > #gv-modo-sin-clima {
+    display: none !important;
+}
+
+/* El motor permanece activo; el panel antiguo no se muestra. */
+
+#mapa .gvlm-panel {
+    display: none !important;
+}

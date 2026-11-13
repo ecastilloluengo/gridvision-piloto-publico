@@ -14,6 +14,7 @@
     window.medidorGridVision = GridVisionLineMeasure.create({
       map: mapa,
       position: 'topright',
+      showPanel: false,
       tolerancePx: 22,
       // Se consideran polilíneas visibles; no se alteran las capas originales.
       // Los tramos separados (por ejemplo en STLL E22) NO se conectan artificialmente.

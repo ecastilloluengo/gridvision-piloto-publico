@@ -130,6 +130,7 @@
       this._onClick = (e) => this._handleClick(e);
       installCss();
       this._buildPanel();
+      if (options.showPanel === false) this.control.remove();
       this.map.on('click', this._onClick);
     }
 

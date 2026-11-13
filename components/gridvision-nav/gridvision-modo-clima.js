@@ -127,6 +127,7 @@
     const sin = document.createElement('button');
     sin.id = 'gv-modo-sin-clima';
     sin.type = 'button';
+    sin.hidden = true;
     sin.textContent = 'Sin clima';
     sin.title = 'Pausar meteorologia';
     con.textContent = 'Con clima';
@@ -213,6 +214,8 @@
         });
         media.addEventListener('change', adaptar);
         adaptar();
+        con.hidden = false;
+        sin.hidden = false;
     }
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', montarInterfaz, {once:true});
