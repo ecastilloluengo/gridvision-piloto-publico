@@ -1,0 +1,39 @@
+{
+  "codigo": "A620/2026",
+  "tipo": "Aviso",
+  "titulo": "Altas Temperaturas en comunas de Torres del Paine, Pto. Natales, Laguna Blanca, San Gregorio y Primavera, Reg. Magallanes",
+  "fenomeno": "Altas Temperaturas",
+  "emisionTexto": "Viernes 13 de noviembre del 2026 a las 15:35 hrs.",
+  "condicionSinoptica": "Altas presiones",
+  "desde": "la mañana del domingo 15 de noviembre del 2026",
+  "hasta": "la noche del domingo 15 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "comunas de Torres del Paine, Pto. Natales, Laguna Blanca, San Gregorio y Primavera, Reg. Magallanes",
+  "tablaTitulo": "Valores estimados de temperatura en grados Celsius (°C)",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Área"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "domingo 15"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "comunas de Torres del Paine, Pto. Natales, Laguna Blanca, San Gregorio y Primavera, Reg. Magallanes"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "19 - 23"
+      }
+    ]
+  ]
+}
