@@ -1,5 +1,236 @@
 (() => {
   const $ = (sel) => document.querySelector(sel);
+
+  // GV PORTAL METEO OFFLINE V2152
+
+  const meteoOffline = (() => {
+
+    const PREFIJO = 'gv-portal-meteo-v1:';
+    const memoria = new Map();
+
+    const zonas = ['osorno', 'capullo', 'punta'];
+    const plantas = ['lo-aguirre', 'techo', 'paidahuen'];
+
+    const camposClima = [
+      'temp', 'condition', 'wind', 'gust', 'uv'
+    ];
+
+    const camposPFV = [
+      'solar-irradiance',
+      'solar-temperature',
+      'solar-clouds'
+    ];
+
+    function campos(tipo) {
+      return tipo === 'clima' ? camposClima : camposPFV;
+    }
+
+    function elemento(campo, id) {
+      return document.getElementById(campo + '-' + id);
+    }
+
+    function clave(tipo, id) {
+      return PREFIJO + tipo + ':' + id;
+    }
+
+    function fechaLocal(iso) {
+      return new Intl.DateTimeFormat('es-CL', {
+        timeZone: 'America/Santiago',
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      }).format(new Date(iso));
+    }
+
+    function valido(valor) {
+      return valor !== null
+        && valor !== undefined
+        && String(valor).trim() !== ''
+        && Number.isFinite(Number(valor));
+    }
+
+    function leer(tipo, id) {
+      const k = clave(tipo, id);
+      let dato = memoria.get(k);
+
+      if (!dato) {
+        try {
+          dato = JSON.parse(localStorage.getItem(k) || 'null');
+        } catch (_) {}
+      }
+
+      if (
+        !dato ||
+        !Number.isFinite(Date.parse(dato.guardadoEn)) ||
+        !campos(tipo).every(c => typeof dato.valores?.[c] === 'string')
+      ) {
+        return null;
+      }
+
+      return dato;
+    }
+
+    function marcar(tipo, id, dato, historico) {
+
+      const nota = historico
+        ? dato
+          ? 'Historico: ' + fechaLocal(dato.guardadoEn)
+          : 'Sin respaldo'
+        : '';
+
+      const titulo = historico
+        ? nota + (dato?.horaFuente
+            ? ' | Hora fuente: ' + dato.horaFuente
+            : '')
+        : '';
+
+      if (tipo === 'clima') {
+
+        const cond = elemento('condition', id);
+
+        if (cond && historico) {
+          cond.textContent = dato
+            ? dato.valores.condition + ' | ' + nota
+            : 'Sin datos guardados';
+
+          cond.title = titulo;
+        } else if (cond) {
+          cond.removeAttribute('title');
+        }
+
+      } else {
+
+        const ghi = elemento('solar-irradiance', id);
+        const etiqueta = ghi?.parentElement?.querySelector('span');
+
+        if (etiqueta) {
+          etiqueta.textContent = historico
+            ? 'GHI | ' + nota
+            : 'Irradiancia GHI';
+
+          etiqueta.title = titulo;
+        }
+      }
+
+      for (const c of campos(tipo)) {
+        const el = elemento(c, id);
+
+        if (!el) continue;
+
+        if (historico) {
+          el.title = titulo;
+          el.dataset.gvMeteoHistorico = 'true';
+        } else {
+          el.removeAttribute('title');
+          delete el.dataset.gvMeteoHistorico;
+        }
+      }
+    }
+
+    function guardar(tipo, id, horaFuente) {
+
+      if (!navigator.onLine) {
+        restaurar(tipo, id);
+        return;
+      }
+
+      const valores = {};
+
+      for (const c of campos(tipo)) {
+        const el = elemento(c, id);
+
+        if (!el) return;
+
+        valores[c] = el.textContent.trim();
+      }
+
+      const dato = {
+        guardadoEn: new Date().toISOString(),
+        horaFuente: horaFuente || null,
+        valores
+      };
+
+      const k = clave(tipo, id);
+
+      memoria.set(k, dato);
+
+      try {
+        localStorage.setItem(k, JSON.stringify(dato));
+      } catch (error) {
+        console.warn('No se pudo guardar respaldo meteorologico', error);
+      }
+
+      marcar(tipo, id, dato, false);
+    }
+
+    function restaurar(tipo, id) {
+      const dato = leer(tipo, id);
+
+      if (dato) {
+        for (const c of campos(tipo)) {
+          const el = elemento(c, id);
+
+          if (el) {
+            el.textContent = dato.valores[c];
+          }
+        }
+      }
+
+      marcar(tipo, id, dato, true);
+
+      return Boolean(dato);
+    }
+
+    function restaurarTodo() {
+      zonas.forEach(id => restaurar('clima', id));
+      plantas.forEach(id => restaurar('pfv', id));
+    }
+
+    function resumen() {
+
+      const grupos = [
+        ...zonas.map(id => ['clima', id]),
+        ...plantas.map(id => ['pfv', id])
+      ];
+
+      return grupos.map(([tipo, id]) => {
+
+        const dato = leer(tipo, id);
+        let persistido = false;
+
+        try {
+          persistido = Boolean(localStorage.getItem(clave(tipo, id)));
+        } catch (_) {}
+
+        return {
+          tipo,
+          id,
+          guardado: Boolean(dato),
+          persistido,
+          fecha: dato?.guardadoEn || null,
+          fuente: dato?.horaFuente || null
+        };
+      });
+    }
+
+    return {
+      valido,
+      guardar,
+      restaurar,
+      restaurarTodo,
+      resumen
+    };
+
+  })();
+
+  window.GVPortalMeteoOffline = {
+    resumen: meteoOffline.resumen
+  };
+
+
   const modal = $("#module-modal");
   const modalTitle = $("#modal-title");
   const modalMessage = $("#modal-message");
@@ -168,6 +399,11 @@ function formatearUV(valor) {
 
 
 async function cargarClima(id, zona) {
+  if (!navigator.onLine) {
+    meteoOffline.restaurar('clima', id);
+    return;
+  }
+
   const url =
     new URL(
       "https://api.open-meteo.com/v1/forecast"
@@ -228,6 +464,17 @@ async function cargarClima(id, zona) {
 
     const actual =
       data.current || {};
+
+    if (!navigator.onLine ||
+        ![
+          actual.temperature_2m,
+          actual.weather_code,
+          actual.wind_speed_10m,
+          actual.wind_gusts_10m
+        ].every(meteoOffline.valido)) {
+      throw new Error('Lectura meteorologica no verificable');
+    }
+
 
     const temp =
       Number(
@@ -314,19 +561,15 @@ async function cargarClima(id, zona) {
         formatearUV(uvMax);
     }
 
+    meteoOffline.guardar('clima', id, actual.time);
+
   } catch (error) {
     console.warn(
       `Clima ${id}:`,
       error
     );
 
-    const condEl =
-      $(`#condition-${id}`);
-
-    if (condEl) {
-      condEl.textContent =
-        "Sin datos";
-    }
+    meteoOffline.restaurar('clima', id);
   }
 }
   async function actualizarClima() {
@@ -1152,6 +1395,11 @@ async function cargarClima(id, zona) {
     idActivo
   ) {
 
+    if (!navigator.onLine) {
+      meteoOffline.restaurar('pfv', idVisual);
+      return;
+    }
+
     try {
 
       await resolverCoordenadasPFVPortal();
@@ -1209,6 +1457,16 @@ async function cargarClima(id, zona) {
 
       const actual =
         datos.current || {};
+
+      if (!navigator.onLine ||
+          ![
+            actual.shortwave_radiation,
+            actual.temperature_2m,
+            actual.cloud_cover
+          ].every(meteoOffline.valido)) {
+        throw new Error('Meteo PFV no verificable');
+      }
+
 
       const irradiancia =
         Number(
@@ -1274,7 +1532,11 @@ async function cargarClima(id, zona) {
             : "-- %";
       }
 
+      meteoOffline.guardar('pfv', idVisual, actual.time);
+
     } catch (error) {
+
+      meteoOffline.restaurar('pfv', idVisual);
 
       console.warn(
         `Meteo PFV ${idActivo}:`,
@@ -1834,6 +2096,19 @@ async function cargarClima(id, zona) {
     },
     3000
   );
+
+  window.addEventListener('offline', () => {
+    meteoOffline.restaurarTodo();
+  });
+
+  window.addEventListener('online', () => {
+    actualizarClima();
+    actualizarMeteoPFV();
+  });
+
+  if (!navigator.onLine) {
+    meteoOffline.restaurarTodo();
+  }
 
   activarEnlacesPFV();
 
