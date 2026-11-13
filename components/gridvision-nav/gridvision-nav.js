@@ -361,9 +361,8 @@
     wrapper.append(statusEl);
     baseBtn=makeButton(wrapper,'Mapa nacional offline','Activar el mapa vectorial nacional de referencia',()=>{});
     baseBtn.className='gv-nav-base-choice';baseBtn.setAttribute('aria-pressed','false');
-    if(viewId==='vulcano-map')installVulcanoOffline(wrapper);
-    // GV NAV V1.2 compact rail: solo GridVision Chile. Fire y Vulcano conservan sus controles.
-    if (viewId === 'mapa') {
+    // GV UNIFIED V2142: controles compactos para los tres visores.
+    if (['mapa','fire-map','vulcano-map'].includes(viewId)) {
       wrapper.classList.add('gv-nav-compact');
       locateBtn.dataset.action='locate';
       followBtn.dataset.action='follow';
@@ -377,6 +376,7 @@
       close.className='gv-nav-dialog-close';head.prepend(title);
       const note=document.createElement('p');note.textContent='Descarga el SEN y el mapa nacional de referencia antes de salir. Caminos principales, localidades, hidrografía y límites generales; sin detalle rural ni alertas en vivo.';
       dialog.append(head,note,statusEl,downloadBtn,baseBtn);
+      if(viewId==='vulcano-map')installVulcanoOffline(dialog);
       document.body.append(dialog);
       offlineMenuBtn=makeButton(actions,'SEN offline','Navegación y SEN offline',()=>{
         if (!dialog.open) dialog.showModal();

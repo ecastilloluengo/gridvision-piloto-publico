@@ -86,10 +86,10 @@
 <link rel="stylesheet" href="components/senapred/senapred.css?v=4">
 <link rel="stylesheet" href="components/dmc/dmc.css?v=20261020-dmc-v13">
 <link rel="stylesheet" href="components/medicion/medicion.css?v=1">
-  <link rel="stylesheet" href="components/gridvision-nav/gridvision-nav.css?v=gv-nav-v12-20261112">
+  <link rel="stylesheet" href="components/gridvision-nav/gridvision-nav.css?v=gv-unified-v2142">
   <link rel="stylesheet" href="components/gridvision-nav/gridvision-base-offline.css?v=gv-base-v201-20261112">
 
-<link rel="stylesheet" href="components/gridvision-nav/gridvision-modo-clima.css?v=2131">
+<link rel="stylesheet" href="components/gridvision-nav/gridvision-modo-clima.css?v=2141-integrado">
 </head>
 
 <body>
@@ -164,6 +164,32 @@
                 Filtros
             </button>
 <div id="contenedor-centro-alertas"></div>
+            <details id="gv-vista">
+    <summary title="Control de paneles">
+        &#9638; Vista
+    </summary>
+    <div class="gv-vista-menu">
+        <strong>Visualizaci&oacute;n del mapa</strong>
+        <label>
+            <input type="checkbox" data-vista="izq" checked>
+            Panel izquierdo
+        </label>
+        <label>
+            <input type="checkbox" data-vista="der" checked>
+            Panel derecho
+        </label>
+        <label>
+            <input type="checkbox" data-vista="inf" checked>
+            Panel inferior
+        </label>
+        <button type="button" id="gv-vista-completa">
+            Mapa completo
+        </button>
+        <button type="button" id="gv-vista-restaurar">
+            Mostrar todos
+        </button>
+    </div>
+</details>
             <div id="estado" data-carga="pendiente" role="status" title="Cargando datos" aria-label="Cargando datos">Carga datos</div><span id="gv-alertas-no-actualizadas" role="status">Alertas no actualizadas</span>
         </div>
     </header>
@@ -635,7 +661,7 @@
         <div id="contenedor-administracion-accesos"></div>
 </main>
 
-<script src="components/gridvision-nav/gridvision-modo-clima.js?v=2131"></script>
+<script src="components/gridvision-nav/gridvision-modo-clima.js?v=2141-integrado"></script>
 <script src="vendor/leaflet/leaflet.js"></script>
 
 <script src="piloto.js"></script>
@@ -661,6 +687,6 @@
 <script src="components/medicion/medicion-unificada-v01.js?v=20261022-04"></script>
 <script src="components/buscador-coordenadas.js?v=1"></script>
   <script src="components/gridvision-nav/gridvision-base-offline.js?v=gv-base-v201-20261112"></script>
-  <script src="components/gridvision-nav/gridvision-nav.js?v=gv-nav-v21"></script>
+  <script src="components/gridvision-nav/gridvision-nav.js?v=gv-unified-v2142"></script>
 </body>
 </html>

@@ -233,3 +233,114 @@
 
     render();
 })();
+
+
+// GV VISUAL PRO V2141
+(function () {
+    'use strict';
+
+    const menu = document.getElementById('gv-vista');
+    if (!menu) return;
+
+    const raiz = document.documentElement;
+    const zonas = ['izq', 'der', 'inf'];
+    const controles = Array.from(
+        menu.querySelectorAll('[data-vista]')
+    );
+
+    const completo = document.getElementById(
+        'gv-vista-completa'
+    );
+
+    let anterior = null;
+
+    function visible(zona) {
+        return !raiz.classList.contains(
+            'gv-vista-' + zona + '-oculta'
+        );
+    }
+
+    function aplicar(zona, mostrar) {
+        raiz.classList.toggle(
+            'gv-vista-' + zona + '-oculta',
+            !mostrar
+        );
+    }
+
+    function actualizar() {
+        controles.forEach(input => {
+            input.checked = visible(input.dataset.vista);
+        });
+
+        const todoOculto = zonas.every(
+            zona => !visible(zona)
+        );
+
+        completo.textContent = todoOculto
+            ? 'Restaurar paneles'
+            : 'Mapa completo';
+
+        completo.setAttribute(
+            'aria-pressed',
+            String(todoOculto)
+        );
+    }
+
+    controles.forEach(input => {
+        input.addEventListener('change', () => {
+            anterior = null;
+            aplicar(input.dataset.vista, input.checked);
+            actualizar();
+        });
+    });
+
+    completo.addEventListener('click', () => {
+        const todoOculto = zonas.every(
+            zona => !visible(zona)
+        );
+
+        if (todoOculto) {
+            zonas.forEach((zona, i) => {
+                aplicar(zona, anterior ? anterior[i] : true);
+            });
+            anterior = null;
+        } else {
+            anterior = zonas.map(visible);
+            zonas.forEach(zona => aplicar(zona, false));
+        }
+
+        actualizar();
+        menu.open = false;
+    });
+
+    document.getElementById(
+        'gv-vista-restaurar'
+    ).addEventListener('click', () => {
+        zonas.forEach(zona => aplicar(zona, true));
+        anterior = null;
+        actualizar();
+        menu.open = false;
+    });
+
+    document.getElementById(
+        'alternar-filtros'
+    )?.addEventListener('click', () => {
+        if (!visible('izq')) {
+            aplicar('izq', true);
+            anterior = null;
+            actualizar();
+        }
+    }, true);
+
+    document.addEventListener('click', e => {
+        if (!menu.contains(e.target)) menu.open = false;
+    });
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') menu.open = false;
+    });
+
+    actualizar();
+
+    console.info('GridVision Visual Pro V2.1.4.1');
+})();
