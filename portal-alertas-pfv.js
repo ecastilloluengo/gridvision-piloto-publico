@@ -29,6 +29,7 @@
     }
   };
 
+  let epocaConexion = 0;
   let contextoAudio = null;
   let sonidoHabilitado = false;
   const estados = {};
@@ -196,6 +197,14 @@
 
   async function leerPlanta(id) {
     const estado = estados[id];
+    const epoca = epocaConexion;
+
+    if (!navigator.onLine) {
+      estado.sinConexion = 1;
+      pintar(id);
+      return;
+    }
+
     try {
       const cancelador = new AbortController();
       const timeout = setTimeout(() => cancelador.abort(), 130_000);
@@ -206,6 +215,8 @@
       } finally { clearTimeout(timeout); }
       if (!respuesta.ok) throw new Error('HTTP ' + respuesta.status);
       const datos = await respuesta.json();
+
+      if (!navigator.onLine || epoca !== epocaConexion) return;
       // Algunos proxies responden HTTP 200 con un JSON de error.
       if (datos && typeof datos === 'object' && datos.error) {
         throw new Error('Error de GridVision: ' + String(datos.error));
@@ -214,6 +225,7 @@
       estado.datoRecibido = true;
       actualizarCondicion(id, evaluar(id, datos));
     } catch (error) {
+      if (epoca !== epocaConexion) return;
       estado.sinConexion += 1;
       // Una falla de conectividad de GridVision NO es una falla de los inversores.
       // Se muestra la advertencia informativa, sin generar una alarma sonora nueva.
@@ -245,6 +257,7 @@
     }
   }
   function comprobarSonido() {
+    if (!navigator.onLine) return;
     if (Object.keys(PLANTAS).some(id =>
       estados[id].activa && !estados[id].sinConexion && !reconocida(id))) {
       emitirTresPitidos();
@@ -321,6 +334,25 @@
   `;
   document.head.appendChild(css);
   montar();
+
+  window.addEventListener('offline', () => {
+
+    epocaConexion++;
+
+    for (const id of Object.keys(PLANTAS)) {
+
+      const estado = estados[id];
+
+      estado.sinConexion = 1;
+      estado.activa = '';
+      estado.candidato = '';
+      estado.repetidas = 0;
+      estado.confirmacionesNormales = 0;
+      estado.datoRecibido = false;
+
+      pintar(id);
+    }
+  });
   // Evitar solapamiento: programar siguiente sondeo solo al terminar el actual.
   async function cicloConsulta() {
     try { await revisar(); }

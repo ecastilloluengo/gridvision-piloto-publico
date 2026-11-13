@@ -127,10 +127,13 @@
     if (!d.open) d.showModal();
     const consulta = ++secuencia;
     try {
+      if (!navigator.onLine) throw Error('Sin conexion');
       const r = await fetch(`${BASE}/api/fusionsolar/${id}`, { cache: 'no-store' });
       if (!r.ok) throw Error(`HTTP ${r.status}`);
       const datos = await r.json();
-      if (datos.error) throw Error('Respuesta de API con error');
+      if (!navigator.onLine || datos.error) {
+        throw Error('Respuesta no verificable');
+      }
       if (consulta === secuencia && d.open) pintar(datos);
     } catch (e) {
       if (consulta === secuencia && d.open) {

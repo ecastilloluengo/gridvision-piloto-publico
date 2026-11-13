@@ -1,6 +1,294 @@
 (() => {
   const $ = (sel) => document.querySelector(sel);
 
+  // GV PORTAL SOLAR OFFLINE V2153
+
+  const solarOffline = (() => {
+
+    const PREFIJO = 'gv-portal-solar-v1:';
+    const ids = ['lo-aguirre', 'techo', 'paidahuen'];
+    const memoria = new Map();
+
+    const campos = [
+      'power', 'energy', 'inverters', 'status', 'update'
+    ];
+
+    function el(id, campo) {
+      return document.getElementById('solar-' + campo + '-' + id);
+    }
+
+    function valido(v) {
+      return v !== null &&
+        v !== undefined &&
+        String(v).trim() !== '' &&
+        Number.isFinite(Number(v));
+    }
+
+    function fecha(v) {
+      const d = new Date(v);
+      if (!Number.isFinite(d.getTime())) return 'No informada';
+
+      return new Intl.DateTimeFormat('es-CL', {
+        timeZone: 'America/Santiago',
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      }).format(d);
+    }
+
+    function leer(id) {
+      let dato = memoria.get(id);
+
+      if (!dato) {
+        try {
+          dato = JSON.parse(
+            localStorage.getItem(PREFIJO + id) || 'null'
+          );
+        } catch (_) {}
+      }
+
+      if (
+        !dato ||
+        !Number.isFinite(Date.parse(dato.guardadoEn)) ||
+        !Number.isFinite(Date.parse(dato.fuente)) ||
+        !campos.every(c => typeof dato.valores?.[c] === 'string')
+      ) return null;
+
+      return dato;
+    }
+
+    function etiquetas(id, historico) {
+
+      const nombres = {
+        power: historico ? 'Potencia registrada' : 'Potencia actual',
+        energy: historico ? 'Energia registrada' : 'Energ\u00EDa hoy',
+        inverters: historico
+          ? 'Ultimo conteo'
+          : id === 'lo-aguirre'
+            ? 'Operativos confirmados'
+            : 'Inversores'
+      };
+
+      for (const [campo, texto] of Object.entries(nombres)) {
+        const etiqueta = el(id, campo)?.parentElement?.querySelector('span');
+
+        if (etiqueta) {
+          etiqueta.textContent = texto;
+        }
+      }
+    }
+
+    function normal(id) {
+
+      etiquetas(id, false);
+
+      campos.forEach(c => {
+        const elemento = el(id, c);
+        if (!elemento) return;
+
+        if (elemento.dataset.gvSolarHistorico) {
+          elemento.removeAttribute('title');
+          delete elemento.dataset.gvSolarHistorico;
+        }
+      });
+    }
+
+    function guardar(id, fuente) {
+
+      if (!navigator.onLine) {
+        restaurar(id);
+        return false;
+      }
+
+      if (!Number.isFinite(Date.parse(fuente))) {
+        return false;
+      }
+
+      const valores = {};
+
+      for (const campo of campos) {
+
+        const elemento = el(id, campo);
+
+        if (!elemento) return false;
+
+        valores[campo] = elemento.textContent.trim();
+      }
+
+      const dato = {
+        guardadoEn: new Date().toISOString(),
+        fuente,
+        valores
+      };
+
+      memoria.set(id, dato);
+
+      try {
+        localStorage.setItem(
+          PREFIJO + id,
+          JSON.stringify(dato)
+        );
+      } catch (error) {
+        console.warn('No se pudo persistir respaldo PFV', error);
+      }
+
+      normal(id);
+      return true;
+    }
+
+    function restaurar(id) {
+
+      const dato = leer(id);
+
+      etiquetas(id, true);
+
+      for (const campo of ['power', 'energy', 'inverters']) {
+
+        const elemento = el(id, campo);
+
+        if (!elemento) continue;
+
+        elemento.textContent = dato
+          ? dato.valores[campo]
+          : {
+              power: '-- kW',
+              energy: '-- kWh',
+              inverters: '-- / --'
+            }[campo];
+
+        elemento.title = dato
+          ? 'Dato historico. Lectura: ' + fecha(dato.fuente)
+          : 'Sin datos guardados';
+
+        elemento.dataset.gvSolarHistorico = 'true';
+      }
+
+      const estado = el(id, 'status');
+
+      if (estado) {
+
+        estado.classList.remove(
+          'estado-ok',
+          'estado-error',
+          'estado-espera'
+        );
+
+        estado.classList.add('estado-espera');
+
+        estado.textContent = dato
+          ? 'HISTORICO'
+          : 'SIN RESPALDO';
+
+        estado.title = dato
+          ? 'Ultimo estado conocido: ' + dato.valores.status
+          : 'No existe una lectura valida almacenada';
+
+        estado.dataset.gvSolarHistorico = 'true';
+      }
+
+      const actualizacion = el(id, 'update');
+
+      if (actualizacion) {
+
+        actualizacion.textContent = dato
+          ? 'Historico: ' + fecha(dato.fuente) +
+            ' | Ult. estado: ' + dato.valores.status
+          : 'Sin lectura electrica guardada';
+
+        actualizacion.title = dato
+          ? dato.valores.update +
+            ' | Guardado: ' + fecha(dato.guardadoEn)
+          : 'Se requiere una consulta exitosa con internet';
+
+        actualizacion.dataset.gvSolarHistorico = 'true';
+      }
+
+      if (id === 'lo-aguirre') {
+
+        const detalle = document.getElementById(
+          'solar-inverters-detail-lo-aguirre'
+        );
+
+        if (detalle) {
+          detalle.textContent = 'Estado actual de equipos no verificable';
+        }
+
+        const dialogo = document.getElementById('gv-solax-v5-dialogo');
+        if (dialogo?.open) dialogo.close();
+      }
+
+      return Boolean(dato);
+    }
+
+    function restaurarTodo() {
+      ids.forEach(restaurar);
+
+      const dialogo = document.getElementById('gv-fusion-diagnostico');
+      if (dialogo?.open) dialogo.close();
+    }
+
+    function parcial(id) {
+
+      if (leer(id)) {
+        restaurar(id);
+        return;
+      }
+
+      const estado = el(id, 'status');
+
+      if (estado) {
+        estado.classList.remove('estado-ok', 'estado-error');
+        estado.classList.add('estado-espera');
+        estado.textContent = 'NO VERIFICADO';
+        estado.title = 'Lectura incompleta. Sin respaldo completo.';
+      }
+    }
+
+    function resumen() {
+
+      return ids.map(id => {
+
+        const dato = leer(id);
+        let persistido = false;
+
+        try {
+          persistido = Boolean(localStorage.getItem(PREFIJO + id));
+        } catch (_) {}
+
+        return {
+          planta: id,
+          guardado: Boolean(dato),
+          persistido,
+          potencia: dato?.valores.power || null,
+          energia: dato?.valores.energy || null,
+          estado: dato?.valores.status || null,
+          fuente: dato?.fuente || null,
+          fecha: dato?.guardadoEn || null
+        };
+      });
+    }
+
+    return {
+      valido,
+      guardar,
+      restaurar,
+      restaurarTodo,
+      parcial,
+      normal,
+      resumen
+    };
+
+  })();
+
+  window.GVPortalSolarOffline = {
+    resumen: solarOffline.resumen
+  };
+
+
+
   // GV PORTAL METEO OFFLINE V2152
 
   const meteoOffline = (() => {
@@ -635,6 +923,8 @@ async function cargarClima(id, zona) {
 
   function numeroPortal(valor) {
 
+    if (!solarOffline.valido(valor)) return null;
+
     const numero = Number(valor);
 
     return Number.isFinite(numero)
@@ -807,6 +1097,8 @@ async function cargarClima(id, zona) {
 
   function potenciaSolaxAKw(valor) {
 
+  if (!solarOffline.valido(valor)) return null;
+
   const numero = Number(valor);
 
   if (!Number.isFinite(numero)) {
@@ -822,6 +1114,11 @@ async function cargarClima(id, zona) {
   async function cargarSolarLoAguirre() {
 
     const id = "lo-aguirre";
+
+    if (!navigator.onLine) {
+      solarOffline.restaurar(id);
+      return;
+    }
 
     try {
 
@@ -840,6 +1137,13 @@ async function cargarClima(id, zona) {
 
       const datos =
         await respuesta.json();
+
+      if (!navigator.onLine || datos?.error) {
+        throw new Error('SolaX no verificable');
+      }
+
+      solarOffline.normal(id);
+
 
       const inversores =
         Array.isArray(datos.inversores)
@@ -1146,6 +1450,27 @@ async function cargarClima(id, zona) {
           : `\u00DAltima consulta: ${horaConsultaPortal()}`
       );
 
+
+      // Guardar solo una lectura completa y vigente.
+      const lecturaCompleta =
+        inversores.length === 3 &&
+        vigentes.length === 3 &&
+        inversores.every(i =>
+          solarOffline.valido(i.potencia_ac) &&
+          solarOffline.valido(i.energia_hoy) &&
+          Number(i.energia_hoy) >= 0
+        ) &&
+        !['SIN DATOS', 'SIN COMUNICACION', 'DESCONOCIDO'].includes(estado);
+
+      if (lecturaCompleta && ultimaFuente) {
+        solarOffline.guardar(
+          id,
+          new Date(ultimaFuente.replace(' ', 'T')).toISOString()
+        );
+      } else {
+        solarOffline.parcial(id);
+      }
+
     } catch (error) {
 
       console.warn(
@@ -1153,18 +1478,7 @@ async function cargarClima(id, zona) {
         error
       );
 
-      actualizarEstadoSolar(
-        id,
-        "SIN DATOS",
-        "estado-error"
-      );
-
-      actualizarValoresSolar(
-        id,
-        null,
-        null,
-        `Consulta fallida: ${horaConsultaPortal()}`
-      );
+      solarOffline.restaurar(id);
     }
   }
 
@@ -1173,6 +1487,11 @@ async function cargarClima(id, zona) {
     id,
     planta
   ) {
+
+    if (!navigator.onLine) {
+      solarOffline.restaurar(id);
+      return;
+    }
 
     try {
 
@@ -1202,6 +1521,13 @@ async function cargarClima(id, zona) {
 
       const datos =
         await respuesta.json();
+
+      if (!navigator.onLine || datos?.error) {
+        throw new Error('FusionSolar no verificable');
+      }
+
+      solarOffline.normal(id);
+
 
       const inversoresFusion =
         Array.isArray(datos.inversores)
@@ -1266,6 +1592,30 @@ async function cargarClima(id, zona) {
         )
       );
 
+
+      const edad = datos.edad_dato_segundos;
+      const instante = Date.parse(datos.actualizado_en);
+
+      const lecturaCompleta =
+        solarOffline.valido(edad) &&
+        Number(edad) >= 0 &&
+        Number(edad) <= 720 &&
+        Number.isFinite(instante) &&
+        Date.now() - instante <= 720000 &&
+        Date.now() - instante >= -120000 &&
+        solarOffline.valido(datos.potencia_instantanea_kw) &&
+        solarOffline.valido(datos.energia_hoy_kwh) &&
+        Number(datos.energia_hoy_kwh) >= 0 &&
+        inversoresFusion.length === 4 &&
+        inversoresDisponibles === 4 &&
+        !['SIN DATOS', 'SIN COMUNICACION', 'DESCONOCIDO'].includes(estado);
+
+      if (lecturaCompleta) {
+        solarOffline.guardar(id, new Date(instante).toISOString());
+      } else {
+        solarOffline.parcial(id);
+      }
+
     } catch (error) {
 
       console.warn(
@@ -1273,21 +1623,9 @@ async function cargarClima(id, zona) {
         error
       );
 
-      actualizarEstadoSolar(
-        id,
-        "SIN DATOS",
-        "estado-error"
-      );
-
-      actualizarValoresSolar(
-        id,
-        null,
-        null,
-        `FusionSolar no disponible ${horaConsultaPortal()}`
-      );
+      solarOffline.restaurar(id);
     }
   }
-
 
 
   // =========================================================
@@ -2099,15 +2437,18 @@ async function cargarClima(id, zona) {
 
   window.addEventListener('offline', () => {
     meteoOffline.restaurarTodo();
+    solarOffline.restaurarTodo();
   });
 
   window.addEventListener('online', () => {
     actualizarClima();
     actualizarMeteoPFV();
+    actualizarMonitoreoSolar();
   });
 
   if (!navigator.onLine) {
     meteoOffline.restaurarTodo();
+    solarOffline.restaurarTodo();
   }
 
   activarEnlacesPFV();
