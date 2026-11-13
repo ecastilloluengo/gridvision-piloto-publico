@@ -445,8 +445,8 @@
 
         const claves = ['left', 'right', 'bottom'];
 
-        let estado = [true, true, true];
-        let anterior = null;
+        let estado = [false, false, false];
+        let anterior = [true, true, true];
 
         const menu = document.createElement('details');
         menu.id = 'gv-unified-vista';
