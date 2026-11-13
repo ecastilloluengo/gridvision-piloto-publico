@@ -416,3 +416,182 @@
     document.addEventListener('DOMContentLoaded', iniciarNavegacion, {once:true});
   } else iniciarNavegacion();
 })();
+
+
+// GV UNIFIED V2144
+(() => {
+    'use strict';
+
+    function iniciarVista() {
+        const fire = document.getElementById('fire-map');
+        const vulcano = document.getElementById('vulcano-map');
+
+        if (!fire && !vulcano) return;
+
+        const header = document.querySelector(
+            '.gv-unified-fire, .gv-unified-vulcano'
+        );
+
+        if (!header || document.getElementById('gv-unified-vista')) return;
+
+        const body = document.body;
+        const tipo = fire ? 'fire' : 'vulcano';
+
+        body.classList.add('gv-vista-' + tipo);
+
+        const nombres = fire
+            ? ['Buscador y filtros', 'Ficha e infraestructura', 'Tabla de incendios']
+            : ['Buscador y filtros', 'Ficha y herramientas', 'Leyenda cartografica'];
+
+        const claves = ['left', 'right', 'bottom'];
+
+        let estado = [true, true, true];
+        let anterior = null;
+
+        const menu = document.createElement('details');
+        menu.id = 'gv-unified-vista';
+        menu.className = 'gv-unified-vista';
+
+        const summary = document.createElement('summary');
+        summary.textContent = '\u25a3 Vista';
+
+        const panel = document.createElement('div');
+        panel.className = 'gv-unified-vista-panel';
+
+        const titulo = document.createElement('strong');
+        titulo.textContent = 'Paneles del visor';
+        panel.append(titulo);
+
+        const checks = nombres.map((nombre, i) => {
+            const label = document.createElement('label');
+            const input = document.createElement('input');
+
+            input.type = 'checkbox';
+            input.checked = true;
+
+            label.append(input, document.createTextNode(nombre));
+            panel.append(label);
+
+            input.addEventListener('change', () => {
+                anterior = null;
+                estado[i] = input.checked;
+                aplicar();
+            });
+
+            return input;
+        });
+
+        const nota = document.createElement('small');
+        nota.textContent = 'Solo cambia la presentacion. Las capas permanecen activas.';
+        panel.append(nota);
+
+        const completo = document.createElement('button');
+        completo.type = 'button';
+        completo.textContent = 'Mapa completo';
+
+        const todos = document.createElement('button');
+        todos.type = 'button';
+        todos.textContent = 'Mostrar todos';
+
+        panel.append(completo, todos);
+        menu.append(summary, panel);
+
+        const nav = header.querySelector('nav');
+        if (nav) nav.after(menu);
+        else header.append(menu);
+
+        function redimensionar() {
+            const map = fire
+                ? window.GridVisionFireMap
+                : window.GridVisionVulcanoMap;
+
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    if (map && map.invalidateSize) {
+                        map.invalidateSize({
+                            animate: false,
+                            pan: true,
+                            debounceMoveend: true
+                        });
+                    }
+                });
+            });
+        }
+
+        function aplicar() {
+            claves.forEach((clave, i) => {
+                body.classList.toggle(
+                    'gv-unified-hide-' + clave,
+                    !estado[i]
+                );
+                checks[i].checked = estado[i];
+            });
+
+            completo.textContent = estado.every(v => !v)
+                ? 'Restaurar vista'
+                : 'Mapa completo';
+
+            redimensionar();
+        }
+
+        completo.addEventListener('click', () => {
+            if (estado.some(Boolean)) {
+                anterior = [...estado];
+                estado = [false, false, false];
+            } else {
+                estado = anterior
+                    ? [...anterior]
+                    : [true, true, true];
+
+                anterior = null;
+            }
+
+            aplicar();
+            menu.open = false;
+        });
+
+        todos.addEventListener('click', () => {
+            anterior = null;
+            estado = [true, true, true];
+            aplicar();
+            menu.open = false;
+        });
+
+        // Permitir reabrir los paneles desde herramientas moviles.
+        document.addEventListener('click', e => {
+            if (menu.open && !menu.contains(e.target)) {
+                menu.open = false;
+            }
+
+            let i = -1;
+
+            if (fire) {
+                if (e.target.closest('#gv-fire-mobile-tools [data-view="filters"]')) i = 0;
+                if (e.target.closest('#gv-fire-mobile-tools [data-view="detail"]')) i = 1;
+                if (e.target.closest('#gv-fire-mobile-tools [data-view="events"]')) i = 2;
+            } else {
+                if (e.target.closest('#gv-v-mobile-tools [data-action="search"], #gv-v-mobile-tools [data-action="layers"]')) i = 0;
+                if (e.target.closest('#gv-v-mobile-tools [data-action="tools"]')) i = 1;
+                if (e.target.closest('#toggle-legend')) i = 2;
+            }
+
+            if (i >= 0 && !estado[i]) {
+                anterior = null;
+                estado[i] = true;
+                aplicar();
+            }
+        }, true);
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') menu.open = false;
+        });
+
+        aplicar();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', iniciarVista, {once:true});
+    } else {
+        iniciarVista();
+    }
+})();

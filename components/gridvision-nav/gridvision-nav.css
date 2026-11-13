@@ -274,3 +274,159 @@ body > header.gv-unified-header {
         height: calc(100dvh - 96px) !important;
     }
 }
+
+
+/* GV UNIFIED V2144 */
+
+.gv-unified-vista {
+    flex: 0 0 auto;
+    position: static;
+}
+
+.gv-unified-vista summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    padding: 5px 12px;
+    border: 1px solid #4a6785;
+    border-radius: 999px;
+    background: #142e43;
+    color: #e5eef5;
+    font-size: 12px;
+    font-weight: 650;
+    cursor: pointer;
+    list-style: none;
+}
+
+.gv-unified-vista summary::-webkit-details-marker {
+    display: none;
+}
+
+.gv-unified-vista-panel {
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 10px;
+    width: min(270px, calc(100vw - 20px));
+    box-sizing: border-box;
+    padding: 13px;
+    display: grid;
+    gap: 10px;
+    border: 1px solid #53788e;
+    border-radius: 12px;
+    background: #10283c;
+    color: #edf7fc;
+    box-shadow: 0 8px 24px #0008;
+    z-index: 3000;
+}
+
+.gv-unified-vista:not([open]) .gv-unified-vista-panel {
+    display: none;
+}
+
+.gv-unified-vista-panel label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    min-height: 30px;
+    cursor: pointer;
+}
+
+.gv-unified-vista-panel input {
+    width: 17px;
+    height: 17px;
+    accent-color: #25b6e6;
+}
+
+.gv-unified-vista-panel small {
+    font-size: 10px;
+    color: #b3c9d9;
+}
+
+.gv-unified-vista-panel button {
+    border: 1px solid #57778d;
+    background: #17445d;
+    color: #eef8ff;
+    border-radius: 8px;
+    padding: 9px;
+    min-height: 36px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* FIRE: ocultar paneles independientemente */
+
+body.gv-vista-fire.gv-unified-hide-left .fire-sidebar,
+body.gv-vista-fire.gv-unified-hide-right .fire-detail,
+body.gv-vista-fire.gv-unified-hide-bottom .incidents-panel,
+body.gv-vista-fire.gv-unified-hide-bottom #gv-fire-exposure-main {
+    display: none !important;
+}
+
+@media (min-width: 901px) {
+    body.gv-vista-fire.gv-unified-hide-left .fire-layout {
+        grid-template-columns: minmax(0, 1fr) 300px;
+    }
+
+    body.gv-vista-fire.gv-unified-hide-right .fire-layout {
+        grid-template-columns: 235px minmax(0, 1fr);
+    }
+
+    body.gv-vista-fire.gv-unified-hide-left.gv-unified-hide-right .fire-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    body.gv-vista-fire.gv-unified-hide-bottom .fire-main {
+        min-height: 0;
+        grid-template-rows: auto minmax(0, 1fr);
+    }
+}
+
+@media (min-width: 901px) and (max-width: 1200px) {
+    body.gv-vista-fire.gv-unified-hide-left:not(.gv-unified-hide-right) .fire-layout {
+        grid-template-columns: minmax(0, 1fr) 270px;
+    }
+
+    body.gv-vista-fire.gv-unified-hide-right:not(.gv-unified-hide-left) .fire-layout {
+        grid-template-columns: 210px minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    body.gv-vista-fire.gv-unified-hide-bottom .fire-main {
+        min-height: 0;
+        grid-template-rows: auto minmax(360px, 65vh);
+    }
+
+    body.gv-vista-fire.gv-unified-hide-bottom .map-shell {
+        height: 65dvh !important;
+    }
+}
+
+/* VULCANO: conservar avisos y estados oficiales */
+
+body.gv-vista-vulcano.gv-unified-hide-left .map-left-controls,
+body.gv-vista-vulcano.gv-unified-hide-left .gv-sidebar,
+body.gv-vista-vulcano.gv-unified-hide-right .gv-detail,
+body.gv-vista-vulcano.gv-unified-hide-right .map-top-right > :not(#gv-estados-toggle),
+body.gv-vista-vulcano.gv-unified-hide-bottom .map-legend {
+    display: none !important;
+}
+
+@media (max-width: 700px) {
+    .gv-unified-vista summary {
+        font-size: 11px;
+        padding: 6px 9px;
+    }
+
+    .gv-unified-vista-panel button {
+        min-height: 42px;
+    }
+
+    .gv-unified-vulcano .gv-status {
+        max-width: 30%;
+        min-width: 0;
+        flex: 1 1 65px;
+    }
+}
