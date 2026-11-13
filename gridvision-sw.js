@@ -2,7 +2,20 @@
    nunca API/clima/alertas en vivo ni teselas externas. */
 'use strict';
 const CACHE='gridvision-nav-offline-v1';
-const CORE=['index.html','gridvision-fire.html','gridvision-vulcano.html',
+const CORE=['portal.html',
+  'portal.css',
+  'portal.js',
+  'portal-offline.js',
+  'portal-solax-diagnostico-potencias.js',
+  'portal-alertas-pfv.js',
+  'fusionsolar-detalle-v1.css',
+  'fusionsolar-detalle-v1.js',
+  'components/alertas/activos-meteorologicos.js',
+  'components/alertas/estado-alertas.js',
+  'assets/logo-pecket-energy.png',
+  'portal-fondo-control-renovable.png',
+  'data/processed/pfv_netbilling.geojson',
+  'index.html','gridvision-fire.html','gridvision-vulcano.html',
   'components/gridvision-nav/gridvision-nav.css',
   'components/gridvision-nav/gridvision-nav.js',
   'components/gridvision-nav/gridvision-base-offline.js',
@@ -35,7 +48,7 @@ self.addEventListener('fetch',event=>{
   const relative=u.pathname.slice(root.pathname.length);
   if(!relative || relative.startsWith('api/') ||
      /^data\/(alertas_senapred\.json|dmc\/|sitr_)/i.test(relative)) return;
-  const appPage=['index.html','gridvision-fire.html','gridvision-vulcano.html',
+  const appPage=['portal.html','index.html','gridvision-fire.html','gridvision-vulcano.html',
 'components/localizador-fallas/localizador-fallas.html',
 'components/panel-operacional.html'].includes(relative);
   const appStatic=/\.(js|css|svg|png|webmanifest|ico|woff2?)$/i.test(relative);
