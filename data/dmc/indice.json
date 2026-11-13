@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-12 14:48",
+  "catalogoActualizadoEn": "2026-11-12 19:33",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -111,51 +111,7 @@
       "archivoImpactos": "data/dmc/A607-3_2026_impactos.json",
       "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
       "archivoDocumento": "data/dmc/A607-3_2026_documento.json"
-    },
-    {
-      "codigo": "A617/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas de la región de Aysén",
-      "desdeTexto": "la tarde del jueves 12 de noviembre del 2026",
-      "hastaTexto": "la tarde del jueves 12 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-12",
-      "fechaFinDia": "2026-11-12",
-      "fechaEmision": "2026-11-11T14:14:00-03:00",
-      "regiones": [
-        "Aysén"
-      ],
-      "numeroPoligonos": 2,
-      "archivoGeojson": "data/dmc/A617_2026.geojson",
-      "archivoCobertura": "data/dmc/A617_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A617_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A617_2026_documento.json"
-    },
-    {
-      "codigo": "AA196-3/2026",
-      "tipo": "Alerta",
-      "fenomeno": "Altas Temperaturas",
-      "titulo": "Evento de Altas Temperaturas Extremas en zonas desde la región de Antofagasta a la región Metropolitana",
-      "desdeTexto": "la tarde del miércoles 11 de noviembre del 2026",
-      "hastaTexto": "la tarde del jueves 12 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-11",
-      "fechaFinDia": "2026-11-12",
-      "fechaEmision": "2026-11-11T12:07:00-03:00",
-      "regiones": [
-        "Antofagasta",
-        "Atacama",
-        "Coquimbo",
-        "Metropolitana",
-        "Valparaíso"
-      ],
-      "numeroPoligonos": 7,
-      "archivoGeojson": "data/dmc/AA196-3_2026.geojson",
-      "archivoCobertura": "data/dmc/AA196-3_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/AA196-3_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/AA196-3_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-12T16:53:42.336922-03:00"
+  "generadoEn": "2026-11-12T22:49:15.482280-03:00"
 }
