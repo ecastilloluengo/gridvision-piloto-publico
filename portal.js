@@ -1058,6 +1058,12 @@ async function cargarClima(id, zona) {
   }
 }
   async function actualizarClima() {
+
+    if (!navigator.onLine) {
+      meteoOffline.restaurarTodo();
+      return;
+    }
+
     await resolverCoordenadasCapulloPulelfu();
     await Promise.all(Object.entries(zonas).map(([id, zona]) => cargarClima(id, zona)));
   }
