@@ -1,0 +1,46 @@
+{
+  "codigo": "A618/2026",
+  "tipo": "Aviso",
+  "titulo": "Precipitaciones Normales a Moderadas en cordillera de la región de Arica y Parinacota",
+  "fenomeno": "Precipitaciones",
+  "emisionTexto": "Jueves 12 de noviembre del 2026 a las 23:07 hrs.",
+  "condicionSinoptica": "Alta de Bolivia",
+  "desde": "la tarde del viernes 13 de noviembre del 2026",
+  "hasta": "la madrugada del sábado 14 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Arica y Parinacota (Cordillera)",
+  "tablaTitulo": "Montos estimados de precipitaciones en milímetros (mm)",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Arica y Parinacota"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Monto"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "10-15"
+      }
+    ]
+  ]
+}
