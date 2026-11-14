@@ -655,29 +655,12 @@
     </div>
     <!-- /GRIDVISION_SITR_ALERTA_SUPERIOR_V1 -->
 
-    <!-- GRIDVISION_CEN_OFICIAL_V1 -->
-    <section aria-label="Disponibilidad oficial SITR CEN" style="margin:0 0 18px;padding:17px;border:1px solid #8ba2b966;border-radius:12px;background:rgba(110,140,160,.09)">
-      <h2 style="font-size:1.08rem;margin:0 0 8px">Disponibilidad SITR oficial — CEN</h2>
-      <p style="margin:0 0 10px;font-size:.9rem">Fuente primaria: Coordinador Eléctrico Nacional. La disponibilidad oficial debe consultarse para el <strong>coordinado</strong> y <strong>mes</strong> seleccionados en el tablero CEN. No corresponde al indicador instantáneo ni al acumulado referencial GridVision.</p>
-      <p style="margin:0 0 12px;font-size:.88rem"><strong>Dato oficial automático en GridVision:</strong> pendiente de integración y validación de la fuente estructurada. No se mostrará un porcentaje no verificado.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:10px">
-        <a href="https://www.coordinador.cl/operacion/graficos/disponibilidad-online-de-sitr/" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;font-weight:650">Abrir tablero oficial CEN ↗</a>
-        <a href="https://www.coordinador.cl/operacion/documentos/plataformas-para-la-operacion/disponibilidad-de-sitr/2026-disponibilidad-de-sitr/" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;font-weight:650">Informes oficiales mensuales 2026 ↗</a>
-      </div>
-    </section>
-    <!-- /GRIDVISION_CEN_OFICIAL_V1 -->
-
-    <div class="monitor-grid" id="sitr-mensual-grid" style="margin-bottom:16px">
-      <article class="monitor-card"><span class="monitor-label">Capullo · Mensual estimada</span><strong class="monitor-value" id="sitr-mes-capullo">--</strong><small class="monitor-sub" id="sitr-cob-capullo">Sin datos históricos suficientes</small></article>
-      <article class="monitor-card"><span class="monitor-label">Pulelfu · Mensual estimada</span><strong class="monitor-value" id="sitr-mes-pulelfu">--</strong><small class="monitor-sub" id="sitr-cob-pulelfu">Sin datos históricos suficientes</small></article>
-      <p style="grid-column:1/-1;font-size:.82rem;opacity:.8">Cálculo referencial GridVision, no corresponde a la disponibilidad oficial del CEN. Cobertura temporal y períodos sin evidencia se informan separadamente.</p>
-    </div>
     <div class="monitor-grid">
 
       <article class="monitor-card">
 
         <span class="monitor-label">
-          Disponibilidad de datos SITR
+          Señales válidas · consulta actual
         </span>
 
         <strong
@@ -795,12 +778,11 @@
 
       <div>
         <h2>
-          Disponibilidad SITR
+          Calidad de señales por coordinado
         </h2>
 
         <p>
-          Datos en línea obtenidos desde el
-          Coordinador Eléctrico Nacional.
+          Porcentaje de señales válidas sobre el total esperado en la consulta. Una señal recibida puede tener calidad inválida.
         </p>
       </div>
 
@@ -946,11 +928,29 @@
 
 
     <!-- HISTÓRICO -->
+    <!-- GRIDVISION_CEN_OFICIAL_V1 -->
+    <section aria-label="Disponibilidad oficial SITR CEN" style="margin:0 0 18px;padding:17px;border:1px solid #8ba2b966;border-radius:12px;background:rgba(110,140,160,.09)">
+      <h2 style="font-size:1.08rem;margin:0 0 8px">Disponibilidad SITR oficial — CEN</h2>
+      <p style="margin:0 0 10px;font-size:.9rem">Fuente primaria: Coordinador Eléctrico Nacional. La disponibilidad oficial debe consultarse para el <strong>coordinado</strong> y <strong>mes</strong> seleccionados en el tablero CEN. No corresponde al indicador instantáneo ni al acumulado referencial GridVision.</p>
+      <p style="margin:0 0 12px;font-size:.88rem"><strong>Dato oficial automático en GridVision:</strong> pendiente de integración y validación de la fuente estructurada. No se mostrará un porcentaje no verificado.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px">
+        <a href="https://www.coordinador.cl/operacion/graficos/disponibilidad-online-de-sitr/" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;font-weight:650">Abrir tablero oficial CEN ↗</a>
+        <a href="https://www.coordinador.cl/operacion/documentos/plataformas-para-la-operacion/disponibilidad-de-sitr/2026-disponibilidad-de-sitr/" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;font-weight:650">Informes oficiales mensuales 2026 ↗</a>
+      </div>
+    </section>
+    <!-- /GRIDVISION_CEN_OFICIAL_V1 -->
+
+    <div class="monitor-grid" id="sitr-mensual-grid" style="margin-bottom:16px">
+      <article class="monitor-card"><span class="monitor-label">Capullo · Mensual estimada</span><strong class="monitor-value" id="sitr-mes-capullo">--</strong><small class="monitor-sub" id="sitr-cob-capullo">Sin datos históricos suficientes</small></article>
+      <article class="monitor-card"><span class="monitor-label">Pulelfu · Mensual estimada</span><strong class="monitor-value" id="sitr-mes-pulelfu">--</strong><small class="monitor-sub" id="sitr-cob-pulelfu">Sin datos históricos suficientes</small></article>
+      <p style="grid-column:1/-1;font-size:.82rem;opacity:.8">Cálculo referencial GridVision, no corresponde a la disponibilidad oficial del CEN. Cobertura temporal y períodos sin evidencia se informan separadamente.</p>
+    </div>
+
 
     <div class="tabla-bloque">
 
       <div class="tabla-titulo">
-        Evolución de disponibilidad SITR
+        Histórico mensual por coordinado · tablero SITR CEN
       </div>
 
       <div class="tabla-scroll">
@@ -1049,6 +1049,7 @@ let temporizadorToast = null;
 
 function formatearPorcentaje(valor) {
 
+  if (valor == null || String(valor).trim() === "") return "Sin datos";
   const numero = Number(valor);
 
   if (!Number.isFinite(numero)) {
@@ -1421,6 +1422,12 @@ function mostrarToast(texto) {
    CENTRAL
    ======================================== */
 
+function porcentajeSenales(instalacion) {
+  const {variables_validas: validas, variables_total: total} = instalacion;
+  return Number.isInteger(validas) && Number.isInteger(total) && total > 0 &&
+    validas >= 0 && validas <= total ? 100 * validas / total : null;
+}
+
 function mostrarCentral(
   instalacion
 ) {
@@ -1428,10 +1435,7 @@ function mostrarCentral(
   const id =
     instalacion.id;
 
-  const valor =
-    Number(
-      instalacion.disponibilidad
-    );
+  const valor = porcentajeSenales(instalacion);
 
   const valorEl =
     document.getElementById(
@@ -1772,7 +1776,7 @@ function renderVariables(
 
           <td>
             ${escaparHtml(
-              instalacion.nombre
+              incidencia.coordinado || instalacion.nombre_cen
             )}
           </td>
 
@@ -1814,7 +1818,7 @@ function renderVariables(
 
           <td>
             ${escaparHtml(
-              incidencia.tag_iccp
+              incidencia.tag_iccp || "—"
             )}
           </td>
 
@@ -1839,13 +1843,13 @@ function renderVariables(
           <thead>
 
             <tr>
-              <th>Central</th>
+              <th>Coordinado CEN</th>
               <th>IRN</th>
-              <th>SSEE</th>
+              <th>S/E de la señal</th>
               <th>Variable</th>
               <th>Tipo</th>
-              <th>Valor</th>
-              <th>Estado</th>
+              <th>Valor reportado</th>
+              <th>Calidad / recepción</th>
               <th>TAG ICCP</th>
             </tr>
 
@@ -1868,109 +1872,22 @@ function renderVariables(
    HISTÓRICO
    ======================================== */
 
-function renderHistorial(
-  instalaciones
-) {
-
-  const cuerpo =
-    document.getElementById(
-      "historial-body"
-    );
-
-
-  const capullo =
-    instalaciones.find(
-      item =>
-        item.id === "capullo"
-    );
-
-
-  const pulelfu =
-    instalaciones.find(
-      item =>
-        item.id === "pulelfu"
-    );
-
-
-  if (
-    !capullo
-    ||
-    !pulelfu
-  ) {
-
-    cuerpo.innerHTML = `
-      <tr>
-        <td colspan="3">
-          Sin información histórica disponible.
-        </td>
-      </tr>
-    `;
-
-    return;
+function renderHistorial(instalaciones, fechaFuente) {
+  const periodos = new Map();
+  for (const central of instalaciones) {
+    for (const dato of central.historial || []) {
+      const periodo = String(dato.periodo || "").trim();
+      // Qlik usa la fecha y hora de actualización como título de la medida instantánea.
+      if (!periodo || periodo === fechaFuente || /^actual$/i.test(periodo) ||
+          /\b\d{1,2}:\d{2}\b/.test(periodo)) continue;
+      if (!periodos.has(periodo)) periodos.set(periodo, {});
+      periodos.get(periodo)[central.id] = dato.disponibilidad;
+    }
   }
-
-
-  const histCapullo =
-    capullo.historial || [];
-
-  const histPulelfu =
-    pulelfu.historial || [];
-
-
-  cuerpo.innerHTML =
-    histCapullo.map(
-      (item,indice) => {
-
-        const pul =
-          histPulelfu[
-            indice
-          ] || {};
-
-        const actual =
-          indice ===
-          histCapullo.length - 1;
-
-        return `
-          <tr
-            class="${
-              actual
-                ? "history-current"
-                : ""
-            }"
-          >
-
-            <td>
-              ${
-                actual
-                  ? "Actual"
-                  : escaparHtml(
-                      item.periodo
-                    )
-              }
-            </td>
-
-            <td>
-              ${escaparHtml(
-                formatearPorcentaje(
-                  item.disponibilidad
-                )
-              )}
-            </td>
-
-            <td>
-              ${escaparHtml(
-                formatearPorcentaje(
-                  pul.disponibilidad
-                )
-              )}
-            </td>
-
-          </tr>
-        `;
-      }
-    ).join("");
+  document.getElementById("historial-body").innerHTML = [...periodos].map(([mes, valores]) =>
+    `<tr><td>${escaparHtml(mes)}</td><td>${formatearPorcentaje(valores.capullo)}</td><td>${formatearPorcentaje(valores.pulelfu)}</td></tr>`
+  ).join("") || '<tr><td colspan="3">Sin períodos mensuales disponibles.</td></tr>';
 }
-
 
 /* ========================================
    CONSULTA API
@@ -1988,13 +1905,14 @@ async function cargarSitrMensual() {
       const info = document.getElementById('sitr-cob-'+id);
       const c = (datos.centrales || {})[id];
       if (!elemento || !info) continue;
-      elemento.textContent = c && c.disponibilidad_estimada_pct !== null ? c.disponibilidad_estimada_pct.toFixed(2).replace('.',',') + ' %' : 'Sin datos';
-      info.textContent = c ? `Cobertura del mes ${c.cobertura_temporal_pct.toFixed(1)} % · Corte ${datos.corte || '--'}` : 'Sin datos históricos suficientes';
+      elemento.textContent = Number.isFinite(c?.disponibilidad_estimada_pct) ? c.disponibilidad_estimada_pct.toFixed(2).replace('.',',') + ' %' : 'Sin datos';
+      info.textContent = `${datos.mes || 'Mes sin identificar'} · ${Number.isFinite(c?.cobertura_temporal_pct) ? 'Cobertura ' + formatearPorcentaje(c.cobertura_temporal_pct) : 'Sin intervalos computados'} · Corte ${datos.corte || 'sin informar'}`;
     }
   } catch (err) {
     for (const id of ['capullo','pulelfu']) {
       const info = document.getElementById('sitr-cob-'+id);
-      if (info) info.textContent = 'Acumulado todavía no publicado';
+      document.getElementById('sitr-mes-'+id).textContent = 'Sin datos';
+      if (info) info.textContent = 'No se pudo consultar el acumulado mensual';
     }
   }
 }
@@ -2041,8 +1959,10 @@ async function cargarSitr() {
       await respuesta.json();
 
 
-    ultimoDatos =
-      datos;
+    if (!["capullo","pulelfu"].every(id =>
+      datos.instalaciones?.filter(c => c.id === id && porcentajeSenales(c) !== null).length === 1
+    )) throw new Error("Consulta incompleta por coordinado");
+    ultimoDatos = datos;
 
 
     const instalaciones =
@@ -2071,7 +1991,7 @@ async function cargarSitr() {
 
 
     renderHistorial(
-      instalaciones
+      instalaciones, datos.actualizado_cen
     );
 
 
@@ -2119,6 +2039,18 @@ async function cargarSitr() {
 
   } catch (error) {
 
+    ultimoDatos = null;
+    for (const id of ["capullo","pulelfu"]) {
+      for (const campo of ["total","recibidas","validas","faltantes"]) {
+        document.getElementById(id + "-" + campo).textContent = "—";
+      }
+      document.getElementById("sitr-" + id).textContent = "Sin datos";
+    }
+    document.getElementById("variables-resumen").textContent = "Consulta SITR no disponible.";
+    document.getElementById("incidencias-contenedor").textContent = "";
+    document.getElementById("monitor-aclaracion").textContent = "Calidad actual sin verificar.";
+    document.getElementById("actualizado-cen").textContent = "Sin verificar";
+    renderHistorial([], null);
     console.error(
       "Error consultando SITR:",
       error
@@ -2407,7 +2339,7 @@ function construirTextoCompartir() {
     lineas.push(
       `${instalacion.nombre}: ${
         formatearPorcentaje(
-          instalacion.disponibilidad
+          porcentajeSenales(instalacion)
         )
       }`
     );
@@ -2468,7 +2400,7 @@ function construirTextoCompartir() {
         lineas.push("");
 
         lineas.push(
-          `${indice + 1}. ${instalacion.nombre}`
+          `${indice + 1}. Coordinado ${incidencia.coordinado || instalacion.nombre_cen} · S/E ${incidencia.ssee || "sin informar"}`
         );
 
         lineas.push(
