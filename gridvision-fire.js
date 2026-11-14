@@ -453,10 +453,12 @@ function gvFireRenderRows(rows,mode,sourceTimestamp) {
   const selectedRegion=$('filter-region').value;
   gvFireMode=mode; window.GV_POWERBI_TIMESTAMP=sourceTimestamp??null;
   selectedFire=null;selectedFireWeather=null;clearWindLayer();
-  fires=rows.map(enrichFire);
+  const vigentes = rows.filter(gvFireIsCurrent);
+  fires = vigentes.map(enrichFire);
   initRegions();
   if([...$('filter-region').options].some(o=>o.value===selectedRegion))$('filter-region').value=selectedRegion;
   applyFilters();
+  fireAlarms.update(vigentes, mode, sourceTimestamp);
 }
 function gvFireUseSnapshot() {
   const s=gvFireReadSnapshot();
@@ -520,6 +522,191 @@ function nearestAssets(lat, lon) {
     .map(a => ({ ...a, distance: haversineKm(lat, lon, a.lat, a.lon) }))
     .sort((a,b) => a.distance - b.distance);
 }
+
+function gvFirePointToSegmentNearest(lat, lon, a, b) {
+
+  const latRad =
+    Number(lat) * Math.PI / 180;
+
+  const cosLat =
+    Math.cos(latRad);
+
+  const px =
+    Number(lon) * cosLat;
+
+  const py =
+    Number(lat);
+
+  const x1 =
+    Number(a[0]) * cosLat;
+
+  const y1 =
+    Number(a[1]);
+
+  const x2 =
+    Number(b[0]) * cosLat;
+
+  const y2 =
+    Number(b[1]);
+
+  if (
+    !Number.isFinite(px) ||
+    !Number.isFinite(py) ||
+    !Number.isFinite(x1) ||
+    !Number.isFinite(y1) ||
+    !Number.isFinite(x2) ||
+    !Number.isFinite(y2)
+  ) {
+    return null;
+  }
+
+  const dx = x2 - x1;
+  const dy = y2 - y1;
+
+  const length2 =
+    dx * dx + dy * dy;
+
+  let t = 0;
+
+  if (length2 > 0) {
+
+    t =
+      (
+        (px - x1) * dx +
+        (py - y1) * dy
+      ) / length2;
+
+    t =
+      Math.max(
+        0,
+        Math.min(1, t)
+      );
+  }
+
+  const nearestX =
+    x1 + t * dx;
+
+  const nearestY =
+    y1 + t * dy;
+
+  const nearestLon =
+    nearestX / cosLat;
+
+  const nearestLat =
+    nearestY;
+
+  const distanceKm =
+    haversineKm(
+      lat,
+      lon,
+      nearestLat,
+      nearestLon
+    );
+
+  return {
+    lat: nearestLat,
+    lon: nearestLon,
+    distanceKm
+  };
+}
+
+
+function gvFireNearestPointOnGeometry(
+  lat,
+  lon,
+  geometry
+) {
+
+  if (!geometry) {
+    return null;
+  }
+
+  let best = null;
+
+  function inspectLine(coords) {
+
+    if (
+      !Array.isArray(coords) ||
+      coords.length === 0
+    ) {
+      return;
+    }
+
+    if (coords.length === 1) {
+
+      const p = coords[0];
+
+      const distanceKm =
+        haversineKm(
+          lat,
+          lon,
+          Number(p[1]),
+          Number(p[0])
+        );
+
+      if (
+        !best ||
+        distanceKm < best.distanceKm
+      ) {
+        best = {
+          lat: Number(p[1]),
+          lon: Number(p[0]),
+          distanceKm
+        };
+      }
+
+      return;
+    }
+
+    for (
+      let i = 1;
+      i < coords.length;
+      i += 1
+    ) {
+
+      const candidate =
+        gvFirePointToSegmentNearest(
+          lat,
+          lon,
+          coords[i - 1],
+          coords[i]
+        );
+
+      if (
+        candidate &&
+        (
+          !best ||
+          candidate.distanceKm < best.distanceKm
+        )
+      ) {
+        best = candidate;
+      }
+    }
+  }
+
+  if (
+    geometry.type ===
+    "LineString"
+  ) {
+
+    inspectLine(
+      geometry.coordinates
+    );
+
+  } else if (
+    geometry.type ===
+    "MultiLineString"
+  ) {
+
+    geometry.coordinates.forEach(
+      line => inspectLine(line)
+    );
+  }
+
+  return best;
+}
+
+
 
 function enrichFire(fire) {
   const near = nearestAssets(fire.lat, fire.lon);
@@ -1851,6 +2038,7 @@ async function bootstrap() {
     try {
       layers.assets.clearLayers();layers.lines.clearLayers();
       await Promise.all([loadAssets(),loadLines()]);
+      fireAlarms.loadCatalog();
       gvFireAssetsReady=true;
       gvFireUseSnapshot();
     } catch(e) {console.error(e);gvFirePaintStatus();$('map-status').textContent='Error cargando inventario SEN';return;}
@@ -1858,10 +2046,185 @@ async function bootstrap() {
   }
   await gvFireRefresh();
 }
+// Alarmas locales del puesto de operación. Sólo una consulta en vivo puede emitir avisos.
+function createFireAlarms() {
+  const el = name => document.getElementById('fire-alarm-' + name);
+  const key = 'gridvision-fire-alarms-v1';
+  let settings = { rules: {}, events: {}, controlled: false };
+  try {
+    const saved = JSON.parse(localStorage.getItem(key));
+    if (saved?.rules && saved?.events) settings = saved;
+  } catch { el('note').textContent = 'Configuración local no disponible.'; }
+  const catalog = new Map();
+  let rows = [], mode = 'unavailable', timestamp = null, matches = [];
+  let audio = null;
+
+  function save() {
+    try { localStorage.setItem(key, JSON.stringify(settings)); }
+    catch { el('note').textContent = 'Los cambios sólo estarán disponibles durante esta sesión.'; }
+  }
+  function tone() {
+    const start = audio.currentTime;
+    const oscillator = audio.createOscillator();
+    const gain = audio.createGain();
+    oscillator.frequency.value = 740;
+    gain.gain.setValueAtTime(0.001, start);
+    gain.gain.exponentialRampToValueAtTime(0.12, start + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.001, start + 0.36);
+    oscillator.connect(gain).connect(audio.destination);
+    oscillator.start(start);
+    oscillator.stop(start + 0.38);
+  }
+  const armed = () => audio?.state === 'running';
+  function button(label, action) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = label;
+    b.onclick = action;
+    return b;
+  }
+  function search() {
+    const q = gvFireStateKey(el('search').value);
+    const select = el('asset');
+    select.replaceChildren();
+    for (const [id, asset] of catalog) {
+      if (asset.search.includes(q)) select.add(new Option(asset.label, id));
+      if (select.length >= 80) break;
+    }
+    if (!select.length) select.add(new Option('Sin coincidencias', ''));
+  }
+  function renderRules() {
+    const box = el('rules');
+    box.replaceChildren();
+    for (const [id, rule] of Object.entries(settings.rules)) {
+      const row = document.createElement('p');
+      row.append(rule.label + ' · ' + rule.radius + ' km' + (catalog.has(id) ? ' ' : ' · inventario no disponible '));
+      row.append(button('Editar', () => {
+        el('search').value = id.split(':').slice(1).join(':');
+        search();
+        el('asset').value = id;
+        el('radius').value = rule.radius;
+        el('radius').focus();
+      }), button('Quitar', () => {
+        delete settings.rules[id];
+        save(); renderRules(); evaluate();
+      }));
+      box.append(row);
+    }
+    if (!box.childElementCount) box.textContent = 'Ninguna instalación seleccionada.';
+  }
+  function paint() {
+    const live = mode === 'live' && navigator.onLine;
+    const pending = matches.filter(m => !m.entry.ack).length;
+    const state = armed() ? 'sonido activo' : 'sonido desactivado';
+    el('open').textContent = 'Alarmas · ' + (pending ? pending + (live ? ' pendientes · ' : ' en copia · ') : '') + state;
+    el('open').dataset.pending = String(live && pending > 0);
+    el('mute').hidden = !armed();
+    el('source').textContent = (live ? 'Consulta en vivo' : mode === 'snapshot' ? 'Último reporte disponible · copia sin actualización' : 'Sin datos en vivo') +
+      ' · Hora de la consulta Power BI: ' + gvFireFormatTime(timestamp);
+    const box = el('events');
+    box.replaceChildren();
+    for (const m of matches) {
+      const row = document.createElement('p');
+      row.append(m.fire.nombre + ' · ' + m.fire.estado + ' · ' + m.asset.label + ' · ' +
+        m.point.distanceKm.toLocaleString('es-CL', {maximumFractionDigits: 2}) + ' km ');
+      row.append(button('Ver en mapa', () => {
+        el('dialog').close();
+        const fire = fires.find(f => f.nombre === m.fire.nombre && f.lat === m.fire.lat && f.lon === m.fire.lon);
+        if (fire) void selectFire(fire, false);
+        map.fitBounds([[m.fire.lat,m.fire.lon],[m.point.lat,m.point.lon]], {padding:[40,40],maxZoom:14});
+        L.popup().setLatLng([m.point.lat,m.point.lon]).setContent(document.createTextNode(m.asset.label)).openOn(map);
+      }));
+      if (m.entry.ack) row.append(' Reconocido');
+      else if (live) row.append(button('Reconocer', () => {
+        m.entry.ack = true;
+        save(); paint();
+      }));
+      box.append(row);
+    }
+    if (!matches.length) box.textContent = live ? 'Sin coincidencias en las instalaciones evaluadas.' : 'Sin avisos verificables en vivo.';
+  }
+  function evaluate() {
+    const live = mode === 'live' && navigator.onLine;
+    const next = {};
+    matches = [];
+    let ring = false;
+    for (const [id, rule] of Object.entries(settings.rules)) {
+      const asset = catalog.get(id);
+      if (!asset) continue;
+      for (const fire of rows) {
+        if (!gvFireIsCurrent(fire)) continue;
+        const point = asset.geometry ? gvFireNearestPointOnGeometry(fire.lat, fire.lon, asset.geometry)
+          : {lat:asset.lat, lon:asset.lon, distanceKm:haversineKm(fire.lat,fire.lon,asset.lat,asset.lon)};
+        if (!point || !(point.distanceKm <= rule.radius)) continue;
+        const eventId = JSON.stringify([id,fire.nombre,fire.region,fire.comuna,fire.f_inicio]);
+        const status = gvFireStateKey(fire.estado).replace(/^observacion$/, 'bajo observacion');
+        const previous = next[eventId] || settings.events[eventId];
+        const entry = previous?.status === status ? previous : {status, ack:false, sounded:false};
+        next[eventId] = entry;
+        matches.push({fire,asset,point,entry});
+        if (live && armed() && !entry.ack && !entry.sounded && (status !== 'controlado' || settings.controlled)) {
+          entry.sounded = true;
+          ring = true;
+        }
+      }
+    }
+    if (live) {
+      // A missing catalogue layer is not evidence that an incident has ended.
+      for (const [k, v] of Object.entries(settings.events)) {
+        const [id] = JSON.parse(k);
+        if (settings.rules[id] && !catalog.has(id)) next[k] = v;
+      }
+      settings.events = next;
+      save();
+    }
+    matches.sort((a,b) => a.point.distanceKm - b.point.distanceKm);
+    if (ring) tone();
+    paint();
+  }
+  el('open').onclick = () => el('dialog').showModal();
+  el('search').oninput = search;
+  el('controlled').checked = Boolean(settings.controlled);
+  el('controlled').onchange = () => { settings.controlled = el('controlled').checked; save(); evaluate(); };
+  el('add').onsubmit = e => {
+    e.preventDefault();
+    const id = el('asset').value;
+    const asset = catalog.get(id);
+    const radius = el('radius').valueAsNumber;
+    if (!asset || !Number.isFinite(radius) || radius <= 0) return;
+    settings.rules[id] = {label:asset.label,radius};
+    save(); renderRules(); evaluate();
+  };
+  el('sound').onclick = async () => {
+    try {
+      audio ??= new AudioContext();
+      audio.onstatechange = paint;
+      await audio.resume();
+      tone(); evaluate();
+    } catch { el('note').textContent = 'No se pudo activar el audio. Revisa los permisos del navegador.'; }
+  };
+  el('mute').onclick = async () => { if (audio) await audio.suspend(); paint(); };
+  renderRules(); paint();
+  return {
+    armed,
+    loadCatalog() {
+      const add = (id, label, data) => catalog.set(id, {...data,label,search:gvFireStateKey(label + ' ' + id)});
+      for (const a of assets) add('p:' + a.id, a.nombre + ' · ' + a.categoria, a);
+      for (const f of linesGeo?.features || []) {
+        const a = lineProperties(f);
+        add('l:' + a.id, a.nombre + ' · Línea', {geometry:f.geometry});
+      }
+      search(); renderRules();
+    },
+    update(data, sourceMode, time) { rows = data; mode = sourceMode; timestamp = time; evaluate(); }
+  };
+}
+
+const fireAlarms = createFireAlarms();
 bindUI();
 window.addEventListener('offline',()=>{gvFireController?.abort();if(gvFireAssetsReady)gvFireUseSnapshot();});
 window.addEventListener('online',()=>{if(gvFireAssetsReady)void gvFireRefresh();});
-window.setInterval(()=>{if(navigator.onLine&&!document.hidden&&gvFireAssetsReady)void gvFireRefresh();},GV_FIRE_POLL_MS);
+window.setInterval(()=>{if(navigator.onLine&&(!document.hidden||fireAlarms.armed())&&gvFireAssetsReady)void gvFireRefresh();},GV_FIRE_POLL_MS);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&navigator.onLine&&gvFireAssetsReady&&(gvFireMode!=='live'||Date.now()-gvFireLastAttempt>=GV_FIRE_POLL_MS))void gvFireRefresh();});
 bootstrap();
 
@@ -2072,190 +2435,6 @@ function gvFireExposure(
 // Para puntos: distancia directa.
 // Para líneas: distancia al tramo más cercano.
 // =========================================================
-
-function gvFirePointToSegmentNearest(lat, lon, a, b) {
-
-  const latRad =
-    Number(lat) * Math.PI / 180;
-
-  const cosLat =
-    Math.cos(latRad);
-
-  const px =
-    Number(lon) * cosLat;
-
-  const py =
-    Number(lat);
-
-  const x1 =
-    Number(a[0]) * cosLat;
-
-  const y1 =
-    Number(a[1]);
-
-  const x2 =
-    Number(b[0]) * cosLat;
-
-  const y2 =
-    Number(b[1]);
-
-  if (
-    !Number.isFinite(px) ||
-    !Number.isFinite(py) ||
-    !Number.isFinite(x1) ||
-    !Number.isFinite(y1) ||
-    !Number.isFinite(x2) ||
-    !Number.isFinite(y2)
-  ) {
-    return null;
-  }
-
-  const dx = x2 - x1;
-  const dy = y2 - y1;
-
-  const length2 =
-    dx * dx + dy * dy;
-
-  let t = 0;
-
-  if (length2 > 0) {
-
-    t =
-      (
-        (px - x1) * dx +
-        (py - y1) * dy
-      ) / length2;
-
-    t =
-      Math.max(
-        0,
-        Math.min(1, t)
-      );
-  }
-
-  const nearestX =
-    x1 + t * dx;
-
-  const nearestY =
-    y1 + t * dy;
-
-  const nearestLon =
-    nearestX / cosLat;
-
-  const nearestLat =
-    nearestY;
-
-  const distanceKm =
-    gvFireHaversine(
-      lat,
-      lon,
-      nearestLat,
-      nearestLon
-    );
-
-  return {
-    lat: nearestLat,
-    lon: nearestLon,
-    distanceKm
-  };
-}
-
-
-function gvFireNearestPointOnGeometry(
-  lat,
-  lon,
-  geometry
-) {
-
-  if (!geometry) {
-    return null;
-  }
-
-  let best = null;
-
-  function inspectLine(coords) {
-
-    if (
-      !Array.isArray(coords) ||
-      coords.length === 0
-    ) {
-      return;
-    }
-
-    if (coords.length === 1) {
-
-      const p = coords[0];
-
-      const distanceKm =
-        gvFireHaversine(
-          lat,
-          lon,
-          Number(p[1]),
-          Number(p[0])
-        );
-
-      if (
-        !best ||
-        distanceKm < best.distanceKm
-      ) {
-        best = {
-          lat: Number(p[1]),
-          lon: Number(p[0]),
-          distanceKm
-        };
-      }
-
-      return;
-    }
-
-    for (
-      let i = 1;
-      i < coords.length;
-      i += 1
-    ) {
-
-      const candidate =
-        gvFirePointToSegmentNearest(
-          lat,
-          lon,
-          coords[i - 1],
-          coords[i]
-        );
-
-      if (
-        candidate &&
-        (
-          !best ||
-          candidate.distanceKm < best.distanceKm
-        )
-      ) {
-        best = candidate;
-      }
-    }
-  }
-
-  if (
-    geometry.type ===
-    "LineString"
-  ) {
-
-    inspectLine(
-      geometry.coordinates
-    );
-
-  } else if (
-    geometry.type ===
-    "MultiLineString"
-  ) {
-
-    geometry.coordinates.forEach(
-      line => inspectLine(line)
-    );
-  }
-
-  return best;
-}
-
 
 function gvFireDistanceToAsset(
   lat,

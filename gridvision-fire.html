@@ -56,6 +56,17 @@ body.gv-fire-snapshot .map-shell #map-status::after {
         font-size: 16px !important;
     }
 }
+
+#fire-alarm-open {position:absolute;right:12px;top:12px;z-index:700;background:#14314b;color:white;border:1px solid #87a6ba;border-radius:6px;padding:7px 10px;cursor:pointer}
+#fire-alarm-open[data-pending="true"] {background:#902e16}
+#fire-alarm-dialog {width:min(32rem,92vw);max-height:85vh;overflow:auto;box-sizing:border-box;padding:1.2rem;background:#10283b;color:#f4f8fa;border:1px solid #8197a6;border-radius:10px;margin:auto}
+#fire-alarm-dialog::backdrop {background:#0008}
+#fire-alarm-dialog form[method="dialog"] {float:right}
+#fire-alarm-dialog :is(h2,h3,p,label) {margin:.65rem 0}
+#fire-alarm-dialog label {display:block}
+#fire-alarm-dialog :is(select,input[type="search"]) {width:100%}
+#fire-alarm-dialog :is(button,input,select) {font:inherit;padding:.3rem}
+#fire-alarm-dialog button {cursor:pointer}
 </style>
 
 </head>
@@ -94,11 +105,10 @@ body.gv-fire-snapshot .map-shell #map-status::after {
         <h2>Filtros</h2>
         <label for="filter-status">Estado incendio</label>
         <select id="filter-status">
-          <option value="">Todos</option>
+          <option value="">Todos los vigentes</option>
           <option value="En combate">En combate</option>
           <option value="Bajo observacion">Bajo observación</option>
           <option value="Controlado">Controlado</option>
-          <option value="Extinguido">Extinguido</option>
         </select>
 
         <label for="filter-region">Región</label>
@@ -177,6 +187,7 @@ body.gv-fire-snapshot .map-shell #map-status::after {
 
       <div class="map-shell">
         <div id="fire-map"></div>
+        <button id="fire-alarm-open" type="button" aria-haspopup="dialog">Alarmas · sonido desactivado</button>
         <div class="map-search-status" id="map-status">Cargando visualizador…</div>
         <div class="map-source">Base: Esri World Imagery · Infraestructura: GridVision</div>
       </div>
@@ -211,8 +222,27 @@ body.gv-fire-snapshot .map-shell #map-status::after {
     </aside>
   </main>
 
+  <dialog id="fire-alarm-dialog" aria-labelledby="fire-alarm-title">
+    <form method="dialog"><button aria-label="Cerrar alarmas">Cerrar</button></form>
+    <h2 id="fire-alarm-title">Alarmas por instalación</h2>
+    <button id="fire-alarm-sound" type="button">Activar y probar sonido</button>
+    <button id="fire-alarm-mute" type="button" hidden>Silenciar</button>
+    <p id="fire-alarm-source" role="status"></p>
+    <h3>Avisos</h3><div id="fire-alarm-events"></div>
+    <h3>Instalaciones vigiladas</h3><div id="fire-alarm-rules"></div>
+    <label for="fire-alarm-search">Buscar instalación</label>
+    <input id="fire-alarm-search" type="search" placeholder="Nombre o código">
+    <label for="fire-alarm-asset">Resultados</label><select id="fire-alarm-asset"></select>
+    <form id="fire-alarm-add">
+      <label for="fire-alarm-radius">Radio (km)</label>
+      <input id="fire-alarm-radius" type="number" min="0.1" step="any" value="5" required>
+      <button>Guardar instalación y radio</button>
+    </form>
+    <label><input id="fire-alarm-controlled" type="checkbox"> Sonar también por incendios controlados</label>
+    <p id="fire-alarm-note" role="status"></p>
+  </dialog>
   <script src="vendor/leaflet/leaflet.js"></script>
-  <script src="gridvision-fire.js?v=gv-fire-v204-20261112"></script>
+  <script src="gridvision-fire.js?v=gv-fire-alarmas-vigentes-2"></script>
 <script src="gridvision-fire-mobile.js?v=gv-mobile-v1-20261106"></script>
   <script src="components/gridvision-nav/gridvision-base-offline.js?v=gv-base-v201-20261112"></script>
   <script src="components/gridvision-nav/gridvision-nav.js?v=gv-unified-v21442"></script>
