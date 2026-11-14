@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-14 07:21",
+  "catalogoActualizadoEn": "2026-11-14 12:46",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -30,6 +30,31 @@
       "archivoImpactos": "data/dmc/A619_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A619_2026_documento.json"
+    },
+    {
+      "codigo": "A621/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en zonas desde la región del Maule a la región de Los Lagos",
+      "desdeTexto": "la tarde del domingo 15 de noviembre del 2026",
+      "hastaTexto": "la noche del domingo 15 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-15",
+      "fechaFinDia": "2026-11-15",
+      "fechaEmision": "2026-11-14T12:41:00-03:00",
+      "regiones": [
+        "Biobío",
+        "La Araucanía",
+        "Los Lagos",
+        "Los Ríos",
+        "Maule",
+        "Ñuble"
+      ],
+      "numeroPoligonos": 28,
+      "archivoGeojson": "data/dmc/A621_2026.geojson",
+      "archivoCobertura": "data/dmc/A621_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A621_2026_impactos.json",
+      "observacion": "Probabilidad de granizos y fuertes rachas de vientos locales",
+      "archivoDocumento": "data/dmc/A621_2026_documento.json"
     },
     {
       "codigo": "A620/2026",
@@ -119,24 +144,6 @@
       "archivoDocumento": "data/dmc/A610-4_2026_documento.json"
     },
     {
-      "codigo": "A615/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Viento",
-      "titulo": "Viento Normal a Moderado en Isla de Pascua",
-      "desdeTexto": "la mañana del viernes 13 de noviembre del 2026",
-      "hastaTexto": "la mañana del sábado 14 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-13",
-      "fechaFinDia": "2026-11-14",
-      "fechaEmision": "2026-11-11T09:27:00-03:00",
-      "regiones": [],
-      "numeroPoligonos": 1,
-      "archivoGeojson": "data/dmc/A615_2026.geojson",
-      "archivoCobertura": "data/dmc/A615_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A615_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A615_2026_documento.json"
-    },
-    {
       "codigo": "A607-3/2026",
       "tipo": "Aviso",
       "fenomeno": "Tormentas Eléctricas",
@@ -159,5 +166,5 @@
       "archivoDocumento": "data/dmc/A607-3_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-14T07:25:27.170705-03:00"
+  "generadoEn": "2026-11-14T15:00:13.274518-03:00"
 }

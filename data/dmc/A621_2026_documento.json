@@ -1,0 +1,14 @@
+{
+  "codigo": "A621/2026",
+  "tipo": "Aviso",
+  "titulo": "Probables Tormentas Eléctricas en zonas desde la región del Maule a la región de Los Lagos",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Sábado 14 de noviembre del 2026 a las 12:41 hrs.",
+  "condicionSinoptica": "Baja segregada",
+  "desde": "la tarde del domingo 15 de noviembre del 2026",
+  "hasta": "la noche del domingo 15 de noviembre del 2026",
+  "observacion": "Probabilidad de granizos y fuertes rachas de vientos locales",
+  "textoZonaAfecta": "Maule (Precordillera, Cordillera)\nÑuble (Litoral, Cordillera Costa, Valle, Precordillera, Cordillera)\nBiobío (Litoral, Cordillera Costa, Valle, Precordillera, Cordillera)\nLa Araucanía (Litoral, Cordillera Costa, Valle, Precordillera, Cordillera)\nLos Ríos (Litoral, Cordillera Costa, Valle, Precordillera, Cordillera)\nLos Lagos (Litoral, Cordillera Costa, Valle, Precordillera, Cordillera, Litoral Interior)",
+  "tablaTitulo": "",
+  "tablaFilas": []
+}
