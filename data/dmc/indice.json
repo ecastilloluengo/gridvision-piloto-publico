@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-13 18:42",
+  "catalogoActualizadoEn": "2026-11-14 07:21",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -50,26 +50,6 @@
       "archivoImpactos": "data/dmc/A620_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A620_2026_documento.json"
-    },
-    {
-      "codigo": "A618/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Precipitaciones",
-      "titulo": "Precipitaciones Normales a Moderadas en cordillera de la región de Arica y Parinacota",
-      "desdeTexto": "la tarde del viernes 13 de noviembre del 2026",
-      "hastaTexto": "la madrugada del sábado 14 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-13",
-      "fechaFinDia": "2026-11-14",
-      "fechaEmision": "2026-11-12T23:07:00-03:00",
-      "regiones": [
-        "Arica y Parinacota"
-      ],
-      "numeroPoligonos": 1,
-      "archivoGeojson": "data/dmc/A618_2026.geojson",
-      "archivoCobertura": "data/dmc/A618_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A618_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A618_2026_documento.json"
     },
     {
       "codigo": "AA197/2026",
@@ -179,5 +159,5 @@
       "archivoDocumento": "data/dmc/A607-3_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-13T22:27:00.293095-03:00"
+  "generadoEn": "2026-11-14T07:25:27.170705-03:00"
 }
