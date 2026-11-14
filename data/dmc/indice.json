@@ -1,12 +1,33 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-14 12:46",
+  "catalogoActualizadoEn": "2026-11-14 19:19",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
     {
-      "codigo": "A619/2026",
+      "codigo": "A622/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Viento",
+      "titulo": "Viento Normal a Moderado en cordillera de las regiones de Antofagasta y Atacama",
+      "desdeTexto": "la tarde del lunes 16 de noviembre del 2026",
+      "hastaTexto": "la noche del miércoles 18 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-16",
+      "fechaFinDia": "2026-11-18",
+      "fechaEmision": "2026-11-14T15:38:00-03:00",
+      "regiones": [
+        "Antofagasta",
+        "Atacama"
+      ],
+      "numeroPoligonos": 2,
+      "archivoGeojson": "data/dmc/A622_2026.geojson",
+      "archivoCobertura": "data/dmc/A622_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A622_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A622_2026_documento.json"
+    },
+    {
+      "codigo": "A619-1/2026",
       "tipo": "Aviso",
       "fenomeno": "Viento",
       "titulo": "Viento Normal a Moderado en zonas desde la región de Coquimbo a la región del Biobío",
@@ -14,7 +35,7 @@
       "hastaTexto": "la noche del lunes 16 de noviembre del 2026",
       "fechaInicioDia": "2026-11-14",
       "fechaFinDia": "2026-11-16",
-      "fechaEmision": "2026-11-13T15:21:00-03:00",
+      "fechaEmision": "2026-11-14T15:45:00-03:00",
       "regiones": [
         "Biobío",
         "Coquimbo",
@@ -25,11 +46,76 @@
         "Ñuble"
       ],
       "numeroPoligonos": 19,
-      "archivoGeojson": "data/dmc/A619_2026.geojson",
-      "archivoCobertura": "data/dmc/A619_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A619_2026_impactos.json",
+      "archivoGeojson": "data/dmc/A619-1_2026.geojson",
+      "archivoCobertura": "data/dmc/A619-1_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A619-1_2026_impactos.json",
       "observacion": "",
-      "archivoDocumento": "data/dmc/A619_2026_documento.json"
+      "archivoDocumento": "data/dmc/A619-1_2026_documento.json"
+    },
+    {
+      "codigo": "A624/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Nubes Convectivas Tornádicas",
+      "titulo": "Probable desarrollo de Nubes Convectivas con características tornádicas en valle de las regiones de Ñuble, Biobío y La Araucanía",
+      "desdeTexto": "la tarde del domingo 15 de noviembre del 2026",
+      "hastaTexto": "la tarde del domingo 15 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-15",
+      "fechaFinDia": "2026-11-15",
+      "fechaEmision": "2026-11-14T16:58:00-03:00",
+      "regiones": [
+        "Biobío",
+        "La Araucanía",
+        "Ñuble"
+      ],
+      "numeroPoligonos": 3,
+      "archivoGeojson": "data/dmc/A624_2026.geojson",
+      "archivoCobertura": "data/dmc/A624_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A624_2026_impactos.json",
+      "observacion": "Probabilidad de intensos vientos locales arrachados y tornádicos",
+      "archivoDocumento": "data/dmc/A624_2026_documento.json"
+    },
+    {
+      "codigo": "A623/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Viento",
+      "titulo": "Viento Normal a Moderado en zonas de las regiones de Valparaíso, Metropolitana y O'Higgins",
+      "desdeTexto": "la tarde del domingo 15 de noviembre del 2026",
+      "hastaTexto": "la tarde del domingo 15 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-15",
+      "fechaFinDia": "2026-11-15",
+      "fechaEmision": "2026-11-14T15:58:00-03:00",
+      "regiones": [
+        "Metropolitana",
+        "O’Higgins",
+        "Valparaíso"
+      ],
+      "numeroPoligonos": 5,
+      "archivoGeojson": "data/dmc/A623_2026.geojson",
+      "archivoCobertura": "data/dmc/A623_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A623_2026_impactos.json",
+      "observacion": "Viento de dirección ESTE (Raco, Puelche)",
+      "archivoDocumento": "data/dmc/A623_2026_documento.json"
+    },
+    {
+      "codigo": "A610-5/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Altas Temperaturas",
+      "titulo": "Altas Temperaturas en zonas de las regiones de Tarapacá y Antofagasta",
+      "desdeTexto": "la tarde del sábado 14 de noviembre del 2026",
+      "hastaTexto": "la tarde del domingo 15 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-14",
+      "fechaFinDia": "2026-11-15",
+      "fechaEmision": "2026-11-14T15:38:00-03:00",
+      "regiones": [
+        "Antofagasta",
+        "Tarapacá"
+      ],
+      "numeroPoligonos": 3,
+      "archivoGeojson": "data/dmc/A610-5_2026.geojson",
+      "archivoCobertura": "data/dmc/A610-5_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A610-5_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A610-5_2026_documento.json"
     },
     {
       "codigo": "A621/2026",
@@ -77,73 +163,6 @@
       "archivoDocumento": "data/dmc/A620_2026_documento.json"
     },
     {
-      "codigo": "AA197/2026",
-      "tipo": "Alerta",
-      "fenomeno": "Altas Temperaturas",
-      "titulo": "Evento de Altas Temperaturas Extremas en zonas de las regiones de La Araucanía, Los Ríos y Los Lagos",
-      "desdeTexto": "la tarde del sábado 14 de noviembre del 2026",
-      "hastaTexto": "la tarde del sábado 14 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-14",
-      "fechaFinDia": "2026-11-14",
-      "fechaEmision": "2026-11-12T13:31:00-03:00",
-      "regiones": [
-        "La Araucanía",
-        "Los Lagos",
-        "Los Ríos"
-      ],
-      "numeroPoligonos": 4,
-      "archivoGeojson": "data/dmc/AA197_2026.geojson",
-      "archivoCobertura": "data/dmc/AA197_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/AA197_2026_impactos.json",
-      "observacion": "Este evento también afectará la comuna de Valdivia",
-      "archivoDocumento": "data/dmc/AA197_2026_documento.json"
-    },
-    {
-      "codigo": "A616-2/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Altas Temperaturas",
-      "titulo": "Altas Temperaturas en zonas de las regiones de Los Ríos, Los Lagos y Aysén",
-      "desdeTexto": "la madrugada del sábado 14 de noviembre del 2026",
-      "hastaTexto": "la noche del sábado 14 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-14",
-      "fechaFinDia": "2026-11-14",
-      "fechaEmision": "2026-11-12T13:31:00-03:00",
-      "regiones": [
-        "Aysén",
-        "Los Lagos",
-        "Los Ríos"
-      ],
-      "numeroPoligonos": 7,
-      "archivoGeojson": "data/dmc/A616-2_2026.geojson",
-      "archivoCobertura": "data/dmc/A616-2_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A616-2_2026_impactos.json",
-      "observacion": "Este evento también afectará la comuna de Valdivia",
-      "archivoDocumento": "data/dmc/A616-2_2026_documento.json"
-    },
-    {
-      "codigo": "A610-4/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Altas Temperaturas",
-      "titulo": "Altas Temperaturas en zonas desde la región de Tarapacá a la región de Coquimbo",
-      "desdeTexto": "la tarde del miércoles 11 de noviembre del 2026",
-      "hastaTexto": "la tarde del sábado 14 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-11",
-      "fechaFinDia": "2026-11-14",
-      "fechaEmision": "2026-11-11T12:07:00-03:00",
-      "regiones": [
-        "Antofagasta",
-        "Atacama",
-        "Coquimbo",
-        "Tarapacá"
-      ],
-      "numeroPoligonos": 7,
-      "archivoGeojson": "data/dmc/A610-4_2026.geojson",
-      "archivoCobertura": "data/dmc/A610-4_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A610-4_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A610-4_2026_documento.json"
-    },
-    {
       "codigo": "A607-3/2026",
       "tipo": "Aviso",
       "fenomeno": "Tormentas Eléctricas",
@@ -166,5 +185,5 @@
       "archivoDocumento": "data/dmc/A607-3_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-14T15:00:13.274518-03:00"
+  "generadoEn": "2026-11-14T19:23:39.724433-03:00"
 }

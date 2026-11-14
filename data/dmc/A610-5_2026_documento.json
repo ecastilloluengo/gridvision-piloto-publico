@@ -1,0 +1,114 @@
+{
+  "codigo": "A610-5/2026",
+  "tipo": "Aviso",
+  "titulo": "Altas Temperaturas en zonas de las regiones de Tarapacá y Antofagasta",
+  "fenomeno": "Altas Temperaturas",
+  "emisionTexto": "Sábado 14 de noviembre del 2026 a las 15:38 hrs.",
+  "condicionSinoptica": "Dorsal en altura",
+  "desde": "la tarde del sábado 14 de noviembre del 2026",
+  "hasta": "la tarde del domingo 15 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Tarapacá (Pampa)\nAntofagasta (Pampa, Precordillera Salar)",
+  "tablaTitulo": "Valores estimados de temperatura en grados Celsius (°C)",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Tarapacá"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 14"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "domingo 15"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Pampa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "35-36"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "35-36"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Antofagasta"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 14"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "domingo 15"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Pampa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "33-35"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "33-35"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera Salar"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "33-35"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "--"
+      }
+    ]
+  ]
+}

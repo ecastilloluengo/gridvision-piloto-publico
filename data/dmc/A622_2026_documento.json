@@ -1,0 +1,117 @@
+{
+  "codigo": "A622/2026",
+  "tipo": "Aviso",
+  "titulo": "Viento Normal a Moderado en cordillera de las regiones de Antofagasta y Atacama",
+  "fenomeno": "Viento",
+  "emisionTexto": "Sábado 14 de noviembre del 2026 a las 15:38 hrs.",
+  "condicionSinoptica": "Corriente en chorro",
+  "desde": "la tarde del lunes 16 de noviembre del 2026",
+  "hasta": "la noche del miércoles 18 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Antofagasta (Cordillera)\nAtacama (Cordillera)",
+  "tablaTitulo": "Intensidad estimada del Viento en Km/h",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: Antofagasta"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 16"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 17"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 18"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "--"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "50-70"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "50-70"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: Atacama"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 16"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 17"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 18"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "60-80"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "70-90"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "60-80"
+      }
+    ]
+  ]
+}
