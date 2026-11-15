@@ -1,30 +1,80 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-15 06:25",
+  "catalogoActualizadoEn": "2026-11-15 19:37",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
     {
-      "codigo": "A622/2026",
+      "codigo": "A622-2/2026",
       "tipo": "Aviso",
       "fenomeno": "Viento",
-      "titulo": "Viento Normal a Moderado en cordillera de las regiones de Antofagasta y Atacama",
+      "titulo": "Viento Normal a Moderado en cordillera de las regiones de Antofagasta, Atacama y Coquimbo",
       "desdeTexto": "la tarde del lunes 16 de noviembre del 2026",
       "hastaTexto": "la noche del miércoles 18 de noviembre del 2026",
       "fechaInicioDia": "2026-11-16",
       "fechaFinDia": "2026-11-18",
-      "fechaEmision": "2026-11-14T15:38:00-03:00",
+      "fechaEmision": "2026-11-15T19:32:00-03:00",
       "regiones": [
         "Antofagasta",
-        "Atacama"
+        "Atacama",
+        "Coquimbo"
       ],
-      "numeroPoligonos": 2,
-      "archivoGeojson": "data/dmc/A622_2026.geojson",
-      "archivoCobertura": "data/dmc/A622_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A622_2026_impactos.json",
+      "numeroPoligonos": 3,
+      "archivoGeojson": "data/dmc/A622-2_2026.geojson",
+      "archivoCobertura": "data/dmc/A622-2_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A622-2_2026_impactos.json",
       "observacion": "",
-      "archivoDocumento": "data/dmc/A622_2026_documento.json"
+      "archivoDocumento": "data/dmc/A622-2_2026_documento.json"
+    },
+    {
+      "codigo": "A621-2/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Coquimbo a la región de Los Lagos",
+      "desdeTexto": "la tarde del domingo 15 de noviembre del 2026",
+      "hastaTexto": "la noche del martes 17 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-15",
+      "fechaFinDia": "2026-11-17",
+      "fechaEmision": "2026-11-15T15:42:00-03:00",
+      "regiones": [
+        "Biobío",
+        "Coquimbo",
+        "La Araucanía",
+        "Los Lagos",
+        "Los Ríos",
+        "Maule",
+        "Metropolitana",
+        "O’Higgins",
+        "Valparaíso",
+        "Ñuble"
+      ],
+      "numeroPoligonos": 40,
+      "archivoGeojson": "data/dmc/A621-2_2026.geojson",
+      "archivoCobertura": "data/dmc/A621-2_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A621-2_2026_impactos.json",
+      "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
+      "archivoDocumento": "data/dmc/A621-2_2026_documento.json"
+    },
+    {
+      "codigo": "A625/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Altas Temperaturas",
+      "titulo": "Altas Temperaturas en Comunas: Torres del Paine, Puerto Natales, Laguna Blanca, San Gregorio y Primavera - Reg. Magallanes",
+      "desdeTexto": "la tarde del martes 17 de noviembre del 2026",
+      "hastaTexto": "la noche del martes 17 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-17",
+      "fechaFinDia": "2026-11-17",
+      "fechaEmision": "2026-11-15T15:13:00-03:00",
+      "regiones": [
+        "Magallanes"
+      ],
+      "numeroPoligonos": 1,
+      "archivoGeojson": "data/dmc/A625_2026.geojson",
+      "archivoCobertura": "data/dmc/A625_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A625_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A625_2026_documento.json"
     },
     {
       "codigo": "A619-1/2026",
@@ -75,32 +125,6 @@
       "archivoDocumento": "data/dmc/A624-1_2026_documento.json"
     },
     {
-      "codigo": "A621-1/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas desde la región de O'Higgins a la región de Los Lagos",
-      "desdeTexto": "la mañana del domingo 15 de noviembre del 2026",
-      "hastaTexto": "la noche del domingo 15 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-15",
-      "fechaFinDia": "2026-11-15",
-      "fechaEmision": "2026-11-15T05:55:00-03:00",
-      "regiones": [
-        "Biobío",
-        "La Araucanía",
-        "Los Lagos",
-        "Los Ríos",
-        "Maule",
-        "O’Higgins",
-        "Ñuble"
-      ],
-      "numeroPoligonos": 30,
-      "archivoGeojson": "data/dmc/A621-1_2026.geojson",
-      "archivoCobertura": "data/dmc/A621-1_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A621-1_2026_impactos.json",
-      "observacion": "Probabilidad de granizos y fuertes rachas de vientos locales",
-      "archivoDocumento": "data/dmc/A621-1_2026_documento.json"
-    },
-    {
       "codigo": "A623/2026",
       "tipo": "Aviso",
       "fenomeno": "Viento",
@@ -123,27 +147,6 @@
       "archivoDocumento": "data/dmc/A623_2026_documento.json"
     },
     {
-      "codigo": "A610-5/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Altas Temperaturas",
-      "titulo": "Altas Temperaturas en zonas de las regiones de Tarapacá y Antofagasta",
-      "desdeTexto": "la tarde del sábado 14 de noviembre del 2026",
-      "hastaTexto": "la tarde del domingo 15 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-14",
-      "fechaFinDia": "2026-11-15",
-      "fechaEmision": "2026-11-14T15:38:00-03:00",
-      "regiones": [
-        "Antofagasta",
-        "Tarapacá"
-      ],
-      "numeroPoligonos": 3,
-      "archivoGeojson": "data/dmc/A610-5_2026.geojson",
-      "archivoCobertura": "data/dmc/A610-5_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A610-5_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A610-5_2026_documento.json"
-    },
-    {
       "codigo": "A620/2026",
       "tipo": "Aviso",
       "fenomeno": "Altas Temperaturas",
@@ -164,5 +167,5 @@
       "archivoDocumento": "data/dmc/A620_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-15T13:21:23.164147-03:00"
+  "generadoEn": "2026-11-15T19:47:50.639458-03:00"
 }

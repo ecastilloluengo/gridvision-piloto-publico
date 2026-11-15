@@ -1,0 +1,1185 @@
+{
+  "codigo": "A621-2/2026",
+  "tipo": "Aviso",
+  "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Coquimbo a la región de Los Lagos",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Domingo 15 de noviembre del 2026 a las 15:42 hrs.",
+  "condicionSinoptica": "Vaguada en altura",
+  "desde": "la tarde del domingo 15 de noviembre del 2026",
+  "hasta": "la noche del martes 17 de noviembre del 2026",
+  "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
+  "textoZonaAfecta": "Coquimbo (Cordillera)\nValparaíso (Precordillera y valles precordilleranos, Cordillera)\nMetropolitana (Valle, Precordillera, Cordillera)\nO'Higgins (Valle, Precordillera, Cordillera)\nMaule (Litoral, Cordillera Costa, Valle, Precordillera, Cordillera)\nÑuble (Litoral, Cordillera Costa, Valle, Precordillera, Cordillera)\nBiobío (Litoral, Cordillera Costa, Valle, Precordillera, Cordillera)\nLa Araucanía (Litoral, Cordillera Costa, Valle, Precordillera, Cordillera)\nLos Ríos (Litoral, Cordillera Costa, Valle, Precordillera, Cordillera)\nLos Lagos (Litoral, Cordillera Costa, Valle, Precordillera, Cordillera, Litoral Interior)",
+  "tablaTitulo": "Ocurrencia de Tormentas Eléctricas",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: Coquimbo"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "domingo 15"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 16"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 17"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: Valparaíso"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "domingo 15"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 16"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 17"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera y valles precordilleranos"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: Metropolitana"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "domingo 15"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 16"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 17"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: O'Higgins"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "domingo 15"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 16"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 17"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: Maule"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "domingo 15"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 16"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 17"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Litoral"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera Costa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: Ñuble"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "domingo 15"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 16"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 17"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Litoral"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera Costa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: Biobío"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "domingo 15"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 16"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 17"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Litoral"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera Costa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: La Araucanía"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "domingo 15"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 16"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 17"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Litoral"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera Costa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: Los Ríos"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "domingo 15"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 16"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 17"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Litoral"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera Costa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 4,
+        "texto": "Región: Los Lagos"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "domingo 15"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 16"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 17"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Litoral"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera Costa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Litoral Interior"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "⚡"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ]
+  ]
+}
