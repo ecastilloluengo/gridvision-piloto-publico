@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-14 19:19",
+  "catalogoActualizadoEn": "2026-11-14 22:05",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -161,29 +161,7 @@
       "archivoImpactos": "data/dmc/A620_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A620_2026_documento.json"
-    },
-    {
-      "codigo": "A607-3/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en cordillera de las regiones de Arica y Parinacota, Tarapacá y Antofagasta",
-      "desdeTexto": "la tarde del martes 10 de noviembre del 2026",
-      "hastaTexto": "la noche del sábado 14 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-10",
-      "fechaFinDia": "2026-11-14",
-      "fechaEmision": "2026-11-10T15:15:00-03:00",
-      "regiones": [
-        "Antofagasta",
-        "Arica y Parinacota",
-        "Tarapacá"
-      ],
-      "numeroPoligonos": 3,
-      "archivoGeojson": "data/dmc/A607-3_2026.geojson",
-      "archivoCobertura": "data/dmc/A607-3_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A607-3_2026_impactos.json",
-      "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
-      "archivoDocumento": "data/dmc/A607-3_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-14T19:23:39.724433-03:00"
+  "generadoEn": "2026-11-15T03:30:43.039064-03:00"
 }
