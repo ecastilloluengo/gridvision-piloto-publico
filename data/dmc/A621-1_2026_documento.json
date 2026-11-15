@@ -1,0 +1,14 @@
+{
+  "codigo": "A621-1/2026",
+  "tipo": "Aviso",
+  "titulo": "Probables Tormentas Eléctricas en zonas desde la región de O'Higgins a la región de Los Lagos",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Domingo 15 de noviembre del 2026 a las 05:55 hrs.",
+  "condicionSinoptica": "Baja segregada",
+  "desde": "la mañana del domingo 15 de noviembre del 2026",
+  "hasta": "la noche del domingo 15 de noviembre del 2026",
+  "observacion": "Probabilidad de granizos y fuertes rachas de vientos locales",
+  "textoZonaAfecta": "O'Higgins (Precordillera, Cordillera)\nMaule (Precordillera, Cordillera)\nÑuble (Litoral, Cordillera Costa, Valle, Precordillera, Cordillera)\nBiobío (Litoral, Cordillera Costa, Valle, Precordillera, Cordillera)\nLa Araucanía (Litoral, Cordillera Costa, Valle, Precordillera, Cordillera)\nLos Ríos (Litoral, Cordillera Costa, Valle, Precordillera, Cordillera)\nLos Lagos (Litoral, Cordillera Costa, Valle, Precordillera, Cordillera, Litoral Interior)",
+  "tablaTitulo": "",
+  "tablaFilas": []
+}

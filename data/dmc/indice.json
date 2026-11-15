@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-14 22:05",
+  "catalogoActualizadoEn": "2026-11-15 06:25",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -53,26 +53,52 @@
       "archivoDocumento": "data/dmc/A619-1_2026_documento.json"
     },
     {
-      "codigo": "A624/2026",
+      "codigo": "A624-1/2026",
       "tipo": "Aviso",
       "fenomeno": "Nubes Convectivas Tornádicas",
-      "titulo": "Probable desarrollo de Nubes Convectivas con características tornádicas en valle de las regiones de Ñuble, Biobío y La Araucanía",
+      "titulo": "Probable desarrollo de Nubes Convectivas con características tornádicas en zonas de las regiones de Ñuble, Biobío y La Araucanía",
       "desdeTexto": "la tarde del domingo 15 de noviembre del 2026",
       "hastaTexto": "la tarde del domingo 15 de noviembre del 2026",
       "fechaInicioDia": "2026-11-15",
       "fechaFinDia": "2026-11-15",
-      "fechaEmision": "2026-11-14T16:58:00-03:00",
+      "fechaEmision": "2026-11-15T06:20:00-03:00",
       "regiones": [
         "Biobío",
         "La Araucanía",
         "Ñuble"
       ],
-      "numeroPoligonos": 3,
-      "archivoGeojson": "data/dmc/A624_2026.geojson",
-      "archivoCobertura": "data/dmc/A624_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A624_2026_impactos.json",
+      "numeroPoligonos": 7,
+      "archivoGeojson": "data/dmc/A624-1_2026.geojson",
+      "archivoCobertura": "data/dmc/A624-1_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A624-1_2026_impactos.json",
       "observacion": "Probabilidad de intensos vientos locales arrachados y tornádicos",
-      "archivoDocumento": "data/dmc/A624_2026_documento.json"
+      "archivoDocumento": "data/dmc/A624-1_2026_documento.json"
+    },
+    {
+      "codigo": "A621-1/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en zonas desde la región de O'Higgins a la región de Los Lagos",
+      "desdeTexto": "la mañana del domingo 15 de noviembre del 2026",
+      "hastaTexto": "la noche del domingo 15 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-15",
+      "fechaFinDia": "2026-11-15",
+      "fechaEmision": "2026-11-15T05:55:00-03:00",
+      "regiones": [
+        "Biobío",
+        "La Araucanía",
+        "Los Lagos",
+        "Los Ríos",
+        "Maule",
+        "O’Higgins",
+        "Ñuble"
+      ],
+      "numeroPoligonos": 30,
+      "archivoGeojson": "data/dmc/A621-1_2026.geojson",
+      "archivoCobertura": "data/dmc/A621-1_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A621-1_2026_impactos.json",
+      "observacion": "Probabilidad de granizos y fuertes rachas de vientos locales",
+      "archivoDocumento": "data/dmc/A621-1_2026_documento.json"
     },
     {
       "codigo": "A623/2026",
@@ -118,31 +144,6 @@
       "archivoDocumento": "data/dmc/A610-5_2026_documento.json"
     },
     {
-      "codigo": "A621/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas desde la región del Maule a la región de Los Lagos",
-      "desdeTexto": "la tarde del domingo 15 de noviembre del 2026",
-      "hastaTexto": "la noche del domingo 15 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-15",
-      "fechaFinDia": "2026-11-15",
-      "fechaEmision": "2026-11-14T12:41:00-03:00",
-      "regiones": [
-        "Biobío",
-        "La Araucanía",
-        "Los Lagos",
-        "Los Ríos",
-        "Maule",
-        "Ñuble"
-      ],
-      "numeroPoligonos": 28,
-      "archivoGeojson": "data/dmc/A621_2026.geojson",
-      "archivoCobertura": "data/dmc/A621_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A621_2026_impactos.json",
-      "observacion": "Probabilidad de granizos y fuertes rachas de vientos locales",
-      "archivoDocumento": "data/dmc/A621_2026_documento.json"
-    },
-    {
       "codigo": "A620/2026",
       "tipo": "Aviso",
       "fenomeno": "Altas Temperaturas",
@@ -163,5 +164,5 @@
       "archivoDocumento": "data/dmc/A620_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-15T03:30:43.039064-03:00"
+  "generadoEn": "2026-11-15T13:21:23.164147-03:00"
 }
