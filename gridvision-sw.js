@@ -79,3 +79,5 @@ self.addEventListener('fetch',event=>{
 });
 
 // Actualizacion Portal PFV nocturno V21552
+
+// Portal PFV nocturno sin respaldo V21553

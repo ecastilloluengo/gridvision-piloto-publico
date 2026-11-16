@@ -406,6 +406,8 @@ window.GVPortalContadoresOffline = {
       return elevacion <= -6;
     }
 
+
+    // GV PFV NOCHE V21553
     function actualizarPotenciaHistorica(
       id, ahora = Date.now()
     ) {
@@ -415,8 +417,6 @@ window.GVPortalContadoresOffline = {
       if (!elemento?.dataset.gvSolarHistorico) return;
 
       const dato = leer(id);
-      if (!dato) return;
-
       const noche = esNochePFV(id, ahora);
 
       const etiqueta =
@@ -424,23 +424,32 @@ window.GVPortalContadoresOffline = {
 
       elemento.textContent = noche
         ? '0 kW'
-        : dato.valores.power;
+        : dato?.valores.power || '-- kW';
 
       if (etiqueta) {
-
         etiqueta.textContent = noche
           ? 'Potencia estimada'
           : 'Potencia registrada';
       }
 
-      elemento.title = noche
-        ? 'Cero estimado por horario solar nocturno. ' +
-          'No corresponde a telemetria actual. ' +
-          'Ultima potencia registrada: ' +
-          dato.valores.power +
-          ' | Lectura: ' + fecha(dato.fuente)
-        : 'Dato historico. Lectura: ' +
-          fecha(dato.fuente);
+      if (noche) {
+
+        elemento.title =
+          'Cero estimado por horario solar nocturno. ' +
+          'No corresponde a telemetria actual.' +
+          (dato
+            ? ' Ultima potencia registrada: ' +
+              dato.valores.power +
+              ' | Lectura: ' + fecha(dato.fuente)
+            : ' Sin respaldo electrico disponible.');
+
+      } else {
+
+        elemento.title = dato
+          ? 'Dato historico. Lectura: ' +
+            fecha(dato.fuente)
+          : 'Sin datos guardados';
+      }
     }
 
     function restaurar(id, conservarDetalle = false) {
