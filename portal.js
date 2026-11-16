@@ -336,6 +336,113 @@ window.GVPortalContadoresOffline = {
       return true;
     }
 
+
+    // GV PFV NOCHE V21552
+
+    const coordenadasNoche = {
+      'lo-aguirre': [-33.453723, -70.870886],
+      'techo': [-32.814831, -70.563485],
+      'paidahuen': [-32.816633, -70.558387]
+    };
+
+    function esNochePFV(id, ahora = Date.now()) {
+
+      const punto = coordenadasNoche[id];
+      if (!punto) return false;
+
+      const [lat, lon] = punto;
+      const d = new Date(ahora);
+
+      const rad = Math.PI / 180;
+
+      const dia = (
+        Date.UTC(
+          d.getUTCFullYear(),
+          d.getUTCMonth(),
+          d.getUTCDate()
+        ) - Date.UTC(d.getUTCFullYear(), 0, 1)
+      ) / 86400000 + 1;
+
+      const minutos =
+        d.getUTCHours() * 60 +
+        d.getUTCMinutes() +
+        d.getUTCSeconds() / 60;
+
+      const diasAnio = (
+        Date.UTC(d.getUTCFullYear() + 1, 0, 1) -
+        Date.UTC(d.getUTCFullYear(), 0, 1)
+      ) / 86400000;
+
+      const g = 2 * Math.PI / diasAnio *
+        (dia - 1 + (minutos / 60 - 12) / 24);
+
+      const eq = 229.18 * (
+        0.000075 +
+        0.001868 * Math.cos(g) -
+        0.032077 * Math.sin(g) -
+        0.014615 * Math.cos(2 * g) -
+        0.040849 * Math.sin(2 * g)
+      );
+
+      const dec =
+        0.006918 -
+        0.399912 * Math.cos(g) +
+        0.070257 * Math.sin(g) -
+        0.006758 * Math.cos(2 * g) +
+        0.000907 * Math.sin(2 * g) -
+        0.002697 * Math.cos(3 * g) +
+        0.001480 * Math.sin(3 * g);
+
+      const angulo =
+        ((minutos + eq + 4 * lon) / 4 - 180) * rad;
+
+      const elevacion = Math.asin(
+        Math.sin(lat * rad) * Math.sin(dec) +
+        Math.cos(lat * rad) * Math.cos(dec) *
+        Math.cos(angulo)
+      ) / rad;
+
+      // Noche: final del crepusculo civil.
+      return elevacion <= -6;
+    }
+
+    function actualizarPotenciaHistorica(
+      id, ahora = Date.now()
+    ) {
+
+      const elemento = el(id, 'power');
+
+      if (!elemento?.dataset.gvSolarHistorico) return;
+
+      const dato = leer(id);
+      if (!dato) return;
+
+      const noche = esNochePFV(id, ahora);
+
+      const etiqueta =
+        elemento.parentElement?.querySelector('span');
+
+      elemento.textContent = noche
+        ? '0 kW'
+        : dato.valores.power;
+
+      if (etiqueta) {
+
+        etiqueta.textContent = noche
+          ? 'Potencia estimada'
+          : 'Potencia registrada';
+      }
+
+      elemento.title = noche
+        ? 'Cero estimado por horario solar nocturno. ' +
+          'No corresponde a telemetria actual. ' +
+          'Ultima potencia registrada: ' +
+          dato.valores.power +
+          ' | Lectura: ' + fecha(dato.fuente)
+        : 'Dato historico. Lectura: ' +
+          fecha(dato.fuente);
+    }
+
     function restaurar(id, conservarDetalle = false) {
 
       const dato = leer(id);
@@ -362,6 +469,8 @@ window.GVPortalContadoresOffline = {
 
         elemento.dataset.gvSolarHistorico = 'true';
       }
+
+      actualizarPotenciaHistorica(id);
 
       const estado = el(id, 'status');
 
@@ -518,6 +627,10 @@ window.GVPortalContadoresOffline = {
         };
       });
     }
+
+    setInterval(() => {
+      ids.forEach(id => actualizarPotenciaHistorica(id));
+    }, 30000);
 
     return {
       valido,
