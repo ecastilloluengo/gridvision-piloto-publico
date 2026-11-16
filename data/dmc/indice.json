@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-15 19:37",
+  "catalogoActualizadoEn": "2026-11-15 22:15",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -101,71 +101,7 @@
       "archivoImpactos": "data/dmc/A619-1_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A619-1_2026_documento.json"
-    },
-    {
-      "codigo": "A624-1/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Nubes Convectivas Tornádicas",
-      "titulo": "Probable desarrollo de Nubes Convectivas con características tornádicas en zonas de las regiones de Ñuble, Biobío y La Araucanía",
-      "desdeTexto": "la tarde del domingo 15 de noviembre del 2026",
-      "hastaTexto": "la tarde del domingo 15 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-15",
-      "fechaFinDia": "2026-11-15",
-      "fechaEmision": "2026-11-15T06:20:00-03:00",
-      "regiones": [
-        "Biobío",
-        "La Araucanía",
-        "Ñuble"
-      ],
-      "numeroPoligonos": 7,
-      "archivoGeojson": "data/dmc/A624-1_2026.geojson",
-      "archivoCobertura": "data/dmc/A624-1_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A624-1_2026_impactos.json",
-      "observacion": "Probabilidad de intensos vientos locales arrachados y tornádicos",
-      "archivoDocumento": "data/dmc/A624-1_2026_documento.json"
-    },
-    {
-      "codigo": "A623/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Viento",
-      "titulo": "Viento Normal a Moderado en zonas de las regiones de Valparaíso, Metropolitana y O'Higgins",
-      "desdeTexto": "la tarde del domingo 15 de noviembre del 2026",
-      "hastaTexto": "la tarde del domingo 15 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-15",
-      "fechaFinDia": "2026-11-15",
-      "fechaEmision": "2026-11-14T15:58:00-03:00",
-      "regiones": [
-        "Metropolitana",
-        "O’Higgins",
-        "Valparaíso"
-      ],
-      "numeroPoligonos": 5,
-      "archivoGeojson": "data/dmc/A623_2026.geojson",
-      "archivoCobertura": "data/dmc/A623_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A623_2026_impactos.json",
-      "observacion": "Viento de dirección ESTE (Raco, Puelche)",
-      "archivoDocumento": "data/dmc/A623_2026_documento.json"
-    },
-    {
-      "codigo": "A620/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Altas Temperaturas",
-      "titulo": "Altas Temperaturas en comunas de Torres del Paine, Pto. Natales, Laguna Blanca, San Gregorio y Primavera, Reg. Magallanes",
-      "desdeTexto": "la mañana del domingo 15 de noviembre del 2026",
-      "hastaTexto": "la noche del domingo 15 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-15",
-      "fechaFinDia": "2026-11-15",
-      "fechaEmision": "2026-11-13T15:35:00-03:00",
-      "regiones": [
-        "Magallanes"
-      ],
-      "numeroPoligonos": 1,
-      "archivoGeojson": "data/dmc/A620_2026.geojson",
-      "archivoCobertura": "data/dmc/A620_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A620_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A620_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-15T19:47:50.639458-03:00"
+  "generadoEn": "2026-11-16T03:28:59.675965-03:00"
 }
