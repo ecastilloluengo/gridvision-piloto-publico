@@ -452,6 +452,198 @@ window.GVPortalContadoresOffline = {
       }
     }
 
+
+    // GV ENERGIA DIARIA PARCIAL V21554
+
+    const CLAVE_ENERGIA_SOLAX =
+      'gv-portal-solax-energia-diaria-v1';
+
+    let respaldoEnergiaSolax = null;
+
+    function horaChile(ms) {
+
+      const partes = Object.fromEntries(
+        new Intl.DateTimeFormat('en-CA', {
+          timeZone: 'America/Santiago',
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hourCycle: 'h23'
+        }).formatToParts(new Date(ms))
+          .map(p => [p.type, p.value])
+      );
+
+      return partes.year + '-' +
+        partes.month + '-' + partes.day +
+        'T' + partes.hour + ':' +
+        partes.minute + ':' + partes.second;
+    }
+
+    function energiaDiaSolax(i, ahora = Date.now()) {
+
+      if (!i || i.energia_hoy == null ||
+          String(i.energia_hoy).trim() === '') return null;
+
+      const valor = Number(i.energia_hoy);
+
+      if (!Number.isFinite(valor) || valor < 0) return null;
+
+      let lectura = String(i.ultimo_dato || '')
+        .trim().replace(' ', 'T');
+
+      if (/(Z|[+-]\d{2}:?\d{2})$/i.test(lectura)) {
+
+        const ms = Date.parse(lectura);
+
+        if (!Number.isFinite(ms)) return null;
+
+        lectura = horaChile(ms);
+      }
+
+      if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/
+          .test(lectura)) return null;
+
+      lectura = lectura.slice(0, 19);
+
+      const dia = horaChile(ahora).slice(0, 10);
+
+      if (lectura.slice(0, 10) !== dia ||
+          lectura > horaChile(ahora + 120000)) return null;
+
+      const msValidacion = Date.parse(lectura + 'Z');
+
+      if (!Number.isFinite(msValidacion) ||
+          new Date(msValidacion).toISOString().slice(0, 19)
+            !== lectura) return null;
+
+      return { lectura, valor };
+    }
+
+    function leerEnergiaSolax(ahora = Date.now()) {
+
+      const dia = horaChile(ahora).slice(0, 10);
+
+      let dato = respaldoEnergiaSolax;
+
+      if (!dato) {
+        try {
+          dato = JSON.parse(
+            localStorage.getItem(CLAVE_ENERGIA_SOLAX)
+          );
+        } catch (_) {}
+      }
+
+      if (!dato || dato.dia !== dia ||
+          !dato.equipos ||
+          typeof dato.equipos !== 'object') {
+
+        return { dia, equipos: {} };
+      }
+
+      return dato;
+    }
+
+    function guardarEnergiaSolax(
+      inversores, ahora = Date.now()
+    ) {
+
+      const dato = leerEnergiaSolax(ahora);
+
+      for (const i of inversores) {
+
+        const lectura = energiaDiaSolax(i, ahora);
+
+        const clave = String(
+          i?.wifiSn || i?.nombre || ''
+        ).trim();
+
+        if (!lectura || !clave) continue;
+
+        const anterior = dato.equipos[clave];
+
+        if (!anterior ||
+            lectura.lectura >= anterior.lectura) {
+
+          dato.equipos[clave] = lectura;
+        }
+      }
+
+      respaldoEnergiaSolax = dato;
+
+      try {
+        localStorage.setItem(
+          CLAVE_ENERGIA_SOLAX,
+          JSON.stringify(dato)
+        );
+      } catch (_) {}
+    }
+
+    function pintarEnergiaSolax(
+      id, ahora = Date.now()
+    ) {
+
+      if (id !== 'lo-aguirre') return;
+
+      const elemento = el(id, 'energy');
+
+      if (!elemento?.dataset.gvSolarHistorico) return;
+
+      const dato = leerEnergiaSolax(ahora);
+
+      const equipos = Object.values(dato.equipos)
+        .filter(i =>
+          i && Number.isFinite(i.valor) &&
+          i.valor >= 0 &&
+          String(i.lectura).startsWith(dato.dia + 'T')
+        );
+
+      const etiqueta =
+        elemento.parentElement?.querySelector('span');
+
+      if (equipos.length === 0 || equipos.length > 3) {
+
+        const anterior = leer(id);
+
+        elemento.textContent =
+          anterior?.valores.energy || '-- kWh';
+
+        if (etiqueta) {
+          etiqueta.textContent = 'Energ\u00EDa registrada';
+        }
+
+        elemento.title = anterior
+          ? 'Dato historico. Lectura: ' +
+            fecha(anterior.fuente)
+          : 'Sin datos de energia guardados';
+
+        return;
+      }
+
+      const total = equipos.reduce(
+        (suma, i) => suma + i.valor, 0
+      );
+
+      elemento.textContent =
+        total.toLocaleString('es-CL', {
+          maximumFractionDigits: 1
+        }) + ' kWh';
+
+      if (etiqueta) {
+        etiqueta.textContent = equipos.length < 3
+          ? 'Energ\u00EDa parcial hoy'
+          : 'Energ\u00EDa reg. hoy';
+      }
+
+      elemento.title =
+        'Energia acumulada del dia ' + dato.dia +
+        ' | Datos de ' + equipos.length + '/3 inversores' +
+        ' | Puede incluir lecturas anteriores a una falla.' +
+        ' Total definitivo no confirmado.';
+    }
+
     function restaurar(id, conservarDetalle = false) {
 
       const dato = leer(id);
@@ -480,6 +672,7 @@ window.GVPortalContadoresOffline = {
       }
 
       actualizarPotenciaHistorica(id);
+      pintarEnergiaSolax(id);
 
       const estado = el(id, 'status');
 
@@ -638,7 +831,10 @@ window.GVPortalContadoresOffline = {
     }
 
     setInterval(() => {
-      ids.forEach(id => actualizarPotenciaHistorica(id));
+      ids.forEach(id => {
+        actualizarPotenciaHistorica(id);
+        pintarEnergiaSolax(id);
+      });
     }, 30000);
 
     return {
@@ -648,7 +844,9 @@ window.GVPortalContadoresOffline = {
       restaurarTodo,
       parcial,
       normal,
-      resumen
+      resumen,
+      energiaDiaSolax,
+      guardarEnergiaSolax
     };
 
   })();
@@ -1548,6 +1746,10 @@ async function cargarClima(id, zona) {
       const ahoraSolax =
         Date.now();
 
+      solarOffline.guardarEnergiaSolax(
+        inversores, ahoraSolax
+      );
+
       function datoSolaxVigente(
         inversor
       ) {
@@ -1766,9 +1968,9 @@ async function cargarClima(id, zona) {
         }
 
         const energia =
-          numeroPortal(
-            inversor.energia_hoy
-          );
+          solarOffline.energiaDiaSolax(
+            inversor, ahoraSolax
+          )?.valor ?? null;
 
         if (energia !== null) {
           energiaHoyKwh += energia;
@@ -1837,8 +2039,9 @@ async function cargarClima(id, zona) {
         vigentes.length === 3 &&
         inversores.every(i =>
           solarOffline.valido(i.potencia_ac) &&
-          solarOffline.valido(i.energia_hoy) &&
-          Number(i.energia_hoy) >= 0
+          solarOffline.energiaDiaSolax(
+            i, ahoraSolax
+          ) !== null
         ) &&
         !['SIN DATOS', 'SIN COMUNICACION', 'DESCONOCIDO'].includes(estado);
 
