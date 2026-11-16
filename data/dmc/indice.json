@@ -1,42 +1,42 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-15 22:15",
+  "catalogoActualizadoEn": "2026-11-16 12:01",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
     {
-      "codigo": "A622-2/2026",
+      "codigo": "A622-3/2026",
       "tipo": "Aviso",
       "fenomeno": "Viento",
       "titulo": "Viento Normal a Moderado en cordillera de las regiones de Antofagasta, Atacama y Coquimbo",
       "desdeTexto": "la tarde del lunes 16 de noviembre del 2026",
-      "hastaTexto": "la noche del miércoles 18 de noviembre del 2026",
+      "hastaTexto": "la noche del jueves 19 de noviembre del 2026",
       "fechaInicioDia": "2026-11-16",
-      "fechaFinDia": "2026-11-18",
-      "fechaEmision": "2026-11-15T19:32:00-03:00",
+      "fechaFinDia": "2026-11-19",
+      "fechaEmision": "2026-11-16T11:56:00-03:00",
       "regiones": [
         "Antofagasta",
         "Atacama",
         "Coquimbo"
       ],
       "numeroPoligonos": 3,
-      "archivoGeojson": "data/dmc/A622-2_2026.geojson",
-      "archivoCobertura": "data/dmc/A622-2_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A622-2_2026_impactos.json",
+      "archivoGeojson": "data/dmc/A622-3_2026.geojson",
+      "archivoCobertura": "data/dmc/A622-3_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A622-3_2026_impactos.json",
       "observacion": "",
-      "archivoDocumento": "data/dmc/A622-2_2026_documento.json"
+      "archivoDocumento": "data/dmc/A622-3_2026_documento.json"
     },
     {
-      "codigo": "A621-2/2026",
+      "codigo": "A621-3/2026",
       "tipo": "Aviso",
       "fenomeno": "Tormentas Eléctricas",
       "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Coquimbo a la región de Los Lagos",
-      "desdeTexto": "la tarde del domingo 15 de noviembre del 2026",
+      "desdeTexto": "la tarde del lunes 16 de noviembre del 2026",
       "hastaTexto": "la noche del martes 17 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-15",
+      "fechaInicioDia": "2026-11-16",
       "fechaFinDia": "2026-11-17",
-      "fechaEmision": "2026-11-15T15:42:00-03:00",
+      "fechaEmision": "2026-11-16T10:43:00-03:00",
       "regiones": [
         "Biobío",
         "Coquimbo",
@@ -49,12 +49,12 @@
         "Valparaíso",
         "Ñuble"
       ],
-      "numeroPoligonos": 40,
-      "archivoGeojson": "data/dmc/A621-2_2026.geojson",
-      "archivoCobertura": "data/dmc/A621-2_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A621-2_2026_impactos.json",
+      "numeroPoligonos": 38,
+      "archivoGeojson": "data/dmc/A621-3_2026.geojson",
+      "archivoCobertura": "data/dmc/A621-3_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A621-3_2026_impactos.json",
       "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
-      "archivoDocumento": "data/dmc/A621-2_2026_documento.json"
+      "archivoDocumento": "data/dmc/A621-3_2026_documento.json"
     },
     {
       "codigo": "A625/2026",
@@ -77,31 +77,27 @@
       "archivoDocumento": "data/dmc/A625_2026_documento.json"
     },
     {
-      "codigo": "A619-1/2026",
+      "codigo": "A619-2/2026",
       "tipo": "Aviso",
       "fenomeno": "Viento",
-      "titulo": "Viento Normal a Moderado en zonas desde la región de Coquimbo a la región del Biobío",
-      "desdeTexto": "la tarde del sábado 14 de noviembre del 2026",
+      "titulo": "Viento Normal a Moderado en cordillera de las regiones del Maule, Ñuble y Biobío",
+      "desdeTexto": "la tarde del lunes 16 de noviembre del 2026",
       "hastaTexto": "la noche del lunes 16 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-14",
+      "fechaInicioDia": "2026-11-16",
       "fechaFinDia": "2026-11-16",
-      "fechaEmision": "2026-11-14T15:45:00-03:00",
+      "fechaEmision": "2026-11-16T10:27:00-03:00",
       "regiones": [
         "Biobío",
-        "Coquimbo",
         "Maule",
-        "Metropolitana",
-        "O’Higgins",
-        "Valparaíso",
         "Ñuble"
       ],
-      "numeroPoligonos": 19,
-      "archivoGeojson": "data/dmc/A619-1_2026.geojson",
-      "archivoCobertura": "data/dmc/A619-1_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A619-1_2026_impactos.json",
+      "numeroPoligonos": 3,
+      "archivoGeojson": "data/dmc/A619-2_2026.geojson",
+      "archivoCobertura": "data/dmc/A619-2_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A619-2_2026_impactos.json",
       "observacion": "",
-      "archivoDocumento": "data/dmc/A619-1_2026_documento.json"
+      "archivoDocumento": "data/dmc/A619-2_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-16T03:28:59.675965-03:00"
+  "generadoEn": "2026-11-16T16:36:25.821390-03:00"
 }

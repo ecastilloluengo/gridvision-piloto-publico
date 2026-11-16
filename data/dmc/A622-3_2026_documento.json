@@ -1,0 +1,198 @@
+{
+  "codigo": "A622-3/2026",
+  "tipo": "Aviso",
+  "titulo": "Viento Normal a Moderado en cordillera de las regiones de Antofagasta, Atacama y Coquimbo",
+  "fenomeno": "Viento",
+  "emisionTexto": "Lunes 16 de noviembre del 2026 a las 11:56 hrs.",
+  "condicionSinoptica": "Corriente en chorro",
+  "desde": "la tarde del lunes 16 de noviembre del 2026",
+  "hasta": "la noche del jueves 19 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Antofagasta (Cordillera)\nAtacama (Cordillera)\nCoquimbo (Cordillera)",
+  "tablaTitulo": "Intensidad estimada del Viento en Km/h",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 5,
+        "texto": "Región: Antofagasta"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 16"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 17"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 18"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 19"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "50-70"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "50-70"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "50-70"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 5,
+        "texto": "Región: Atacama"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 16"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 17"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 18"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 19"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "60-80"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "70-90"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "60-80"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "70-90"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 5,
+        "texto": "Región: Coquimbo"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 16"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 17"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 18"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 19"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "40-60, RACHAS DE 80"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "40-60, RACHAS DE 80"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-40, RACHAS DE 70"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "40-60, RACHAS DE 80"
+      }
+    ]
+  ]
+}
