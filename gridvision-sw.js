@@ -83,3 +83,5 @@ self.addEventListener('fetch',event=>{
 // Portal PFV nocturno sin respaldo V21553
 
 // Portal energia diaria parcial V21554
+
+// Portal indicadores PFV unificados V21555

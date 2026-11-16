@@ -264,9 +264,7 @@ window.GVPortalContadoresOffline = {
         energy: historico ? 'Energia registrada' : 'Energ\u00EDa hoy',
         inverters: historico
           ? 'Ultimo conteo'
-          : id === 'lo-aguirre'
-            ? 'Operativos confirmados'
-            : 'Inversores'
+          : 'Inversores'
       };
 
       for (const [campo, texto] of Object.entries(nombres)) {
@@ -632,9 +630,7 @@ window.GVPortalContadoresOffline = {
         }) + ' kWh';
 
       if (etiqueta) {
-        etiqueta.textContent = equipos.length < 3
-          ? 'Energ\u00EDa parcial hoy'
-          : 'Energ\u00EDa reg. hoy';
+        etiqueta.textContent = 'Energ\u00EDa hoy*';
       }
 
       elemento.title =
@@ -795,13 +791,13 @@ window.GVPortalContadoresOffline = {
         inversores.textContent = conteo;
 
         inversores.title =
-          'Conteo de la consulta parcial actual';
+          'Inversores con telemetria en la consulta actual';
 
         const etiqueta =
           inversores.parentElement?.querySelector('span');
 
         if (etiqueta) {
-          etiqueta.textContent = 'Conteo parcial';
+          etiqueta.textContent = 'Inversores';
         }
       }
     }
@@ -1809,7 +1805,13 @@ async function cargarClima(id, zona) {
         inversor => inversor.nivel === "espera"
       ).length;
       const sinVerificar = totalInversores - vigentes.length;
-      actualizarInversoresSolar(id, operativos, totalInversores);
+      // GV INDICADORES PFV V21555
+      const conTelemetria = vigentes.filter(
+        i => solarOffline.valido(i.potencia_ac)
+          && i.nivel !== "sin_datos"
+      ).length;
+
+      actualizarInversoresSolar(id, conTelemetria, 3);
 
       // GRIDVISION SOLAX DISENO V5: resumen discreto + diagnostico modal.
       const detalle = document.getElementById("solar-inverters-detail-lo-aguirre");
