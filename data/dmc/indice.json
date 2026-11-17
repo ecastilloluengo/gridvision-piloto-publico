@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-16 12:01",
+  "catalogoActualizadoEn": "2026-11-16 23:57",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -26,6 +26,29 @@
       "archivoImpactos": "data/dmc/A622-3_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A622-3_2026_documento.json"
+    },
+    {
+      "codigo": "A626/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Nubes Convectivas Tornádicas",
+      "titulo": "Probable desarrollo de Nubes Convectivas con características tornádicas en zonas desde la región de Ñuble a la región de Los Ríos",
+      "desdeTexto": "la tarde del martes 17 de noviembre del 2026",
+      "hastaTexto": "la noche del martes 17 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-17",
+      "fechaFinDia": "2026-11-17",
+      "fechaEmision": "2026-11-16T23:52:00-03:00",
+      "regiones": [
+        "Biobío",
+        "La Araucanía",
+        "Los Ríos",
+        "Ñuble"
+      ],
+      "numeroPoligonos": 10,
+      "archivoGeojson": "data/dmc/A626_2026.geojson",
+      "archivoCobertura": "data/dmc/A626_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A626_2026_impactos.json",
+      "observacion": "Probabilidad de intensos vientos locales arrachados y tornádicos",
+      "archivoDocumento": "data/dmc/A626_2026_documento.json"
     },
     {
       "codigo": "A621-3/2026",
@@ -99,5 +122,5 @@
       "archivoDocumento": "data/dmc/A619-2_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-16T16:36:25.821390-03:00"
+  "generadoEn": "2026-11-17T00:53:36.752289-03:00"
 }
