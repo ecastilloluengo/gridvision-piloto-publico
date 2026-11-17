@@ -854,7 +854,7 @@ function loadAssets() {
     assets = data.features.map(normalizeAsset).filter(a => Number.isFinite(a.lat) && Number.isFinite(a.lon));
     assets.forEach(a => {
       const m = L.marker([a.lat, a.lon], { icon: iconAsset(a.categoria), interactive: true });
-      m.bindTooltip(a.nombre, { direction: "top", offset: [0,-7] });
+      window.GridVisionElectricHover?.register(map,m,a.nombre);
       bindAssetPopup(a, m);
       layers.assets.addLayer(m);
     });
@@ -895,7 +895,7 @@ function loadLines() {
     L.geoJSON(data, {
       style: lineStyle,
       onEachFeature: (feature, layer) => {
-        layer.bindTooltip(lineProperties(feature).nombre, { sticky: true });
+        window.GridVisionElectricHover?.register(map,layer,lineProperties(feature).nombre);
         layer.on("click", (event) => {
           const popup = linePopupHtml(lineProperties(feature), event.latlng, feature);
           layer.bindPopup(popup.html, { maxWidth: 320, className: "gv-fire-popup" }).openPopup(event.latlng);

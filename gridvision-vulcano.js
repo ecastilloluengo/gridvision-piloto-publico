@@ -597,7 +597,7 @@ function senPopupAndTooltip(f,l){
  }
  l.on('click',()=>clickFeature(f,name,'electrico'));
  l.bindPopup(electricPopup(f));
- l.bindTooltip(name,{sticky:true,direction:'top',opacity:.95});
+ window.GridVisionElectricHover?.register(state.map,l,name);
 }
 function senPointStyle(kind){
  return (f,ll)=>L.circleMarker(ll,{pane:'gv-point',renderer:sen.renderers.points,radius:state.map.getZoom()<7?2.7:4.1,

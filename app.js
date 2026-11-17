@@ -3012,6 +3012,7 @@ async function cargarPfvNetBilling() {
         },
 
         onEachFeature(feature, layer) {
+            window.GridVisionElectricHover?.register(mapa, layer, feature.properties.nombre);
             layer.bindPopup(() =>
     crearPopup(
         feature.properties,
@@ -3067,6 +3068,7 @@ async function cargarPuntos() {
         },
 
         onEachFeature(feature, layer) {
+            window.GridVisionElectricHover?.register(mapa, layer, feature.properties.nombre);
             layer.bindPopup(
                 crearPopup(
                     feature.properties,
@@ -3133,6 +3135,7 @@ async function cargarLineas() {
         },
 
         onEachFeature(feature, layer) {
+            window.GridVisionElectricHover?.register(mapa, layer, feature.properties.nombre);
             layer.bindPopup(() => {
                 const contenido = crearPopup(feature.properties);
                 if (!(window.GridVisionModoClima?.enabled() ?? navigator.onLine)) {
