@@ -428,8 +428,7 @@ function obtenerIdActivoCompartirFalla() {
 function gv232EnlaceFalla({latitud,longitud,nombreLinea,idActivo,idEvento,tipo='estimada'}={}) {
     const valido=v=>(typeof v==='number'||(typeof v==='string'&&v.trim()!==''))&&Number.isFinite(Number(v));
     if(!valido(latitud)||!valido(longitud)||Math.abs(Number(latitud))>90||Math.abs(Number(longitud))>180) return null;
-    const local=['localhost','127.0.0.1','[::1]'].includes(window.location.hostname);
-    const url=new URL(local?'./index.html':'https://ecastilloluengo.github.io/gridvision-piloto-publico/',window.location.href);
+    const url=new URL('https://ecastilloluengo.github.io/gridvision-piloto-publico/');
     url.search=''; url.hash='';
     url.searchParams.set('falla','1');
     url.searchParams.set('lat',Number(latitud).toFixed(14));
@@ -451,7 +450,7 @@ function construirDatosCompartirFalla(resultado) {
     const lat=Number(latitudFalla),lng=Number(longitudFalla);
     const urlMapa='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(`${lat.toFixed(14)},${lng.toFixed(14)}`);
     const lineas=['Ubicacion estimada de falla'+(resultado.nombreLinea?' · '+resultado.nombreLinea:''),'Ver ubicacion en Google Maps:',urlMapa,'','Ver pin de falla en GridVision:',urlActivo];
-    return {titulo:'Ubicacion GridVision',texto:lineas.join('\n'),coordenadasTexto:`${lat.toFixed(6)}, ${lng.toFixed(6)}`,urlMapa,urlActivo,idActivo};
+    return {titulo:'Ubicacion GridVision',texto:lineas.join('\n'),coordenadasTexto:`${lat.toFixed(6)}, ${lng.toFixed(6)}`,urlMapa,urlActivo,idActivo,enlaces:[{grupo:"Ubicación estimada",google:urlMapa,gridvision:urlActivo}]};
 }
 
 async function copiarTexto(texto) {
@@ -489,57 +488,37 @@ function mostrarMensajeLocalizador(texto, ocultarAutomaticamente = true) {
     }
 }
 
+function gv234Canales(datos) {
+    return {
+        whatsapp: 'https://wa.me/?text='+encodeURIComponent(datos.texto),
+        correo: 'mailto:?subject='+encodeURIComponent(datos.titulo)+'&body='+encodeURIComponent(datos.texto)
+    };
+}
+
+function gv233MostrarCompartir(datos) {
+    document.getElementById('gv233-compartir')?.remove();
+    const d=document.createElement('dialog'); d.id='gv233-compartir';
+    d.style.cssText='width:min(420px,94vw);max-height:85vh;overflow:auto;box-sizing:border-box;background:white;color:#0f172a;border:1px solid #cbd5e1;border-radius:14px;padding:18px;font:14px system-ui;';
+    const crear=(tag,t)=>{const e=document.createElement(tag);e.textContent=t;d.append(e);return e;};
+    const estilo='display:block;box-sizing:border-box;width:100%;margin:9px 0;padding:13px;border:1px solid #cbd5e1;border-radius:9px;text-decoration:none;text-align:center;font:700 14px system-ui;cursor:pointer;background:#f8fafc;color:#0f172a;';
+    crear('h2','Compartir falla').style.cssText='font-size:20px;margin:0 0 12px;';
+    crear('p','Selecciona cómo enviar el mensaje. Incluye ambos mapas cuando hay coordenadas disponibles.');
+    const canales=gv234Canales(datos);
+    const wa=crear('a','Enviar por WhatsApp');wa.href=canales.whatsapp;wa.target='_blank';wa.rel='noopener noreferrer';wa.style.cssText=estilo+'background:#128c7e;color:white;border-color:#128c7e;';
+    const correo=crear('a','Enviar por correo electrónico');correo.href=canales.correo;correo.style.cssText=estilo;
+    const estado=crear('p','');estado.setAttribute('role','status');estado.style.color='#475569';
+    if(typeof navigator.share==='function'){
+        const compartir=crear('button','Compartir con otra aplicación');compartir.type='button';compartir.style.cssText=estilo;
+        compartir.onclick=async()=>{try{await navigator.share({title:datos.titulo,text:datos.texto});}catch(e){if(e?.name!=='AbortError')estado.textContent='No se pudo abrir el menú del dispositivo. Usa WhatsApp o correo.';}};
+    }
+    const cerrar=crear('button','Cerrar');cerrar.type='button';cerrar.style.cssText=estilo;cerrar.onclick=()=>d.close();
+    d.addEventListener('close',()=>d.remove(),{once:true});document.body.append(d);d.showModal();
+}
+
 async function compartirUbicacionFalla() {
-    const datos = construirDatosCompartirFalla(ultimoResultadoFalla);
-
-    if (!datos) {
-        mostrarMensajeLocalizador(
-            'Primero localiza una falla para poder compartir su ubicación.',
-            false
-        );
-        return;
-    }
-
-    const boton = elementoLocalizador('compartir-falla');
-
-    try {
-        if (boton) {
-            boton.disabled = true;
-        }
-
-        if (navigator.share) {
-            await navigator.share({
-                title: datos.titulo,
-                text: datos.texto
-            });
-            return;
-        }
-
-        await copiarTexto(datos.texto);
-        mostrarMensajeLocalizador(
-            'Ubicación de la falla copiada al portapapeles.'
-        );
-    } catch (error) {
-        if (error?.name === 'AbortError') {
-            return;
-        }
-
-        try {
-            await copiarTexto(datos.texto);
-            mostrarMensajeLocalizador(
-                'No se pudo abrir Compartir; la ubicación quedó copiada.'
-            );
-        } catch {
-            mostrarMensajeLocalizador(
-                'No fue posible compartir ni copiar la ubicación.',
-                false
-            );
-        }
-    } finally {
-        if (boton) {
-            boton.disabled = false;
-        }
-    }
+    const datos=construirDatosCompartirFalla(ultimoResultadoFalla);
+    if(!datos){mostrarMensajeLocalizador('Primero localiza una falla para poder compartir su ubicación.',false);return;}
+    gv233MostrarCompartir(datos);
 }
 
 function asegurarBotonCompartirFalla() {
@@ -3108,11 +3087,14 @@ function construirDatosCompartirRegistro(registro) {
     const lineas=[`Falla GridVision: ${registro.id}`,`Estado: ${estado==='cerrada'?'CERRADA':'ACTIVA'}`,`Linea: ${registro.nombreLinea||'Linea sin nombre'}`,`Inicio: ${formatearFechaHoraFalla(registro.fechaHoraInicio||registro.fechaHora)}`];
     if(registro.fechaHoraFin)lineas.push(`Fin: ${formatearFechaHoraFalla(registro.fechaHoraFin)}`,`Duracion: ${formatearDuracionFalla(registro)}`);
     if(registro.afectacionOperacional)lineas.push('','Afectacion operacional:',registro.afectacionOperacional);
+    const enlaces=[];
     function agregarUbicacion(punto,tipo){
         const url=gv232EnlaceFalla({latitud:punto?.latitud,longitud:punto?.longitud,nombreLinea:registro.nombreLinea,idActivo:registro.idActivo,idEvento:registro.id,tipo});
         if(!url)return false;
         const coord=`${Number(punto.latitud).toFixed(14)},${Number(punto.longitud).toFixed(14)}`;
-        lineas.push('',tipo==='confirmada'?'Ubicacion confirmada en terreno:':'Ubicacion estimada por proteccion:','Google Maps:','https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(coord),'GridVision (pin de falla):',url);
+        const google='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(coord);
+        enlaces.push({grupo:tipo==='confirmada'?'Ubicación confirmada en terreno':'Ubicación estimada por protección',google,gridvision:url});
+        lineas.push('',tipo==='confirmada'?'Ubicacion confirmada en terreno:':'Ubicacion estimada por proteccion:','Google Maps:',google,'GridVision (pin de falla):',url);
         return true;
     }
     const estimada=agregarUbicacion(registro,'estimada');
@@ -3120,51 +3102,19 @@ function construirDatosCompartirRegistro(registro) {
     const confirmada=agregarUbicacion(registro.ubicacionConfirmada,'confirmada');
     if(registro.observaciones)lineas.push('','Observaciones:',registro.observaciones);
     if(!estimada&&!confirmada&&registro.idActivo){
-        const local=['localhost','127.0.0.1','[::1]'].includes(window.location.hostname);
-        const url=new URL(local?'./index.html':'https://ecastilloluengo.github.io/gridvision-piloto-publico/',window.location.href);
+        const url=new URL('https://ecastilloluengo.github.io/gridvision-piloto-publico/');
         url.search='';url.hash='';url.searchParams.set('activo',registro.idActivo);
+        enlaces.push({grupo:'Línea eléctrica (ubicación pendiente)',gridvision:url.href});
         lineas.push('','Abrir linea en GridVision (sin punto de falla):',url.href);
     }
-    return {titulo:'Falla guardada · GridVision',texto:lineas.join('\n')};
+    return {titulo:'Falla guardada · GridVision',texto:lineas.join('\n'),enlaces};
 }
 
 async function compartirRegistroFalla(idRegistro) {
-    const registro = leerFallasGuardadas()
-        .find((item) => item.id === idRegistro);
-
-    const datos = construirDatosCompartirRegistro(registro);
-
-    if (!datos) {
-        mostrarMensajeLocalizador(
-            "No fue posible preparar esta falla para compartir.",
-            false
-        );
-        return;
-    }
-
-    try {
-        if (navigator.share) {
-            await navigator.share({
-                title: datos.titulo,
-                text: datos.texto
-            });
-            return;
-        }
-
-        await copiarTexto(datos.texto);
-        window.alert("Ubicación de la falla copiada al portapapeles.");
-    } catch (error) {
-        if (error?.name === "AbortError") {
-            return;
-        }
-
-        try {
-            await copiarTexto(datos.texto);
-            window.alert("Ubicación de la falla copiada al portapapeles.");
-        } catch {
-            window.alert("No fue posible compartir esta falla.");
-        }
-    }
+    const registro=leerFallasGuardadas().find(item=>item.id===idRegistro);
+    const datos=construirDatosCompartirRegistro(registro);
+    if(!datos){mostrarMensajeLocalizador('No fue posible preparar esta falla para compartir.',false);return;}
+    gv233MostrarCompartir(datos);
 }
 
 function construirResultadoDesdeRegistro(registro) {
@@ -4013,6 +3963,11 @@ elementoLocalizador(
                     rel="noopener noreferrer"
                 >
                     📍 Abrir ubicación en Google Maps
+                </a>
+            </p>
+            <p>
+                <a href="${escaparAtributoHtml(construirDatosCompartirFalla(resultado)?.urlActivo || '#')}" target="_blank" rel="noopener noreferrer">
+                    ⚡ Abrir pin de falla en GridVision
                 </a>
             </p>
 
