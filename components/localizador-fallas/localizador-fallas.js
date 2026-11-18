@@ -233,6 +233,54 @@ let marcadorFalla = null;
 let marcadorFallaConfirmada = null;
 let ultimoResultadoFalla = null;
 let datosGpsEditorFalla = null;
+let gvRegistroDesdeHistorial = false;
+
+// Distingue un dato desconocido de un cero válido (km 0).
+function numeroFallaDisponible(valor) {
+    return valor !== null && valor !== undefined
+        && String(valor).trim() !== "" && Number.isFinite(Number(valor));
+}
+function coordenadasFallaValidas(registro) {
+    return numeroFallaDisponible(registro?.latitud)
+        && numeroFallaDisponible(registro?.longitud)
+        && Math.abs(Number(registro.latitud)) <= 90
+        && Math.abs(Number(registro.longitud)) <= 180;
+}
+function posicionFallaActiva(registro) {
+    const ubicacion = coordenadasFallaValidas(registro) ? registro
+        : coordenadasFallaValidas(registro?.ubicacionConfirmada) ? registro.ubicacionConfirmada : null;
+    return ubicacion ? [Number(ubicacion.latitud), Number(ubicacion.longitud)] : null;
+}
+function abrirRegistroSinDistancia() {
+    const linea = lineaSeleccionadaLocalizador;
+    if (!linea || !Array.isArray(linea.coordenadas) || linea.coordenadas.length < 2) {
+        window.alert("Selecciona una línea eléctrica con geometría válida.");
+        return;
+    }
+    const ahora = new Date().toISOString();
+    const registro = {
+        id: generarIdFalla(), fechaHora: ahora, fechaHoraInicio: ahora,
+        fechaHoraFin: null, estado: "activa", idActivo: obtenerIdActivoCompartirFalla(),
+        nombreLinea: linea.nombreLinea, extremoReferencia: "A",
+        nombreExtremoA: linea.nombreExtremoA, nombreExtremoB: linea.nombreExtremoB,
+        distanciaIndicadaKm: null, distanciaDesdeAKm: null, distanciaDesdeBKm: null,
+        longitudTotalKm: calcularLongitudLinea(linea.coordenadas),
+        precisionKm: 1, latitud: null, longitud: null,
+        afectacionOperacional: "", observaciones: "", ubicacionConfirmada: null,
+        fechaCreacion: ahora, fechaActualizacion: ahora
+    };
+    guardarGeometriaLineaParaFalla(registro);
+    eliminarMarcadorFalla();
+    cerrarPanelLocalizador();
+    cerrarPanelFallasGuardadas();
+    abrirEditorRegistroFalla(registro, true);
+    asegurarEditorFalla().dataset.desdeHistorial = "true";
+}
+function iniciarRegistroDesdeHistorial() {
+    gvRegistroDesdeHistorial = true;
+    cerrarPanelFallasGuardadas();
+    window.alert("Selecciona la línea eléctrica en el mapa y pulsa Localizar falla. Se abrirá el registro operacional; la distancia es opcional. Para cancelar, vuelve a abrir Fallas guardadas.");
+}
 let capaFallasActivas = null;
 const marcadoresFallasActivas = new Map();
 
@@ -572,7 +620,11 @@ function generarIdFalla() {
         String(ahora.getSeconds()).padStart(2, "0")
     ].join("");
 
-    return `GV-FLT-${fecha}-${hora}`;
+    const base = `GV-FLT-${fecha}-${hora}`;
+    const ids = new Set(leerFallasGuardadas().map(r => r.id));
+    let id = base, secuencia = 2;
+    while (ids.has(id)) id = `${base}-${secuencia++}`;
+    return id;
 }
 
 function claveGeometriaRegistro(registro = {}) {
@@ -1017,6 +1069,7 @@ function abrirEditorRegistroFalla(registro, esNuevo = false) {
 
     fondo.dataset.registro = registro.id;
     fondo.dataset.nuevo = esNuevo ? "true" : "false";
+    fondo.dataset.desdeHistorial = "false";
     fondo._registroTemporal = { ...registro };
     datosGpsEditorFalla = registro.ubicacionConfirmada || null;
 
@@ -1040,7 +1093,7 @@ function abrirEditorRegistroFalla(registro, esNuevo = false) {
     selectorExtremo.value = registro.extremoReferencia || "A";
 
     fondo.querySelector("#editor-falla-distancia-km").value =
-        Number.isFinite(Number(registro.distanciaIndicadaKm))
+        numeroFallaDisponible(registro.distanciaIndicadaKm)
             ? Number(registro.distanciaIndicadaKm)
             : "";
     fondo.querySelector("#editor-falla-longitud-gis").textContent =
@@ -1091,7 +1144,7 @@ function actualizarResumenEstimacionEditor(fondo, registro) {
     const precision = Number(registro?.precisionKm || 0);
 
     fondo.querySelector("#editor-falla-estimada").textContent =
-        Number.isFinite(latitud) && Number.isFinite(longitud)
+        coordenadasFallaValidas(registro)
             ? `Estimación protección: ${latitud.toFixed(6)}, ${longitud.toFixed(6)} · ± ${precision.toFixed(1)} km`
             : "Estimación protección pendiente";
 }
@@ -1107,6 +1160,19 @@ function recalcularDesdeEditorFalla(mostrarConfirmacion = false) {
         return false;
     }
 
+    const textoDistancia = fondo.querySelector("#editor-falla-distancia-km").value.trim();
+    if (!textoDistancia) {
+        // La ubicación pendiente se guarda como null, nunca como km 0.
+        fondo._registroTemporal = {
+            ...registroBase, distanciaIndicadaKm: null, distanciaDesdeAKm: null,
+            distanciaDesdeBKm: null, latitud: null, longitud: null,
+            extremoReferencia: fondo.querySelector("#editor-falla-extremo-referencia").value
+        };
+        actualizarResumenEstimacionEditor(fondo, fondo._registroTemporal);
+        estado.textContent = "Distancia y ubicación estimada pendientes.";
+        estado.dataset.tipo = "ok";
+        return true;
+    }
     const coordenadas =
         obtenerGeometriaLineaParaRegistro(registroBase);
 
@@ -1117,9 +1183,7 @@ function recalcularDesdeEditorFalla(mostrarConfirmacion = false) {
         return false;
     }
 
-    const distancia = Number(
-        fondo.querySelector("#editor-falla-distancia-km").value
-    );
+    const distancia = Number(textoDistancia);
     const extremo = fondo.querySelector(
         "#editor-falla-extremo-referencia"
     ).value;
@@ -1253,18 +1317,14 @@ function guardarDesdeEditorFalla() {
         return;
     }
 
-    const distanciaEditor = Number(
-        fondo.querySelector("#editor-falla-distancia-km").value
-    );
-    const extremoEditor = fondo.querySelector(
-        "#editor-falla-extremo-referencia"
-    ).value;
-    const cambioLocalizacion =
-        Math.abs(
-            distanciaEditor
-            - Number(registroBase.distanciaIndicadaKm || 0)
-        ) > 0.000001
-        || extremoEditor !== (registroBase.extremoReferencia || "A");
+    const textoDistanciaEditor = fondo.querySelector("#editor-falla-distancia-km").value.trim();
+    const distanciaEditor = textoDistanciaEditor === "" ? null : Number(textoDistanciaEditor);
+    const extremoEditor = fondo.querySelector("#editor-falla-extremo-referencia").value;
+    const distanciaAnterior = numeroFallaDisponible(registroBase.distanciaIndicadaKm)
+        ? Number(registroBase.distanciaIndicadaKm) : null;
+    const cambioLocalizacion = distanciaEditor !== distanciaAnterior
+        || extremoEditor !== (registroBase.extremoReferencia || "A")
+        || (distanciaEditor !== null && !coordenadasFallaValidas(registroBase));
 
     if (cambioLocalizacion && !recalcularDesdeEditorFalla(false)) {
         error.textContent =
@@ -1342,7 +1402,8 @@ function guardarDesdeEditorFalla() {
         const longitud = Number(lngTexto);
 
         if (
-            !Number.isFinite(latitud)
+            !latTexto || !lngTexto
+            || !Number.isFinite(latitud)
             || !Number.isFinite(longitud)
             || latitud < -90
             || latitud > 90
@@ -1410,6 +1471,7 @@ function guardarDesdeEditorFalla() {
         actualizarBotonGuardarFalla();
     }
 
+    const volverHistorial = fondo.dataset.desdeHistorial === "true";
     fondo.hidden = true;
     fondo._registroTemporal = null;
     datosGpsEditorFalla = null;
@@ -1418,6 +1480,7 @@ function guardarDesdeEditorFalla() {
     renderizarFallasGuardadas();
     limpiarMarcadoresTemporalesDeRegistro(actualizado.id);
     sincronizarMarcadoresFallasActivas();
+    if (volverHistorial) abrirPanelFallasGuardadas();
 
     mostrarMensajeLocalizador(
         actualizado.fechaHoraFin
@@ -1613,6 +1676,12 @@ function asegurarEstilosFallasGuardadas() {
             cursor: pointer;
             color: #475569;
         }
+        .gv-fallas-nueva { padding: 10px 14px 0; }
+        #registrar-nueva-falla-gv {
+            width: 100%; min-height: 40px; border: 0; border-radius: 9px;
+            background: #0f766e; color: white; font-weight: 800; cursor: pointer;
+        }
+        .gv-falla-acciones button:disabled { opacity: .45; cursor: not-allowed; }
         .gv-fallas-filtros {
             display: flex;
             gap: 6px;
@@ -2094,7 +2163,7 @@ function contenidoPopupFallaActiva(registro) {
     const referencia = registro.extremoReferencia === "B"
         ? (registro.nombreExtremoB || "Extremo B")
         : (registro.nombreExtremoA || "Extremo A");
-    const distancia = Number.isFinite(Number(registro.distanciaIndicadaKm))
+    const distancia = numeroFallaDisponible(registro.distanciaIndicadaKm)
         ? `${Number(registro.distanciaIndicadaKm).toFixed(1)} km desde ${referencia}`
         : "Distancia no disponible";
     const afectacion = registro.afectacionOperacional
@@ -2108,7 +2177,7 @@ function contenidoPopupFallaActiva(registro) {
             <p><strong>Línea:</strong> ${escaparHtml(registro.nombreLinea || "Línea sin nombre")}</p>
             <p><strong>Inicio:</strong> ${escaparHtml(inicio)}</p>
             <p><strong>Protección:</strong> ${escaparHtml(distancia)}</p>
-            <p><strong>Coordenadas:</strong> ${Number(registro.latitud).toFixed(6)}, ${Number(registro.longitud).toFixed(6)}</p>
+            <p><strong>${coordenadasFallaValidas(registro) ? "Coordenadas estimadas" : "Coordenadas confirmadas"}:</strong> ${posicionFallaActiva(registro)?.map(v => v.toFixed(6)).join(", ") || "Pendiente"}</p>
             ${afectacion}
             <div class="gv-popup-falla-activa-acciones">
                 <button type="button" data-accion-falla="editar">✏️ Editar</button>
@@ -2140,15 +2209,9 @@ function conectarAccionesPopupFallaActiva(marcador, idRegistro) {
 }
 
 function crearMarcadorFallaActiva(registro, capa) {
-    const latitud = Number(registro.latitud);
-    const longitud = Number(registro.longitud);
-
-    if (
-        !Number.isFinite(latitud)
-        || !Number.isFinite(longitud)
-    ) {
-        return null;
-    }
+    const posicion = posicionFallaActiva(registro);
+    if (!posicion) return null;
+    const [latitud, longitud] = posicion;
 
     const marcador = L.marker(
         [latitud, longitud],
@@ -2228,8 +2291,7 @@ function sincronizarMarcadoresFallasActivas() {
     const activas = leerFallasGuardadas()
         .filter((registro) =>
             estadoRegistroFalla(registro) === "activa"
-            && Number.isFinite(Number(registro.latitud))
-            && Number.isFinite(Number(registro.longitud))
+            && posicionFallaActiva(registro) !== null
         );
     const idsActivas = new Set(
         activas.map((registro) => registro.id)
@@ -2243,8 +2305,7 @@ function sincronizarMarcadoresFallasActivas() {
 
     for (const registro of activas) {
         const existente = marcadoresFallasActivas.get(registro.id);
-        const latitud = Number(registro.latitud);
-        const longitud = Number(registro.longitud);
+        const [latitud, longitud] = posicionFallaActiva(registro);
 
         if (!existente) {
             const nuevo = crearMarcadorFallaActiva(
@@ -2372,6 +2433,9 @@ function asegurarPanelFallasGuardadas() {
                 title="Cerrar"
             >×</button>
         </div>
+        <div class="gv-fallas-nueva">
+            <button type="button" id="registrar-nueva-falla-gv">＋ Registrar nueva falla</button>
+        </div>
         <div class="gv-fallas-filtros">
             <button type="button" class="gv-fallas-filtro" data-filtro="todas" data-activo="true">Todas</button>
             <button type="button" class="gv-fallas-filtro" data-filtro="activa">Activas</button>
@@ -2389,6 +2453,9 @@ function asegurarPanelFallasGuardadas() {
 
     panel.querySelector("#cerrar-fallas-guardadas")
         ?.addEventListener("click", cerrarPanelFallasGuardadas);
+
+    panel.querySelector("#registrar-nueva-falla-gv")
+        ?.addEventListener("click", iniciarRegistroDesdeHistorial);
 
     panel.querySelectorAll(".gv-fallas-filtro")
         .forEach((boton) => {
@@ -2411,6 +2478,7 @@ function asegurarPanelFallasGuardadas() {
 }
 
 function abrirPanelFallasGuardadas() {
+    gvRegistroDesdeHistorial = false;
     const panel = asegurarPanelFallasGuardadas();
     panel.hidden = false;
     renderizarFallasGuardadas();
@@ -2427,13 +2495,7 @@ function cerrarPanelFallasGuardadas() {
 }
 
 function construirDatosCompartirRegistro(registro) {
-    if (
-        !registro
-        || !Number.isFinite(Number(registro.latitud))
-        || !Number.isFinite(Number(registro.longitud))
-    ) {
-        return null;
-    }
+    if (!registro) return null;
 
     const latitud = Number(registro.latitud);
     const longitud = Number(registro.longitud);
@@ -2473,15 +2535,13 @@ function construirDatosCompartirRegistro(registro) {
     lineas.push(
         "",
         "Ubicación estimada por protección:",
-        urlMapa
+        coordenadasFallaValidas(registro) ? urlMapa : "Pendiente de localización"
     );
 
     const confirmada = registro.ubicacionConfirmada;
 
     if (
-        confirmada
-        && Number.isFinite(Number(confirmada.latitud))
-        && Number.isFinite(Number(confirmada.longitud))
+        coordenadasFallaValidas(confirmada)
     ) {
         const urlConfirmada =
             "https://www.google.com/maps/search/?api=1&query="
@@ -2595,10 +2655,16 @@ function verFallaGuardadaEnMapa(idRegistro) {
         return;
     }
 
+    if (!posicionFallaActiva(registro)) {
+        window.alert("La ubicación de esta falla sigue pendiente. Edita el registro para agregarla.");
+        return;
+    }
+    eliminarMarcadorFalla();
     mapaLocalizador = mapa;
-    ultimoResultadoFalla = construirResultadoDesdeRegistro(registro);
-
-    dibujarMarcadorFalla(ultimoResultadoFalla);
+    if (coordenadasFallaValidas(registro)) {
+        ultimoResultadoFalla = construirResultadoDesdeRegistro(registro);
+        dibujarMarcadorFalla(ultimoResultadoFalla);
+    }
 
     if (marcadorFallaConfirmada) {
         mapa.removeLayer(marcadorFallaConfirmada);
@@ -2608,9 +2674,7 @@ function verFallaGuardadaEnMapa(idRegistro) {
     const confirmada = registro.ubicacionConfirmada;
 
     if (
-        confirmada
-        && Number.isFinite(Number(confirmada.latitud))
-        && Number.isFinite(Number(confirmada.longitud))
+        coordenadasFallaValidas(confirmada)
     ) {
         const latConfirmada = Number(confirmada.latitud);
         const lngConfirmada = Number(confirmada.longitud);
@@ -2645,7 +2709,7 @@ function verFallaGuardadaEnMapa(idRegistro) {
 
         mapa.fitBounds(
             L.latLngBounds([
-                [Number(registro.latitud), Number(registro.longitud)],
+                posicionFallaActiva(registro),
                 [latConfirmada, lngConfirmada]
             ]),
             {
@@ -2826,7 +2890,7 @@ function renderizarFallasGuardadas() {
     lista.innerHTML = visibles.map((registro) => {
         const estado = estadoRegistroFalla(registro);
         const cerrada = estado === "cerrada";
-        const distancia = Number.isFinite(Number(registro.distanciaIndicadaKm))
+        const distancia = numeroFallaDisponible(registro.distanciaIndicadaKm)
             ? `${Number(registro.distanciaIndicadaKm).toFixed(1)} km desde ${registro.extremoReferencia === "B" ? (registro.nombreExtremoB || "Extremo B") : (registro.nombreExtremoA || "Extremo A")}`
             : "Distancia no disponible";
 
@@ -2842,7 +2906,7 @@ function renderizarFallasGuardadas() {
             : "";
 
         const confirmada = registro.ubicacionConfirmada;
-        const textoConfirmada = confirmada
+        const textoConfirmada = coordenadasFallaValidas(confirmada)
             ? `<p class="gv-falla-meta gv-falla-confirmada">✓ Ubicación confirmada: ${Number(confirmada.latitud).toFixed(6)}, ${Number(confirmada.longitud).toFixed(6)}</p>`
             : `<p class="gv-falla-meta">Ubicación confirmada: pendiente</p>`;
 
@@ -2858,11 +2922,11 @@ function renderizarFallasGuardadas() {
                 <p class="gv-falla-meta"><strong>Inicio:</strong> ${escaparHtml(inicio)}</p>
                 <p class="gv-falla-meta"><strong>Fin:</strong> ${escaparHtml(fin)} · <strong>Duración:</strong> ${escaparHtml(formatearDuracionFalla(registro))}</p>
                 <p class="gv-falla-meta">📏 ${escaparHtml(distancia)}</p>
-                <p class="gv-falla-meta">⚡ Estimada: ${Number(registro.latitud).toFixed(6)}, ${Number(registro.longitud).toFixed(6)} · ± ${Number(registro.precisionKm || 0).toFixed(1)} km</p>
+                <p class="gv-falla-meta">⚡ ${coordenadasFallaValidas(registro) ? `Estimada: ${Number(registro.latitud).toFixed(6)}, ${Number(registro.longitud).toFixed(6)} · ± ${Number(registro.precisionKm || 0).toFixed(1)} km` : "Ubicación estimada: pendiente"}</p>
                 ${textoConfirmada}
                 ${afectacion}
                 <div class="gv-falla-acciones">
-                    <button type="button" data-accion="ver">📍 Ver en mapa</button>
+                    <button type="button" data-accion="ver" ${posicionFallaActiva(registro) ? "" : 'disabled title="Ubicación pendiente"'}>📍 Ver en mapa</button>
                     <button type="button" data-accion="compartir">📤 Compartir</button>
                     <button type="button" data-accion="editar">✏️ Editar</button>
                     <button type="button" data-accion="eliminar">🗑 Eliminar</button>
@@ -2955,6 +3019,12 @@ async function cargarPanelLocalizador() {
     panelLocalizadorCargado = true;
     asegurarBotonCompartirFalla();
     asegurarAccionesFalla();
+    const botonSinDistancia = document.createElement("button");
+    botonSinDistancia.type = "button";
+    botonSinDistancia.className = "localizador-fallas-boton-secundario";
+    botonSinDistancia.textContent = "＋ Registrar falla sin distancia";
+    botonSinDistancia.addEventListener("click", abrirRegistroSinDistancia);
+    elementoLocalizador("localizar-falla")?.after(botonSinDistancia);
 
     elementoLocalizador(
         "cerrar-localizador-fallas"
@@ -3016,7 +3086,8 @@ function ejecutarLocalizacion() {
         Number(entradaPrecision.value);
 
     if (
-        !Number.isFinite(distanciaInformadaKm)
+        entradaDistancia.value.trim() === ""
+        || !Number.isFinite(distanciaInformadaKm)
         || distanciaInformadaKm < 0
     ) {
         mensaje.textContent =
@@ -3308,7 +3379,12 @@ elementoLocalizador(
         "localizador-fallas-mensaje"
     ).hidden = true;
 
+    elementoLocalizador("localizador-fallas-distancia").value = "";
     panel.hidden = false;
+    if (gvRegistroDesdeHistorial) {
+        gvRegistroDesdeHistorial = false;
+        abrirRegistroSinDistancia();
+    }
 }
   function dibujarMarcadorFalla(resultado) {
     if (
