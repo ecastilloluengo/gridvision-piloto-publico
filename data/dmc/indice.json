@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-17 16:26",
+  "catalogoActualizadoEn": "2026-11-17 23:47",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -111,83 +111,7 @@
       "archivoImpactos": "data/dmc/A627_2026_impactos.json",
       "observacion": "Probabilidad de precipitaciones fuertes en un corto período de tiempo",
       "archivoDocumento": "data/dmc/A627_2026_documento.json"
-    },
-    {
-      "codigo": "AA200-1/2026",
-      "tipo": "Alerta",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Tormentas Eléctricas en zonas desde la región de Ñuble a la región de Los Lagos",
-      "desdeTexto": "la tarde del martes 17 de noviembre del 2026",
-      "hastaTexto": "la noche del martes 17 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-17",
-      "fechaFinDia": "2026-11-17",
-      "fechaEmision": "2026-11-17T15:19:00-03:00",
-      "regiones": [
-        "Biobío",
-        "La Araucanía",
-        "Los Lagos",
-        "Los Ríos",
-        "Ñuble"
-      ],
-      "numeroPoligonos": 17,
-      "archivoGeojson": "data/dmc/AA200-1_2026.geojson",
-      "archivoCobertura": "data/dmc/AA200-1_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/AA200-1_2026_impactos.json",
-      "observacion": "Probabilidad de precipitaciones fuertes en un corto período de tiempo",
-      "archivoDocumento": "data/dmc/AA200-1_2026_documento.json"
-    },
-    {
-      "codigo": "A626/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Nubes Convectivas Tornádicas",
-      "titulo": "Probable desarrollo de Nubes Convectivas con características tornádicas en zonas desde la región de Ñuble a la región de Los Ríos",
-      "desdeTexto": "la tarde del martes 17 de noviembre del 2026",
-      "hastaTexto": "la noche del martes 17 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-17",
-      "fechaFinDia": "2026-11-17",
-      "fechaEmision": "2026-11-16T23:52:00-03:00",
-      "regiones": [
-        "Biobío",
-        "La Araucanía",
-        "Los Ríos",
-        "Ñuble"
-      ],
-      "numeroPoligonos": 10,
-      "archivoGeojson": "data/dmc/A626_2026.geojson",
-      "archivoCobertura": "data/dmc/A626_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A626_2026_impactos.json",
-      "observacion": "Probabilidad de intensos vientos locales arrachados y tornádicos",
-      "archivoDocumento": "data/dmc/A626_2026_documento.json"
-    },
-    {
-      "codigo": "A621-3/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Coquimbo a la región de Los Lagos",
-      "desdeTexto": "la tarde del lunes 16 de noviembre del 2026",
-      "hastaTexto": "la noche del martes 17 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-16",
-      "fechaFinDia": "2026-11-17",
-      "fechaEmision": "2026-11-16T10:43:00-03:00",
-      "regiones": [
-        "Biobío",
-        "Coquimbo",
-        "La Araucanía",
-        "Los Lagos",
-        "Los Ríos",
-        "Maule",
-        "Metropolitana",
-        "O’Higgins",
-        "Valparaíso",
-        "Ñuble"
-      ],
-      "numeroPoligonos": 38,
-      "archivoGeojson": "data/dmc/A621-3_2026.geojson",
-      "archivoCobertura": "data/dmc/A621-3_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A621-3_2026_impactos.json",
-      "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
-      "archivoDocumento": "data/dmc/A621-3_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-17T21:57:36.189188-03:00"
+  "generadoEn": "2026-11-18T08:41:28.493523-03:00"
 }
