@@ -93,3 +93,5 @@ self.addEventListener('fetch',event=>{
 // Portal energia diaria parcial V21554
 
 // Portal indicadores PFV unificados V21555
+
+// GV_PERSISTENCIA_OFFLINE_V2: conservar cache existente durante actualizaciones.

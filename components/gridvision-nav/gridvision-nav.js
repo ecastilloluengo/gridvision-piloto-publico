@@ -3,7 +3,7 @@
   'use strict';
   const scriptURL = document.currentScript?.src || location.href;
   function iniciarNavegacion() {
-  const VERSION = 'gv-nav-v21-20261112';
+  const VERSION = 'gv-nav-v22-persistencia-20261118'; // GV_PERSISTENCIA_OFFLINE_V2
   const CACHE = 'gridvision-nav-offline-v1';
   const METADATA = '__gv-nav-offline-ready-v1.json';
   const ROOT = new URL('../../', scriptURL);
@@ -26,7 +26,8 @@
   let marker = null;
   let accuracyCircle = null;
   let lastFix = null;
-  let statusEl, followBtn, locateBtn, downloadBtn, offlineMenuBtn, baseBtn;
+  let statusEl, followBtn, locateBtn, downloadBtn, offlineMenuBtn, baseBtn, storageEl;
+  let preparing=false, stateSequence=0;
   const absolute = name => new URL(name, ROOT).href;
   const clean = href => {const url = new URL(href, ROOT); url.search=''; url.hash=''; return url.href;};
   const inScope = url => url.origin === ROOT.origin && url.pathname.startsWith(ROOT.pathname);
@@ -157,13 +158,47 @@
   async function readyState() {
     if (!('caches' in window)) return false;
     const cache=await caches.open(CACHE);
-    const response=await cache.match(absolute(METADATA));
-    if (!response?.ok) return false;
-    const meta=await response.json();
-    if (meta.version!==VERSION || !(await cache.match(absolute('data/offline/base-chile-v2.geojson')))?.ok) return false;
-    return meta;
+    // Rebuild the inventory from cached HTML. Older download metadata is
+    // compatible: readiness depends on actual files, not UI version.
+    const files=await gatherFiles(cache, true);
+    const missing=[];
+    for(const name of files){
+      if(!(await cache.match(absolute(name)))?.ok)missing.push(name);
+    }
+    const base=await cache.match(absolute('data/offline/base-chile-v2.geojson'));
+    if(base?.ok){
+      try {const d=await base.json();
+        if(d.type!=='FeatureCollection'||d.metadata?.schema!=='gv-base-chile-v2'||!Array.isArray(d.features)||!['pais','region','lago','rio','camino','localidad'].every(x=>d.features.some(f=>f.properties?.capa===x)))throw Error('base');
+      }catch(_){if(!missing.includes('data/offline/base-chile-v2.geojson'))missing.push('data/offline/base-chile-v2.geojson');}
+    }
+    let meta={};
+    try {const r=await cache.match(absolute(METADATA));if(r?.ok)meta=await r.json();}catch(_){}
+    return {listo:missing.length===0,missing,archivos:files.length,fecha:meta.fecha||null};
   }
-  async function gatherFiles() {
+  async function refreshOfflineState(){
+    const seq=++stateSequence;
+    try {
+      const state=await readyState();
+      let persistent=false;try{persistent=!!(await navigator.storage?.persisted?.());}catch(_){}
+      if(seq!==stateSequence||preparing)return;
+      if(!state)throw Error('Cache no disponible');
+      if(storageEl){
+        storageEl.textContent=state.listo
+          ? 'SEN + mapa disponibles offline · '+state.archivos+' archivos'+(persistent?' · almacenamiento persistente':' · el navegador puede liberar espacio')
+          : 'Preparación pendiente · '+state.missing.length+' archivos por guardar';
+        storageEl.dataset.kind=state.listo?'ok':'warning';
+      }
+      if(offlineMenuBtn){offlineMenuBtn.textContent=state.listo?'SEN offline ✓':'SEN offline';offlineMenuBtn.dataset.ready=String(state.listo);}
+      downloadBtn.textContent=state.listo?'✓ Verificar / completar offline':'⬇ Preparar SEN + mapa offline';
+      window.GVOfflineStorageState={...state,persistent:!!persistent};
+    }catch(e){
+      if(seq!==stateSequence||preparing)return;
+      if(storageEl){storageEl.textContent='No se pudo verificar la cartografía almacenada.';storageEl.dataset.kind='warning';}
+      if(offlineMenuBtn){offlineMenuBtn.textContent='SEN offline';offlineMenuBtn.dataset.ready='false';}
+      window.GVOfflineStorageState={listo:false,error:String(e.message||e)};
+    }
+  }
+  async function gatherFiles(cache, cachedOnly=false) {
     const pages=['index.html','gridvision-fire.html','gridvision-vulcano.html'];
     const targets=new Set([
       ...pages,'vendor/leaflet/leaflet.js','vendor/leaflet/leaflet.css',
@@ -179,8 +214,9 @@
       'data/vulcano/catalogo_vulcano_v06.json','data/vulcano/volcanes_v068.json'
     ]);
     for (const page of pages) {
-      const r=await fetch(absolute(page),{cache:'no-store'});
-      if (!r.ok) throw new Error('No fue posible cargar '+page+' ('+r.status+')');
+      let r=await cache.match(absolute(page));
+      if(!r?.ok && !cachedOnly) r=await fetch(absolute(page),{cache:'no-store'});
+      if(!r?.ok){if(cachedOnly)continue;throw new Error('No fue posible cargar '+page);}
       const doc=new DOMParser().parseFromString(await r.text(),'text/html');
       for (const el of doc.querySelectorAll('script[src],link[rel="stylesheet"][href],link[rel="icon"][href]')) {
         const raw=el.getAttribute('src')||el.getAttribute('href');
@@ -194,23 +230,30 @@
     return Array.from(targets);
   }
   async function prepareOffline() {
-    if (!navigator.onLine) {status('Conéctate a internet para preparar la descarga.','warning');return;}
+    if(preparing)return;
+    if (!navigator.onLine) {await refreshOfflineState();status('Sin internet: se conservan los archivos ya descargados.','warning');return;}
     if (!('serviceWorker' in navigator) || !('caches' in window)) {
       status('El navegador no permite almacenamiento offline en este contexto.','warning');return;
     }
-    downloadBtn.disabled=true;
+    downloadBtn.disabled=true;preparing=true;++stateSequence;
     try {
       await navigator.serviceWorker.register(absolute('gridvision-sw.js'),{scope:ROOT.pathname});
       await navigator.serviceWorker.ready;
-      const files=await gatherFiles();
       const cache=await caches.open(CACHE);
-      let complete=0;
+      const files=await gatherFiles(cache);
+      let complete=0, reused=0, downloaded=0;
       const failed=[];
       // Secuencial: evita sobrecargar el móvil y permite mostrar progreso real.
       for (const name of files) {
         try {
           const url=absolute(name);
-          const response=await fetch(url,{cache:'no-store'});
+          let response=await cache.match(clean(url));
+          let valid=!!response?.ok;
+          if(valid && name==='data/offline/base-chile-v2.geojson'){
+            try{const d=await response.clone().json();valid=d.type==='FeatureCollection'&&d.metadata?.schema==='gv-base-chile-v2'&&Array.isArray(d.features)&&['pais','region','lago','rio','camino','localidad'].every(x=>d.features.some(f=>f.properties?.capa===x));}catch(_){valid=false;}
+          }
+          if(valid){complete++;reused++;status('Verificando SEN offline: '+(complete+failed.length)+'/'+files.length+' archivos…');continue;}
+          response=await fetch(url,{cache:'no-store'});
           if (!response.ok) throw new Error('HTTP '+response.status);
           if(name==='data/offline/base-chile-v2.geojson'){
             const baseData=await response.clone().json();
@@ -219,7 +262,7 @@
           await cache.put(clean(url),response.clone());
           const saved=await cache.match(clean(url));
           if (!saved?.ok) throw new Error('No se verificó en almacenamiento');
-          complete++;
+          complete++;downloaded++;
         } catch (err) { failed.push(name+' ('+err.message+')'); }
         status('Preparando SEN y mapa offline: '+(complete+failed.length)+'/'+files.length+' archivos…');
       }
@@ -229,7 +272,7 @@
       const critical=required.filter(x=>failed.some(f=>f.startsWith(x+' (')));
       if (failed.length) {
         // Nunca registrar como listo si falta un archivo JS, CSS o geográfico.
-        await cache.delete(absolute(METADATA));
+        // Keep the last successful record; readiness is checked against real files.
         status('Descarga incompleta: '+failed.length+' archivo(s). Reintenta conectado.','warning');
         console.warn('GridVision offline: descargas fallidas',failed,critical);
       } else {
@@ -240,12 +283,13 @@
         if (navigator.storage?.persist) {
           try { await navigator.storage.persist(); } catch (_) { /* best effort */ }
         }
-        status('SEN y mapa nacional preparados · '+complete+' archivos · prueba en modo avión.','ok');
+        status('SEN y mapa listos · '+reused+' conservados · '+downloaded+' descargados.','ok');
+        window.GVOfflineLastPreparation={reused,downloaded,total:complete};
       }
     } catch(err) {
       console.error('GridVision offline',err);
       status('No se pudo preparar offline: '+String(err.message||err),'warning');
-    } finally {downloadBtn.disabled=false;}
+    } finally {preparing=false;downloadBtn.disabled=false;await refreshOfflineState();}
   }
   // V2.0.2: separate explicit download for the original volcanic reference geometries.
   // No live EAV, no external tile downloads, no change to electrical data.
@@ -358,7 +402,8 @@
     downloadBtn.className='gv-nav-download';
     statusEl=document.createElement('div');statusEl.className='gv-nav-status';
     statusEl.setAttribute('role','status');statusEl.textContent='GPS listo · Internet '+(navigator.onLine?'conectado':'no disponible');
-    wrapper.append(statusEl);
+    storageEl=document.createElement('div');storageEl.className='gv-nav-status';storageEl.setAttribute('role','status');storageEl.textContent='Verificando almacenamiento offline…';
+    wrapper.append(statusEl,storageEl);
     baseBtn=makeButton(wrapper,'Mapa nacional offline','Activar el mapa vectorial nacional de referencia',()=>{});
     baseBtn.className='gv-nav-base-choice';baseBtn.setAttribute('aria-pressed','false');
     // GV UNIFIED V2142: controles compactos para los tres visores.
@@ -375,11 +420,13 @@
       const close=makeButton(head,'×','Cerrar panel de navegación',()=>dialog.close());
       close.className='gv-nav-dialog-close';head.prepend(title);
       const note=document.createElement('p');note.textContent='Descarga el SEN y el mapa nacional de referencia antes de salir. Caminos principales, localidades, hidrografía y límites generales; sin detalle rural ni alertas en vivo.';
-      dialog.append(head,note,statusEl,downloadBtn,baseBtn);
+      note.textContent='Prepara una vez este dispositivo. Los mapas guardados se conservan; solo se descargan archivos faltantes. Sin detalle rural ni alertas en vivo.';
+      dialog.append(head,note,storageEl,statusEl,downloadBtn,baseBtn);
       if(viewId==='vulcano-map')installVulcanoOffline(dialog);
       document.body.append(dialog);
       offlineMenuBtn=makeButton(actions,'SEN offline','Navegación y SEN offline',()=>{
         if (!dialog.open) dialog.showModal();
+        void refreshOfflineState();
       });
       offlineMenuBtn.dataset.action='offline';
       offlineMenuBtn.setAttribute('aria-haspopup','dialog');
@@ -399,17 +446,17 @@
   liveObserver.observe(document.body,{childList:true,subtree:true});
   if(window.GridVisionBaseOfflineInstall)window.GridVisionBaseOfflineInstall(map,baseBtn,status);
   window.addEventListener('offline',()=>{
-    offlineStyle();markLiveUnavailable();status('Sin internet · consulta datos descargados; clima y alertas NO son en vivo.','warning');
+    offlineStyle();markLiveUnavailable();status('Sin internet · consulta datos descargados; clima y alertas NO son en vivo.','warning');void refreshOfflineState();
   });
-  window.addEventListener('online',()=>{offlineStyle();status('Conexion recuperada. Recarga para actualizar clima y alertas.','warning');});
+  window.addEventListener('online',()=>{offlineStyle();status('Conexion recuperada. Recarga para actualizar clima y alertas.','warning');void refreshOfflineState();});
   window.addEventListener('pagehide',()=>{clearGps();liveObserver.disconnect();});
-  window.GridVisionNavigationV1={version:VERSION,prepareOffline,stopFollow};
+  window.GridVisionNavigationV1={version:VERSION,prepareOffline,stopFollow,refreshOfflineState};
+  window.addEventListener('pageshow',()=>void refreshOfflineState());
   if ('serviceWorker' in navigator && window.isSecureContext) {
     navigator.serviceWorker.register(absolute('gridvision-sw.js'),{scope:ROOT.pathname})
-      .then(()=>readyState()).then(meta=>{
-        if (meta) status('SEN + mapa offline descargados: '+new Date(meta.fecha).toLocaleDateString('es-CL'),'ok');
-        else if(navigator.onLine)status('Prepara SEN + mapa offline para uso sin conexión.');
-      }).catch(err=>console.warn('GridVision SW no disponible:',err));
+      .then(()=>refreshOfflineState()).catch(err=>{console.warn('GridVision SW no disponible:',err);void refreshOfflineState();});
+  } else {
+    void refreshOfflineState();
   }
   }
   if (document.readyState === 'loading') {
