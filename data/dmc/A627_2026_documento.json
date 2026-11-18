@@ -1,0 +1,14 @@
+{
+  "codigo": "A627/2026",
+  "tipo": "Aviso",
+  "titulo": "Probables Tormentas Eléctricas en zonas desde la región del Biobío a la región de Aysén",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Martes 17 de noviembre del 2026 a las 15:00 hrs.",
+  "condicionSinoptica": "Inestabilidad atmosférica",
+  "desde": "la tarde del miércoles 18 de noviembre del 2026",
+  "hasta": "la noche del miércoles 18 de noviembre del 2026",
+  "observacion": "Probabilidad de precipitaciones fuertes en un corto período de tiempo",
+  "textoZonaAfecta": "Biobío (Precordillera, Cordillera)\nLa Araucanía (Valle, Precordillera)\nLos Ríos (Cordillera Costa, Valle, Precordillera)\nLos Lagos (Valle, Precordillera, Chiloé, Litoral Interior, Cordillera Austral, Patagonia Subandina)\nAysén (Patagonia Subandina Norte, Patagonia Subandina Sur)",
+  "tablaTitulo": "",
+  "tablaFilas": []
+}

@@ -1,10 +1,51 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-17 08:28",
+  "catalogoActualizadoEn": "2026-11-17 16:26",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
+    {
+      "codigo": "A629/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Viento",
+      "titulo": "Viento Normal a Moderado en Litoral de la Provincia de Huasco, Región de Atacama",
+      "desdeTexto": "la tarde del miércoles 18 de noviembre del 2026",
+      "hastaTexto": "la noche del sábado 21 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-18",
+      "fechaFinDia": "2026-11-21",
+      "fechaEmision": "2026-11-17T16:21:00-03:00",
+      "regiones": [
+        "Atacama"
+      ],
+      "numeroPoligonos": 1,
+      "archivoGeojson": "data/dmc/A629_2026.geojson",
+      "archivoCobertura": "data/dmc/A629_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A629_2026_impactos.json",
+      "observacion": "Probabilidad de tormentas de arena",
+      "archivoDocumento": "data/dmc/A629_2026_documento.json"
+    },
+    {
+      "codigo": "A628/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Altas Temperaturas",
+      "titulo": "Altas Temperaturas en zonas de las regiones de Antofagasta y Atacama",
+      "desdeTexto": "la tarde del jueves 19 de noviembre del 2026",
+      "hastaTexto": "la tarde del sábado 21 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-19",
+      "fechaFinDia": "2026-11-21",
+      "fechaEmision": "2026-11-17T16:20:00-03:00",
+      "regiones": [
+        "Antofagasta",
+        "Atacama"
+      ],
+      "numeroPoligonos": 4,
+      "archivoGeojson": "data/dmc/A628_2026.geojson",
+      "archivoCobertura": "data/dmc/A628_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A628_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A628_2026_documento.json"
+    },
     {
       "codigo": "A622-3/2026",
       "tipo": "Aviso",
@@ -26,6 +67,74 @@
       "archivoImpactos": "data/dmc/A622-3_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A622-3_2026_documento.json"
+    },
+    {
+      "codigo": "A625-1/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Altas Temperaturas",
+      "titulo": "Altas Temperaturas en Comunas: Torres del Paine, Puerto Natales, Laguna Blanca, San Gregorio y Primavera - Reg. Magallanes",
+      "desdeTexto": "la tarde del martes 17 de noviembre del 2026",
+      "hastaTexto": "la noche del miércoles 18 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-17",
+      "fechaFinDia": "2026-11-18",
+      "fechaEmision": "2026-11-17T16:12:00-03:00",
+      "regiones": [
+        "Magallanes"
+      ],
+      "numeroPoligonos": 1,
+      "archivoGeojson": "data/dmc/A625-1_2026.geojson",
+      "archivoCobertura": "data/dmc/A625-1_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A625-1_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A625-1_2026_documento.json"
+    },
+    {
+      "codigo": "A627/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en zonas desde la región del Biobío a la región de Aysén",
+      "desdeTexto": "la tarde del miércoles 18 de noviembre del 2026",
+      "hastaTexto": "la noche del miércoles 18 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-18",
+      "fechaFinDia": "2026-11-18",
+      "fechaEmision": "2026-11-17T15:00:00-03:00",
+      "regiones": [
+        "Aysén",
+        "Biobío",
+        "La Araucanía",
+        "Los Lagos",
+        "Los Ríos"
+      ],
+      "numeroPoligonos": 15,
+      "archivoGeojson": "data/dmc/A627_2026.geojson",
+      "archivoCobertura": "data/dmc/A627_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A627_2026_impactos.json",
+      "observacion": "Probabilidad de precipitaciones fuertes en un corto período de tiempo",
+      "archivoDocumento": "data/dmc/A627_2026_documento.json"
+    },
+    {
+      "codigo": "AA200-1/2026",
+      "tipo": "Alerta",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Tormentas Eléctricas en zonas desde la región de Ñuble a la región de Los Lagos",
+      "desdeTexto": "la tarde del martes 17 de noviembre del 2026",
+      "hastaTexto": "la noche del martes 17 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-17",
+      "fechaFinDia": "2026-11-17",
+      "fechaEmision": "2026-11-17T15:19:00-03:00",
+      "regiones": [
+        "Biobío",
+        "La Araucanía",
+        "Los Lagos",
+        "Los Ríos",
+        "Ñuble"
+      ],
+      "numeroPoligonos": 17,
+      "archivoGeojson": "data/dmc/AA200-1_2026.geojson",
+      "archivoCobertura": "data/dmc/AA200-1_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/AA200-1_2026_impactos.json",
+      "observacion": "Probabilidad de precipitaciones fuertes en un corto período de tiempo",
+      "archivoDocumento": "data/dmc/AA200-1_2026_documento.json"
     },
     {
       "codigo": "A626/2026",
@@ -78,27 +187,7 @@
       "archivoImpactos": "data/dmc/A621-3_2026_impactos.json",
       "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
       "archivoDocumento": "data/dmc/A621-3_2026_documento.json"
-    },
-    {
-      "codigo": "A625/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Altas Temperaturas",
-      "titulo": "Altas Temperaturas en Comunas: Torres del Paine, Puerto Natales, Laguna Blanca, San Gregorio y Primavera - Reg. Magallanes",
-      "desdeTexto": "la tarde del martes 17 de noviembre del 2026",
-      "hastaTexto": "la noche del martes 17 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-17",
-      "fechaFinDia": "2026-11-17",
-      "fechaEmision": "2026-11-15T15:13:00-03:00",
-      "regiones": [
-        "Magallanes"
-      ],
-      "numeroPoligonos": 1,
-      "archivoGeojson": "data/dmc/A625_2026.geojson",
-      "archivoCobertura": "data/dmc/A625_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A625_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A625_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-17T12:59:09.405405-03:00"
+  "generadoEn": "2026-11-17T21:57:36.189188-03:00"
 }

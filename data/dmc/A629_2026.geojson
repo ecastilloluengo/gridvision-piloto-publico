@@ -1,0 +1,89 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "codigoMeteo": "A629/2026"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -71.10351562500001,
+              -27.848790459862073
+            ],
+            [
+              -71.16394042968751,
+              -28.091366281406945
+            ],
+            [
+              -71.16943359375001,
+              -28.299544165609102
+            ],
+            [
+              -71.19689941406251,
+              -28.43971381702788
+            ],
+            [
+              -71.25732421875001,
+              -28.512142619873355
+            ],
+            [
+              -71.30676269531251,
+              -28.565225490654658
+            ],
+            [
+              -71.29028320312501,
+              -28.647210004919984
+            ],
+            [
+              -71.46057128906251,
+              -28.854296498697934
+            ],
+            [
+              -71.50451660156251,
+              -29.00333620017934
+            ],
+            [
+              -71.50451660156251,
+              -29.171348850951507
+            ],
+            [
+              -71.32324218750001,
+              -29.161755515328835
+            ],
+            [
+              -71.10351562500001,
+              -28.512142619873355
+            ],
+            [
+              -70.98266601562501,
+              -27.90705837112198
+            ],
+            [
+              -71.10351562500001,
+              -27.848790459862073
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "codigoMeteo": "A629/2026",
+        "tipo": "Aviso",
+        "titulo": "Viento Normal a Moderado en Litoral de la Provincia de Huasco, Región de Atacama",
+        "fenomeno": "Viento",
+        "desde": "la tarde del miércoles 18 de noviembre del 2026",
+        "hasta": "la noche del sábado 21 de noviembre del 2026",
+        "observacion": "Probabilidad de tormentas de arena",
+        "emisionTexto": "Martes 17 de noviembre del 2026 a las 16:21 hrs.",
+        "fechaEmision": "2026-11-17T16:21:00-03:00",
+        "regiones": [
+          "Atacama"
+        ],
+        "indice": "Area DMC"
+      }
+    }
+  ]
+}
