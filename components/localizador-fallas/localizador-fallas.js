@@ -277,9 +277,118 @@ function abrirRegistroSinDistancia() {
     asegurarEditorFalla().dataset.desdeHistorial = "true";
 }
 function iniciarRegistroDesdeHistorial() {
-    gvRegistroDesdeHistorial = true;
-    cerrarPanelFallasGuardadas();
-    window.alert("Selecciona la línea eléctrica en el mapa y pulsa Localizar falla. Se abrirá el registro operacional; la distancia es opcional. Para cancelar, vuelve a abrir Fallas guardadas.");
+    const catalogo = typeof indiceBusqueda !== 'undefined' ? indiceBusqueda : [];
+    const normal = v => String(v ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+
+    const lineas = catalogo.filter(r =>
+        ['LineString','MultiLineString'].includes(r.feature?.geometry?.type)
+        && r.feature?.properties?.nombre
+        && obtenerCoordenadasFeature(r.feature).length >= 2
+    ).map(r => {
+        const p = r.feature.properties;
+        return {
+            r,
+            nombre:p.nombre,
+            id:p.id || p.ID || p.id_gridvision || p.idGridVision || p.gv_id || p.asset_id || p.codigo || r.feature.id || '',
+            kv:p.subcategoria || p.tension || p.kv || ''
+        };
+    }).sort((a,b) => String(a.nombre).localeCompare(String(b.nombre),'es'));
+
+    document.getElementById('gv-selector-falla-v21')?.remove();
+
+    const d = document.createElement('dialog');
+    d.id = 'gv-selector-falla-v21';
+    d.style.cssText = 'width:min(550px,92vw);max-height:85vh;border:1px solid #cbd5e1;border-radius:16px;padding:18px;color:#0f172a;background:white;box-sizing:border-box;';
+
+    d.innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:center">
+            <strong style="font-size:18px">Registrar nueva falla</strong>
+            <button type="button" data-cerrar>X</button>
+        </div>
+        <p style="font-size:13px;color:#475569">
+            Selecciona la linea electrica. La distancia es opcional.
+        </p>
+        <input type="search" aria-label="Buscar linea"
+            placeholder="Nombre, ID o tension..."
+            style="box-sizing:border-box;width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:9px;font:inherit">
+        <p data-resumen aria-live="polite" style="font-size:12px;color:#64748b"></p>
+        <div data-lista style="display:grid;gap:7px;max-height:52vh;overflow:auto"></div>
+    `;
+
+    document.body.appendChild(d);
+
+    const input = d.querySelector('input');
+    const lista = d.querySelector('[data-lista]');
+    const resumen = d.querySelector('[data-resumen]');
+
+    d.querySelector('[data-cerrar]').onclick = () => d.close();
+    d.addEventListener('close', () => d.remove(), {once:true});
+
+    function render() {
+        const tokens = normal(input.value).split(' ').filter(Boolean);
+        const matches = lineas.filter(l =>
+            tokens.every(t => normal([l.nombre,l.id,l.kv].join(' ')).includes(t))
+        );
+
+        lista.replaceChildren();
+
+        resumen.textContent = matches.length
+            ? `${matches.length} lineas - mostrando ${Math.min(80,matches.length)}`
+            : (lineas.length ? 'Sin coincidencias' : 'Espera que cargue el mapa y vuelve a abrir.');
+
+        for (const l of matches.slice(0,80)) {
+            const b = document.createElement('button');
+            b.type = 'button';
+            b.style.cssText = 'text-align:left;padding:11px;border:1px solid #cbd5e1;border-radius:9px;background:#f8fafc;color:#0f172a;cursor:pointer;';
+
+            const titulo = document.createElement('strong');
+            titulo.textContent = l.nombre;
+
+            const detalle = document.createElement('small');
+            detalle.style.cssText = 'display:block;margin-top:4px;color:#64748b;';
+            detalle.textContent = [l.kv,l.id].filter(Boolean).join(' - ');
+
+            b.append(titulo,detalle);
+            lista.append(b);
+
+            b.onclick = async () => {
+                const mapa = obtenerMapaGridVision();
+
+                if (!mapa) {
+                    resumen.textContent = 'Mapa no disponible.';
+                    return;
+                }
+
+                for (const boton of lista.querySelectorAll('button'))
+                    boton.disabled = true;
+
+                try {
+                    gvRegistroDesdeHistorial = true;
+
+                    await abrirPanelLocalizador({
+                        nombreLinea:l.nombre,
+                        longitudTotalKm:calcularLongitudLinea(
+                            obtenerCoordenadasFeature(l.r.feature)
+                        ),
+                        feature:l.r.feature,
+                        mapa
+                    });
+
+                    d.close();
+                } catch(e) {
+                    gvRegistroDesdeHistorial = false;
+                    resumen.textContent = 'Error: ' + e.message;
+                    for (const boton of lista.querySelectorAll('button'))
+                        boton.disabled = false;
+                }
+            };
+        }
+    }
+
+    input.addEventListener('input', render);
+    render();
+    d.showModal();
+    input.focus();
 }
 let capaFallasActivas = null;
 const marcadoresFallasActivas = new Map();
