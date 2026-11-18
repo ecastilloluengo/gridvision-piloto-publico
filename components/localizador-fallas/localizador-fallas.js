@@ -2586,9 +2586,218 @@ function asegurarPanelFallasGuardadas() {
     return panel;
 }
 
+
+    function gv22Leer() {
+        const raw = localStorage.getItem(CLAVE_FALLAS_GUARDADAS);
+        const geo = localStorage.getItem(CLAVE_GEOMETRIAS_FALLA);
+        const registros = raw === null ? [] : JSON.parse(raw);
+        const geometrias = geo === null ? {} : JSON.parse(geo);
+        if (!Array.isArray(registros) || !geometrias || typeof geometrias !== 'object' || Array.isArray(geometrias))
+            throw new Error('El almacenamiento local tiene un formato inesperado. No se modificara.');
+        return { registros, geometrias };
+    }
+    const gv22Numero = n => (typeof n === 'number' || (typeof n === 'string' && n.trim() !== '')) && Number.isFinite(Number(n));
+    const gv22Fecha = v => typeof v === 'string' && /^\d{4}-\d{2}-\d{2}T/.test(v) && Number.isFinite(Date.parse(v));
+    const gv22Texto = v => typeof v === 'string' ? v : '';
+    const gv22Obj = v => v && typeof v === 'object' && !Array.isArray(v);
+    const gv22Red = v => Math.round(v * 100) / 100;
+    function gv22Horas(r, ahora) {
+        const inicio = Date.parse(r.fechaHoraInicio || r.fechaHora);
+        const fin = r.fechaHoraFin ? Date.parse(r.fechaHoraFin) : ahora;
+        return Number.isFinite(inicio) && Number.isFinite(fin) && fin >= inicio ? (fin - inicio) / 3600000 : null;
+    }
+    function gv22FechaVisible(v) {
+        if (!gv22Fecha(v)) return '';
+        return new Intl.DateTimeFormat('es-CL', {timeZone:'America/Santiago', year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date(v));
+    }
+    function gv22Indicadores(registros, ahora = Date.now()) {
+        const grupos = new Map();
+        const total = {nombre:'TOTAL',id:'',eventos:0,activas:0,cerradas:0,horasC:0,horasA:0,validasC:0,validasA:0,invalidas:0};
+        function sumar(g,r) {
+            g.eventos++;
+            const cerrada = Boolean(r.fechaHoraFin);
+            const h = gv22Horas(r,ahora);
+            if(cerrada) {g.cerradas++; if(h !== null){g.horasC+=h;g.validasC++;}}
+            else {g.activas++; if(h !== null){g.horasA+=h;g.validasA++;}}
+            if(h === null) g.invalidas++;
+        }
+        for(const r of registros) {
+            const nombre=gv22Texto(r.nombreLinea)||'Linea sin nombre';
+            const id=gv22Texto(r.idActivo);
+            const clave=id ? 'id:'+id.toUpperCase() : 'nombre:'+nombre.trim().toLowerCase();
+            if(!grupos.has(clave)) grupos.set(clave,{nombre,id,eventos:0,activas:0,cerradas:0,horasC:0,horasA:0,validasC:0,validasA:0,invalidas:0});
+            sumar(grupos.get(clave),r);sumar(total,r);
+        }
+        const filas=[...grupos.values()].sort((a,b)=>b.eventos-a.eventos || a.nombre.localeCompare(b.nombre,'es'));
+        return {total,filas};
+    }
+    function gv22Descargar(blob,nombre) {
+        const url=URL.createObjectURL(blob);
+        const a=document.createElement('a');a.href=url;a.download=nombre;
+        document.body.appendChild(a);a.click();a.remove();
+        setTimeout(()=>URL.revokeObjectURL(url),30000);
+    }
+    function gv22Nombre(prefijo,ext) {
+        return prefijo+'-'+new Date().toISOString().replace(/[:.]/g,'-')+'.'+ext;
+    }
+    function gv22Respaldo() {
+        const datos=gv22Leer();
+        const respaldo={formato:'gridvision-fallas',version:1,exportadoEn:new Date().toISOString(),...datos};
+        gv22Descargar(new Blob([JSON.stringify(respaldo,null,2)],{type:'application/json'}),gv22Nombre('GridVision-respaldo-fallas','json'));
+        return datos.registros.length;
+    }
+    // Validacion estricta de respaldos; nunca se ejecuta codigo del archivo.
+    function gv22ValidarRespaldo(datos) {
+        if(!gv22Obj(datos)||datos.formato!=='gridvision-fallas'||datos.version!==1||!Array.isArray(datos.registros)||!gv22Obj(datos.geometrias))
+            throw new Error('Archivo incompatible: utiliza un respaldo JSON de GridVision Fallas V2.2.');
+        if(datos.registros.length>100000) throw new Error('Demasiados registros.');
+        const ids=new Set();
+        const numericos=['distanciaIndicadaKm','distanciaDesdeAKm','distanciaDesdeBKm','longitudTotalKm','precisionKm'];
+        const textos=['idActivo','nombreLinea','nombreExtremoA','nombreExtremoB','afectacionOperacional','observaciones'];
+        const registros=datos.registros.map((r,i)=>{
+            const fallo=()=>{throw new Error('Registro '+(i+1)+' invalido: '+(typeof r?.id==='string'?r.id:'sin ID'));};
+            if(!gv22Obj(r)||typeof r.id!=='string'||!/^GV-FLT-\d{8}-\d{6}(?:-\d+)?$/.test(r.id)||ids.has(r.id)) fallo();
+            const inicio=r.fechaHoraInicio||r.fechaHora;
+            if(!gv22Fecha(inicio)|| (r.fechaHoraFin!=null&&r.fechaHoraFin!==''&&(!gv22Fecha(r.fechaHoraFin)||Date.parse(r.fechaHoraFin)<Date.parse(inicio)))) fallo();
+            if(typeof r.nombreLinea!=='string'||!r.nombreLinea.trim()) fallo();
+            const limpio={id:r.id,fechaHoraInicio:inicio,fechaHoraFin:r.fechaHoraFin||null,estado:r.fechaHoraFin?'cerrada':'activa'};
+            for(const k of textos){if(r[k]!=null&&typeof r[k]!=='string')fallo(); limpio[k]=r[k]??(k==='idActivo'?null:'');}
+            for(const k of ['fechaHora','fechaCreacion','fechaActualizacion']) {if(r[k]!=null&&r[k]!==''&&!gv22Fecha(r[k]))fallo();limpio[k]=r[k]||inicio;}
+            if(r.extremoReferencia!=null&&!['A','B'].includes(r.extremoReferencia))fallo();
+            limpio.extremoReferencia=r.extremoReferencia||'A';
+            for(const k of numericos){if(r[k]!=null&&r[k]!==''&&(!gv22Numero(r[k])||Number(r[k])<0))fallo();limpio[k]=gv22Numero(r[k])?Number(r[k]):null;}
+            function coords(obj) {
+                const lat=obj.latitud,lon=obj.longitud;
+                if(!gv22Numero(lat)&&!gv22Numero(lon)&&[lat,lon].every(v=>v==null||v===''))return null;
+                if(!gv22Numero(lat)||!gv22Numero(lon)||Math.abs(Number(lat))>90||Math.abs(Number(lon))>180)fallo();
+                return {latitud:Number(lat),longitud:Number(lon)};
+            }
+            const c=coords(r);limpio.latitud=c?.latitud??null;limpio.longitud=c?.longitud??null;
+            limpio.ubicacionConfirmada=null;
+            if(r.ubicacionConfirmada!=null){const u=r.ubicacionConfirmada;if(!gv22Obj(u))fallo();const p=coords(u);if(!p)fallo();if(u.precisionM!=null&&(!gv22Numero(u.precisionM)||Number(u.precisionM)<0))fallo();if(u.fechaHora!=null&&!gv22Fecha(u.fechaHora))fallo();limpio.ubicacionConfirmada={...p,precisionM:gv22Numero(u.precisionM)?Number(u.precisionM):null,fuente:u.fuente==='gps'?'gps':'manual',fechaHora:u.fechaHora||inicio};}
+            ids.add(r.id);return limpio;
+        });
+        const geometrias=Object.create(null);
+        for(const [k,coords] of Object.entries(datos.geometrias)){
+            if(!k||['__proto__','constructor','prototype'].includes(k)||!Array.isArray(coords)||coords.length<2||!coords.every(p=>Array.isArray(p)&&p.length>=2&&typeof p[0]==='number'&&typeof p[1]==='number'&&Number.isFinite(p[0])&&Number.isFinite(p[1])&&Math.abs(p[0])<=180&&Math.abs(p[1])<=90))throw new Error('Geometria invalida en el respaldo: '+k);
+            geometrias[k]=coords.map(p=>[p[0],p[1]]);
+        }
+        return {registros,geometrias};
+    }
+    function gv22Fusion(actual,entrada){
+        const ids=new Set(actual.registros.map(r=>r.id));
+        const nuevos=entrada.registros.filter(r=>!ids.has(r.id));
+        const geometrias=Object.assign(Object.create(null),actual.geometrias);
+        let nuevasGeometrias=0;
+        for(const [k,v] of Object.entries(entrada.geometrias)) if(!Object.hasOwn(geometrias,k)){geometrias[k]=v;nuevasGeometrias++;}
+        return {registros:[...actual.registros,...nuevos],geometrias,nuevos:nuevos.length,omitidos:entrada.registros.length-nuevos.length,nuevasGeometrias};
+    }
+    function gv22GuardarFusion(fusion){
+        const anteriorG=localStorage.getItem(CLAVE_GEOMETRIAS_FALLA);
+        const anteriorR=localStorage.getItem(CLAVE_FALLAS_GUARDADAS);
+        try{
+            localStorage.setItem(CLAVE_GEOMETRIAS_FALLA,JSON.stringify(fusion.geometrias));
+            localStorage.setItem(CLAVE_FALLAS_GUARDADAS,JSON.stringify(fusion.registros));
+        }catch(e){
+            try{if(anteriorG===null)localStorage.removeItem(CLAVE_GEOMETRIAS_FALLA);else localStorage.setItem(CLAVE_GEOMETRIAS_FALLA,anteriorG);if(anteriorR===null)localStorage.removeItem(CLAVE_FALLAS_GUARDADAS);else localStorage.setItem(CLAVE_FALLAS_GUARDADAS,anteriorR);}catch{}
+            throw new Error('No se pudo guardar la importacion. Revisa el espacio local y conserva tu respaldo. '+e.message);
+        }
+    }
+    async function gv22Importar(archivo,estado){
+        if(!archivo)return;
+        if(archivo.size>30*1024*1024) throw new Error('El respaldo supera 30 MB.');
+        const entrada=gv22ValidarRespaldo(JSON.parse((await archivo.text()).replace(/^\uFEFF/,'')));
+        const actual=gv22Leer();const fusion=gv22Fusion(actual,entrada);
+        if(!fusion.nuevos&&!fusion.nuevasGeometrias){estado.textContent='No hay cambios: '+fusion.omitidos+' ID ya existentes.';return;}
+        if(!window.confirm('Importar '+fusion.nuevos+' fallas nuevas y '+fusion.nuevasGeometrias+' geometrias.\nOmitir '+fusion.omitidos+' ID existentes (no se sobrescriben).\n\nConfirma solo si ya descargaste un respaldo del historial actual.')){estado.textContent='Importacion cancelada.';return;}
+        gv22GuardarFusion(fusion);
+        actualizarAccesoFallasGuardadas();renderizarFallasGuardadas();sincronizarMarcadoresFallasActivas();
+        estado.textContent='Importadas: '+fusion.nuevos+' | ID omitidos: '+fusion.omitidos+' | Geometrias nuevas: '+fusion.nuevasGeometrias;
+    }
+    // XLSX nativo: OpenXML + ZIP sin compresion. Sin CDN ni bibliotecas externas.
+    function gv22Xml(v){return String(v??'').replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\uFFFE\uFFFF]/g,'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;');}
+    function gv22Col(n){let s='';for(n++;n>0;n=Math.floor((n-1)/26))s=String.fromCharCode(65+(n-1)%26)+s;return s;}
+    function gv22Hoja(filas,anchos){
+        const cols=anchos.map((w,i)=>`<col min="${i+1}" max="${i+1}" width="${w}" customWidth="1"/>`).join('');
+        const contenido=filas.map((fila,i)=>`<row r="${i+1}">${fila.map((v,j)=>{
+            const ref=gv22Col(j)+(i+1),estilo=i===0?' s="1"':(typeof v==='number'?' s="2"':'');
+            if(v===null||v===undefined)return '';
+            if(typeof v==='number'&&Number.isFinite(v))return `<c r="${ref}"${estilo}><v>${v}</v></c>`;
+            return `<c r="${ref}" t="inlineStr"${estilo}><is><t xml:space="preserve">${gv22Xml(String(v).slice(0,32767))}</t></is></c>`;
+        }).join('')}</row>`).join('');
+        return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetViews><sheetView workbookViewId="0"><pane ySplit="1" topLeftCell="A2" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews><cols>${cols}</cols><sheetData>${contenido}</sheetData><autoFilter ref="A1:${gv22Col(filas[0].length-1)}${filas.length}"/></worksheet>`;
+    }
+    function gv22Zip(archivos){
+        const enc=new TextEncoder(),chunks=[],centro=[];let offset=0,centralSize=0;
+        function crc32(bytes){let c=0xffffffff;for(const b of bytes){c^=b;for(let i=0;i<8;i++)c=(c>>>1)^((c&1)?0xedb88320:0);}return(c^0xffffffff)>>>0;}
+        function cab(n){const b=new Uint8Array(n),v=new DataView(b.buffer);return[b,(p,x)=>v.setUint16(p,x,true),(p,x)=>v.setUint32(p,x,true)];}
+        for(const [nombre,contenido] of Object.entries(archivos)){
+            const n=enc.encode(nombre),d=enc.encode(contenido),crc=crc32(d);
+            const [h,u16,u32]=cab(30);u32(0,0x04034b50);u16(4,20);u16(6,0x800);u16(12,33);u32(14,crc);u32(18,d.length);u32(22,d.length);u16(26,n.length);
+            const [c,s16,s32]=cab(46);s32(0,0x02014b50);s16(4,20);s16(6,20);s16(8,0x800);s16(14,33);s32(16,crc);s32(20,d.length);s32(24,d.length);s16(28,n.length);s32(42,offset);
+            chunks.push(h,n,d);centro.push(c,n);offset+=h.length+n.length+d.length;centralSize+=c.length+n.length;
+        }
+        const [e,u16,u32]=cab(22);u32(0,0x06054b50);u16(8,Object.keys(archivos).length);u16(10,Object.keys(archivos).length);u32(12,centralSize);u32(16,offset);
+        return new Blob([...chunks,...centro,e],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+    }
+    function gv22ExcelBlob(registros,ahora=Date.now()){
+        const historia=[['ID falla','Linea','ID activo','Estado','Inicio (Chile continental)','Fin (Chile continental)','Duracion h (al corte)','Inicio UTC','Fin UTC','Distancia km','Extremo referencia','Distancia desde A km','Distancia desde B km','Longitud GIS km','Precision km','Latitud estimada','Longitud estimada','Latitud confirmada','Longitud confirmada','Afectacion operacional','Observaciones']];
+        const num=v=>gv22Numero(v)?Number(v):null;
+        for(const r of [...registros].sort((a,b)=>Date.parse(b.fechaHoraInicio||b.fechaHora)-Date.parse(a.fechaHoraInicio||a.fechaHora))){const h=gv22Horas(r,ahora);historia.push([r.id,r.nombreLinea,r.idActivo||'',r.fechaHoraFin?'Cerrada':'Activa',gv22FechaVisible(r.fechaHoraInicio||r.fechaHora),gv22FechaVisible(r.fechaHoraFin),h===null?null:gv22Red(h),r.fechaHoraInicio||r.fechaHora,r.fechaHoraFin||'',num(r.distanciaIndicadaKm),r.extremoReferencia==='B'?(r.nombreExtremoB||'B'):(r.nombreExtremoA||'A'),num(r.distanciaDesdeAKm),num(r.distanciaDesdeBKm),num(r.longitudTotalKm),num(r.precisionKm),num(r.latitud),num(r.longitud),num(r.ubicacionConfirmada?.latitud),num(r.ubicacionConfirmada?.longitud),r.afectacionOperacional||'',r.observaciones||'']);}
+        const {total,filas}=gv22Indicadores(registros,ahora);
+        const estad=[['Linea','ID activo','Eventos','Activas','Cerradas','Horas cerradas acumuladas','Horas activas al corte','Duracion media cerradas h (MTTR op.)','Eventos adicionales','Duraciones invalidas']];
+        for(const g of [total,...filas]) estad.push([g.nombre,g.id,g.eventos,g.activas,g.cerradas,gv22Red(g.horasC),gv22Red(g.horasA),g.validasC?gv22Red(g.horasC/g.validasC):null,g===total?null:Math.max(0,g.eventos-1),g.invalidas]);
+        const notas=[['Concepto','Definicion'],['Corte UTC',new Date(ahora).toISOString()],['Alcance','Todos los registros guardados en este navegador, sin aplicar filtros.'],['Horas cerradas','Suma de duraciones validas de eventos cerrados; no descuenta simultaneidad.'],['Horas activas','Tiempo transcurrido hasta el corte, separado de las horas cerradas.'],['MTTR operacional','Promedio inicio-fin de eventos cerrados con duracion valida. No es necesariamente tiempo efectivo de reparacion.'],['Eventos adicionales','Numero de eventos posteriores al primero en cada grupo; no acredita misma causa.'],['Agrupacion','Por ID de activo; si no existe, por nombre de linea. Un mismo nombre con ID faltante puede quedar separado.'],['Fechas','Chile continental (America/Santiago) y UTC ISO 8601.'],['Duraciones invalidas','Excluidas del calculo de horas y promedios.']];
+        const ns='http://schemas.openxmlformats.org/spreadsheetml/2006/main',rel='http://schemas.openxmlformats.org/officeDocument/2006/relationships';
+        return gv22Zip({
+            '[Content_Types].xml':'<?xml version="1.0" encoding="UTF-8"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>'+[1,2,3].map(i=>`<Override PartName="/xl/worksheets/sheet${i}.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>`).join('')+'</Types>',
+            '_rels/.rels':`<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="${rel}/officeDocument" Target="xl/workbook.xml"/></Relationships>`,
+            'xl/workbook.xml':`<?xml version="1.0" encoding="UTF-8"?><workbook xmlns="${ns}" xmlns:r="${rel}"><sheets><sheet name="Historial" sheetId="1" r:id="rId1"/><sheet name="Indicadores" sheetId="2" r:id="rId2"/><sheet name="Criterios" sheetId="3" r:id="rId3"/></sheets></workbook>`,
+            'xl/_rels/workbook.xml.rels':`<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">${[1,2,3].map(i=>`<Relationship Id="rId${i}" Type="${rel}/worksheet" Target="worksheets/sheet${i}.xml"/>`).join('')}<Relationship Id="rId4" Type="${rel}/styles" Target="styles.xml"/></Relationships>`,
+            'xl/styles.xml':`<?xml version="1.0" encoding="UTF-8"?><styleSheet xmlns="${ns}"><fonts count="2"><font><sz val="11"/><name val="Calibri"/></font><font><b/><color rgb="FFFFFFFF"/><sz val="11"/><name val="Calibri"/></font></fonts><fills count="3"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FF14334F"/><bgColor indexed="64"/></patternFill></fill></fills><borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="3"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="2" borderId="0" xfId="0" applyFont="1" applyFill="1"/><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>`,
+            'xl/worksheets/sheet1.xml':gv22Hoja(historia,[28,42,17,14,30,30,24,30,30,16,28,23,23,20,15,20,20,20,20,55,65]),
+            'xl/worksheets/sheet2.xml':gv22Hoja(estad,[42,18,12,12,12,30,26,38,23,24]),
+            'xl/worksheets/sheet3.xml':gv22Hoja(notas,[28,110])
+        });
+    }
+    function gv22AbrirEstadisticas(){
+        const {registros}=gv22Leer();const ahora=Date.now();const {total,filas}=gv22Indicadores(registros,ahora);
+        document.getElementById('gv22-estadisticas')?.remove();
+        const d=document.createElement('dialog');d.id='gv22-estadisticas';d.style.cssText='width:min(980px,94vw);max-height:85vh;padding:18px;border:1px solid #cbd5e1;border-radius:14px;background:white;color:#0f172a;box-sizing:border-box;';
+        d.innerHTML='<div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><strong style="font-size:18px">Estadisticas de fallas</strong><button type="button" data-cerrar aria-label="Cerrar">X</button></div><p data-resumen></p><div style="overflow:auto;max-height:55vh"><table style="border-collapse:collapse;width:100%;font-size:12px"><thead></thead><tbody></tbody></table></div><p style="font-size:12px;color:#475569">MTTR operacional: promedio inicio-fin de fallas cerradas. Las horas activas se muestran por separado. No se descuentan eventos simultaneos. Eventos adicionales no implican repeticion de la misma causa. Historial completo local.</p>';
+        const fmt=v=>v.toLocaleString('es-CL',{maximumFractionDigits:2});
+        d.querySelector('[data-resumen]').textContent=`${total.eventos} eventos | ${total.activas} activas | ${total.cerradas} cerradas | ${fmt(total.horasC)} h cerradas | ${fmt(total.horasA)} h activas al corte`;
+        const encabezado=document.createElement('tr');
+        for(const t of ['Linea / ID','Eventos','Activas','Cerradas','Horas cerradas','Horas activas','MTTR op. h','Adicionales','Sin duracion']){const th=document.createElement('th');th.textContent=t;th.style.cssText='background:#14334f;color:white;padding:9px;text-align:left;position:sticky;top:0';encabezado.append(th);}
+        d.querySelector('thead').append(encabezado);
+        for(const g of filas){const tr=document.createElement('tr');for(const v of [g.nombre+(g.id?' / '+g.id:''),g.eventos,g.activas,g.cerradas,fmt(g.horasC),fmt(g.horasA),g.validasC?fmt(g.horasC/g.validasC):'—',Math.max(0,g.eventos-1),g.invalidas]){const td=document.createElement('td');td.textContent=v;td.style.cssText='padding:9px;border-bottom:1px solid #e2e8f0';tr.append(td);}d.querySelector('tbody').append(tr);}
+        d.querySelector('[data-cerrar]').onclick=()=>d.close();d.addEventListener('close',()=>d.remove(),{once:true});document.body.append(d);d.showModal();
+    }
+    function gv22InstalarPanel(panel){
+        if(panel.querySelector('#gv22-herramientas'))return;
+        const tools=document.createElement('div');tools.id='gv22-herramientas';tools.style.cssText='padding:8px 14px;border-bottom:1px solid #e2e8f0;';
+        tools.innerHTML='<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px"><button type="button" data-xlsx>Exportar Excel</button><button type="button" data-stats>Estadisticas</button><button type="button" data-backup>Crear respaldo</button><button type="button" data-import>Importar respaldo</button></div><input type="file" accept=".json,application/json" hidden><small data-estado role="status" aria-live="polite" style="display:block;color:#475569;font-size:11px;margin-top:6px;overflow-wrap:anywhere">Historial local. Exporta o respalda todos los registros.</small>';
+        for(const b of tools.querySelectorAll('button'))b.style.cssText='min-height:32px;border:1px solid #cbd5e1;border-radius:8px;background:#f8fafc;color:#14334f;font-weight:700;font-size:11px;cursor:pointer;';
+        const estado=tools.querySelector('[data-estado]');const file=tools.querySelector('input');
+        const ejecutar=f=>{try{f();}catch(e){estado.textContent='Error: '+e.message;}};
+        tools.querySelector('[data-xlsx]').onclick=()=>ejecutar(()=>{const {registros}=gv22Leer();gv22Descargar(gv22ExcelBlob(registros),gv22Nombre('GridVision-historial-fallas','xlsx'));estado.textContent='Excel generado: '+registros.length+' registros.';});
+        tools.querySelector('[data-backup]').onclick=()=>ejecutar(()=>{estado.textContent='Respaldo generado: '+gv22Respaldo()+' registros y geometrias.';});
+        tools.querySelector('[data-stats]').onclick=()=>ejecutar(gv22AbrirEstadisticas);
+        tools.querySelector('[data-import]').onclick=()=>{file.value='';file.click();};
+        file.onchange=async()=>{try{await gv22Importar(file.files[0],estado);}catch(e){estado.textContent='Error: '+e.message;}finally{file.value='';}};
+        const filtros=panel.querySelector('.gv-fallas-filtros');if(!filtros)throw new Error('Panel de fallas incompatible');panel.insertBefore(tools,filtros);
+        panel.style.display='flex';panel.style.flexDirection='column';
+        for(const child of panel.children)child.style.flexShrink='0';
+        const historial=panel.querySelector('#lista-fallas-guardadas-gridvision');
+        if(historial){historial.style.flex='1 1 auto';historial.style.minHeight='0';historial.style.maxHeight='none';}
+    }
+    // Marcador de version para evitar instalaciones duplicadas.
+    // GV_FALLAS_V22_INSTALADO
+
 function abrirPanelFallasGuardadas() {
     gvRegistroDesdeHistorial = false;
     const panel = asegurarPanelFallasGuardadas();
+    gv22InstalarPanel(panel);
     panel.hidden = false;
     renderizarFallasGuardadas();
 }
@@ -3542,19 +3751,19 @@ elementoLocalizador(
 
             <p>
                 <strong>Línea:</strong>
-                ${resultado.nombreLinea}
+                ${escaparHtml(resultado.nombreLinea)}
             </p>
 
             <p>
                 <strong>
-                    Desde ${resultado.nombreExtremoA}:
+                    Desde ${escaparHtml(resultado.nombreExtremoA)}:
                 </strong>
                 ${resultado.distanciaDesdeAKm.toFixed(1)} km
             </p>
 
             <p>
                 <strong>
-                    Desde ${resultado.nombreExtremoB}:
+                    Desde ${escaparHtml(resultado.nombreExtremoB)}:
                 </strong>
                 ${resultado.distanciaDesdeBKm.toFixed(1)} km
             </p>
