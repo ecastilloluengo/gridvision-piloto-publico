@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-17 23:47",
+  "catalogoActualizadoEn": "2026-11-18 15:26",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -45,6 +45,55 @@
       "archivoImpactos": "data/dmc/A628_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A628_2026_documento.json"
+    },
+    {
+      "codigo": "A631/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en zonas de la región de Magallanes",
+      "desdeTexto": "la mañana del jueves 19 de noviembre del 2026",
+      "hastaTexto": "la noche del jueves 19 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-19",
+      "fechaFinDia": "2026-11-19",
+      "fechaEmision": "2026-11-18T15:21:00-03:00",
+      "regiones": [
+        "Magallanes"
+      ],
+      "numeroPoligonos": 4,
+      "archivoGeojson": "data/dmc/A631_2026.geojson",
+      "archivoCobertura": "data/dmc/A631_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A631_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A631_2026_documento.json"
+    },
+    {
+      "codigo": "A630/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Valparaíso a la región de Aysén",
+      "desdeTexto": "la mañana del jueves 19 de noviembre del 2026",
+      "hastaTexto": "la noche del jueves 19 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-19",
+      "fechaFinDia": "2026-11-19",
+      "fechaEmision": "2026-11-18T14:30:00-03:00",
+      "regiones": [
+        "Aysén",
+        "Biobío",
+        "La Araucanía",
+        "Los Lagos",
+        "Los Ríos",
+        "Maule",
+        "Metropolitana",
+        "O’Higgins",
+        "Valparaíso",
+        "Ñuble"
+      ],
+      "numeroPoligonos": 36,
+      "archivoGeojson": "data/dmc/A630_2026.geojson",
+      "archivoCobertura": "data/dmc/A630_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A630_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A630_2026_documento.json"
     },
     {
       "codigo": "A622-3/2026",
@@ -113,5 +162,5 @@
       "archivoDocumento": "data/dmc/A627_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-18T08:41:28.493523-03:00"
+  "generadoEn": "2026-11-18T17:30:18.296377-03:00"
 }
