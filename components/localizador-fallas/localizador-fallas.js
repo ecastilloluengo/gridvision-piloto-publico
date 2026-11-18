@@ -1106,10 +1106,7 @@ function asegurarEditorFalla() {
                     </div>
                 </div>
 
-                <div class="gv-editor-evidencia-pendiente">
-                    <strong>📎 Evidencia</strong>
-                    <span>Fotos, SER, oscilografías, COMTRADE y PDF se incorporarán en la fase de almacenamiento de archivos.</span>
-                </div>
+                <div class="gv-editor-evidencia-pendiente" id="gv23-editor-evidencias"></div>
 
                 <div id="editor-falla-error" class="gv-editor-error" hidden></div>
             </div>
@@ -1124,6 +1121,10 @@ function asegurarEditorFalla() {
     document.body.appendChild(fondo);
 
     const cerrar = () => {
+        if (fondo._gv23Guardando) return;
+        if (fondo._gv23Pendientes?.length && !window.confirm("¿Cancelar el registro y descartar los archivos pendientes?")) return;
+        fondo._gv23Pendientes = [];
+        fondo._gv23RenderPendientes?.();
         fondo.hidden = true;
         fondo.dataset.registro = "";
         fondo.dataset.nuevo = "false";
@@ -1245,6 +1246,7 @@ function abrirEditorRegistroFalla(registro, esNuevo = false) {
     error.textContent = "";
 
     fondo.hidden = false;
+    gv23Editor(fondo, registro, esNuevo);
 }
 
 function actualizarResumenEstimacionEditor(fondo, registro) {
@@ -1417,8 +1419,9 @@ function obtenerGpsParaEditorFalla() {
     );
 }
 
-function guardarDesdeEditorFalla() {
+async function guardarDesdeEditorFalla() {
     const fondo = asegurarEditorFalla();
+    if (fondo._gv23Guardando) return;
     const registroBase = fondo._registroTemporal;
     const error = fondo.querySelector("#editor-falla-error");
 
@@ -1567,7 +1570,11 @@ function guardarDesdeEditorFalla() {
         registros.unshift(actualizado);
     }
 
-    escribirFallasGuardadas(registros);
+    try { escribirFallasGuardadas(registros); } catch (e) {
+        error.textContent = "No se pudo guardar la falla. No se han guardado las evidencias. " + e.message;
+        error.hidden = false;
+        return;
+    }
 
     if (
         ultimoResultadoFalla
@@ -1581,6 +1588,22 @@ function guardarDesdeEditorFalla() {
     }
 
     const volverHistorial = fondo.dataset.desdeHistorial === "true";
+    if (fondo._gv23Pendientes?.length) {
+        // El ID de la falla debe existir antes de asociar archivos. Ante un fallo
+        // de IndexedDB se conserva el registro y se permite reintentar sin duplicarlo.
+        fondo._registroTemporal = actualizado;
+        fondo.dataset.nuevo = "false";
+        try { await gv231GuardarPendientes(fondo, actualizado); }
+        catch (e) {
+            actualizarAccesoFallasGuardadas();
+            renderizarFallasGuardadas();
+            limpiarMarcadoresTemporalesDeRegistro(actualizado.id);
+            sincronizarMarcadoresFallasActivas();
+            error.textContent = "La falla quedó guardada, pero las evidencias no. Conserva el formulario abierto y vuelve a intentar, o quita archivos. " + e.message;
+            error.hidden = false;
+            return;
+        }
+    }
     fondo.hidden = true;
     fondo._registroTemporal = null;
     datosGpsEditorFalla = null;
@@ -2794,10 +2817,295 @@ function asegurarPanelFallasGuardadas() {
     // Marcador de version para evitar instalaciones duplicadas.
     // GV_FALLAS_V22_INSTALADO
 
+    const gv23DB = 'gridvision_evidencias_fallas_v1';
+    const gv23Store = 'archivos';
+    const gv23MiB = 1024 * 1024;
+    const gv23MaxFile = 20 * gv23MiB;
+    const gv23MaxTotal = 60 * gv23MiB;
+    const gv23MaxCount = 500;
+    const gv23Ext = /\.(jpe?g|png|webp|gif|heic|heif|pdf|ser|txt|log|csv|cfg|dat|hdr|inf|cff|comtrade|zip|xlsx)$/i;
+    const gv23RecordId = /^GV-FLT-\d{8}-\d{6}(?:-\d+)?$/;
+    const gv23FileId = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i;
+    let gv23DBPromise;
+
+    function gv23Open() {
+        if (!gv23DBPromise) {
+            gv23DBPromise = new Promise((resolve,reject) => {
+                if (!window.indexedDB) {reject(new Error('IndexedDB no disponible en este navegador.'));return;}
+                const req = indexedDB.open(gv23DB,1);
+                req.onupgradeneeded = () => {
+                    const db = req.result;
+                    if (!db.objectStoreNames.contains(gv23Store)) db.createObjectStore(gv23Store,{keyPath:'id'});
+                };
+                req.onerror = () => reject(req.error || new Error('No fue posible abrir las evidencias.'));
+                req.onblocked = () => reject(new Error('Cierra otras pestañas de GridVision y vuelve a intentar.'));
+                req.onsuccess = () => {
+                    const db=req.result;
+                    db.onversionchange=()=>{db.close();gv23DBPromise=null;};
+                    resolve(db);
+                };
+            }).catch(e=>{gv23DBPromise=null;throw e;});
+        }
+        return gv23DBPromise;
+    }
+    async function gv23All() {
+        const db=await gv23Open();
+        return new Promise((resolve,reject)=>{
+            const tx=db.transaction(gv23Store,'readonly');
+            const req=tx.objectStore(gv23Store).getAll();
+            tx.oncomplete=()=>resolve(req.result);
+            tx.onabort=tx.onerror=()=>reject(tx.error || req.error || new Error('No se pudieron leer los archivos.'));
+        });
+    }
+    function gv23NombreSeguro(nombre) {
+        return String(nombre??'').replace(/[\x00-\x1f\x7f<>:"/\\|?*]/g,'_').trim().slice(0,220);
+    }
+    function gv23Identidad(r) {
+        return {nombreLinea:String(r?.nombreLinea||''),idActivo:String(r?.idActivo||''),inicio:String(r?.fechaHoraInicio||r?.fechaHora||'')};
+    }
+    function gv23Coincide(a,b) {
+        if (!a || !b) return false;
+        if (a.idActivo && b.idActivo ? a.idActivo!==b.idActivo : a.nombreLinea!==b.nombreLinea) return false;
+        // La fecha permite detectar colisiones de ID entre computadores.
+        return a.inicio===b.inicio;
+    }
+    function gv23Id() {
+        if (crypto.randomUUID) return crypto.randomUUID();
+        const bytes=crypto.getRandomValues(new Uint8Array(16));
+        bytes[6]=(bytes[6]&15)|64;bytes[8]=(bytes[8]&63)|128;
+        const h=[...bytes].map(x=>x.toString(16).padStart(2,'0')).join('');
+        return `${h.slice(0,8)}-${h.slice(8,12)}-${h.slice(12,16)}-${h.slice(16,20)}-${h.slice(20)}`;
+    }
+    async function gv23Add(items) {
+        const db=await gv23Open();
+        return new Promise((resolve,reject)=>{
+            const tx=db.transaction(gv23Store,'readwrite');
+            const store=tx.objectStore(gv23Store);
+            const req=store.getAll();let resultado={nuevos:0,omitidos:0},error=null;
+            req.onsuccess=()=>{
+                try {
+                    const existentes=req.result;
+                    const ids=new Set(existentes.map(x=>x.id));
+                    const nuevos=[];
+                    for(const item of items){if(ids.has(item.id)){resultado.omitidos++;continue;}ids.add(item.id);nuevos.push(item);}
+                    const total=existentes.reduce((s,x)=>s+x.blob.size,0)+nuevos.reduce((s,x)=>s+x.blob.size,0);
+                    if(total>gv23MaxTotal || existentes.length+nuevos.length>gv23MaxCount)
+                        throw new Error('Límite local de evidencias: 60 MiB o 500 archivos. Descarga un respaldo y libera espacio.');
+                    for(const item of nuevos) store.add(item);
+                    resultado.nuevos=nuevos.length;
+                } catch(e){error=e;tx.abort();}
+            };
+            tx.oncomplete=()=>resolve(resultado);
+            tx.onabort=()=>reject(error||tx.error||new Error('No se pudieron guardar los archivos. Revisa el espacio disponible.'));
+            tx.onerror=()=>{};
+        });
+    }
+    async function gv23Delete(id) {
+        const db=await gv23Open();
+        return new Promise((resolve,reject)=>{
+            const tx=db.transaction(gv23Store,'readwrite');
+            tx.objectStore(gv23Store).delete(id);
+            tx.oncomplete=()=>resolve();
+            tx.onabort=()=>reject(tx.error||new Error('No se pudo eliminar.'));
+        });
+    }
+    function gv23Size(n){return n<1024?`${n} B`:n<gv23MiB?`${(n/1024).toFixed(1)} KiB`:`${(n/gv23MiB).toFixed(2)} MiB`;}
+    function gv23Boton(titulo,fn){
+        const b=document.createElement('button');b.type='button';b.textContent=titulo;
+        b.style.cssText='padding:7px 9px;border:1px solid #cbd5e1;border-radius:8px;background:#fff;color:#14334f;font:inherit;font-weight:650;cursor:pointer;';
+        b.addEventListener('click',fn);return b;
+    }
+    function gv23DescargarArchivo(item){
+        // Nunca ejecutar ni abrir un documento técnico como HTML.
+        gv22Descargar(new Blob([item.blob],{type:'application/octet-stream'}),item.nombre);
+    }
+    function gv23Fila(item,estado,recargar,global,registro){
+        const box=document.createElement('div');box.style.cssText='display:grid;gap:6px;padding:8px;border:1px solid #dbe3ee;border-radius:8px;background:white;color:#14334f;';
+        const t=document.createElement('strong');t.textContent=item.nombre;t.style.overflowWrap='anywhere';
+        const m=document.createElement('small');
+        m.textContent=[gv23Size(item.blob.size),gv22FechaVisible(item.creado),...(global?[item.fallaId,registro?registro.nombreLinea:'Registro no disponible · evidencia conservada']:[])].filter(Boolean).join(' · ');
+        const acciones=document.createElement('div');acciones.style.cssText='display:flex;gap:6px;flex-wrap:wrap;';
+        if(/\.(jpe?g|png|webp|gif)$/i.test(item.nombre)){
+            const vista=gv23Boton('Ver foto',()=>{
+                if(box.querySelector('img')){const img=box.querySelector('img');URL.revokeObjectURL(img.src);img.remove();vista.textContent='Ver foto';return;}
+                const ext=item.nombre.split('.').pop().toLowerCase();
+                const mime=ext==='jpg'||ext==='jpeg'?'image/jpeg':`image/${ext}`;
+                const img=document.createElement('img');img.alt=item.nombre;
+                img.style.cssText='max-height:220px;max-width:100%;object-fit:contain;border-radius:6px;';
+                const url=URL.createObjectURL(new Blob([item.blob],{type:mime}));img.src=url;
+                img.onload=()=>URL.revokeObjectURL(url);img.onerror=()=>{URL.revokeObjectURL(url);img.remove();vista.textContent='Ver foto';estado.textContent='No se pudo visualizar esta imagen.';};
+                box.append(img);vista.textContent='Ocultar foto';
+            });acciones.append(vista);
+        }
+        acciones.append(gv23Boton('Descargar',()=>gv23DescargarArchivo(item)));
+        const borrar=gv23Boton('Eliminar',async()=>{
+            if(!window.confirm(`¿Eliminar la evidencia ${item.nombre}? Descarga una copia si la necesitas.`))return;
+            borrar.disabled=true;
+            try{await gv23Delete(item.id);await recargar();estado.textContent='Evidencia eliminada.';}
+            catch(e){estado.textContent='Error: '+e.message;borrar.disabled=false;}
+        });borrar.style.color='#b91c1c';acciones.append(borrar);
+        box.append(t,m,acciones);return box;
+    }
+    async function gv23Adjuntar(registro,archivos){
+        if(!gv23RecordId.test(registro?.id||'') || !leerFallasGuardadas().some(r=>r.id===registro.id))throw new Error('Guarda primero el registro operacional.');
+        const seleccion=[...archivos];
+        if(!seleccion.length)return {nuevos:0,omitidos:0};
+        const items=[];
+        for(const f of seleccion){
+            const nombre=gv23NombreSeguro(f.name);
+            if(!gv23Ext.test(nombre))throw new Error(`Formato no admitido: ${nombre}. Para otros formatos, utiliza ZIP.`);
+            if(!f.size||f.size>gv23MaxFile)throw new Error(`Archivo vacío o superior a 20 MiB: ${nombre}.`);
+            items.push({id:gv23Id(),fallaId:registro.id,nombre,creado:new Date().toISOString(),identidad:gv23Identidad(registro),blob:f.slice(0,f.size,'application/octet-stream')});
+        }
+        return gv23Add(items);
+    }
+    async function gv23Editor(fondo,registro,esNuevo){
+        const host=fondo.querySelector('#gv23-editor-evidencias');if(!host)return;
+        host.replaceChildren();const clave=Symbol();host._gv23Clave=clave;
+        fondo._gv23Pendientes=[];fondo._gv23Guardando=false;
+        const guardar=fondo.querySelector('#guardar-editor-falla');
+        const titulo=document.createElement('strong');titulo.textContent='📎 Evidencias técnicas';host.append(titulo);
+        const nota=document.createElement('small');nota.textContent='Adjunta fotografías, PDF, SER, COMTRADE o ZIP. Los archivos nuevos se guardan al confirmar el registro. Máximo 20 MiB por archivo.';host.append(nota);
+        const estado=document.createElement('div');estado.setAttribute('role','status');
+        const lista=document.createElement('div');lista.style.cssText='display:grid;gap:6px;';
+        const pendientes=document.createElement('div');pendientes.style.cssText='display:grid;gap:6px;';
+        const input=document.createElement('input');input.type='file';input.multiple=true;input.hidden=true;
+        input.accept='.jpg,.jpeg,.png,.webp,.gif,.heic,.heif,.pdf,.ser,.txt,.log,.csv,.cfg,.dat,.hdr,.inf,.cff,.comtrade,.zip,.xlsx';
+        const adjuntar=gv23Boton('＋ Adjuntar archivos',()=>{if(!fondo._gv23Guardando){input.value='';input.click();}});
+        const renderPendientes=()=>{
+            if(host._gv23Clave!==clave)return;
+            pendientes.replaceChildren();
+            const seleccion=fondo._gv23Pendientes||[];
+            if(guardar)guardar.textContent=seleccion.length?'💾 Guardar registro y evidencias':'💾 Guardar registro';
+            for(const f of seleccion){
+                const fila=document.createElement('div');fila.style.cssText='display:flex;gap:8px;justify-content:space-between;align-items:center;padding:8px;border:1px dashed #0f766e;border-radius:8px;background:#f0fdfa;color:#134e4a;';
+                const info=document.createElement('div');info.style.cssText='min-width:0;overflow-wrap:anywhere;';
+                const nombre=document.createElement('strong');nombre.textContent=f.name;
+                const detalle=document.createElement('small');detalle.style.display='block';detalle.textContent=gv23Size(f.size)+' · Pendiente de guardar';info.append(nombre,detalle);
+                const quitar=gv23Boton('Quitar',()=>{if(fondo._gv23Guardando)return;fondo._gv23Pendientes=fondo._gv23Pendientes.filter(x=>x!==f);renderPendientes();estado.textContent='Selección actualizada.';});
+                fila.append(info,quitar);pendientes.append(fila);
+            }
+        };
+        fondo._gv23RenderPendientes=renderPendientes;
+        const recargar=async()=>{
+            const archivos=esNuevo?[]:(await gv23All()).filter(x=>x.fallaId===registro.id);
+            if(host._gv23Clave!==clave)return;
+            lista.replaceChildren();
+            for(const a of archivos.sort((a,b)=>b.creado.localeCompare(a.creado)))lista.append(gv23Fila(a,estado,recargar,false,registro));
+            if(!archivos.length){const sin=document.createElement('small');sin.textContent='Sin evidencias guardadas.';lista.append(sin);}
+        };
+        input.onchange=()=>{
+            const archivos=[...input.files];input.value='';if(!archivos.length)return;
+            if(host._gv23Clave!==clave||fondo.hidden||fondo.dataset.registro!==registro.id||fondo._gv23Guardando)return;
+            try{
+                const seleccion=[...(fondo._gv23Pendientes||[])];
+                for(const f of archivos){
+                    const nombre=gv23NombreSeguro(f.name);
+                    if(!gv23Ext.test(nombre))throw new Error(`Formato no admitido: ${nombre}. Para otros formatos, utiliza ZIP.`);
+                    if(!f.size||f.size>gv23MaxFile)throw new Error(`Archivo vacío o superior a 20 MiB: ${nombre}.`);
+                    if(!seleccion.some(x=>x.name===f.name&&x.size===f.size&&x.lastModified===f.lastModified))seleccion.push(f);
+                }
+                if(seleccion.length>gv23MaxCount||seleccion.reduce((s,f)=>s+f.size,0)>gv23MaxTotal)throw new Error('La selección supera 60 MiB o 500 archivos.');
+                fondo._gv23Pendientes=seleccion;renderPendientes();estado.textContent=`${seleccion.length} archivo(s) pendiente(s) de guardar.`;
+            }catch(e){estado.textContent='Error: '+e.message;}
+        };
+        host.append(adjuntar,input,estado,pendientes,lista);renderPendientes();
+        try{await recargar();}catch(e){estado.textContent='No se pudieron leer evidencias guardadas: '+e.message;}
+    }
+    async function gv231GuardarPendientes(fondo,registro){
+        const archivos=[...(fondo._gv23Pendientes||[])];
+        if(!archivos.length)return 0;
+        if(fondo._gv23Guardando)throw new Error('Ya se están guardando evidencias.');
+        fondo._gv23Guardando=true;
+        const controles=[...fondo.querySelectorAll('button,input,textarea,select')].map(c=>[c,c.disabled]);
+        for(const [c] of controles)c.disabled=true;
+        const boton=fondo.querySelector('#guardar-editor-falla');
+        if(boton)boton.textContent='Guardando evidencias…';
+        try{
+            const r=await gv23Adjuntar(registro,archivos);
+            fondo._gv23Pendientes=[];
+            return r.nuevos;
+        }finally{
+            fondo._gv23Guardando=false;
+            for(const [c,anterior] of controles)c.disabled=anterior;
+            fondo._gv23RenderPendientes?.();
+        }
+    }
+    // GV_FALLAS_V231_EDICION_INTEGRADA
+    function gv23Base64(blob){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result).split(',')[1]);reader.onerror=()=>reject(reader.error);reader.readAsDataURL(blob);});}
+    function gv23Decodificar(base64,tamano){
+        if(typeof base64!=='string'||!Number.isInteger(tamano)||tamano<1||tamano>gv23MaxFile||base64.length!==4*Math.ceil(tamano/3)||!/^[A-Za-z0-9+/]*={0,2}$/.test(base64))throw new Error('Contenido de archivo inválido.');
+        const bin=atob(base64);if(bin.length!==tamano)throw new Error('Tamaño de archivo incorrecto.');
+        const bytes=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);
+        return new Blob([bytes],{type:'application/octet-stream'});
+    }
+    async function gv23Exportar(){
+        const archivos=await gv23All();const registros=new Map(leerFallasGuardadas().map(r=>[r.id,r]));
+        const salida={formato:'gridvision-evidencias',version:1,exportadoEn:new Date().toISOString(),archivos:[]};
+        for(const a of archivos){const actual=registros.get(a.fallaId);salida.archivos.push({id:a.id,fallaId:a.fallaId,nombre:a.nombre,creado:a.creado,identidad:actual?gv23Identidad(actual):a.identidad,tamano:a.blob.size,base64:await gv23Base64(a.blob)});}
+        gv22Descargar(new Blob([JSON.stringify(salida)],{type:'application/json'}),gv22Nombre('GridVision-respaldo-evidencias','json'));
+        return archivos.length;
+    }
+    async function gv23Importar(file){
+        if(!file)return null;
+        if(file.size>90*gv23MiB)throw new Error('Respaldo superior a 90 MiB.');
+        const data=JSON.parse((await file.text()).replace(/^\uFEFF/,''));
+        if(data?.formato!=='gridvision-evidencias'||data.version!==1||!Array.isArray(data.archivos)||data.archivos.length>gv23MaxCount)throw new Error('Archivo incompatible: utiliza el respaldo de evidencias V2.3.');
+        const registros=new Map(leerFallasGuardadas().map(r=>[r.id,r]));
+        const items=[],ids=new Set();let sinRegistro=0,conflictos=0,tamano=0;
+        for(const a of data.archivos){
+            if(!a||typeof a.id!=='string'||!gv23FileId.test(a.id)||ids.has(a.id)||typeof a.fallaId!=='string'||!gv23RecordId.test(a.fallaId)||typeof a.nombre!=='string'||gv23NombreSeguro(a.nombre)!==a.nombre||!gv23Ext.test(a.nombre)||!gv22Fecha(a.creado)||typeof a.identidad?.nombreLinea!=='string'||typeof a.identidad?.idActivo!=='string'||typeof a.identidad?.inicio!=='string')throw new Error('Metadatos de evidencia inválidos.');
+            if(!Number.isInteger(a.tamano)||a.tamano<1||a.tamano>gv23MaxFile)throw new Error('Tamaño de evidencia inválido.');
+            ids.add(a.id);tamano+=a.tamano;if(tamano>gv23MaxTotal)throw new Error('El respaldo supera 60 MiB de archivos.');
+            const r=registros.get(a.fallaId);
+            if(!r){sinRegistro++;continue;}
+            if(!gv23Coincide(a.identidad,gv23Identidad(r))){conflictos++;continue;}
+            items.push({id:a.id,fallaId:a.fallaId,nombre:a.nombre,creado:a.creado,identidad:gv23Identidad(r),blob:gv23Decodificar(a.base64,a.tamano)});
+        }
+        if(!window.confirm(`Importar hasta ${items.length} evidencia(s).\nSin falla asociada: ${sinRegistro}. Identidad de falla distinta: ${conflictos}.\nLos ID de archivo existentes no se sobrescriben. ¿Continuar?`))return null;
+        return {...await gv23Add(items),sinRegistro,conflictos};
+    }
+    function gv23AbrirGestor(){
+        if(document.getElementById('gv23-gestor'))return;
+        const d=document.createElement('dialog');d.id='gv23-gestor';d.style.cssText='width:min(700px,94vw);max-height:86vh;border:1px solid #cbd5e1;border-radius:14px;padding:16px;box-sizing:border-box;color:#0f172a;background:white;';
+        const cab=document.createElement('div');cab.style.cssText='display:flex;align-items:center;justify-content:space-between;gap:10px;';
+        const h=document.createElement('strong');h.textContent='📎 Evidencias técnicas';h.style.fontSize='18px';cab.append(h,gv23Boton('Cerrar',()=>d.close()));
+        const p=document.createElement('p');p.style.cssText='font-size:13px;color:#475569;';p.textContent='Archivos locales de todas las fallas. El respaldo de evidencias es independiente del JSON histórico: conserva ambos. Los archivos de fallas eliminadas se conservan aquí hasta que los elimines expresamente.';
+        const estado=document.createElement('p');estado.setAttribute('role','status');estado.style.fontSize='12px';
+        const lista=document.createElement('div');lista.style.cssText='display:grid;gap:7px;overflow:auto;max-height:48vh;';
+        const barra=document.createElement('div');barra.style.cssText='display:flex;flex-wrap:wrap;gap:6px;';
+        const input=document.createElement('input');input.type='file';input.accept='.json,application/json';input.hidden=true;
+        const recargar=async()=>{
+            const archivos=await gv23All();const registros=new Map(leerFallasGuardadas().map(r=>[r.id,r]));
+            lista.replaceChildren();for(const a of archivos.sort((a,b)=>b.creado.localeCompare(a.creado)))lista.append(gv23Fila(a,estado,recargar,true,registros.get(a.fallaId)));
+            if(!archivos.length){const sin=document.createElement('p');sin.textContent='No hay evidencias guardadas.';lista.append(sin);}
+            estado.textContent=`${archivos.length} archivo(s) · ${gv23Size(archivos.reduce((s,x)=>s+x.blob.size,0))} / 60 MiB.`;
+        };
+        const respaldo=gv23Boton('Descargar respaldo',async()=>{
+            respaldo.disabled=true;estado.textContent='Preparando respaldo…';
+            try{estado.textContent=`Respaldo descargado: ${await gv23Exportar()} archivo(s).`;}catch(e){estado.textContent='Error: '+e.message;}finally{respaldo.disabled=false;}
+        });
+        const importar=gv23Boton('Importar evidencias',()=>{input.value='';input.click();});
+        input.onchange=async()=>{
+            if(!input.files.length)return;importar.disabled=true;estado.textContent='Validando respaldo…';
+            try{const r=await gv23Importar(input.files[0]);await recargar();estado.textContent=r?`Importadas: ${r.nuevos}; repetidas: ${r.omitidos}; sin falla: ${r.sinRegistro}; conflicto de identidad: ${r.conflictos}.`:'Importación cancelada.';}
+            catch(e){estado.textContent='Error: '+e.message;}finally{importar.disabled=false;input.value='';}
+        };
+        barra.append(respaldo,importar,input);d.append(cab,p,barra,estado,lista);document.body.append(d);
+        d.addEventListener('close',()=>d.remove(),{once:true});d.showModal();recargar().catch(e=>estado.textContent='Error: '+e.message);
+    }
+    function gv23InstalarPanel(panel){
+        const tools=panel.querySelector('#gv22-herramientas');if(!tools||tools.querySelector('#gv23-evidencias'))return;
+        const b=gv23Boton('📎 Evidencias técnicas',gv23AbrirGestor);b.id='gv23-evidencias';b.style.cssText+='width:100%;margin-top:6px;font-size:12px;min-height:33px;';
+        tools.append(b);
+    }
+    // GV_FALLAS_V23_INSTALADO
+
 function abrirPanelFallasGuardadas() {
     gvRegistroDesdeHistorial = false;
     const panel = asegurarPanelFallasGuardadas();
     gv22InstalarPanel(panel);
+    gv23InstalarPanel(panel);
     panel.hidden = false;
     renderizarFallasGuardadas();
 }
