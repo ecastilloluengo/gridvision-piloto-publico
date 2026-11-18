@@ -12,6 +12,7 @@
         'portal.css',
         'portal.js',
         'portal-offline.js',
+        'buscador-activos.html', // GV_PORTAL_EQM_OFFLINE_V1
         'portal-solax-diagnostico-potencias.js',
         'portal-alertas-pfv.js',
         'fusionsolar-detalle-v1.css',
@@ -22,6 +23,33 @@
         'portal-fondo-control-renovable.png',
         'data/processed/pfv_netbilling.geojson'
     ];
+
+    // Verifica el catalogo completo, no solo un HTTP 200.
+    function catalogoEQMValido(texto) {
+        return texto.includes('<script id="embeddedCatalog"') &&
+               texto.includes('<script id="offlineApp"');
+    }
+
+    async function verificarBuscadorEQM() {
+        const enlace = document.getElementById('nav-buscador-activos');
+        let descargado = false;
+        if ('caches' in window) {
+            try {
+                const cache = await caches.open(CACHE);
+                const copia = await cache.match(new URL('buscador-activos.html', raiz).href);
+                descargado = !!copia?.ok && catalogoEQMValido(await copia.text());
+            } catch (_) {}
+        }
+        window.GVPortalBuscadorEQMOffline = {descargado,
+            controlado: !!navigator.serviceWorker?.controller};
+        if (enlace) {
+            enlace.dataset.offlineEqm = descargado ? 'listo' : 'pendiente';
+            enlace.title = descargado
+                ? 'Buscador de Activos Pecket · catálogo EQM descargado'
+                : 'Buscador de Activos Pecket · pendiente de descargar para uso offline';
+        }
+        return descargado;
+    }
 
     async function preparar() {
         if (!navigator.onLine) return;
@@ -46,7 +74,25 @@
                     const url = new URL(recurso, raiz).href;
                     let copia = await cache.match(url);
 
-                    if (!copia || !copia.ok) {
+                    // El catalogo EQM se actualiza al abrir el Portal conectado.
+                    // Si falla la red, conservamos una copia anterior valida.
+                    if (recurso === 'buscador-activos.html') {
+                        let anteriorValido = false;
+                        try { anteriorValido = !!copia?.ok && catalogoEQMValido(await copia.clone().text()); } catch (_) {}
+                        try {
+                            const respuesta = await fetch(url, {cache: 'no-store'});
+                            if (!respuesta.ok || !catalogoEQMValido(await respuesta.clone().text())) {
+                                throw Error('Catálogo EQM inválido o no disponible');
+                            }
+                            await cache.put(url, respuesta);
+                            copia = await cache.match(url);
+                        } catch (error) {
+                            if (!anteriorValido) throw error;
+                        }
+                        if (!copia?.ok || !catalogoEQMValido(await copia.clone().text())) {
+                            throw Error('Catálogo EQM sin respaldo verificable');
+                        }
+                    } else if (!copia || !copia.ok) {
                         const respuesta = await fetch(
                             url,
                             {cache: 'no-store'}
@@ -77,6 +123,8 @@
                 pendientes,
                 listo: pendientes.length === 0
             };
+
+            await verificarBuscadorEQM();
 
             console.info(
                 'GridVision Portal Offline:',
@@ -131,7 +179,13 @@
         }
     }
 
-    window.addEventListener('offline', estadoConexion);
+    window.addEventListener('offline', () => {
+        estadoConexion();
+        void verificarBuscadorEQM();
+    });
+    navigator.serviceWorker?.addEventListener('controllerchange', () => {
+        void verificarBuscadorEQM();
+    });
 
     window.addEventListener('online', () => {
         estadoConexion();
@@ -139,6 +193,7 @@
     });
 
     estadoConexion();
+    void verificarBuscadorEQM();
     preparar();
 
 })();

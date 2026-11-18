@@ -6,6 +6,7 @@ const CORE=['portal.html',
   'portal.css',
   'portal.js',
   'portal-offline.js',
+  'buscador-activos.html', // GV_PORTAL_EQM_OFFLINE_V1
   'portal-solax-diagnostico-potencias.js',
   'portal-alertas-pfv.js',
   'fusionsolar-detalle-v1.css',
@@ -24,6 +25,7 @@ const CORE=['portal.html',
   'components/gridvision-nav/gridvision-modo-clima.js',
 'components/gridvision-nav/gridvision-modo-clima.css',
 'vendor/leaflet/leaflet.css','vendor/leaflet/leaflet.js'];
+function eqmValido(texto){return texto.includes('<script id="embeddedCatalog"') && texto.includes('<script id="offlineApp"');}
 const root = new URL('./', self.registration.scope);
 const urlFor = p => new URL(p,root).href;
 function normURL(input){const u=new URL(input);u.search='';u.hash='';return u.href;}
@@ -34,7 +36,7 @@ self.addEventListener('install', event=>{
     // por una descarga ocasionalmente fallida.
     await Promise.all(CORE.map(async p=>{
       try {const r=await fetch(urlFor(p),{cache:'no-store'});
-        if(r.ok) await cache.put(urlFor(p),r);
+        if(r.ok && (p!=='buscador-activos.html' || eqmValido(await r.clone().text()))) await cache.put(urlFor(p),r);
       } catch(e) {console.warn('SW sin recurso inicial',p,e);} 
     }));
     await self.skipWaiting();
@@ -49,7 +51,7 @@ self.addEventListener('fetch',event=>{
   const relative=u.pathname.slice(root.pathname.length);
   if(!relative || relative.startsWith('api/') ||
      /^data\/(alertas_senapred\.json|dmc\/|sitr_)/i.test(relative)) return;
-  const appPage=['portal.html','index.html','gridvision-fire.html','gridvision-vulcano.html',
+  const appPage=['portal.html','buscador-activos.html','index.html','gridvision-fire.html','gridvision-vulcano.html',
 'components/localizador-fallas/localizador-fallas.html',
 'components/panel-operacional.html'].includes(relative);
   const appStatic=/\.(js|css|svg|png|webmanifest|ico|woff2?)$/i.test(relative);
@@ -61,6 +63,11 @@ self.addEventListener('fetch',event=>{
     const cache=await caches.open(CACHE);
     try {
       const result=await fetch(req);
+      if(relative==='buscador-activos.html' && result.ok && !eqmValido(await result.clone().text())){
+        const saved=await cache.match(key);
+        if(saved?.ok && eqmValido(await saved.clone().text()))return saved;
+        return new Response('Catalogo EQM no disponible',{status:503});
+      }
       if(result.ok){
         // El material de Vulcano es muy voluminoso: únicamente se
         // almacena cuando el usuario lo prepara explícitamente.
