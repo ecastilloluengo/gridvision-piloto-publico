@@ -425,51 +425,33 @@ function obtenerIdActivoCompartirFalla() {
     return id ? id.trim().toUpperCase() : null;
 }
 
+function gv232EnlaceFalla({latitud,longitud,nombreLinea,idActivo,idEvento,tipo='estimada'}={}) {
+    const valido=v=>(typeof v==='number'||(typeof v==='string'&&v.trim()!==''))&&Number.isFinite(Number(v));
+    if(!valido(latitud)||!valido(longitud)||Math.abs(Number(latitud))>90||Math.abs(Number(longitud))>180) return null;
+    const local=['localhost','127.0.0.1','[::1]'].includes(window.location.hostname);
+    const url=new URL(local?'./index.html':'https://ecastilloluengo.github.io/gridvision-piloto-publico/',window.location.href);
+    url.search=''; url.hash='';
+    url.searchParams.set('falla','1');
+    url.searchParams.set('lat',Number(latitud).toFixed(14));
+    url.searchParams.set('lng',Number(longitud).toFixed(14));
+    url.searchParams.set('zoom','17');
+    url.searchParams.set('ubicacion',tipo==='confirmada'?'confirmada':'estimada');
+    if(nombreLinea)url.searchParams.set('linea',String(nombreLinea).slice(0,240));
+    if(idActivo)url.searchParams.set('activo',String(idActivo).slice(0,80));
+    if(idEvento)url.searchParams.set('evento',String(idEvento).slice(0,80));
+    return url.href;
+}
+
 function construirDatosCompartirFalla(resultado) {
-    if (!resultado?.coordenadas) {
-        return null;
-    }
-
-    const [longitudFalla, latitudFalla] = resultado.coordenadas;
-
-    // Igual al formato que ya usa GridVision al compartir un activo:
-    // latitud,longitud sin espacios para que WhatsApp mantenga el enlace limpio.
-    const coordenadasQuery =
-        `${latitudFalla.toFixed(14)},${longitudFalla.toFixed(14)}`;
-
-    const urlMapa =
-        `https://www.google.com/maps/search/?api=1&query=`
-        + encodeURIComponent(coordenadasQuery);
-
-    const idActivo = obtenerIdActivoCompartirFalla();
-    const urlActivo = idActivo
-        ? `https://ecastilloluengo.github.io/gridvision-piloto-publico/?activo=${encodeURIComponent(idActivo)}`
-        : null;
-
-    const lineas = [
-        'Ver ubicación en Google Maps:',
-        urlMapa
-    ];
-
-    if (urlActivo) {
-        lineas.push(
-            '',
-            'Abrir activo en GridVision:',
-            urlActivo
-        );
-    }
-
-    const texto = lineas.join('\n');
-
-    return {
-        titulo: 'Ubicación GridVision',
-        texto,
-        coordenadasTexto:
-            `${latitudFalla.toFixed(6)}, ${longitudFalla.toFixed(6)}`,
-        urlMapa,
-        urlActivo,
-        idActivo
-    };
+    if(!Array.isArray(resultado?.coordenadas)||resultado.coordenadas.length<2)return null;
+    const [longitudFalla,latitudFalla]=resultado.coordenadas;
+    const idActivo=resultado._idActivoGuardado||obtenerIdActivoCompartirFalla();
+    const urlActivo=gv232EnlaceFalla({latitud:latitudFalla,longitud:longitudFalla,nombreLinea:resultado.nombreLinea,idActivo,idEvento:resultado._registroGuardadoId});
+    if(!urlActivo)return null;
+    const lat=Number(latitudFalla),lng=Number(longitudFalla);
+    const urlMapa='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(`${lat.toFixed(14)},${lng.toFixed(14)}`);
+    const lineas=['Ubicacion estimada de falla'+(resultado.nombreLinea?' · '+resultado.nombreLinea:''),'Ver ubicacion en Google Maps:',urlMapa,'','Ver pin de falla en GridVision:',urlActivo];
+    return {titulo:'Ubicacion GridVision',texto:lineas.join('\n'),coordenadasTexto:`${lat.toFixed(6)}, ${lng.toFixed(6)}`,urlMapa,urlActivo,idActivo};
 }
 
 async function copiarTexto(texto) {
@@ -3121,87 +3103,29 @@ function cerrarPanelFallasGuardadas() {
 }
 
 function construirDatosCompartirRegistro(registro) {
-    if (!registro) return null;
-
-    const latitud = Number(registro.latitud);
-    const longitud = Number(registro.longitud);
-    const urlMapa =
-        "https://www.google.com/maps/search/?api=1&query="
-        + encodeURIComponent(
-            `${latitud.toFixed(14)},${longitud.toFixed(14)}`
-        );
-
-    const urlActivo = registro.idActivo
-        ? `https://ecastilloluengo.github.io/gridvision-piloto-publico/?activo=${encodeURIComponent(registro.idActivo)}`
-        : null;
-
-    const estado = estadoRegistroFalla(registro);
-    const lineas = [
-        `Falla GridVision: ${registro.id}`,
-        `Estado: ${estado === "cerrada" ? "CERRADA" : "ACTIVA"}`,
-        `Línea: ${registro.nombreLinea || "Línea sin nombre"}`,
-        `Inicio: ${formatearFechaHoraFalla(registro.fechaHoraInicio || registro.fechaHora)}`
-    ];
-
-    if (registro.fechaHoraFin) {
-        lineas.push(
-            `Fin: ${formatearFechaHoraFalla(registro.fechaHoraFin)}`,
-            `Duración: ${formatearDuracionFalla(registro)}`
-        );
+    if(!registro)return null;
+    const estado=estadoRegistroFalla(registro);
+    const lineas=[`Falla GridVision: ${registro.id}`,`Estado: ${estado==='cerrada'?'CERRADA':'ACTIVA'}`,`Linea: ${registro.nombreLinea||'Linea sin nombre'}`,`Inicio: ${formatearFechaHoraFalla(registro.fechaHoraInicio||registro.fechaHora)}`];
+    if(registro.fechaHoraFin)lineas.push(`Fin: ${formatearFechaHoraFalla(registro.fechaHoraFin)}`,`Duracion: ${formatearDuracionFalla(registro)}`);
+    if(registro.afectacionOperacional)lineas.push('','Afectacion operacional:',registro.afectacionOperacional);
+    function agregarUbicacion(punto,tipo){
+        const url=gv232EnlaceFalla({latitud:punto?.latitud,longitud:punto?.longitud,nombreLinea:registro.nombreLinea,idActivo:registro.idActivo,idEvento:registro.id,tipo});
+        if(!url)return false;
+        const coord=`${Number(punto.latitud).toFixed(14)},${Number(punto.longitud).toFixed(14)}`;
+        lineas.push('',tipo==='confirmada'?'Ubicacion confirmada en terreno:':'Ubicacion estimada por proteccion:','Google Maps:','https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(coord),'GridVision (pin de falla):',url);
+        return true;
     }
-
-    if (registro.afectacionOperacional) {
-        lineas.push(
-            "",
-            "Afectación operacional:",
-            registro.afectacionOperacional
-        );
+    const estimada=agregarUbicacion(registro,'estimada');
+    if(!estimada)lineas.push('','Ubicacion estimada por proteccion: pendiente de localizacion');
+    const confirmada=agregarUbicacion(registro.ubicacionConfirmada,'confirmada');
+    if(registro.observaciones)lineas.push('','Observaciones:',registro.observaciones);
+    if(!estimada&&!confirmada&&registro.idActivo){
+        const local=['localhost','127.0.0.1','[::1]'].includes(window.location.hostname);
+        const url=new URL(local?'./index.html':'https://ecastilloluengo.github.io/gridvision-piloto-publico/',window.location.href);
+        url.search='';url.hash='';url.searchParams.set('activo',registro.idActivo);
+        lineas.push('','Abrir linea en GridVision (sin punto de falla):',url.href);
     }
-
-    lineas.push(
-        "",
-        "Ubicación estimada por protección:",
-        coordenadasFallaValidas(registro) ? urlMapa : "Pendiente de localización"
-    );
-
-    const confirmada = registro.ubicacionConfirmada;
-
-    if (
-        coordenadasFallaValidas(confirmada)
-    ) {
-        const urlConfirmada =
-            "https://www.google.com/maps/search/?api=1&query="
-            + encodeURIComponent(
-                `${Number(confirmada.latitud).toFixed(14)},${Number(confirmada.longitud).toFixed(14)}`
-            );
-
-        lineas.push(
-            "",
-            "Ubicación confirmada en terreno:",
-            urlConfirmada
-        );
-    }
-
-    if (registro.observaciones) {
-        lineas.push(
-            "",
-            "Observaciones:",
-            registro.observaciones
-        );
-    }
-
-    if (urlActivo) {
-        lineas.push(
-            "",
-            "Abrir activo en GridVision:",
-            urlActivo
-        );
-    }
-
-    return {
-        titulo: "Falla guardada · GridVision",
-        texto: lineas.join("\n")
-    };
+    return {titulo:'Falla guardada · GridVision',texto:lineas.join('\n')};
 }
 
 async function compartirRegistroFalla(idRegistro) {

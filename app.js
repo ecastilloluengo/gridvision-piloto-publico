@@ -15,6 +15,8 @@ function abrirUbicacionCompartidaDesdeURL() {
     const parametros =
         new URLSearchParams(window.location.search);
 
+    if (parametros.get("falla") === "1") return;
+
     // Si el enlace no contiene ubicación compartida,
     // GridVision continúa normalmente.
     if (
@@ -3791,6 +3793,47 @@ document.getElementById("reintentar-carga").addEventListener(
     "click",
     () => window.location.reload()
 );
+function gv232AbrirFallaCompartida() {
+    const p=new URLSearchParams(window.location.search);
+    if(p.get('falla')!=='1')return false;
+    const latTexto=p.get('lat'),lngTexto=p.get('lng');
+    const lat=Number(latTexto),lng=Number(lngTexto);
+    if(latTexto===null||lngTexto===null||!latTexto.trim()||!lngTexto.trim()||!Number.isFinite(lat)||!Number.isFinite(lng)||Math.abs(lat)>90||Math.abs(lng)>180){
+        window.alert('El enlace de falla no contiene coordenadas validas.');return true;
+    }
+    const confirmada=p.get('ubicacion')==='confirmada';
+    const titulo=confirmada?'Falla confirmada en terreno':'Falla estimada por proteccion';
+    const nombre=(p.get('linea')||'').slice(0,240);
+    const id=(p.get('evento')||'').slice(0,80);
+    // The line is optional context, never a reason to change the pin's zoom.
+    const activo=p.get('activo');
+    if(activo&&typeof indiceBusqueda!=='undefined'){
+        const registro=indiceBusqueda.find(r=>r.feature?.properties?.id===activo);
+        if(registro){
+            if(!mapa.hasLayer(registro.capa))registro.capa.addTo(mapa);
+            if(!registro.capa.hasLayer(registro.layer))registro.capa.addLayer(registro.layer);
+        }
+    }
+    const posicion=[lat,lng];
+    const color=confirmada?'#059669':'#ea580c';
+    const icono=L.divIcon({className:'gv232-pin-falla',html:'<div style="width:36px;height:36px;box-sizing:border-box;display:grid;place-items:center;border:3px solid white;border-radius:50%;box-shadow:0 2px 9px #0006;color:white;background:'+color+';font-size:20px;line-height:1">'+(confirmada?'✓':'⚡')+'</div>',iconSize:[36,36],iconAnchor:[18,18],popupAnchor:[0,-20]});
+    const marcador=L.marker(posicion,{icon:icono,zIndexOffset:2000,title:titulo,riseOnHover:true}).addTo(mapa);
+    const popup=document.createElement('div');popup.className='popup-gridvision';
+    const h=document.createElement('h3');h.textContent=titulo;popup.append(h);
+    const texto=(etiqueta,valor)=>{const fila=document.createElement('p');const b=document.createElement('strong');b.textContent=etiqueta+': ';fila.append(b,document.createTextNode(valor));popup.append(fila);};
+    if(nombre)texto('Linea',nombre);if(id)texto('Evento',id);
+    texto('Coordenadas',lat.toFixed(6)+', '+lng.toFixed(6));
+    const nota=document.createElement('small');nota.textContent='Ubicacion compartida mediante enlace. No corresponde a un registro guardado en este navegador.';popup.append(nota);
+    const link=document.createElement('a');link.href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(lat+','+lng);link.target='_blank';link.rel='noopener noreferrer';link.textContent='Abrir en Google Maps';const par=document.createElement('p');par.append(link);popup.append(par);
+    mapa.setView(posicion,Math.min(17,mapa.getMaxZoom()),{animate:false});
+    marcador.bindPopup(popup,{maxWidth:340,autoPan:false}).openPopup();
+    return true;
+}
+
+function gv232DespacharCompartido(){
+    if(!gv232AbrirFallaCompartida())abrirActivoCompartido();
+}
+
 function abrirActivoCompartido() {
     const parametros =
         new URLSearchParams(
@@ -3826,7 +3869,7 @@ iniciarGridVision().then(() => {
     inicializarFiltros();
 
     window.setTimeout(
-        abrirActivoCompartido,
+        gv232DespacharCompartido,
         350
     );
 });
