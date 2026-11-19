@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-18 23:10",
+  "catalogoActualizadoEn": "2026-11-19 05:58",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -47,6 +47,35 @@
       "archivoDocumento": "data/dmc/A629_2026_documento.json"
     },
     {
+      "codigo": "A630-1/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Valparaíso a la región de Aysén",
+      "desdeTexto": "la mañana del jueves 19 de noviembre del 2026",
+      "hastaTexto": "la noche del jueves 19 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-19",
+      "fechaFinDia": "2026-11-19",
+      "fechaEmision": "2026-11-19T05:53:00-03:00",
+      "regiones": [
+        "Aysén",
+        "Biobío",
+        "La Araucanía",
+        "Los Lagos",
+        "Los Ríos",
+        "Maule",
+        "Metropolitana",
+        "O’Higgins",
+        "Valparaíso",
+        "Ñuble"
+      ],
+      "numeroPoligonos": 38,
+      "archivoGeojson": "data/dmc/A630-1_2026.geojson",
+      "archivoCobertura": "data/dmc/A630-1_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A630-1_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A630-1_2026_documento.json"
+    },
+    {
       "codigo": "A631/2026",
       "tipo": "Aviso",
       "fenomeno": "Tormentas Eléctricas",
@@ -65,35 +94,6 @@
       "archivoImpactos": "data/dmc/A631_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A631_2026_documento.json"
-    },
-    {
-      "codigo": "A630/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Valparaíso a la región de Aysén",
-      "desdeTexto": "la mañana del jueves 19 de noviembre del 2026",
-      "hastaTexto": "la noche del jueves 19 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-19",
-      "fechaFinDia": "2026-11-19",
-      "fechaEmision": "2026-11-18T14:30:00-03:00",
-      "regiones": [
-        "Aysén",
-        "Biobío",
-        "La Araucanía",
-        "Los Lagos",
-        "Los Ríos",
-        "Maule",
-        "Metropolitana",
-        "O’Higgins",
-        "Valparaíso",
-        "Ñuble"
-      ],
-      "numeroPoligonos": 36,
-      "archivoGeojson": "data/dmc/A630_2026.geojson",
-      "archivoCobertura": "data/dmc/A630_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A630_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A630_2026_documento.json"
     },
     {
       "codigo": "A622-3/2026",
@@ -116,27 +116,7 @@
       "archivoImpactos": "data/dmc/A622-3_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A622-3_2026_documento.json"
-    },
-    {
-      "codigo": "A625-1/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Altas Temperaturas",
-      "titulo": "Altas Temperaturas en Comunas: Torres del Paine, Puerto Natales, Laguna Blanca, San Gregorio y Primavera - Reg. Magallanes",
-      "desdeTexto": "la tarde del martes 17 de noviembre del 2026",
-      "hastaTexto": "la noche del miércoles 18 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-17",
-      "fechaFinDia": "2026-11-18",
-      "fechaEmision": "2026-11-17T16:12:00-03:00",
-      "regiones": [
-        "Magallanes"
-      ],
-      "numeroPoligonos": 1,
-      "archivoGeojson": "data/dmc/A625-1_2026.geojson",
-      "archivoCobertura": "data/dmc/A625-1_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A625-1_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A625-1_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-18T23:34:14.536727-03:00"
+  "generadoEn": "2026-11-19T08:38:50.727486-03:00"
 }

@@ -1,0 +1,14 @@
+{
+  "codigo": "A630-1/2026",
+  "tipo": "Aviso",
+  "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Valparaíso a la región de Aysén",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Jueves 19 de noviembre del 2026 a las 05:53 hrs.",
+  "condicionSinoptica": "Inestabilidad atmosférica",
+  "desde": "la mañana del jueves 19 de noviembre del 2026",
+  "hasta": "la noche del jueves 19 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Valparaíso (Precordillera y valles precordilleranos, Cordillera)\nMetropolitana (Valle, Precordillera, Cordillera)\nO'Higgins (Precordillera, Cordillera)\nMaule (Precordillera, Cordillera)\nÑuble (Valle, Precordillera, Cordillera)\nBiobío (Cordillera Costa, Valle, Precordillera, Cordillera)\nLa Araucanía (Litoral, Cordillera Costa, Valle, Precordillera, Cordillera)\nLos Ríos (Litoral, Cordillera Costa, Valle, Precordillera, Cordillera)\nLos Lagos (Cordillera Costa, Valle, Precordillera, Cordillera, Litoral Interior, Cordillera Austral, Patagonia Subandina)\nAysén (Litoral Interior Norte, Cordillera Austral Norte, Patagonia Subandina Norte, Cordillera Austral Sur, Patagonia Subandina Sur)",
+  "tablaTitulo": "",
+  "tablaFilas": []
+}
