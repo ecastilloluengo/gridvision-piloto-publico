@@ -1,10 +1,31 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-18 15:26",
+  "catalogoActualizadoEn": "2026-11-18 23:10",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
+    {
+      "codigo": "A628-1/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Altas Temperaturas",
+      "titulo": "Altas Temperaturas en zonas de las regiones de Antofagasta y Atacama",
+      "desdeTexto": "la tarde del jueves 19 de noviembre del 2026",
+      "hastaTexto": "la tarde del lunes 23 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-19",
+      "fechaFinDia": "2026-11-23",
+      "fechaEmision": "2026-11-18T17:44:00-03:00",
+      "regiones": [
+        "Antofagasta",
+        "Atacama"
+      ],
+      "numeroPoligonos": 6,
+      "archivoGeojson": "data/dmc/A628-1_2026.geojson",
+      "archivoCobertura": "data/dmc/A628-1_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A628-1_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A628-1_2026_documento.json"
+    },
     {
       "codigo": "A629/2026",
       "tipo": "Aviso",
@@ -24,27 +45,6 @@
       "archivoImpactos": "data/dmc/A629_2026_impactos.json",
       "observacion": "Probabilidad de tormentas de arena",
       "archivoDocumento": "data/dmc/A629_2026_documento.json"
-    },
-    {
-      "codigo": "A628/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Altas Temperaturas",
-      "titulo": "Altas Temperaturas en zonas de las regiones de Antofagasta y Atacama",
-      "desdeTexto": "la tarde del jueves 19 de noviembre del 2026",
-      "hastaTexto": "la tarde del sábado 21 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-19",
-      "fechaFinDia": "2026-11-21",
-      "fechaEmision": "2026-11-17T16:20:00-03:00",
-      "regiones": [
-        "Antofagasta",
-        "Atacama"
-      ],
-      "numeroPoligonos": 4,
-      "archivoGeojson": "data/dmc/A628_2026.geojson",
-      "archivoCobertura": "data/dmc/A628_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A628_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A628_2026_documento.json"
     },
     {
       "codigo": "A631/2026",
@@ -136,31 +136,7 @@
       "archivoImpactos": "data/dmc/A625-1_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A625-1_2026_documento.json"
-    },
-    {
-      "codigo": "A627/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas desde la región del Biobío a la región de Aysén",
-      "desdeTexto": "la tarde del miércoles 18 de noviembre del 2026",
-      "hastaTexto": "la noche del miércoles 18 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-18",
-      "fechaFinDia": "2026-11-18",
-      "fechaEmision": "2026-11-17T15:00:00-03:00",
-      "regiones": [
-        "Aysén",
-        "Biobío",
-        "La Araucanía",
-        "Los Lagos",
-        "Los Ríos"
-      ],
-      "numeroPoligonos": 15,
-      "archivoGeojson": "data/dmc/A627_2026.geojson",
-      "archivoCobertura": "data/dmc/A627_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A627_2026_impactos.json",
-      "observacion": "Probabilidad de precipitaciones fuertes en un corto período de tiempo",
-      "archivoDocumento": "data/dmc/A627_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-18T17:30:18.296377-03:00"
+  "generadoEn": "2026-11-18T23:34:14.536727-03:00"
 }
