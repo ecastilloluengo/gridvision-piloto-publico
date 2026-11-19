@@ -1,10 +1,28 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-19 05:58",
+  "catalogoActualizadoEn": "2026-11-19 16:25",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
+    {
+      "codigo": "A632/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Viento",
+      "titulo": "Viento Normal a Moderado en Isla de Pascua",
+      "desdeTexto": "la madrugada del domingo 22 de noviembre del 2026",
+      "hastaTexto": "la mañana del lunes 23 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-22",
+      "fechaFinDia": "2026-11-23",
+      "fechaEmision": "2026-11-19T14:37:00-03:00",
+      "regiones": [],
+      "numeroPoligonos": 1,
+      "archivoGeojson": "data/dmc/A632_2026.geojson",
+      "archivoCobertura": "data/dmc/A632_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A632_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A632_2026_documento.json"
+    },
     {
       "codigo": "A628-1/2026",
       "tipo": "Aviso",
@@ -45,6 +63,46 @@
       "archivoImpactos": "data/dmc/A629_2026_impactos.json",
       "observacion": "Probabilidad de tormentas de arena",
       "archivoDocumento": "data/dmc/A629_2026_documento.json"
+    },
+    {
+      "codigo": "A633/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en Comunas de Torres del Paine, Natales, Laguna Blanca y San Gregorio - Reg. Magallanes",
+      "desdeTexto": "la tarde del viernes 20 de noviembre del 2026",
+      "hastaTexto": "la noche del viernes 20 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-20",
+      "fechaFinDia": "2026-11-20",
+      "fechaEmision": "2026-11-19T16:20:00-03:00",
+      "regiones": [
+        "Magallanes"
+      ],
+      "numeroPoligonos": 1,
+      "archivoGeojson": "data/dmc/A633_2026.geojson",
+      "archivoCobertura": "data/dmc/A633_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A633_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A633_2026_documento.json"
+    },
+    {
+      "codigo": "AA201/2026",
+      "tipo": "Alerta",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Tormentas Eléctricas en zonas de la región de La Araucanía",
+      "desdeTexto": "la tarde del jueves 19 de noviembre del 2026",
+      "hastaTexto": "la noche del jueves 19 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-19",
+      "fechaFinDia": "2026-11-19",
+      "fechaEmision": "2026-11-19T15:47:00-03:00",
+      "regiones": [
+        "La Araucanía"
+      ],
+      "numeroPoligonos": 2,
+      "archivoGeojson": "data/dmc/AA201_2026.geojson",
+      "archivoCobertura": "data/dmc/AA201_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/AA201_2026_impactos.json",
+      "observacion": "Probabilidad de precipitaciones fuertes en un corto período de tiempo",
+      "archivoDocumento": "data/dmc/AA201_2026_documento.json"
     },
     {
       "codigo": "A630-1/2026",
@@ -118,5 +176,5 @@
       "archivoDocumento": "data/dmc/A622-3_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-19T08:38:50.727486-03:00"
+  "generadoEn": "2026-11-19T17:36:35.677921-03:00"
 }

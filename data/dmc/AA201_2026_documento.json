@@ -1,0 +1,14 @@
+{
+  "codigo": "AA201/2026",
+  "tipo": "Alerta",
+  "titulo": "Tormentas Eléctricas en zonas de la región de La Araucanía",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Jueves 19 de noviembre del 2026 a las 15:47 hrs.",
+  "condicionSinoptica": "Inestabilidad atmosférica",
+  "desde": "la tarde del jueves 19 de noviembre del 2026",
+  "hasta": "la noche del jueves 19 de noviembre del 2026",
+  "observacion": "Probabilidad de precipitaciones fuertes en un corto período de tiempo",
+  "textoZonaAfecta": "La Araucanía (Valle, Precordillera)",
+  "tablaTitulo": "",
+  "tablaFilas": []
+}
