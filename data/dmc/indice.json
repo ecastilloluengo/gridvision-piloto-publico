@@ -1,10 +1,51 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-20 00:23",
+  "catalogoActualizadoEn": "2026-11-20 15:56",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
+    {
+      "codigo": "A629-1/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Viento",
+      "titulo": "Viento Normal a Moderado en Litoral de la Provincia de Huasco, Región de Atacama",
+      "desdeTexto": "la tarde del viernes 20 de noviembre del 2026",
+      "hastaTexto": "la noche del lunes 23 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-20",
+      "fechaFinDia": "2026-11-23",
+      "fechaEmision": "2026-11-20T15:51:00-03:00",
+      "regiones": [
+        "Atacama"
+      ],
+      "numeroPoligonos": 1,
+      "archivoGeojson": "data/dmc/A629-1_2026.geojson",
+      "archivoCobertura": "data/dmc/A629-1_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A629-1_2026_impactos.json",
+      "observacion": "Probabilidad de tormentas de arena",
+      "archivoDocumento": "data/dmc/A629-1_2026_documento.json"
+    },
+    {
+      "codigo": "A628-2/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Altas Temperaturas",
+      "titulo": "Altas Temperaturas en zonas de las regiones de Antofagasta y Atacama",
+      "desdeTexto": "la tarde del viernes 20 de noviembre del 2026",
+      "hastaTexto": "la tarde del lunes 23 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-20",
+      "fechaFinDia": "2026-11-23",
+      "fechaEmision": "2026-11-20T15:51:00-03:00",
+      "regiones": [
+        "Antofagasta",
+        "Atacama"
+      ],
+      "numeroPoligonos": 6,
+      "archivoGeojson": "data/dmc/A628-2_2026.geojson",
+      "archivoCobertura": "data/dmc/A628-2_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A628-2_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A628-2_2026_documento.json"
+    },
     {
       "codigo": "A632/2026",
       "tipo": "Aviso",
@@ -22,47 +63,6 @@
       "archivoImpactos": "data/dmc/A632_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A632_2026_documento.json"
-    },
-    {
-      "codigo": "A628-1/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Altas Temperaturas",
-      "titulo": "Altas Temperaturas en zonas de las regiones de Antofagasta y Atacama",
-      "desdeTexto": "la tarde del jueves 19 de noviembre del 2026",
-      "hastaTexto": "la tarde del lunes 23 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-19",
-      "fechaFinDia": "2026-11-23",
-      "fechaEmision": "2026-11-18T17:44:00-03:00",
-      "regiones": [
-        "Antofagasta",
-        "Atacama"
-      ],
-      "numeroPoligonos": 6,
-      "archivoGeojson": "data/dmc/A628-1_2026.geojson",
-      "archivoCobertura": "data/dmc/A628-1_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A628-1_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A628-1_2026_documento.json"
-    },
-    {
-      "codigo": "A629/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Viento",
-      "titulo": "Viento Normal a Moderado en Litoral de la Provincia de Huasco, Región de Atacama",
-      "desdeTexto": "la tarde del miércoles 18 de noviembre del 2026",
-      "hastaTexto": "la noche del sábado 21 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-18",
-      "fechaFinDia": "2026-11-21",
-      "fechaEmision": "2026-11-17T16:21:00-03:00",
-      "regiones": [
-        "Atacama"
-      ],
-      "numeroPoligonos": 1,
-      "archivoGeojson": "data/dmc/A629_2026.geojson",
-      "archivoCobertura": "data/dmc/A629_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A629_2026_impactos.json",
-      "observacion": "Probabilidad de tormentas de arena",
-      "archivoDocumento": "data/dmc/A629_2026_documento.json"
     },
     {
       "codigo": "A633/2026",
@@ -85,5 +85,5 @@
       "archivoDocumento": "data/dmc/A633_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-20T08:39:22.332465-03:00"
+  "generadoEn": "2026-11-20T17:18:03.236000-03:00"
 }

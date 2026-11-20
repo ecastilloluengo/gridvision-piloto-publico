@@ -1,0 +1,69 @@
+{
+  "codigo": "A629-1/2026",
+  "tipo": "Aviso",
+  "titulo": "Viento Normal a Moderado en Litoral de la Provincia de Huasco, Región de Atacama",
+  "fenomeno": "Viento",
+  "emisionTexto": "Viernes 20 de noviembre del 2026 a las 15:51 hrs.",
+  "condicionSinoptica": "Jet costero",
+  "desde": "la tarde del viernes 20 de noviembre del 2026",
+  "hasta": "la noche del lunes 23 de noviembre del 2026",
+  "observacion": "Probabilidad de tormentas de arena",
+  "textoZonaAfecta": "Litoral de la Provincia de Huasco, Región de Atacama",
+  "tablaTitulo": "Intensidad estimada del Viento en Km/h",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Área"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 20"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 21"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "domingo 22"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 23"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Litoral de la Provincia de Huasco, Región de Atacama"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "40-60"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "40-60"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "40-60"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "25-40 RACHAS 50"
+      }
+    ]
+  ]
+}
