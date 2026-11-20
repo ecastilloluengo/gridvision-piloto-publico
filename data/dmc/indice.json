@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-19 16:25",
+  "catalogoActualizadoEn": "2026-11-19 21:55",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -85,55 +85,6 @@
       "archivoDocumento": "data/dmc/A633_2026_documento.json"
     },
     {
-      "codigo": "AA201/2026",
-      "tipo": "Alerta",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Tormentas Eléctricas en zonas de la región de La Araucanía",
-      "desdeTexto": "la tarde del jueves 19 de noviembre del 2026",
-      "hastaTexto": "la noche del jueves 19 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-19",
-      "fechaFinDia": "2026-11-19",
-      "fechaEmision": "2026-11-19T15:47:00-03:00",
-      "regiones": [
-        "La Araucanía"
-      ],
-      "numeroPoligonos": 2,
-      "archivoGeojson": "data/dmc/AA201_2026.geojson",
-      "archivoCobertura": "data/dmc/AA201_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/AA201_2026_impactos.json",
-      "observacion": "Probabilidad de precipitaciones fuertes en un corto período de tiempo",
-      "archivoDocumento": "data/dmc/AA201_2026_documento.json"
-    },
-    {
-      "codigo": "A630-1/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas desde la región de Valparaíso a la región de Aysén",
-      "desdeTexto": "la mañana del jueves 19 de noviembre del 2026",
-      "hastaTexto": "la noche del jueves 19 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-19",
-      "fechaFinDia": "2026-11-19",
-      "fechaEmision": "2026-11-19T05:53:00-03:00",
-      "regiones": [
-        "Aysén",
-        "Biobío",
-        "La Araucanía",
-        "Los Lagos",
-        "Los Ríos",
-        "Maule",
-        "Metropolitana",
-        "O’Higgins",
-        "Valparaíso",
-        "Ñuble"
-      ],
-      "numeroPoligonos": 38,
-      "archivoGeojson": "data/dmc/A630-1_2026.geojson",
-      "archivoCobertura": "data/dmc/A630-1_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A630-1_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A630-1_2026_documento.json"
-    },
-    {
       "codigo": "A631/2026",
       "tipo": "Aviso",
       "fenomeno": "Tormentas Eléctricas",
@@ -152,29 +103,7 @@
       "archivoImpactos": "data/dmc/A631_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A631_2026_documento.json"
-    },
-    {
-      "codigo": "A622-3/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Viento",
-      "titulo": "Viento Normal a Moderado en cordillera de las regiones de Antofagasta, Atacama y Coquimbo",
-      "desdeTexto": "la tarde del lunes 16 de noviembre del 2026",
-      "hastaTexto": "la noche del jueves 19 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-16",
-      "fechaFinDia": "2026-11-19",
-      "fechaEmision": "2026-11-16T11:56:00-03:00",
-      "regiones": [
-        "Antofagasta",
-        "Atacama",
-        "Coquimbo"
-      ],
-      "numeroPoligonos": 3,
-      "archivoGeojson": "data/dmc/A622-3_2026.geojson",
-      "archivoCobertura": "data/dmc/A622-3_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A622-3_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A622-3_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-19T17:36:35.677921-03:00"
+  "generadoEn": "2026-11-19T23:19:31.671954-03:00"
 }
