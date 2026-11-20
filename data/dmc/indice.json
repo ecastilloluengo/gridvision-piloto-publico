@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-19 21:55",
+  "catalogoActualizadoEn": "2026-11-20 00:23",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -83,27 +83,7 @@
       "archivoImpactos": "data/dmc/A633_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A633_2026_documento.json"
-    },
-    {
-      "codigo": "A631/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas de la región de Magallanes",
-      "desdeTexto": "la mañana del jueves 19 de noviembre del 2026",
-      "hastaTexto": "la noche del jueves 19 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-19",
-      "fechaFinDia": "2026-11-19",
-      "fechaEmision": "2026-11-18T15:21:00-03:00",
-      "regiones": [
-        "Magallanes"
-      ],
-      "numeroPoligonos": 4,
-      "archivoGeojson": "data/dmc/A631_2026.geojson",
-      "archivoCobertura": "data/dmc/A631_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A631_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A631_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-19T23:19:31.671954-03:00"
+  "generadoEn": "2026-11-20T08:39:22.332465-03:00"
 }
