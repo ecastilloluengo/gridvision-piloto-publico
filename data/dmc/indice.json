@@ -1,10 +1,52 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-20 23:43",
+  "catalogoActualizadoEn": "2026-11-21 15:15",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
+    {
+      "codigo": "A634/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Viento",
+      "titulo": "Viento Normal a Moderado en zonas de las regiones del Maule, Ñuble y Biobío",
+      "desdeTexto": "la mañana del martes 24 de noviembre del 2026",
+      "hastaTexto": "la noche del miércoles 25 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-24",
+      "fechaFinDia": "2026-11-25",
+      "fechaEmision": "2026-11-21T12:42:00-03:00",
+      "regiones": [
+        "Biobío",
+        "Maule",
+        "Ñuble"
+      ],
+      "numeroPoligonos": 9,
+      "archivoGeojson": "data/dmc/A634_2026.geojson",
+      "archivoCobertura": "data/dmc/A634_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A634_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A634_2026_documento.json"
+    },
+    {
+      "codigo": "A635/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en zonas de la región de Magallanes",
+      "desdeTexto": "la mañana del domingo 22 de noviembre del 2026",
+      "hastaTexto": "la tarde del martes 24 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-22",
+      "fechaFinDia": "2026-11-24",
+      "fechaEmision": "2026-11-21T15:10:00-03:00",
+      "regiones": [
+        "Magallanes"
+      ],
+      "numeroPoligonos": 7,
+      "archivoGeojson": "data/dmc/A635_2026.geojson",
+      "archivoCobertura": "data/dmc/A635_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A635_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A635_2026_documento.json"
+    },
     {
       "codigo": "A629-1/2026",
       "tipo": "Aviso",
@@ -65,5 +107,5 @@
       "archivoDocumento": "data/dmc/A632_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-21T08:00:12.262011-03:00"
+  "generadoEn": "2026-11-21T16:15:03.908811-03:00"
 }
