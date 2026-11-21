@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-20 15:56",
+  "catalogoActualizadoEn": "2026-11-20 23:43",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -63,27 +63,7 @@
       "archivoImpactos": "data/dmc/A632_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A632_2026_documento.json"
-    },
-    {
-      "codigo": "A633/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en Comunas de Torres del Paine, Natales, Laguna Blanca y San Gregorio - Reg. Magallanes",
-      "desdeTexto": "la tarde del viernes 20 de noviembre del 2026",
-      "hastaTexto": "la noche del viernes 20 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-20",
-      "fechaFinDia": "2026-11-20",
-      "fechaEmision": "2026-11-19T16:20:00-03:00",
-      "regiones": [
-        "Magallanes"
-      ],
-      "numeroPoligonos": 1,
-      "archivoGeojson": "data/dmc/A633_2026.geojson",
-      "archivoCobertura": "data/dmc/A633_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A633_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A633_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-20T17:18:03.236000-03:00"
+  "generadoEn": "2026-11-21T08:00:12.262011-03:00"
 }
