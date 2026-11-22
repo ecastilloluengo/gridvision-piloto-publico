@@ -1,20 +1,41 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-22 07:43",
+  "catalogoActualizadoEn": "2026-11-22 15:44",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
     {
-      "codigo": "A636/2026",
+      "codigo": "A640/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Altas Temperaturas",
+      "titulo": "Altas Temperaturas en zonas de las regiones de La Araucanía y Los Ríos",
+      "desdeTexto": "la mañana del jueves 26 de noviembre del 2026",
+      "hastaTexto": "la tarde del viernes 27 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-26",
+      "fechaFinDia": "2026-11-27",
+      "fechaEmision": "2026-11-22T13:45:00-03:00",
+      "regiones": [
+        "La Araucanía",
+        "Los Ríos"
+      ],
+      "numeroPoligonos": 3,
+      "archivoGeojson": "data/dmc/A640_2026.geojson",
+      "archivoCobertura": "data/dmc/A640_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A640_2026_impactos.json",
+      "observacion": "Este evento también afectará la comuna de Valdivia",
+      "archivoDocumento": "data/dmc/A640_2026_documento.json"
+    },
+    {
+      "codigo": "A636-1/2026",
       "tipo": "Aviso",
       "fenomeno": "Altas Temperaturas",
       "titulo": "Altas Temperaturas en zonas desde la región de Coquimbo a la región del Biobío",
       "desdeTexto": "la tarde del martes 24 de noviembre del 2026",
-      "hastaTexto": "la tarde del jueves 26 de noviembre del 2026",
+      "hastaTexto": "la tarde del viernes 27 de noviembre del 2026",
       "fechaInicioDia": "2026-11-24",
-      "fechaFinDia": "2026-11-26",
-      "fechaEmision": "2026-11-21T16:34:00-03:00",
+      "fechaFinDia": "2026-11-27",
+      "fechaEmision": "2026-11-22T12:15:00-03:00",
       "regiones": [
         "Biobío",
         "Coquimbo",
@@ -24,12 +45,73 @@
         "Valparaíso",
         "Ñuble"
       ],
-      "numeroPoligonos": 22,
-      "archivoGeojson": "data/dmc/A636_2026.geojson",
-      "archivoCobertura": "data/dmc/A636_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A636_2026_impactos.json",
+      "numeroPoligonos": 25,
+      "archivoGeojson": "data/dmc/A636-1_2026.geojson",
+      "archivoCobertura": "data/dmc/A636-1_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A636-1_2026_impactos.json",
       "observacion": "",
-      "archivoDocumento": "data/dmc/A636_2026_documento.json"
+      "archivoDocumento": "data/dmc/A636-1_2026_documento.json"
+    },
+    {
+      "codigo": "A643/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Precipitaciones",
+      "titulo": "Precipitaciones Normales a Moderadas en zonas de la región de Magallanes",
+      "desdeTexto": "la mañana del miércoles 25 de noviembre del 2026",
+      "hastaTexto": "la mañana del jueves 26 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-25",
+      "fechaFinDia": "2026-11-26",
+      "fechaEmision": "2026-11-22T15:39:00-03:00",
+      "regiones": [
+        "Magallanes"
+      ],
+      "numeroPoligonos": 2,
+      "archivoGeojson": "data/dmc/A643_2026.geojson",
+      "archivoCobertura": "data/dmc/A643_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A643_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A643_2026_documento.json"
+    },
+    {
+      "codigo": "A642/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Viento",
+      "titulo": "Viento Normal a Moderado en zonas de la región de Magallanes",
+      "desdeTexto": "la tarde del miércoles 25 de noviembre del 2026",
+      "hastaTexto": "la mañana del jueves 26 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-25",
+      "fechaFinDia": "2026-11-26",
+      "fechaEmision": "2026-11-22T15:38:00-03:00",
+      "regiones": [
+        "Magallanes"
+      ],
+      "numeroPoligonos": 4,
+      "archivoGeojson": "data/dmc/A642_2026.geojson",
+      "archivoCobertura": "data/dmc/A642_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A642_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A642_2026_documento.json"
+    },
+    {
+      "codigo": "A638/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en cordillera de las regiones de Arica y Parinacota y Tarapacá",
+      "desdeTexto": "la tarde del martes 24 de noviembre del 2026",
+      "hastaTexto": "la noche del miércoles 25 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-24",
+      "fechaFinDia": "2026-11-25",
+      "fechaEmision": "2026-11-22T12:15:00-03:00",
+      "regiones": [
+        "Arica y Parinacota",
+        "Tarapacá"
+      ],
+      "numeroPoligonos": 2,
+      "archivoGeojson": "data/dmc/A638_2026.geojson",
+      "archivoCobertura": "data/dmc/A638_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A638_2026_impactos.json",
+      "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
+      "archivoDocumento": "data/dmc/A638_2026_documento.json"
     },
     {
       "codigo": "A634/2026",
@@ -54,6 +136,26 @@
       "archivoDocumento": "data/dmc/A634_2026_documento.json"
     },
     {
+      "codigo": "A641/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Viento",
+      "titulo": "Viento Normal a Moderado en patagonia subandina norte de la región de Aysén",
+      "desdeTexto": "la tarde del martes 24 de noviembre del 2026",
+      "hastaTexto": "la noche del martes 24 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-24",
+      "fechaFinDia": "2026-11-24",
+      "fechaEmision": "2026-11-22T13:45:00-03:00",
+      "regiones": [
+        "Aysén"
+      ],
+      "numeroPoligonos": 1,
+      "archivoGeojson": "data/dmc/A641_2026.geojson",
+      "archivoCobertura": "data/dmc/A641_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A641_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A641_2026_documento.json"
+    },
+    {
       "codigo": "A635/2026",
       "tipo": "Aviso",
       "fenomeno": "Tormentas Eléctricas",
@@ -72,6 +174,67 @@
       "archivoImpactos": "data/dmc/A635_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A635_2026_documento.json"
+    },
+    {
+      "codigo": "A639/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Viento",
+      "titulo": "Viento Normal a Moderado en cordillera de la región de Atacama",
+      "desdeTexto": "la tarde del domingo 22 de noviembre del 2026",
+      "hastaTexto": "la noche del lunes 23 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-22",
+      "fechaFinDia": "2026-11-23",
+      "fechaEmision": "2026-11-22T12:15:00-03:00",
+      "regiones": [
+        "Atacama"
+      ],
+      "numeroPoligonos": 1,
+      "archivoGeojson": "data/dmc/A639_2026.geojson",
+      "archivoCobertura": "data/dmc/A639_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A639_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A639_2026_documento.json"
+    },
+    {
+      "codigo": "A637/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en cordillera desde la región de Coquimbo a la región de O'Higgins",
+      "desdeTexto": "la tarde del lunes 23 de noviembre del 2026",
+      "hastaTexto": "la noche del lunes 23 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-23",
+      "fechaFinDia": "2026-11-23",
+      "fechaEmision": "2026-11-22T11:48:00-03:00",
+      "regiones": [
+        "Coquimbo",
+        "Metropolitana",
+        "O’Higgins",
+        "Valparaíso"
+      ],
+      "numeroPoligonos": 4,
+      "archivoGeojson": "data/dmc/A637_2026.geojson",
+      "archivoCobertura": "data/dmc/A637_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A637_2026_impactos.json",
+      "observacion": "Asociadas con Chubascos aislados",
+      "archivoDocumento": "data/dmc/A637_2026_documento.json"
+    },
+    {
+      "codigo": "A632-1/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Viento",
+      "titulo": "Viento Normal a Moderado en Isla de Pascua",
+      "desdeTexto": "la madrugada del domingo 22 de noviembre del 2026",
+      "hastaTexto": "la tarde del lunes 23 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-22",
+      "fechaFinDia": "2026-11-23",
+      "fechaEmision": "2026-11-22T11:37:00-03:00",
+      "regiones": [],
+      "numeroPoligonos": 1,
+      "archivoGeojson": "data/dmc/A632-1_2026.geojson",
+      "archivoCobertura": "data/dmc/A632-1_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A632-1_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A632-1_2026_documento.json"
     },
     {
       "codigo": "A628-3/2026",
@@ -112,25 +275,7 @@
       "archivoImpactos": "data/dmc/A629-1_2026_impactos.json",
       "observacion": "Probabilidad de tormentas de arena",
       "archivoDocumento": "data/dmc/A629-1_2026_documento.json"
-    },
-    {
-      "codigo": "A632/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Viento",
-      "titulo": "Viento Normal a Moderado en Isla de Pascua",
-      "desdeTexto": "la madrugada del domingo 22 de noviembre del 2026",
-      "hastaTexto": "la mañana del lunes 23 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-22",
-      "fechaFinDia": "2026-11-23",
-      "fechaEmision": "2026-11-19T14:37:00-03:00",
-      "regiones": [],
-      "numeroPoligonos": 1,
-      "archivoGeojson": "data/dmc/A632_2026.geojson",
-      "archivoCobertura": "data/dmc/A632_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A632_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A632_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-22T08:23:57.957193-03:00"
+  "generadoEn": "2026-11-22T16:39:06.380780-03:00"
 }

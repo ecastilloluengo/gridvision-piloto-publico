@@ -1,0 +1,40 @@
+{
+  "codigo": "A641/2026",
+  "criterio": "intersección geográfica",
+  "advertencia": "Área del aviso: exposición potencial, no impacto confirmado.",
+  "totales": {
+    "activos": 3,
+    "lineas": 0,
+    "netbilling": 0
+  },
+  "elementos": {
+    "activos": [
+      {
+        "id": "GV-03417",
+        "nombre": "EXT_014_TER CENTRAL TEHUELCHE",
+        "categoria": "Central",
+        "zonas": [
+          "11_patagonia_subandina_norte"
+        ]
+      },
+      {
+        "id": "GV-03420",
+        "nombre": "EXT_017_TER CENTRAL TERMICA CHILE CHICO",
+        "categoria": "Central",
+        "zonas": [
+          "11_patagonia_subandina_norte"
+        ]
+      },
+      {
+        "id": "GV-02459",
+        "nombre": "EXT_024_TER ALTO BAGUALES",
+        "categoria": "Central",
+        "zonas": [
+          "11_patagonia_subandina_norte"
+        ]
+      }
+    ],
+    "lineas": [],
+    "netbilling": []
+  }
+}

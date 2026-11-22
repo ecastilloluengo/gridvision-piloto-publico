@@ -1,0 +1,46 @@
+{
+  "codigo": "A641/2026",
+  "tipo": "Aviso",
+  "titulo": "Viento Normal a Moderado en patagonia subandina norte de la región de Aysén",
+  "fenomeno": "Viento",
+  "emisionTexto": "Domingo 22 de noviembre del 2026 a las 13:45 hrs.",
+  "condicionSinoptica": "Sistema frontal aproxima la zona",
+  "desde": "la tarde del martes 24 de noviembre del 2026",
+  "hasta": "la noche del martes 24 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Aysén (Patagonia Subandina Norte)",
+  "tablaTitulo": "Intensidad estimada del Viento en Km/h",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Aysén"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "martes 24"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Patagonia Subandina Norte"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "80-100"
+      }
+    ]
+  ]
+}

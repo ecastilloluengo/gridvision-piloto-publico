@@ -1,0 +1,58 @@
+{
+  "codigo": "A643/2026",
+  "tipo": "Aviso",
+  "titulo": "Precipitaciones Normales a Moderadas en zonas de la región de Magallanes",
+  "fenomeno": "Precipitaciones",
+  "emisionTexto": "Domingo 22 de noviembre del 2026 a las 15:39 hrs.",
+  "condicionSinoptica": "Frente frío e inestabilidad post frontal",
+  "desde": "la mañana del miércoles 25 de noviembre del 2026",
+  "hasta": "la mañana del jueves 26 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Magallanes (Cordillera Austral Norte, Pampa Patagonica Norte)",
+  "tablaTitulo": "Montos estimados de precipitaciones en milímetros (mm)",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Magallanes"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 25"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera Austral Norte"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "10 - 35"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Pampa Patagonica Norte"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "8 - 29"
+      }
+    ]
+  ]
+}

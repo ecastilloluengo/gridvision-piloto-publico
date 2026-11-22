@@ -1,0 +1,82 @@
+{
+  "codigo": "A642/2026",
+  "tipo": "Aviso",
+  "titulo": "Viento Normal a Moderado en zonas de la región de Magallanes",
+  "fenomeno": "Viento",
+  "emisionTexto": "Domingo 22 de noviembre del 2026 a las 15:38 hrs.",
+  "condicionSinoptica": "Jet de bajo nivel",
+  "desde": "la tarde del miércoles 25 de noviembre del 2026",
+  "hasta": "la mañana del jueves 26 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Magallanes (Cordillera Austral Sur, Insular Central, Pampa Patagonica Norte, Pampa Patagonica Sur)",
+  "tablaTitulo": "Intensidad estimada del Viento en Km/h",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Magallanes"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 25"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera Austral Sur"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "50 - 100"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Insular Central"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "60 - 100"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Pampa Patagonica Norte"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "60 - 100"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Pampa Patagonica Sur"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "60 - 100"
+      }
+    ]
+  ]
+}
