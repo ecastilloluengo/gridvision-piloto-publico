@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-21 16:39",
+  "catalogoActualizadoEn": "2026-11-22 07:43",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -74,6 +74,26 @@
       "archivoDocumento": "data/dmc/A635_2026_documento.json"
     },
     {
+      "codigo": "A628-3/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Altas Temperaturas",
+      "titulo": "Altas Temperaturas en zonas de la región de Antofagasta",
+      "desdeTexto": "la tarde del domingo 22 de noviembre del 2026",
+      "hastaTexto": "la tarde del lunes 23 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-22",
+      "fechaFinDia": "2026-11-23",
+      "fechaEmision": "2026-11-22T07:38:00-03:00",
+      "regiones": [
+        "Antofagasta"
+      ],
+      "numeroPoligonos": 3,
+      "archivoGeojson": "data/dmc/A628-3_2026.geojson",
+      "archivoCobertura": "data/dmc/A628-3_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A628-3_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A628-3_2026_documento.json"
+    },
+    {
       "codigo": "A629-1/2026",
       "tipo": "Aviso",
       "fenomeno": "Viento",
@@ -94,27 +114,6 @@
       "archivoDocumento": "data/dmc/A629-1_2026_documento.json"
     },
     {
-      "codigo": "A628-2/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Altas Temperaturas",
-      "titulo": "Altas Temperaturas en zonas de las regiones de Antofagasta y Atacama",
-      "desdeTexto": "la tarde del viernes 20 de noviembre del 2026",
-      "hastaTexto": "la tarde del lunes 23 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-20",
-      "fechaFinDia": "2026-11-23",
-      "fechaEmision": "2026-11-20T15:51:00-03:00",
-      "regiones": [
-        "Antofagasta",
-        "Atacama"
-      ],
-      "numeroPoligonos": 6,
-      "archivoGeojson": "data/dmc/A628-2_2026.geojson",
-      "archivoCobertura": "data/dmc/A628-2_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A628-2_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A628-2_2026_documento.json"
-    },
-    {
       "codigo": "A632/2026",
       "tipo": "Aviso",
       "fenomeno": "Viento",
@@ -133,5 +132,5 @@
       "archivoDocumento": "data/dmc/A632_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-21T22:18:43.303974-03:00"
+  "generadoEn": "2026-11-22T08:23:57.957193-03:00"
 }

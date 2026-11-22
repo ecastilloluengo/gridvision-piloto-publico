@@ -1,0 +1,90 @@
+{
+  "codigo": "A628-3/2026",
+  "tipo": "Aviso",
+  "titulo": "Altas Temperaturas en zonas de la región de Antofagasta",
+  "fenomeno": "Altas Temperaturas",
+  "emisionTexto": "Domingo 22 de noviembre del 2026 a las 07:38 hrs.",
+  "condicionSinoptica": "Dorsal en altura",
+  "desde": "la tarde del domingo 22 de noviembre del 2026",
+  "hasta": "la tarde del lunes 23 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Antofagasta (Pampa, Precordillera Occidental, Precordillera Salar)",
+  "tablaTitulo": "Valores estimados de temperatura en grados Celsius (°C)",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Antofagasta"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "domingo 22"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "lunes 23"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Pampa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "34-36"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera Occidental"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "27-29"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "-"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera Salar"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "32-34"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "32-34"
+      }
+    ]
+  ]
+}
