@@ -1,10 +1,36 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-21 15:15",
+  "catalogoActualizadoEn": "2026-11-21 16:39",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
+    {
+      "codigo": "A636/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Altas Temperaturas",
+      "titulo": "Altas Temperaturas en zonas desde la región de Coquimbo a la región del Biobío",
+      "desdeTexto": "la tarde del martes 24 de noviembre del 2026",
+      "hastaTexto": "la tarde del jueves 26 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-24",
+      "fechaFinDia": "2026-11-26",
+      "fechaEmision": "2026-11-21T16:34:00-03:00",
+      "regiones": [
+        "Biobío",
+        "Coquimbo",
+        "Maule",
+        "Metropolitana",
+        "O’Higgins",
+        "Valparaíso",
+        "Ñuble"
+      ],
+      "numeroPoligonos": 22,
+      "archivoGeojson": "data/dmc/A636_2026.geojson",
+      "archivoCobertura": "data/dmc/A636_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A636_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A636_2026_documento.json"
+    },
     {
       "codigo": "A634/2026",
       "tipo": "Aviso",
@@ -107,5 +133,5 @@
       "archivoDocumento": "data/dmc/A632_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-21T16:15:03.908811-03:00"
+  "generadoEn": "2026-11-21T22:18:43.303974-03:00"
 }
