@@ -270,6 +270,25 @@
     verifyButton.addEventListener('click', verify);
     downloadButton.addEventListener('click', download);
     cancelButton.addEventListener('click', () => {if (aborter) aborter.abort();});
+
+    // Verificar automaticamente la cache al abrir el panel.
+    // No iniciar descargas ni retrasar la carga del mapa.
+    const observadorApertura = new MutationObserver(() => {
+      if (!panel.open) return;
+      observadorApertura.disconnect();
+      void verify();
+    });
+
+    observadorApertura.observe(panel, {
+      attributes: true,
+      attributeFilter: ['open']
+    });
+
+    if (panel.open) {
+      observadorApertura.disconnect();
+      void verify();
+    }
+
     return true;
   }
 
