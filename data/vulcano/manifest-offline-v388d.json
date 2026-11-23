@@ -1,0 +1,2205 @@
+{
+    "schema":  "gv-volcanes-offline-v388d-1",
+    "version":  "3.8.8d",
+    "aviso":  "Datos almacenados de referencia; no son alertas en tiempo real.",
+    "total":  549,
+    "total_bytes":  192317519,
+    "files":  [
+                  {
+                      "path":  "data/vulcano/anillos_nacional2024_01.geojson",
+                      "size":  813585
+                  },
+                  {
+                      "path":  "data/vulcano/catalogo_vulcano_v06.json",
+                      "size":  16716
+                  },
+                  {
+                      "path":  "data/vulcano/centros_nacional2024_01.geojson",
+                      "size":  38055
+                  },
+                  {
+                      "path":  "data/vulcano/estados_oficiales.json",
+                      "size":  1442
+                  },
+                  {
+                      "path":  "data/vulcano/evacuacion_nacional2024_01.geojson",
+                      "size":  2912897
+                  },
+                  {
+                      "path":  "data/vulcano/peligro_nacional2024_01.geojson",
+                      "size":  9005737
+                  },
+                  {
+                      "path":  "data/vulcano/peligro_nacional2024_02.geojson",
+                      "size":  9347208
+                  },
+                  {
+                      "path":  "data/vulcano/peligro_nacional2024_03.geojson",
+                      "size":  9434179
+                  },
+                  {
+                      "path":  "data/vulcano/peligro_nacional2024_04.geojson",
+                      "size":  2817154
+                  },
+                  {
+                      "path":  "data/vulcano/puntos_nacional2024_01.geojson",
+                      "size":  38084
+                  },
+                  {
+                      "path":  "data/vulcano/vias_nacional2024_01.geojson",
+                      "size":  1190635
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_001_anillos_01.geojson",
+                      "size":  55448
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_001_centros_01.geojson",
+                      "size":  408
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_001_peligro_01.geojson",
+                      "size":  2876287
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_002_anillos_01.geojson",
+                      "size":  14884
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_002_centros_01.geojson",
+                      "size":  422
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_003_activos_01.geojson",
+                      "size":  444
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_003_anillos_01.geojson",
+                      "size":  27994
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_003_centros_01.geojson",
+                      "size":  402
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_003_lineas_01.geojson",
+                      "size":  7229
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_003_peligro_01.geojson",
+                      "size":  126343
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_004_activos_01.geojson",
+                      "size":  258
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_004_anillos_01.geojson",
+                      "size":  65155
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_004_centros_01.geojson",
+                      "size":  389
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_004_peligro_01.geojson",
+                      "size":  818392
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_005_anillos_01.geojson",
+                      "size":  58167
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_005_centros_01.geojson",
+                      "size":  422
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_005_peligro_01.geojson",
+                      "size":  2876287
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_006_activos_01.geojson",
+                      "size":  15548
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_006_anillos_01.geojson",
+                      "size":  72863
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_006_centros_01.geojson",
+                      "size":  394
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_006_evacuacion_01.geojson",
+                      "size":  1609415
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_006_lineas_01.geojson",
+                      "size":  29765
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_006_peligro_01.geojson",
+                      "size":  6291294
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_006_puntos_01.geojson",
+                      "size":  1753
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_006_vias_01.geojson",
+                      "size":  229958
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_007_activos_01.geojson",
+                      "size":  6031
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_007_anillos_01.geojson",
+                      "size":  52811
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_007_centros_01.geojson",
+                      "size":  406
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_007_evacuacion_01.geojson",
+                      "size":  49286
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_007_lineas_01.geojson",
+                      "size":  69681
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_007_peligro_01.geojson",
+                      "size":  133769
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_007_puntos_01.geojson",
+                      "size":  3069
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_007_vias_01.geojson",
+                      "size":  5919
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_008_activos_01.geojson",
+                      "size":  444
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_008_anillos_01.geojson",
+                      "size":  30298
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_008_centros_01.geojson",
+                      "size":  442
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_008_lineas_01.geojson",
+                      "size":  7229
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_008_peligro_01.geojson",
+                      "size":  126343
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_009_activos_01.geojson",
+                      "size":  2240
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_009_anillos_01.geojson",
+                      "size":  69638
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_009_centros_01.geojson",
+                      "size":  408
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_009_lineas_01.geojson",
+                      "size":  5491
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_009_peligro_01.geojson",
+                      "size":  6248915
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_010_anillos_01.geojson",
+                      "size":  37785
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_010_centros_01.geojson",
+                      "size":  421
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_010_peligro_01.geojson",
+                      "size":  896099
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_011_activos_01.geojson",
+                      "size":  2328
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_011_anillos_01.geojson",
+                      "size":  32857
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_011_centros_01.geojson",
+                      "size":  427
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_011_lineas_01.geojson",
+                      "size":  52364
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_011_peligro_01.geojson",
+                      "size":  376667
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_012_anillos_01.geojson",
+                      "size":  69406
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_012_centros_01.geojson",
+                      "size":  408
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_012_evacuacion_01.geojson",
+                      "size":  72152
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_012_peligro_01.geojson",
+                      "size":  674428
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_013_activos_01.geojson",
+                      "size":  3440
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_013_anillos_01.geojson",
+                      "size":  79300
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_013_centros_01.geojson",
+                      "size":  408
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_013_evacuacion_01.geojson",
+                      "size":  376260
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_013_lineas_01.geojson",
+                      "size":  57945
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_013_peligro_01.geojson",
+                      "size":  2060177
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_013_puntos_01.geojson",
+                      "size":  9227
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_013_vias_01.geojson",
+                      "size":  17607
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_014_anillos_01.geojson",
+                      "size":  54752
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_014_centros_01.geojson",
+                      "size":  421
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_014_lineas_01.geojson",
+                      "size":  20088
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_015_activos_01.geojson",
+                      "size":  6809
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_015_anillos_01.geojson",
+                      "size":  83284
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_015_centros_01.geojson",
+                      "size":  388
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_015_evacuacion_01.geojson",
+                      "size":  444410
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_015_lineas_01.geojson",
+                      "size":  57197
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_015_peligro_01.geojson",
+                      "size":  1707324
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_015_puntos_01.geojson",
+                      "size":  5476
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_015_vias_01.geojson",
+                      "size":  600038
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_016_activos_01.geojson",
+                      "size":  4662
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_016_anillos_01.geojson",
+                      "size":  71442
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_016_centros_01.geojson",
+                      "size":  399
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_016_evacuacion_01.geojson",
+                      "size":  91074
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_016_lineas_01.geojson",
+                      "size":  51103
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_016_peligro_01.geojson",
+                      "size":  176041
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_016_puntos_01.geojson",
+                      "size":  3485
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_016_vias_01.geojson",
+                      "size":  184605
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_017_activos_01.geojson",
+                      "size":  9558
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_017_anillos_01.geojson",
+                      "size":  80986
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_017_centros_01.geojson",
+                      "size":  416
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_017_evacuacion_01.geojson",
+                      "size":  1360288
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_017_lineas_01.geojson",
+                      "size":  12632
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_017_peligro_01.geojson",
+                      "size":  7309659
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_017_peligro_02.geojson",
+                      "size":  276407
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_017_puntos_01.geojson",
+                      "size":  1979
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_017_vias_01.geojson",
+                      "size":  187434
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_018_activos_01.geojson",
+                      "size":  779
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_018_anillos_01.geojson",
+                      "size":  63004
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_018_centros_01.geojson",
+                      "size":  398
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_018_peligro_01.geojson",
+                      "size":  452809
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_019_activos_01.geojson",
+                      "size":  6542
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_019_anillos_01.geojson",
+                      "size":  75447
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_019_centros_01.geojson",
+                      "size":  405
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_019_evacuacion_01.geojson",
+                      "size":  444410
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_019_lineas_01.geojson",
+                      "size":  16231
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_019_peligro_01.geojson",
+                      "size":  1675185
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_019_puntos_01.geojson",
+                      "size":  5061
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_019_vias_01.geojson",
+                      "size":  519053
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_020_activos_01.geojson",
+                      "size":  6085
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_020_anillos_01.geojson",
+                      "size":  72956
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_020_centros_01.geojson",
+                      "size":  421
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_020_evacuacion_01.geojson",
+                      "size":  85038
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_020_lineas_01.geojson",
+                      "size":  27592
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_020_peligro_01.geojson",
+                      "size":  789460
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_020_puntos_01.geojson",
+                      "size":  1908
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_020_vias_01.geojson",
+                      "size":  17097
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_021_anillos_01.geojson",
+                      "size":  33782
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_021_centros_01.geojson",
+                      "size":  406
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_021_peligro_01.geojson",
+                      "size":  49811
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_022_activos_01.geojson",
+                      "size":  292
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_022_anillos_01.geojson",
+                      "size":  68368
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_022_centros_01.geojson",
+                      "size":  404
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_022_evacuacion_01.geojson",
+                      "size":  72152
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_022_peligro_01.geojson",
+                      "size":  1883083
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_022_puntos_01.geojson",
+                      "size":  804
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_022_vias_01.geojson",
+                      "size":  1642
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_023_anillos_01.geojson",
+                      "size":  52593
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_023_centros_01.geojson",
+                      "size":  425
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_023_lineas_01.geojson",
+                      "size":  20088
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_023_peligro_01.geojson",
+                      "size":  2876287
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_024_anillos_01.geojson",
+                      "size":  58166
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_024_centros_01.geojson",
+                      "size":  390
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_024_peligro_01.geojson",
+                      "size":  2876287
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_025_activos_01.geojson",
+                      "size":  5778
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_025_anillos_01.geojson",
+                      "size":  69188
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_025_centros_01.geojson",
+                      "size":  384
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_025_evacuacion_01.geojson",
+                      "size":  91074
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_025_lineas_01.geojson",
+                      "size":  28424
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_025_peligro_01.geojson",
+                      "size":  157811
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_025_puntos_01.geojson",
+                      "size":  2857
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_025_vias_01.geojson",
+                      "size":  157963
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_026_activos_01.geojson",
+                      "size":  292
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_026_anillos_01.geojson",
+                      "size":  71459
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_026_centros_01.geojson",
+                      "size":  393
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_026_evacuacion_01.geojson",
+                      "size":  72152
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_026_peligro_01.geojson",
+                      "size":  1562436
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_026_puntos_01.geojson",
+                      "size":  804
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_026_vias_01.geojson",
+                      "size":  1642
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_027_anillos_01.geojson",
+                      "size":  33782
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_027_centros_01.geojson",
+                      "size":  411
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_027_peligro_01.geojson",
+                      "size":  49811
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_028_activos_01.geojson",
+                      "size":  3584
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_028_anillos_01.geojson",
+                      "size":  63906
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_028_centros_01.geojson",
+                      "size":  419
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_028_evacuacion_01.geojson",
+                      "size":  104830
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_028_lineas_01.geojson",
+                      "size":  18576
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_028_peligro_01.geojson",
+                      "size":  747544
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_028_puntos_01.geojson",
+                      "size":  1073
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_028_vias_01.geojson",
+                      "size":  12180
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_029_activos_01.geojson",
+                      "size":  6301
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_029_anillos_01.geojson",
+                      "size":  68405
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_029_centros_01.geojson",
+                      "size":  401
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_029_evacuacion_01.geojson",
+                      "size":  104830
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_029_lineas_01.geojson",
+                      "size":  92324
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_029_peligro_01.geojson",
+                      "size":  801987
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_029_puntos_01.geojson",
+                      "size":  1908
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_029_vias_01.geojson",
+                      "size":  17097
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_030_anillos_01.geojson",
+                      "size":  27035
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_030_centros_01.geojson",
+                      "size":  399
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_031_anillos_01.geojson",
+                      "size":  42928
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_031_centros_01.geojson",
+                      "size":  419
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_031_peligro_01.geojson",
+                      "size":  49811
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_032_anillos_01.geojson",
+                      "size":  11384
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_032_centros_01.geojson",
+                      "size":  425
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_033_activos_01.geojson",
+                      "size":  1537
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_033_anillos_01.geojson",
+                      "size":  92376
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_033_centros_01.geojson",
+                      "size":  407
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_033_evacuacion_01.geojson",
+                      "size":  1499790
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_033_lineas_01.geojson",
+                      "size":  43532
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_033_peligro_01.geojson",
+                      "size":  2270712
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_033_puntos_01.geojson",
+                      "size":  2024
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_033_vias_01.geojson",
+                      "size":  17660
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_034_activos_01.geojson",
+                      "size":  780
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_034_anillos_01.geojson",
+                      "size":  56281
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_034_centros_01.geojson",
+                      "size":  398
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_034_peligro_01.geojson",
+                      "size":  339919
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_035_anillos_01.geojson",
+                      "size":  40093
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_035_centros_01.geojson",
+                      "size":  387
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_035_evacuacion_01.geojson",
+                      "size":  20434
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_035_peligro_01.geojson",
+                      "size":  1550954
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_035_puntos_01.geojson",
+                      "size":  253
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_035_vias_01.geojson",
+                      "size":  1388
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_036_activos_01.geojson",
+                      "size":  2240
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_036_anillos_01.geojson",
+                      "size":  69638
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_036_centros_01.geojson",
+                      "size":  389
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_036_lineas_01.geojson",
+                      "size":  5491
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_036_peligro_01.geojson",
+                      "size":  6248915
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_037_anillos_01.geojson",
+                      "size":  45095
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_037_centros_01.geojson",
+                      "size":  384
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_037_evacuacion_01.geojson",
+                      "size":  270617
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_037_peligro_01.geojson",
+                      "size":  385270
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_037_puntos_01.geojson",
+                      "size":  642
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_037_vias_01.geojson",
+                      "size":  34120
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_038_activos_01.geojson",
+                      "size":  1941
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_038_anillos_01.geojson",
+                      "size":  83847
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_038_centros_01.geojson",
+                      "size":  425
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_038_evacuacion_01.geojson",
+                      "size":  139543
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_038_lineas_01.geojson",
+                      "size":  64643
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_038_peligro_01.geojson",
+                      "size":  1666703
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_038_puntos_01.geojson",
+                      "size":  8650
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_038_vias_01.geojson",
+                      "size":  3958
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_039_anillos_01.geojson",
+                      "size":  67136
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_039_centros_01.geojson",
+                      "size":  388
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_039_peligro_01.geojson",
+                      "size":  426875
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_040_activos_01.geojson",
+                      "size":  2328
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_040_anillos_01.geojson",
+                      "size":  26042
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_040_centros_01.geojson",
+                      "size":  421
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_040_lineas_01.geojson",
+                      "size":  52364
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_040_peligro_01.geojson",
+                      "size":  319868
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_041_anillos_01.geojson",
+                      "size":  11404
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_041_centros_01.geojson",
+                      "size":  401
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_042_anillos_01.geojson",
+                      "size":  11387
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_042_centros_01.geojson",
+                      "size":  422
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_043_anillos_01.geojson",
+                      "size":  11445
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_043_centros_01.geojson",
+                      "size":  416
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_044_anillos_01.geojson",
+                      "size":  21212
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_044_centros_01.geojson",
+                      "size":  415
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_045_anillos_01.geojson",
+                      "size":  29078
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_045_centros_01.geojson",
+                      "size":  388
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_045_peligro_01.geojson",
+                      "size":  77609
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_046_activos_01.geojson",
+                      "size":  2977
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_046_anillos_01.geojson",
+                      "size":  72911
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_046_centros_01.geojson",
+                      "size":  416
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_046_evacuacion_01.geojson",
+                      "size":  85038
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_046_lineas_01.geojson",
+                      "size":  17063
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_046_peligro_01.geojson",
+                      "size":  557757
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_046_puntos_01.geojson",
+                      "size":  240
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_046_vias_01.geojson",
+                      "size":  8443
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_047_activos_01.geojson",
+                      "size":  499
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_047_anillos_01.geojson",
+                      "size":  84491
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_047_centros_01.geojson",
+                      "size":  392
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_047_evacuacion_01.geojson",
+                      "size":  165851
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_047_peligro_01.geojson",
+                      "size":  1979110
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_047_puntos_01.geojson",
+                      "size":  1635
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_047_vias_01.geojson",
+                      "size":  892
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_048_anillos_01.geojson",
+                      "size":  40637
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_048_centros_01.geojson",
+                      "size":  402
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_048_peligro_01.geojson",
+                      "size":  49811
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_049_anillos_01.geojson",
+                      "size":  11442
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_049_centros_01.geojson",
+                      "size":  389
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_050_anillos_01.geojson",
+                      "size":  49690
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_050_centros_01.geojson",
+                      "size":  403
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_051_activos_01.geojson",
+                      "size":  3499
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_051_anillos_01.geojson",
+                      "size":  66840
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_051_centros_01.geojson",
+                      "size":  394
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_051_evacuacion_01.geojson",
+                      "size":  270356
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_051_lineas_01.geojson",
+                      "size":  31561
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_051_peligro_01.geojson",
+                      "size":  1399891
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_051_puntos_01.geojson",
+                      "size":  5348
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_051_vias_01.geojson",
+                      "size":  66778
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_052_activos_01.geojson",
+                      "size":  1315
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_052_anillos_01.geojson",
+                      "size":  84491
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_052_centros_01.geojson",
+                      "size":  420
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_052_evacuacion_01.geojson",
+                      "size":  165851
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_052_lineas_01.geojson",
+                      "size":  39274
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_052_peligro_01.geojson",
+                      "size":  2477249
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_052_puntos_01.geojson",
+                      "size":  9220
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_052_vias_01.geojson",
+                      "size":  3958
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_053_activos_01.geojson",
+                      "size":  242
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_053_anillos_01.geojson",
+                      "size":  48456
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_053_centros_01.geojson",
+                      "size":  403
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_053_lineas_01.geojson",
+                      "size":  3138
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_053_peligro_01.geojson",
+                      "size":  147992
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_054_anillos_01.geojson",
+                      "size":  64347
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_054_centros_01.geojson",
+                      "size":  407
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_054_evacuacion_01.geojson",
+                      "size":  149713
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_054_lineas_01.geojson",
+                      "size":  34969
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_054_peligro_01.geojson",
+                      "size":  533434
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_054_puntos_01.geojson",
+                      "size":  250
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_055_activos_01.geojson",
+                      "size":  1960
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_055_anillos_01.geojson",
+                      "size":  66947
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_055_centros_01.geojson",
+                      "size":  408
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_055_evacuacion_01.geojson",
+                      "size":  327791
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_055_lineas_01.geojson",
+                      "size":  9135
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_055_peligro_01.geojson",
+                      "size":  1141712
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_055_puntos_01.geojson",
+                      "size":  5204
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_055_vias_01.geojson",
+                      "size":  134776
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_056_anillos_01.geojson",
+                      "size":  53821
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_056_centros_01.geojson",
+                      "size":  400
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_056_peligro_01.geojson",
+                      "size":  2876287
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_057_activos_01.geojson",
+                      "size":  780
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_057_anillos_01.geojson",
+                      "size":  60740
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_057_centros_01.geojson",
+                      "size":  398
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_057_peligro_01.geojson",
+                      "size":  452809
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_058_activos_01.geojson",
+                      "size":  1113
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_058_anillos_01.geojson",
+                      "size":  60943
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_058_centros_01.geojson",
+                      "size":  421
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_058_lineas_01.geojson",
+                      "size":  6050
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_058_peligro_01.geojson",
+                      "size":  252327
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_059_activos_01.geojson",
+                      "size":  3476
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_059_anillos_01.geojson",
+                      "size":  58763
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_059_centros_01.geojson",
+                      "size":  430
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_059_lineas_01.geojson",
+                      "size":  22861
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_059_peligro_01.geojson",
+                      "size":  503004
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_060_anillos_01.geojson",
+                      "size":  56392
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_060_centros_01.geojson",
+                      "size":  407
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_060_peligro_01.geojson",
+                      "size":  995094
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_061_activos_01.geojson",
+                      "size":  520
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_061_anillos_01.geojson",
+                      "size":  64377
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_061_centros_01.geojson",
+                      "size":  407
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_061_peligro_01.geojson",
+                      "size":  402880
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_062_activos_01.geojson",
+                      "size":  292
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_062_anillos_01.geojson",
+                      "size":  71971
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_062_centros_01.geojson",
+                      "size":  407
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_062_evacuacion_01.geojson",
+                      "size":  72152
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_062_peligro_01.geojson",
+                      "size":  1590743
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_062_puntos_01.geojson",
+                      "size":  804
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_062_vias_01.geojson",
+                      "size":  1642
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_063_anillos_01.geojson",
+                      "size":  56101
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_063_centros_01.geojson",
+                      "size":  421
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_063_lineas_01.geojson",
+                      "size":  20088
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_063_peligro_01.geojson",
+                      "size":  2876287
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_064_anillos_01.geojson",
+                      "size":  54752
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_064_centros_01.geojson",
+                      "size":  426
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_064_lineas_01.geojson",
+                      "size":  20088
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_064_peligro_01.geojson",
+                      "size":  254960
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_065_activos_01.geojson",
+                      "size":  1753
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_065_anillos_01.geojson",
+                      "size":  90063
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_065_centros_01.geojson",
+                      "size":  407
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_065_evacuacion_01.geojson",
+                      "size":  1499790
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_065_lineas_01.geojson",
+                      "size":  43532
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_065_peligro_01.geojson",
+                      "size":  2358480
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_065_puntos_01.geojson",
+                      "size":  1235
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_065_vias_01.geojson",
+                      "size":  31406
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_066_anillos_01.geojson",
+                      "size":  11452
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_066_centros_01.geojson",
+                      "size":  396
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_067_activos_01.geojson",
+                      "size":  2557
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_067_anillos_01.geojson",
+                      "size":  59834
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_067_centros_01.geojson",
+                      "size":  398
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_067_evacuacion_01.geojson",
+                      "size":  149713
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_067_lineas_01.geojson",
+                      "size":  78201
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_067_peligro_01.geojson",
+                      "size":  248282
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_068_anillos_01.geojson",
+                      "size":  24735
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_068_centros_01.geojson",
+                      "size":  405
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_069_activos_01.geojson",
+                      "size":  1079
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_069_anillos_01.geojson",
+                      "size":  43593
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_069_centros_01.geojson",
+                      "size":  410
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_069_evacuacion_01.geojson",
+                      "size":  149713
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_069_lineas_01.geojson",
+                      "size":  72221
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_069_peligro_01.geojson",
+                      "size":  442338
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_069_puntos_01.geojson",
+                      "size":  3016
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_070_anillos_01.geojson",
+                      "size":  27035
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_070_centros_01.geojson",
+                      "size":  412
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_071_anillos_01.geojson",
+                      "size":  27035
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_071_centros_01.geojson",
+                      "size":  407
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_072_activos_01.geojson",
+                      "size":  2328
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_072_anillos_01.geojson",
+                      "size":  37424
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_072_centros_01.geojson",
+                      "size":  400
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_072_lineas_01.geojson",
+                      "size":  52364
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_072_peligro_01.geojson",
+                      "size":  404013
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_073_anillos_01.geojson",
+                      "size":  39626
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_073_centros_01.geojson",
+                      "size":  420
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_073_peligro_01.geojson",
+                      "size":  376667
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_074_anillos_01.geojson",
+                      "size":  21212
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_074_centros_01.geojson",
+                      "size":  398
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_075_activos_01.geojson",
+                      "size":  11196
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_075_anillos_01.geojson",
+                      "size":  79981
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_075_centros_01.geojson",
+                      "size":  393
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_075_evacuacion_01.geojson",
+                      "size":  444410
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_075_lineas_01.geojson",
+                      "size":  36369
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_075_peligro_01.geojson",
+                      "size":  1888380
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_075_puntos_01.geojson",
+                      "size":  5474
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_075_vias_01.geojson",
+                      "size":  620763
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_076_anillos_01.geojson",
+                      "size":  11376
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_076_centros_01.geojson",
+                      "size":  391
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_077_activos_01.geojson",
+                      "size":  5828
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_077_anillos_01.geojson",
+                      "size":  52537
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_077_centros_01.geojson",
+                      "size":  421
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_077_lineas_01.geojson",
+                      "size":  98830
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_077_peligro_01.geojson",
+                      "size":  84597
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_078_activos_01.geojson",
+                      "size":  292
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_078_anillos_01.geojson",
+                      "size":  66943
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_078_centros_01.geojson",
+                      "size":  418
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_078_evacuacion_01.geojson",
+                      "size":  72152
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_078_peligro_01.geojson",
+                      "size":  2100639
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_078_puntos_01.geojson",
+                      "size":  804
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_078_vias_01.geojson",
+                      "size":  1642
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_079_anillos_01.geojson",
+                      "size":  33296
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_079_centros_01.geojson",
+                      "size":  399
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_079_evacuacion_01.geojson",
+                      "size":  20434
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_079_peligro_01.geojson",
+                      "size":  1514952
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_079_puntos_01.geojson",
+                      "size":  463
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_079_vias_01.geojson",
+                      "size":  4461
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_080_activos_01.geojson",
+                      "size":  1966
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_080_anillos_01.geojson",
+                      "size":  70582
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_080_centros_01.geojson",
+                      "size":  407
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_080_evacuacion_01.geojson",
+                      "size":  104830
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_080_lineas_01.geojson",
+                      "size":  74485
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_080_peligro_01.geojson",
+                      "size":  601734
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_080_puntos_01.geojson",
+                      "size":  426
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_081_anillos_01.geojson",
+                      "size":  52847
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_081_centros_01.geojson",
+                      "size":  429
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_081_lineas_01.geojson",
+                      "size":  20088
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_081_peligro_01.geojson",
+                      "size":  2875860
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_082_activos_01.geojson",
+                      "size":  15715
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_082_anillos_01.geojson",
+                      "size":  82238
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_082_centros_01.geojson",
+                      "size":  414
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_082_evacuacion_01.geojson",
+                      "size":  1778349
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_082_lineas_01.geojson",
+                      "size":  42015
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_082_peligro_01.geojson",
+                      "size":  4896382
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_082_puntos_01.geojson",
+                      "size":  4853
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_082_vias_01.geojson",
+                      "size":  425070
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_083_anillos_01.geojson",
+                      "size":  33925
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_083_centros_01.geojson",
+                      "size":  395
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_084_activos_01.geojson",
+                      "size":  17253
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_084_anillos_01.geojson",
+                      "size":  70609
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_084_centros_01.geojson",
+                      "size":  403
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_084_evacuacion_01.geojson",
+                      "size":  1333980
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_084_lineas_01.geojson",
+                      "size":  25366
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_084_peligro_01.geojson",
+                      "size":  7472140
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_084_puntos_01.geojson",
+                      "size":  1979
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_084_vias_01.geojson",
+                      "size":  187434
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_085_activos_01.geojson",
+                      "size":  265
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_085_anillos_01.geojson",
+                      "size":  58613
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_085_centros_01.geojson",
+                      "size":  414
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_085_peligro_01.geojson",
+                      "size":  1107984
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_086_activos_01.geojson",
+                      "size":  449
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_086_anillos_01.geojson",
+                      "size":  52540
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_086_centros_01.geojson",
+                      "size":  417
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_086_lineas_01.geojson",
+                      "size":  62635
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_086_peligro_01.geojson",
+                      "size":  121344
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_087_activos_01.geojson",
+                      "size":  1340
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_087_anillos_01.geojson",
+                      "size":  54546
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_087_centros_01.geojson",
+                      "size":  403
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_087_evacuacion_01.geojson",
+                      "size":  165851
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_087_lineas_01.geojson",
+                      "size":  11928
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_087_peligro_01.geojson",
+                      "size":  2295187
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_087_puntos_01.geojson",
+                      "size":  9401
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_087_vias_01.geojson",
+                      "size":  3958
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_088_activos_01.geojson",
+                      "size":  1754
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_088_anillos_01.geojson",
+                      "size":  83309
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_088_centros_01.geojson",
+                      "size":  406
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_088_evacuacion_01.geojson",
+                      "size":  444410
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_088_lineas_01.geojson",
+                      "size":  5491
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_088_peligro_01.geojson",
+                      "size":  2747430
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_088_puntos_01.geojson",
+                      "size":  4242
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_088_vias_01.geojson",
+                      "size":  493749
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_089_anillos_01.geojson",
+                      "size":  14801
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_089_centros_01.geojson",
+                      "size":  411
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_090_activos_01.geojson",
+                      "size":  1300
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_090_anillos_01.geojson",
+                      "size":  83847
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_090_centros_01.geojson",
+                      "size":  419
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_090_evacuacion_01.geojson",
+                      "size":  376260
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_090_lineas_01.geojson",
+                      "size":  35521
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_090_peligro_01.geojson",
+                      "size":  2199262
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_090_puntos_01.geojson",
+                      "size":  7518
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_090_vias_01.geojson",
+                      "size":  4343
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_091_anillos_01.geojson",
+                      "size":  47412
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_091_centros_01.geojson",
+                      "size":  401
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_092_activos_01.geojson",
+                      "size":  3476
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_092_anillos_01.geojson",
+                      "size":  61054
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_092_centros_01.geojson",
+                      "size":  425
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_092_lineas_01.geojson",
+                      "size":  22861
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_092_peligro_01.geojson",
+                      "size":  490491
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_093_activos_01.geojson",
+                      "size":  828
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_093_anillos_01.geojson",
+                      "size":  31664
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_093_centros_01.geojson",
+                      "size":  402
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_093_lineas_01.geojson",
+                      "size":  19749
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_093_peligro_01.geojson",
+                      "size":  126343
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_094_activos_01.geojson",
+                      "size":  6303
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_094_anillos_01.geojson",
+                      "size":  77479
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_094_centros_01.geojson",
+                      "size":  403
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_094_evacuacion_01.geojson",
+                      "size":  85038
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_094_lineas_01.geojson",
+                      "size":  27592
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_094_peligro_01.geojson",
+                      "size":  784808
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_094_puntos_01.geojson",
+                      "size":  1505
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_094_vias_01.geojson",
+                      "size":  12310
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_095_activos_01.geojson",
+                      "size":  1899
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_095_anillos_01.geojson",
+                      "size":  49607
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_095_centros_01.geojson",
+                      "size":  400
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_095_lineas_01.geojson",
+                      "size":  50239
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_095_peligro_01.geojson",
+                      "size":  121344
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_096_activos_01.geojson",
+                      "size":  2406
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_096_anillos_01.geojson",
+                      "size":  75740
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_096_centros_01.geojson",
+                      "size":  399
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_096_evacuacion_01.geojson",
+                      "size":  376260
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_096_lineas_01.geojson",
+                      "size":  24293
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_096_peligro_01.geojson",
+                      "size":  1990178
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_096_puntos_01.geojson",
+                      "size":  2869
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_096_vias_01.geojson",
+                      "size":  25398
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_097_activos_01.geojson",
+                      "size":  1307
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_097_anillos_01.geojson",
+                      "size":  42407
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_097_centros_01.geojson",
+                      "size":  400
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_097_evacuacion_01.geojson",
+                      "size":  20434
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_097_lineas_01.geojson",
+                      "size":  13455
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_097_peligro_01.geojson",
+                      "size":  1389204
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_097_puntos_01.geojson",
+                      "size":  1473
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_097_vias_01.geojson",
+                      "size":  22497
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_098_anillos_01.geojson",
+                      "size":  29177
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_098_centros_01.geojson",
+                      "size":  407
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_098_evacuacion_01.geojson",
+                      "size":  20434
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_098_peligro_01.geojson",
+                      "size":  57911
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_098_puntos_01.geojson",
+                      "size":  246
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_098_vias_01.geojson",
+                      "size":  6712
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_099_activos_01.geojson",
+                      "size":  3692
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_099_anillos_01.geojson",
+                      "size":  61938
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_099_centros_01.geojson",
+                      "size":  393
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_099_evacuacion_01.geojson",
+                      "size":  19833
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_099_lineas_01.geojson",
+                      "size":  21662
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_099_peligro_01.geojson",
+                      "size":  163823
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_100_activos_01.geojson",
+                      "size":  2568
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_100_anillos_01.geojson",
+                      "size":  71469
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_100_centros_01.geojson",
+                      "size":  407
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_100_evacuacion_01.geojson",
+                      "size":  327791
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_100_lineas_01.geojson",
+                      "size":  16122
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_100_peligro_01.geojson",
+                      "size":  987679
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_100_puntos_01.geojson",
+                      "size":  5187
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_100_vias_01.geojson",
+                      "size":  162308
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_101_activos_01.geojson",
+                      "size":  1118
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_101_anillos_01.geojson",
+                      "size":  51956
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_101_centros_01.geojson",
+                      "size":  407
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_101_lineas_01.geojson",
+                      "size":  9675
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_101_peligro_01.geojson",
+                      "size":  433807
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_102_activos_01.geojson",
+                      "size":  2352
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_102_anillos_01.geojson",
+                      "size":  84358
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_102_centros_01.geojson",
+                      "size":  390
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_102_evacuacion_01.geojson",
+                      "size":  139543
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_102_lineas_01.geojson",
+                      "size":  60043
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_102_peligro_01.geojson",
+                      "size":  1703144
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_102_puntos_01.geojson",
+                      "size":  8843
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_102_vias_01.geojson",
+                      "size":  3958
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_103_anillos_01.geojson",
+                      "size":  64442
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_103_centros_01.geojson",
+                      "size":  398
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_103_peligro_01.geojson",
+                      "size":  1249597
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_104_activos_01.geojson",
+                      "size":  2461
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_104_anillos_01.geojson",
+                      "size":  75612
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_104_centros_01.geojson",
+                      "size":  378
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_104_evacuacion_01.geojson",
+                      "size":  168975
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_104_lineas_01.geojson",
+                      "size":  5491
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_104_peligro_01.geojson",
+                      "size":  6607160
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_104_puntos_01.geojson",
+                      "size":  254
+                  },
+                  {
+                      "path":  "data/vulcano/volcan_v068_104_vias_01.geojson",
+                      "size":  168568
+                  },
+                  {
+                      "path":  "data/vulcano/volcanes_v068.json",
+                      "size":  71093
+                  }
+              ]
+}

@@ -10,3 +10,66 @@
 .search-results{background:#fff;color:#244354;margin-top:7px;max-height:225px;overflow-y:auto;border-radius:8px;border:1px solid #bbd0da;box-shadow:0 7px 18px #0b263450}.search-results[hidden]{display:none}.search-results button{display:block;width:100%;background:transparent;border:0;text-align:left;padding:10px;color:#183950;font-size:11px}.search-results button:hover{background:#e5f5fc}.volcano-marker{background:none;border:none}.volcano-pin{display:flex;align-items:center;justify-content:center;height:28px;width:28px;font-size:24px;filter:drop-shadow(0 1px 2px #111)}.pe-icon{display:flex;align-items:center;justify-content:center;width:27px;height:27px;border:2px solid #fff;border-radius:50%;font-size:10px;font-weight:900;background:#0da66c;color:#fff;box-shadow:0 2px 4px #0008}.pe-icon.pet{background:#d5a322;color:#092d42}.pe-label,.volcano-label{background:#132c41ec;color:#fff;border:1px solid #6296ae;border-radius:6px;padding:3px 6px;white-space:nowrap;font-size:11px;font-weight:650}.route-arrow{width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:11px solid #21b3ff;filter:drop-shadow(0 0 2px #0a2740)}.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#132b42;color:#ecfaff}.leaflet-control-scale-line{color:#0d2939;background:#fff9}.leaflet-control-zoom{margin-right:14px!important;margin-bottom:56px!important}.sr-only{position:absolute;width:1px;height:1px;clip:rect(0 0 0 0);overflow:hidden;white-space:nowrap}
 @media(max-width:1150px){.gv-status{display:none}.gv-header nav a,.gv-header nav span{padding:7px 10px}.gv-brand small{display:none}}
 @media(max-width:700px){.gv-header{height:62px;padding:8px 9px}.gv-layout{height:calc(100vh - 62px)}.gv-brand h1{font-size:15px}.gv-brand-icon{width:31px;height:31px;font-size:12px}.gv-header nav{gap:3px}.gv-header nav a,.gv-header nav span{font-size:10px;padding:6px}.map-left-controls{top:10px;left:9px;width:min(290px,calc(100vw - 76px))}.map-search-card{padding:8px}.map-button-bar{gap:4px}.map-primary-button,.map-secondary-button{padding:9px;font-size:10px}.map-top-right{top:10px;right:7px;flex-direction:column;gap:5px}.map-top-right>button{padding:8px;font-size:10px}.gv-sidebar{top:104px;left:8px;bottom:47px;width:min(340px,calc(100vw - 16px))}.gv-detail{right:8px;top:65px;bottom:49px}.map-warning{display:none}.map-state{left:8px;right:8px;max-width:none;bottom:45px}.map-legend{left:8px;bottom:51px}.leaflet-control-zoom{margin-right:8px!important}}
+/* GV_VOLCANES_PERMANENTES_V3751: visible en todas las escalas, etiquetas compactas. */
+.gv-v3751-triangulo-volcan {
+  background:transparent!important;border:0!important;
+  color:#c42c21!important;text-align:center!important;
+  line-height:20px!important;font-size:19px!important;font-weight:900!important;
+  text-shadow:1px 1px 2px #fff,-1px -1px 2px #fff,0 1px 2px #111a;
+}
+.leaflet-tooltip.gv-v3751-etiqueta-volcan {
+  background:rgba(250,251,245,.88)!important;
+  color:#721f1b!important;border:0!important;border-radius:3px!important;
+  box-shadow:none!important;padding:1px 3px!important;
+  font:700 10px/1.15 Arial,sans-serif!important;
+  white-space:nowrap!important;pointer-events:none!important;
+  text-shadow:0 0 2px #fff!important;
+}
+.gv-v3751-etiqueta-volcan:before {display:none!important}
+/* GV_VOLCANES_ETIQUETAS_V3752: legibilidad y menor densidad a zoom nacional. */
+.gv-v3752-macro .gv-v3751-triangulo-volcan {
+    font-size:13px!important;line-height:20px!important;
+}
+.gv-v3752-intermedio .gv-v3751-triangulo-volcan {
+    font-size:16px!important;
+}
+.leaflet-tooltip.gv-v3752-etiqueta-volcan {
+    background:rgba(255,255,252,.92)!important;
+    border:0!important;box-shadow:none!important;
+    border-radius:3px!important;padding:1px 3px!important;
+    color:#7b1e17!important;font:700 10px/1.2 Arial,sans-serif!important;
+    white-space:nowrap!important;pointer-events:none!important;
+    text-shadow:0 1px 1px #fff!important;
+}
+.leaflet-tooltip.gv-v3752-etiqueta-volcan:before {display:none!important;}
+/* GV_V3754_IDENTIFICAR_VOLCAN_BUSCADO: amarillo temporal, sin parpadeo brusco. */
+.gv-v3754-icono-foco{background:transparent!important;border:0!important;overflow:visible!important;pointer-events:none!important;}
+.gv-v3754-anillo{
+  display:flex;align-items:center;justify-content:center;
+  box-sizing:border-box;width:38px;height:38px;border-radius:50%;
+  border:3px solid #fff;outline:3px solid #ffbf00;
+  background:#ffe26bb8;color:#b61e18;font:bold 25px/1 Arial,sans-serif;
+  text-shadow:0 1px 1px white;
+  box-shadow:0 0 0 5px #ffe2584a,0 0 18px 5px #ffd21a99;
+  animation:gv-v3754-latido 1.4s ease-in-out infinite;
+}
+@keyframes gv-v3754-latido{
+  0%,100%{transform:scale(1);box-shadow:0 0 0 4px #ffce1a44,0 0 11px 3px #ffce1a77;}
+  50%{transform:scale(1.14);box-shadow:0 0 0 10px #ffce1a55,0 0 23px 7px #ffb700b0;}
+}
+.leaflet-tooltip.gv-v3754-etiqueta-foco{
+  background:#fff9d4!important;color:#7b2116!important;border:2px solid #ffbe00!important;
+  border-radius:5px!important;box-shadow:0 3px 11px #33290055!important;
+  padding:5px 9px!important;font:800 13px/1.2 Arial,sans-serif!important;
+  white-space:nowrap!important;pointer-events:none!important;z-index:99999!important;
+}
+.leaflet-tooltip.gv-v3754-etiqueta-foco:before{display:none!important;}
+@media(prefers-reduced-motion:reduce){.gv-v3754-anillo{animation:none!important;}}
+/* GV_V385F_TRIANGULO_ALTERNAR_ZONAS: leve distincion de triangulos activos. */
+.gv-v3751-triangulo-volcan.gv-v385f-triangulo-activo span{
+  filter:drop-shadow(0 0 4px #ffef91) drop-shadow(0 0 2px #ffbd00);
+}
+/* GV_V385H_PRIORIDAD_TRIANGULOS: triangulos clicables por sobre puntos y rotulos. */
+#vulcano-map .leaflet-gv-volcano-pane { z-index:520!important; pointer-events:auto!important; }
+#vulcano-map .gv-v3751-triangulo-volcan,
+#vulcano-map .gv-v3751-triangulo-volcan * { pointer-events:auto!important; cursor:pointer!important; }

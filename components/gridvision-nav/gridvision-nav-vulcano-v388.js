@@ -1,0 +1,717 @@
+/* GridVision Navigation + offline SEN V1 (no modifica las APIs ni las capas actuales). */
+(() => {
+  'use strict';
+  const scriptURL = document.currentScript?.src || location.href;
+  function iniciarNavegacion() {
+  const VERSION = 'gv-nav-v22-persistencia-20261118'; // GV_PERSISTENCIA_OFFLINE_V2
+  const CACHE = 'gridvision-nav-offline-v1';
+  const METADATA = '__gv-nav-offline-ready-v1.json';
+  const ROOT = new URL('../../', scriptURL);
+  const viewId = document.getElementById('mapa') ? 'mapa' :
+    document.getElementById('fire-map') ? 'fire-map' :
+    document.getElementById('vulcano-map') ? 'vulcano-map' : null;
+  const globals = {mapa:'GridVisionMapa', 'fire-map':'GridVisionFireMap', 'vulcano-map':'GridVisionVulcanoMap'};
+  const map = viewId ? window[globals[viewId]] : null;
+  if (!map || !window.L) {
+    console.warn('GridVision navegación: mapa no disponible; no se instaló el control.');
+    return;
+  }
+  if (window.GridVisionNavigationV1) return;
+
+  const GPS_OPTS = {enableHighAccuracy:true, maximumAge:0, timeout:20000};
+  // GV GPS V1.3: mutually exclusive modes; stale callbacks are ignored.
+  let watchId = null;
+  let gpsMode = 'off';
+  let gpsGeneration = 0;
+  let marker = null;
+  let accuracyCircle = null;
+  let lastFix = null;
+  let statusEl, followBtn, locateBtn, downloadBtn, offlineMenuBtn, baseBtn, storageEl;
+  let preparing=false, stateSequence=0;
+  const absolute = name => new URL(name, ROOT).href;
+  const clean = href => {const url = new URL(href, ROOT); url.search=''; url.hash=''; return url.href;};
+  const inScope = url => url.origin === ROOT.origin && url.pathname.startsWith(ROOT.pathname);
+  function status(message, kind='normal') {
+    if (!statusEl) return;
+    statusEl.textContent = message;
+    statusEl.dataset.kind = kind;
+    if (offlineMenuBtn) {
+      offlineMenuBtn.dataset.kind = kind;
+      offlineMenuBtn.title = 'Navegación y SEN offline · ' + message;
+    }
+  }
+  function oldGpsHide() {
+    const gps = Array.from(document.querySelectorAll('.leaflet-control a')).filter(el => {
+      if (el.closest('.gv-nav-panel')) return false;
+      return el.id === 'boton-seguimiento-ubicacion' ||
+        /^(Mostrar mi ubicaci[oó]n actual|Activar mi ubicacion actual|Activar mi ubicacion GPS)$/i.test(el.title || '');
+    });
+    for (const el of gps) {
+      const box = el.closest('.leaflet-control');
+      if (box) box.style.display = 'none';
+    }
+  }
+  function drawFix(pos, center=false, initial=false) {
+    const lat = pos.coords.latitude, lon = pos.coords.longitude;
+    const accuracy = Math.max(0, Number(pos.coords.accuracy)||0);
+    if (!Number.isFinite(lat) || !Number.isFinite(lon)) return;
+    lastFix = {lat,lon,accuracy,at:pos.timestamp};
+    const latlng = L.latLng(lat,lon);
+    if (!marker) {
+      marker = L.circleMarker(latlng, {radius:8,color:'#fff',weight:3,
+        fillColor:'#1976d2',fillOpacity:1,interactive:true}).addTo(map);
+    } else marker.setLatLng(latlng);
+    if (!accuracyCircle) {
+      accuracyCircle = L.circle(latlng,{radius:accuracy,interactive:false,
+        color:'#1976d2',weight:1,fillColor:'#1976d2',fillOpacity:.10}).addTo(map);
+    } else { accuracyCircle.setLatLng(latlng); accuracyCircle.setRadius(accuracy); }
+    marker.bindPopup('<strong>'+(gpsMode === 'locate' ? 'Ubicación puntual' : 'Seguimiento GPS')+'</strong><br>Latitud: '+lat.toFixed(6)+
+      '<br>Longitud: '+lon.toFixed(6)+'<br>Precisión aproximada: '+Math.round(accuracy)+' m',
+      {autoPan:false});
+    // Solo "Mi ubicación" cambia el zoom. Seguimiento conserva el zoom del usuario.
+    if (initial) map.setView(latlng, Math.min(17,map.getMaxZoom()), {animate:false});
+    else if (center) map.panTo(latlng,{animate:false});
+    status('GPS activo · precisión ±'+Math.round(accuracy)+' m'+(!navigator.onLine?' · sin internet':''),'ok');
+  }
+  function updateGpsButtons() {
+    const located = gpsMode === 'locate';
+    const following = gpsMode === 'follow';
+    if (locateBtn) {
+      locateBtn.setAttribute('aria-pressed', String(located));
+      locateBtn.textContent = located ? '◎ Ocultar ubicación' : '◎ Mi ubicación';
+      locateBtn.title = located ? 'Desactivar mi ubicación' : 'Mostrar ubicación actual';
+      locateBtn.setAttribute('aria-label', locateBtn.title);
+    }
+    if (followBtn) {
+      followBtn.setAttribute('aria-pressed', String(following));
+      followBtn.textContent = following ? '■ Detener' : '▶ Seguir';
+      followBtn.title = following ? 'Detener seguimiento GPS' : 'Seguir el GPS sin cambiar el zoom';
+      followBtn.setAttribute('aria-label', followBtn.title);
+    }
+  }
+  function clearGps() {
+    ++gpsGeneration;
+    if (watchId !== null && navigator.geolocation) navigator.geolocation.clearWatch(watchId);
+    watchId = null;
+    if (marker) { map.removeLayer(marker); marker = null; }
+    if (accuracyCircle) { map.removeLayer(accuracyCircle); accuracyCircle = null; }
+    lastFix = null;
+    gpsMode = 'off';
+    updateGpsButtons();
+  }
+  function gpsError(err, generation, follow=false) {
+    if (generation !== gpsGeneration) return;
+    const denied = err?.code === 1;
+    if (denied || !follow) clearGps();
+    status(denied ? 'Ubicación denegada. Revisa permisos del navegador.' :
+      follow ? 'GPS sin posición reciente. Esperando una nueva lectura.' :
+      'No se obtuvo ubicación. Pulsa Mi ubicación para reintentar.', 'warning');
+  }
+  function locateOnce() {
+    if (gpsMode === 'locate') {
+      clearGps(); status('Ubicación desactivada.'); return;
+    }
+    if (!navigator.geolocation) return status('Este dispositivo no ofrece ubicación GPS.','warning');
+    clearGps();
+    gpsMode = 'locate'; updateGpsButtons();
+    const generation = gpsGeneration;
+    status('Buscando ubicación actual…');
+    navigator.geolocation.getCurrentPosition(pos=>{
+      if (generation !== gpsGeneration || gpsMode !== 'locate') return;
+      drawFix(pos,false,true);
+      if (lastFix) status('Ubicación puntual · precisión ±'+Math.round(lastFix.accuracy)+' m · pulsa para ocultar','ok');
+    }, err=>gpsError(err,generation), GPS_OPTS);
+  }
+  function stopFollow() {
+    clearGps(); status('GPS desactivado.');
+  }
+  function toggleFollow() {
+    if (gpsMode === 'follow') return stopFollow();
+    if (!navigator.geolocation) return status('Este dispositivo no ofrece ubicación GPS.','warning');
+    clearGps();
+    gpsMode = 'follow'; updateGpsButtons();
+    const generation = gpsGeneration;
+    status('Iniciando seguimiento GPS…');
+    // panTo conserva el zoom seleccionado.
+    watchId = navigator.geolocation.watchPosition(pos=>{
+      if (generation !== gpsGeneration || gpsMode !== 'follow') return;
+      drawFix(pos,true,false);
+    }, err=>gpsError(err,generation,true), GPS_OPTS);
+  }
+  function offlineStyle() {
+    document.body.classList.toggle('gv-nav-offline',!navigator.onLine);
+    if(!navigator.onLine)document.body.classList.add('gv-nav-live-stale');
+  }
+  // Do not allow historical/empty live counters to be interpreted as a current zero.
+  function markLiveUnavailable(){
+    if(!document.body.classList.contains('gv-nav-live-stale'))return;
+    for(const id of ['abrir-senapred','abrir-dmc','boton-centro-alertas']){
+      const el=document.getElementById(id);if(!el)continue;
+      el.disabled=true;
+      el.title='Datos no actualizados. Conectate y recarga GridVision.';
+      el.setAttribute('aria-label',el.title);
+    }
+    for(const id of ['kpi-total','kpi-critical','kpi-attention','kpi-watch','map-status']){
+      const el=document.getElementById(id);if(el)el.setAttribute('aria-label','Datos de incendios no actualizados');
+    }
+  }
+  async function readyState() {
+    if (!('caches' in window)) return false;
+    const cache=await caches.open(CACHE);
+    // Rebuild the inventory from cached HTML. Older download metadata is
+    // compatible: readiness depends on actual files, not UI version.
+    const files=await gatherFiles(cache, true);
+    const missing=[];
+    for(const name of files){
+      if(!(await cache.match(absolute(name)))?.ok)missing.push(name);
+    }
+    const base=await cache.match(absolute('data/offline/base-chile-v2.geojson'));
+    if(base?.ok){
+      try {const d=await base.json();
+        if(d.type!=='FeatureCollection'||d.metadata?.schema!=='gv-base-chile-v2'||!Array.isArray(d.features)||!['pais','region','lago','rio','camino','localidad'].every(x=>d.features.some(f=>f.properties?.capa===x)))throw Error('base');
+      }catch(_){if(!missing.includes('data/offline/base-chile-v2.geojson'))missing.push('data/offline/base-chile-v2.geojson');}
+    }
+    let meta={};
+    try {const r=await cache.match(absolute(METADATA));if(r?.ok)meta=await r.json();}catch(_){}
+    return {listo:missing.length===0,missing,archivos:files.length,fecha:meta.fecha||null};
+  }
+  async function refreshOfflineState(){
+    const seq=++stateSequence;
+    try {
+      const state=await readyState();
+      let persistent=false;try{persistent=!!(await navigator.storage?.persisted?.());}catch(_){}
+      if(seq!==stateSequence||preparing)return;
+      if(!state)throw Error('Cache no disponible');
+      if(storageEl){
+        storageEl.textContent=state.listo
+          ? 'SEN + mapa disponibles offline · '+state.archivos+' archivos'+(persistent?' · almacenamiento persistente':' · el navegador puede liberar espacio')
+          : 'Preparación pendiente · '+state.missing.length+' archivos por guardar';
+        storageEl.dataset.kind=state.listo?'ok':'warning';
+      }
+      if(offlineMenuBtn){offlineMenuBtn.textContent=state.listo?'SEN offline ✓':'SEN offline';offlineMenuBtn.dataset.ready=String(state.listo);}
+      downloadBtn.textContent=state.listo?'✓ Verificar / completar offline':'⬇ Preparar SEN + mapa offline';
+      window.GVOfflineStorageState={...state,persistent:!!persistent};
+    }catch(e){
+      if(seq!==stateSequence||preparing)return;
+      if(storageEl){storageEl.textContent='No se pudo verificar la cartografía almacenada.';storageEl.dataset.kind='warning';}
+      if(offlineMenuBtn){offlineMenuBtn.textContent='SEN offline';offlineMenuBtn.dataset.ready='false';}
+      window.GVOfflineStorageState={listo:false,error:String(e.message||e)};
+    }
+  }
+  async function gatherFiles(cache, cachedOnly=false) {
+    const pages=['index.html','gridvision-fire.html','gridvision-vulcano.html'];
+    const targets=new Set([
+      ...pages,'vendor/leaflet/leaflet.js','vendor/leaflet/leaflet.css',
+      'components/gridvision-nav/gridvision-nav.js','components/gridvision-nav/gridvision-nav.css',
+      'gridvision-sw.js','data/offline/base-chile-v2.geojson','data/offline/localidades-v374.json',
+      'components/localizador-fallas/localizador-fallas.html',
+      'components/panel-operacional.html',
+      'components/gridvision-nav/gridvision-modo-clima.js',
+      'components/gridvision-nav/gridvision-modo-clima.css',
+      'data/processed/activos_puntuales_validados.geojson',
+      'data/processed/lineas_validadas.geojson',
+      'data/processed/pfv_netbilling.geojson',
+      'data/vulcano/catalogo_vulcano_v06.json','data/vulcano/volcanes_v068.json'
+    ]);
+    for (const page of pages) {
+      let r=await cache.match(absolute(page));
+      if(!r?.ok && !cachedOnly) r=await fetch(absolute(page),{cache:'no-store'});
+      if(!r?.ok){if(cachedOnly)continue;throw new Error('No fue posible cargar '+page);}
+      const doc=new DOMParser().parseFromString(await r.text(),'text/html');
+      for (const el of doc.querySelectorAll('script[src],link[rel="stylesheet"][href],link[rel="icon"][href]')) {
+        const raw=el.getAttribute('src')||el.getAttribute('href');
+        if (!raw || raw.startsWith('data:')) continue;
+        const url=new URL(raw,absolute(page));
+        if (!inScope(url)) continue;
+        const local=url.pathname.slice(ROOT.pathname.length);
+        if (local && !/^(api\/|data\/alertas_senapred\.json|data\/dmc\/)/.test(local)) targets.add(local);
+      }
+    }
+    return Array.from(targets);
+  }
+  async function prepareOffline() {
+    if(preparing)return;
+    if (!navigator.onLine) {await refreshOfflineState();status('Sin internet: se conservan los archivos ya descargados.','warning');return;}
+    if (!('serviceWorker' in navigator) || !('caches' in window)) {
+      status('El navegador no permite almacenamiento offline en este contexto.','warning');return;
+    }
+    downloadBtn.disabled=true;preparing=true;++stateSequence;
+    try {
+      await navigator.serviceWorker.register(absolute('gridvision-sw.js'),{scope:ROOT.pathname});
+      await navigator.serviceWorker.ready;
+      const cache=await caches.open(CACHE);
+      const files=await gatherFiles(cache);
+      let complete=0, reused=0, downloaded=0;
+      const failed=[];
+      // Secuencial: evita sobrecargar el móvil y permite mostrar progreso real.
+      for (const name of files) {
+        try {
+          const url=absolute(name);
+          let response=await cache.match(clean(url));
+          let valid=!!response?.ok;
+          if(valid && name==='data/offline/base-chile-v2.geojson'){
+            try{const d=await response.clone().json();valid=d.type==='FeatureCollection'&&d.metadata?.schema==='gv-base-chile-v2'&&Array.isArray(d.features)&&['pais','region','lago','rio','camino','localidad'].every(x=>d.features.some(f=>f.properties?.capa===x));}catch(_){valid=false;}
+          }
+          if(valid){complete++;reused++;status('Verificando SEN offline: '+(complete+failed.length)+'/'+files.length+' archivos…');continue;}
+          response=await fetch(url,{cache:'no-store'});
+          if (!response.ok) throw new Error('HTTP '+response.status);
+          if(name==='data/offline/base-chile-v2.geojson'){
+            const baseData=await response.clone().json();
+            if(baseData.metadata?.schema!=='gv-base-chile-v2'||baseData.type!=='FeatureCollection'||!baseData.features?.length)throw new Error('Cartografía nacional inválida');
+          }
+          await cache.put(clean(url),response.clone());
+          const saved=await cache.match(clean(url));
+          if (!saved?.ok) throw new Error('No se verificó en almacenamiento');
+          complete++;downloaded++;
+        } catch (err) { failed.push(name+' ('+err.message+')'); }
+        status('Preparando SEN y mapa offline: '+(complete+failed.length)+'/'+files.length+' archivos…');
+      }
+      const required=['index.html','gridvision-fire.html','gridvision-vulcano.html',
+        'vendor/leaflet/leaflet.js','data/processed/activos_puntuales_validados.geojson',
+        'data/processed/lineas_validadas.geojson','data/offline/base-chile-v2.geojson'];
+      const critical=required.filter(x=>failed.some(f=>f.startsWith(x+' (')));
+      if (failed.length) {
+        // Nunca registrar como listo si falta un archivo JS, CSS o geográfico.
+        // Keep the last successful record; readiness is checked against real files.
+        status('Descarga incompleta: '+failed.length+' archivo(s). Reintenta conectado.','warning');
+        console.warn('GridVision offline: descargas fallidas',failed,critical);
+      } else {
+        const meta={version:VERSION,fecha:new Date().toISOString(),archivos:complete,
+          alcance:'Visores, librerías, SEN y mapa nacional Natural Earth; sin detalle rural ni alertas en vivo'};
+        await cache.put(absolute(METADATA),new Response(JSON.stringify(meta),
+          {headers:{'Content-Type':'application/json'}}));
+        if (navigator.storage?.persist) {
+          try { await navigator.storage.persist(); } catch (_) { /* best effort */ }
+        }
+        status('SEN y mapa listos · '+reused+' conservados · '+downloaded+' descargados.','ok');
+        window.GVOfflineLastPreparation={reused,downloaded,total:complete};
+      }
+    } catch(err) {
+      console.error('GridVision offline',err);
+      status('No se pudo preparar offline: '+String(err.message||err),'warning');
+    } finally {preparing=false;downloadBtn.disabled=false;await refreshOfflineState();}
+  }
+  // V2.0.2: separate explicit download for the original volcanic reference geometries.
+  // No live EAV, no external tile downloads, no change to electrical data.
+  function installVulcanoOffline(wrapper) {
+    const INDEX='data/vulcano/volcanes_v068.json';
+    const MANIFEST='data/vulcano/catalogo_vulcano_v06.json';
+    const READY='__gv-vulcano-reference-v202.json';
+    const PARTIAL='__gv-vulcano-partial-v202.json';
+    let busy=false;
+    const btn=makeButton(wrapper,'⬇ Descargar Vulcano offline','Guardar las capas originales de peligro, evacuación y volcanes para todo Chile',prepare);
+    btn.className='gv-nav-download';
+    const info=document.createElement('div');info.className='gv-nav-status';info.setAttribute('role','status');wrapper.append(info);
+    const report=(msg,kind='normal')=>{info.textContent=msg;info.dataset.kind=kind;};
+    const metaResponse=obj=>new Response(JSON.stringify(obj),{headers:{'Content-Type':'application/json'}});
+    async function signature(text){
+      const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(text));
+      return Array.from(new Uint8Array(digest),x=>x.toString(16).padStart(2,'0')).join('');
+    }
+    function catalog(index){
+      if(index.schema!==68||index.ambito!=='VOLCANES_COMPLETOS_1_O_2'||!Array.isArray(index.volcanes)||index.volcanes.length!==104)throw new Error('Índice volcánico incompatible');
+      const files=new Set(),specs=[];
+      for(const v of index.volcanes){
+        if(!v.capas||typeof v.capas!=='object')throw new Error('Volcán sin catálogo: '+v.id);
+        for(const spec of Object.values(v.capas)){
+          if(!Array.isArray(spec.archivos)||!Number.isInteger(spec.conteo)||spec.conteo<0)throw new Error('Capa inválida: '+v.id);
+          for(const p of spec.archivos){if(typeof p!=='string'||!/^data\/vulcano\/[a-z0-9_\-]+\.geojson$/i.test(p))throw new Error('Ruta inválida: '+p);files.add(p);}
+          specs.push(spec);
+        }
+      }
+      if(files.size!==537)throw new Error('Cantidad inesperada de archivos: '+files.size);
+      return {files:[...files],specs};
+    }
+    async function fetchChecked(name){const r=await fetch(absolute(name),{cache:'no-store'});if(!r.ok)throw new Error(name+' · HTTP '+r.status);return r;}
+    async function featureCount(r,p){const d=await r.clone().json();if(d.type!=='FeatureCollection'||!Array.isArray(d.features)||!d.features.every(f=>f.type==='Feature'&&f.geometry&&f.properties))throw new Error('GeoJSON inválido: '+p);return d.features.length;}
+    async function verify(){
+      if(!('caches' in window))return false;
+      const cache=await caches.open(CACHE), m=await cache.match(absolute(READY)), i=await cache.match(absolute(INDEX)), c=await cache.match(absolute(MANIFEST));
+      if(!m?.ok||!i?.ok||!c?.ok)return false;
+      const meta=await m.json(), raw=await i.text();
+      if(meta.version!=='gv-vulcano-v202'||meta.sha!==await signature(raw))return false;
+      const list=catalog(JSON.parse(raw)).files;
+      if(meta.archivos!==list.length)return false;
+      for(let n=0;n<list.length;n+=24){const responses=await Promise.all(list.slice(n,n+24).map(p=>cache.match(absolute(p))));if(responses.some(r=>!r?.ok))return false;}
+      return meta;
+    }
+    async function showState(){
+      if(busy)return;
+      try {const meta=await verify();
+        if(busy)return;
+        if(meta)report('Vulcano offline listo · 104 volcanes · '+meta.archivos+' archivos de referencia. No es alerta en vivo.','ok');
+        else report('Vulcano: capas de peligro y evacuación pendientes de descarga. No disponible offline.','warning');
+      } catch(e){if(!busy)report('Vulcano: no se pudo verificar la descarga.','warning');}
+    }
+    async function prepare(){
+      if(busy||downloadBtn.disabled)return;
+      if(!navigator.onLine){report('Conéctate para descargar las capas de Vulcano.','warning');return;}
+      if(!('caches' in window)||!window.crypto?.subtle){report('Almacenamiento offline no disponible en este navegador.','warning');return;}
+      if(!window.confirm('Descargar cartografía volcánica nacional de referencia: aproximadamente 157 MB en 537 archivos. Usa Wi-Fi. No incluye alertas EAV en vivo. ¿Continuar?'))return;
+      busy=true;btn.disabled=true;downloadBtn.disabled=true;
+      let cache;
+      try{
+        cache=await caches.open(CACHE);
+        // Fetch and validate the current index before reusing any partial download.
+        const ir=await fetchChecked(INDEX), raw=await ir.clone().text(), sha=await signature(raw), data=catalog(JSON.parse(raw));
+        const mr=await fetchChecked(MANIFEST), manifest=await mr.clone().json();
+        if(manifest.schema!==60||manifest.ambito!=='NACIONAL_CHILE')throw new Error('Manifiesto volcánico incompatible');
+        const saved=await cache.match(absolute(PARTIAL)), old=saved?.ok?await saved.json():null;
+        const resume=old?.sha===sha;
+        await cache.delete(absolute(READY));
+        await cache.put(absolute(PARTIAL),metaResponse({sha}));
+        await cache.put(absolute(INDEX),ir.clone());await cache.put(absolute(MANIFEST),mr.clone());
+        const counts=new Map();let done=0;
+        for(const p of data.files){
+          if(!navigator.onLine)throw new Error('Conexión perdida');
+          let r=resume?await cache.match(absolute(p)):null;
+          let count;
+          if(r?.ok){try{count=await featureCount(r,p);}catch(_){r=null;}}
+          if(!r?.ok){r=await fetchChecked(p);count=await featureCount(r,p);await cache.put(absolute(p),r.clone());}
+          if(!(await cache.match(absolute(p)))?.ok)throw new Error('No se guardó '+p);
+          counts.set(p,count);done++;
+          report('Descargando Vulcano: '+done+'/'+data.files.length+' archivos…');
+        }
+        for(const spec of data.specs){const actual=spec.archivos.reduce((n,p)=>n+counts.get(p),0);if(actual!==spec.conteo){await cache.delete(absolute(PARTIAL));throw new Error('Conteo de geometrías no coincide con el índice');}}
+        await cache.put(absolute(READY),metaResponse({version:'gv-vulcano-v202',sha,archivos:done,fecha:new Date().toISOString()}));
+        try{await navigator.storage?.persist?.();}catch(_){}
+      }catch(e){report('Descarga Vulcano incompleta: '+String(e.message||e)+'. Reintenta conectado.','warning');console.warn('Vulcano offline:',e);return;}
+      finally{busy=false;btn.disabled=false;downloadBtn.disabled=false;}
+      await showState();
+    }
+
+    // GV_V385B_CONTROLES_PERSISTENTES. Changes ONLY the Vulcano button.
+    // A complete verified cache is reused; remote changes require updated catalogues.
+    let gvV385bVerificando=false;
+    const gvV385bNormalizar=obj=>{
+      if(Array.isArray(obj))return obj.map(gvV385bNormalizar);
+      if(obj&&typeof obj==='object')return Object.fromEntries(
+        Object.keys(obj).filter(k=>k!=='descargadoEn').sort().map(k=>[k,gvV385bNormalizar(obj[k])]));
+      return obj;
+    };
+    async function gvV385bHayActualizacion(meta){
+      if(!meta||!navigator.onLine)return null;
+      try{
+        const c=await caches.open(CACHE),local=await c.match(absolute(MANIFEST));
+        const idxLocal=await c.match(absolute(INDEX));
+        if(!local?.ok||!idxLocal?.ok)return true;
+        const [idxNuevo,manNuevo]=await Promise.all([
+          fetchChecked(INDEX),fetchChecked(MANIFEST)
+        ]);
+        const actual=[await idxLocal.clone().json(),await local.clone().json()];
+        const nueva=[await idxNuevo.clone().json(),await manNuevo.clone().json()];
+        return JSON.stringify(actual.map(gvV385bNormalizar))!==
+               JSON.stringify(nueva.map(gvV385bNormalizar));
+      }catch(e){console.warn('Vulcano: no fue posible consultar versión',e);return null;}
+    }
+    async function gvV385bActualizarBoton(){
+      let meta;
+      try{meta=await verify();}catch(e){meta=false;}
+      if(busy)return;
+      if(!meta){btn.textContent='⬇ Descargar Vulcano offline';btn.dataset.gvV385bEstado='pendiente';return;}
+      btn.textContent='✓ Vulcano offline descargado';
+      btn.dataset.gvV385bEstado='guardado';
+      report('Vulcano offline guardado · 104 volcanes · '+meta.archivos+' archivos. No es alerta en vivo.','ok');
+      const changed=await gvV385bHayActualizacion(meta);
+      if(busy)return;
+      if(changed===true){
+        btn.textContent='↻ Actualizar Vulcano offline';
+        btn.dataset.gvV385bEstado='novedad';
+        report('Se detectó un cambio del catálogo de referencia. Puedes actualizar manualmente.','warning');
+      }else if(changed===false){
+        btn.textContent='✓ Vulcano offline actualizado';
+        btn.dataset.gvV385bEstado='vigente';
+      }
+    }
+    // Capture click BEFORE the old download callback. Call it only if needed.
+    btn.addEventListener('click',async event=>{
+      event.preventDefault();event.stopImmediatePropagation();
+      if(busy||gvV385bVerificando||downloadBtn.disabled)return;
+      gvV385bVerificando=true;
+      try{
+        let meta=null;
+        try{meta=await verify();}catch(e){console.warn('Vulcano: caché sin verificar',e);}
+        if(meta){
+          if(!navigator.onLine){
+            report('Vulcano ya está guardado para usar sin conexión. No se descargó nada.','ok');return;
+          }
+          report('Revisando catálogo de Vulcano; conservando los archivos descargados…');
+          const update=await gvV385bHayActualizacion(meta);
+          if(update===false){
+            btn.textContent='✓ Vulcano offline actualizado';
+            report('Vulcano ya está completo y actualizado. No se descargó nada.','ok');return;
+          }
+          if(update===null){
+            report('No se pudieron verificar novedades. La copia guardada sigue disponible. No se descargó nada.','warning');return;
+          }
+        }
+        if(!navigator.onLine){report('Conéctate para descargar los archivos que faltan.','warning');return;}
+        await prepare(); // Existing validated 537-file downloader; unchanged.
+      }catch(e){report('No fue posible verificar Vulcano offline: '+e.message,'warning');}
+      finally{gvV385bVerificando=false;void gvV385bActualizarBoton();}
+    },true);
+    // The original showState() remains intact. Sync button after it finishes.
+    void gvV385bActualizarBoton();
+    window.GridVisionVulcanoOffline={version:'gv-vulcano-v202',verify,prepare};
+    report('Verificando cartografía volcánica descargada…');void showState();
+  }
+
+  function makeButton(container,label,title,fn) {
+    const button=document.createElement('button');button.type='button';button.textContent=label;
+    button.title=title;button.setAttribute('aria-label',title);
+    button.addEventListener('click', e=>{e.stopPropagation();fn();});
+    container.appendChild(button);return button;
+  }
+  const ctrl=L.control({position:'topleft'});
+  ctrl.onAdd=function(){
+    const wrapper=L.DomUtil.create('div','gv-nav-panel leaflet-control');
+    L.DomEvent.disableClickPropagation(wrapper);
+    L.DomEvent.disableScrollPropagation(wrapper);
+    const actions=document.createElement('div');actions.className='gv-nav-actions';wrapper.append(actions);
+    locateBtn=makeButton(actions,'◎ Mi ubicación','Mostrar ubicación actual',locateOnce);
+    followBtn=makeButton(actions,'▶ Seguir','Seguir el GPS sin cambiar el zoom',toggleFollow);
+    updateGpsButtons();
+    downloadBtn=makeButton(wrapper,'⬇ Preparar SEN + mapa offline','Guardar los tres visores, el SEN y el mapa nacional',prepareOffline);
+    downloadBtn.className='gv-nav-download';
+    statusEl=document.createElement('div');statusEl.className='gv-nav-status';
+    statusEl.setAttribute('role','status');statusEl.textContent='GPS listo · Internet '+(navigator.onLine?'conectado':'no disponible');
+    storageEl=document.createElement('div');storageEl.className='gv-nav-status';storageEl.setAttribute('role','status');storageEl.textContent='Verificando almacenamiento offline…';
+    wrapper.append(statusEl,storageEl);
+    baseBtn=makeButton(wrapper,'Mapa nacional offline','Activar el mapa vectorial nacional de referencia',()=>{});
+    baseBtn.className='gv-nav-base-choice';baseBtn.setAttribute('aria-pressed','false');
+    // GV UNIFIED V2142: controles compactos para los tres visores.
+    if (['mapa','fire-map','vulcano-map'].includes(viewId)) {
+      wrapper.classList.add('gv-nav-compact');
+      locateBtn.dataset.action='locate';
+      followBtn.dataset.action='follow';
+      const dialog=document.createElement('dialog');
+      dialog.className='gv-nav-dialog';
+      dialog.id='gv-nav-dialog';
+      dialog.setAttribute('aria-labelledby','gv-nav-dialog-title');
+      const head=document.createElement('div');head.className='gv-nav-dialog-head';
+      const title=document.createElement('h2');title.id='gv-nav-dialog-title';title.textContent='Navegación y SEN offline';
+      const close=makeButton(head,'×','Cerrar panel de navegación',()=>dialog.close());
+      close.className='gv-nav-dialog-close';head.prepend(title);
+      const note=document.createElement('p');note.textContent='Descarga el SEN y el mapa nacional de referencia antes de salir. Caminos principales, localidades, hidrografía y límites generales; sin detalle rural ni alertas en vivo.';
+      note.textContent='Prepara una vez este dispositivo. Los mapas guardados se conservan; solo se descargan archivos faltantes. Sin detalle rural ni alertas en vivo.';
+      dialog.append(head,note,storageEl,statusEl,downloadBtn,baseBtn);
+      if(viewId==='vulcano-map')installVulcanoOffline(dialog);
+      document.body.append(dialog);
+      offlineMenuBtn=makeButton(actions,'SEN offline','Navegación y SEN offline',()=>{
+        if (!dialog.open) dialog.showModal();
+        void refreshOfflineState();
+      });
+      offlineMenuBtn.dataset.action='offline';
+      offlineMenuBtn.setAttribute('aria-haspopup','dialog');
+      offlineMenuBtn.setAttribute('aria-controls',dialog.id);
+      dialog.addEventListener('close',()=>offlineMenuBtn.focus());
+      dialog.addEventListener('click',e=>{if(e.target===dialog) { const b=dialog.getBoundingClientRect(); if(e.clientX<b.left||e.clientX>b.right||e.clientY<b.top||e.clientY>b.bottom)dialog.close(); }});
+      status(statusEl.textContent);
+    }
+    return wrapper;
+  };
+  ctrl.addTo(map);
+  oldGpsHide();
+  offlineStyle();
+  markLiveUnavailable();
+  // Components may create their header buttons after the map is ready.
+  const liveObserver=new MutationObserver(markLiveUnavailable);
+  liveObserver.observe(document.body,{childList:true,subtree:true});
+  if(window.GridVisionBaseOfflineInstall)window.GridVisionBaseOfflineInstall(map,baseBtn,status);
+  window.addEventListener('offline',()=>{
+    offlineStyle();markLiveUnavailable();status('Sin internet · consulta datos descargados; clima y alertas NO son en vivo.','warning');void refreshOfflineState();
+  });
+  window.addEventListener('online',()=>{offlineStyle();status('Conexion recuperada. Recarga para actualizar clima y alertas.','warning');void refreshOfflineState();});
+  window.addEventListener('pagehide',()=>{clearGps();liveObserver.disconnect();});
+  window.GridVisionNavigationV1={version:VERSION,prepareOffline,stopFollow,refreshOfflineState};
+  window.addEventListener('pageshow',()=>void refreshOfflineState());
+  if ('serviceWorker' in navigator && window.isSecureContext) {
+    navigator.serviceWorker.register(absolute('gridvision-sw.js'),{scope:ROOT.pathname})
+      .then(()=>refreshOfflineState()).catch(err=>{console.warn('GridVision SW no disponible:',err);void refreshOfflineState();});
+  } else {
+    void refreshOfflineState();
+  }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', iniciarNavegacion, {once:true});
+  } else iniciarNavegacion();
+})();
+
+
+// GV UNIFIED V2144
+(() => {
+    'use strict';
+
+    function iniciarVista() {
+        const fire = document.getElementById('fire-map');
+        const vulcano = document.getElementById('vulcano-map');
+
+        if (!fire && !vulcano) return;
+
+        const header = document.querySelector(
+            '.gv-unified-fire, .gv-unified-vulcano'
+        );
+
+        if (!header || document.getElementById('gv-unified-vista')) return;
+
+        const body = document.body;
+        const tipo = fire ? 'fire' : 'vulcano';
+
+        body.classList.add('gv-vista-' + tipo);
+
+        const nombres = fire
+            ? ['Buscador y filtros', 'Ficha e infraestructura', 'Tabla de incendios']
+            : ['Buscador y filtros', 'Ficha y herramientas', 'Leyenda cartografica'];
+
+        const claves = ['left', 'right', 'bottom'];
+
+        let estado = fire ? [false, false, false] : [true, true, true]; // GV_V385E_FILTROS_CERRADOS
+        let anterior = [true, true, true];
+
+        const menu = document.createElement('details');
+        menu.id = 'gv-unified-vista';
+        menu.className = 'gv-unified-vista';
+
+        const summary = document.createElement('summary');
+        summary.textContent = '\u25a3 Vista';
+
+        const panel = document.createElement('div');
+        panel.className = 'gv-unified-vista-panel';
+
+        const titulo = document.createElement('strong');
+        titulo.textContent = 'Paneles del visor';
+        panel.append(titulo);
+
+        const checks = nombres.map((nombre, i) => {
+            const label = document.createElement('label');
+            const input = document.createElement('input');
+
+            input.type = 'checkbox';
+            input.checked = true;
+
+            label.append(input, document.createTextNode(nombre));
+            panel.append(label);
+
+            input.addEventListener('change', () => {
+                anterior = null;
+                estado[i] = input.checked;
+                aplicar();
+            });
+
+            return input;
+        });
+
+        const nota = document.createElement('small');
+        nota.textContent = 'Solo cambia la presentacion. Las capas permanecen activas.';
+        panel.append(nota);
+
+        const completo = document.createElement('button');
+        completo.type = 'button';
+        completo.textContent = 'Mapa completo';
+
+        const todos = document.createElement('button');
+        todos.type = 'button';
+        todos.textContent = 'Mostrar todos';
+
+        panel.append(completo, todos);
+        menu.append(summary, panel);
+
+        const nav = header.querySelector('nav');
+        if (nav) nav.after(menu);
+        else header.append(menu);
+
+        function redimensionar() {
+            const map = fire
+                ? window.GridVisionFireMap
+                : window.GridVisionVulcanoMap;
+
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    if (map && map.invalidateSize) {
+                        map.invalidateSize({
+                            animate: false,
+                            pan: true,
+                            debounceMoveend: true
+                        });
+                    }
+                });
+            });
+        }
+
+        function aplicar() {
+            claves.forEach((clave, i) => {
+                body.classList.toggle(
+                    'gv-unified-hide-' + clave,
+                    !estado[i]
+                );
+                checks[i].checked = estado[i];
+            });
+
+            completo.textContent = estado.every(v => !v)
+                ? 'Restaurar vista'
+                : 'Mapa completo';
+
+            redimensionar();
+        }
+
+        completo.addEventListener('click', () => {
+            if (estado.some(Boolean)) {
+                anterior = [...estado];
+                estado = [false, false, false];
+            } else {
+                estado = anterior
+                    ? [...anterior]
+                    : [true, true, true];
+
+                anterior = null;
+            }
+
+            aplicar();
+            menu.open = false;
+        });
+
+        todos.addEventListener('click', () => {
+            anterior = null;
+            estado = [true, true, true];
+            aplicar();
+            menu.open = false;
+        });
+
+        // Permitir reabrir los paneles desde herramientas moviles.
+        document.addEventListener('click', e => {
+            if (menu.open && !menu.contains(e.target)) {
+                menu.open = false;
+            }
+
+            let i = -1;
+
+            if (fire) {
+                if (e.target.closest('#gv-fire-mobile-tools [data-view="filters"]')) i = 0;
+                if (e.target.closest('#gv-fire-mobile-tools [data-view="detail"]')) i = 1;
+                if (e.target.closest('#gv-fire-mobile-tools [data-view="events"]')) i = 2;
+            } else {
+                if (e.target.closest('#gv-v-mobile-tools [data-action="search"], #gv-v-mobile-tools [data-action="layers"]')) i = 0;
+                if (e.target.closest('#gv-v-mobile-tools [data-action="tools"]')) i = 1;
+                if (e.target.closest('#toggle-legend')) i = 2;
+            }
+
+            if (i >= 0 && !estado[i]) {
+                anterior = null;
+                estado[i] = true;
+                aplicar();
+            }
+        }, true);
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') menu.open = false;
+        });
+
+        aplicar();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', iniciarVista, {once:true});
+    } else {
+        iniciarVista();
+    }
+})();

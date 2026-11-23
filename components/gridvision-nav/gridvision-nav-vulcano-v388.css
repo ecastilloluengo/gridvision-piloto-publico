@@ -1,0 +1,432 @@
+/* GridVision Navigation V1 - estilos encapsulados para los tres mapas. */
+.gv-nav-panel.leaflet-control {
+  display:flex;flex-direction:column;gap:5px;padding:8px;
+  border-radius:10px;border:1px solid #466b83;
+  background:rgba(7,27,43,.97);color:#eaf5fb;
+  box-shadow:0 4px 18px rgba(0,0,0,.35);
+  max-width:min(222px,calc(100vw - 24px));
+  font:12px/1.3 Inter,'Segoe UI',Arial,sans-serif;
+}
+.gv-nav-actions {display:flex;gap:5px;flex-wrap:wrap;}
+.gv-nav-panel button {
+  border:1px solid #47768a;background:#11384d;color:#eefaff;
+  padding:8px 9px;min-height:35px;border-radius:7px;cursor:pointer;
+  font-size:11px;font-family:inherit;font-weight:600;line-height:1.2;
+}
+.gv-nav-panel button:hover{background:#21516a;}
+.gv-nav-panel button:focus-visible{outline:2px solid #82daf5;outline-offset:2px;}
+.gv-nav-panel button[aria-pressed="true"] {border-color:#9be000;background:#284a28;color:#eaffcb;}
+.gv-nav-panel button:disabled {opacity:.6;cursor:wait;}
+.gv-nav-status {font-size:10px;color:#bdd0da;line-height:1.4;overflow-wrap:anywhere;max-width:201px;}
+.gv-nav-status[data-kind="warning"] {color:#ffcb80;}
+.gv-nav-status[data-kind="ok"] {color:#b7ef9d;}
+.gv-nav-download {width:100%;}
+.gv-nav-offline #mapa,
+.gv-nav-offline #fire-map,
+.gv-nav-offline #vulcano-map {
+  background-color:#0a2935!important;
+  background-image:linear-gradient(0deg,transparent 95%,rgba(123,176,187,.1) 100%),
+  linear-gradient(90deg,transparent 95%,rgba(123,176,187,.1) 100%)!important;
+  background-size:80px 80px!important;
+}
+@media(max-width:650px){
+  .gv-nav-panel.leaflet-control{padding:5px;max-width:195px;}
+  .gv-nav-panel button{min-height:36px;padding:7px;font-size:10px;}
+  .gv-nav-status{font-size:9px;}
+}
+
+/* GridVision Vulcano: control GPS debajo del buscador - V1.1 */
+#vulcano-map .leaflet-top.leaflet-left .gv-nav-panel.leaflet-control {
+  margin-top: 185px;
+  margin-left: 14px;
+}
+@media (max-width: 700px) {
+  #vulcano-map .leaflet-top.leaflet-left .gv-nav-panel.leaflet-control {
+    margin-top: 175px;
+    margin-left: 9px;
+  }
+}
+
+/* GV NAV V1.2 compact rail: GridVision Chile only */
+:is(#mapa,#fire-map,#vulcano-map) .gv-nav-compact.leaflet-control {
+  display:block; width:36px; max-width:36px; padding:0;
+  margin-left:10px; margin-top:9px;
+  border:0; border-radius:8px; background:#fff;
+  box-shadow:0 2px 8px rgb(0 0 0 / 28%); overflow:hidden;
+}
+:is(#mapa,#fire-map,#vulcano-map) .gv-nav-compact .gv-nav-actions { display:flex; flex-direction:column; gap:0; }
+:is(#mapa,#fire-map,#vulcano-map) .gv-nav-compact button {
+  display:grid; place-items:center; box-sizing:border-box;
+  width:36px; height:37px; min-height:37px; padding:0; margin:0;
+  border:0; border-bottom:1px solid #dce4e9; border-radius:0;
+  background:#fff; color:#18394d; font-size:0; position:relative;
+}
+:is(#mapa,#fire-map,#vulcano-map) .gv-nav-compact button:last-child { border-bottom:0; }
+:is(#mapa,#fire-map,#vulcano-map) .gv-nav-compact button:hover { background:#e6f3fa; }
+:is(#mapa,#fire-map,#vulcano-map) .gv-nav-compact button:focus-visible { outline:2px solid #1c8bd0; outline-offset:-3px; }
+:is(#mapa,#fire-map,#vulcano-map) .gv-nav-compact button[aria-pressed="true"] { background:#dceefb; color:#1263a7; box-shadow:inset 3px 0 #1976d2; }
+:is(#mapa,#fire-map,#vulcano-map) .gv-nav-compact button::before { content:""; width:20px; height:20px; background:currentColor; mask-size:contain; mask-repeat:no-repeat; mask-position:center; }
+:is(#mapa,#fire-map,#vulcano-map) .gv-nav-compact button[data-action="locate"]::before { mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v3m0 14v3M2 12h3m14 0h3'/%3E%3C/svg%3E"); }
+:is(#mapa,#fire-map,#vulcano-map) .gv-nav-compact button[data-action="follow"]::before { mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='m21 3-7 18-3-8-8-3Z'/%3E%3C/svg%3E"); }
+:is(#mapa,#fire-map,#vulcano-map) .gv-nav-compact button[data-action="follow"][aria-pressed="true"]::before { mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='6' y='6' width='12' height='12' rx='2'/%3E%3C/svg%3E"); }
+:is(#mapa,#fire-map,#vulcano-map) .gv-nav-compact button[data-action="offline"]::before { mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3v12m-5-5 5 5 5-5M4 16v4h16v-4'/%3E%3C/svg%3E"); }
+:is(#mapa,#fire-map,#vulcano-map) .gv-nav-compact button[data-kind="warning"]::after, body.gv-nav-offline :is(#mapa,#fire-map,#vulcano-map) .gv-nav-compact button[data-action="offline"]::after { content:""; position:absolute; width:7px; height:7px; border-radius:50%; background:#e79b22; top:4px; right:4px; }
+.gv-nav-dialog { box-sizing:border-box; width:min(380px,calc(100vw - 30px)); max-height:calc(100dvh - 30px); overflow:auto; padding:18px; border:1px solid #466b83; border-radius:14px; color:#eaf5fb; background:#0b2436; box-shadow:0 20px 60px #0009; font:13px/1.5 Inter,'Segoe UI',Arial,sans-serif; }
+.gv-nav-dialog::backdrop { background:#06142180; }
+.gv-nav-dialog-head { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.gv-nav-dialog-head h2 { margin:0; color:#edf8ff; font-size:17px; }
+.gv-nav-dialog p { margin:12px 0; color:#c8dce7; }
+.gv-nav-dialog .gv-nav-status { box-sizing:border-box; max-width:none; padding:10px; margin:12px 0; background:#102f43; border:1px solid #355c72; border-radius:8px; font-size:12px; }
+.gv-nav-dialog button { background:#174259; color:#f2fbff; border:1px solid #47768a; border-radius:8px; padding:10px; min-height:40px; font:600 12px Inter,'Segoe UI',Arial,sans-serif; cursor:pointer; }
+.gv-nav-dialog button:disabled { opacity:.65; cursor:wait; }
+.gv-nav-dialog button:focus-visible { outline:2px solid #82daf5; }
+.gv-nav-dialog .gv-nav-dialog-close { width:34px; min-height:34px; padding:0; font-size:22px; flex:none; }
+@media (min-width:701px) and (max-width:900px) { .panel-busqueda { left:55px; } }
+@media (max-width:700px) { :is(#mapa,#fire-map,#vulcano-map) .gv-nav-compact.leaflet-control { width:36px; max-width:36px; margin-left:8px; } :is(#mapa,#fire-map,#vulcano-map) .gv-nav-compact button { height:42px; min-height:42px; } }
+
+
+/* GV UNIFIED V2142 */
+
+.gv-nav-dialog .gv-nav-download,
+.gv-nav-dialog .gv-nav-base-choice {
+    width: 100%;
+    margin-top: 7px;
+}
+
+.gv-nav-dialog .gv-nav-status {
+    max-width: none;
+}
+
+
+/* GV UNIFIED V2143 */
+
+.gv-unified-chile {
+    --gv-visor-color: #25b6e6;
+}
+.gv-unified-fire {
+    --gv-visor-color: #ff454f;
+}
+.gv-unified-vulcano {
+    --gv-visor-color: #efa63a;
+}
+
+body > header.gv-unified-header {
+    background: #0c2033;
+    border-bottom: 1px solid #36536b;
+    box-shadow: 0 2px 8px #0004;
+}
+
+.gv-unified-header :is(.logo,.brand-logo,.gv-brand-icon) {
+    box-sizing: border-box;
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    display: grid;
+    place-items: center;
+    border-radius: 9px;
+    background: var(--gv-visor-color);
+    color: #10283c;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.gv-unified-header :is(.titulo,.brand,.gv-brand) {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.gv-unified-header :is(.brand,.gv-brand) {
+    min-width: 0;
+}
+
+.gv-unified-header h1 {
+    font-size: 20px;
+    font-weight: 750;
+    line-height: 1.2;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.gv-unified-header h1 em {
+    color: inherit;
+    font-style: normal;
+}
+
+.gv-unified-header :is(.subtitulo,.brand p,.gv-brand small) {
+    font-size: 10px;
+    color: #b0c8d9;
+    line-height: 1.3;
+}
+
+.gv-unified-header :is(.top-nav,nav,.gv-menu-enlaces) {
+    gap: 6px;
+    align-items: center;
+}
+
+.gv-unified-header :is(.top-nav,nav,.gv-menu-enlaces) > :is(a,span) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-height: 34px;
+    padding: 5px 12px;
+    border: 1px solid #4a6785;
+    border-radius: 999px;
+    background: #142e43;
+    color: #e5eef5;
+    font-size: 12px;
+    font-weight: 650;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.gv-unified-header :is(.top-nav,nav,.gv-menu-enlaces) > a:hover {
+    background: #24465d;
+}
+
+.gv-unified-header :is(.active,.nav-selected,.gv-visor-activo) {
+    border-color: var(--gv-visor-color) !important;
+    color: var(--gv-visor-color) !important;
+    background: #244052 !important;
+}
+
+.gv-unified-header .gv-status {
+    color: #ffd18a;
+    font-size: 10px;
+    line-height: 1.4;
+    white-space: normal;
+}
+
+.gv-unified-header .live-state {
+    color: #b0c8d9;
+}
+
+/* Escritorio */
+
+@media (min-width: 901px) {
+    body > header.gv-unified-fire,
+    body > header.gv-unified-vulcano {
+        height: 64px;
+        gap: 14px;
+        padding: 8px 16px;
+    }
+
+    .fire-header.gv-unified-fire + .fire-layout,
+    body:has(> .gv-unified-fire) .fire-layout,
+    body:has(> .gv-unified-vulcano) .gv-layout {
+        height: calc(100vh - 64px);
+    }
+
+    .gv-unified-fire .brand p {
+        max-width: 350px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .gv-unified-vulcano .gv-status {
+        display: inline-block;
+        max-width: 220px;
+    }
+}
+
+/* Celular */
+
+@media (max-width: 700px) {
+    .gv-unified-header h1 {
+        font-size: 16px;
+    }
+
+    .gv-unified-header :is(.logo,.brand-logo,.gv-brand-icon) {
+        width: 32px;
+        height: 32px;
+        flex-basis: 32px;
+        font-size: 13px;
+    }
+
+    .gv-unified-header :is(.top-nav,nav,.gv-menu-enlaces) > :is(a,span) {
+        padding: 6px 9px;
+        font-size: 11px;
+        min-height: 34px;
+    }
+
+    body > header.gv-unified-vulcano {
+        height: 96px !important;
+        flex-wrap: wrap;
+        gap: 5px;
+        padding: 7px 9px !important;
+    }
+
+    .gv-unified-vulcano nav {
+        order: 3;
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+
+    .gv-unified-vulcano .gv-status {
+        display: block;
+        max-width: 42%;
+        font-size: 9px;
+    }
+
+    body:has(> .gv-unified-vulcano) .gv-layout {
+        height: calc(100dvh - 96px) !important;
+    }
+}
+
+
+/* GV UNIFIED V2144 */
+
+.gv-unified-vista {
+    flex: 0 0 auto;
+    position: static;
+}
+
+.gv-unified-vista summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    padding: 5px 12px;
+    border: 1px solid #4a6785;
+    border-radius: 999px;
+    background: #142e43;
+    color: #e5eef5;
+    font-size: 12px;
+    font-weight: 650;
+    cursor: pointer;
+    list-style: none;
+}
+
+.gv-unified-vista summary::-webkit-details-marker {
+    display: none;
+}
+
+.gv-unified-vista-panel {
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 10px;
+    width: min(270px, calc(100vw - 20px));
+    box-sizing: border-box;
+    padding: 13px;
+    display: grid;
+    gap: 10px;
+    border: 1px solid #53788e;
+    border-radius: 12px;
+    background: #10283c;
+    color: #edf7fc;
+    box-shadow: 0 8px 24px #0008;
+    z-index: 3000;
+}
+
+.gv-unified-vista:not([open]) .gv-unified-vista-panel {
+    display: none;
+}
+
+.gv-unified-vista-panel label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    min-height: 30px;
+    cursor: pointer;
+}
+
+.gv-unified-vista-panel input {
+    width: 17px;
+    height: 17px;
+    accent-color: #25b6e6;
+}
+
+.gv-unified-vista-panel small {
+    font-size: 10px;
+    color: #b3c9d9;
+}
+
+.gv-unified-vista-panel button {
+    border: 1px solid #57778d;
+    background: #17445d;
+    color: #eef8ff;
+    border-radius: 8px;
+    padding: 9px;
+    min-height: 36px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* FIRE: ocultar paneles independientemente */
+
+body.gv-vista-fire.gv-unified-hide-left .fire-sidebar,
+body.gv-vista-fire.gv-unified-hide-right .fire-detail,
+body.gv-vista-fire.gv-unified-hide-bottom .incidents-panel,
+body.gv-vista-fire.gv-unified-hide-bottom #gv-fire-exposure-main {
+    display: none !important;
+}
+
+@media (min-width: 901px) {
+    body.gv-vista-fire.gv-unified-hide-left .fire-layout {
+        grid-template-columns: minmax(0, 1fr) 300px;
+    }
+
+    body.gv-vista-fire.gv-unified-hide-right .fire-layout {
+        grid-template-columns: 235px minmax(0, 1fr);
+    }
+
+    body.gv-vista-fire.gv-unified-hide-left.gv-unified-hide-right .fire-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    body.gv-vista-fire.gv-unified-hide-bottom .fire-main {
+        min-height: 0;
+        grid-template-rows: auto minmax(0, 1fr);
+    }
+}
+
+@media (min-width: 901px) and (max-width: 1200px) {
+    body.gv-vista-fire.gv-unified-hide-left:not(.gv-unified-hide-right) .fire-layout {
+        grid-template-columns: minmax(0, 1fr) 270px;
+    }
+
+    body.gv-vista-fire.gv-unified-hide-right:not(.gv-unified-hide-left) .fire-layout {
+        grid-template-columns: 210px minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    body.gv-vista-fire.gv-unified-hide-bottom .fire-main {
+        min-height: 0;
+        grid-template-rows: auto minmax(360px, 65vh);
+    }
+
+    body.gv-vista-fire.gv-unified-hide-bottom .map-shell {
+        height: 65dvh !important;
+    }
+}
+
+/* VULCANO: conservar avisos y estados oficiales */
+
+body.gv-vista-vulcano.gv-unified-hide-left .map-left-controls,
+body.gv-vista-vulcano.gv-unified-hide-left .gv-sidebar,
+body.gv-vista-vulcano.gv-unified-hide-right .gv-detail,
+body.gv-vista-vulcano.gv-unified-hide-right .map-top-right > :not(#gv-estados-toggle),
+body.gv-vista-vulcano.gv-unified-hide-bottom .map-legend {
+    display: none !important;
+}
+
+@media (max-width: 700px) {
+    .gv-unified-vista summary {
+        font-size: 11px;
+        padding: 6px 9px;
+    }
+
+    .gv-unified-vista-panel button {
+        min-height: 42px;
+    }
+
+    .gv-unified-vulcano .gv-status {
+        max-width: 30%;
+        min-width: 0;
+        flex: 1 1 65px;
+    }
+}

@@ -1,0 +1,85 @@
+/* National offline background only; all electrical and hazard layers remain above it. */
+.gv-base-v2-active {background:#b7dce7!important;background-image:none!important;}
+.gv-base-v2-active .leaflet-tile-pane {visibility:hidden!important;}
+.gv-base-label {pointer-events:none!important;white-space:nowrap;}
+.gv-base-label span {display:inline-block;transform:translate(-50%,-50%);font:600 11px/1.2 'Segoe UI',Arial,sans-serif;color:#263b43;text-shadow:0 0 2px #fff,0 0 4px #fff,1px 1px #fff,-1px -1px #fff;}
+.gv-base-label.town span::before {content:'• ';color:#4b6675;}
+.gv-base-label.region span {font-size:10px;font-weight:700;letter-spacing:.04em;color:#63766c;}
+.gv-base-label.country span {font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#526963;}
+.gv-nav-base-choice {width:100%;margin-top:4px;}
+.gv-nav-base-choice[aria-pressed="true"] {border-color:#a0dbe7;background:#174d65;color:#fff;}
+/* Override V1 neutral grid in offline mode. */
+.gv-nav-offline #mapa.gv-base-v2-active,
+.gv-nav-offline #fire-map.gv-base-v2-active,
+.gv-nav-offline #vulcano-map.gv-base-v2-active {background:#b7dce7!important;background-image:none!important;}
+
+/* V2.0.1: hide every remote tile pane, including the separate Esri label pane. */
+.gv-base-v2-active .leaflet-tile-container,
+.gv-base-tiles-paused .leaflet-tile-container,
+.gv-base-v2-active .leaflet-etiquetasMapa-pane { visibility:hidden!important; }
+/* Keep electrical overlay selectors; hide only online background choices. */
+#mapa.gv-base-tiles-paused .leaflet-control-layers-base {display:none!important;}
+body:has(#vulcano-map.gv-base-tiles-paused) input[name="basemap"],
+body:has(#vulcano-map.gv-base-tiles-paused) input[name="quick-basemap"] {opacity:.5;pointer-events:none;}
+/* Offline is unavailable, not zero. Applies also after reconnection until reload. */
+body.gv-nav-live-stale #senapred-contador-header,
+body.gv-nav-live-stale #dmc-contador-header,
+body.gv-nav-live-stale #boton-centro-alertas strong {display:none!important;}
+body.gv-nav-live-stale #abrir-senapred::after,
+body.gv-nav-live-stale #abrir-dmc::after,
+body.gv-nav-live-stale #boton-centro-alertas::after {content:" (—)";color:#ffc46d;}
+body.gv-nav-live-stale #estado {border-color:#d69a48!important;color:#ffd18a!important;}
+body.gv-nav-live-stale #estado::before {background:#e5a34c!important;box-shadow:none!important;}
+body.gv-nav-live-stale #estado::after {content:" · Alertas no actualizadas";font-size:11px;color:#ffc46d;}
+body.gv-nav-live-stale #kpi-total,
+body.gv-nav-live-stale #kpi-critical,
+body.gv-nav-live-stale #kpi-attention,
+body.gv-nav-live-stale #kpi-watch {font-size:0!important;}
+body.gv-nav-live-stale #kpi-total::after,
+body.gv-nav-live-stale #kpi-critical::after,
+body.gv-nav-live-stale #kpi-attention::after,
+body.gv-nav-live-stale #kpi-watch::after {content:"—";font-size:20px;color:#ffc46d;}
+body.gv-nav-live-stale #map-status {font-size:0!important;}
+body.gv-nav-live-stale #map-status::after {content:"Incendios no actualizados";font-size:11px;color:#ffc46d;}
+
+/* GV_HIDRO_ROTULOS_V3 */
+.gv-base-label.water span {color:#155b80;font-style:italic;font-weight:700;text-shadow:0 0 3px #fff,0 0 5px #fff;}
+
+/* GV_MVT_VISIBILIDAD_V3621 */
+.gv-base-v2-active .leaflet-gv-base-v2-pane .leaflet-tile-container,
+.gv-base-tiles-paused .leaflet-gv-base-v2-pane .leaflet-tile-container {
+    visibility: visible !important;
+}
+
+/* GV_ROADS_NATIONAL_VISIBILITY_V3721 */
+.gv-base-v2-active .leaflet-gv-v370-roads-pane,
+.gv-base-tiles-paused .leaflet-gv-v370-roads-pane {
+    visibility: visible !important;
+}
+
+.gv-base-v2-active .leaflet-gv-v370-roads-pane .leaflet-tile-container,
+.gv-base-tiles-paused .leaflet-gv-v370-roads-pane .leaflet-tile-container {
+    visibility: visible !important;
+}
+
+/* GV_LIMPIEZA_VISUAL_V3801 */
+
+/* Ocultar boton experimental de caminos */
+.gv-v370-road-toggle {
+    display: none !important;
+}
+
+/* Indicador de zoom compacto */
+#gv-zoom-hud-v3633 {
+    left: 8px !important;
+    bottom: 42px !important;
+    padding: 2px 5px !important;
+    font-size: 10px !important;
+    opacity: 0.8 !important;
+    box-shadow: none !important;
+}
+
+/* GV_OCULTAR_ZOOM_V3803 */
+#gv-zoom-hud-v3633 {
+    display: none !important;
+}

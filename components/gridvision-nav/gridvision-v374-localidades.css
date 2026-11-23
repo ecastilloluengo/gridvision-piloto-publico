@@ -1,0 +1,23 @@
+/* GridVision Chile V3.7.4 — Etiquetas discretas, no interactivas. */
+.gv-place-wrapper-v374 {
+  border: 0 !important;
+  background: transparent !important;
+  pointer-events: none !important;
+  white-space: nowrap !important;
+}
+.gv-place-label-v374 {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  font: 500 10px/20px system-ui, Arial, sans-serif;
+  color: #565a50;
+  text-shadow: -1px -1px 1px #f5f4e9, 1px -1px 1px #f5f4e9,
+    -1px 1px 1px #f5f4e9, 1px 1px 1px #f5f4e9;
+}
+.gv-place-national_capital, .gv-place-city {font-size: 12px; font-weight: 700; color: #343f3b;}
+.gv-place-town {font-size: 11px; font-weight: 600; color: #465047;}
+.gv-place-village {font-size: 10px; color: #5c5f54;}
+.gv-place-hamlet, .gv-place-locality, .gv-place-farm, .gv-place-suburb {
+  font-size: 9px; color: #787b70;
+}
