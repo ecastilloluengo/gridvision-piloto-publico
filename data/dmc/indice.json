@@ -1,10 +1,36 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-23 23:10",
+  "catalogoActualizadoEn": "2026-11-24 19:44",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
+    {
+      "codigo": "A636-2/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Altas Temperaturas",
+      "titulo": "Altas Temperaturas en zonas desde la región de Coquimbo a la región del Biobío",
+      "desdeTexto": "la tarde del martes 24 de noviembre del 2026",
+      "hastaTexto": "la tarde del viernes 27 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-24",
+      "fechaFinDia": "2026-11-27",
+      "fechaEmision": "2026-11-24T12:18:00-03:00",
+      "regiones": [
+        "Biobío",
+        "Coquimbo",
+        "Maule",
+        "Metropolitana",
+        "O’Higgins",
+        "Valparaíso",
+        "Ñuble"
+      ],
+      "numeroPoligonos": 25,
+      "archivoGeojson": "data/dmc/A636-2_2026.geojson",
+      "archivoCobertura": "data/dmc/A636-2_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A636-2_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A636-2_2026_documento.json"
+    },
     {
       "codigo": "A640/2026",
       "tipo": "Aviso",
@@ -27,30 +53,45 @@
       "archivoDocumento": "data/dmc/A640_2026_documento.json"
     },
     {
-      "codigo": "A636-1/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Altas Temperaturas",
-      "titulo": "Altas Temperaturas en zonas desde la región de Coquimbo a la región del Biobío",
-      "desdeTexto": "la tarde del martes 24 de noviembre del 2026",
-      "hastaTexto": "la tarde del viernes 27 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-24",
-      "fechaFinDia": "2026-11-27",
-      "fechaEmision": "2026-11-22T12:15:00-03:00",
+      "codigo": "AA203/2026",
+      "tipo": "Alerta",
+      "fenomeno": "Viento",
+      "titulo": "Viento Moderado a Fuerte en REG. MAGALLANES COMUNAS LAGUNA BLANCA, RIO VERDE, PUNTA ARENAS, SAN GREGORIO Y PRIMAVERA",
+      "desdeTexto": "la noche del miércoles 25 de noviembre del 2026",
+      "hastaTexto": "la madrugada del jueves 26 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-25",
+      "fechaFinDia": "2026-11-26",
+      "fechaEmision": "2026-11-24T15:22:00-03:00",
       "regiones": [
-        "Biobío",
-        "Coquimbo",
+        "Magallanes"
+      ],
+      "numeroPoligonos": 1,
+      "archivoGeojson": "data/dmc/AA203_2026.geojson",
+      "archivoCobertura": "data/dmc/AA203_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/AA203_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/AA203_2026_documento.json"
+    },
+    {
+      "codigo": "AA202/2026",
+      "tipo": "Alerta",
+      "fenomeno": "Altas Temperaturas",
+      "titulo": "Evento de Altas Temperaturas Extremas en zonas de las regiones del Maule y Ñuble",
+      "desdeTexto": "la tarde del jueves 26 de noviembre del 2026",
+      "hastaTexto": "la noche del jueves 26 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-26",
+      "fechaFinDia": "2026-11-26",
+      "fechaEmision": "2026-11-24T12:18:00-03:00",
+      "regiones": [
         "Maule",
-        "Metropolitana",
-        "O’Higgins",
-        "Valparaíso",
         "Ñuble"
       ],
-      "numeroPoligonos": 25,
-      "archivoGeojson": "data/dmc/A636-1_2026.geojson",
-      "archivoCobertura": "data/dmc/A636-1_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A636-1_2026_impactos.json",
+      "numeroPoligonos": 6,
+      "archivoGeojson": "data/dmc/AA202_2026.geojson",
+      "archivoCobertura": "data/dmc/AA202_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/AA202_2026_impactos.json",
       "observacion": "",
-      "archivoDocumento": "data/dmc/A636-1_2026_documento.json"
+      "archivoDocumento": "data/dmc/AA202_2026_documento.json"
     },
     {
       "codigo": "A643/2026",
@@ -91,6 +132,27 @@
       "archivoImpactos": "data/dmc/A642_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A642_2026_documento.json"
+    },
+    {
+      "codigo": "A645/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en cordillera de las regiones de Coquimbo y Valparaíso",
+      "desdeTexto": "la tarde del martes 24 de noviembre del 2026",
+      "hastaTexto": "la noche del miércoles 25 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-24",
+      "fechaFinDia": "2026-11-25",
+      "fechaEmision": "2026-11-24T15:25:00-03:00",
+      "regiones": [
+        "Coquimbo",
+        "Valparaíso"
+      ],
+      "numeroPoligonos": 2,
+      "archivoGeojson": "data/dmc/A645_2026.geojson",
+      "archivoCobertura": "data/dmc/A645_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A645_2026_impactos.json",
+      "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
+      "archivoDocumento": "data/dmc/A645_2026_documento.json"
     },
     {
       "codigo": "A644/2026",
@@ -174,27 +236,7 @@
       "archivoImpactos": "data/dmc/A641_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A641_2026_documento.json"
-    },
-    {
-      "codigo": "A635/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas de la región de Magallanes",
-      "desdeTexto": "la mañana del domingo 22 de noviembre del 2026",
-      "hastaTexto": "la tarde del martes 24 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-22",
-      "fechaFinDia": "2026-11-24",
-      "fechaEmision": "2026-11-21T15:10:00-03:00",
-      "regiones": [
-        "Magallanes"
-      ],
-      "numeroPoligonos": 7,
-      "archivoGeojson": "data/dmc/A635_2026.geojson",
-      "archivoCobertura": "data/dmc/A635_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A635_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A635_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-23T23:12:42.920773-03:00"
+  "generadoEn": "2026-11-24T20:54:04.396952-03:00"
 }

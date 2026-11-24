@@ -1,0 +1,49 @@
+{
+  "codigo": "AA203/2026",
+  "tipo": "Alerta",
+  "titulo": "Viento Moderado a Fuerte en REG. MAGALLANES COMUNAS LAGUNA BLANCA, RIO VERDE, PUNTA ARENAS, SAN GREGORIO Y PRIMAVERA",
+  "fenomeno": "Viento",
+  "emisionTexto": "Martes 24 de noviembre del 2026 a las 15:22 hrs.",
+  "condicionSinoptica": "Jet de bajo nivel",
+  "desde": "la noche del miércoles 25 de noviembre del 2026",
+  "hasta": "la madrugada del jueves 26 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "REG. MAGALLANES COMUNAS LAGUNA BLANCA, RIO VERDE, PUNTA ARENAS, SAN GREGORIO Y PRIMAVERA",
+  "tablaTitulo": "Intensidad estimada del Viento en Km/h",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Área"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "miércoles 25"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 26"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "REG. MAGALLANES COMUNAS LAGUNA BLANCA, RIO VERDE, PUNTA ARENAS, SAN GREGORIO Y PRIMAVERA"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "80 - 110"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "80 - 120"
+      }
+    ]
+  ]
+}
