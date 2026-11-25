@@ -343,11 +343,11 @@
         else report('Vulcano: capas de peligro y evacuación pendientes de descarga. No disponible offline.','warning');
       } catch(e){if(!busy)report('Vulcano: no se pudo verificar la descarga.','warning');}
     }
-    async function prepare(){
+    async function prepare(options){
       if(busy||downloadBtn.disabled)return;
       if(!navigator.onLine){report('Conéctate para descargar las capas de Vulcano.','warning');return;}
       if(!('caches' in window)||!window.crypto?.subtle){report('Almacenamiento offline no disponible en este navegador.','warning');return;}
-      if(!window.confirm('Descargar cartografía volcánica nacional de referencia: aproximadamente 157 MB en 537 archivos. Usa Wi-Fi. No incluye alertas EAV en vivo. ¿Continuar?'))return;
+      if(options?.modoUnificado!==true && !window.confirm('Descargar cartografía volcánica nacional de referencia: aproximadamente 157 MB en 537 archivos. Usa Wi-Fi. No incluye alertas EAV en vivo. ¿Continuar?'))return;
       busy=true;btn.disabled=true;downloadBtn.disabled=true;
       let cache;
       try{
