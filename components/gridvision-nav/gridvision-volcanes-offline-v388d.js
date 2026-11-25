@@ -270,6 +270,10 @@
     verifyButton.addEventListener('click', verify);
     downloadButton.addEventListener('click', download);
     cancelButton.addEventListener('click', () => {if (aborter) aborter.abort();});
+    // API de preparacion explicita para el unico boton.
+    state.verificar = verify;
+    state.descargar = download;
+    state.detener = () => { if (aborter) aborter.abort(); };
 
     // Verificar automaticamente la cache al abrir el panel.
     // No iniciar descargas ni retrasar la carga del mapa.

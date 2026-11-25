@@ -78,6 +78,9 @@
       if(!navigator.onLine){label.textContent+=' · Conéctate para preparar los sectores faltantes.';return;}
       if(confirm('Faltan sectores nacionales offline. ¿Descargar solo los archivos faltantes?'))await check(true);
     });
+    // API reutilizada por el panel unificado. No inicia descargas de forma automatica.
+    state.verificar = () => check(false);
+    state.preparar = () => check(true);
     // No iniciar descarga automáticamente. Permitir verificar al abrir el panel.
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',attach,{once:true});
