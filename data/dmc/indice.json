@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-24 19:44",
+  "catalogoActualizadoEn": "2026-11-24 23:47",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -216,27 +216,7 @@
       "archivoImpactos": "data/dmc/A634_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A634_2026_documento.json"
-    },
-    {
-      "codigo": "A641/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Viento",
-      "titulo": "Viento Normal a Moderado en patagonia subandina norte de la región de Aysén",
-      "desdeTexto": "la tarde del martes 24 de noviembre del 2026",
-      "hastaTexto": "la noche del martes 24 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-24",
-      "fechaFinDia": "2026-11-24",
-      "fechaEmision": "2026-11-22T13:45:00-03:00",
-      "regiones": [
-        "Aysén"
-      ],
-      "numeroPoligonos": 1,
-      "archivoGeojson": "data/dmc/A641_2026.geojson",
-      "archivoCobertura": "data/dmc/A641_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A641_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A641_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-24T20:54:04.396952-03:00"
+  "generadoEn": "2026-11-25T05:33:07.095360-03:00"
 }
