@@ -1,0 +1,114 @@
+{
+  "codigo": "A640-1/2026",
+  "tipo": "Aviso",
+  "titulo": "Altas Temperaturas en zonas de las regiones de La Araucanía y Los Ríos",
+  "fenomeno": "Altas Temperaturas",
+  "emisionTexto": "Miércoles 25 de noviembre del 2026 a las 15:48 hrs.",
+  "condicionSinoptica": "Alta subtropical",
+  "desde": "la mañana del jueves 26 de noviembre del 2026",
+  "hasta": "la tarde del viernes 27 de noviembre del 2026",
+  "observacion": "Este evento también afectará la comuna de Valdivia",
+  "textoZonaAfecta": "La Araucanía (Valle, Precordillera)\nLos Ríos (Litoral)",
+  "tablaTitulo": "Valores estimados de temperatura en grados Celsius (°C)",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: La Araucanía"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 26"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 27"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "27-29"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "27-29"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "26-28"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "26-28"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Los Ríos"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 26"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "viernes 27"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Litoral"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "24-26"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "24-26"
+      }
+    ]
+  ]
+}

@@ -1,20 +1,20 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-24 23:47",
+  "catalogoActualizadoEn": "2026-11-25 15:53",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
     {
-      "codigo": "A636-2/2026",
+      "codigo": "A636-3/2026",
       "tipo": "Aviso",
       "fenomeno": "Altas Temperaturas",
       "titulo": "Altas Temperaturas en zonas desde la región de Coquimbo a la región del Biobío",
-      "desdeTexto": "la tarde del martes 24 de noviembre del 2026",
-      "hastaTexto": "la tarde del viernes 27 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-24",
-      "fechaFinDia": "2026-11-27",
-      "fechaEmision": "2026-11-24T12:18:00-03:00",
+      "desdeTexto": "la tarde del miércoles 25 de noviembre del 2026",
+      "hastaTexto": "la tarde del sábado 28 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-25",
+      "fechaFinDia": "2026-11-28",
+      "fechaEmision": "2026-11-25T12:50:00-03:00",
       "regiones": [
         "Biobío",
         "Coquimbo",
@@ -25,14 +25,14 @@
         "Ñuble"
       ],
       "numeroPoligonos": 25,
-      "archivoGeojson": "data/dmc/A636-2_2026.geojson",
-      "archivoCobertura": "data/dmc/A636-2_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A636-2_2026_impactos.json",
+      "archivoGeojson": "data/dmc/A636-3_2026.geojson",
+      "archivoCobertura": "data/dmc/A636-3_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A636-3_2026_impactos.json",
       "observacion": "",
-      "archivoDocumento": "data/dmc/A636-2_2026_documento.json"
+      "archivoDocumento": "data/dmc/A636-3_2026_documento.json"
     },
     {
-      "codigo": "A640/2026",
+      "codigo": "A640-1/2026",
       "tipo": "Aviso",
       "fenomeno": "Altas Temperaturas",
       "titulo": "Altas Temperaturas en zonas de las regiones de La Araucanía y Los Ríos",
@@ -40,17 +40,17 @@
       "hastaTexto": "la tarde del viernes 27 de noviembre del 2026",
       "fechaInicioDia": "2026-11-26",
       "fechaFinDia": "2026-11-27",
-      "fechaEmision": "2026-11-22T13:45:00-03:00",
+      "fechaEmision": "2026-11-25T15:48:00-03:00",
       "regiones": [
         "La Araucanía",
         "Los Ríos"
       ],
       "numeroPoligonos": 3,
-      "archivoGeojson": "data/dmc/A640_2026.geojson",
-      "archivoCobertura": "data/dmc/A640_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A640_2026_impactos.json",
+      "archivoGeojson": "data/dmc/A640-1_2026.geojson",
+      "archivoCobertura": "data/dmc/A640-1_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A640-1_2026_impactos.json",
       "observacion": "Este evento también afectará la comuna de Valdivia",
-      "archivoDocumento": "data/dmc/A640_2026_documento.json"
+      "archivoDocumento": "data/dmc/A640-1_2026_documento.json"
     },
     {
       "codigo": "AA203/2026",
@@ -218,5 +218,5 @@
       "archivoDocumento": "data/dmc/A634_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-25T05:33:07.095360-03:00"
+  "generadoEn": "2026-11-25T16:15:35.114158-03:00"
 }
