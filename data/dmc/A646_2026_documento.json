@@ -1,0 +1,89 @@
+{
+  "codigo": "A646/2026",
+  "tipo": "Aviso",
+  "titulo": "Probables Tormentas Eléctricas en zonas de las regiones de Antofagasta y Atacama",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Miércoles 25 de noviembre del 2026 a las 16:52 hrs.",
+  "condicionSinoptica": "Vaguada en altura",
+  "desde": "la tarde del jueves 26 de noviembre del 2026",
+  "hasta": "la noche del jueves 26 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Antofagasta (Cordillera)\nAtacama (Precordillera, Cordillera)",
+  "tablaTitulo": "Ocurrencia de Tormentas Eléctricas",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Antofagasta"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 26"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "SI"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Atacama"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 26"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "SI"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "SI"
+      }
+    ]
+  ]
+}

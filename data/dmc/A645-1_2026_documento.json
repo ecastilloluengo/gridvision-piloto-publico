@@ -1,0 +1,14 @@
+{
+  "codigo": "A645-1/2026",
+  "tipo": "Aviso",
+  "titulo": "Probables Tormentas Eléctricas en cordillera de las regiones de Coquimbo y Valparaíso",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Miércoles 25 de noviembre del 2026 a las 17:23 hrs.",
+  "condicionSinoptica": "Margen anticiclónico con inestabilidad en cordillera",
+  "desde": "la tarde del miércoles 25 de noviembre del 2026",
+  "hasta": "la noche del jueves 26 de noviembre del 2026",
+  "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
+  "textoZonaAfecta": "Coquimbo (Cordillera)\nValparaíso (Cordillera)",
+  "tablaTitulo": "",
+  "tablaFilas": []
+}

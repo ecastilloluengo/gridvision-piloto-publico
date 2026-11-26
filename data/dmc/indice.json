@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-25 15:53",
+  "catalogoActualizadoEn": "2026-11-25 23:37",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -51,6 +51,48 @@
       "archivoImpactos": "data/dmc/A640-1_2026_impactos.json",
       "observacion": "Este evento también afectará la comuna de Valdivia",
       "archivoDocumento": "data/dmc/A640-1_2026_documento.json"
+    },
+    {
+      "codigo": "A645-1/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en cordillera de las regiones de Coquimbo y Valparaíso",
+      "desdeTexto": "la tarde del miércoles 25 de noviembre del 2026",
+      "hastaTexto": "la noche del jueves 26 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-25",
+      "fechaFinDia": "2026-11-26",
+      "fechaEmision": "2026-11-25T17:23:00-03:00",
+      "regiones": [
+        "Coquimbo",
+        "Valparaíso"
+      ],
+      "numeroPoligonos": 2,
+      "archivoGeojson": "data/dmc/A645-1_2026.geojson",
+      "archivoCobertura": "data/dmc/A645-1_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A645-1_2026_impactos.json",
+      "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
+      "archivoDocumento": "data/dmc/A645-1_2026_documento.json"
+    },
+    {
+      "codigo": "A646/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en zonas de las regiones de Antofagasta y Atacama",
+      "desdeTexto": "la tarde del jueves 26 de noviembre del 2026",
+      "hastaTexto": "la noche del jueves 26 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-26",
+      "fechaFinDia": "2026-11-26",
+      "fechaEmision": "2026-11-25T16:52:00-03:00",
+      "regiones": [
+        "Antofagasta",
+        "Atacama"
+      ],
+      "numeroPoligonos": 3,
+      "archivoGeojson": "data/dmc/A646_2026.geojson",
+      "archivoCobertura": "data/dmc/A646_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A646_2026_impactos.json",
+      "observacion": "",
+      "archivoDocumento": "data/dmc/A646_2026_documento.json"
     },
     {
       "codigo": "AA203/2026",
@@ -132,91 +174,7 @@
       "archivoImpactos": "data/dmc/A642_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A642_2026_documento.json"
-    },
-    {
-      "codigo": "A645/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en cordillera de las regiones de Coquimbo y Valparaíso",
-      "desdeTexto": "la tarde del martes 24 de noviembre del 2026",
-      "hastaTexto": "la noche del miércoles 25 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-24",
-      "fechaFinDia": "2026-11-25",
-      "fechaEmision": "2026-11-24T15:25:00-03:00",
-      "regiones": [
-        "Coquimbo",
-        "Valparaíso"
-      ],
-      "numeroPoligonos": 2,
-      "archivoGeojson": "data/dmc/A645_2026.geojson",
-      "archivoCobertura": "data/dmc/A645_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A645_2026_impactos.json",
-      "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
-      "archivoDocumento": "data/dmc/A645_2026_documento.json"
-    },
-    {
-      "codigo": "A644/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Altas Temperaturas",
-      "titulo": "Altas Temperaturas en zonas de la región de Atacama",
-      "desdeTexto": "la tarde del miércoles 25 de noviembre del 2026",
-      "hastaTexto": "la noche del miércoles 25 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-25",
-      "fechaFinDia": "2026-11-25",
-      "fechaEmision": "2026-11-23T14:48:00-03:00",
-      "regiones": [
-        "Atacama"
-      ],
-      "numeroPoligonos": 3,
-      "archivoGeojson": "data/dmc/A644_2026.geojson",
-      "archivoCobertura": "data/dmc/A644_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A644_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A644_2026_documento.json"
-    },
-    {
-      "codigo": "A638/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en cordillera de las regiones de Arica y Parinacota y Tarapacá",
-      "desdeTexto": "la tarde del martes 24 de noviembre del 2026",
-      "hastaTexto": "la noche del miércoles 25 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-24",
-      "fechaFinDia": "2026-11-25",
-      "fechaEmision": "2026-11-22T12:15:00-03:00",
-      "regiones": [
-        "Arica y Parinacota",
-        "Tarapacá"
-      ],
-      "numeroPoligonos": 2,
-      "archivoGeojson": "data/dmc/A638_2026.geojson",
-      "archivoCobertura": "data/dmc/A638_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A638_2026_impactos.json",
-      "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
-      "archivoDocumento": "data/dmc/A638_2026_documento.json"
-    },
-    {
-      "codigo": "A634/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Viento",
-      "titulo": "Viento Normal a Moderado en zonas de las regiones del Maule, Ñuble y Biobío",
-      "desdeTexto": "la mañana del martes 24 de noviembre del 2026",
-      "hastaTexto": "la noche del miércoles 25 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-24",
-      "fechaFinDia": "2026-11-25",
-      "fechaEmision": "2026-11-21T12:42:00-03:00",
-      "regiones": [
-        "Biobío",
-        "Maule",
-        "Ñuble"
-      ],
-      "numeroPoligonos": 9,
-      "archivoGeojson": "data/dmc/A634_2026.geojson",
-      "archivoCobertura": "data/dmc/A634_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A634_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A634_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-25T16:15:35.114158-03:00"
+  "generadoEn": "2026-11-26T00:34:18.690751-03:00"
 }
