@@ -1,0 +1,70 @@
+{
+  "codigo": "A647/2026",
+  "tipo": "Aviso",
+  "titulo": "Viento Normal a Moderado en zonas de la región de Antofagasta",
+  "fenomeno": "Viento",
+  "emisionTexto": "Jueves 26 de noviembre del 2026 a las 09:00 hrs.",
+  "condicionSinoptica": "Vaguada en altura",
+  "desde": "la tarde del jueves 26 de noviembre del 2026",
+  "hasta": "la tarde del jueves 26 de noviembre del 2026",
+  "observacion": "Probabilidad de tormentas de arena",
+  "textoZonaAfecta": "Antofagasta (Precordillera Occidental, Precordillera Alto Loa, Precordillera Salar)",
+  "tablaTitulo": "Intensidad estimada del Viento en Km/h",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Antofagasta"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "jueves 26"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera Occidental"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "50-70"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera Alto Loa"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "50-70"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Precordillera Salar"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "40-60"
+      }
+    ]
+  ]
+}
