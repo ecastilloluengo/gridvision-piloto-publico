@@ -207,6 +207,249 @@
     return null;
   }
 
+
+  // GV NOTIFICACIONES PFV V1: observador de las lecturas existentes.
+  // No interviene en alarmas sonoras ni reconoce alarmas automaticamente.
+  const avisoPFV = (() => {
+    const prefijo = 'gv-pfv-notificaciones-v1:';
+    const candidatos = Object.create(null);
+    const memoria = Object.create(null);
+    const mensajeConexion = 'Sin conexión. Revisar directamente la página del fabricante.';
+    const guardar = (k, v) => { memoria[k] = v; try { localStorage.setItem(prefijo+k,v); } catch (_) {} };
+    const leer = k => { try { return localStorage.getItem(prefijo+k) ?? memoria[k] ?? null; } catch (_) { return memoria[k] ?? null; } };
+    const soporte = () => 'Notification' in window && window.isSecureContext;
+    const activo = () => soporte() && Notification.permission === 'granted' && leer('escritorio') === 'si';
+    function resultado(tipo, texto) { return {tipo, texto}; }
+    function clasificar(id, datos, ahora = Date.now()) {
+      const planta = PLANTAS[id];
+      const equipos = (Array.isArray(datos?.inversores) ? datos.inversores : []).filter(Boolean);
+      let cantidad = 0;
+      if (planta.tipo === 'solax') {
+        const vigentes = equipos.filter(e => {
+          const fecha = Date.parse(String(e.ultimo_dato || '').replace(' ', 'T'));
+          return Number.isFinite(fecha) && fecha <= ahora + 120000 && ahora < fecha + 600000 && e.nivel !== 'sin_datos';
+        });
+        const fallas = vigentes.filter(e => e.nivel === 'falla');
+        if (fallas.length) return resultado('falla', `${fallas.length} inversor(es) con falla vigente. Revisar SolaX.`);
+        cantidad = vigentes.filter(e => numero(e.potencia_ac) !== null && String(e.potencia_ac).trim() !== '').length;
+      } else {
+        if (vigenciaAlarma(id, datos, ahora) <= ahora) return resultado('sin-datos', mensajeConexion);
+        const salud = String(datos?.estado || '').toUpperCase();
+        if (salud.includes('FALLA')) return resultado('falla', 'FusionSolar informa una falla vigente. Revisar plataforma.');
+        if (/SIN COMUNICACI[ÓO]N/.test(salud)) return resultado('sin-datos', mensajeConexion);
+        cantidad = equipos.filter(e => e.telemetria === true && numero(e.potencia_kw) !== null && String(e.potencia_kw).trim() !== '').length;
+      }
+      cantidad = Math.min(cantidad, planta.cantidad);
+      if (cantidad === 0) return resultado('sin-datos', `0/${planta.cantidad} inversores con potencia vigente. ${mensajeConexion}`);
+      if (cantidad < planta.cantidad || equipos.length !== planta.cantidad) return resultado('parcial', `${cantidad}/${planta.cantidad} inversores con potencia vigente. Revisar fabricante.`);
+      const otra = evaluar(id, datos);
+      if (otra?.firma?.includes('potencia:')) return resultado('potencia', otra.texto);
+      if (otra) return resultado('aviso', otra.texto);
+      return resultado('normal', 'Telemetría vigente y sin avisos detectados en dos consultas.');
+    }
+    // GV PFV V3: mecanismo nativo validado en Edge; no confundir show con entrega fisica.
+    let secuenciaAvisos = 0;
+    function enviarNativo(titulo, texto, clave, persistente, alClic, respuesta = () => {}) {
+      if (!activo()) { respuesta('bloqueado'); return null; }
+      try {
+        const marca = Date.now() + '-' + (++secuenciaAvisos) + '-' + Math.random().toString(36).slice(2,8);
+        const hora = new Date().toLocaleString('es-CL');
+        const n = new Notification(titulo, {
+          body: texto + '\n' + hora,
+          tag: 'gv-pfv-' + clave + '-' + marca,
+          icon: new URL('assets/logo-pecket-energy.png', location.href).href,
+          requireInteraction: persistente,
+          silent: false
+        });
+        n.onshow = () => { console.info('GV PFV V3: show', clave, marca); respuesta('show'); };
+        n.onerror = () => { console.warn('GV PFV V3: error', clave, marca); respuesta('error'); };
+        n.onclick = () => { window.focus(); if (alClic) alClic(); n.close(); };
+        return n;
+      } catch (err) { console.warn('GV PFV V3: aviso no disponible', err); respuesta('error'); return null; }
+    }
+    const avisosNativos = Object.create(null);
+    function mostrar(id, estado, prueba = false) {
+      const planta = PLANTAS[id];
+      const titulo = prueba ? 'GridVision · Notificación de prueba' : 'GridVision · ' + planta.nombre;
+      const bandejaId = 'gv-pfv-notificaciones';
+      let bandeja = document.getElementById(bandejaId);
+      if (!bandeja) {
+        bandeja = document.createElement('div'); bandeja.id = bandejaId;
+        bandeja.setAttribute('aria-live','polite'); document.body.appendChild(bandeja);
+      }
+      // Como maximo una tarjeta por instalacion y una de prueba.
+      const clave = prueba ? 'prueba' : id;
+      const anterior = Array.from(bandeja.children).find(el => el.dataset.clave === clave);
+      if (anterior) anterior.remove();
+      const tarjeta = document.createElement('section'); tarjeta.className = 'gv-pfv-toast';
+      tarjeta.dataset.clave = clave; tarjeta.dataset.tipo = estado.tipo;
+      const cab = document.createElement('div'); cab.className = 'gv-pfv-toast-cab';
+      const h = document.createElement('strong'); h.textContent = titulo;
+      const cerrar = document.createElement('button'); cerrar.type='button'; cerrar.textContent='×'; cerrar.setAttribute('aria-label','Cerrar aviso');
+      cerrar.onclick = () => tarjeta.remove(); cab.append(h,cerrar);
+      const texto = document.createElement('p'); texto.textContent = estado.texto;
+      const pie = document.createElement('div'); pie.className = 'gv-pfv-toast-pie';
+      const hora = document.createElement('small'); hora.textContent = new Date().toLocaleTimeString('es-CL'); pie.appendChild(hora);
+      if (planta && !prueba) { const a = document.createElement('a'); a.href=planta.url; a.target='_blank'; a.rel='noopener noreferrer'; a.textContent='Abrir '+planta.fabricante; pie.appendChild(a); }
+      tarjeta.append(cab,texto,pie); bandeja.appendChild(tarjeta);
+      setTimeout(() => tarjeta.remove(), 15000);
+      // Reemplazar el aviso previo de la misma planta solo al cambiar de estado.
+      if (activo()) {
+        avisosNativos[clave]?.close();
+        avisosNativos[clave] = enviarNativo(titulo, estado.texto, clave,
+          !prueba && estado.tipo !== 'normal',
+          () => document.getElementById('solar-'+id)?.scrollIntoView({block:'center'}));
+      }
+    }
+    // La misma maquina de estados sirve para lecturas reales y simuladas.
+    function confirmar(candidatosLocal, id, estado, leerEstado, guardarEstado, emitir) {
+      const anterior = candidatosLocal[id];
+      const veces = anterior?.tipo === estado.tipo ? anterior.veces+1 : 1;
+      candidatosLocal[id] = {tipo:estado.tipo, veces};
+      if (veces < 2) return;
+      const clave = 'estado:'+id;
+      const previo = leerEstado(clave);
+      if (previo === estado.tipo) return;
+      guardarEstado(clave,estado.tipo);
+      if (estado.tipo !== 'normal' || previo !== null) emitir(id,estado);
+    }
+    function recibir(id, estado) {
+      confirmar(candidatos, id, estado, leer, guardar, mostrar);
+    }
+    function montarAvisos() {
+      const audio = document.getElementById('pfv-activar-audio');
+      if (!audio || document.getElementById('gv-pfv-notificar')) return;
+      const boton = document.createElement('button');
+      boton.id = 'gv-pfv-notificar'; boton.type = 'button';
+      boton.className = 'gv-pfv-campana';
+      boton.setAttribute('aria-label', 'Notificaciones PFV');
+      boton.setAttribute('aria-haspopup', 'dialog');
+      boton.setAttribute('aria-expanded', 'false');
+      boton.innerHTML = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>';
+      const menu = document.createElement('div');
+      menu.id = 'gv-pfv-notif-menu'; menu.setAttribute('role','dialog');
+      menu.setAttribute('aria-label','Notificaciones PFV'); menu.hidden = true;
+      menu.innerHTML = '<div class="gv-pfv-menu-head"><strong>Notificaciones</strong><button type="button" data-cerrar aria-label="Cerrar">×</button></div>' +
+        '<div class="gv-pfv-menu-row"><div><strong>Avisos de escritorio</strong><small data-estado></small></div><button type="button" data-activar role="switch" aria-label="Avisos de escritorio" aria-checked="false"><i></i></button></div>' +
+        '<p data-ayuda></p><button type="button" data-prueba>Probar aviso en 5 segundos</button><button type="button" data-simular>Simular pérdida y normalización</button><small data-resultado role="status"></small>';
+      const activar = menu.querySelector('[data-activar]');
+      const prueba = menu.querySelector('[data-prueba]');
+      const estado = menu.querySelector('[data-estado]');
+      const ayuda = menu.querySelector('[data-ayuda]');
+      const res = menu.querySelector('[data-resultado]');
+      let probando = false;
+      function refrescar() {
+        const habilitado = activo();
+        boton.classList.toggle('activado', habilitado);
+        boton.title = habilitado ? 'Notificaciones de escritorio activadas' : 'Configurar notificaciones';
+        activar.setAttribute('aria-checked', String(habilitado));
+        const disponible = soporte();
+        const permiso = disponible ? Notification.permission : 'no-disponible';
+        activar.disabled = !disponible || permiso === 'denied';
+        prueba.disabled = !habilitado || probando || simulando;
+        simular.disabled = !habilitado || probando || simulando;
+        estado.textContent = habilitado ? 'Activados' : permiso === 'denied' ? 'Bloqueados por Edge' : 'Desactivados';
+        ayuda.textContent = !disponible ? 'Este navegador o contexto no admite avisos de escritorio.' : permiso === 'denied' ? 'En Edge, abre los permisos del sitio y permite Notificaciones. Después recarga el Portal.' : 'Recibe avisos con el Portal abierto. Las alarmas internas siguen disponibles.';
+      }
+      function ubicar() {
+        const r = boton.getBoundingClientRect();
+        const ancho = menu.offsetWidth;
+        const alto = menu.offsetHeight;
+        menu.style.left = Math.max(8, Math.min(window.innerWidth-ancho-8, r.right-ancho))+'px';
+        menu.style.top = Math.max(8, Math.min(window.innerHeight-alto-8, r.bottom+8))+'px';
+      }
+      function cerrar() { menu.hidden = true; boton.setAttribute('aria-expanded','false'); }
+      boton.addEventListener('click', e => {
+        e.stopPropagation();
+        if (!menu.hidden) { cerrar(); return; }
+        refrescar(); menu.hidden = false; boton.setAttribute('aria-expanded','true'); ubicar();
+      });
+      menu.querySelector('[data-cerrar]').onclick = cerrar;
+      document.addEventListener('click', e => { if (!menu.hidden && !menu.contains(e.target) && !boton.contains(e.target)) cerrar(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape' && !menu.hidden) { cerrar(); boton.focus(); } });
+      window.addEventListener('resize', () => { if (!menu.hidden) ubicar(); });
+      activar.addEventListener('click', async () => {
+        if (!soporte()) return;
+        res.textContent = '';
+        if (activo()) { guardar('escritorio','no'); refrescar(); return; }
+        try {
+          const permiso = Notification.permission === 'default' ? await Notification.requestPermission() : Notification.permission;
+          guardar('escritorio', permiso === 'granted' ? 'si' : 'no');
+          res.textContent = permiso === 'granted' ? 'Permiso concedido.' : 'Permiso no concedido.';
+        } catch (_) { res.textContent = 'No se pudo solicitar permiso.'; }
+        refrescar(); if (!menu.hidden) ubicar();
+      });
+      prueba.addEventListener('click', () => {
+        if (!activo() || probando) return;
+        probando = true; refrescar(); res.textContent = 'Minimiza Edge. Aviso en 5 segundos.';
+        setTimeout(() => {
+          try {
+            res.textContent = 'Aviso solicitado a Edge. Comprueba Windows + N.';
+            enviarNativo('PECKET ENERGY · PRUEBA', 'Alarma operacional de prueba. No corresponde a un evento real.',
+              'prueba', true, null, r => {
+                res.textContent = r === 'show' ? 'Edge informó que mostró el aviso. Revisa Windows + N.' : 'Aviso no confirmado: ' + r;
+              });
+          } catch (_) { res.textContent = 'No se pudo enviar el aviso. Revisa permisos.'; }
+          finally { probando = false; refrescar(); }
+        }, 5000);
+      });
+      const simular = menu.querySelector('[data-simular]');
+      let simulando = false;
+      simular.addEventListener('click', () => {
+        if (!activo() || simulando || probando) return;
+        simulando = true; refrescar();
+        res.textContent = 'Simulación aislada: aviso en 5 s y normalización en 20 s. Minimiza Edge.';
+        const temporal = Object.create(null), historial = Object.create(null);
+        let avisoAnterior = null;
+        const leerPrueba = k => historial[k] ?? null;
+        const guardarPrueba = (k,v) => { historial[k]=v; };
+        function emitirPrueba(id, estado) {
+          if (avisoAnterior) avisoAnterior.close();
+          avisoAnterior = enviarNativo('PECKET ENERGY · SIMULACIÓN PFV',
+            estado.texto + '\nPRUEBA: no corresponde a un evento real.', 'simulacion',
+            estado.tipo !== 'normal', null, resultado => {
+              res.textContent = 'Simulación ' + estado.tipo + ': ' + resultado + '. Revisa Windows + N.';
+            });
+        }
+        const id = 'lo-aguirre';
+        const emitir = e => confirmar(temporal,id,e,leerPrueba,guardarPrueba,emitirPrueba);
+        setTimeout(() => {
+          const e = resultado('sin-datos', 'ICV Lo Aguirre: pérdida de comunicación (simulada).');
+          emitir(e); emitir(e); emitir(e); // La tercera lectura no debe repetir el aviso.
+        }, 5000);
+        setTimeout(() => {
+          try {
+            const e = resultado('normal', 'ICV Lo Aguirre: comunicación restablecida (simulada).');
+            emitir(e); emitir(e); emitir(e);
+          } finally { simulando=false; refrescar(); }
+        }, 20000);
+      });
+      audio.after(boton); document.body.appendChild(menu); refrescar();
+      document.addEventListener('visibilitychange', () => { if (!document.hidden) refrescar(); });
+      const css = document.createElement('style'); css.textContent = `
+        .solar-section-title strong{display:inline-flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px}
+        .solar-section-title strong .pfv-audio-toggle{margin:0!important}
+        .solar-section-title strong .gv-pfv-campana{display:inline-grid;place-items:center;flex:0 0 30px;width:30px;height:30px;box-sizing:border-box;margin:0!important;padding:0;background:#15354b;border:1px solid #3c6d84;color:#bde9fc;border-radius:7px;cursor:pointer;vertical-align:middle}
+        .gv-pfv-campana.activado{color:#baf466!important;border-color:#9be000!important}
+        #gv-pfv-notif-menu{position:fixed;width:min(290px,calc(100vw - 16px));box-sizing:border-box;padding:13px;border:1px solid #36566b;border-radius:10px;background:#10293a;color:#e7f3fa;box-shadow:0 8px 24px #0007;z-index:2147482001;font:12px/1.4 system-ui;text-align:left}
+        #gv-pfv-notif-menu[hidden]{display:none!important}
+        .gv-pfv-menu-head,.gv-pfv-menu-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+        .gv-pfv-menu-head{padding-bottom:8px;border-bottom:1px solid #304c60}.gv-pfv-menu-head strong{font-size:14px}.gv-pfv-menu-head button{background:none;border:0;color:#d8ebf4;font-size:20px;cursor:pointer;line-height:1}
+        .gv-pfv-menu-row{margin-top:12px}.gv-pfv-menu-row small,#gv-pfv-notif-menu [data-resultado]{display:block;color:#a8becd;font-size:11px;margin-top:3px}
+        #gv-pfv-notif-menu [data-activar]{position:relative;flex:none;width:36px;height:21px;border:0;border-radius:12px;background:#536776;cursor:pointer;padding:3px;box-sizing:border-box}
+        #gv-pfv-notif-menu [data-activar] i{display:block;width:15px;height:15px;border-radius:50%;background:#fff}
+        #gv-pfv-notif-menu [data-activar][aria-checked="true"]{background:#629c20}#gv-pfv-notif-menu [data-activar][aria-checked="true"] i{transform:translateX(15px)}
+        #gv-pfv-notif-menu [data-ayuda]{margin:10px 0;color:#a8becd;font-size:11px}#gv-pfv-notif-menu [data-simular]{margin-top:6px}#gv-pfv-notif-menu [data-prueba],#gv-pfv-notif-menu [data-simular]{width:100%;padding:7px;border:1px solid #42677c;border-radius:6px;background:#15354b;color:#e7f3fa;font:600 11px system-ui;cursor:pointer}
+        #gv-pfv-notif-menu button:disabled{opacity:.5;cursor:not-allowed}
+        #gv-pfv-notificaciones{position:fixed;right:14px;bottom:14px;width:min(315px,calc(100vw - 28px));z-index:2147482000;display:grid;gap:6px;pointer-events:none;max-height:60vh;overflow:auto}
+        .gv-pfv-toast{pointer-events:auto;background:#10293a;color:#e7f3fa;border:1px solid #36566b;border-left:3px solid #e1b351;border-radius:7px;padding:10px;box-shadow:0 4px 16px #0007;font:12px/1.4 system-ui}
+        .gv-pfv-toast[data-tipo="falla"]{border-left-color:#fa7379}.gv-pfv-toast[data-tipo="normal"]{border-left-color:#65ca89}
+        .gv-pfv-toast-cab,.gv-pfv-toast-pie{display:flex;justify-content:space-between;align-items:center;gap:6px}.gv-pfv-toast-cab button{background:transparent;border:0;color:inherit;font-size:18px;cursor:pointer}.gv-pfv-toast p{margin:5px 0 7px}.gv-pfv-toast-pie small{color:#a5bccb;font-size:10px}.gv-pfv-toast-pie a{color:#a1e5ff;font-size:10px}
+      `; document.head.appendChild(css);
+    }
+    return {clasificar,recibir,montar:montarAvisos,conexion:()=>resultado('sin-datos',mensajeConexion)};
+  })();
+
   function actualizarCondicion(id, condicion) {
     const e = estados[id];
     if (condicion) {
@@ -264,9 +507,11 @@
   async function leerPlanta(id) {
     const estado = estados[id];
     const epoca = epocaConexion;
+    let avisoRecibido = false;
 
     if (!navigator.onLine) {
       estado.sinConexion = 1;
+      avisoPFV.recibir(id, avisoPFV.conexion());
       pintar(id);
       return;
     }
@@ -287,6 +532,8 @@
       if (datos && typeof datos === 'object' && datos.error) {
         throw new Error('Error de GridVision: ' + String(datos.error));
       }
+      avisoPFV.recibir(id, avisoPFV.clasificar(id, datos));
+      avisoRecibido = true;
       estado.vigenteHasta = vigenciaAlarma(id, datos);
 
       if (estado.vigenteHasta <= Date.now()) {
@@ -298,6 +545,7 @@
       actualizarCondicion(id, evaluar(id, datos));
     } catch (error) {
       if (epoca !== epocaConexion) return;
+      if (!avisoRecibido) avisoPFV.recibir(id, avisoPFV.conexion());
       estado.vigenteHasta = 0;
       estado.candidato = '';
       estado.repetidas = 0;
@@ -413,6 +661,7 @@
   `;
   document.head.appendChild(css);
   montar();
+  avisoPFV.montar();
 
   window.addEventListener('offline', () => {
 
