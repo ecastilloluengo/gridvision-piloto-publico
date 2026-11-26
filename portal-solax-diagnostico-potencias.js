@@ -15,10 +15,10 @@
     const vigente = edad >= -120000 && edad <= UMBRAL_MS;
     const minutos = Math.max(0, Math.floor(edad / 60000));
     const antiguedad = minutos < 60 ? `hace ${minutos} min` : `hace ${Math.floor(minutos / 60)} h ${minutos % 60} min`;
-    return { vigente, mensaje: `${String(equipo.ultimo_dato)} Â· ${antiguedad}` };
+    return { vigente, mensaje: `${String(equipo.ultimo_dato)} · ${antiguedad}` };
   }
   function kw(equipo) {
-    if (!equipo || equipo.potencia_ac === '' || equipo.potencia_ac == null) return null;
+    if (!equipo || equipo.nivel === 'sin_datos' || equipo.potencia_ac == null || String(equipo.potencia_ac).trim() === '') return null;
     const vatios = Number(equipo.potencia_ac);
     return Number.isFinite(vatios) ? vatios / 1000 : null;
   }
@@ -52,16 +52,18 @@
     titulo.className = 'gv-solax-v7-head';
     const bloque = document.createElement('div');
     const etiqueta = document.createElement('span');
-    etiqueta.textContent = 'POTENCIA INSTANTÃNEA TOTAL';
+    etiqueta.textContent = completos ? 'POTENCIA INSTANTÁNEA TOTAL' : 'POTENCIA INSTANTÁNEA REPORTADA';
     const valor = document.createElement('strong');
-    valor.textContent = completos ? formato(suma) : 'No verificable';
+    valor.textContent = validos > 0 ? formato(suma) : 'No verificable';
     const nota = document.createElement('small');
     nota.textContent = completos
-      ? 'Suma de los 3 inversores Â· lecturas vigentes'
-      : `Potencia vigente conocida: ${formato(suma)} (${validos}/3 equipos). Total no confirmado.`;
+      ? 'Suma de los 3 inversores · lecturas vigentes'
+      : validos > 0
+        ? `Lectura parcial · ${validos}/3 inversores con potencia vigente. Total no confirmado.`
+        : 'Sin potencia vigente de los inversores. Total no verificable.';
     bloque.append(etiqueta, valor, nota);
     const enlace = document.createElement('a');
-    enlace.textContent = 'Abrir SolaX Cloud â†—';
+    enlace.textContent = 'Abrir SolaX Cloud';
     enlace.href = URL_SOLAX;
     enlace.target = '_blank';
     enlace.rel = 'noopener noreferrer';

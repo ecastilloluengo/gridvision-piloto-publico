@@ -245,8 +245,8 @@
     if (e.sinConexion) {
       contenedor.dataset.nivel = 'sin-conexion';
       texto.textContent = e.activa
-        ? '⚠ Sin conexión a GridVision. Última alerta NO verificada: ' + e.mensaje
-        : '⚠ Sin conexión a GridVision. Revisar directamente el fabricante.';
+        ? '⚠ Sin conexión. Revisar directamente la página del fabricante. Última alerta NO verificada: ' + e.mensaje
+        : '⚠ Sin conexión. Revisar directamente la página del fabricante.';
       boton.hidden = true;
     } else if (e.activa) {
       const silenciada = reconocida(id);

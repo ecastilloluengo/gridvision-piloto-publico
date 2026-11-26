@@ -1788,7 +1788,7 @@ async function cargarClima(id, zona) {
 
       // GRIDVISION SOLAX COMPACTO V3
       // Estado conocido y dato vigente son conceptos diferentes.
-      const totalInversores = inversores.length;
+      const totalInversores = 3;
       const vigentes = inversores.filter(
         inversor => inversor && datoSolaxVigente(inversor)
       );
@@ -1829,7 +1829,7 @@ async function cargarClima(id, zona) {
 
         let mensajeOperacional = "";
 
-        if (totalInversores === 0) {
+        if (inversores.length === 0) {
           mensajeOperacional = "Sin datos de inversores";
         } else if (fallasVigentes > 0) {
           mensajeOperacional =
@@ -1895,8 +1895,8 @@ async function cargarClima(id, zona) {
         indicadores.replaceChildren();
         for (const [titulo, valor, clase] of [
           ["Operativos confirmados", `${operativos}/${totalInversores}`, "ok"],
-          ["Ultima falla conocida", `${fallasConocidas}/${totalInversores}`, "falla"],
-          ["Datos vigentes", `${vigentes.length}/${totalInversores}`, "vigente"]
+          ["Fallas vigentes", `${fallasVigentes}/${totalInversores}`, fallasVigentes ? "falla" : "vigente"],
+          ["Sin datos vigentes", `${sinVerificar}/${totalInversores}`, sinVerificar ? "antiguo" : "vigente"]
         ]) {
           const bloque = document.createElement("div");
           bloque.className = "gv-solax-v5-indicador " + clase;
@@ -1928,8 +1928,15 @@ async function cargarClima(id, zona) {
           derecha.className = "gv-solax-v5-estados";
           const estado = document.createElement("strong");
           estado.className = "gv-solax-v5-estado " +
-            (inversor.nivel === "falla" ? "falla" : inversor.nivel === "ok" ? "ok" : "espera");
-          estado.textContent = String(inversor.estado || "SIN ESTADO");
+            (!vigente ? "espera" : inversor.nivel === "falla" ? "falla" : inversor.nivel === "ok" ? "ok" : "espera");
+          estado.textContent = vigente
+            ? String(inversor.estado || "SIN ESTADO")
+            : "NO VERIFICABLE";
+          if (!vigente && inversor.estado) {
+            const ultimo = document.createElement("small");
+            ultimo.textContent = "Último estado conocido: " + String(inversor.estado);
+            izquierda.appendChild(ultimo);
+          }
           const vigencia = document.createElement("span");
           vigencia.className = "gv-solax-v5-vigencia " + (vigente ? "vigente" : "antiguo");
           vigencia.textContent = vigente ? "Dato vigente" : "Dato antiguo / no verificable";
@@ -1963,6 +1970,7 @@ async function cargarClima(id, zona) {
         // cuando la telemetr?a est? vigente.
         if (
           potenciaKw !== null
+          && inversor.nivel !== "sin_datos"
           && datoSolaxVigente(inversor)
         ) {
           potenciaTotalKw += potenciaKw;
@@ -1994,6 +2002,14 @@ async function cargarClima(id, zona) {
 
       if (fallasVigentes > 0) {
         estado = "FALLA";
+      } else if (conTelemetria === 0) {
+        estado = "SIN DATOS VIGENTES";
+      } else if (conTelemetria < totalInversores) {
+        estado = "COMUNICACIÓN PARCIAL";
+      } else if (operativos === totalInversores) {
+        estado = "OK";
+      } else if (enEspera > 0) {
+        estado = "ESPERA";
       }
 
       let clase = "estado-espera";
@@ -2038,7 +2054,7 @@ async function cargarClima(id, zona) {
       // Guardar solo una lectura completa y vigente.
       const lecturaCompleta =
         inversores.length === 3 &&
-        vigentes.length === 3 &&
+        conTelemetria === 3 &&
         inversores.every(i =>
           solarOffline.valido(i.potencia_ac) &&
           solarOffline.energiaDiaSolax(
@@ -2053,12 +2069,35 @@ async function cargarClima(id, zona) {
           new Date(ultimaFuente.replace(' ', 'T')).toISOString()
         );
       } else {
-        solarOffline.parcial(
-          id,
-          estado,
-          fallasVigentes > 0,
-          vigentes.length > 0
-        );
+        // Conservar el respaldo de energía sin sustituir la potencia
+        // vigente por valores históricos de los otros inversores.
+        solarOffline.parcial(id, estado, fallasVigentes > 0, true);
+        const potencia = document.getElementById('solar-power-' + id);
+        if (potencia) {
+          delete potencia.dataset.gvSolarHistorico;
+          potencia.textContent = tienePotencia
+            ? formatearNumeroPortal(potenciaTotalKw, 2) + ' kW'
+            : 'No verificable';
+          potencia.title = 'Suma de lecturas vigentes: ' + conTelemetria
+            + '/3 inversores.' + (conTelemetria < 3 ? ' Total de planta no confirmado.' : '');
+          const etiqueta = potencia.parentElement?.querySelector('span');
+          if (etiqueta) etiqueta.textContent = tienePotencia && conTelemetria < 3
+            ? 'Potencia parcial' : 'Potencia actual';
+        }
+        actualizarEstadoSolar(id, estado, clase);
+        const estadoEl = document.getElementById('solar-status-' + id);
+        if (estadoEl) {
+          delete estadoEl.dataset.gvSolarHistorico;
+          estadoEl.title = estado;
+        }
+        const actualizacion = document.getElementById('solar-update-' + id);
+        if (actualizacion) {
+          delete actualizacion.dataset.gvSolarHistorico;
+          actualizacion.removeAttribute('title');
+          actualizacion.textContent = conTelemetria + '/3 inversores con potencia vigente'
+            + (conTelemetria < 3 ? ' | Total no confirmado' : '')
+            + ' | Energía según lecturas disponibles';
+        }
       }
 
     } catch (error) {
