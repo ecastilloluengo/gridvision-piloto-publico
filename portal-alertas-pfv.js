@@ -267,9 +267,76 @@
         return n;
       } catch (err) { console.warn('GV PFV V3: aviso no disponible', err); respuesta('error'); return null; }
     }
+
+    // GV SITR V4: comparar conjuntos de incidencias de cada central.
+    // Sin nuevas consultas, sin acciones de control, sin modificar correos.
+    function sitrTransicion(previo, lectura, ahora) {
+      const estado = previo && typeof previo === 'object' ? previo : {fuente:0, noVerificable:false, centrales:{}};
+      const eventos = [];
+      const invalida = motivo => {
+        if (!estado.noVerificable) eventos.push({id:'sitr-fuente',tipo:'parcial',texto:'Estado SITR no verificable. '+motivo+' Revisar fuente CEN. No confirma pérdida de señales.'});
+        return {estado:{...estado,noVerificable:true},eventos};
+      };
+      if (!lectura?.ok) return invalida('Sin conexión o información vigente.');
+      const fuente = lectura.fuente;
+      if (!Number.isFinite(fuente) || ahora-fuente > 30*60000 || fuente-ahora > 120000) return invalida('Fecha CEN antigua o desconocida.');
+      if (fuente < estado.fuente || (fuente === estado.fuente && estado.noVerificable)) return invalida('No hay una nueva lectura de la fuente.');
+      const lista = lectura.instalaciones;
+      if (!Array.isArray(lista) || lista.length !== 2 || new Set(lista.map(c=>c?.id)).size !== 2 || !lista.every(c=>['capullo','pulelfu'].includes(c?.id))) return invalida('Inventario de centrales incompleto.');
+      const centrales = {};
+      const entero = n => n !== null && n !== undefined && String(n).trim() !== '' && Number.isInteger(Number(n)) && Number(n)>=0;
+      for (const c of lista) {
+        const valores = [c.variables_total,c.variables_validas,c.variables_faltantes,c.variables_incidentes,c.variables_recibidas];
+        if (!valores.every(entero)) return invalida('Conteos de señales incompletos.');
+        const [total,validas,faltantes,incidentes,recibidas] = valores.map(Number);
+        if (!total || validas+incidentes!==total || recibidas+faltantes!==total || faltantes>incidentes || !Array.isArray(c.incidencias) || c.incidencias.length!==incidentes) return invalida('Conteos de señales inconsistentes.');
+        const items = Object.create(null);
+        for (const i of c.incidencias) {
+          const id = String(i?.irn ?? '').trim();
+          const tipo = i?.estado;
+          if (!id || Object.hasOwn(items,id) || !['no_reporta','mala_calidad'].includes(tipo)) return invalida('Detalle de incidencias inconsistente.');
+          items[id] = tipo;
+        }
+        if (Object.values(items).filter(v=>v==='no_reporta').length!==faltantes) return invalida('Detalle de señales faltantes inconsistente.');
+        centrales[c.id]={total,validas,faltantes,incidentes,items};
+      }
+      if (Object.values(centrales).reduce((s,c)=>s+c.total,0)!==45) return invalida('Inventario distinto de las 45 señales esperadas.');
+      if (Object.entries(centrales).some(([id,c])=>estado.centrales?.[id] && estado.centrales[id].total!==c.total)) return invalida('Cambió el inventario esperado de una central.');
+      if (fuente===estado.fuente) return {estado,eventos};
+      if (estado.noVerificable) eventos.push({id:'sitr-fuente',tipo:'normal',texto:'Fuente CEN actualizada. Estado SITR nuevamente verificable. No implica normalización de todas las señales.'});
+      for (const [id,c] of Object.entries(centrales)) {
+        const antes=estado.centrales?.[id];
+        const antiguos=antes?.items||{};
+        const nuevos=Object.keys(c.items).filter(k=>!Object.hasOwn(antiguos,k));
+        const recuperados=Object.keys(antiguos).filter(k=>!Object.hasOwn(c.items,k));
+        const cambios=Object.keys(c.items).filter(k=>Object.hasOwn(antiguos,k)&&antiguos[k]!==c.items[k]);
+        if (!nuevos.length && !recuperados.length && !cambios.length) continue;
+        const resumen=`${c.validas}/${c.total} señales válidas. ${c.faltantes} no reportan; ${c.incidentes-c.faltantes} con mala calidad.`;
+        const titulo=c.faltantes===c.total?'Pérdida total de señales':c.incidentes===0?'Normalización total':nuevos.length||cambios.length?'Cambio de incidencias SITR':'Normalización parcial';
+        eventos.push({id:'sitr-'+id,tipo:c.incidentes===0?'normal':c.faltantes===c.total?'falla':'parcial',texto:`${titulo}. ${resumen} Nuevas: ${nuevos.length}; recuperadas: ${recuperados.length}; cambios de condición: ${cambios.length}.`});
+      }
+      return {estado:{fuente,noVerificable:false,centrales},eventos};
+    }
+
+    const sitrDestinos = {
+      'sitr-capullo':{nombre:'CH Capullo · SITR'},
+      'sitr-pulelfu':{nombre:'CH Pulelfu · SITR'},
+      'sitr-fuente':{nombre:'SITR · Fuente CEN'}
+    };
+    let sitrMemoria = null;
+    window.addEventListener('gv:sitr:lectura-v4', e => {
+      let anterior=sitrMemoria;
+      try { anterior=JSON.parse(leer('sitr-v4-estado')||'null') || anterior; } catch (_) {}
+      const resultado=sitrTransicion(anterior,e.detail,Date.now());
+      sitrMemoria=resultado.estado;
+      guardar('sitr-v4-estado',JSON.stringify(resultado.estado));
+      for (const aviso of resultado.eventos) mostrar(aviso.id,aviso);
+    });
+
     const avisosNativos = Object.create(null);
     function mostrar(id, estado, prueba = false) {
-      const planta = PLANTAS[id];
+      const esSitr = Object.hasOwn(sitrDestinos,id);
+      const planta = esSitr ? sitrDestinos[id] : PLANTAS[id];
       const titulo = prueba ? 'GridVision · Notificación de prueba' : 'GridVision · ' + planta.nombre;
       const bandejaId = 'gv-pfv-notificaciones';
       let bandeja = document.getElementById(bandejaId);
@@ -290,7 +357,8 @@
       const texto = document.createElement('p'); texto.textContent = estado.texto;
       const pie = document.createElement('div'); pie.className = 'gv-pfv-toast-pie';
       const hora = document.createElement('small'); hora.textContent = new Date().toLocaleTimeString('es-CL'); pie.appendChild(hora);
-      if (planta && !prueba) { const a = document.createElement('a'); a.href=planta.url; a.target='_blank'; a.rel='noopener noreferrer'; a.textContent='Abrir '+planta.fabricante; pie.appendChild(a); }
+      if (esSitr) { const a = document.createElement('a'); a.href='sitr.html'; a.textContent='Ver SITR'; pie.appendChild(a); }
+      else if (planta && !prueba) { const a = document.createElement('a'); a.href=planta.url; a.target='_blank'; a.rel='noopener noreferrer'; a.textContent='Abrir '+planta.fabricante; pie.appendChild(a); }
       tarjeta.append(cab,texto,pie); bandeja.appendChild(tarjeta);
       setTimeout(() => tarjeta.remove(), 15000);
       // Reemplazar el aviso previo de la misma planta solo al cambiar de estado.
@@ -298,7 +366,7 @@
         avisosNativos[clave]?.close();
         avisosNativos[clave] = enviarNativo(titulo, estado.texto, clave,
           !prueba && estado.tipo !== 'normal',
-          () => document.getElementById('solar-'+id)?.scrollIntoView({block:'center'}));
+          () => { if (esSitr) location.href='sitr.html'; else document.getElementById('solar-'+id)?.scrollIntoView({block:'center'}); });
       }
     }
     // La misma maquina de estados sirve para lecturas reales y simuladas.
@@ -322,13 +390,13 @@
       const boton = document.createElement('button');
       boton.id = 'gv-pfv-notificar'; boton.type = 'button';
       boton.className = 'gv-pfv-campana';
-      boton.setAttribute('aria-label', 'Notificaciones PFV');
+      boton.setAttribute('aria-label', 'Notificaciones GridVision');
       boton.setAttribute('aria-haspopup', 'dialog');
       boton.setAttribute('aria-expanded', 'false');
       boton.innerHTML = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>';
       const menu = document.createElement('div');
       menu.id = 'gv-pfv-notif-menu'; menu.setAttribute('role','dialog');
-      menu.setAttribute('aria-label','Notificaciones PFV'); menu.hidden = true;
+      menu.setAttribute('aria-label','Notificaciones GridVision'); menu.hidden = true;
       menu.innerHTML = '<div class="gv-pfv-menu-head"><strong>Notificaciones</strong><button type="button" data-cerrar aria-label="Cerrar">×</button></div>' +
         '<div class="gv-pfv-menu-row"><div><strong>Avisos de escritorio</strong><small data-estado></small></div><button type="button" data-activar role="switch" aria-label="Avisos de escritorio" aria-checked="false"><i></i></button></div>' +
         '<p data-ayuda></p><button type="button" data-prueba>Probar aviso en 5 segundos</button><button type="button" data-simular>Simular pérdida y normalización</button><small data-resultado role="status"></small>';
@@ -349,7 +417,7 @@
         prueba.disabled = !habilitado || probando || simulando;
         simular.disabled = !habilitado || probando || simulando;
         estado.textContent = habilitado ? 'Activados' : permiso === 'denied' ? 'Bloqueados por Edge' : 'Desactivados';
-        ayuda.textContent = !disponible ? 'Este navegador o contexto no admite avisos de escritorio.' : permiso === 'denied' ? 'En Edge, abre los permisos del sitio y permite Notificaciones. Después recarga el Portal.' : 'Recibe avisos con el Portal abierto. Las alarmas internas siguen disponibles.';
+        ayuda.textContent = !disponible ? 'Este navegador o contexto no admite avisos de escritorio.' : permiso === 'denied' ? 'En Edge, abre los permisos del sitio y permite Notificaciones. Después recarga el Portal.' : 'Recibe avisos PFV y SITR con el Portal abierto. Las alarmas internas siguen disponibles.';
       }
       function ubicar() {
         const r = boton.getBoundingClientRect();

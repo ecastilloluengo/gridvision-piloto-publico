@@ -3226,13 +3226,20 @@ if (botonMenuMovil && navegacionPortal) {
     badge.setAttribute('aria-label', descripcion);
   }
 
+  function avisoSitrV4(detail) {
+    window.dispatchEvent(new CustomEvent('gv:sitr:lectura-v4', {detail}));
+  }
+  let consultaSitrEnCurso = false;
   async function actualizarContadorSitr() {
+    if (consultaSitrEnCurso) return;
 
     if (!navigator.onLine) {
       gvContadoresOffline.historico('sitr', 'Sin conexion');
+      avisoSitrV4({ok:false});
       return;
     }
 
+    consultaSitrEnCurso = true;
     const controlador = new AbortController();
 
     const cancelacion = setTimeout(
@@ -3316,10 +3323,11 @@ if (botonMenuMovil && navegacionPortal) {
         gvContadoresOffline.historico(
           'sitr', 'Fuente CEN con retraso'
         );
-
+        avisoSitrV4({ok:false});
         return;
       }
 
+      avisoSitrV4({ok:true,fuente,instalaciones:datos.instalaciones});
       pintar(
         String(incidencias),
         incidencias > 0 ? 'error' : 'ok',
@@ -3332,11 +3340,13 @@ if (botonMenuMovil && navegacionPortal) {
         'sitr', 'Estado SITR no verificable'
       );
 
+      avisoSitrV4({ok:false});
       console.warn('Contador SITR:', error);
 
     } finally {
 
       clearTimeout(cancelacion);
+      consultaSitrEnCurso = false;
     }
   }
 
@@ -3346,6 +3356,7 @@ if (botonMenuMovil && navegacionPortal) {
 
   window.addEventListener('offline', () => {
     gvContadoresOffline.historico('sitr', 'Sin conexion');
+    avisoSitrV4({ok:false});
   });
 
   window.addEventListener('online', actualizarContadorSitr);
