@@ -1,6 +1,6 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-26 12:09",
+  "catalogoActualizadoEn": "2026-11-26 22:25",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
@@ -72,26 +72,6 @@
       "archivoDocumento": "data/dmc/A642-1_2026_documento.json"
     },
     {
-      "codigo": "A647/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Viento",
-      "titulo": "Viento Normal a Moderado en zonas de la región de Antofagasta",
-      "desdeTexto": "la tarde del jueves 26 de noviembre del 2026",
-      "hastaTexto": "la tarde del jueves 26 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-26",
-      "fechaFinDia": "2026-11-26",
-      "fechaEmision": "2026-11-26T09:00:00-03:00",
-      "regiones": [
-        "Antofagasta"
-      ],
-      "numeroPoligonos": 3,
-      "archivoGeojson": "data/dmc/A647_2026.geojson",
-      "archivoCobertura": "data/dmc/A647_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A647_2026_impactos.json",
-      "observacion": "Probabilidad de tormentas de arena",
-      "archivoDocumento": "data/dmc/A647_2026_documento.json"
-    },
-    {
       "codigo": "A645-1/2026",
       "tipo": "Aviso",
       "fenomeno": "Tormentas Eléctricas",
@@ -132,28 +112,7 @@
       "archivoImpactos": "data/dmc/A646_2026_impactos.json",
       "observacion": "",
       "archivoDocumento": "data/dmc/A646_2026_documento.json"
-    },
-    {
-      "codigo": "AA202/2026",
-      "tipo": "Alerta",
-      "fenomeno": "Altas Temperaturas",
-      "titulo": "Evento de Altas Temperaturas Extremas en zonas de las regiones del Maule y Ñuble",
-      "desdeTexto": "la tarde del jueves 26 de noviembre del 2026",
-      "hastaTexto": "la noche del jueves 26 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-26",
-      "fechaFinDia": "2026-11-26",
-      "fechaEmision": "2026-11-24T12:18:00-03:00",
-      "regiones": [
-        "Maule",
-        "Ñuble"
-      ],
-      "numeroPoligonos": 6,
-      "archivoGeojson": "data/dmc/AA202_2026.geojson",
-      "archivoCobertura": "data/dmc/AA202_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/AA202_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/AA202_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-26T13:53:20.672686-03:00"
+  "generadoEn": "2026-11-26T22:43:35.032836-03:00"
 }
