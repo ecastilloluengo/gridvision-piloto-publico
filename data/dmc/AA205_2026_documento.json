@@ -1,0 +1,77 @@
+{
+  "codigo": "AA205/2026",
+  "tipo": "Alerta",
+  "titulo": "Evento de Altas Temperaturas Extremas en valle de las regiones del Maule y Ñuble",
+  "fenomeno": "Altas Temperaturas",
+  "emisionTexto": "Viernes 27 de noviembre del 2026 a las 13:09 hrs.",
+  "condicionSinoptica": "Dorsal en altura",
+  "desde": "la tarde del sábado 28 de noviembre del 2026",
+  "hasta": "la tarde del sábado 28 de noviembre del 2026",
+  "observacion": "",
+  "textoZonaAfecta": "Maule (Valle)\nÑuble (Valle)",
+  "tablaTitulo": "Valores estimados de temperatura en grados Celsius (°C)",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Maule"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 28"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "33-35"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 2,
+        "texto": "Región: Ñuble"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 28"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Valle"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "32-34"
+      }
+    ]
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "codigo": "A649/2026",
+  "tipo": "Aviso",
+  "titulo": "Probables Tormentas Eléctricas en cordillera de la región de Arica y Parinacota",
+  "fenomeno": "Tormentas Eléctricas",
+  "emisionTexto": "Viernes 27 de noviembre del 2026 a las 15:53 hrs.",
+  "condicionSinoptica": "Inestabilidad atmosférica",
+  "desde": "la tarde del sábado 28 de noviembre del 2026",
+  "hasta": "la noche del domingo 29 de noviembre del 2026",
+  "observacion": "Asociadas con Chubascos aislados",
+  "textoZonaAfecta": "Arica y Parinacota (Cordillera)",
+  "tablaTitulo": "Ocurrencia de Tormentas Eléctricas",
+  "tablaFilas": [
+    [
+      {
+        "encabezado": true,
+        "colspan": 3,
+        "texto": "Región: Arica y Parinacota"
+      }
+    ],
+    [
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "Zona"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "sábado 28"
+      },
+      {
+        "encabezado": true,
+        "colspan": 1,
+        "texto": "domingo 29"
+      }
+    ],
+    [
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "Cordillera"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "SI"
+      },
+      {
+        "encabezado": false,
+        "colspan": 1,
+        "texto": "SI"
+      }
+    ]
+  ]
+}

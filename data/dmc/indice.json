@@ -1,20 +1,20 @@
 {
   "alcanceCatalogo": "DECLARADO_COMPLETO",
-  "catalogoActualizadoEn": "2026-11-26 22:25",
+  "catalogoActualizadoEn": "2026-11-27 19:42",
   "origenCatalogo": "https://archivos.meteochile.gob.cl/portaldmc/AAA/datos_AAA.json",
   "fuente": "DMC",
   "modoActualizacion": "INSTANTANEA_DMC",
   "avisos": [
     {
-      "codigo": "A636-4/2026",
+      "codigo": "A636-5/2026",
       "tipo": "Aviso",
       "fenomeno": "Altas Temperaturas",
       "titulo": "Altas Temperaturas en zonas desde la región de Valparaíso a la región del Biobío",
-      "desdeTexto": "la tarde del jueves 26 de noviembre del 2026",
+      "desdeTexto": "la tarde del viernes 27 de noviembre del 2026",
       "hastaTexto": "la tarde del lunes 30 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-26",
+      "fechaInicioDia": "2026-11-27",
       "fechaFinDia": "2026-11-30",
-      "fechaEmision": "2026-11-26T12:04:00-03:00",
+      "fechaEmision": "2026-11-27T13:09:00-03:00",
       "regiones": [
         "Biobío",
         "Maule",
@@ -23,96 +23,76 @@
         "Valparaíso",
         "Ñuble"
       ],
-      "numeroPoligonos": 20,
-      "archivoGeojson": "data/dmc/A636-4_2026.geojson",
-      "archivoCobertura": "data/dmc/A636-4_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A636-4_2026_impactos.json",
+      "numeroPoligonos": 18,
+      "archivoGeojson": "data/dmc/A636-5_2026.geojson",
+      "archivoCobertura": "data/dmc/A636-5_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A636-5_2026_impactos.json",
       "observacion": "",
-      "archivoDocumento": "data/dmc/A636-4_2026_documento.json"
+      "archivoDocumento": "data/dmc/A636-5_2026_documento.json"
     },
     {
-      "codigo": "A640-1/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Altas Temperaturas",
-      "titulo": "Altas Temperaturas en zonas de las regiones de La Araucanía y Los Ríos",
-      "desdeTexto": "la mañana del jueves 26 de noviembre del 2026",
-      "hastaTexto": "la tarde del viernes 27 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-26",
-      "fechaFinDia": "2026-11-27",
-      "fechaEmision": "2026-11-25T15:48:00-03:00",
-      "regiones": [
-        "La Araucanía",
-        "Los Ríos"
-      ],
-      "numeroPoligonos": 3,
-      "archivoGeojson": "data/dmc/A640-1_2026.geojson",
-      "archivoCobertura": "data/dmc/A640-1_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A640-1_2026_impactos.json",
-      "observacion": "Este evento también afectará la comuna de Valdivia",
-      "archivoDocumento": "data/dmc/A640-1_2026_documento.json"
-    },
-    {
-      "codigo": "A642-1/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Viento",
-      "titulo": "Viento Normal a Moderado en zonas de la región de Magallanes",
-      "desdeTexto": "la tarde del jueves 26 de noviembre del 2026",
-      "hastaTexto": "la noche del jueves 26 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-26",
-      "fechaFinDia": "2026-11-26",
-      "fechaEmision": "2026-11-26T11:43:00-03:00",
-      "regiones": [
-        "Magallanes"
-      ],
-      "numeroPoligonos": 4,
-      "archivoGeojson": "data/dmc/A642-1_2026.geojson",
-      "archivoCobertura": "data/dmc/A642-1_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A642-1_2026_impactos.json",
-      "observacion": "",
-      "archivoDocumento": "data/dmc/A642-1_2026_documento.json"
-    },
-    {
-      "codigo": "A645-1/2026",
+      "codigo": "A649/2026",
       "tipo": "Aviso",
       "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en cordillera de las regiones de Coquimbo y Valparaíso",
-      "desdeTexto": "la tarde del miércoles 25 de noviembre del 2026",
-      "hastaTexto": "la noche del jueves 26 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-25",
-      "fechaFinDia": "2026-11-26",
-      "fechaEmision": "2026-11-25T17:23:00-03:00",
+      "titulo": "Probables Tormentas Eléctricas en cordillera de la región de Arica y Parinacota",
+      "desdeTexto": "la tarde del sábado 28 de noviembre del 2026",
+      "hastaTexto": "la noche del domingo 29 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-28",
+      "fechaFinDia": "2026-11-29",
+      "fechaEmision": "2026-11-27T15:53:00-03:00",
+      "regiones": [
+        "Arica y Parinacota"
+      ],
+      "numeroPoligonos": 1,
+      "archivoGeojson": "data/dmc/A649_2026.geojson",
+      "archivoCobertura": "data/dmc/A649_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A649_2026_impactos.json",
+      "observacion": "Asociadas con Chubascos aislados",
+      "archivoDocumento": "data/dmc/A649_2026_documento.json"
+    },
+    {
+      "codigo": "A650/2026",
+      "tipo": "Aviso",
+      "fenomeno": "Tormentas Eléctricas",
+      "titulo": "Probables Tormentas Eléctricas en cordillera de las regiones de Coquimbo, Valparaíso y Metropolitana",
+      "desdeTexto": "la tarde del sábado 28 de noviembre del 2026",
+      "hastaTexto": "la noche del sábado 28 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-28",
+      "fechaFinDia": "2026-11-28",
+      "fechaEmision": "2026-11-27T15:55:00-03:00",
       "regiones": [
         "Coquimbo",
+        "Metropolitana",
         "Valparaíso"
       ],
-      "numeroPoligonos": 2,
-      "archivoGeojson": "data/dmc/A645-1_2026.geojson",
-      "archivoCobertura": "data/dmc/A645-1_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A645-1_2026_impactos.json",
-      "observacion": "Preferentemente durante la tarde-noche, con precipitaciones aisladas",
-      "archivoDocumento": "data/dmc/A645-1_2026_documento.json"
+      "numeroPoligonos": 3,
+      "archivoGeojson": "data/dmc/A650_2026.geojson",
+      "archivoCobertura": "data/dmc/A650_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/A650_2026_impactos.json",
+      "observacion": "Asociadas con Chubascos aislados",
+      "archivoDocumento": "data/dmc/A650_2026_documento.json"
     },
     {
-      "codigo": "A646/2026",
-      "tipo": "Aviso",
-      "fenomeno": "Tormentas Eléctricas",
-      "titulo": "Probables Tormentas Eléctricas en zonas de las regiones de Antofagasta y Atacama",
-      "desdeTexto": "la tarde del jueves 26 de noviembre del 2026",
-      "hastaTexto": "la noche del jueves 26 de noviembre del 2026",
-      "fechaInicioDia": "2026-11-26",
-      "fechaFinDia": "2026-11-26",
-      "fechaEmision": "2026-11-25T16:52:00-03:00",
+      "codigo": "AA205/2026",
+      "tipo": "Alerta",
+      "fenomeno": "Altas Temperaturas",
+      "titulo": "Evento de Altas Temperaturas Extremas en valle de las regiones del Maule y Ñuble",
+      "desdeTexto": "la tarde del sábado 28 de noviembre del 2026",
+      "hastaTexto": "la tarde del sábado 28 de noviembre del 2026",
+      "fechaInicioDia": "2026-11-28",
+      "fechaFinDia": "2026-11-28",
+      "fechaEmision": "2026-11-27T13:09:00-03:00",
       "regiones": [
-        "Antofagasta",
-        "Atacama"
+        "Maule",
+        "Ñuble"
       ],
-      "numeroPoligonos": 3,
-      "archivoGeojson": "data/dmc/A646_2026.geojson",
-      "archivoCobertura": "data/dmc/A646_2026_cobertura.geojson",
-      "archivoImpactos": "data/dmc/A646_2026_impactos.json",
+      "numeroPoligonos": 2,
+      "archivoGeojson": "data/dmc/AA205_2026.geojson",
+      "archivoCobertura": "data/dmc/AA205_2026_cobertura.geojson",
+      "archivoImpactos": "data/dmc/AA205_2026_impactos.json",
       "observacion": "",
-      "archivoDocumento": "data/dmc/A646_2026_documento.json"
+      "archivoDocumento": "data/dmc/AA205_2026_documento.json"
     }
   ],
-  "generadoEn": "2026-11-26T22:43:35.032836-03:00"
+  "generadoEn": "2026-11-27T20:27:06.432913-03:00"
 }
